@@ -1,462 +1,70 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
+<!doctype html>
+<html lang="en" data-theme="dark">
 <head>
-	<meta charset="utf-8">
-	<meta name="description" content="Ferramentas de Pathfinder 2ª Edição para jogadores e mestres.">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-
-	<title>Pf2eTools</title>
-
-	<!--PF2ETOOLS_SCRIPT_HEAD_ANCHOR-->
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/fontawesome.css">
-	<link rel="stylesheet" href="css/jquery-ui.css">
-	<link rel="stylesheet" href="css/jquery-ui-slider-pips.css">
-	<link rel="stylesheet" href="css/style.css">
-
-	<!-- Embeds -->
-	<meta content="https://pf2etools.com/favicon-256x256.png" property="og:image">
-
-	<!-- Favicons -->
-	<link rel="icon" type="image/svg+xml" href="favicon.svg">
-	<link rel="icon" type="image/png" sizes="256x256" href="favicon-256x256.png">
-	<link rel="icon" type="image/png" sizes="144x144" href="favicon-144x144.png">
-	<link rel="icon" type="image/png" sizes="128x128" href="favicon-128x128.png">
-	<link rel="icon" type="image/png" sizes="64x64" href="favicon-64x64.png">
-	<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-
-	<!-- Chrome Web App Icons -->
-	<link rel="manifest" href="manifest.webmanifest">
-	<meta name="application-name" content="Pf2eTools">
-	<meta name="theme-color" content="#5E0000">
-
-	<!-- Windows Start Menu tiles -->
-	<meta name="msapplication-config" content="browserconfig.xml"/>
-	<meta name="msapplication-TileColor" content="#5E0000">
-
-	<!-- Apple Touch Icons -->
-	<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180x180.png">
-	<link rel="apple-touch-icon" sizes="360x360" href="apple-touch-icon-360x360.png">
-	<link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon-167x167.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120x120.png">
-	<meta name="apple-mobile-web-app-title" content="Pf2eTools">
-
-	<!-- macOS Safari Pinned Tab and Touch Bar -->
-	<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5E0000">
-
-	<!-- OpenSearch -->
-	<link rel="search" href="open-search.xml" title="Search Pf2eTools" type="application/opensearchdescription+xml">
-
-	<script type="text/javascript" src="sw-injector.js"></script>
-
-	<script src="js/styleswitch.js"></script>
-	<script src="js/navigation.js"></script>
-	<script src="js/browsercheck.js"></script>
-
-	<style>
-		table.home-table {
-			padding: 0 10px 10px;
-		}
-
-		table.home-table td {
-			vertical-align: top;
-			padding: 0 5px;
-			width: 50%;
-		}
-
-		#don-wrapper {
-			position: relative;
-			margin-bottom: 7px;
-			padding: 5px 15px;
-		}
-
-		.home__btn-page {
-			border-width: 2px;
-			width: 134px;
-			height: 110px;
-			text-align: center;
-			flex-shrink: 0;
-			padding: 6px;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			border-radius: 0;
-		}
-
-		@media only screen and (max-width: 1200px) {
-			.home__btn-page {
-				width: 113px;
-			}
-
-			.home__lbl-page {
-				font-size: 14px;
-			}
-		}
-
-		.home__btn-page,
-		.home__btn-page:hover,
-		.home__btn-page:active,
-		.home__btn-page:focus {
-			color: #444;
-		}
-
-		.night-mode .home__btn-page,
-		.night-mode .home__btn-page:hover,
-		.night-mode .home__btn-page:active,
-		.night-mode .home__btn-page:focus {
-			color: inherit;
-		}
-
-		.home__icn-page {
-			font-size: 50px;
-			height: 50px;
-			width: 65px;
-			overflow: hidden;
-			text-align: center;
-		}
-
-		.home__lbl-page {
-			height: 34px;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			margin-bottom: 0;
-			font-size: 16px;
-			line-height: 1.15;
-			color: #333;
-		}
-
-		.home__h-player {
-			text-decoration: underline;
-			text-decoration-color: dodgerblue;
-		}
-
-		.home__h-rule {
-			text-decoration: underline;
-			text-decoration-color: #33a5a5;
-		}
-
-		.home__h-gm {
-			text-decoration: underline;
-			text-decoration-color: darkviolet;
-		}
-
-		.home__btn-player,
-		.home__btn-player:hover,
-		.home__btn-player:active,
-		.home__btn-player:focus,
-		.night-mode .home__btn-player,
-		.night-mode .home__btn-player:hover,
-		.night-mode .home__btn-player:active,
-		.night-mode .home__btn-player:focus {
-			border-color: dodgerblue;
-			color: dodgerblue;
-		}
-
-		.home__btn-rule,
-		.home__btn-rule:hover,
-		.home__btn-rule:active,
-		.home__btn-rule:focus,
-		.night-mode .home__btn-rule,
-		.night-mode .home__btn-rule:hover,
-		.night-mode .home__btn-rule:active,
-		.night-mode .home__btn-rule:focus {
-			border-color: #33a5a5;
-			color: #33a5a5;
-		}
-
-		.home__btn-gm,
-		.home__btn-gm:hover,
-		.home__btn-gm:active,
-		.home__btn-gm:focus,
-		.night-mode .home__btn-gm,
-		.night-mode .home__btn-gm:hover,
-		.night-mode .home__btn-gm:active,
-		.night-mode .home__btn-gm:focus {
-			border-color: darkviolet;
-			color: darkviolet;
-		}
-
-		.home__stripe {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			padding-top: 55px;
-		}
-
-		.home__stripe-header {
-			font-size: 32px;
-			font-weight: bold;
-			position: absolute;
-			top: -50px;
-			left: 0;
-			right: 0;
-		}
-
-		.home__split {
-			display: flex;
-			justify-content: space-between;
-		}
-
-		.home__split-spaced {
-			margin-right: 80px;
-		}
-
-		.home__split-spaced--gutter {
-			margin-right: 10px;
-		}
-
-		.home__wrp-buttons {
-			justify-content: center;
-		}
-
-		.home__mobile-visible {
-			display: none;
-		}
-
-		.home__narrow-visible {
-			display: none;
-		}
-
-		@media (max-width: 991px) {
-			.home__split {
-				flex-direction: column;
-			}
-
-			.home__split > * {
-				margin-bottom: 45px;
-			}
-
-			.home__split-spaced {
-				margin-right: 0;
-				margin-bottom: 15px;
-			}
-
-			.home__split-spaced--no-header {
-				margin-bottom: 0;
-			}
-
-			.home__stripe-header {
-				right: 0;
-				left: 0;
-				top: -40px;
-			}
-
-			.home__mobile-visible {
-				display: block;
-			}
-
-			.home__icn-page {
-				font-size: 50px;
-				height: 50px;
-			}
-
-			.home__btn-page {
-				height: 114px;
-				margin: 5px !important;
-			}
-
-			.home__mobile-hidden {
-				display: none !important;
-			}
-		}
-
-		@media (max-width: 507px) {
-			.home__narrow-visible {
-				display: block !important;
-			}
-
-			.home__narrow-hidden {
-				display: none !important;
-			}
-
-			.home__split-spaced--no-header {
-				margin-bottom: 15px;
-			}
-		}
-	</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Books and references for the world of Avalon.">
+  <title>Avalon</title>
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/site.css">
+  <script type="module" src="js/site.js"></script>
 </head>
-<body>
-<header class="hidden-xs hidden-sm page__header">
-	<div class="container">
-
-		<h1 class="page__title page__title--home">Avalon<span>Tools</span></h1>
-		<p class="page__subtitle">Campanhas, anotações de sessão e referências de Pathfinder 2e para Avalon.</p>
-	</div>
-</header>
-
-<nav class="container page__nav" id="navigation">
-	<ul class="nav nav-pills page__nav-inner" id="navbar">
-	</ul>
-</nav>
-
-<div class="container">
-	<!--	<div class="alert alert-warning"><p><strong>Note:</strong> this is an unofficial/personal mirror, and is not-->
-	<!--		guaranteed to be up-to-date. It is not supported by the Pf2eTools team. Use at your own risk. Unless you have no-->
-	<!--		other alternative, please use the main site at <a class="alert-link" href="#" target="_blank">Main Link</a>.-->
-	<!--	</p></div>-->
-</div>
-
-<div class="home__stripe">
-	<div class="home__split relative">
-		<div class="home__stripe-header text-right home__h-player"><div class="w-100 text-center mobile__text-center">Jogadores</div></div>
-		<div class="flex flex-wrap relative home__split-spaced home__split-spaced--gutter home__split-spaced--no-header home__wrp-buttons">
-			<a class="home__btn-page btn btn-default mr-3 home__btn-player" href="ancestries.html">
-				<div class="fal fa-users home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Ancestralidades</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default mr-3 home__btn-player" href="backgrounds.html">
-				<div class="fal fa-portrait home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Biografias</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default mr-3 home__btn-player" href="classes.html" title="Consulte as classes oficiais e suas subclasses.">
-				<div class="fal fa-hat-wizard home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Classes</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default home__btn-player" href="archetypes.html" title="">
-				<div class="fal fa-hood-cloak home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Arquétipos</h4>
-			</a>
-
-			<!-- mobile only -->
-			<a class="home__btn-page btn btn-default home__narrow-visible home__btn-player" href="feats.html">
-				<div class="fal fa-award home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Talentos</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default home__narrow-visible home__btn-player" href="items.html">
-				<div class="fal fa-helmet-battle home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Itens</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default home__narrow-visible home__btn-player" href="spells.html">
-				<div class="fal fa-book-spells home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Magias</h4>
-			</a>
-
-		</div>
-
-		<div class="flex flex-wrap home__wrp-buttons home__narrow-hidden">
-			<a class="home__btn-page btn btn-default mr-3 home__btn-player" href="feats.html">
-				<div class="fal fa-award home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Talentos</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default mr-3 home__btn-player" href="items.html">
-				<div class="fal fa-helmet-battle home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Itens</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default home__btn-player" href="spells.html">
-				<div class="fal fa-book-spells home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Magias</h4>
-			</a>
-		</div>
-	</div>
-
-	<div class="my-4 home__mobile-hidden home__narrow-hidden"></div>
-	<div class="my-4 home__mobile-hidden home__narrow-visible"></div>
-	<div class="my-4 home__mobile-hidden"></div>
-
-	<div class="home__split">
-		<div class="flex flex-wrap relative home__split-spaced home__split-spaced--gutter home__wrp-buttons">
-			<div class="home__stripe-header home__h-rule"><div class="w-100 text-center mobile__text-center">Regras</div></div>
-
-			<a class="home__btn-page btn btn-default mr-3 home__btn-rule" href="quickreference.html" title="Consulte e busque regras e tabelas usadas com frequência.">
-				<div class="fal fa-info-square home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Referência<br>Rápida</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default mr-3 home__btn-rule" href="variantrules.html" title="Consulte e filtre o glossário de regras e subsistemas.">
-				<div class="fal fa-toolbox home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Glossário<br>de Regras</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default mr-3 home__btn-rule" href="actions.html" title="Consulte e filtre as ações e atividades disponíveis.">
-				<div class="fal fa-fist-raised home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Ações</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default mr-3 home__btn-rule" href="conditions.html" title="Consulte e filtre as condições do Livro Básico.">
-				<div class="fal fa-skull-crossbones home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Condições</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default home__btn-rule" href="traits.html" title="Consulte e filtre os traços usados nas fichas de Pathfinder 2e.">
-				<div class="fal fa-tags home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Traços</h4>
-			</a>
-		</div>
-
-		<div class="my-4 home__mobile-visible"></div>
-
-		<div class="flex flex-wrap relative home__wrp-buttons">
-			<div class="home__stripe-header home__h-gm"><div class="w-100 text-center">Mestres</div></div>
-
-			<a class="home__btn-page btn btn-default mr-3 home__btn-gm" href="bestiary.html" title="Consulte e filtre as fichas de criaturas de Pathfinder 2e.">
-				<div class="fal fa-dragon home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Bestiário</h4>
-			</a>
-
-			<a class="home__btn-page btn btn-default home__btn-gm" href="adventures.html" title="Consulte suas campanhas e leia as anotações de cada sessão.">
-				<div class="fal fa-map home__icn-page"></div>
-				<h4 class="text-center home__lbl-page">Campanhas</h4>
-			</a>
-		</div>
-	</div>
-
-	<div class="my-4"></div>
-
-	<hr class="no-shrink w-100 my-0">
-</div>
-
-<main class="container">
-	<h3>Suas campanhas</h3>
-	<p>Abra <a href="adventures.html">Campanhas</a> para consultar seus jogos, acessar uma sessão ou ler o diário completo da campanha.</p>
-	<h3>Regras à mesa</h3>
-	<p>Use as páginas de referência e a busca para encontrar opções de personagem, magias, equipamentos e regras. Segure <kbd>SHIFT</kbd> ao passar o cursor sobre uma referência para manter a janela aberta.</p>
-</main>
-<footer class="container">
-	<p class="text-center">
-		Versão
-		<a href="changelog.html" id="version_number">?</a>
-		| &nbsp;&copy;&nbsp;<span id="current_year"></span>
-		AvalonTools
-		<br>
-		<span class="ve-muted">Baseado em <a href="https://github.com/Pf2eToolsOrg/Pf2eTools">Pf2eTools</a>. <a href="LICENSE.md">Licença do Código-fonte</a>. Sem afiliação ou endosso da Paizo Inc.</span>
-	</p>
-</footer>
-<!--PF2ETOOLS_SCRIPT_ANCHOR-->
-
-<script src="js/parser.js"></script>
-<script src="js/utils.js"></script>
-<script src="js/utils-ui.js"></script>
-<script src="lib/localforage.js"></script>
-<script src="js/omnidexer.js"></script>
-<script src="js/omnisearch.js"></script>
-<script src="js/render.js"></script>
-<script src="js/render-dice.js"></script>
-<script src="lib/jquery.js"></script>
-<script src="js/scalecreature.js"></script>
-<script src="lib/jquery-ui.js"></script>
-<script src="lib/jquery-ui-slider-pip.js"></script>
-<script src="lib/elasticlunr.js"></script>
-
-<script>
-	ExcludeUtil.pInitialise();
-
-	$(`#current_year`).text((new Date).getFullYear());
-	$(`#version_number`).text(VERSION_NUMBER);
-</script>
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Avalon home"><span class="brand-mark" aria-hidden="true">✧</span>Avalon</a>
+      <nav aria-label="Main navigation" id="navigation"><a class="nav-home" href="index.html">Home</a><a class="nav-fallback" href="books.html">Books</a></nav>
+      <details class="settings-menu" id="site-settings">
+        <summary aria-label="Settings" title="Appearance settings"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></svg><span>Settings</span></summary>
+        <div class="settings-panel">
+          <p class="settings-heading">Appearance</p>
+          <div class="theme-options" role="group" aria-label="Color theme">
+            <button type="button" data-theme-choice="dark" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13.1A8.5 8.5 0 0 1 10.9 3.5 8.5 8.5 0 1 0 20.5 13.1Z"/></svg>Dark</button>
+            <button type="button" data-theme-choice="light" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>Light</button>
+          </div>
+          <p class="settings-note">Remembered on this browser.</p>
+          <p class="sr-only" id="theme-status" role="status" aria-live="polite"></p>
+        </div>
+      </details>
+    </div>
+  </header>
+  <main id="main" class="home">
+    <section class="home-hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span aria-hidden="true">✦</span> A world in the making</p>
+        <h1 id="hero-title">A world between<br>the <em>pages.</em></h1>
+        <p class="hero-description">Every great adventure begins with a few words.<br class="desktop-break"> Gather yours here, and let Avalon take shape.</p>
+        <a class="book-tile" href="books.html">
+          <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M24 12C19 8 11 8 5 10v27c7-2 13-1 19 3 6-4 12-5 19-3V10c-6-2-14-2-19 2Zm0 0v28M10 16c3-1 6 0 9 1m-9 5c3-1 6 0 9 1m-9 5c3-1 6 0 9 1m10-12c3-1 6-2 9-1m-9 7c3-1 6-2 9-1m-9 7c3-1 6-2 9-1"/>
+          </svg>
+          <span class="tile-copy"><span class="tile-kicker">Enter the library</span><strong>Books</strong><span class="tile-description">The foundations of your next adventure.</span></span>
+          <span class="tile-arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbital-ring"></div>
+        <div class="archive-volume">
+          <div class="cover-frame">
+            <span class="cover-edition">An ever-growing collection</span>
+            <svg class="cover-emblem" viewBox="0 0 160 160" fill="none" stroke="currentColor" stroke-width="1">
+              <circle cx="80" cy="80" r="62"/><circle cx="80" cy="80" r="51"/>
+              <path d="M80 7v146M7 80h146M28 28l104 104M28 132 132 28" opacity=".5"/>
+              <path d="m80 32 12 36 36 12-36 12-12 36-12-36-36-12 36-12Z"/>
+              <path d="m80 58 6 16 16 6-16 6-6 16-6-16-16-6 16-6Z" fill="currentColor"/>
+              <circle cx="80" cy="13" r="3" fill="currentColor"/><circle cx="80" cy="147" r="3" fill="currentColor"/>
+            </svg>
+            <span class="cover-title">The Avalon<br><em>Archive</em></span>
+            <span class="cover-rule"></span>
+            <span class="cover-edition">Stories yet to be told</span>
+          </div>
+        </div>
+        <p class="art-caption">Open a book. Begin a world.</p>
+      </div>
+    </section>
+    <footer class="home-footer"><span>Made for the stories around your table.</span><span>Pathfinder · Second Edition</span></footer>
+  </main>
+  <noscript><p class="notice">Enable JavaScript to browse the JSON books.</p></noscript>
 </body>
 </html>

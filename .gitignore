@@ -1,26 +1,5 @@
-desktop.ini
-node_modules
-secrets
-
-# IntelliJ project files
-.idea/
-*.iml
-
-# Visual Studio Code project files
+node_modules/
+.DS_Store
+Thumbs.db
 .vscode/
-*.code-workspace
-
-# Generated files
-sitemap.xml
-js/sw-files.js
-search/
-*.DS_Store
-RELEASE_NOTES.md
-
-# Misc dev/scripting files
-trash
-trash_in
-
-# the compiled sw
-sw.js
-sw-injector.js
+*.log

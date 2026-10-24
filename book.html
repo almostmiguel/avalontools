@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book · Avalon</title>
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/site.css">
+  <script type="module" src="js/site.js"></script>
+</head>
+<body data-page="book">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Avalon home"><span class="brand-mark" aria-hidden="true">✧</span>Avalon</a>
+      <nav aria-label="Main navigation" id="navigation"><a class="nav-home" href="index.html">Home</a><a class="nav-fallback" href="books.html">Books</a></nav>
+      <details class="settings-menu" id="site-settings">
+        <summary aria-label="Settings" title="Appearance settings"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></svg><span>Settings</span></summary>
+        <div class="settings-panel">
+          <p class="settings-heading">Appearance</p>
+          <div class="theme-options" role="group" aria-label="Color theme">
+            <button type="button" data-theme-choice="dark" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13.1A8.5 8.5 0 0 1 10.9 3.5 8.5 8.5 0 1 0 20.5 13.1Z"/></svg>Dark</button>
+            <button type="button" data-theme-choice="light" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>Light</button>
+          </div>
+          <p class="settings-note">Remembered on this browser.</p>
+          <p class="sr-only" id="theme-status" role="status" aria-live="polite"></p>
+        </div>
+      </details>
+    </div>
+  </header>
+  <div class="reader-layout">
+    <aside id="contents" class="contents" aria-label="Book contents"></aside>
+    <main id="main" class="reader-main" aria-busy="true">
+      <div id="reader"><p class="muted" role="status">Loading book…</p></div>
+    </main>
+  </div>
+  <noscript><p class="notice">Enable JavaScript to read the JSON books.</p></noscript>
+</body>
+</html>

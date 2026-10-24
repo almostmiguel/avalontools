@@ -1,3 +1,14 @@
 {
-	"book": []
+  "book": [
+    {
+      "id": "PC1",
+      "name": "Player Core",
+      "source": "PC1",
+      "group": "Core",
+      "published": "2023-11-15",
+      "color": "#d4a64a",
+      "cover": "img/books/pc1-cover.jpg",
+      "file": "data/book/book-pc1.json"
+    }
+  ]
 }
