@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A searchable rules reference for Pathfinder and the world of Avalon.">
+  <title>Rules · Avalon</title>
+  <script src="js/theme.js"></script>
+  <link rel="preload" href="fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Gin-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/rules.css">
+  <script type="module" src="js/rules-app.js"></script>
+</head>
+<body data-page="rules">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Avalon home"><span class="brand-mark" aria-hidden="true">✧</span>Avalon</a>
+      <nav aria-label="Main navigation" id="navigation"><a class="nav-home" href="index.html">Home</a><a class="nav-home" href="rules.html" aria-current="page">Rules</a><span class="nav-reference">The Avalon setting</span></nav>
+      <details class="settings-menu" id="site-settings">
+        <summary aria-label="Settings" title="Appearance settings"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></svg><span>Settings</span></summary>
+        <div class="settings-panel">
+          <p class="settings-heading">Appearance</p>
+          <div class="theme-options" role="group" aria-label="Color theme">
+            <button type="button" data-theme-choice="dark" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13.1A8.5 8.5 0 0 1 10.9 3.5 8.5 8.5 0 1 0 20.5 13.1Z"/></svg>Dark</button>
+            <button type="button" data-theme-choice="light" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>Light</button>
+          </div>
+          <p class="settings-note">Remembered on this browser.</p>
+          <p class="sr-only" id="theme-status" role="status" aria-live="polite"></p>
+        </div>
+      </details>
+    </div>
+  </header>
+  <main id="main" class="rules-library rules-workspace" aria-busy="true">
+    <header class="rules-intro">
+      <div><p class="eyebrow">The Avalon reference</p><h1>Rules</h1><p class="rules-description">Choose a rule and keep it at hand.</p></div>
+      <p id="library-summary" class="library-summary" role="status">Loading your rules…</p>
+    </header>
+    <div class="rules-browser">
+      <section id="rules-list-pane" class="rules-list-pane" aria-labelledby="results-title">
+        <form id="rules-search-form" class="rules-search-form" action="rules.html" role="search">
+          <div class="rules-search-field">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+            <label class="sr-only" for="rules-search">Search rules</label>
+            <input id="rules-search" name="q" type="search" placeholder="Search rules…" autocomplete="off">
+            <button id="clear-search" type="button">Clear</button>
+          </div>
+          <div class="rules-filter-row">
+            <div class="rules-filter-field"><label for="rules-source">Source</label><select id="rules-source" name="source"><option value="">All sources</option></select></div>
+            <div class="rules-filter-field"><label for="rules-kind">Type</label><select id="rules-kind" name="kind"><option value="">All types</option><option value="core">Core rules</option><option value="optional">Optional rules</option><option value="setting">Setting rules</option></select></div>
+          </div>
+          <div class="rules-filter-field rules-topic-field"><label for="rules-topic">Topic</label><select id="rules-topic" name="topic"><option value="">All topics</option></select></div>
+          <button class="sr-only" type="submit">Search</button>
+        </form>
+        <header class="results-heading"><h2 id="results-title">All rules</h2><p id="rules-count" role="status" aria-live="polite" aria-atomic="true"></p></header>
+        <div class="rules-results-scroll">
+          <div class="rules-list-columns" role="group" aria-label="Sort rules">
+            <button id="sort-name" class="rule-sort" type="button" aria-label="Sort by name"><span>Name</span></button>
+            <button id="sort-type" class="rule-sort" type="button" aria-label="Sort by type"><span>Type</span></button>
+            <button id="sort-source" class="rule-sort" type="button" aria-label="Sort by source"><span>Source</span></button>
+          </div>
+          <div id="rules-results"><p class="muted" role="status">Loading rules…</p></div>
+        </div>
+      </section>
+      <section id="rule-detail" class="rule-article rules-detail" tabindex="-1" aria-labelledby="rule-detail-title">
+        <div class="rules-detail-empty"><span class="empty-sigil" aria-hidden="true">✧</span><h2 id="rule-detail-title">Choose a rule</h2><p>Select a rule from the list to read it here.</p></div>
+      </section>
+    </div>
+    <p id="rule-selection-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+    <footer class="rules-footer"><span>Avalon · Your world, your rules.</span><span>Pathfinder · Second Edition</span></footer>
+  </main>
+  <noscript><p class="notice">Enable JavaScript to search and browse the rules reference.</p></noscript>
+</body>
+</html>

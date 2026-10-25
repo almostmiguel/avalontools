@@ -1,4 +1,4 @@
-// Book JSON stays independent of the interface and of any future translation.
+// Render reusable JSON content independently of page layout and translation.
 export function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, character => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
@@ -39,29 +39,17 @@ function renderTag(body, options) {
   const text = renderInline(parts[0], options);
   const formatting = { b: "strong", bold: "strong", i: "em", italic: "em", s: "s", u: "u", sup: "sup", sub: "sub", code: "code", kbd: "kbd" };
   if (Object.hasOwn(formatting, tag)) return `<${formatting[tag]}>${renderInline(value, options)}</${formatting[tag]}>`;
-  if (tag === "book") {
-    const name = inlineText(parts[0]).trim();
-    const source = (parts[1] || "").trim();
-    const label = escapeHtml(inlineText(parts[2] || parts[0]));
-    const attributes = `data-book-name="${escapeHtml(name)}" data-book-source="${escapeHtml(source)}"`;
-    const resolution = options.resolveBook?.(name, source);
-    if (resolution && resolution.status !== "found") {
-      return `<span class="book-reference book-reference-unresolved" tabindex="0" ${attributes} title="Book unavailable: ${escapeHtml(name)}">${label}</span>`;
-    }
-    const fallback = `book.html?${new URLSearchParams({ book: source || name })}`;
-    return `<a class="book-reference" href="${escapeHtml(resolution?.target.href || fallback)}" ${attributes}>${label}</a>`;
-  }
   if (tag === "rule") {
     const name = inlineText(parts[0]).trim();
-    const source = (parts[1] || options.source || "PC1").trim();
+    const source = (parts[1] || "").trim();
     const label = escapeHtml(inlineText(parts[2] || parts[0]));
     const attributes = `data-rule-name="${escapeHtml(name)}" data-rule-source="${escapeHtml(source)}"`;
     const resolution = options.resolveRule?.(name, source);
     if (resolution && resolution.status !== "found") {
       const message = resolution.status === "ambiguous" ? "More than one rule matches" : "Rule not found";
-      return `<span class="rule-link rule-link-unresolved" tabindex="0" ${attributes} title="${message}: ${escapeHtml(name)} (${escapeHtml(source)})">${label}</span>`;
+      return `<span class="rule-link rule-link-unresolved" tabindex="0" ${attributes} title="${message}: ${escapeHtml(name)}${source ? ` (${escapeHtml(source)})` : ""}">${label}</span>`;
     }
-    const fallback = `book.html?${new URLSearchParams({ book: source, rule: name })}`;
+    const fallback = `rules.html?${new URLSearchParams(source ? { rule: name, source } : { rule: name })}`;
     return `<a class="rule-link" href="${escapeHtml(resolution?.target.href || fallback)}" ${attributes}>${label}</a>`;
   }
   if (tag === "link") {
@@ -114,42 +102,16 @@ export function inlineText(value) {
   return renderInline(value).replace(/<[^>]*>/g, "").replace(/&(amp|lt|gt|quot|#39);/g, (_, entity) => entities[entity]);
 }
 
-export function getChapters(payload, bookId = "PC1") {
-  let chapters;
-  if (Array.isArray(payload)) chapters = payload;
-  else if (Array.isArray(payload?.data)) chapters = payload.data;
-  else if (Array.isArray(payload?.bookData)) {
-    chapters = payload.bookData.find(book => String(book.id).toLowerCase() === bookId.toLowerCase())?.data;
-  } else if (Array.isArray(payload?.entries)) chapters = [payload];
-  if (!Array.isArray(chapters)) throw new Error('Book JSON must contain a "data" array of chapters.');
-  if (chapters.some(chapter => !chapter || typeof chapter !== "object" || Array.isArray(chapter))) {
-    throw new Error("Each chapter must be an object with a name and entries.");
-  }
-  return chapters;
-}
-
-export function renderChapter(chapter, options = {}) {
+export function renderContent(content, options = {}) {
   const headings = [];
-  let boxDepth = 0;
-  const pages = new WeakMap();
-  const markPages = (value, inherited) => {
-    if (!value || typeof value !== "object") return;
-    if (Array.isArray(value)) return value.forEach(item => markPages(item, inherited));
-    const page = value.page ?? inherited;
-    pages.set(value, Number.isInteger(page) && page > 0 ? page : null);
-    Object.values(value).forEach(item => markPages(item, page));
-  };
-  markPages(chapter, null);
   const inline = value => renderInline(value, options);
-  const heading = (name, level, tocLevel = null, entry = null, { afterName = "", trailing = "", controls = true } = {}) => {
+  const heading = (name, level, entry, { afterName = "", trailing = "" } = {}) => {
     const id = `${options.anchorPrefix || "section"}-${headings.length + 1}`;
     const size = Math.max(2, Math.min(6, level));
-    const page = pages.get(entry) ?? null;
-    headings.push({ id, name: String(name), level: size, tocLevel: boxDepth ? null : tocLevel, entry, page });
-    const title = options.interactive ? `<span class="heading-title">${inline(name)}${afterName}</span>${trailing}${controls ? renderHeadingControls(id, name, page) : ""}` : `${inline(name)}${afterName}${trailing}`;
-    return `<h${size} id="${escapeHtml(id)}"${options.interactive && controls ? ' class="foldable-heading"' : ""}>${title}</h${size}>`;
+    const minorHeading = entry?.type === "h6" ? ' data-heading-level="6"' : "";
+    headings.push({ id, name: String(name), level: size, entry });
+    return `<h${size} id="${escapeHtml(id)}"${minorHeading}>${inline(name)}${afterName}${trailing}</h${size}>`;
   };
-  const foldBody = (html, id) => options.interactive && id ? `<div class="section-body" id="${escapeHtml(id)}-content">${html}</div>` : html;
   const blocks = (entries, level) => (Array.isArray(entries) ? entries : [entries]).map(entry => block(entry, level)).join("\n");
   const cell = value => {
     if (value == null) return "";
@@ -161,14 +123,7 @@ export function renderChapter(chapter, options = {}) {
     return blocks(value.entries ?? value.entry ?? "", 5);
   };
   const block = (entry, level = 2) => {
-    const isBox = entry && ["box", "inset", "insetReadaloud", "sidebar"].includes(entry.type);
-    let html;
-    if (isBox) boxDepth++;
-    try {
-      html = renderBlock(entry, level);
-    } finally {
-      if (isBox) boxDepth--;
-    }
+    const html = renderBlock(entry, level);
     if (!entry || !["modified", "original"].includes(entry.setting)) return html;
     const original = entry.setting === "original";
     const label = original ? "Original" : "Adapted";
@@ -191,10 +146,9 @@ export function renderChapter(chapter, options = {}) {
       const kind = typeof entry.kind === "string" ? entry.kind.trim() : "";
       const rank = typeof entry.level === "string" ? entry.level.trim() : Number.isInteger(entry.level) && entry.level >= 0 ? String(entry.level) : "";
       const classification = [kind, rank].filter(Boolean).join(" ");
-      const title = heading(entry.name || "Ability", level, null, entry, {
+      const title = heading(entry.name || "Ability", level, entry, {
         afterName: action,
         trailing: classification ? `<span class="ability-level">${inline(classification)}</span>` : "",
-        controls: false,
       });
       const id = headings.at(-1).id;
       const traits = Array.isArray(entry.traits) ? entry.traits.filter(trait => typeof trait === "string" && trait.trim()) : [];
@@ -210,26 +164,34 @@ export function renderChapter(chapter, options = {}) {
       const compactClass = entry.compact === true ? " ability-block--compact" : "";
       return `<section class="ability-block${compactClass}" aria-labelledby="${escapeHtml(id)}"><header class="ability-header">${title}</header><div class="ability-content">${traitRow}${metadata}${description}${special}</div></section>`;
     }
+    if (type === "formula") {
+      const label = entry.name ? `<p class="formula-label">${inline(entry.name)}</p>` : "";
+      return `<div class="rule-formula">${label}<div class="formula-body">${blocks(children, level)}</div></div>`;
+    }
+    if (type === "clarification") {
+      const title = inline(entry.name || "Paizo Clarification");
+      const icon = '<svg class="clarification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></svg>';
+      const toggle = '<svg class="clarification-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>';
+      return `<details class="paizo-clarification"${entry.open === true ? " open" : ""}><summary>${icon}<span>${title}</span>${toggle}</summary><div class="clarification-body">${blocks(children, level)}</div></details>`;
+    }
     if (type === "box-section") {
-      const title = entry.name ? heading(entry.name, level, null, entry) : "";
+      const title = entry.name ? heading(entry.name, level, entry) : "";
       const id = entry.name ? headings.at(-1).id : null;
       const label = id ? ` aria-labelledby="${escapeHtml(id)}"` : "";
-      return `<section class="box-section"${label}>${title}${foldBody(blocks(children, level + 1), id)}</section>`;
+      return `<section class="box-section"${label}>${title}${blocks(children, level + 1)}</section>`;
     }
     if (type === "box") {
-      const title = entry.name ? heading(entry.name, level, null, entry) : "";
+      const title = entry.name ? heading(entry.name, level, entry) : "";
       const id = entry.name ? headings.at(-1).id : null;
       const label = id ? ` aria-labelledby="${escapeHtml(id)}"` : "";
-      const bodyAttributes = options.interactive && id ? ` id="${escapeHtml(id)}-content" class="rule-box-content section-body"` : ' class="rule-box-content"';
-      return `<aside class="rule-box"${label}>${title}<div${bodyAttributes}>${blocks(children, level + 1)}</div></aside>`;
+      return `<aside class="rule-box"${label}>${title}<div class="rule-box-content">${blocks(children, level + 1)}</div></aside>`;
     }
     if (type === "list") {
       const ordered = entry.style === "list-decimal" || entry.ordered === true;
       const tag = ordered ? "ol" : "ul";
       const attributes = entry.style === "list-no-bullets" ? ' class="list-no-bullets" role="list"' : "";
-      const title = entry.name ? heading(entry.name, level, null, entry) : "";
-      const id = entry.name ? headings.at(-1).id : null;
-      return `${title}${foldBody(`<${tag}${attributes}>${(entry.items ?? []).map(item => `<li>${block(item, level + 1)}</li>`).join("")}</${tag}>`, id)}`;
+      const title = entry.name ? heading(entry.name, level, entry) : "";
+      return `${title}<${tag}${attributes}>${(entry.items ?? []).map(item => `<li>${block(item, level + 1)}</li>`).join("")}</${tag}>`;
     }
     if (type === "table") {
       const labels = entry.colLabels ?? [];
@@ -256,16 +218,9 @@ export function renderChapter(chapter, options = {}) {
     }
     const fixedHeading = /^h([1-6])$/.exec(type);
     const sectionLevel = fixedHeading ? Number(fixedHeading[1]) + 1 : level;
-    const title = entry.name ? heading(entry.name, sectionLevel, fixedHeading ? Number(fixedHeading[1]) : null, entry) : "";
-    const id = entry.name ? headings.at(-1).id : null;
-    const content = `${title}${foldBody(blocks(children, sectionLevel + (entry.name ? 1 : 0)), id)}`;
-    return ["inset", "insetReadaloud", "sidebar"].includes(type) ? `<aside>${content}</aside>` : content;
+    const title = entry.name ? heading(entry.name, sectionLevel, entry) : "";
+    const html = `${title}${blocks(children, sectionLevel + (entry.name ? 1 : 0))}`;
+    return ["inset", "insetReadaloud", "sidebar"].includes(type) ? `<aside>${html}</aside>` : html;
   };
-  return { html: blocks(chapter.entries ?? chapter.entry ?? [], 2), headings };
-}
-
-export function renderHeadingControls(id, name, page) {
-  const label = escapeHtml(inlineText(name));
-  const pageLabel = Number.isInteger(page) && page > 0 ? `<span class="heading-page" aria-label="Page ${page}">p. ${page}</span>` : "";
-  return `<span class="heading-controls">${pageLabel}<button type="button" class="section-toggle" data-section-toggle aria-controls="${escapeHtml(id)}-content" aria-expanded="true" aria-label="Collapse ${label}" data-section-name="${label}"><span aria-hidden="true">−</span></button></span>`;
+  return { html: blocks(content.entries ?? content.entry ?? [], 2), headings };
 }

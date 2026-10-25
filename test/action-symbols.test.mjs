@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
-import { inlineText, renderChapter, renderInline } from "../js/book-renderer.js";
+import { inlineText, renderContent, renderInline } from "../js/content-renderer.js";
 
 test("action tags use the original font's glyph characters with accessible names", () => {
   const labels = { "1": "One action", "2": "Two actions", "3": "Three actions", r: "Reaction", f: "Free action" };
@@ -15,9 +15,9 @@ test("action tags use the original font's glyph characters with accessible names
   assert.equal(renderInline("{@code {@as 1}}"), "<code>{@as 1}</code>");
   assert.doesNotMatch(renderInline('{@as <script>bad</script>}'), /<script>/);
   assert.equal(inlineText("{@as 1} Single Actions").trim(), "Single Actions");
-  const html = renderChapter({ entries: [
+  const html = renderContent({ entries: [
     { type: "h4", name: "{@as 1} Single Actions", entries: ["Use {@as 2}, {@as 3}, {@as r}, or {@as f}."] },
-  ] }, { interactive: true }).html;
+  ] }).html;
   assert.equal((html.match(/class="action-symbol"/g) || []).length, 5);
 });
 
@@ -28,10 +28,10 @@ test("action glyphs do not inherit hanging indents from compact abilities or lab
   assert.match(css, /\.ability-header \.action-symbol \{ margin-inline: \.1em; \}/);
   assert.match(css, /\.ability-block--compact \{[^}]+text-indent: -1\.25em/);
   assert.match(css, /\.ability-field \{[^}]+text-indent: -1\.25em/);
-  const html = renderChapter({ entries: [{
+  const html = renderContent({ entries: [{
     type: "ability", compact: true, name: "Action Name", actions: 1,
     requirements: "Spend {@as 1} to prepare.", entries: ["An effect."],
-  }] }, { interactive: true }).html;
+  }] }).html;
   assert.match(html, /Action Name <span class="action-symbol" data-symbol="1"/);
   assert.equal((html.match(/class="action-symbol"/g) || []).length, 2);
 });

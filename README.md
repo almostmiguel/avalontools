@@ -1,8 +1,11 @@
 # Avalon
 
-A fresh, English-first home for a personal Pathfinder setting. For now it has
-only Books: a home-page button, a year-grouped book menu, and a JSON book reader.
-There are no rule databases, translations, frameworks, or package dependencies.
+A setting hub and curated rules reference for Pathfinder. The current site has
+Home and Rules, with a list and detail workspace. Rules are written independently of books.
+There are no frameworks, dependencies, or build step.
+
+Future sections can hold a player's guide, character options, spells, equipment,
+world lore, and campaign diaries. They can be added when needed.
 
 ## Run locally
 
@@ -12,158 +15,247 @@ With Node.js 20 or newer:
 npm run serve:dev
 ```
 
-Open http://localhost:8080. No install or build is needed. On Windows, use
-`npm.cmd` if PowerShell blocks `npm`. Run checks with `npm test`.
+Open http://localhost:8080. On Windows, use `npm.cmd` if PowerShell blocks
+`npm`. Run the checks with `npm test`.
 
-## Appearance
+Dark mode is the default. Settings lets you switch to Light; the choice is
+remembered in your browser.
 
-Dark mode is the default, including the book reader. Open Settings in the
-top-right corner and choose Dark or Light. Your choice is saved in this browser
-and applies across the home page, library, reader, and hover previews.
+Typography uses Gin from the original project for major headings, Source Sans 3
+for the interface and rule text, and Source Serif 4 for flavor text, quotations,
+and callout prose. Fonts are served locally, including real italic faces and
+variable weights for the Source families. Pathfinder action symbols keep their
+dedicated font. Font sources and notices are in `fonts/README.md`.
 
-## Add Player Core
+## Add a rule
 
-Body paragraphs, including ability descriptions, stay flush left without
-first-line indents. Labeled ability fields (such as Prerequisites, Trigger, and
-Special) use a hanging indent: the label starts flush left, and wrapped lines
-are indented. Centered flavor text and tables keep their existing alignment.
-
-Player Core is registered in `data/books.json`. Its content file is
-`data/book/book-pc1.json`. Add your English chapters to its `data` array, keeping
-the source text separate from interface styling. The basic structure is:
+Edit the `rules` array in `data/rules.json`. Add an object like this:
 
 ```json
 {
-  "data": [
+  "id": "your-rule",
+  "name": "Your Rule",
+  "topic": "Encounters",
+  "kind": "core",
+  "source": "PC1",
+  "entries": [
+    "Your text goes here.",
     {
-      "name": "Introduction",
-      "entries": [
-        "Your chapter text goes here.",
-        {
-          "type": "h1",
-          "name": "A section heading",
-          "entries": [
-            "Text with {@b bold}, {@i italics}, and {@as 1} action symbols.",
-            { "type": "list", "items": ["First item", "Second item"] }
-          ]
-        }
-      ]
+      "type": "h2",
+      "name": "A Subsection",
+      "entries": ["More details."]
     }
   ]
 }
 ```
 
-For demonstration content, add `"_meta": {"example": true}` alongside `data`
-to display an example-content warning. Omit it when entering your actual book.
+Save and refresh the browser. Search matches rule names and aliases only;
+descriptions and topics are excluded. Topic, source, and type filters can be
+combined with name search and shared by URL.
+Click Name, Type, or Source above the list to sort it. Switching columns starts
+A–Z; clicking the active column reverses its direction. Name is selected A–Z by
+default, so clicking it initially switches to Z–A. An arrow shows the current
+order, which is also preserved in the URL.
+Sorting keeps the selected rule open. Until you choose a sort, searches rank
+the most relevant matches first.
 
-Refresh the browser after editing. The chapter list, section links, and
-previous/next chapter links are generated from the JSON, not maintained separately.
+The list stays on the left while the selected rule appears instantly on the right.
+The first matching rule opens automatically. Clicking another rule does not reload
+the page. The URL includes its id, so reloading, sharing, and Back/Forward restore
+selection. Ctrl/Cmd-click still opens a rule in a new tab. On smaller screens the
+rule appears below the list, with a Rule list button to return to search.
 
-### The three pieces to remember
+Rule links inside descriptions and hover cards also select their destination in
+place. If current filters exclude that destination, they are cleared to reveal it.
 
-- `data`: the list of chapters, in reading order.
-- `name`: the title of a chapter or heading.
-- `entries`: the paragraphs and smaller blocks inside it. Each string is a paragraph.
+- `id`: required and unique within its source. Keep it when renaming or moving a rule.
+- `name`: required display title.
+- `topic`: one category or an array of categories; defaults to General.
+- `kind`: `core`, `optional`, or `setting`.
+- `source`: a citation identifier, such as PC1; defaults to Avalon.
+- `page`: optional printed source page.
+- `aliases`: optional array of alternative names.
+- `setting`: `original` for Avalon material or `modified` for an adaptation.
+- `settingNote`: optional explanation shown with the setting marker.
 
-Use `h1` for a main section and `h2` for a subsection. Keep subsections
-inside the parent section's `entries`. The reader already provides the chapter's
-main title, so you do not need to repeat it as an entry.
+Original setting rules default to the Setting type unless you supply `kind`.
+For two topics, write `"topic": ["Playing the Game", "Checks"]`. The rule appears
+under either topic filter, both topics are searchable, and both show above its
+title. Existing single-topic strings still work. A rule remains one entry even
+when it belongs to multiple topics.
 
-The contents sidebar keeps chapter navigation and shows only explicit `h1` and
-`h2` entries beneath the current chapter. Each level uses smaller text
-and more indentation. Headings `h3` through `h6`, box titles, and note titles
-stay visible in the book itself but are not listed in the sidebar. All headings
-inside `box`, `inset`, `insetReadaloud`, and `sidebar` entries are also excluded
-from the overview, even when their type is `h1`, `h2`, or `h3`. They remain
-visible and linkable with their normal rule links and anchors.
+The `sources` array in the same file supplies citation names, for example
+`{"id":"PC1","name":"Player Core"}`. It never imports content from a book.
+Top-level objects in `rules` become database entries. Nested blocks stay within
+their parent unless you explicitly promote them.
 
-To create nested overview groups, put the introductory `h2` sections inside an
-`h1` named Introduction. Other `h1` sections, such as Character Creation and
-Leveling Up, are siblings of Introduction in the chapter's `entries`. This lets
-Introduction fold just its subsections, while the chapter row folds every group.
+### Make a nested block its own rule
 
-### Pages and folding sections
+Add `"rule": true`, a unique `id`, and a `name` to a heading, box, or other block
+inside a rule's `entries`:
 
-In the reader, each heading shows its printed `page` beside a small −/+ button.
-Add `"page": 10` to an entry to set that number. Nested headings without their
-own page inherit the containing section's page; missing or invalid page numbers
-are not invented. The chapter title uses the chapter's own `page`.
+```json
+{
+  "type": "h4",
+  "name": "Attribute Modifier",
+  "id": "attribute-modifier-pc1",
+  "rule": true,
+  "entries": ["Your explanation goes here."]
+}
+```
 
-Click − to hide a heading's entries, including nested sections, or + to show
-them again. Folding a parent preserves the individual folded states inside it.
-The chapter-title button folds the whole chapter text, leaving chapter navigation
-available. Rule previews stay fully expanded.
+It stays in the parent and also appears as its own searchable rule. Link to it
+with `{@rule Attribute Modifier}`. Its detail view and hover preview contain
+that block's content, and its detail header links back to the containing rule.
+Your existing Attribute Modifier section demonstrates this.
 
-The book title in the left overview is a permanent heading, not a collapse control.
-The overview has independent expandable chapter and heading groups. Click
-their +/− markers (or focus the summary and press Enter/Space) to fold a group;
-click its title link to navigate. Collapse all and Expand all control the overview,
-not the book text. A link into folded text automatically reopens its destination
-and ancestors. Fold states last until the page reloads; printing includes all text.
+To keep a longer heading inside its parent but use a shorter rule title, set
+`ruleName`:
 
-### Lists without bullet points
+```json
+{
+  "type": "h2",
+  "name": "Step 4: Degree of Success",
+  "ruleName": "Degree of Success",
+  "id": "degree-of-success-pc1",
+  "rule": true,
+  "entries": ["Your explanation goes here."]
+}
+```
 
-Lists show bullet points by default. Add `"style": "list-no-bullets"` to hide
-the markers and indentation and stack the items without extra paragraph gaps.
-Use `items`, not `entries`, for the list's lines. This is useful for conversations
-or play examples and also works inside rule hover previews:
+The parent keeps **Step 4: Degree of Success**. The list, standalone rule title,
+and hover preview use **Degree of Success**, and `{@rule Degree of Success}`
+links to it. The original heading name still works in searches and rule links.
+`ruleName` belongs to that entry and is not inherited by its children.
+
+The promoted rule uses the top-level parent rule's title as its default topic.
+Attribute Modifier and Multiple Attack Penalty both get Checks, including when
+nested inside Attack Rolls or other promoted rules. Set an explicit `topic` to
+override this. It inherits the nearest containing source,
+page, rule type, and setting marker unless you supply overrides. Its id, aliases, and
+`ruleDefault` are its own; they are not inherited. Ordinary headings and boxes
+remain unlisted. You can promote blocks at any nesting depth, including within
+lists or boxes. Keep the content in one place; do not copy it to the top-level
+array. Ability blocks keep their printed `kind` (such as Feat) while inheriting
+the containing rule's Core/Optional/Setting type.
+
+## Rule links and formatting
+
+Use `{@rule Your Rule|PC1}` to link to an authored rule and show its
+description on hover or keyboard focus. A third part changes the displayed text:
+`{@rule Your Rule|PC1|a check}`. Omitting the source, as in
+`{@rule Difficulty Classes}`, searches every source and uses the first matching
+rule in the JSON's order. Links can also use an alias or explicit id. An explicit
+source still restricts the lookup to that source.
+
+For duplicate titles within an explicitly specified source, mark only the main
+definition `"ruleDefault": true`.
+Explicit ids take precedence over names. Missing and ambiguous references show
+an explanation rather than choosing an arbitrary destination.
+
+Escape dismisses a preview. You can move the pointer into it; Alt+Down while
+focused on a rule link moves keyboard focus into its preview.
+
+Inline tags include:
+
+- `{@b bold}`, `{@i italic}`, `{@code code}`.
+- `{@spell light}` for italic spell names.
+- `{@as 1}`, `{@as 2}`, `{@as 3}`, `{@as r}`, and `{@as f}` for action symbols.
+- `{@dice 1d20}`, `{@dc 15}`, and `{@hit 3}` for readable rules notation.
+- `{@link Label|https://example.com}` for an external link.
+
+Other entity tags remain readable text until their sections are implemented.
+
+## Content blocks
+
+Each string in `entries` is a paragraph. Nested objects add structured content.
+Headings use `h1` through `h6`. These are content headings, below the page title.
+Each level gets progressively smaller; `h6` uses a small italic heading to remain
+distinct from `h5`. The hierarchy also applies inside hover previews.
+
+For a list, use `items`:
 
 ```json
 {
   "type": "list",
-  "style": "list-no-bullets",
-  "items": [
-    "{@b Kyra (Jessica):} I cast a {@i light} spell ahead of us.",
-    "{@b Erik:} Radiance spills forth, illuminating the ladder."
-  ]
+  "style": "list-decimal",
+  "items": ["First step.", "Second step."]
 }
 ```
 
-Omit `style` for a normal bulleted list. Use `"style": "list-decimal"` for a
-numbered list. Formatting and links work inside every item. Normal paragraphs
-and other lists keep their existing spacing.
+Omit `style` for bullets, or use `list-no-bullets` for tightly stacked lines
+without markers.
 
-### Lists and tables
-
-These are entries too. Place either object inside an `entries` array:
-
-```json
-{
-  "type": "list",
-  "items": ["First item", "A {@b bold} second item"]
-}
-```
+For a table, `caption` is the title and `colLabels` defines column names:
 
 ```json
 {
   "type": "table",
-  "caption": "A table title",
-  "colLabels": ["First column", "Second column"],
-  "rows": [["Row one", "Its value"], ["Row two", "Another value"]]
+  "caption": "Example Table",
+  "colLabels": ["Roll", "Result"],
+  "rows": [["1–10", "First outcome"], ["11–20", "Second outcome"]]
 }
 ```
 
-For centered flavor text, use `{"type":"flavor","entries":["Your text."]}`.
-For a two-column conversation table, add `"style": "table-dialogue"` to the
-table. Put the speaker in the first cell and their speech in the second. This
-reserves a consistent speaker-column width, prevents names from breaking into
-tiny fragments, and top-aligns both cells. On small screens the speaker sits
-above their line. Ordinary tables are unchanged; captions and column labels
-still work in this style.
+Use `"style": "table-dialogue"` for a speaker/speech table.
 
-For a callout, use `{"type":"inset","name":"Note","entries":["Your text."]}`.
-Inline tags include `{@b bold}`, `{@i italic}`, `{@as 1}`, `{@as 2}`, `{@as 3}`,
-`{@as r}` (reaction), and `{@as f}` (free action).
-These use the original project's locally bundled `Pathfinder2eActions.ttf`
-for the actual Pathfinder action glyphs, including in headings and previews.
-The longer tag `{@actionsymbol 1}` also works. Screen readers receive the action
-name rather than the font's underlying character. No external font request is needed.
+For a callout:
 
-### Actions, feats, and ability blocks
+```json
+{
+  "type": "box",
+  "name": "A Useful Reminder",
+  "entries": [
+    "Your text.",
+    {
+      "type": "box-section",
+      "name": "Another Title",
+      "entries": ["Another part of the same box."]
+    }
+  ]
+}
+```
 
-Use `ability` for a Pathfinder-style rules block. The name and action glyph
-appear together, the kind/level sits at the right, and traits display as badges.
-Only fields you supply are shown. This is a formatting example, not a published rule:
+For a collapsible Paizo clarification, add this inside a rule's `entries`:
+
+```json
+{
+  "type": "clarification",
+  "entries": [
+    "The clarification text goes here.",
+    "Another paragraph, with {@b emphasis} or a reference to {@rule Checks}."
+  ]
+}
+```
+
+The title defaults to **Paizo Clarification**, and the box starts collapsed.
+Set `name` to customize the title, or `"open": true` to start expanded.
+Clarifications support the same formatted
+text, lists, and other blocks as rules, including inside hover previews.
+
+For a centered calculation with a gold-accented panel, use `formula`:
+
+```json
+{
+  "type": "formula",
+  "name": "Melee Attack Roll Result",
+  "entry": "d20 + Strength modifier + proficiency bonus + other bonuses − penalties"
+}
+```
+
+The `name` is an optional small label above the calculation. Use `entry` for a
+single line or `entries` for multiple paragraphs. Inline formatting and rule
+links work normally, and the panel also appears in hover previews.
+
+Additional blocks include `flavor` for centered italic text, `quote` with an
+optional `by`, `image` with an `href` and optional `alt`/`title`, and
+`item` with a bold `name` and an `entry`. Add `"style": "hanging"` to an item
+for indented continuation lines, such as Edicts or Anathema. Body paragraphs
+otherwise stay flush left.
+
+### Ability blocks
+
+Put an ability block inside a rule's `entries`:
 
 ```json
 {
@@ -172,281 +264,43 @@ Only fields you supply are shown. This is a formatting example, not a published 
   "kind": "Feat",
   "level": 1,
   "actions": 1,
-  "page": 15,
   "traits": ["General", "Skill"],
   "prerequisites": "Your prerequisites.",
   "frequency": "Once per day",
-  "trigger": "The event that lets you use this ability.",
-  "requirements": "What must be true to use it.",
-  "entries": ["The ability's effect goes here."],
-  "special": "Any additional rules."
+  "trigger": "What lets you use the ability.",
+  "requirements": "What must be true.",
+  "entries": ["The ability's effect."],
+  "special": "Additional rules."
 }
 ```
 
-Use `actions` values `1`, `2`, `3`, `"r"`, or `"f"` for the action icons;
-omit it for a passive feat. `kind` is your display label (such as Action, Feat,
-or Activity); omit `level` when the ability has none. `access` and `cost` are
-also available. All fields except `name` and `type` are optional.
-`level` accepts numbers or text, so `"level": "Level"` works for a template.
-Omit `kind` if you want only “Level” at the right rather than “Feat Level”.
+Here `kind` is the ability's printed label, separate from the containing rule's
+Core/Optional/Setting type. `level` accepts a number or a label such as Level.
+`actions` accepts `1`, `2`, `3`, `r`, or `f`; omit it for a passive ability.
+`access`, `cost`, and an `effect` alternative to `entries` are also supported.
+Optional fields are omitted when empty. Add `"compact": true` for the condensed
+inline format with hanging text.
 
-The main `entries` can contain paragraphs, lists, tables, and other book blocks.
-You may alternatively use `effect` for the main text. Labeled fields and `special`
-accept a string or an array of normal entries, and support the existing inline
-tags. Trait badges can contain inline tags too, but do not require a trait database.
+## Project files
 
-Ability blocks stay expanded and do not show page numbers or folding controls
-in their header. Regular chapter/section headings keep their controls. A stored
-`page` still provides source information in rule previews. Abilities can be linked with
-`{@rule Ability Name|PC1}`. Their previews retain all the fields and badges.
-They do not add entries to the h1–h2 overview. `ruleDefault`, `id`, `aliases`,
-`setting`, and `settingNote` work just as they do on other named entries.
-
-### Condensed abilities
-
-Add `"compact": true` to an `ability` to show it as a short, flowing rules
-paragraph instead of a full stat block. It uses the same font as normal ability
-text, with a hanging indent for wrapped lines. Traits appear in parentheses;
-labeled fields and the effect run together with semicolon separators.
-
-```json
-{
-  "type": "ability",
-  "compact": true,
-  "name": "Action Name",
-  "actions": 1,
-  "traits": ["Concentrate"],
-  "frequency": "Once per day",
-  "trigger": "An enemy approaches.",
-  "requirements": "You are standing.",
-  "entries": ["Describe what the ability does."]
-}
-```
-
-The normal ability fields, rule links, and setting markers still work. If
-provided, kind/level appears in parentheses beside the name. Omit `compact`
-or set it to `false` for the full version. Short text works best here; nested
-lists or tables still render as separate blocks rather than being flattened.
-
-### Decorative rule boxes
-
-Use `box` for a dark-green panel with a brass double border and a title.
-Add this object anywhere inside an `entries` array:
-
-```json
-{
-  "type": "box",
-  "name": "The First Rule",
-  "entries": [
-    "Your text goes here. You can use {@b bold} and {@i italics}.",
-    "Each string becomes another paragraph."
-  ]
-}
-```
-
-The title stays inside the box and is not listed in the contents sidebar.
-Omit `name` for a box without a title.
-Its `entries` can also contain lists or other normal book blocks. Existing
-`inset` notes keep their simpler appearance.
-
-For another box-style title within the same panel, add a `box-section` inside
-the box's `entries`. It has a title divider but no extra border or background:
-
-```json
-{
-  "type": "box",
-  "name": "First Title",
-  "entries": [
-    "Text under the first title.",
-    {
-      "type": "box-section",
-      "name": "Second Title",
-      "entries": ["Text under the second title."]
-    }
-  ]
-}
-```
-
-Repeat `box-section` for more titled parts. You can also omit the outer box's
-`name` and put every title in its own section. Box sections accept normal entries,
-inline tags, and optional page metadata; their headings remain linkable and
-support folding, but are not listed in the left overview.
-
-### Book links and cover previews
-
-Use `{@book Player Core|PC1}` in a paragraph to link to the book and show its
-cover in a framed preview on hover or keyboard focus. Clicking the text, the
-preview cover, or its Open book link opens the reader at the start of that book.
-Escape closes the preview, just as it does for rule previews.
-
-You can also use `{@book Player Core}` or `{@book PC1}`: the reader looks up the
-book's title, id, or source in `data/books.json`, ignoring capitalization. Use a
-third part for custom display text: `{@book Player Core|PC1|the core book}`.
-With an explicit id in the second part, that id determines which book opens.
-
-The preview uses the book's existing `cover` image path from `data/books.json`
-and displays it without cropping. A book without a cover still opens normally;
-its preview says that no cover has been added. References to books that are not
-registered yet, such as `{@book GM Core}` while only PC1 exists, display an
-unavailable message instead of a broken link. Add that book to the index and
-provide its JSON content and cover when you are ready to include it.
-
-### Avalon additions and adaptations
-
-Add `"setting": "modified"` to an entry you have changed from the sourcebook,
-or `"setting": "original"` for your own material. The reader gives it a colored
-margin and an expandable **Avalon · Adapted** or **Avalon · Original** badge.
-Click the badge to see the explanation and optional `settingNote`:
-
-```json
-{
-  "type": "h4",
-  "name": "Avalon",
-  "page": 10,
-  "setting": "modified",
-  "settingNote": "Golarion has been replaced with Avalon.",
-  "entries": ["Your setting-specific description goes here."]
-}
-```
-
-Mark the smallest entry containing the change. To mark a single paragraph, wrap
-it in `{"setting":"modified","entries":["Your changed paragraph."]}`.
-Unmarked entries keep their normal appearance. These properties do not alter
-heading anchors or add extra entries to the contents sidebar.
-
-Rule previews retain the same marker, including when the linked rule is inside
-a marked section. Adaptations say **Adapted from** rather than **Source**;
-original entries show the book only as a reference location, without attributing
-your original text to a printed page. The original/adapted distinction is always
-written out, not conveyed by color alone. This is a manual editorial marker:
-it does not automatically detect changes or keep a copy of the original text.
-
-### Rule links and hover previews
-
-Write `{@rule Action|PC1}` inside a paragraph to link to the named `Action`
-entry in Player Core. Hover or focus the link to see its description and source;
-click it to open the correct chapter and scroll to that heading. Press Escape
-to dismiss the preview. You can move the pointer into the preview to read it or
-follow its links. With the link focused, Alt+Down moves focus into the preview.
-
-For different visible text, use `{@rule Action|PC1|actions}`. Omitting the source,
-as in `{@rule Action}`, uses the current book. Matching ignores capitalization
-and extra spaces; the displayed text is preserved.
-
-Define the destination once, in the book's normal `entries`:
-
-```json
-{
-  "type": "h4",
-  "name": "Action",
-  "page": 10,
-  "aliases": ["actions"],
-  "entries": [
-    "Your rule description goes here. It can include {@b formatting} and other rule links."
-  ]
-}
-```
-
-`page` is optional and supplies the printed page number in the source line. It
-can also be inherited from a containing section or chapter. No page number is
-invented if it is absent. The text of the definition is also the preview text,
-so there is no separate rules database to maintain. The definition stays out of
-the contents sidebar when its type is `h4` or below, but is still linkable.
-
-`aliases` is optional: it lets `{@rule actions|PC1}` find the same definition.
-Normal headings, named boxes/notes, and chapter titles can all be destinations.
-Links can use any source registered in `data/books.json`; their book files must
-be present.
-
-If a term has both a short introduction and a full rules section, add
-`"ruleDefault": true` only to the full definition:
-
-```json
-{
-  "type": "h1",
-  "name": "Perception",
-  "ruleDefault": true,
-  "entries": ["Your complete Perception rules go here."]
-}
-```
-
-Now `{@rule Perception|PC1}` goes straight to that definition and previews its
-full text, even if other headings are also named Perception. This works for
-aliases too, is independent of chapter order, and does not require an id.
-The flag belongs to that entry only, not its children.
-
-To link specifically to the introductory summary, give that entry an id such
-as `"id": "perception-summary"`, then use
-`{@rule perception-summary|PC1|Perception}`. Explicit ids take precedence over
-name or alias matches. If multiple matching entries are marked as the default,
-the link remains ambiguous rather than choosing one arbitrarily. Without a
-default, duplicate names can still be targeted with unique ids. Missing and
-ambiguous references show a helpful preview message instead of a broken link.
-
-Links include the rule name or id as well as the chapter and heading. The reader
-resolves the name again when opened, so adding earlier chapters or headings does
-not make existing rule links jump to the wrong place.
-
-JSON requires double quotes and commas between neighboring entries. Do not put
-a comma after the last item, and do not add comments inside the JSON file.
-To put quotation marks inside a paragraph, escape them as `\"`.
-
-The reader also accepts a chapter array directly, a single object with `entries`,
-or an export shaped like `{"bookData":[{"id":"PC1","data":[...]}]}`.
-
-Supported blocks include `entries`, `section`, `h1` through `h6`, lists,
-tables, images, insets/sidebars, quotes, and flavor text. It supports common inline
-formatting tags, links, dice text, and action symbols. Entity references such as
-`{@spell fireball|PC1}` display their text without linking to removed tools.
-Spell tags automatically italicize their names, including custom labels such as
-`{@spell light|PC1|a golden light}`. No extra `{@i ...}` wrapper is needed.
-This is a small reader, not the complete legacy Pf2eTools renderer; specialized
-entry types can be added as the actual book requires them.
-
-Images can reference site-relative files such as `img/books/pc1/example.webp`
-using `{"type":"image","href":{"type":"internal","path":"img/books/pc1/example.webp"}}`.
-Add those image files when needed. The local server supports an `img/` directory.
-
-### Labeled entries
-
-For a labeled line with indented wrapping, use an `item` with
-`"style": "hanging"` in its `entries`:
-
-```json
-{
-  "type": "item",
-  "style": "hanging",
-  "name": "Edicts",
-  "entry": "Your edicts go here; wrapped lines are indented."
-}
-```
-
-Use another item named Anathema for that field. Labels are not hardcoded, so
-other names or translations work too. Regular paragraphs elsewhere keep their
-normal spacing and do not get a first-line indent.
+- `index.html`, `rules.html`: Home and the rules workspace.
+- `rule.html`: preserves existing standalone links.
+- `data/rules.json`: authored rules and citation metadata.
+- `js/content-renderer.js`: rich text, content blocks, and action symbols.
+- `js/rules-library.js`: rule data, lookup, search, and result rendering.
+- `js/rules-app.js`: rules-page interactions.
+- `js/rule-links.js`: rule hover previews.
+- `js/theme.js`: appearance preferences.
+- `css/`: shared, Home, and Rules styles.
+- `scripts/serve.mjs`: local static server.
+- `test/`: checks for the current features and local server.
 
 ## GitHub Pages
 
-Book covers are configured with the optional `cover` path in `data/books.json`.
-Player Core uses `img/books/pc1-cover.jpg`, a local copy of the cover displayed
-on [Paizo's product page](https://store.paizo.com/pathfinder-player-core/).
-The cover is shown in full, without cropping. Cover artwork belongs to its
-respective copyright holders and is not covered by this site's MIT software license.
-The restored action-symbol font in `fonts/Pathfinder2eActions.ttf` comes from the
-previous project; this site's MIT software license does not relicense that font.
+Deploy the chosen branch's root folder. All asset and data URLs are relative,
+so project sites work too. Running the local server does not publish anything.
+Only include text and assets you have permission to publish.
 
-This is a buildless static site. In the repository's Pages settings, deploy from
-the chosen branch's root folder. All links and data paths are relative, including
-on a project URL such as `/avalontools/`. No deploy workflow, Docker, service worker,
-or custom domain is configured. Nothing is published by running the local server.
-Only commit book text and images you are permitted to publish.
-
-## What was kept
-
-Git history and the original `LICENSE.md` remain. The previous working files,
-including uncommitted changes, were moved into the sibling backup directory
-`AvalonTools-before-reset-20261024`. That backup is outside the website and is
-not served or published with it.
-
-Portuguese can be introduced as a separate translation layer later; English
-source JSON should stay unchanged.
+The original `LICENSE.md` remains. The bundled
+`fonts/Pathfinder2eActions.ttf` came from the original project and is not
+relicensed by this site's MIT software license.

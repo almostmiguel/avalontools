@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Book · Avalon</title>
+  <meta name="description" content="A searchable rules reference for Pathfinder and the world of Avalon.">
+  <title>Rule · Avalon</title>
   <script src="js/theme.js"></script>
+  <link rel="preload" href="fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Gin-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="css/site.css">
-  <script type="module" src="js/site.js"></script>
+  <link rel="stylesheet" href="css/rules.css">
+  <script type="module" src="js/rules-app.js"></script>
 </head>
-<body data-page="book">
+<body data-page="rule">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Avalon home"><span class="brand-mark" aria-hidden="true">✧</span>Avalon</a>
-      <nav aria-label="Main navigation" id="navigation"><a class="nav-home" href="index.html">Home</a><a class="nav-fallback" href="books.html">Books</a></nav>
+      <nav aria-label="Main navigation" id="navigation"><a class="nav-home" href="index.html">Home</a><a class="nav-home" href="rules.html" aria-current="page">Rules</a><span class="nav-reference">The Avalon setting</span></nav>
       <details class="settings-menu" id="site-settings">
         <summary aria-label="Settings" title="Appearance settings"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></svg><span>Settings</span></summary>
         <div class="settings-panel">
@@ -28,12 +32,14 @@
       </details>
     </div>
   </header>
-  <div class="reader-layout">
-    <aside id="contents" class="contents" aria-label="Book contents"></aside>
-    <main id="main" class="reader-main" aria-busy="true">
-      <div id="reader"><p class="muted" role="status">Loading book…</p></div>
-    </main>
-  </div>
-  <noscript><p class="notice">Enable JavaScript to read the JSON books.</p></noscript>
+  <main id="main" class="rule-page" aria-busy="true">
+    <nav id="rule-breadcrumbs" class="rule-breadcrumbs" aria-label="Breadcrumb"><a href="rules.html">Rules</a></nav>
+    <div class="rule-page-layout">
+      <div id="rule-article" class="rule-article"><p class="muted" role="status">Loading rule…</p></div>
+      <aside id="rule-related" class="rule-related" aria-label="Related rules"></aside>
+    </div>
+    <footer class="rules-footer"><a href="rules.html">← All rules</a><span>Avalon reference</span></footer>
+  </main>
+  <noscript><p class="notice">Enable JavaScript to search and browse the rules reference.</p></noscript>
 </body>
 </html>

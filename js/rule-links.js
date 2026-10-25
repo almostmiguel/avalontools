@@ -1,100 +1,7 @@
-import { escapeHtml, inlineText, renderChapter, safeHref } from "./book-renderer.js";
+import { escapeHtml } from "./content-renderer.js";
+import { renderRuleBody } from "./rules-library.js";
 
-const normalize = value => String(value ?? "").normalize("NFC").trim().replace(/\s+/g, " ").toLocaleLowerCase("en");
-const lookupKey = (name, source) => JSON.stringify([normalize(source), normalize(name)]);
-
-// Build targets from the same renderer that creates the visible heading anchors.
-export function createRuleRegistry(records) {
-  const targets = new Map();
-  for (const { book, chapters } of records) {
-    chapters.forEach((chapter, chapterIndex) => {
-      const metadata = new WeakMap();
-      const mark = (value, page, source, setting, settingNote) => {
-        if (!value || typeof value !== "object") return;
-        if (Array.isArray(value)) return value.forEach(item => mark(item, page, source, setting, settingNote));
-        const ownsSetting = ["modified", "original"].includes(value.setting);
-        const inherited = {
-          page: value.page ?? page, source: value.source ?? source,
-          setting: ownsSetting ? value.setting : setting,
-          settingNote: ownsSetting ? value.settingNote : settingNote,
-        };
-        metadata.set(value, inherited);
-        Object.values(value).forEach(item => mark(item, inherited.page, inherited.source, inherited.setting, inherited.settingNote));
-      };
-      mark(chapter, null, book.source || book.id);
-      const headings = renderChapter(chapter).headings;
-      if (chapter.name) headings.unshift({ id: "chapter-title", name: chapter.name, entry: chapter });
-      for (const heading of headings) {
-        const entry = heading.entry;
-        if (!entry) continue;
-        const inherited = metadata.get(entry);
-        const name = inlineText(heading.name);
-        const ruleId = typeof entry.id === "string" && entry.id.trim() ? entry.id.trim() : name;
-        const query = new URLSearchParams({ book: book.id, chapter: String(chapterIndex), rule: ruleId });
-        const target = {
-          name, entry, chapter: chapterIndex, anchor: heading.id,
-          source: inherited.source, sourceName: book.name,
-          setting: inherited.setting, settingNote: inherited.settingNote,
-          page: Number.isInteger(inherited.page) && inherited.page > 0 ? inherited.page : null,
-          href: `book.html?${query}#${heading.id}`,
-        };
-        for (const source of new Set([inherited.source, book.id])) {
-          const aliases = Array.isArray(entry.aliases) ? entry.aliases.filter(alias => typeof alias === "string") : [];
-          for (const alias of new Set([name, ruleId, ...aliases].map(normalize))) {
-            const key = lookupKey(alias, source);
-            if (!targets.has(key)) targets.set(key, []);
-            const matches = targets.get(key);
-            if (!matches.includes(target)) matches.push(target);
-          }
-        }
-      }
-    });
-  }
-  return {
-    resolve(name, source = "PC1") {
-      const matches = targets.get(lookupKey(name, source)) || [];
-      if (!matches.length) return { status: "missing" };
-      // Explicit ids still reach a summary even when another entry is the default.
-      const exactIds = matches.filter(target => typeof target.entry.id === "string" && normalize(target.entry.id) === normalize(name));
-      const defaults = matches.filter(target => target.entry.ruleDefault === true);
-      const candidates = exactIds.length ? exactIds : defaults.length ? defaults : matches;
-      if (candidates.length !== 1) return { status: "ambiguous" };
-      return { status: "found", target: candidates[0] };
-    },
-  };
-}
-
-export function createBookRegistry(books) {
-  return {
-    resolve(name, source = "") {
-      const query = normalize(source || name);
-      const matches = books.filter(book => [book.id, book.source, book.name].some(value => value && normalize(value) === query));
-      if (matches.length !== 1) return { status: matches.length ? "ambiguous" : "missing" };
-      const book = matches[0];
-      return { status: "found", target: { book, href: `book.html?${new URLSearchParams({ book: book.id })}` } };
-    },
-  };
-}
-
-export function renderBookPreview(name, source, books) {
-  const resolution = books.resolve(name, source);
-  const target = resolution.target;
-  const title = escapeHtml(target?.book.name || name);
-  const header = `<header class="rule-preview-heading"><h2 id="rule-preview-title">${title}</h2><span>Book</span><button type="button" data-close-rule-preview aria-label="Close book preview">×</button></header>`;
-  if (!target) {
-    const message = resolution.status === "ambiguous"
-      ? "More than one book matches this name. Specify its id in the book tag."
-      : "This book has not been added to data/books.json yet.";
-    return `${header}<div class="rule-preview-body"><p>${escapeHtml(message)}</p></div>`;
-  }
-  const cover = safeHref(target.book.cover);
-  const artwork = cover
-    ? `<a href="${escapeHtml(target.href)}" aria-label="Open ${title}"><img class="book-preview-cover" src="${escapeHtml(cover)}" alt="${title} book cover" decoding="async"></a>`
-    : '<p class="book-preview-no-cover">No cover has been added for this book yet.</p>';
-  return `${header}<div class="rule-preview-body book-preview-body">${artwork}<a class="book-preview-open" href="${escapeHtml(target.href)}">Open book <span aria-hidden="true">↗</span></a></div>`;
-}
-
-export function renderRulePreview(name, source, registry, books) {
+export function renderRulePreview(name, source, registry) {
   const resolution = registry.resolve(name, source);
   const target = resolution.target;
   const title = escapeHtml(target?.name || name);
@@ -102,18 +9,13 @@ export function renderRulePreview(name, source, registry, books) {
   if (!target) {
     const message = resolution.status === "ambiguous"
       ? "More than one entry has this name. Mark only the main definition with ruleDefault: true, or give the intended entry a unique id and use that id in the rule tag."
-      : "No matching entry was found in this book. Check the rule name and source, or add its definition to the book JSON.";
+      : "No matching rule has been added. Check the name and source, or add its definition to the rules collection.";
     return `${header}<div class="rule-preview-body"><p>${escapeHtml(message)}</p></div>`;
   }
-  const content = ["list", "ability"].includes(target.entry.type)
-    ? [{ ...target.entry, name: target.entry.type === "list" ? undefined : target.entry.name, setting: undefined }]
-    : target.entry.entries ?? target.entry.entry ?? [];
-  const body = renderChapter({ entries: [{ entries: content, setting: target.setting, settingNote: target.settingNote }] }, {
-    source: target.source, resolveRule: registry.resolve, resolveBook: books?.resolve, anchorPrefix: "rule-preview-section",
-  }).html;
+  const body = renderRuleBody(target, { registry }, { anchorPrefix: "rule-preview-section" });
   const page = target.page && target.setting !== "original" ? ` <span>pg. ${target.page}</span>` : "";
-  const sourceLabel = target.setting === "modified" ? "Adapted from" : target.setting === "original" ? "Reference book" : "Source";
-  return `${header}<p class="rule-preview-source">${sourceLabel} <a href="${escapeHtml(target.href)}">${escapeHtml(target.sourceName)}</a>${page}</p><div class="rule-preview-body">${body || "<p>No description has been added yet.</p>"}</div>`;
+  const sourceLabel = target.setting === "modified" ? "Adapted from" : target.setting === "original" ? "Reference" : "Source";
+  return `${header}<p class="rule-preview-source">${sourceLabel} ${escapeHtml(target.sourceName)}${page}</p><div class="rule-preview-body">${body || "<p>No description has been added yet.</p>"}</div>`;
 }
 
 export function previewPosition(anchor, panel, viewport) {
@@ -126,7 +28,7 @@ export function previewPosition(anchor, panel, viewport) {
   return { left, top };
 }
 
-export function attachRulePreviews({ document, window, registry, bookRegistry = createBookRegistry([]) }) {
+export function attachRulePreviews({ document, window, registry }) {
   const panel = document.createElement("section");
   panel.id = "rule-preview";
   panel.className = "rule-preview";
@@ -173,11 +75,7 @@ export function attachRulePreviews({ document, window, registry, bookRegistry = 
     if (panel.contains(link)) return;
     if (current !== link) hide();
     current = link;
-    const isBook = link.dataset.bookName !== undefined;
-    panel.className = isBook ? "rule-preview book-preview" : "rule-preview";
-    panel.innerHTML = isBook
-      ? renderBookPreview(link.dataset.bookName, link.dataset.bookSource, bookRegistry)
-      : renderRulePreview(link.dataset.ruleName, link.dataset.ruleSource, registry, bookRegistry);
+    panel.innerHTML = renderRulePreview(link.dataset.ruleName, link.dataset.ruleSource, registry);
     panel.hidden = false;
     link.setAttribute("aria-controls", panel.id);
     link.setAttribute("aria-describedby", panel.id);
@@ -190,7 +88,7 @@ export function attachRulePreviews({ document, window, registry, bookRegistry = 
       if (!panel.contains(document.activeElement) && document.activeElement !== current) hide();
     }, 180);
   };
-  const ruleLink = target => target?.closest?.("[data-rule-name], [data-book-name]");
+  const ruleLink = target => target?.closest?.("[data-rule-name]");
   on(document, "pointerover", event => {
     if (event.pointerType === "touch") return;
     const link = ruleLink(event.target);

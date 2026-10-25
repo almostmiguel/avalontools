@@ -38,12 +38,6 @@
         settings.querySelector("summary").focus();
       }
     });
-    document.addEventListener("toggle", event => {
-      if (!event.target.matches?.(".books-menu, .settings-menu") || !event.target.open) return;
-      for (const menu of document.querySelectorAll(".books-menu, .settings-menu")) {
-        if (menu !== event.target) menu.open = false;
-      }
-    }, true);
   };
   window.addEventListener("storage", event => {
     if (event.key === storageKey || event.key === null) apply(event.key === null ? "dark" : event.newValue);

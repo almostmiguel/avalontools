@@ -1,0 +1,31 @@
+.avalon-home { padding-top: 2.5rem; }
+.home-heading { padding-bottom: 1.7rem; border-bottom: 1px solid var(--line); }
+.home-heading .eyebrow { margin: 0 0 .5rem; color: var(--muted); font-size: .65rem; letter-spacing: .12em; }
+.home-heading h1 { margin: 0; font: 400 3rem/1.1 var(--font-display); letter-spacing: .015em; }
+.home-heading > p:last-child { margin: .75rem 0 0; color: var(--muted); font-size: .95rem; }
+.home-reference { padding: 1.8rem 0 2rem; }
+.home-reference > h2 { display: inline-block; margin: 0 0 1rem; padding-bottom: .35rem; border-bottom: 2px solid var(--accent); color: var(--text); font-size: 1.15rem; font-weight: 600; }
+.home-reference-grid { display: grid; grid-template-columns: 190px minmax(0, 1fr); align-items: start; gap: 2rem; }
+.home-tool { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 158px; padding: 1.2rem; border: 1px solid var(--accent); border-radius: 4px; background: var(--panel); color: var(--accent); }
+.home-tool:hover { text-decoration: none; background: var(--card-hover); box-shadow: 0 3px 14px #0002; }
+.home-tool svg { width: 48px; height: 48px; margin-bottom: .6rem; }
+.home-tool strong { color: var(--text); font-size: 1.1rem; font-weight: 600; }
+.home-tool > span { margin-top: .3rem; color: var(--muted); font-size: .63rem; }
+.home-reference-note { max-width: 580px; padding: .4rem 0; }
+.home-reference-note h3 { margin: 0 0 .6rem; color: var(--content-heading); font-size: 1rem; font-weight: 600; }
+.home-reference-note p { margin: 0 0 .7rem; font-size: .87rem; line-height: 1.8; color: var(--muted); }
+.home-about { padding: 1.2rem 1.4rem; border: 1px solid var(--line); border-radius: 4px; background: var(--panel); margin-bottom: 2.2rem; }
+.home-about h2 { margin: 0 0 .5rem; font-size: .95rem; font-weight: 600; }
+.home-about p { margin: 0; font-size: .83rem; color: var(--muted); line-height: 1.8; }
+@media (max-width: 800px) {
+  .avalon-home { padding-top: 1.8rem; }
+  .nav-reference { display: none; }
+}
+@media (max-width: 580px) {
+  .home-heading h1 { font-size: 2.5rem; }
+  .home-reference-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .home-tool { flex-direction: row; justify-content: start; gap: 1rem; min-height: 85px; padding: 1rem; }
+  .home-tool svg { flex-shrink: 0; width: 38px; height: 38px; margin: 0; }
+  .home-tool > span { margin: 0 0 0 auto; font-size: .58rem; }
+  .home-reference-note { padding: .3rem 0; }
+}

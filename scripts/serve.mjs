@@ -9,7 +9,7 @@ const types = {
   ".js": "text/javascript; charset=utf-8", ".json": "application/json; charset=utf-8",
   ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg", ".webp": "image/webp", ".avif": "image/avif",
-  ".ttf": "font/ttf",
+  ".ttf": "font/ttf", ".woff2": "font/woff2",
 };
 
 export function createServer(root = projectRoot) {
@@ -30,7 +30,7 @@ export function createServer(root = projectRoot) {
       const segments = path.split("/");
       if (segments.some(segment => segment.startsWith(".")) || /[\\\u0000]/u.test(path)) return fail(404, "Not found");
       const name = path === "/" ? "index.html" : path.slice(1);
-      if (!["index.html", "books.html", "book.html"].includes(name) && !/^(css|js|data|img|fonts)\//.test(name)) return fail(404, "Not found");
+      if (!["index.html", "rules.html", "rule.html"].includes(name) && !/^(css|js|data|img|fonts)\//.test(name)) return fail(404, "Not found");
       const type = types[extname(name).toLowerCase()];
       if (!type) return fail(404, "Not found");
       const target = await realpath(resolve(absoluteRoot, name));

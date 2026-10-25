@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { renderChapter } from "../js/book-renderer.js";
+import { renderContent } from "../js/content-renderer.js";
 
 test("hanging labeled items support translated labels and formatted content without changing ordinary items", () => {
-  const { html } = renderChapter({ entries: [
+  const { html } = renderContent({ entries: [
     { type: "item", style: "hanging", name: "Éditos", entry: "Protect {@i nature} & friends." },
     { type: "item", style: "hanging", name: "<Anátema>", entries: ["First line.", "Second line."] },
     { type: "item", name: "Ordinary", entry: "Unchanged." },

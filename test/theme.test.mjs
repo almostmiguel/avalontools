@@ -34,15 +34,14 @@ function environment({ saved, blocked = false, loading = false } = {}) {
   });
   const summary = { focused: false, focus() { this.focused = true; } };
   const settings = { open: false, contains: target => target === settings || target === summary || buttons.includes(target), querySelector: () => summary, matches: () => true };
-  const books = { open: false, matches: () => true };
   const status = { textContent: "" };
   const document = new Target();
   document.documentElement = { dataset: {} };
   document.readyState = loading ? "loading" : "complete";
-  document.querySelectorAll = selector => selector === "[data-theme-choice]" ? buttons : [settings, books];
+  document.querySelectorAll = selector => selector === "[data-theme-choice]" ? buttons : [settings];
   document.querySelector = selector => selector === "#site-settings" ? settings : status;
   vm.runInNewContext(script, { window, document });
-  return { window, document, buttons, storage, settings, books, summary, status, theme: () => document.documentElement.dataset.theme };
+  return { window, document, buttons, storage, settings, summary, status, theme: () => document.documentElement.dataset.theme };
 }
 
 test("dark is the default and invalid saved values cannot select another theme", () => {
@@ -94,7 +93,7 @@ test("storage changes synchronize open tabs and clearing preferences restores da
   assert.equal(page.theme(), "dark");
 });
 
-test("settings dismisses outside or on Escape and menus do not overlap", () => {
+test("settings dismisses outside or on Escape", () => {
   const page = environment();
   page.settings.open = true;
   page.document.emit("click", { target: page.buttons[0] });
@@ -105,16 +104,11 @@ test("settings dismisses outside or on Escape and menus do not overlap", () => {
   page.document.emit("keydown", { key: "Escape" });
   assert.equal(page.settings.open, false);
   assert.equal(page.summary.focused, true);
-  page.settings.open = page.books.open = true;
-  page.document.emit("toggle", { target: page.settings });
-  assert.equal(page.books.open, false);
-  page.books.open = true;
-  page.document.emit("toggle", { target: page.books });
-  assert.equal(page.settings.open, false);
+
 });
 
 test("every page loads the theme before styles and provides accessible settings", async () => {
-  for (const path of ["index.html", "books.html", "book.html"]) {
+  for (const path of ["index.html", "rules.html", "rule.html"]) {
     const html = await read(path);
     assert.ok(html.indexOf('src="js/theme.js"') < html.indexOf('href="css/site.css"'), path);
     assert.match(html, /<summary aria-label="Settings"/);
@@ -123,20 +117,18 @@ test("every page loads the theme before styles and provides accessible settings"
     assert.match(html, /id="theme-status" role="status"/);
   }
   const css = await read("css/site.css");
-  const reader = css.match(/^\.reader-main \{([^}]+)\}/m)[1];
-  assert.match(reader, /background: var\(--paper\)/);
-  assert.match(reader, /color-scheme: inherit/);
-  assert.doesNotMatch(reader, /gradient|color-scheme: light/);
+  const rulesCss = await read("css/rules.css");
+  assert.match(rulesCss, /\.rule-article \{[^}]*background: var\(--paper\)/);
 });
 
-test("both palettes maintain readable primary, secondary, and reader text contrast", async () => {
+test("both palettes maintain readable primary, secondary, and content text contrast", async () => {
   const css = await read("css/site.css");
   const variables = block => Object.fromEntries([...block.matchAll(/--([\w-]+): (#[\da-f]{6});/g)].map(([, name, color]) => [name, color]));
   const dark = variables(css.match(/^:root \{([^}]+)\}/m)[1]);
   const light = { ...dark, ...variables(css.match(/:root\[data-theme="light"\] \{([^}]+)\}/)[1]) };
   const luminance = color => color.slice(1).match(/../g).map(hex => parseInt(hex, 16) / 255).map(c => c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4).reduce((sum, c, i) => sum + c * [.2126, .7152, .0722][i], 0);
   for (const [theme, palette] of Object.entries({ dark, light })) {
-    for (const [fg, bg] of [["text", "background"], ["muted", "background"], ["accent", "background"], ["ink", "paper"], ["reader-heading", "paper"], ["reader-link", "paper"], ["reader-muted", "paper"], ["callout-text", "callout-bg"], ["callout-heading", "callout-bg"], ["callout-heading", "preview-heading"], ["setting-adapted", "paper"], ["setting-original", "paper"], ["setting-adapted", "panel"], ["setting-original", "panel"]]) {
+    for (const [fg, bg] of [["text", "background"], ["muted", "background"], ["accent", "background"], ["ink", "paper"], ["content-heading", "paper"], ["content-link", "paper"], ["content-muted", "paper"], ["callout-text", "callout-bg"], ["callout-heading", "callout-bg"], ["callout-heading", "preview-heading"], ["setting-adapted", "paper"], ["setting-original", "paper"], ["setting-adapted", "panel"], ["setting-original", "panel"]]) {
       const a = luminance(palette[fg]), b = luminance(palette[bg]);
       const contrast = (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
       assert.ok(contrast >= 4.5, `${theme} ${fg}/${bg}: ${contrast.toFixed(2)}`);
