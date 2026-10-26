@@ -1,0 +1,314 @@
+{
+  "Avalon: Action": {
+    "scope": "json",
+    "prefix": "av-action-entry",
+    "description": "A standalone action for data/actions.json.",
+    "body": [
+      "{",
+      "  \"name\": \"${1:Action name}\",",
+      "  \"source\": \"PC1\",",
+      "  \"page\": 1,",
+      "  \"category\": \"${2|basic,specialty,skill,ancestry,class,general|}\",",
+      "  \"time\": { \"unit\": \"action\", \"value\": 1 },",
+      "  \"entries\": [\"${3:Action description.}\"]",
+      "}"
+    ]
+  },
+  "Avalon: Rule": {
+    "scope": "json",
+    "prefix": "av-rule",
+    "description": "A new top-level rule with source and chapter.",
+    "body": [
+      "{",
+      "  \"name\": \"${1:Rule name}\",",
+      "  \"source\": \"${2|PC1,GMC,Avalon|}\",",
+      "  \"chapter\": \"${3:Chapter 8: Playing the Game}\",",
+      "  \"kind\": \"${4|core,optional,setting|}\",",
+      "  \"page\": 1,",
+      "  \"entries\": [",
+      "    \"${5:Rule text.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Heading": {
+    "scope": "json",
+    "prefix": "av-heading",
+    "description": "A heading and its text. Only h1, h2 and h3 become rules; h4, h5 and h6 stay inline. Use rule: false to opt out.",
+    "body": [
+      "{",
+      "  \"type\": \"${1|h1,h2,h3,h4,h5,h6|}\",",
+      "  \"name\": \"${2:Heading}\",",
+      "  \"entries\": [",
+      "    \"${3:Text.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Inline-only heading": {
+    "scope": "json",
+    "prefix": "av-inline",
+    "description": "A heading kept in its parent's text without a separate rule entry.",
+    "body": [
+      "{",
+      "  \"type\": \"h2\",",
+      "  \"name\": \"${1:Heading}\",",
+      "  \"rule\": false,",
+      "  \"entries\": [",
+      "    \"${2:Text.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Nested rule": {
+    "scope": "json",
+    "prefix": "av-subrule",
+    "description": "A heading or box that also appears independently in the rules list.",
+    "body": [
+      "{",
+      "  \"type\": \"${1|h2,h3,box|}\",",
+      "  \"name\": \"${2:Rule name}\",",
+      "  \"entries\": [",
+      "    \"${3:Rule text.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Box": {
+    "scope": "json",
+    "prefix": "av-box",
+    "description": "An inset box that also appears in the rules list. Use rule: false for an inline-only box.",
+    "body": [
+      "{",
+      "  \"type\": \"box\",",
+      "  \"name\": \"${1:Box title}\",",
+      "  \"entries\": [",
+      "    \"${2:Box text.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Box section": {
+    "scope": "json",
+    "prefix": "av-box-section",
+    "description": "A secondary title inside an existing box.",
+    "body": [
+      "{",
+      "  \"type\": \"box-section\",",
+      "  \"name\": \"${1:Section title}\",",
+      "  \"entries\": [",
+      "    \"${2:Text.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Table": {
+    "scope": "json",
+    "prefix": "av-table",
+    "description": "A titled table with column names and rows.",
+    "body": [
+      "{",
+      "  \"type\": \"table\",",
+      "  \"caption\": \"${1:Table title}\",",
+      "  \"colLabels\": [",
+      "    \"${2:Column one}\",",
+      "    \"${3:Column two}\"",
+      "  ],",
+      "  \"rows\": [",
+      "    [",
+      "      \"${4:First cell}\",",
+      "      \"${5:Second cell}\"",
+      "    ]",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: List": {
+    "scope": "json",
+    "prefix": "av-list",
+    "description": "Bullet points. Use list-decimal for numbering or list-no-bullets for plain lines.",
+    "body": [
+      "{",
+      "  \"type\": \"list\",",
+      "  \"items\": [",
+      "    \"${1:First item.}\",",
+      "    \"${2:Second item.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Multi-column list": {
+    "scope": "json",
+    "prefix": "av-columns",
+    "description": "A list in two or more columns. Add style list-no-bullets for plain lines.",
+    "body": [
+      "{",
+      "  \"type\": \"list\",",
+      "  \"columns\": 2,",
+      "  \"items\": [",
+      "    \"${1:First item.}\",",
+      "    \"${2:Second item.}\",",
+      "    \"${3:Third item.}\",",
+      "    \"${4:Fourth item.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Plain list": {
+    "scope": "json",
+    "prefix": "av-lines",
+    "description": "Compact lines with list formatting and no bullet points.",
+    "body": [
+      "{",
+      "  \"type\": \"list\",",
+      "  \"style\": \"list-no-bullets\",",
+      "  \"items\": [",
+      "    \"${1:First line.}\",",
+      "    \"${2:Second line.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Degree of success list": {
+    "scope": "json",
+    "prefix": "av-outcomes",
+    "description": "Critical Success, Success, Failure and Critical Failure with hanging labels.",
+    "body": [
+      "{",
+      "  \"type\": \"list\",",
+      "  \"style\": \"list-no-bullets\",",
+      "  \"items\": [",
+      "    {",
+      "      \"type\": \"item\",",
+      "      \"style\": \"hanging\",",
+      "      \"name\": \"Critical Success\",",
+      "      \"entry\": \"${1:Critical success effect.}\"",
+      "    },",
+      "    {",
+      "      \"type\": \"item\",",
+      "      \"style\": \"hanging\",",
+      "      \"name\": \"Success\",",
+      "      \"entry\": \"${2:Success effect.}\"",
+      "    },",
+      "    {",
+      "      \"type\": \"item\",",
+      "      \"style\": \"hanging\",",
+      "      \"name\": \"Failure\",",
+      "      \"entry\": \"${3:Failure effect.}\"",
+      "    },",
+      "    {",
+      "      \"type\": \"item\",",
+      "      \"style\": \"hanging\",",
+      "      \"name\": \"Critical Failure\",",
+      "      \"entry\": \"${4:Critical failure effect.}\"",
+      "    }",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Paizo clarification": {
+    "scope": "json",
+    "prefix": "av-clarification",
+    "description": "A clarification that starts collapsed.",
+    "body": [
+      "{",
+      "  \"type\": \"clarification\",",
+      "  \"entries\": [",
+      "    \"${1:Clarification text.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Formula": {
+    "scope": "json",
+    "prefix": "av-formula",
+    "description": "A calculation with an optional small label.",
+    "body": [
+      "{",
+      "  \"type\": \"formula\",",
+      "  \"name\": \"${1:Calculation}\",",
+      "  \"entry\": \"${2:Result = d20 roll + modifier}\"",
+      "}"
+    ]
+  },
+  "Avalon: Flavor text": {
+    "scope": "json",
+    "prefix": "av-flavor",
+    "description": "Centered flavor text with ornamental separators.",
+    "body": [
+      "{",
+      "  \"type\": \"flavor\",",
+      "  \"entry\": \"${1:Flavor text.}\"",
+      "}"
+    ]
+  },
+  "Avalon: Ability": {
+    "scope": "json",
+    "prefix": "av-ability",
+    "description": "An action or feat stat block with prerequisites and effect text.",
+    "body": [
+      "{",
+      "  \"type\": \"ability\",",
+      "  \"name\": \"${1:Ability name}\",",
+      "  \"actions\": \"${2|1,2,3,r,f|}\",",
+      "  \"kind\": \"${3:Feat}\",",
+      "  \"level\": 1,",
+      "  \"traits\": [",
+      "    \"${4:General}\"",
+      "  ],",
+      "  \"prerequisites\": \"${5:Prerequisites.}\",",
+      "  \"entries\": [",
+      "    \"${6:Effect description.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Compact ability": {
+    "scope": "json",
+    "prefix": "av-compact-ability",
+    "description": "An inline ability with hanging text and labeled fields.",
+    "body": [
+      "{",
+      "  \"type\": \"ability\",",
+      "  \"compact\": true,",
+      "  \"name\": \"${1:Ability name}\",",
+      "  \"actions\": \"${2|1,2,3,r,f|}\",",
+      "  \"frequency\": \"${3:Once per day}\",",
+      "  \"effect\": \"${4:Effect description.}\"",
+      "}"
+    ]
+  },
+  "Avalon: Original setting rule": {
+    "scope": "json",
+    "prefix": "av-original",
+    "description": "A new Avalon rule with original-material attribution.",
+    "body": [
+      "{",
+      "  \"name\": \"${1:Rule name}\",",
+      "  \"source\": \"Avalon\",",
+      "  \"kind\": \"setting\",",
+      "  \"setting\": \"original\",",
+      "  \"entries\": [",
+      "    \"${2:Rule text.}\"",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Rule link": {
+    "scope": "json",
+    "prefix": "av-link",
+    "description": "Link to a rule with a hover preview. Source is optional.",
+    "body": [
+      "{@rule ${1:Rule name}}"
+    ]
+  },
+  "Avalon: Action symbol": {
+    "scope": "json",
+    "prefix": "av-action",
+    "description": "PF2 action glyph: 1, 2, 3, reaction or free action.",
+    "body": [
+      "{@as ${1|1,2,3,r,f|}}"
+    ]
+  }
+}
+

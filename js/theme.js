@@ -27,15 +27,18 @@
         try { window.localStorage.setItem(storageKey, theme); } catch { /* The selection still works for this visit. */ }
       });
     }
-    const settings = document.querySelector("#site-settings");
-    if (!settings) return;
+    const menus = ["#site-settings", "#reference-menu"].map(selector => document.querySelector(selector)).filter(Boolean);
     document.addEventListener("click", event => {
-      if (!settings.contains(event.target)) settings.open = false;
+      for (const menu of menus) {
+        if (!menu.contains(event.target)) menu.open = false;
+      }
     });
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape" && settings.open) {
-        settings.open = false;
-        settings.querySelector("summary").focus();
+      if (event.key !== "Escape") return;
+      for (const menu of menus) {
+        if (!menu.open) continue;
+        menu.open = false;
+        menu.querySelector("summary").focus();
       }
     });
   };

@@ -13,8 +13,8 @@
   ],
   "rules": [
     {
-      "id": "checks",
       "name": "Checks",
+      "chapter": "Chapter 8: Playing the Game",
       "kind": "core",
       "source": "PC1",
       "page": 400,
@@ -38,9 +38,7 @@
         {
           "type": "box",
           "name": "Flat Checks",
-          "id": "flat-checks",
           "page": 405,
-          "rule": true,
           "entries": [
             "When the chance something will happen or fail to happen is based purely on chance, you'll attempt a flat check. A flat check never includes any modifiers, bonuses, or penalties—you just roll a d20 and compare the result on the die to the DC. Only abilities that specifically apply to flat checks can change the checks' DCs; most such effects affect only certain types of flat checks.",
             "If more than one flat check would ever cause or prevent the same thing, just roll once and use the highest DC. In the rare circumstance that a flat check has a DC of 1 or lower, skip rolling; you automatically succeed. Conversely, if one ever has a DC of 21 or higher, you automatically fail."
@@ -49,9 +47,7 @@
         {
           "type": "box",
           "name": "Secret Checks",
-          "id": "secret-checks",
           "page": 405,
-          "rule": true,
           "entries": [
             "Sometimes you as the player shouldn't know the exact result and effect of a check. In these situations, the rules (or the GM) will call for a secret check. The secret trait appears on anything that uses secret checks. This type of check uses the same formulas you normally would use for that check, but is rolled by the GM, who doesn't reveal the result. Instead, the GM simply describes the information or effects determined by the check's result. If you don't know a secret check is happening (for instance, if the GM rolls a secret Fortitude save against a poison that you failed to notice), you can't use any {@trait fortune} or {@trait misfortune} abilities on that check, but if a fortune or misfortune effect would apply automatically, the GM applies it to the secret check. If you know that the GM is attempting a secret check—as often happens with {@action Recall Knowledge} or {@action Seek}—you can usually activate fortune or misfortune abilities for that check. Just tell the GM, and they'll apply the ability to the check.",
             "The GM can choose to make any check secret, even if it's not usually rolled secretly. Conversely, the GM can let you roll any check yourself, even if that check would usually be secret. Some groups find it simpler to have players roll all secret checks and just try to avoid acting on any out-of-character knowledge, while others enjoy the mystery."
@@ -60,14 +56,13 @@
         {
           "type": "h2",
           "name": "Step 1: Roll D20",
+          "ruleName": "Roll D20",
           "entries": [
-            "Start by rolling your d20. You'll then identify all the relevant {@rule Attribute Modifiers||modifiers}, {@rule bonuses}, and {@rule penalties} that apply. A modifier can be either positive or negative, but a bonus is always positive, and a penalty is always negative. The sum of all the modifiers, bonuses, and penalties you apply to the d20 roll is called your total modifier for that statistic.",
+            "Start by rolling your d20. You'll then identify all the relevant {@b modifiers}, {@b bonuses}, and {@b penalties} that apply. A modifier can be either positive or negative, but a bonus is always positive, and a penalty is always negative. The sum of all the modifiers, bonuses, and penalties you apply to the d20 roll is called your total modifier for that statistic.",
             {
               "type": "box",
               "name": "Fortune and Misfortune",
-              "id": "fortune-and-misfortune",
               "page": 401,
-              "rule": true,
               "entries": [
                 "{@trait Fortune} and {@trait misfortune} effects can alter how you roll your dice. These abilities might allow you to reroll a failed roll, force you to reroll a successful roll, allow you to roll twice and use the higher result, or force you to roll twice and use the lower result.",
                 "You can never have more than one fortune effect or misfortune effect come into play on a single roll. For instance, if an effect lets you roll twice and use the higher roll, you can't then use {@feat Halfling Luck} (a fortune effect) to reroll if you fail. If multiple fortune effects would apply, you have to pick which to use. If two misfortune effects apply, the GM decides which is worse and applies it.",
@@ -82,8 +77,6 @@
             {
               "type": "h3",
               "name": "Bonuses",
-              "id": "bonuses",
-              "rule": true,
               "entries": [
                 "When attempting a check that involves something you have some training in, you will also add your {@rule proficiency bonus}. This bonus depends on your proficiency rank: untrained, trained, expert, master, or legendary. If you're untrained, your bonus is +0—you must rely on raw talent and any bonuses from the situation. Otherwise, the bonus equals your character's level plus a certain amount depending on your rank. If your proficiency rank is trained, this bonus is equal to your level + 2, and higher proficiency ranks further increase the amount you add to your level.",
                 {
@@ -107,8 +100,6 @@
             {
               "type": "h3",
               "name": "Penalties",
-              "id": "penalties",
-              "rule": true,
               "entries": [
                 "Penalties work very much like bonuses. You can have {@b circumstance penalties}, {@b status penalties}, and sometimes even {@b item penalties}. Like bonuses of the same type, you take only the worst all of various penalties of a given type. However, you can apply both a bonus and a penalty of the same type on a single roll. For example, if you had a +1 status bonus from a {@spell heroism} spell but a –2 status penalty from the {@condition sickened} condition, you'd apply them both to your roll—so heroism still helps even though you're feeling unwell.",
                 "Unlike bonuses, penalties can also be {@b untyped}, in which case they won't be classified as “circumstance,” “item,” or “status.” Unlike other penalties, you always add all your untyped penalties together rather than simply taking the worst one. For instance, when you use attack actions, you incur a {@rule multiple attack penalty} on each attack you make on your turn after the first attack of the turn, and when you attack a target that's beyond your weapon's normal range increment, you incur a {@rule range penalty} on the attack. Because these are both untyped penalties, if you make multiple attacks at a faraway target, you'd apply both the multiple attack penalty and the range penalty to your roll."
@@ -120,6 +111,7 @@
         {
           "type": "h2",
           "name": "Step 2: Calculate Result",
+          "ruleName": "Calculate Result",
           "entries": [
             "This step is simple. Add up all the various modifiers, bonuses, and penalties you identified in Step 1—this is your total modifier. Next add that to the number that came up on your d20 roll. This total is your check result.",
             {
@@ -134,6 +126,7 @@
         {
           "type": "h2",
           "name": "Step 3: Compare to DC",
+          "ruleName": "Compare to DC",
           "entries": [
             "Whenever you attempt a check, you compare your result against the {@rule Difficulty Classes||Difficulty Class (DC)} of the check. Your check succeeds if it's equal to or greater than the DC. If you roll anything less than the DC, you fail.",
             "Sometimes you'll know the DC and make the comparison yourself. Other times, you might not know the DC right away. {@action Swim||Swimming} across a river would require an {@skill Athletics} check, but it doesn't have a specified DC—so how will you know if you succeed or fail? You call out your result to the GM and they'll let you know if it's a success, failure, or otherwise. While you might learn the exact DC through trial and error, DCs sometimes change, so asking the GM whether a check is successful is best.",
@@ -148,9 +141,7 @@
           "type": "h2",
           "name": "Step 4: Degree of Success",
           "ruleName": "Degree of Success",
-          "id": "degree-of-success",
           "page": 401,
-          "rule": true,
           "entries": [
             "Many times, it's important to determine not only if you succeed or fail, but also how spectacularly you succeed or fail. Exceptional results—either good or bad—can cause you to critically succeed or critically fail at a check.",
             "You {@b critically succeed} when the check's result meets or exceeds the DC by 10 or more. If the check is an attack roll, this is also known as a critical hit. You can also {@b critically fail} a check. The rules for critical failure—sometimes called a fumble—are the same as those for a critical success, but in the other direction: if you fail a check by 10 or more, that's a critical failure.",
@@ -170,10 +161,7 @@
         {
           "type": "h2",
           "name": "Attack Rolls",
-          "id": "attack-rolls",
-          "topic": ["Checks"],
           "page": 402,
-          "rule": true,
           "entries": [
             "When you use a Strike action or make a spell attack, you attempt a check called an attack roll. Attack rolls take a variety of forms and are often highly variable based on the weapon you are using for the attack, but there are three main types: melee attack rolls, ranged attack rolls, and spell attack rolls. Spell attack rolls work a little bit differently, so they are explained separately on the next page.",
             "{@b Melee} attack rolls use Strength as their attribute modifier by default. If you're using a weapon or attack with the finesse trait, then you can use your Dexterity modifier instead.",
@@ -194,8 +182,6 @@
             {
               "type": "h3",
               "name": "Multiple Attack Penalty",
-              "id": "multiple-attack-penalty",
-              "rule": true,
               "entries": [
                 "The more attacks you make beyond your first in a single turn, the less accurate you become, represented by the {@b multiple attack penalty}. The second time you use an attack action during your turn, you take a –5 penalty to your check. The third time you attack, and on any subsequent attacks, you take a –10 penalty to your check. Every check that has the {@trait attack} trait counts toward your multiple attack penalty, including {@action Strike||Strikes}, spell attack rolls, certain skill actions like {@action Shove}, and many others.",
                 "Some weapons and abilities reduce multiple attack penalties, such as {@trait agile} weapons, which reduce these penalties to –4 on the second attack or –8 on further attacks",
@@ -210,14 +196,12 @@
                   ]
                 },
                 "Always calculate your multiple attack penalty based on the weapon you're using on that attack, not ones you used on previous attacks. For example, let's say you're wielding a {@equipment longsword} in one hand and a {@equipment shortsword} (which has the agile trait) in your other hand, and you make three Strikes with these weapons over the course of your turn. The first Strike you make during your turn has no penalty, no matter what weapon you are using. The second Strike will take either a –5 penalty if you use the longsword or a –4 penalty if you use the shortsword. Your third attack would be a –10 penalty with the longsword and a –8 penalty with the shortsword, no matter what weapon you used for your previous Strikes.",
-                "The multiple attack penalty applies only during your turn, so you don't have to keep track of it if you can perform a {@action Reactive Strike} or a similar reaction that lets you make a Strike on someone else's turn."
+                "The multiple attack penalty applies only during your turn, so you don't have to keep track of it if you can perform a {@feat Reactive Strike} or a similar reaction that lets you make a Strike on someone else's turn."
               ]
             },
             {
               "type": "h3",
               "name": "Range Penalty",
-              "id": "range-penalty",
-              "rule": true,
               "entries": [
                 "Ranged and thrown weapons each have a listed {@b range increment}, and attacks with them grow less accurate against targets farther away (range and range increments are covered in depth {@rule Range and Reach||here}). As long as your target is at or within the listed range increment, also called the first range increment, you take no penalty to the attack roll. If you're attacking beyond that range increment, you take a –2 penalty for each additional increment beyond the first. You can attempt to attack with a ranged weapon or {@trait thrown} weapon up to six range increments away, but the farther away you are, the harder it is to hit your target.",
                 "For example, the range increment of a {@equipment crossbow} is 120 feet. If you are shooting at a target no farther away than that distance, you take no penalty due to range. If they're beyond 120 feet but no more than 240 feet away, you take a –2 penalty due to range. If they're beyond 240 feet but no more than 360 feet away, you take a –4 penalty due to range, and so on, until you reach the last range increment: beyond 600 feet but no more than 720 feet away, where you take a –10 penalty due to range."
@@ -233,9 +217,7 @@
         {
           "type": "h2",
           "name": "Spell Attack Rolls",
-          "id": "spell-attack-rolls",
           "page": 403,
-          "rule": true,
           "entries": [
             "If you cast spells, you might need to make a spell attack roll. These rolls are usually made when you cast a spell that targets a creature's AC.",
             "The attribute modifier for a spell attack roll depends on how you gained the spell. If your class grants you spellcasting, use your key attribute modifier (such as Intelligence for a {@class wizard}). Innate spells use your Charisma modifier unless the ability that granted them states otherwise. Focus spells and other sources of spells specify which attribute modifier you use for spell attack modifiers in the ability that granted them. If you have spells from multiple sources or traditions, you might use different attribute modifiers for spell attack modifiers for these different sources of spells. For example, a {@ancestry dwarf} {@class cleric} with the {@feat Stonewalker} ancestry feat would use her Charisma modifier when casting {@spell one with stone} from that feat, since it's a divine innate spell, but she would use her Wisdom modifier when casting {@spell heal} and other spells using her cleric divine spellcasting.",
@@ -251,9 +233,7 @@
         {
           "type": "h2",
           "name": "Spell DC",
-          "id": "spell-dc",
           "page": 403,
-          "rule": true,
           "entries": [
             "Many times, instead of requiring you to make a spell attack roll, the spells you cast will require those within the area or targeted by the spell to attempt a saving throw against your {@b spell DC} to determine how the spell affects them. Calculate it using the following formula.",
             {
@@ -271,9 +251,7 @@
             {
               "type": "h3",
               "name": "Armor Class",
-              "id": "armor-class",
               "page": 404,
-              "rule": true,
               "entries": [
                 "Attack rolls are compared to a special Difficulty Class called Armor Class (AC), which measures how hard it is for your foes to hit you with {@action Strike||Strikes}, spell attack rolls, and other attacks. Just like for any other check and DC, the result of an attack roll must meet or exceed your AC to be successful, which allows your foe to deal damage to you. Armor Class is calculated using the following formula.",
                 {
@@ -289,9 +267,7 @@
             {
               "type": "h3",
               "name": "Saving Throws",
-              "id": "saving-throws",
               "page": 404,
-              "rule": true,
               "entries": [
                 "There are three types of saving throws: Fortitude saves, Reflex saves, and Will saves. These are frequently called “saves”—it's the same thing. Saving throws measure your ability to shrug off harmful effects in the form of afflictions, damage, or conditions. You'll always add a proficiency bonus to each save. Your class might give a different proficiency to each save, but you'll be trained at minimum. Some circumstances and spells might give you circumstance or status bonuses to saves, and you might find {@equipment resilient} armor or other magic items that give an item bonus.",
                 "{@b Fortitude} saving throws allow you to reduce the effects of abilities and afflictions that can debilitate the body. They use your Constitution modifier and are calculated as shown in the formula below.",
@@ -318,9 +294,7 @@
             {
               "type": "h3",
               "name": "Basic Saving Throws",
-              "id": "basic-saving-throws",
               "page": 404,
-              "rule": true,
               "entries": [
                 "Sometimes you will be called on to attempt a basic saving throw (or “basic save”). This type of saving throw works just like any other saving throw—the “basic” part refers to the effects. For a basic save, you'll attempt the check and determine whether you critically succeed, succeed, fail, or critically fail like you would any other saving throw. Then one of the following outcomes applies based on your degree of success—no matter what caused the saving throw. Some spells or abilities add an additional effect on certain results but still use a basic saving throw for brevity.",
                 {
@@ -356,9 +330,7 @@
         {
           "type": "h2",
           "name": "Perception",
-          "id": "perception",
           "page": 404,
-          "rule": true,
           "entries": [
             "Perception measures your ability to be aware of your environment. Every creature has Perception, which works with and is limited by a creature's senses. (Details on senses and detecting things are {@rule Perception and Detection||here}). Whenever you need to attempt a check based on your awareness, you'll attempt a Perception check. Your Perception uses your Wisdom modifier, so you'll use the following formula when attempting a Perception check.",
             {
@@ -378,9 +350,7 @@
         {
           "type": "h2",
           "name": "Skill Checks",
-          "id": "skill-checks",
           "page": 405,
-          "rule": true,
           "entries": [
             "Pathfinder has a variety of skills, from {@skill Athletics} to {@skill Medicine} to {@skill Occultism}. Each grants you a set of related actions that rely on you rolling a skill check. Each skill has a key attribute modifier, based on the scope of the skill in question. For instance, Athletics deals with feats of physical prowess, like {@action Swim||swimming} and {@action Leap||jumping}, so its key attribute modifier is Strength. Medicine deals with the ability to diagnose and {@action treat wounds} and ailments, so its key attribute modifier is Wisdom. The key attribute modifier for each skill is listed on their skill page. No matter which skill you're using, you calculate a check for it using the following formula.",
             {
@@ -395,8 +365,8 @@
       ]
     },
     {
-      "id": "damage-rolls",
       "name": "Damage Rolls",
+      "chapter": "Chapter 8: Playing the Game",
       "kind": "core",
       "source": "PC1",
       "page": 406,
@@ -418,6 +388,7 @@
         {
           "type": "h2",
           "name": "Step 1: Roll Damage Dice",
+          "ruleName": "Roll Damage Dice",
           "entries": [
             "Your weapon, unarmed attack, spell, or even a magic item determines what size and number of dice you roll for damage. For instance, if you're using a normal {@equipment longsword}, you'll roll 1d8. If you're casting a 3rd-rank {@spell fireball} spell, you'll roll 6d6. Sometimes, especially in the case of weapons, you'll apply modifiers, bonuses, and penalties to the damage.",
             "Damage rolls for melee weapons and unarmed attacks typically add your Strength attribute modifier.",
@@ -473,14 +444,14 @@
         {
           "type": "h2",
           "name": "Step 2: Damage Type",
+          "ruleName": "Damage Type",
           "entries": [
             "Once you've calculated how much damage you deal, you'll need to determine the damage type. The smack of a {@equipment club} deals bludgeoning damage. The shock of a {@spell lightning bolt} spell deals electricity damage. Sometimes you might apply precision damage, dealing more damage for hitting a creature in a vulnerable spot or when the target is somehow vulnerable.",
             {
               "type": "box",
               "name": "Damage Types",
-              "id": "damage-types",
+              "rule": false,
               "page": 409,
-              "rule": true,
               "entries": [
                 "Damage has a number of different types and categories, which are described below.",
                 {
@@ -540,19 +511,19 @@
         {
           "type": "h2",
           "name": "Step 3: Apply Immunities, Weaknesses, and Resistances",
+          "ruleName": "Apply Immunities, Weaknesses, and Resistances",
           "entry": "Defenses against certain types of damage or effects are called immunities or resistances, while vulnerabilities are called weaknesses. Apply immunities first, then weaknesses, and resistances third. See {@rule Immunity, Weakness, and Resistance}."
         },
         {
           "type": "h2",
           "name": "Step 4: Reduce Hit Points",
+          "ruleName": "Reduce Hit Points",
           "entries": [
             "Any remaining damage reduces the target's Hit Points on a 1-to-1 basis. More information can be found in the {@rule Hit Points, Healing, and Dying} section.",
             {
               "type": "h3",
               "name": "Nonlethal Attacks",
-              "id": "nonlethal-attacks",
               "page": 407,
-              "rule": true,
               "entry": "You can make a nonlethal attack to knock someone out instead of killing them (see {@rule Getting Knocked Out||Knocked Out} and {@rule Dying}). Weapons with the {@trait nonlethal} trait (including {@equipment fists}) do this automatically. You take a –2 circumstance penalty to the attack roll when you make a nonlethal attack using a weapon or unarmed attack that doesn't have the nonlethal trait. You also take this penalty when making a lethal attack using a nonlethal weapon. Spells and other effects with the nonlethal trait that reduce a creature to 0 Hit Points knock the creature out instead of killing them."
             }
           ]
@@ -560,8 +531,8 @@
       ]
     },
     {
-      "id": "immunity-weakness-and-resistance",
       "name": "Immunity, Weakness, and Resistance",
+      "chapter": "Chapter 8: Playing the Game",
       "kind": "core",
       "source": "PC1",
       "page": 408,
@@ -573,8 +544,6 @@
         {
           "type": "h2",
           "name": "Immunity",
-          "id": "immunity",
-          "rule": true,
           "entries": [
             "When you have immunity to a specific type of damage, you ignore all damage of that type. If you have immunity to a specific condition or type of effect, you can't be affected by that condition or any effect of that type. You can still be targeted by an ability that includes an effect or condition you are immune to; you just don't apply that particular effect or condition.",
             "If you have immunity to effects with a certain trait (such as {@trait death} effects, {@trait poison}, or {@trait disease}), you are unaffected by effects with that trait. An immunity might match both a trait and a damage type (such as {@trait electricity}). The immunity applies to effects with the trait as well as damage of that type. Some complex effects might have parts that affect you even if you're immune to one of the effect's traits; for instance, a creature immune to death effects wouldn't ignore the poison damage or {@condition concealed} condition from a {@spell toxic cloud} spell.",
@@ -601,8 +570,6 @@
         {
           "type": "h2",
           "name": "Weakness",
-          "id": "weakness",
-          "rule": true,
           "entries": [
             "If you have a weakness to a certain type of damage, that type of damage is extra effective against you. Whenever you would take that type of damage, increase the amount of damage by the value of the weakness. For instance, if you are dealt 2d6 fire damage and have weakness 5 to fire, you take 2d6+5 fire damage.",
             "A single effect can activate more than one weakness at a time, but adds each of the subject's weaknesses only once. For example, if you made a Strike with a {@equipment flaming} {@equipment cold iron} {@equipment battle axe} benefiting from a spell that gives it additional fire damage, and you targeted a creature with weakness to cold iron, fire, and slashing, the Strike would benefit from all three weaknesses but wouldn't apply the fire weakness twice.",
@@ -612,8 +579,6 @@
         {
           "type": "h2",
           "name": "Resistance",
-          "id": "resistance",
-          "rule": true,
           "entries": [
             "After any weaknesses, apply resistances. If you have resistance to a type of damage, each time you would take damage of that type, reduce the amount of damage by the listed number (to a minimum of 0 damage).",
             "Resistance can specify combinations of damage types and other characteristics. For instance, you might encounter a monster resistant to non-magical bludgeoning damage, meaning it would take less damage from bludgeoning attacks that aren't magical, but would take normal damage from a +1 {@equipment mace} (since it's magical) or a non-magical {@equipment spear} (since it deals piercing damage). A resistance also might have an exception. Resistance 10 to physical damage (except silver) would reduce any physical damage by 10 unless that damage was dealt by a {@equipment silver} weapon. A damage source can be changed by both a resistance and a weakness. For instance, a cold iron battle axe's damage could both increase due to cold iron weakness and decrease due to resistance to slashing damage.",
@@ -623,8 +588,8 @@
       ]
     },
     {
-      "id": "hit-points-healing-and-dying",
-      "name": "Hit Points, Healing and Dying",
+      "name": "Hit Points, Healing, and Dying",
+      "chapter": "Chapter 8: Playing the Game",
       "kind": "core",
       "source": "PC1",
       "page": 410,
@@ -636,16 +601,12 @@
         {
           "type": "h2",
           "name": "Hit Points",
-          "id": "hit-points",
-          "rule": true,
           "entries": [
             "All creatures and objects have {@b Hit Points (HP)}. Your maximum Hit Point value represents your health, wherewithal, and heroic drive when you're in good health and rested. Your maximum Hit Points include the Hit Points you gain at 1st level from your ancestry and class, those you gain at higher levels from your class, and any you gain from other sources (like the {@feat Toughness} general feat). When you take damage, you reduce your current Hit Points by a number equal to the damage dealt.",
             "Some spells, items, and other effects, as well as simply resting, can heal creatures. When you're healed, you regain Hit Points equal to the amount healed, up to your maximum Hit Points.",
             {
               "type": "h3",
               "name": "Temporary Hit Points",
-              "id": "temporary-hit-points",
-              "rule": true,
               "entry": "Some spells or abilities give you temporary Hit Points. Track these separately from your current and maximum Hit Points; when you take damage, reduce your temporary Hit Points first. Most temporary Hit Points last for a limited duration. You can't regain lost temporary Hit Points through healing, but you can gain more via other abilities. You can have temporary Hit Points from only one source at a time. If you gain temporary Hit Points when you already have some, choose whether to keep the amount you already have and their corresponding duration or to gain the new temporary Hit Points and their duration."
             },
             {
@@ -663,8 +624,6 @@
         {
           "type": "h2",
           "name": "Getting Knocked Out",
-          "id": "getting-knocked-out",
-          "rule": true,
           "entries": [
             "Creatures can't be reduced to fewer than 0 Hit Points. When most creatures reach 0 Hit Points, they die and are removed from play unless the attack was {@trait nonlethal}, in which case they're instead knocked out for a significant amount of time (usually 10 minutes or more). When {@trait undead} and {@trait construct||constructs} reach 0 Hit Points, they're destroyed.",
             "Player characters, their companions, and other significant characters and creatures don't automatically die when they reach 0 Hit Points. Instead, they are knocked out and are at risk of death. The GM might determine that villains, powerful monsters, special NPCs, and enemies with special abilities that are likely to bring them back to the fight (like {@ability ferocity}, {@ability regeneration}, or healing magic) can use these rules as well.",
@@ -681,16 +640,12 @@
         {
           "type": "h2",
           "name": "Dying",
-          "id": "dying",
           "page": 411,
-          "rule": true,
           "entries": [
             "While you have the {@condition dying} condition, you're bleeding out or otherwise at death's door. You're {@condition unconscious} while you have the dying condition. Dying always includes a value. If this value ever reaches dying 4, you die. While you're dying, your dying value can increase or decrease in two ways.",
             {
               "type": "h3",
               "name": "Recovery Checks",
-              "id": "recovery-checks",
-              "rule": true,
               "entries": [
                 "While you're {@condition dying}, attempt a recovery check at the start of each of your turns. This is a {@rule flat checks||flat check} with a DC equal to 10 + your current dying value to see if you get better or worse.",
                 {
@@ -739,25 +694,19 @@
         {
           "type": "h2",
           "name": "Death",
-          "id": "death",
           "page": 411,
-          "rule": true,
           "entry": "After you die, you can't act or regain actions, can't be affected by spells that target creatures (unless they specifically target dead creatures), and for all other purposes, you're an object. When you die, you're reduced to 0 Hit Points if you had a different amount, and you can't be brought above 0 Hit Points as long as you remain dead. Some magic can bring creatures back to life, such as the {@spell ressurect} ritual or the {@spell raise dead} spell, though these abilities aren't without their risks or effects, and rare artifacts and powers can even interfere with them."
         },
         {
           "type": "h2",
           "name": "Instant Death",
-          "id": "instant-death",
           "page": 411,
-          "rule": true,
           "entries": [
             "There are ways in which you can die instantly, without reaching dying 0 first.",
             {
               "type": "h3",
               "name": "Death Effects",
-              "id": "death-effects",
               "page": 412,
-              "rule": true,
               "entries": [
                 "Some spells and abilities can kill you immediately or bring you closer to death without needing to reduce you to 0 Hit Points first. These abilities have the {@trait death} trait and usually involve energy from the Void, the antithesis of life, or other effects that target the mind or soul. If you're reduced to 0 Hit Points by a death effect, you're slain instantly without needing to reach {@condition dying} 4. For instance, the {@spell vision of death} spell automatically kills those it reduces to 0 Hit Points as terrifying hallucinations cause them to drop dead.",
                 "A death effect might state that it kills you outright, without dealing damage, in which case you die without having to first reach dying 4 or be reduced to 0 Hit Points. For instance, the {@monster Grim Reaper}, an extremely powerful entity of death, can automatically slay creatures who fail their save against its death strike ability."
@@ -766,9 +715,7 @@
             {
               "type": "h3",
               "name": "Massive Damage",
-              "id": "massive-damage",
               "page": 412,
-              "rule": true,
               "entry": "You die instantly if you ever take damage equal to or greater than double your maximum Hit Points in one blow. "
             }
           ]
@@ -776,13 +723,16 @@
       ]
     },
     {
-      "id": "hero-points",
       "name": "Hero Points",
+      "chapter": "Chapter 8: Playing the Game",
       "kind": "core",
       "source": "PC1",
       "page": 413,
       "entries": [
-        "Your heroic deeds earn you Hero Points, which grant you good fortune or let you recover from the brink of death. Unlike most aspects of your character, which persist over the long term, Hero Points last for only a single session.",
+        {
+          "type": "flavor",
+          "entry": "Your heroic deeds earn you Hero Points, which grant you good fortune or let you recover from the brink of death. Unlike most aspects of your character, which persist over the long term, Hero Points last for only a single session."
+        },
         "The GM is in charge of awarding Hero Points. Usually, each character gets 1 Hero Point at the start of a session and can gain more later by performing heroic deeds—something selfless, daring, or beyond normal expectations. You can have a maximum of 3 Hero Points at a time, and you lose any remaining Hero Points at the end of a session.",
         "You can spend your Hero Points in one of two ways. Neither of these is an action, and you can spend Hero Points even if you aren't able to act. You can spend a Hero Point on behalf of your familiar or animal companion.",
         {
@@ -803,12 +753,525 @@
       ]
     },
     {
-      "id": "difficulty-classes-gmc",
+      "name": "Actions",
+      "chapter": "Chapter 8: Playing the Game",
+      "kind": "core",
+      "source": "PC1",
+      "page": 414,
+      "entries": [
+        {
+          "type": "flavor",
+          "entry": "You affect the world around you primarily by using actions, which produce effects. Actions are most closely measured and restricted during the encounter mode of play, but even when it isn't important for you to keep strict track of actions, they remain the way in which you interact with the game world."
+        },
+        "You will need to track your actions carefully in an encounter. At the start of each turn you take in an encounter, you regain 3 actions and 1 reaction to spend that round. (Regaining your actions is described in detail {@rule Turns||here}.) You can spend your actions in many different ways.",
+        "There are four types of actions: single actions, activities, reactions, and free actions.",
+        "{@b Single actions} can be completed in a very short time. They're self-contained, and their effects are generated within the span of that single action.",
+        "{@b Activities} usually take longer and require using multiple actions, which must be spent in succession. Stride is a single action, but Sudden Charge is an activity in which you use both the Stride and Strike actions to generate its effect.",
+        "{@b Reactions} have triggers, which must be met for you to use the reaction. You can use a reaction anytime its trigger is met, whether it's your turn or not. Outside of encounters, your use of reactions is more flexible and up to the GM. Reactions are usually triggered by other creatures or by events outside your control.",
+        "{@b Free actions} don't cost you any of your actions per turn, nor do they cost your reaction. A free action with no trigger follows the same rules as a single action (except the action cost). It must be used on your turn and can't be used during another action. A free action with a trigger follows the same rules as a reaction (except the reaction cost). It can be used any time its trigger is met.",
+        {
+          "type": "box",
+          "name": "Action Icon Key",
+          "entries": [
+            "These icons appear in stat blocks as shorthand for each type of action. As a player, you'll usually see the icon in an action's header (such as in a basic action, skill action, feat, or spell). In a creature stat block, or a feat that gives you a new action in addition to other benefits, the icon will appear in the running text. For examples, see the formatting of rules.",
+            {
+              "type": "list",
+              "style": "list-no-bullets",
+              "items": [
+                "{@as 1} Single Action",
+                "{@as 2} Two-Action Activity",
+                "{@as 3} Three-Action Activity",
+                "{@as r} Reaction",
+                "{@as f} Free Action"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "name": "In-Depth Action Rules",
+          "entries": [
+            "These rules clarify some of the specifics of using actions.",
+            {
+              "type": "h3",
+              "name": "Simultaneous Actions",
+              "entries": [
+                "You can use only one single action, activity, or free action that doesn't have a trigger at a time. You must complete one before beginning another. For example, the {@action Sudden Charge} activity states you must {@action Stride} twice and then {@action Strike}, so you couldn't use an {@action Interact} action to open a door in the middle of the movement, nor could you perform part of the move, make your attack, and then finish the move.",
+                "Free actions with triggers and reactions work differently. You can use these whenever the trigger occurs, even if the trigger occurs in the middle of another action."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Subordinate Actions",
+              "entries": [
+                "An action might allow you to use a simpler action—usually one of the {@rule Basic Actions}—in a different circumstance or with different effects. This subordinate action still has its normal traits and effects, but it's modified in any ways listed in the larger action. For example, an activity that tells you to Stride up to half your Speed alters the normal distance you can move in a Stride. The Stride would still have the {@trait move} trait, would still trigger reactions that occur based on movement, and so on. The subordinate action doesn't gain any of the traits of the larger action unless specified. The action that allows you to use a subordinate action doesn't require you to spend more actions or reactions to do so; that cost is already factored in.",
+                "Using an activity is not the same as using any of its subordinate actions. For example, the {@condition quickened} condition you get from the {@spell haste} spell lets you spend an extra action each turn to Stride or Strike, but you couldn't use the extra action for an activity that includes a Stride or Strike. As another example, if you used an action that specified, “If the next action you use is a Strike,” an activity that includes a Strike wouldn't count, because the next thing you are doing is starting an activity, not using the Strike basic action"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Activities",
+          "entries": [
+            "An activity typically involves using multiple actions to create an effect greater than you can produce with a single action, or combining multiple single actions to produce an effect that's different from merely the sum of those actions. In some cases, usually when spellcasting, an activity can consist of only 1 action, 1 reaction, or even 1 free action.",
+            "An activity might cause you to use specific actions within it. You don't have to spend additional actions to perform them—they're already factored into the activity's required actions. (See {@rule Actions||Subordinate Actions}.)",
+            "You have to spend all the actions of an activity at once to gain its effects. In an encounter, this means you must complete it during your turn. If an activity gets {@rule Disrupting Actions||interrupted or disrupted} in an encounter, you lose all the actions you committed to it.",
+            {
+              "type": "h3",
+              "name": "Exploration and Downtime Activities",
+              "entries": [
+                "Outside of encounters, activities can take minutes, hours, or even days. These activities usually have the exploration or downtime trait to indicate they're meant to be used during these modes of play. You can often do other things off and on as you carry out these activities, provided they aren't significant activities of their own. For instance, if you're {@action Repair||Repairing} an item, you might stretch your legs or have a brief discussion, but you couldn't {@action Decipher Writing} at the same time.",
+                "If an activity outside of an encounter is interrupted or disrupted, as described in {@rule Disrupting Actions}, you usually lose the time you put in, but no additional time. "
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Actions with Triggers",
+          "entries": [
+            "You can use free actions that have triggers and reactions only in response to certain events. Each such reaction and free action lists the trigger that must happen for you to perform it. When its trigger is satisfied—and only when it is satisfied—you can use the reaction or free action, though you don't have to use the action if you don't want to.",
+            "There are only a few basic reactions and free actions that all characters can use. You're more likely to gain actions with triggers from your class, feats, and magic items.",
+            {
+              "type": "h3",
+              "name": "Limitations on Triggers",
+              "entries": [
+                "The triggers listed in the stat blocks of reactions and some free actions limit when you can use those actions. You can use only one action in response to a given trigger. For example, if you had a reaction and a free action that both had a trigger of “your turn begins,” you could use either of them at the start of your turn—but not both. If two triggers are similar, but not identical, the GM determines whether you can use one action in response to each or whether they're effectively the same thing. Usually, this decision will be based on what's happening in the narrative.",
+                "This limitation of one action per trigger is per creature; more than one creature can use a reaction or free action in response to a given trigger. If multiple actions would be occurring at the same time, and it's unclear in what order they happen, the GM determines the order based on the narrative. "
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Other Actions",
+          "page": 415,
+          "entry": "Sometimes you need to attempt something not already covered by defined actions in the game. When this happens, the rules tell you how many actions you need to spend, as well as any traits your action might have. For example, a spell that lets you switch targets might say you can do so 'by spending a single action, which has the {@trait concentrate} trait.' Game Masters can also use this approach when a character tries to do something that isn't covered in the rules."
+        },
+        {
+          "type": "h2",
+          "name": "Gaining and Losing Actions",
+          "page": 415,
+          "entries": [
+            "Effects can change the number of actions you can use on your turn, or whether you can use actions at all. The {@condition slowed} condition, for example, causes you to lose actions, while the {@condition quickened} condition causes you to gain them. Conditions are detailed in the {@link conditions page||conditions}. Whenever you lose a number of actions—whether from these conditions or in any other way—you choose which to lose if there's any difference between them. For instance, the {@spell haste} spell makes you quickened, but it limits what you can use your extra action to do. If you lost an action while haste was active, you might want to lose the action from haste first, since it's more limited than your normal actions.",
+            "Some effects are even more restrictive. Certain abilities, instead of or in addition to changing the number of actions you can use, say specifically that you can't use reactions. The most restrictive form of reducing actions is when an effect states that you can't act: this means you can't use any actions, or even speak. When you can't act, you still regain your actions unless another effect (like the {@condition stunned} condition) prevents it. "
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Disrupting Actions",
+          "page": 415,
+          "entries": [
+            "Various abilities and conditions, such as a {@feat Reactive Strike}, can disrupt an action. When an action is disrupted, you still use the actions or reactions you committed and you still expend any costs, but the action's effects don't occur. In the case of an activity, you usually lose all actions spent for the activity up through the end of that turn. For instance, if you began to {@action Cast a Spell} requiring 3 actions and the first action was disrupted, you lose all 3 actions that you committed to that activity.",
+            "The GM decides what effects a disruption causes beyond simply negating the effects that would have occurred from the disrupted action. For instance, a {@actionLeap} disrupted midway wouldn't transport you back to the start of your jump, and a disrupted item hand off might cause the item to fall to the ground instead of staying in the hand of the creature who was trying to give it away. "
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Basic Actions",
+          "page": 416,
+          "entries": [
+            "Basic actions represent common tasks like moving around, attacking, and helping others. As such, every creature can use basic actions except in some extreme circumstances, and many of those actions are used very frequently. Most notably, you'll use {@action Interact}, {@action Step}, {@action Stride}, and {@action Strike} a great deal. Many feats and other actions call upon you to use one of these basic actions or modify them to produce different effects. For example, a more complex action might let you Stride twice, and a large number of activities include a Strike. An action or activity might also modify a basic action, such as having you Stride up to half your Speed.",
+            "Actions that are used less frequently but are still available to most creatures are presented in {@rule Specialty Basic Actions}. These typically have requirements that not all characters are likely to meet, such as wielding a shield, having a burrow Speed, or falling through the air.",
+            "In addition to the actions in these two sections, the actions for spellcasting can be found {@rule Casting Spells||here}, and the actions for using magic items appear {@rule Activating Items||here}.",
+            "{@b Delay and Ready:} If you want to change when you take actions, two basic actions let you do so. {@action Delay} shifts your entire turn later in the round, and {@action Ready} lets you prepare to take one specific action when a trigger you choose is met.",
+            {
+              "type": "list",
+              "columns": 3,
+              "items": [
+                "{@action Aid}",
+                "{@action Crawl}",
+                "{@action Delay}",
+                "{@action Drop Prone}",
+                "{@action Escape}",
+                "{@action Interact}",
+                "{@action Leap}",
+                "{@action Ready}",
+                "{@action Release}",
+                "{@action Seek}",
+                "{@action Sense Motive}",
+                "{@action Stand}",
+                "{@action Step}",
+                "{@action Strike}",
+                "{@action Take Cover}"
+              ]
+            },
+            {
+              "type": "box",
+              "name": "Speaking",
+              "entry": "As long as you can act, you can also speak. You don't need to spend any type of action to speak, but because a round represents 6 seconds of time, you can usually speak at most a single sentence or so per round. Special uses of speech, such as attempting a Deception skill check to Lie, require spending actions and follow their own rules. All speech has the auditory trait. If you communicate in some way other than speech, other rules might apply. For instance, using sign language is visual instead of auditory."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Specialty Basic Actions",
+          "page": 418,
+          "entries": [
+            "These actions are useful under specific circumstances. The {@action Arrest a Fall}, {@action Burrow}, and {@action Fly} actions require you to have a special {@rule Movement Types||movement type}. The climb and swim Speeds use the corresponding actions from the {@skill Athletics} skill.",
+            {
+              "type": "list",
+              "columns": 2,
+              "items": [
+                "{@action Arrest a Fall}",
+                "{@action Avert Gaze}",
+                "{@action Burrow}",
+                "{@action Dismiss}",
+                "{@action Fly}",
+                "{@action Grab an Edge}",
+                "{@action Mount}",
+                "{@action Point Out}",
+                "{@action Raise a Shield}",
+                "{@action Sustain}"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Movement",
+      "chapter": "Chapter 8: Playing the Game",
+      "kind": "core",
+      "source": "PC1",
+      "page": 420,
+      "entries": [
+        {
+          "type": "flavor",
+          "entry": "Your movement and position determine how you interact with the world. Moving in exploration and downtime modes is relatively fluid. Movement in encounter mode follows additional rules explained in {@rule Tactical Movement}. The rules below apply in all modes of play."
+        },
+        {
+          "type": "h2",
+          "name": "Movement Types",
+          "entries": [
+            "Creatures in Pathfinder soar through the clouds, scale sheer cliffs, and tunnel underfoot. The majority of creatures have a Speed, which is how fast they can move across the ground.",
+            "Some abilities give you different ways to move, such as through the air or underground. Each of these special movement types has its own Speed value. Many creatures have these Speeds naturally, such as a bird having a fly Speed or a fish having a swim Speed. The various types of movement are listed below. Since the {@action Stride} action can be used only with your normal Speed, moving using one of these movement types requires using a special action, and you can't {@action Step} while using one of these movement types. Since Speed by itself refers to your land Speed, rules text concerning these special movement types specifies the movement types to which it applies. Speeds can be increased or decreased with item, circumstance, and status bonuses and penalties. Penalties can't reduce your Speeds below 5 feet unless stated otherwise.",
+            "Switching from one movement type to another requires ending your action that has the first movement type and using a new action that has the second movement type. For instance, if you {@action Climb||Climbed} 10 feet to the top of a cliff, you could then Stride forward 10 feet. In some cases, the GM might rule otherwise, especially if you're moving a very short distance using one of the types of movement.",
+            {
+              "type": "h3",
+              "name": "Speed",
+              "entries": [
+                "Most characters and monsters have a Speed statistic that indicates how quickly they can move across the ground. This statistic is referred to as land Speed when it's necessary to differentiate it from special Speeds.",
+                "When you use the {@action Stride} action, you move a number of feet equal to your Speed. Numerous other abilities also allow you to move, from {@action Crawl||Crawling} to {@action Leap||Leaping}, and most of them are based on your Speed in some way. Whenever a rule mentions your Speed without specifying a type, it's referring to your land Speed."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Burrow Speed",
+              "entry": "A burrow Speed lets you tunnel through the ground. You can use the {@action Burrow} action if you have a burrow Speed. Burrowing doesn't normally leave behind a tunnel unless the ability specifically states that it does. Most creatures need to hold their breath when burrowing, and they might need {@rule tremorsense} to navigate."
+            },
+            {
+              "type": "h3",
+              "name": "Climb Speed",
+              "entries": [
+                "A climb Speed allows you to move up or down inclines and vertical surfaces. Most creatures need to succeed at {@skill Athletics} checks to {@action Climb}, but if you have a climb Speed, you automatically succeed and move up to your climb Speed instead of the listed distance.",
+                "You might still have to attempt Athletics checks to Climb in hazardous conditions, to Climb extremely difficult surfaces, or to cross horizontal planes such as ceilings. You can also choose to roll an Athletics check to Climb rather than accept an automatic success in hopes of getting a critical success. Your climb Speed grants you a +4 circumstance bonus to Athletics checks to Climb.",
+                "If you have a climb Speed, you're not {@condition off-guard} while you're climbing."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Fly Speed",
+              "entries": [
+                "As long as you have a fly Speed, you can use the {@action Fly} and {@action Arrest a Fall} actions. You can also attempt to {@action Maneuver in Flight} if you're trained in the {@skill Acrobatics} skill.",
+                "Wind conditions can affect how you use the Fly action. In general, moving against the wind uses the same rules as moving through {@rule difficult terrain} (or greater difficult terrain, if you're also flying upward), and moving with the wind allows you to move 10 feet for every 5 feet of movement you spend (not cumulative with moving straight downward). For more information on spending movement, see {@rule Tactical Movement}.",
+                "If you have a climb Speed, you're not {@condition off-guard} while you're climbing."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Swim Speed",
+              "entries": [
+                "With a swim Speed, you can propel yourself through the water with little impediment. Instead of attempting {@skill Athletics} checks to {@action Swim}, you automatically succeed and move up to your swim Speed instead of the listed distance. Moving up or down is still moving through {@rule difficult terrain}.",
+                "You might still have to attempt checks to Swim in hazardous conditions or to cross turbulent water. You can also choose to roll an Athletics check to Swim rather than accept an automatic success in hopes of getting a critical success. Your swim Speed grants you a +4 circumstance bonus to Athletics checks to Swim.",
+                "Having a swim Speed doesn't necessarily mean you can breathe in water, so you might still have to hold your breath if you're underwater to avoid {@rule Drowning and Suffocating||drowning}."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Falling",
+          "page": 421,
+          "entries": [
+            "If you fall more than 5 feet, when you land you take bludgeoning damage equal to half the distance you fell. Treat falls longer than 1,500 feet as though they were 1,500 feet (750 damage). If you take any damage from a fall, you land {@condition prone}. You fall about 500 feet in the first round of falling and about 1,500 feet each round thereafter.",
+            "You can {@action Grab an Edge} as a reaction to reduce the damage from some falls, or {@action Arrest a Fall} if you have a fly Speed. In addition, if you fall into water, snow, or another relatively soft substance, you can treat the fall as though it were 20 feet shorter, or 30 feet shorter if you intentionally dove in. The effective reduction can't be greater than the depth (so when falling into 10-foot-deep water, you treat the fall as 10 feet shorter).",
+            {
+              "type": "h3",
+              "name": "Falling on a Creature",
+              "entries": [
+                "If you land on a creature, that creature must attempt a DC 15 Reflex save. Intentionally aiming yourself to land on a creature after a long fall is almost impossible.",
+                {
+                  "type": "list",
+                  "style": "list-no-bullets",
+                  "items": [
+                    {
+                      "type": "item",
+                      "style": "hanging",
+                      "name": "Critical Success",
+                      "entry": "Critical success effect."
+                    },
+                    {
+                      "type": "item",
+                      "style": "hanging",
+                      "name": "Success",
+                      "entry": "The creature takes bludgeoning damage equal to one-quarter the falling damage you took."
+                    },
+                    {
+                      "type": "item",
+                      "style": "hanging",
+                      "name": "Failure",
+                      "entry": "The creature takes bludgeoning damage equal to half the falling damage you took."
+                    },
+                    {
+                      "type": "item",
+                      "style": "hanging",
+                      "name": "Critical Failure",
+                      "entry": "The creature takes the same amount of bludgeoning damage you took from the fall."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Falling Objects",
+              "entries": [
+                "A dropped object takes damage just like a falling creature. If the object lands on a creature, that creature can attempt a Reflex save using the same rules as for a creature falling on a creature. Hazards and spells that involve falling objects, such as a rock slide, have their own rules about how they interact with creatures and the damage they deal."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Tactical Movement",
+          "page": 421,
+          "entries": [
+            "Your movement during encounter mode—and at other times where precise movement matters—depends on the actions and other abilities you use. Whether you {@action Stride}, {@action Step}, {@action Swim}, or {@action Climb}, the maximum distance you can move is based on your Speed. Certain feats or magic items can grant you other {@rule movement types}, allowing you to swiftly {@rule Burrow Speed||burrow}, {@rule Climb Speed||climb}, {@rule Fly Speed||fly}, or {@rule Swim Speed||swim}.",
+            "When the rules refer to a “movement cost” or “spending movement,” they are describing how many feet of your Speed you must use to move from one point to another. Normally, movement costs the number of feet you're moving. However, sometimes it's harder to move a certain distance due to {@rule difficult terrain} or other factors. In such a case, you might have to spend a different amount of movement to move from one place to another.",
+            {
+              "type": "box",
+              "name": "Reactions to Movement",
+              "entries": [
+                "Some reactions and free actions are triggered by a creature using an action with the move trait. The most notable example is {@feat Reactive Strike}. Actions with the move trait can trigger reactions or free actions throughout the course of the distance traveled. Each time you exit a square within a creature's reach, your movement triggers those reactions and free actions (although no more than once per move action for a given reacting creature). If you use a move action but don't move out of a square, the trigger instead happens at the end of that action or ability.",
+                "Some actions, such as {@action Step}, specifically state they don't trigger reactions or free actions based on movement."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Grid Movement",
+              "entry": "If an encounter involves combat, it's often a good idea to track the movement and relative position of the participants using a Pathfinder Flip-Mat or some other form of grid to display the terrain, and miniatures to represent the combatants. When a character moves on a grid, every 1-inch square of the play area is 5 feet across in the game world. Hence, a creature moving in a straight line spends 5 feet of its movement for every map square traveled. {@rule Difficult terrain} can make some squares cost more of your movement."
+            },
+            {
+              "type": "h3",
+              "name": "Diagonal Movement",
+              "entry": "Because moving diagonally covers more ground, you count that movement differently. The first square of diagonal movement you make in a turn counts as 5 feet, but the second counts as 10 feet, and your count thereafter alternates between the two. For example, as you move across 4 squares diagonally, you would count 5 feet, then 10, then 5, and then 10, for a total of 30 feet. You track your total diagonal movement across all your movement during your turn, but reset your count at the end of your turn. The diagram on this page shows an example."
+            },
+            {
+              "type": "h3",
+              "name": "3D Movement",
+              "entry": "Most movement in a game can be represented on a flat map. If creatures are flying, swimming, or otherwise moving through three-dimensional space, see the advice under {@rule Special Battles}."
+            },
+            {
+              "type": "h3",
+              "name": "Size, Space, and Reach",
+              "entries": [
+                "Creatures and objects of different sizes occupy different amounts of space. The sizes and the spaces they each take up on a grid are listed in the Size and Reach table (see below). The table also lists the typical reach for creatures of each size, for both tall creatures (most bipeds) and long creatures (most quadrupeds). See {@rule Range and Reach||here} for more about reach.",
+                "The Space entry lists how many feet on a side a creature's space is, so a Large creature fills a 10-foot-by- 10-foot space, or 4 squares on the grid. (If you need to measure in three dimensions, their space is also 10 feet high.) Sometimes part of a creature extends beyond its space, such as if a giant octopus is grabbing you with its tentacles. In that case, the GM will usually allow attacking the extended portion, even if you can't reach the main creature.",
+                {
+                  "type": "table",
+                  "caption": "Table 9-1: Size and Reach",
+                  "colLabels": [
+                    "Size","Space","Reach (Tall)","Reach (Long)"
+                  ],
+                  "rows": [
+                    ["Tiny", "Less than 5 feet", "0 feet", "0 feet"],
+                    ["Small", "5 feet", "5 feet", "5 feet"],
+                    ["Medium", "5 feet", "5 feet", "5 feet"],
+                    ["Large", "10 feet", "10 feet", "5 feet"],
+                    ["Huge", "15 feet", "15 feet", "10 feet"],
+                    ["Gargantuan", "20 feet or more", "20 feet", "15 feet"]
+                  ]
+                },
+                "A Small or larger creature or object takes up at least 1 square on a grid, and creatures of these sizes can't usually share spaces except in situations like a character riding a mount.",
+                "Multiple Tiny creatures can occupy the same square. At least four can fit in a single square, though the GM might determine that even more can fit. Tiny creatures can share a space occupied by a larger creature as well. If a Tiny creature's reach is 0 feet, it must share a space with a creature in order to attack it."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Moving Through a Creature's Space",
+              "page": 422,
+              "entry": "You can move through the space of a willing creature. If you want to move through an unwilling creature's space, you can {@action Tumble Through} it. You can't end your turn in a square occupied by another creature, though you can end a move action in its square provided that you immediately use another move action to leave that square. If two creatures end up in the same square by accident, the GM determines which one is forced out of the square (or whether one falls {@condition prone})."
+            },
+            {
+              "type": "h3",
+              "name": "Prone and Incapacitated Creatures",
+              "page": 422,
+              "entry": "You can share a space with a {@condition prone} creature if that creature is willing, {@condition unconscious}, or dead and if it is your size or smaller. The GM might allow you to climb atop the corpse or unconscious body of a larger creature in some situations. A prone creature can't stand up while someone else occupies its space, but it can {@action Crawl} to a space where it's able to stand, or it can attempt to {@action Shove} the other creature out of the way."
+            },
+            {
+              "type": "h3",
+              "name": "Creatures of Different Sizes",
+              "page": 422,
+              "entries": [
+                "In most cases, you can move through the space of a creature three sizes larger than you or larger. This means a Medium creature can move through the space of a Gargantuan creature and a Small creature can move through the space of a Huge or Gargantuan creature. Likewise, a bigger creature can move through the space of a creature three sizes smaller than itself or smaller. You still can't end your movement in a space occupied by a creature.",
+                "Tiny creatures are an exception, just like with sharing a space. They can move through creatures' spaces and can even end their movement there.",
+                "Similarly, other creatures can move through and end their movement in a Tiny creature's space."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Objects",
+              "page": 422,
+              "entry": "Because objects aren't as mobile as creatures are, they're more likely to fill a space. This means you can't always move through their spaces like you might move through a space occupied by a creature. You might be able to occupy the same square as a statue of your size, but not a wide column. The GM determines whether you can move into an object's square normally, whether special rules apply, or if you are unable to move into the square at all."
+            },
+            {
+              "type": "h3",
+              "name": "Forced Movement",
+              "page": 422,
+              "entries": [
+                "When an effect forces you to move, or if you start {@rule falling}, the distance you move is defined by the effect that moved you, not by your Speed. Forced movement doesn't trigger reactions that are triggered by movement. Some common causes of forced movement include the {@action Reposition} and {@action Shove} actions of {@skill Athletics}. In the rare cases where it's unclear whether your movement is voluntary or forced, the GM makes the determination.",
+                "If forced movement would move you into a space you can't occupy—because objects are in the way or because you lack the movement type needed to reach it, for example—you stop moving in the last space you can occupy.",
+                "Usually the creature or effect forcing the movement chooses the path the victim takes. If you're pushed or pulled, you can usually be moved through {@rule hazardous terrain}, pushed off a ledge, or the like. Abilities that reposition you in some other way can't put you in such dangerous places unless they specify otherwise. In all cases, the GM makes the final call if there's doubt on where forced movement can move a creature.",
+                "Some abilities allow a creature to move while carrying another along with it. This is forced movement for the carried creature. Unless noted otherwise, they both move on the same path while this happens—the carrying creature can't drag its victim through dangers while avoiding them itself, for example."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Terrain",
+          "page": 423,
+          "entries": [
+            "Several types of terrain can complicate your movement by slowing you down, damaging you, or endangering you. Navigating these types of terrain can be challenging, but it can also let you get an advantage over your foes.",
+            {
+              "type": "h3",
+              "name": "Difficult Terrain",
+              "entries": [
+                "Difficult terrain is any terrain that impedes your movement, ranging from particularly rough or unstable surfaces to thick ground cover and countless other impediments. Moving into a square of difficult terrain (or moving 5 feet into or within an area of {@b difficult terrain}, if you're not using a grid) costs an extra 5 feet of movement. Moving into a square of {@b greater difficult terrain} instead costs 10 additional feet of movement. This additional cost is not increased further when moving diagonally. You can't {@action Step} into difficult terrain.",
+                "Movement you make while jumping ignores the terrain you're jumping over. Some abilities (such as {@action fly||flight} or being {@trait incorporeal}) allow you to avoid the movement reduction from some types of difficult terrain."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Ignore Difficult Terrain",
+              "entry": "Certain abilities let you ignore difficult terrain. If you can ignore difficult terrain, you can also move through greater difficult terrain at the extra movement cost difficult terrain normally imposes. An ability doesn't let you entirely ignore greater difficult terrain unless the ability specifies otherwise."
+            },
+            {
+              "type": "h3",
+              "name": "Hazardous Terrain",
+              "entry": "Hazardous terrain damages you whenever you move through it. An acid pool and a pit of burning embers are both examples of hazardous terrain. The amount and type of damage depend on the specific hazardous terrain."
+            },
+            {
+              "type": "h3",
+              "name": "Narrow Surfaces",
+              "entry": "A narrow surface is so precariously thin that you need to {@action Balance} or risk falling. Even on a success, you are {@condition off-guard} on a narrow surface. Each time you are hit by an attack or fail a save on a narrow surface, you must succeed at a Reflex save (with the same DC as the {@skill Acrobatics} check to Balance) or {@rule Falling||fall}."
+            },
+            {
+              "type": "h3",
+              "name": "Uneven Ground",
+              "entry": "Uneven ground is an area unsteady enough that you need to {@action Balance} or risk falling {@condition prone} and possibly injuring yourself, depending on the specifics of the uneven ground. You are {@condition off-guard} on uneven ground. Each time you are hit by an attack or fail a save on uneven ground, you must succeed at a Reflex save (with the same DC as the {@skill Acrobatics} check to Balance) or fall prone."
+            },
+            {
+              "type": "h3",
+              "name": "Inclines",
+              "entries": [
+                "An incline is an area so steep that you need to {@action Climb} using the {@skill Athletics} skill in order to progress upward. You're {@condition off-guard} when Climbing an incline."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Cover",
+          "page": 424,
+          "entries": [
+            "When you're behind an obstacle that could block weapons, guard you against explosions, and make you harder to detect, you're behind cover. Standard cover gives you a +2 circumstance bonus to AC, to Reflex saves against area effects, and to Stealth checks to Hide, Sneak, or otherwise avoid detection. You can increase this to greater cover using the {@action Take Cover} basic action, increasing the circumstance bonus to +4. If cover is especially light, typically when it's provided by a creature, you have lesser cover, which grants a +1 circumstance bonus to AC. A creature with standard cover or greater cover can attempt to use {@skill Stealth} to {@action Hide}, but lesser cover isn't sufficient.",
+            {
+              "type": "table",
+              "caption": "Cover",
+              "colLabels": [
+                "Type of Cover", "Bonus", "Can Hide"
+              ],
+              "rows": [
+                ["Lesser", "+1 to AC", "No"],
+                ["Standard", "+2 to AC, Reflex, Stealth", "Yes"],
+                ["Greater", "+4 to AC, Reflex, Stealth", "Yes"]
+              ]
+            },
+            "Cover is relative, so you might simultaneously have cover against one creature and not another. Cover applies only if your path to the target is partially blocked. If a creature is entirely behind a wall or the like, you don't have {@rule line of effect} and typically can't target it at all.",
+            "Usually, the GM can quickly decide whether your target has cover. If you're uncertain or need to be more precise, draw a line from the center of your space to the center of the target's space. If that line passes through any terrain or object that would block the effect, the target has standard cover (or greater cover if the obstruction is extreme or the target has Taken Cover). If the line passes through a creature instead, the target has lesser cover. When measuring cover against an area effect, draw the line from the effect's point of origin to the center of the creature's space. See the diagram for examples.",
+            {
+              "type": "h3",
+              "name": "Cover and Large Creature",
+              "entry": "If a creature between you and a target is two or more sizes larger than both you and your target, that creature's space blocks the effect enough to provide standard cover instead of lesser cover. The GM might determine that a creature doesn't gain cover from terrain that it's significantly larger than. For example, a Huge dragon probably wouldn't receive any benefit from being behind a 1-foot-wide pillar."
+            },
+            {
+              "type": "h3",
+              "name": "Special Circumstances",
+              "entry": "Your GM might allow you to overcome your target's cover in some situations. If you're right next to an arrow slit, you can shoot without penalty, but you have greater cover against someone shooting back at you from far away. Your GM might let you reduce or negate cover by leaning around a corner to shoot or the like. This usually takes an action to set up, and the GM might measure cover from an edge or corner of your space instead of your center."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Flanking",
+          "page": 425,
+          "entries": [
+            "When you and an ally are flanking a foe, it has a harder time defending against you. A creature is off-guard (taking a –2 circumstance penalty to AC) to melee attacks from creatures that are flanking it.",
+            "To flank a foe, you and your ally must be on opposite sides of the creature. A line drawn between the center of your space and the center of your ally's space must pass through opposite sides or opposite corners of the foe's space. Additionally, both you and the ally have to be able to act, you must be wielding melee weapons or be able to make an unarmed attack, you can't be under any effects that prevent you from attacking, and you must both have the enemy within reach. If you are wielding a reach weapon, you use your reach with that weapon for this purpose.",
+            {
+              "type": "box",
+              "name": "Tiny Creatures and Flanking",
+              "entries": [
+                "Tiny creatures usually have reach of 0 feet and need to be in a creature's space to attack it. This makes a Tiny creature unable to flank unless it's able to use a weapon with {@trait reach} or has a melee unarmed attack with reach greater than 0 feet.",
+                "The GM might allow Tiny creatures to flank other Tiny creatures if they're all in the same square, but this is best left for special circumstances and uses the GM's best judgment."
+              ]
+            },
+            {
+              "type": "box",
+              "name": "Avoiding Flanking",
+              "entries": [
+                "Flanking is an excellent battle tactic that can cause the flanked creature to get hit much more often. Escaping and avoiding flanks can be crucial for a player character's survival.",
+                "{@b Movement:} The most straightforward means to escape a flank is usually to {@action Stride}. It's often worth it to avoid the hits you'd take due to being {@action off-guard} and to make enemies spend actions moving to catch you.",
+                "{@b {@ability All-Around Vision}:} Some monsters are covered in eyes that face multiple directions or are otherwise hard to distract, making them immune to flanking.",
+                "{@b Deny Advantage:} Some classes, such as {@class rogue}, can gain the deny advantage class feature, makes them harder to outflank. You can't flank a creature with deny advantage unless your level is higher than the creature's."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "3D Flanking",
+              "entries": [
+                "Though battle grids are often two-dimensional, the game world isn't! Sometimes you might need to visualize a creature's space as a cube for flanking. For instance, if Valeros is underneath a flying {@monster sphinx} while Lini is flying above the sphinx, they might be flanking it even if they're piled in an odd stack on your battle grid. And if Valeros were mounted on a horse, he might be able to measure from farther off the ground than normal.",
+                "In these cases, it's usually best to have the GM make the call on who's flanking rather than trying to do meticulous measurements in three dimensions."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Effects",
+      "chapter": "Chapter 8: Playing the Game",
+      "kind": "core",
+      "source": "PC1",
+      "page": 426,
+      "entries": [
+        {
+          "type": "flavor",
+          "entry": " Anything you do in the game has an effect. Many of these outcomes are easy to adjudicate during the game. If you tell the GM that you draw your sword, no check is needed. Other times, the specific effect requires more detailed rules governing how your choice is resolved."
+        },
+        "Many spells, magic items, and feats create specific effects, and your character will be subject to effects caused by monsters, hazards, the environment, and other characters.",
+        "Effects sometimes require checks, but not always. Casting a {@spell fly} spell on yourself creates an effect that allows you to soar through the air, but casting the spell does not require a check. Conversely, using the {@skill Intimidation} skill to {@action Demoralize} a foe does require a check, and your result on that check determines the effect's outcome."
+      ]
+    },
+    {
       "name": "Difficulty Classes",
+      "chapter": "Chapter 1: Running the Game",
       "kind": "core",
       "source": "GMC",
       "page": 52,
-      "ruleDefault": true,
       "entries": [
         {
           "type": "flavor",

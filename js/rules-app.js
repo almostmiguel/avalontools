@@ -1,42 +1,56 @@
 import { escapeHtml } from "./content-renderer.js";
+import { loadJson } from "./data-loader.js";
 import { attachRulePreviews } from "./rule-links.js";
-import { createLibrary, renderResults, renderRuleBody, RULE_KINDS, searchRules, sortRules } from "./rules-library.js";
-
-async function loadJson(path) {
-  const response = await fetch(path);
-  if (!response.ok) throw new Error(`Could not load ${path} (HTTP ${response.status}).`);
-  try { return await response.json(); }
-  catch { throw new Error(`${path} is not valid JSON. Check its commas and brackets.`); }
-}
+import { renderRuleCitation } from "./rule-sources.js";
+import { createLibrary, renderResults, renderBrowse, renderRulePath, browseBranchIds, renderRuleContent, renderRuleOutline, RULE_KINDS, searchRules, sortRules } from "./rules-library.js";
+import { FILTER_GROUPS, emptyFilters, filterOptions, readFilters, writeFilters, toggleFilter, matchesFilters, filterCounts, renderFilterGroups, renderFilterChips } from "./rules-filters.js";
+import { createRuleMemory, renderStarButton, updateStarButton, renderSavedMenu } from "./rule-memory.js";
 
 export async function loadLibrary() {
   return createLibrary(await loadJson("data/rules.json"));
 }
 
-const topicUrl = topic => `rules.html?${new URLSearchParams({ topic })}`;
 const link = rule => `<a href="${escapeHtml(rule.href)}">${escapeHtml(rule.name)}</a>`;
 const plainClick = event => !event.defaultPrevented && !event.ctrlKey && !event.metaKey && !event.shiftKey && !event.altKey && (event.button == null || event.button === 0);
+const closeOutline = (document, restoreFocus = false) => {
+  const outline = document.querySelector("#rule-outline");
+  if (!outline?.open) return;
+  outline.open = false;
+  if (restoreFocus) document.querySelector("#rule-outline > summary").focus();
+};
+const dismissOutlineOutside = (document, event) => {
+  const outline = document.querySelector("#rule-outline");
+  if (outline && !outline.contains(event.target)) closeOutline(document);
+};
 
-function ruleArticle(rule, library, embedded = false) {
+function ruleArticle(rule, library, embedded = false, starred = false) {
   const tag = embedded ? "h2" : "h1";
-  const topics = rule.topics.map(escapeHtml).join(" · ");
-  const parent = library.get(rule.parentId);
-  const parentLink = parent ? `<p class="rule-parent">Part of <a class="rule-link" href="${escapeHtml(parent.href)}" data-rule-name="${escapeHtml(parent.entry.id)}" data-rule-source="${escapeHtml(parent.source)}">${escapeHtml(parent.name)}</a></p>` : "";
-  const sourceLabel = rule.setting === "original" ? "Avalon original" : `${rule.setting === "modified" ? "Adapted from " : ""}${rule.sourceName}${rule.page ? ` · p. ${rule.page}` : ""}`;
-  return `<header class="rule-page-heading"><p class="eyebrow">${topics} <span class="rule-kind rule-kind--${rule.kind}">${RULE_KINDS[rule.kind]}</span></p><${tag}${embedded ? ' id="rule-detail-title"' : ""}>${escapeHtml(rule.name)}</${tag}><p class="rule-page-source">${escapeHtml(sourceLabel)}<span>${escapeHtml(rule.source)}</span></p>${parentLink}</header><article class="rich-content rule-page-content">${renderRuleBody(rule, library)}</article>`;
+  const content = renderRuleContent(rule, library);
+  return `<header class="rule-page-heading">${renderRulePath(rule, library)}<div class="rule-title-row"><${tag}${embedded ? ' id="rule-detail-title"' : ""}>${escapeHtml(rule.name)}</${tag}></div><div class="rule-meta-row"><p class="rule-page-source">${renderRuleCitation(rule)}<span class="rule-meta-kind rule-kind--${rule.kind}">${RULE_KINDS[rule.kind]}</span></p><div class="rule-reader-tools">${renderRuleOutline(content.headings)}${renderStarButton(rule, starred)}</div></div></header><article class="rich-content rule-page-content">${content.html}</article>`;
 }
 
 export function mountCatalog(library, { document, window, attachPreviews = attachRulePreviews }) {
   const search = document.querySelector("#rules-search");
-  const source = document.querySelector("#rules-source");
-  const kind = document.querySelector("#rules-kind");
-  const topics = document.querySelector("#rules-topic");
+  const options = filterOptions(library);
+  const filterPanel = document.querySelector("#rules-filter-groups");
+  const filterMenu = document.querySelector("#rules-filter-menu");
+  const filterSummary = document.querySelector("#rules-filter-summary");
+  const chips = document.querySelector("#rules-active-filters");
+  let filterState = emptyFilters();
+  let excludeClicks = false;
   const results = document.querySelector("#rules-results");
   const count = document.querySelector("#rules-count");
   const heading = document.querySelector("#results-title");
   const detail = document.querySelector("#rule-detail");
   const status = document.querySelector("#rule-selection-status");
+  const saved = document.querySelector("#rules-saved");
+  const memory = createRuleMemory(library, window);
+  let savedOpen = false;
+  let savedView = "starred";
   const sortButtons = ["name", "type", "source"].map(key => [key, document.querySelector(`#sort-${key}`)]);
+  const viewButtons = ["index", "browse"].map(key => [key, document.querySelector(`#view-${key}`)]);
+  const expanded = new Set();
+  let view = "index";
   let sort = "";
   let order = "asc";
   let selectedId = null;
@@ -44,22 +58,25 @@ export function mountCatalog(library, { document, window, attachPreviews = attac
   let renderedKey;
   let matches = [];
   const previews = attachPreviews({ document, window, registry: library.registry });
+  const refreshMemory = () => {
+    saved.innerHTML = renderSavedMenu(memory, savedOpen, savedView);
+    updateStarButton(document.querySelector("#rule-star"), library.get(selectedId), memory);
+  };
 
-  source.innerHTML = '<option value="">All sources</option>' + library.sources.map(value => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join("");
-  topics.innerHTML = '<option value="">All topics</option>' + library.topics.map(value => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`).join("");
-  document.querySelector("#library-summary").textContent = `${library.rules.length} rules · ${library.topics.length} topics`;
-  const filters = () => ({ query: search.value, source: source.value, topic: topics.value, kind: kind.value });
+  filterPanel.innerHTML = renderFilterGroups(options);
+  document.querySelector("#library-summary").textContent = `${library.rules.length} rules · ${library.sources.length} ${library.sources.length === 1 ? "source" : "sources"}`;
+  const filters = () => ({ query: search.value, filters: filterState });
+  const hasFilters = () => FILTER_GROUPS.some(({ key }) => filterState[key].size);
   const activeSort = () => sort || (search.value.trim() ? "" : "name");
   const nextSortOrder = key => activeSort() === key && order === "asc" ? "desc" : "asc";
-  const resetFilters = () => { search.value = ""; source.value = ""; kind.value = ""; topics.value = ""; };
+  const resetFilters = () => { search.value = ""; filterState = emptyFilters(); };
   const readState = () => {
     const params = new URLSearchParams(window.location.search);
     search.value = params.get("q") || "";
-    source.value = library.sources.includes(params.get("source")) ? params.get("source") : "";
-    kind.value = Object.hasOwn(RULE_KINDS, params.get("kind")) ? params.get("kind") : "";
-    topics.value = library.topics.includes(params.get("topic")) ? params.get("topic") : "";
+    filterState = readFilters(params, options);
     sort = ["name", "type", "source"].includes(params.get("sort")) ? params.get("sort") : "";
     order = sort && params.get("order") === "desc" ? "desc" : "asc";
+    view = params.get("view") === "browse" ? "browse" : "index";
     selectedId = params.get("id");
     selectionError = "";
     if (!selectedId && params.has("rule")) {
@@ -72,7 +89,8 @@ export function mountCatalog(library, { document, window, attachPreviews = attac
   };
   const saveState = (mode = "replace", keepHash = false) => {
     const url = new URL(window.location.href);
-    for (const [key, value] of [["q", search.value.trim()], ["topic", topics.value], ["source", source.value], ["kind", kind.value], ["id", selectedId], ["sort", sort], ["order", sort ? order : ""]]) {
+    writeFilters(url.searchParams, filterState);
+    for (const [key, value] of [["q", search.value.trim()], ["id", selectedId], ["sort", sort], ["order", sort ? order : ""], ["view", view === "browse" ? "browse" : ""]]) {
       if (value) url.searchParams.set(key, value); else url.searchParams.delete(key);
     }
     if (!selectionError) url.searchParams.delete("rule");
@@ -88,13 +106,20 @@ export function mountCatalog(library, { document, window, attachPreviews = attac
       if (row.dataset.selectRule === selectedId) row.setAttribute("aria-current", "true");
       else row.removeAttribute("aria-current");
     }
+    if (view === "browse") {
+      const ancestors = new Set(browseBranchIds(library, rule));
+      for (const branch of results.querySelectorAll("[data-rule-branch]")) {
+        if (ancestors.has(branch.dataset.ruleBranch)) branch.open = true;
+      }
+    }
     const key = selectionError || rule?.id || (matches.length ? "choose" : "empty");
     if (renderedKey === key) return;
     renderedKey = key;
     previews?.hide();
     detail.scrollTop = 0;
     if (rule && !selectionError) {
-      detail.innerHTML = `<button type="button" class="back-to-list" data-back-to-list>← Rule list</button>${ruleArticle(rule, library, true)}`;
+      memory.visit(rule.id);
+      detail.innerHTML = ruleArticle(rule, library, true, memory.isStarred(rule.id));
       document.title = `${rule.name} · Avalon Rules`;
       status.textContent = `${rule.name} selected. ${RULE_KINDS[rule.kind]}.`;
     } else {
@@ -104,13 +129,37 @@ export function mountCatalog(library, { document, window, attachPreviews = attac
       document.title = "Rules · Avalon";
       status.textContent = title;
     }
+    refreshMemory();
   };
   const update = ({ save = true } = {}) => {
-    matches = sortRules(searchRules(library, filters()), { sort, order });
+    const searched = searchRules(library, { query: search.value });
+    matches = sortRules(searched.filter(rule => matchesFilters(rule, filterState)), { sort, order });
     if (!selectionError && !matches.some(rule => rule.id === selectedId)) selectedId = matches[0]?.id || null;
-    results.innerHTML = renderResults(matches, { hasRules: library.rules.length > 0, selectedId });
+    results.innerHTML = view === "browse" ? renderBrowse(library, matches, { selectedId, expanded })
+      : renderResults(matches, { hasRules: library.rules.length > 0, selectedId });
+    document.querySelector("#rules-sort").hidden = view === "browse";
+    for (const [key, button] of viewButtons) button.setAttribute("aria-pressed", String(view === key));
     count.textContent = `${matches.length} ${matches.length === 1 ? "rule" : "rules"}`;
-    heading.textContent = topics.value || (search.value.trim() ? "Search results" : "All rules");
+    heading.textContent = search.value.trim() ? "Search results" : hasFilters() ? "Filtered rules" : view === "browse" ? "Browse rules" : "All rules";
+    const counts = filterCounts(searched, filterState, options);
+    const activeCount = FILTER_GROUPS.reduce((sum, { key }) => sum + filterState[key].size, 0);
+    document.querySelector("#rules-filter-count").textContent = activeCount ? String(activeCount) : "";
+    document.querySelector("#filter-mode-include").setAttribute("aria-pressed", String(!excludeClicks));
+    document.querySelector("#filter-mode-exclude").setAttribute("aria-pressed", String(excludeClicks));
+    chips.innerHTML = renderFilterChips(filterState, options);
+    chips.hidden = !activeCount;
+    for (const button of filterPanel.querySelectorAll("[data-filter-group]")) {
+      const { filterGroup: group, filterValue: value } = button.dataset;
+      const state = filterState[group].get(value) || 0;
+      const label = options[group].find(option => option.value === value).label;
+      const count = counts[group].get(value) || 0;
+      button.setAttribute("data-state", state === 1 ? "include" : state === -1 ? "exclude" : "neutral");
+      button.setAttribute("aria-pressed", state ? "true" : "false");
+      const clickState = excludeClicks ? -1 : 1;
+      button.setAttribute("aria-label", `${label}: ${state === 1 ? "included" : state === -1 ? "excluded" : "any"}. ${count} matching rules. Click to ${state === clickState ? "clear" : excludeClicks ? "exclude" : "include"}; Shift-click to ${state === -1 ? "clear" : "exclude"}.`);
+      const symbol = state ? `<span class="filter-pill-symbol" aria-hidden="true">${state === 1 ? "+" : "−"}</span>` : "";
+      button.innerHTML = `${symbol}<span class="filter-pill-label">${escapeHtml(label)}</span><span class="filter-pill-count">${count}</span>`;
+    }
     for (const [key, button] of sortButtons) {
       const active = activeSort() === key;
       const direction = sort ? order : "asc";
@@ -141,9 +190,65 @@ export function mountCatalog(library, { document, window, attachPreviews = attac
   const clear = () => { resetFilters(); selectionError = ""; update(); search.focus(); };
   const filterChanged = () => { selectionError = ""; update(); };
   search.addEventListener("input", filterChanged);
-  for (const control of [source, kind, topics]) control.addEventListener("change", filterChanged);
   document.querySelector("#rules-search-form").addEventListener("submit", event => { event.preventDefault(); filterChanged(); });
   document.querySelector("#clear-search").addEventListener("click", clear);
+  const changePill = (event, exclude) => {
+    const button = event.target.closest("[data-filter-group]");
+    if (!button) return;
+    event.preventDefault();
+    const { filterGroup: group, filterValue: value } = button.dataset;
+    toggleFilter(filterState, group, value, exclude);
+    filterChanged();
+  };
+  filterPanel.addEventListener("click", event => {
+    const clearGroup = event.target.closest("[data-clear-filter]");
+    if (clearGroup) { filterState[clearGroup.dataset.clearFilter].clear(); return filterChanged(); }
+    changePill(event, excludeClicks || Boolean(event.shiftKey));
+  });
+  filterPanel.addEventListener("contextmenu", event => changePill(event, true));
+  for (const mode of ["include", "exclude"]) document.querySelector(`#filter-mode-${mode}`).addEventListener("click", () => {
+    excludeClicks = mode === "exclude";
+    update({ save: false });
+  });
+  document.querySelector("#rules-filter-reset").addEventListener("click", () => { filterState = emptyFilters(); filterChanged(); });
+  chips.addEventListener("click", event => {
+    const button = event.target.closest("[data-remove-filter]");
+    if (!button) return;
+    filterState[button.dataset.removeFilter].delete(button.dataset.filterValue);
+    filterChanged();
+    filterSummary.focus({ preventScroll: true });
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeOutline(document, true);
+    if (event.key === "Escape" && filterMenu.open) { filterMenu.open = false; filterSummary.focus(); }
+    if (event.key === "Escape" && savedOpen) {
+      savedOpen = false;
+      document.querySelector("#rules-saved-menu").open = false;
+      document.querySelector("#rules-saved-menu > summary").focus();
+    }
+  });
+  document.addEventListener("pointerdown", event => {
+    dismissOutlineOutside(document, event);
+    if (!filterMenu.contains(event.target)) filterMenu.open = false;
+    if (!saved.contains(event.target)) {
+      savedOpen = false;
+      const menu = document.querySelector("#rules-saved-menu");
+      if (menu) menu.open = false;
+    }
+  });
+  for (const [key, button] of viewButtons) button.addEventListener("click", () => {
+    if (view === key) return;
+    view = key;
+    update({ save: false });
+    saveState("push");
+    document.querySelector(".rules-results-scroll").scrollTop = 0;
+  });
+  results.addEventListener("toggle", event => {
+    const branch = event.target;
+    if (!branch.dataset?.ruleBranch || search.value.trim() || hasFilters()) return;
+    if (branch.open) expanded.add(branch.dataset.ruleBranch);
+    else expanded.delete(branch.dataset.ruleBranch);
+  }, true);
   for (const [key, button] of sortButtons) button.addEventListener("click", () => {
     order = nextSortOrder(key);
     sort = key;
@@ -157,10 +262,43 @@ export function mountCatalog(library, { document, window, attachPreviews = attac
     if (selectRule(row.dataset.selectRule)) event.preventDefault();
   });
   detail.addEventListener("click", event => {
-    if (!event.target.closest("[data-back-to-list]")) return;
-    document.querySelector("#rules-list-pane").scrollIntoView({ block: "start" });
-    search.focus({ preventScroll: true });
+    if (event.target.closest("[data-outline-link]")) { if (plainClick(event)) closeOutline(document); return; }
+    const button = event.target.closest("[data-star-rule]");
+    if (!button) return;
+    const id = button.dataset.starRule;
+    const rule = library.get(id);
+    if (!rule) return;
+    const active = memory.toggle(id);
+    refreshMemory();
+    status.textContent = `${rule.name} ${active ? "starred" : "removed from starred rules"}.`;
   });
+  saved.addEventListener("toggle", event => {
+    if (event.target.dataset?.savedMenu != null) savedOpen = event.target.open;
+  }, true);
+  saved.addEventListener("click", event => {
+    const viewButton = event.target.closest("[data-saved-view]");
+    if (viewButton) {
+      savedView = viewButton.dataset.savedView === "recent" ? "recent" : "starred";
+      refreshMemory();
+      document.querySelector(`#rules-saved-menu [data-saved-view="${savedView}"]`).focus({ preventScroll: true });
+      return;
+    }
+    if (event.target.closest("[data-clear-recent]")) {
+      memory.clearRecent();
+      refreshMemory();
+      document.querySelector('#rules-saved-menu [data-saved-view="recent"]').focus({ preventScroll: true });
+      return;
+    }
+    const row = event.target.closest("[data-saved-rule]");
+    if (row && plainClick(event)) {
+      savedOpen = false;
+      if (selectRule(row.dataset.savedRule, { reveal: true })) {
+        event.preventDefault();
+        refreshMemory();
+      }
+    }
+  });
+  window.addEventListener("storage", event => { if (memory.sync(event)) refreshMemory(); });
   document.addEventListener("click", event => {
     const reference = event.target?.closest?.("[data-rule-name]");
     if (!reference || !plainClick(event)) return;
@@ -185,11 +323,26 @@ export function mountRule(library, { document, window, attachPreviews = attachRu
     else if (found.status === "ambiguous") throw new Error("More than one rule has this name. Choose the intended entry from the rules library.");
   }
   if (!rule) throw new Error("This rule could not be found. Search the library for its current name.");
+  const memory = createRuleMemory(library, window);
+  memory.visit(rule.id);
   document.title = `${rule.name} · Avalon Rules`;
-  document.querySelector("#rule-breadcrumbs").innerHTML = `<a href="rules.html">Rules</a><span aria-hidden="true">/</span>${rule.topics.map(topic => `<a href="${escapeHtml(topicUrl(topic))}">${escapeHtml(topic)}</a>`).join('<span aria-hidden="true">·</span>')}`;
-  document.querySelector("#rule-article").innerHTML = ruleArticle(rule, library);
-  const related = library.rules.filter(other => other !== rule && other.topics.some(topic => rule.topics.includes(topic))).slice(0, 12);
-  document.querySelector("#rule-related").innerHTML = `<a class="back-to-rules" href="${escapeHtml(topicUrl(rule.topic))}">← Browse this topic</a>${related.length ? `<h2 class="rules-sidebar-label">In this topic</h2><ul class="related-rules">${related.map(item => `<li>${link(item)}</li>`).join("")}</ul>` : ""}`;
+  const browseUrl = `rules.html?${new URLSearchParams({ view: "browse", id: rule.id })}`;
+  document.querySelector("#rule-breadcrumbs").innerHTML = `<a href="rules.html">Rules</a><span aria-hidden="true">/</span><a href="${escapeHtml(browseUrl)}">${escapeHtml(rule.sourceName)}</a>${rule.chapter ? `<span aria-hidden="true">/</span><span>${escapeHtml(rule.chapter)}</span>` : ""}`;
+  const article = document.querySelector("#rule-article");
+  article.innerHTML = ruleArticle(rule, library, false, memory.isStarred(rule.id));
+  article.addEventListener("click", event => {
+    if (event.target.closest("[data-outline-link]")) { if (plainClick(event)) closeOutline(document); return; }
+    if (!event.target.closest("[data-star-rule]")) return;
+    memory.toggle(rule.id);
+    updateStarButton(document.querySelector("#rule-star"), rule, memory);
+  });
+  document.addEventListener("keydown", event => { if (event.key === "Escape") closeOutline(document, true); });
+  document.addEventListener("pointerdown", event => dismissOutlineOutside(document, event));
+  window.addEventListener("storage", event => {
+    if (memory.sync(event)) updateStarButton(document.querySelector("#rule-star"), rule, memory);
+  });
+  const related = library.authoredRules.filter(other => other !== rule && other.sourceId === rule.sourceId && other.chapter === rule.chapter).slice(0, 12);
+  document.querySelector("#rule-related").innerHTML = `<a class="back-to-rules" href="${escapeHtml(browseUrl)}">← Browse this ${rule.chapter ? "chapter" : "source"}</a>${related.length ? `<h2 class="rules-sidebar-label">${rule.chapter ? "In this chapter" : "From this source"}</h2><ul class="related-rules">${related.map(item => `<li>${link(item)}</li>`).join("")}</ul>` : ""}`;
   attachPreviews({ document, window, registry: library.registry });
   if (window.location.hash) document.getElementById(window.location.hash.slice(1))?.scrollIntoView();
 }

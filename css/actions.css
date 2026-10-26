@@ -1,0 +1,32 @@
+.actions-browser { grid-template-columns: minmax(360px, 520px) minmax(0, 1fr); }
+#actions-clear { border: 0; background: transparent; color: var(--accent); cursor: pointer; padding: .2rem; font-size: .68rem; }
+#actions-filter-count { padding: 0 .25rem; border-radius: 2px; background: var(--content-wash); color: var(--accent); }
+#actions-filter-count:empty { display: none; }
+#actions-exclude[aria-pressed="true"] { color: var(--filter-exclude); }
+.actions-list-columns, .action-result { display: grid; grid-template-columns: minmax(0, 1fr) 92px 64px 40px; align-items: center; gap: .5rem; }
+.actions-list-columns > :not(:first-child) { text-align: center; }
+.action-result { min-height: 44px; padding: .5rem .65rem; border-left: 2px solid transparent; color: var(--text); }
+.action-result:hover { background: var(--content-wash); text-decoration: none; }
+.action-result[aria-current="true"] { border-left-color: var(--accent); background: var(--content-wash); }
+.action-result:hover strong, .action-result[aria-current="true"] strong { color: var(--accent); }
+.action-result-category { min-width: 0; text-align: center; color: var(--muted); font: .69rem/1.4 var(--font-ui); overflow-wrap: anywhere; }
+.action-result-category small { display: block; margin-top: .15rem; font-size: .62rem; }
+.action-time { display: inline-flex; align-items: center; justify-content: center; min-width: 0; color: var(--content-heading); font: .72rem/1.35 var(--font-ui); text-align: center; }
+.action-time .action-symbol { font-size: 1.25rem; }
+.action-category-label { margin: 0 0 .65rem; color: var(--accent); font: 600 .7rem/1.5 var(--font-ui); }
+.action-category-label > span { color: var(--content-muted); font-weight: 400; }
+#action-detail .rule-title-row { align-items: center; }
+#action-detail .rule-title-row > .action-time { flex-shrink: 0; margin-left: 1rem; font-size: .85rem; }
+#action-detail .rule-title-row .action-symbol { font-size: 1.6rem; }
+@media (max-width: 1100px) {
+  .actions-browser { grid-template-columns: minmax(340px, 390px) minmax(0, 1fr); }
+  .actions-list-columns, .action-result { grid-template-columns: minmax(0, 1fr) 75px 52px 35px; gap: .35rem; }
+}
+@media (max-width: 850px) {
+  .actions-browser { display: flex; }
+}
+@media (max-width: 420px) {
+  .actions-list-columns, .action-result { grid-template-columns: minmax(0, 1fr) 67px 44px 32px; gap: .3rem; }
+  .action-result-category { font-size: .63rem; }
+}
+@media print { #action-detail { overflow: visible; } }

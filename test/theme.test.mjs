@@ -34,14 +34,17 @@ function environment({ saved, blocked = false, loading = false } = {}) {
   });
   const summary = { focused: false, focus() { this.focused = true; } };
   const settings = { open: false, contains: target => target === settings || target === summary || buttons.includes(target), querySelector: () => summary, matches: () => true };
+  const referenceSummary = { focused: false, focus() { this.focused = true; } };
+  const referenceLink = {};
+  const reference = { open: false, contains: target => [reference, referenceSummary, referenceLink].includes(target), querySelector: () => referenceSummary };
   const status = { textContent: "" };
   const document = new Target();
   document.documentElement = { dataset: {} };
   document.readyState = loading ? "loading" : "complete";
   document.querySelectorAll = selector => selector === "[data-theme-choice]" ? buttons : [settings];
-  document.querySelector = selector => selector === "#site-settings" ? settings : status;
+  document.querySelector = selector => ({ "#site-settings": settings, "#reference-menu": reference, "#theme-status": status })[selector] ?? null;
   vm.runInNewContext(script, { window, document });
-  return { window, document, buttons, storage, settings, summary, status, theme: () => document.documentElement.dataset.theme };
+  return { window, document, buttons, storage, settings, summary, reference, referenceSummary, referenceLink, status, theme: () => document.documentElement.dataset.theme };
 }
 
 test("dark is the default and invalid saved values cannot select another theme", () => {
@@ -107,8 +110,27 @@ test("settings dismisses outside or on Escape", () => {
 
 });
 
+test("Reference keeps its links open, dismisses outside or on Escape, and closes Settings", () => {
+  const page = environment();
+  page.reference.open = true;
+  page.document.emit("click", { target: page.referenceLink });
+  assert.equal(page.reference.open, true);
+  page.document.emit("keydown", { key: "Escape" });
+  assert.equal(page.reference.open, false);
+  assert.equal(page.referenceSummary.focused, true);
+  page.reference.open = true;
+  page.document.emit("click", { target: {} });
+  assert.equal(page.reference.open, false);
+  page.settings.open = true;
+  page.document.emit("click", { target: page.referenceSummary });
+  assert.equal(page.settings.open, false);
+  page.reference.open = true;
+  page.document.emit("click", { target: page.summary });
+  assert.equal(page.reference.open, false);
+});
+
 test("every page loads the theme before styles and provides accessible settings", async () => {
-  for (const path of ["index.html", "rules.html", "rule.html"]) {
+  for (const path of ["index.html", "rules.html", "rule.html", "actions.html"]) {
     const html = await read(path);
     assert.ok(html.indexOf('src="js/theme.js"') < html.indexOf('href="css/site.css"'), path);
     assert.match(html, /<summary aria-label="Settings"/);

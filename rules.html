@@ -17,7 +17,16 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Avalon home"><span class="brand-mark" aria-hidden="true">✧</span>Avalon</a>
-      <nav aria-label="Main navigation" id="navigation"><a class="nav-home" href="index.html">Home</a><a class="nav-home" href="rules.html" aria-current="page">Rules</a><span class="nav-reference">The Avalon setting</span></nav>
+      <nav aria-label="Main navigation" id="navigation">
+        <a class="nav-home" href="index.html">Home</a>
+        <details class="reference-menu" id="reference-menu">
+          <summary class="nav-home">Reference<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="reference-panel">
+            <a href="rules.html" aria-current="page">Rules</a>
+            <a href="actions.html">Actions</a>
+          </div>
+        </details>
+      </nav>
       <details class="settings-menu" id="site-settings">
         <summary aria-label="Settings" title="Appearance settings"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></svg><span>Settings</span></summary>
         <div class="settings-panel">
@@ -40,35 +49,45 @@
     <div class="rules-browser">
       <section id="rules-list-pane" class="rules-list-pane" aria-labelledby="results-title">
         <form id="rules-search-form" class="rules-search-form" action="rules.html" role="search">
-          <div class="rules-search-field">
+          <div class="rules-search-toolbar"><div class="rules-search-field">
             <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
             <label class="sr-only" for="rules-search">Search rules</label>
             <input id="rules-search" name="q" type="search" placeholder="Search rules…" autocomplete="off">
             <button id="clear-search" type="button">Clear</button>
-          </div>
-          <div class="rules-filter-row">
-            <div class="rules-filter-field"><label for="rules-source">Source</label><select id="rules-source" name="source"><option value="">All sources</option></select></div>
-            <div class="rules-filter-field"><label for="rules-kind">Type</label><select id="rules-kind" name="kind"><option value="">All types</option><option value="core">Core rules</option><option value="optional">Optional rules</option><option value="setting">Setting rules</option></select></div>
-          </div>
-          <div class="rules-filter-field rules-topic-field"><label for="rules-topic">Topic</label><select id="rules-topic" name="topic"><option value="">All topics</option></select></div>
+          </div><details id="rules-filter-menu" class="rules-filter-menu">
+            <summary id="rules-filter-summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>Filters <span id="rules-filter-count"></span></summary>
+            <div class="rules-filter-panel">
+              <div class="filter-panel-heading"><strong>Filter rules</strong><button id="rules-filter-reset" type="button">Reset filters</button></div>
+              <div class="filter-mode" role="group" aria-label="Filter selection mode"><button id="filter-mode-include" type="button" aria-pressed="true">+ Include</button><button id="filter-mode-exclude" type="button" aria-pressed="false">− Exclude</button></div>
+              <p class="filter-help">Choose a mode, then select options. Select again to clear. Right-click or Shift-click also excludes.</p>
+              <p class="filter-help">Match any included option in each group. Exclusions always win.</p>
+              <div id="rules-filter-groups"></div>
+            </div>
+          </details></div>
+          <div id="rules-active-filters" class="rules-active-filters" role="group" aria-label="Active filters" hidden></div>
           <button class="sr-only" type="submit">Search</button>
         </form>
+        <div class="rules-view-switch" role="group" aria-label="Rule list view">
+          <button id="view-index" type="button" aria-controls="rules-results" aria-pressed="true">Index</button>
+          <button id="view-browse" type="button" aria-controls="rules-results" aria-pressed="false">Browse</button>
+        </div>
         <header class="results-heading"><h2 id="results-title">All rules</h2><p id="rules-count" role="status" aria-live="polite" aria-atomic="true"></p></header>
         <div class="rules-results-scroll">
-          <div class="rules-list-columns" role="group" aria-label="Sort rules">
+          <div id="rules-sort" class="rules-list-columns" role="group" aria-label="Sort rules">
             <button id="sort-name" class="rule-sort" type="button" aria-label="Sort by name"><span>Name</span></button>
             <button id="sort-type" class="rule-sort" type="button" aria-label="Sort by type"><span>Type</span></button>
             <button id="sort-source" class="rule-sort" type="button" aria-label="Sort by source"><span>Source</span></button>
           </div>
           <div id="rules-results"><p class="muted" role="status">Loading rules…</p></div>
         </div>
+        <div id="rules-saved" class="rules-saved"></div>
       </section>
       <section id="rule-detail" class="rule-article rules-detail" tabindex="-1" aria-labelledby="rule-detail-title">
         <div class="rules-detail-empty"><span class="empty-sigil" aria-hidden="true">✧</span><h2 id="rule-detail-title">Choose a rule</h2><p>Select a rule from the list to read it here.</p></div>
       </section>
     </div>
     <p id="rule-selection-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
-    <footer class="rules-footer"><span>Avalon · Your world, your rules.</span><span>Pathfinder · Second Edition</span></footer>
+    <footer class="site-footer"><span>Avalon · 2026</span><span>Pathfinder · Second Edition</span></footer>
   </main>
   <noscript><p class="notice">Enable JavaScript to search and browse the rules reference.</p></noscript>
 </body>

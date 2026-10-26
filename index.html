@@ -16,7 +16,16 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Avalon home"><span class="brand-mark" aria-hidden="true">✧</span>Avalon</a>
-      <nav aria-label="Main navigation" id="navigation"><a class="nav-home" href="index.html" aria-current="page">Home</a><a class="nav-home" href="rules.html">Rules</a><span class="nav-reference">The Avalon setting</span></nav>
+      <nav aria-label="Main navigation" id="navigation">
+        <a class="nav-home" href="index.html" aria-current="page">Home</a>
+        <details class="reference-menu" id="reference-menu">
+          <summary class="nav-home">Reference<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="reference-panel">
+            <a href="rules.html">Rules</a>
+            <a href="actions.html">Actions</a>
+          </div>
+        </details>
+      </nav>
       <details class="settings-menu" id="site-settings">
         <summary aria-label="Settings" title="Appearance settings"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></svg><span>Settings</span></summary>
         <div class="settings-panel">
@@ -35,7 +44,7 @@
     <header class="home-heading">
       <p class="eyebrow">Pathfinder · Second Edition</p>
       <h1>Avalon</h1>
-      <p>A reference for the setting. A record of the adventure.</p>
+      <p>A place for us.</p>
     </header>
     <section class="home-reference" aria-labelledby="reference-title">
       <h2 id="reference-title">Reference</h2>
@@ -43,20 +52,14 @@
         <a class="home-tool" href="rules.html">
           <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="5" width="30" height="38" rx="3"/><path d="M17 15h14M17 23h14M17 31h9"/><path d="M5 11h4M5 19h4M5 27h4M5 35h4"/></svg>
           <strong>Rules</strong>
-          <span>Core · Optional · Avalon</span>
         </a>
-        <div class="home-reference-note">
-          <h3>The rules at your table</h3>
-          <p>Look up a rule, explore an optional system, or check an Avalon ruling. Search and filter the list, then open the full entry alongside it.</p>
-          <p>This reference grows with the material you choose for your game.</p>
-        </div>
+        <a class="home-tool" href="actions.html">
+          <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 5 17 19-17 19L5 24Z"/><path d="m17 16 8 8-8 8m8-16 8 8-8 8"/></svg>
+          <strong>Actions</strong>
+        </a>
       </div>
     </section>
-    <section class="home-about" aria-labelledby="about-title">
-      <h2 id="about-title">A world in the making</h2>
-      <p>Avalon begins here, with the rules of play. Its people, places, and campaign stories will grow one entry at a time.</p>
-    </section>
-    <footer class="home-footer"><span>Avalon · Your world, your table.</span><span>Pathfinder · Second Edition</span></footer>
+    <footer class="site-footer"><span>Avalon · 2026</span><span>Pathfinder · Second Edition</span></footer>
   </main>
 </body>
 </html>

@@ -97,7 +97,7 @@ test("ability blocks escape authored text instead of injecting HTML or arbitrary
 
 test("ability rule links and previews keep the complete stat block, source and unique anchors", () => {
   const entry = { ...ability, id: "example-feat", aliases: ["Example"], ruleDefault: true, setting: "modified", settingNote: "Campaign adaptation." };
-  const rule = { id: entry.id, name: entry.name, aliases: entry.aliases, page: entry.page, source: "PC1", setting: entry.setting, entries: [{ ...entry, setting: undefined }] };
+  const rule = { id: entry.id, name: entry.name, aliases: entry.aliases, page: entry.page, source: "PC1", setting: entry.setting, entries: [{ ...entry, rule: false, setting: undefined }] };
   const registry = createLibrary({ sources: [source], rules: [rule] }).registry;
   const target = registry.resolve("Example", "PC1").target;
   assert.equal(target.entry, rule);
@@ -108,7 +108,7 @@ test("ability rule links and previews keep the complete stat block, source and u
   assert.match(preview, /<dt>Prerequisites<\/dt>/);
   assert.match(preview, /<dt>Special<\/dt>/);
   assert.match(preview, /class="ability-trait"/);
-  assert.match(preview, /pg\. 15/);
+  assert.match(preview, /· p\. 15/);
   assert.match(preview, /id="rule-preview-section-1"/);
   assert.doesNotMatch(preview, /id="section-1"|data-section-toggle/);
   assert.equal((preview.match(/class="setting-provenance"/g) || []).length, 1);
@@ -152,7 +152,7 @@ test("compact ability styles inherit the ability font and use a hanging, inline 
 
 test("compact ability previews preserve compact formatting and normal rule resolution", () => {
   const entry = { ...ability, compact: true, id: "compact-example", setting: "original" };
-  const rule = { id: entry.id, name: entry.name, aliases: entry.aliases, page: entry.page, source: "PC1", setting: entry.setting, entries: [{ ...entry, setting: undefined }] };
+  const rule = { id: entry.id, name: entry.name, aliases: entry.aliases, page: entry.page, source: "PC1", setting: entry.setting, entries: [{ ...entry, rule: false, setting: undefined }] };
   const registry = createLibrary({ sources: [source], rules: [rule] }).registry;
   const target = registry.resolve("Example Ability", "PC1").target;
   assert.match(target.href, /rules.html\?id=PC1%3Acompact-example/);

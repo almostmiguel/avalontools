@@ -17,7 +17,16 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Avalon home"><span class="brand-mark" aria-hidden="true">✧</span>Avalon</a>
-      <nav aria-label="Main navigation" id="navigation"><a class="nav-home" href="index.html">Home</a><a class="nav-home" href="rules.html" aria-current="page">Rules</a><span class="nav-reference">The Avalon setting</span></nav>
+      <nav aria-label="Main navigation" id="navigation">
+        <a class="nav-home" href="index.html">Home</a>
+        <details class="reference-menu" id="reference-menu">
+          <summary class="nav-home">Reference<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="reference-panel">
+            <a href="rules.html" aria-current="page">Rules</a>
+            <a href="actions.html">Actions</a>
+          </div>
+        </details>
+      </nav>
       <details class="settings-menu" id="site-settings">
         <summary aria-label="Settings" title="Appearance settings"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></svg><span>Settings</span></summary>
         <div class="settings-panel">
@@ -38,7 +47,7 @@
       <div id="rule-article" class="rule-article"><p class="muted" role="status">Loading rule…</p></div>
       <aside id="rule-related" class="rule-related" aria-label="Related rules"></aside>
     </div>
-    <footer class="rules-footer"><a href="rules.html">← All rules</a><span>Avalon reference</span></footer>
+    <footer class="site-footer"><span>Avalon · 2026</span><span>Pathfinder · Second Edition</span></footer>
   </main>
   <noscript><p class="notice">Enable JavaScript to search and browse the rules reference.</p></noscript>
 </body>

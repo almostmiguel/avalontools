@@ -1,5 +1,7 @@
 node_modules/
 .DS_Store
 Thumbs.db
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/avalon.code-snippets
 *.log

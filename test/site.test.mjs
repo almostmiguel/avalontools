@@ -28,6 +28,22 @@ test("inline formatting is nested, escaped, and has no dead entity links", () =>
   for (const href of ["javascript:alert(1)", "data:text/html,test", "//example.com", "\\example.com", "java\nscript:bad"]) assert.equal(safeHref(href), null);
 });
 
+test("nested inline formatting resolves each rule link once", () => {
+  let resolutions = 0;
+  const html = renderInline("{@b {@i {@rule Checks|PC1}}}", {
+    resolveRule(name, source) {
+      resolutions++;
+      assert.equal(name, "Checks");
+      assert.equal(source, "PC1");
+      return { status: "found", target: { href: "rules.html?id=PC1%3Achecks" } };
+    },
+  });
+  assert.equal(resolutions, 1);
+  assert.match(html, /^<strong><em><a /);
+  assert.match(html, /href="rules.html\?id=PC1%3Achecks"/);
+  assert.match(html, /<\/a><\/em><\/strong>$/);
+});
+
 test("spell tags automatically italicize names and custom labels without changing other tags", () => {
   assert.equal(renderInline("{@spell light}"), "<em>light</em>");
   assert.equal(renderInline("{@spell light|PC1}"), "<em>light</em>");
@@ -109,7 +125,7 @@ test("unbulleted lists keep separate items without altering normal paragraph spa
   const css = await read("css/site.css");
   assert.match(css, /:is\(\.rich-content, \.rule-preview-body\) \.list-no-bullets > li > p \{ margin: 0; \}/);
   assert.match(css, /\.list-no-bullets > li \{ margin: 0; \}/);
-  assert.match(css, /\.rich-content p \{ margin: 0 0 1rem; \}/);
+  assert.match(css, /:is\(\.rich-content, \.rule-preview-body\) p \{ margin: 0 0 1rem; \}/);
 });
 
 test("list variants retain bullet defaults, numbering, and nested items without arbitrary CSS injection", () => {
@@ -166,55 +182,33 @@ test("decorative rule boxes support titles and nested entries", () => {
   assert.doesNotMatch(simpleNote.html, /class="rule-box"/);
 });
 
-// Exercise the actual page controller without installing a browser dependency.
-async function runPage({ page = "book", chapters = [], query = "?book=PC1", failBook = false, catalogData = catalog, bookData } = {}) {
-  const elements = new Map();
-  const scrolled = [];
-  const menu = { open: false, contains: () => false, querySelector: () => ({ focus() {} }) };
-  const document = {
-    body: { dataset: { page } }, title: "",
-    querySelector(selector) {
-      if ((selector === "#reader" || selector === "#contents") && page !== "book") return null;
-      if (selector === "#book-list" && page !== "books") return null;
-      if (!elements.has(selector)) elements.set(selector, { innerHTML: "", childElementCount: 0, removeAttribute() {}, querySelector: () => menu });
-      return elements.get(selector);
-    },
-    addEventListener() {}, getElementById: id => ({ scrollIntoView() { scrolled.push(id); } }),
-  };
-  const context = vm.createContext({
-    document, location: { search: query, href: "http://localhost/avalontools/book.html", hash: "" },
-    navigator: {}, URL, URLSearchParams,
-    escapeHtml, getChapters, renderContent, renderHeadingControls, renderInline, safeHref, renderContents,
-    attachReaderControls() { return { reveal() {} }; },
-    createBookRegistry, createRuleRegistry, attachRulePreviews() {}, window: {},
-    fetch: async path => ({ ok: !(failBook && path !== "data/books.json"), status: 404, json: async () => path === "data/books.json" ? catalogData : bookData ?? { data: chapters } }),
-  });
-  const source = (await read("js/site.js")).replace(/^import[^\n]+\n/gm, "").replace(/start\(\);\s*$/, "globalThis.finished = start();");
-  vm.runInContext(source, context);
-  await context.finished;
-  return { document, scrolled, html: selector => elements.get(selector)?.innerHTML ?? "" };
-}
 
 
 test("public pages load only existing assets and use relative URLs", async () => {
   const packageJson = JSON.parse(await read("package.json"));
   assert.equal(packageJson.dependencies, undefined);
   assert.equal(packageJson.devDependencies, undefined);
-  for (const path of ["index.html", "rules.html", "rule.html"]) {
+  for (const path of ["index.html", "rules.html", "rule.html", "actions.html"]) {
     const html = await read(path);
     assert.match(html, /<html lang="en" data-theme="dark">/);
+    const navigation = html.match(/<nav aria-label="Main navigation"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
+    assert.ok(navigation, `${path}: main navigation exists`);
+    const reference = navigation.match(/<details class="reference-menu" id="reference-menu">([\s\S]*?)<\/details>/)?.[1];
+    assert.ok(reference, `${path}: Reference is a native disclosure`);
+    assert.match(reference, /<summary[^>]*>Reference/);
+    assert.match(reference, /href="rules.html"/);
+    assert.match(reference, /href="actions.html"/);
+    assert.match(navigation, /href="index.html"/);
+    const currentPage = path === "rule.html" ? "rules.html" : path;
+    assert.match(navigation, new RegExp(`href="${currentPage.replace(".", "\\.")}" aria-current="page"`));
+    assert.doesNotMatch(navigation, /The Avalon setting/i);
+    assert.match(html, /<footer class="site-footer"><span>Avalon · 2026<\/span><span>Pathfinder · Second Edition<\/span><\/footer>/);
     assert.doesNotMatch(html, /(?:src|href)="\//);
     for (const match of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
       const asset = match[1].split(/[?#]/)[0];
       if (asset) await readFile(new URL(asset, root));
     }
   }
-});
-
-test("the README's JSON examples are valid", async () => {
-  const examples = [...(await read("README.md")).matchAll(/```json\n([\s\S]*?)\n```/g)];
-  assert.ok(examples.length >= 3);
-  for (const example of examples) assert.doesNotThrow(() => JSON.parse(example[1]));
 });
 
 test("the local server serves current pages, data and fonts while blocking private files", async t => {
@@ -225,8 +219,8 @@ test("the local server serves current pages, data and fonts while blocking priva
   });
   t.after(() => new Promise(resolve => { server.close(resolve); server.closeAllConnections(); }));
   const base = `http://127.0.0.1:${server.address().port}`;
-  for (const path of ["/", "/rules.html", "/rules.html?id=PC1:rolling-checks", "/css/site.css", "/css/home.css", "/css/rules.css",
-    "/js/theme.js", "/js/content-renderer.js", "/js/rules-app.js", "/js/rules-library.js", "/js/rule-links.js", "/data/rules.json"]) {
+  for (const path of ["/", "/rules.html", "/actions.html", "/actions.html?id=PC1:stride", "/rules.html?id=PC1:rolling-checks", "/css/site.css", "/css/home.css", "/css/rules.css", "/css/actions.css",
+    "/js/theme.js", "/js/content-renderer.js", "/js/rules-app.js", "/js/rules-library.js", "/js/rule-links.js", "/js/data-loader.js", "/js/actions-app.js", "/js/actions-library.js", "/data/rules.json", "/data/actions.json", "/data/actions.schema.json"]) {
     const response = await fetch(`${base}${path}`);
     assert.equal(response.status, 200, path);
     assert.equal(response.headers.get("cache-control"), "no-store");

@@ -1,11 +1,15 @@
 import { escapeHtml } from "./content-renderer.js";
 import { renderRuleBody } from "./rules-library.js";
+import { renderRuleCitation } from "./rule-sources.js";
+import { loadJson } from "./data-loader.js";
+import { ACTION_CATEGORIES, createActionLibrary, actionTimeHtml, renderActionBody } from "./actions-library.js";
+
+const previewHeading = (title, label) => `<header class="rule-preview-heading"><h2 id="rule-preview-title">${escapeHtml(title)}</h2><span>${label}</span></header>`;
 
 export function renderRulePreview(name, source, registry) {
   const resolution = registry.resolve(name, source);
   const target = resolution.target;
-  const title = escapeHtml(target?.name || name);
-  const header = `<header class="rule-preview-heading"><h2 id="rule-preview-title">${title}</h2><span>Rules</span><button type="button" data-close-rule-preview aria-label="Close rule preview">×</button></header>`;
+  const header = previewHeading(target?.name || name, "Rules");
   if (!target) {
     const message = resolution.status === "ambiguous"
       ? "More than one entry has this name. Mark only the main definition with ruleDefault: true, or give the intended entry a unique id and use that id in the rule tag."
@@ -13,9 +17,21 @@ export function renderRulePreview(name, source, registry) {
     return `${header}<div class="rule-preview-body"><p>${escapeHtml(message)}</p></div>`;
   }
   const body = renderRuleBody(target, { registry }, { anchorPrefix: "rule-preview-section" });
-  const page = target.page && target.setting !== "original" ? ` <span>pg. ${target.page}</span>` : "";
-  const sourceLabel = target.setting === "modified" ? "Adapted from" : target.setting === "original" ? "Reference" : "Source";
-  return `${header}<p class="rule-preview-source">${sourceLabel} ${escapeHtml(target.sourceName)}${page}</p><div class="rule-preview-body">${body || "<p>No description has been added yet.</p>"}</div>`;
+  return `${header}<p class="rule-preview-source">${renderRuleCitation(target)}</p><div class="rule-preview-body">${body}</div>`;
+}
+
+export function renderActionPreview(name, source, actions, rules) {
+  const resolution = actions.registry.resolve(name, source);
+  const target = resolution.target;
+  const header = previewHeading(target?.name || name, "Actions");
+  if (!target) {
+    const message = resolution.status === "ambiguous" ? "More than one action matches this name. Choose its entry on the Actions page."
+      : "No matching action has been added. Check the name and source, or open the Actions page.";
+    return `${header}<div class="rule-preview-body"><p>${message}</p></div>`;
+  }
+  const context = `${ACTION_CATEGORIES[target.category]} action${target.owners.length ? ` · ${target.owners.join(", ")}` : ""}`;
+  const body = renderActionBody(target, actions, rules, { anchorPrefix: "action-preview-section" });
+  return `${header}<p class="rule-preview-source">${renderRuleCitation(target)}</p><div class="rule-preview-body"><p class="action-preview-meta">${actionTimeHtml(target)}<span>${escapeHtml(context)}</span></p>${body}</div>`;
 }
 
 export function previewPosition(anchor, panel, viewport) {
@@ -28,7 +44,7 @@ export function previewPosition(anchor, panel, viewport) {
   return { left, top };
 }
 
-export function attachRulePreviews({ document, window, registry }) {
+export function attachRulePreviews({ document, window, registry, actions = null, loadActions = () => loadJson("data/actions.json").then(createActionLibrary) }) {
   const panel = document.createElement("section");
   panel.id = "rule-preview";
   panel.className = "rule-preview";
@@ -41,6 +57,17 @@ export function attachRulePreviews({ document, window, registry }) {
   let closeTimer;
   let openTimer;
   let restoringFocus = false;
+  let actionCatalog = actions;
+  let actionLoad;
+  let version = 0;
+  const getActions = () => {
+    if (actionCatalog) return Promise.resolve(actionCatalog);
+    if (!actionLoad) actionLoad = Promise.resolve().then(loadActions).then(library => {
+      actionCatalog = library;
+      return library;
+    }).catch(error => { actionLoad = null; throw error; });
+    return actionLoad;
+  };
   const listeners = [];
   const on = (element, event, handler, options) => {
     element.addEventListener(event, handler, options);
@@ -48,11 +75,13 @@ export function attachRulePreviews({ document, window, registry }) {
   };
   const cancelClose = () => window.clearTimeout(closeTimer);
   const hide = (restoreFocus = false) => {
+    version++;
     window.clearTimeout(openTimer);
     cancelClose();
     const link = current;
     current = null;
     panel.hidden = true;
+    panel.removeAttribute("aria-busy");
     link?.removeAttribute("aria-describedby");
     link?.removeAttribute("aria-controls");
     if (restoreFocus && link && panel.contains(document.activeElement)) {
@@ -73,13 +102,33 @@ export function attachRulePreviews({ document, window, registry }) {
     window.clearTimeout(openTimer);
     cancelClose();
     if (panel.contains(link)) return;
+    if (current === link && !panel.hidden) return position();
     if (current !== link) hide();
+    const action = link.dataset.actionName != null;
+    if (!action && !registry) return;
     current = link;
-    panel.innerHTML = renderRulePreview(link.dataset.ruleName, link.dataset.ruleSource, registry);
+    const requestVersion = ++version;
+    const rules = registry ? { registry } : undefined;
+    panel.setAttribute("aria-busy", String(action && !actionCatalog));
+    panel.innerHTML = action
+      ? actionCatalog ? renderActionPreview(link.dataset.actionName, link.dataset.actionSource, actionCatalog, rules)
+        : `${previewHeading(link.dataset.actionName, "Actions")}<div class="rule-preview-body"><p role="status">Loading action…</p></div>`
+      : renderRulePreview(link.dataset.ruleName, link.dataset.ruleSource, registry);
     panel.hidden = false;
     link.setAttribute("aria-controls", panel.id);
     link.setAttribute("aria-describedby", panel.id);
     position();
+    if (action && !actionCatalog) return getActions().then(library => {
+      if (current !== link || version !== requestVersion) return;
+      panel.innerHTML = renderActionPreview(link.dataset.actionName, link.dataset.actionSource, library, rules);
+      panel.setAttribute("aria-busy", "false");
+      position();
+    }).catch(() => {
+      if (current !== link || version !== requestVersion) return;
+      panel.innerHTML = `${previewHeading(link.dataset.actionName, "Actions")}<div class="rule-preview-body"><p>Unable to load this preview. Follow the link to open Actions, or try again.</p></div>`;
+      panel.setAttribute("aria-busy", "false");
+      position();
+    });
   };
   const scheduleClose = () => {
     window.clearTimeout(openTimer);
@@ -88,24 +137,24 @@ export function attachRulePreviews({ document, window, registry }) {
       if (!panel.contains(document.activeElement) && document.activeElement !== current) hide();
     }, 180);
   };
-  const ruleLink = target => target?.closest?.("[data-rule-name]");
+  const referenceLink = target => target?.closest?.(registry ? "[data-rule-name], [data-action-name]" : "[data-action-name]");
   on(document, "pointerover", event => {
     if (event.pointerType === "touch") return;
-    const link = ruleLink(event.target);
+    const link = referenceLink(event.target);
     if (!link || panel.contains(link) || link.contains(event.relatedTarget)) return;
     cancelClose();
     window.clearTimeout(openTimer);
     openTimer = window.setTimeout(() => show(link), 120);
   });
   on(document, "pointerout", event => {
-    const link = ruleLink(event.target);
+    const link = referenceLink(event.target);
     if (link && !link.contains(event.relatedTarget) && !panel.contains(event.relatedTarget)) scheduleClose();
   });
   on(panel, "pointerenter", cancelClose);
   on(panel, "pointerleave", scheduleClose);
   on(document, "focusin", event => {
     if (restoringFocus || panel.contains(event.target)) return;
-    const link = ruleLink(event.target);
+    const link = referenceLink(event.target);
     if (link) show(link);
     else hide();
   });
@@ -121,9 +170,6 @@ export function attachRulePreviews({ document, window, registry }) {
   });
   on(document, "pointerdown", event => {
     if (!panel.contains(event.target) && !current?.contains(event.target)) hide();
-  });
-  on(panel, "click", event => {
-    if (event.target?.closest?.("[data-close-rule-preview]")) hide(true);
   });
   on(window, "resize", position);
   on(window, "scroll", position, true);

@@ -1,0 +1,270 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Avalon actions",
+  "type": "object",
+  "required": [
+    "actions"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "_meta": {
+      "type": "object",
+      "description": "Dataset provenance and attribution."
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "./rules.schema.json#/definitions/source"
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/action"
+      },
+      "description": "Standalone actions. Id is optional; defaults to the lowercase name with hyphens. Add more sources over time."
+    }
+  },
+  "definitions": {
+    "action": {
+      "type": "object",
+      "required": [
+        "name",
+        "category",
+        "time",
+        "entries"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Optional stable id. Use for same-name variants, or to preserve links after a rename."
+        },
+        "name": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Action name."
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "primary": {
+          "type": "boolean",
+          "description": "Default target for a name shared by several class variants.",
+          "default": false
+        },
+        "source": {
+          "type": "string",
+          "examples": [
+            "PC1",
+            "Avalon"
+          ],
+          "description": "Source id from sources. Omitted source defaults to Avalon."
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "category": {
+          "enum": [
+            "basic",
+            "specialty",
+            "skill",
+            "ancestry",
+            "class",
+            "general"
+          ],
+          "enumDescriptions": [
+            "Common encounter action.",
+            "Specialty basic action.",
+            "A skill action.",
+            "Action granted by an ancestry or heritage.",
+            "Action granted by a class feature.",
+            "Other general, exploration or downtime activity."
+          ]
+        },
+        "time": {
+          "$ref": "#/definitions/time"
+        },
+        "classes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Names associated with this action."
+        },
+        "ancestries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Names associated with this action."
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Names associated with this action."
+        },
+        "traits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Trait names shown on the action."
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Feat level, when this action is granted by a feat."
+        },
+        "prerequisites": {
+          "$ref": "./rules.schema.json#/definitions/content",
+          "description": "Optional prerequisites; text or formatted content."
+        },
+        "requirements": {
+          "$ref": "./rules.schema.json#/definitions/content",
+          "description": "Optional requirements; text or formatted content."
+        },
+        "trigger": {
+          "$ref": "./rules.schema.json#/definitions/content",
+          "description": "Optional trigger; text or formatted content."
+        },
+        "frequency": {
+          "$ref": "./rules.schema.json#/definitions/content",
+          "description": "Optional frequency; text or formatted content."
+        },
+        "access": {
+          "$ref": "./rules.schema.json#/definitions/content",
+          "description": "Optional access; text or formatted content."
+        },
+        "cost": {
+          "$ref": "./rules.schema.json#/definitions/content",
+          "description": "Resource or other additional cost; use time for the action cost."
+        },
+        "special": {
+          "$ref": "./rules.schema.json#/definitions/content",
+          "description": "Optional special; text or formatted content."
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "./rules.schema.json#/definitions/content"
+          },
+          "description": "Full action description. Uses the same text, lists, tables and boxes as rules."
+        }
+      },
+      "defaultSnippets": [
+        {
+          "label": "Action",
+          "body": {
+            "name": "${1:Action name}",
+            "source": "PC1",
+            "page": 1,
+            "category": "${2|basic,specialty,skill,ancestry,class,general|}",
+            "time": {
+              "unit": "action",
+              "value": 1
+            },
+            "entries": [
+              "${3:Action description.}"
+            ]
+          }
+        }
+      ]
+    },
+    "time": {
+      "type": "object",
+      "required": [
+        "unit"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "enum": [
+            "free",
+            "reaction",
+            "action",
+            "varies",
+            "round",
+            "minute",
+            "hour",
+            "day"
+          ],
+          "enumDescriptions": [
+            "Free action.",
+            "Reaction.",
+            "One, two or three actions; specify value.",
+            "Variable or ongoing time; optional label and options.",
+            "Rounds.",
+            "Minutes.",
+            "Hours.",
+            "Days."
+          ]
+        },
+        "value": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Number of actions, rounds, minutes, hours or days."
+        },
+        "label": {
+          "type": "string",
+          "description": "Optional precise display, e.g. At least 1 round or 1 hour per spell rank."
+        },
+        "options": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "free",
+              "reaction",
+              "action-1",
+              "action-2",
+              "action-3",
+              "round",
+              "minute",
+              "hour",
+              "day"
+            ]
+          },
+          "description": "Additional matching time filters for a variable action, when specified by its rules."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "unit": {
+                "const": "action"
+              }
+            },
+            "required": [
+              "unit"
+            ]
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "enum": [
+                  1,
+                  2,
+                  3
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+

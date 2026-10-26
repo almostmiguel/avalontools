@@ -55,8 +55,8 @@ test("rule previews preserve markers and do not attribute setting originals to p
     assert.match(preview, /Campaign-specific text/);
     assert.match(preview, /A world/);
     assert.equal((preview.match(/class="setting-provenance"/g) || []).length, 1);
-    assert.match(preview, setting === "original" ? /Reference/ : /Adapted from/);
-    if (setting === "original") assert.doesNotMatch(preview, /pg\. 10|>Source /);
-    else assert.match(preview, /pg\. 10/);
+    assert.match(preview, setting === "original" ? /Avalon original/ : /Adapted from/);
+    if (setting === "original") assert.doesNotMatch(preview, /p\. 10|Player Core/);
+    else assert.match(preview, /· p\. 10/);
   }
 });

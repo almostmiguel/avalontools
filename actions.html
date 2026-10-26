@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse Pathfinder actions by source, category, action cost, and time.">
+  <title>Actions · Avalon</title>
+  <script src="js/theme.js"></script>
+  <link rel="preload" href="fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Gin-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/rules.css">
+  <link rel="stylesheet" href="css/actions.css">
+  <script type="module" src="js/actions-app.js"></script>
+</head>
+<body data-page="actions">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Avalon home"><span class="brand-mark" aria-hidden="true">✧</span>Avalon</a>
+      <nav aria-label="Main navigation" id="navigation">
+        <a class="nav-home" href="index.html">Home</a>
+        <details class="reference-menu" id="reference-menu">
+          <summary class="nav-home">Reference<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="reference-panel">
+            <a href="rules.html">Rules</a>
+            <a href="actions.html" aria-current="page">Actions</a>
+          </div>
+        </details>
+      </nav>
+      <details class="settings-menu" id="site-settings">
+        <summary aria-label="Settings" title="Appearance settings"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="2.5"/><circle cx="15" cy="17" r="2.5"/></svg><span>Settings</span></summary>
+        <div class="settings-panel">
+          <p class="settings-heading">Appearance</p>
+          <div class="theme-options" role="group" aria-label="Color theme">
+            <button type="button" data-theme-choice="dark" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 13.1A8.5 8.5 0 0 1 10.9 3.5 8.5 8.5 0 1 0 20.5 13.1Z"/></svg>Dark</button>
+            <button type="button" data-theme-choice="light" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>Light</button>
+          </div>
+          <p class="settings-note">Remembered on this browser.</p>
+          <p class="sr-only" id="theme-status" role="status" aria-live="polite"></p>
+        </div>
+      </details>
+    </div>
+  </header>
+  <main id="main" class="rules-library actions-workspace" aria-busy="true">
+    <header class="rules-intro">
+      <div><h1>Actions</h1><p class="rules-description">Find your next move.</p></div>
+      <p id="actions-summary" class="library-summary" role="status">Loading actions…</p>
+    </header>
+    <div class="rules-browser actions-browser">
+      <section class="rules-list-pane" aria-labelledby="actions-results-title">
+        <form id="actions-search-form" class="rules-search-form" action="actions.html" role="search">
+          <div class="rules-search-toolbar">
+            <div class="rules-search-field">
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+              <label class="sr-only" for="actions-search">Search action names</label>
+              <input id="actions-search" name="q" type="search" placeholder="Search actions…" autocomplete="off">
+              <button id="actions-clear" type="button">Clear</button>
+            </div>
+            <details id="actions-filter-menu" class="rules-filter-menu">
+              <summary id="actions-filter-summary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg>Filters <span id="actions-filter-count"></span></summary>
+              <div class="rules-filter-panel">
+                <div class="filter-panel-heading"><strong>Filter actions</strong><button id="actions-filter-reset" type="button">Reset filters</button></div>
+                <div class="filter-mode" role="group" aria-label="Filter selection mode"><button id="actions-include" type="button" aria-pressed="true">+ Include</button><button id="actions-exclude" type="button" aria-pressed="false">− Exclude</button></div>
+                <p class="filter-help">Choose a mode, then select options. Select again to clear. Shift-click or right-click also excludes.</p>
+                <p class="filter-help">Match any included option in each group. Exclusions always win.</p>
+                <div id="actions-filter-groups"></div>
+              </div>
+            </details>
+          </div>
+          <div id="actions-active-filters" class="rules-active-filters" role="group" aria-label="Active action filters" hidden></div>
+          <button class="sr-only" type="submit">Search</button>
+        </form>
+        <header class="results-heading"><h2 id="actions-results-title">All actions</h2><p id="actions-count" role="status" aria-live="polite" aria-atomic="true"></p></header>
+        <div class="rules-results-scroll">
+          <div id="actions-sort" class="rules-list-columns actions-list-columns" role="group" aria-label="Sort actions">
+            <button class="rule-sort" data-action-sort="name" type="button"><span>Name</span></button>
+            <button class="rule-sort" data-action-sort="category" type="button"><span>Category</span></button>
+            <button class="rule-sort" data-action-sort="time" type="button"><span>Cost / time</span></button>
+            <button class="rule-sort" data-action-sort="source" type="button"><span>Source</span></button>
+          </div>
+          <div id="actions-results"><p class="muted" role="status">Loading actions…</p></div>
+        </div>
+      </section>
+      <section id="action-detail" class="rule-article rules-detail" tabindex="-1" aria-labelledby="action-detail-title">
+        <div class="rules-detail-empty"><span class="empty-sigil" aria-hidden="true">✧</span><h2 id="action-detail-title">Choose an action</h2><p>Select an action to read its full entry here.</p></div>
+      </section>
+    </div>
+    <p id="action-selection-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+    <footer class="site-footer"><span>Avalon · 2026</span><span>Pathfinder · Second Edition</span></footer>
+  </main>
+  <noscript><p class="notice">Enable JavaScript to search and browse actions.</p></noscript>
+</body>
+</html>
+

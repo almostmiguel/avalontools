@@ -1,0 +1,963 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Avalon rules",
+  "description": "Editor reference for Avalon's authored rules. Hover over fields for help; use Ctrl+Space for values and block templates.",
+  "type": "object",
+  "required": [
+    "rules"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional JSON Schema association; this project already configures it in .vscode/settings.json."
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/source"
+      },
+      "description": "Source names and abbreviations used by citations, filters and Browse."
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/rule"
+      },
+      "description": "Top-level rules are indexed, along with named nested h1, h2, h3 and box blocks. Use rule: false to opt out. Ids are generated from ruleName or name."
+    }
+  },
+  "definitions": {
+    "source": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Unique source id, such as PC1 or GMC."
+        },
+        "name": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Full name, such as Player Core."
+        },
+        "source": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Optional short abbreviation shown in Index and filters; defaults to id."
+        }
+      },
+      "defaultSnippets": [
+        {
+          "label": "Source",
+          "body": {
+            "id": "${1:SOURCE}",
+            "name": "${2:Source name}",
+            "source": "${1:SOURCE}"
+          }
+        }
+      ]
+    },
+    "rule": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/block"
+        },
+        {
+          "required": [
+            "name"
+          ]
+        }
+      ],
+      "defaultSnippets": [
+        {
+          "label": "Rule",
+          "description": "A new top-level rule with source and chapter.",
+          "body": {
+            "name": "${1:Rule name}",
+            "source": "${2|PC1,GMC,Avalon|}",
+            "chapter": "${3:Chapter 8: Playing the Game}",
+            "kind": "${4|core,optional,setting|}",
+            "page": 1,
+            "entries": [
+              "${5:Rule text.}"
+            ]
+          }
+        }
+      ]
+    },
+    "content": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/content"
+          }
+        },
+        {
+          "$ref": "#/definitions/nestedBlock"
+        }
+      ]
+    },
+    "nestedBlock": {
+      "allOf": [
+        { "$ref": "#/definitions/block" },
+        {
+          "if": {
+            "required": ["rule"],
+            "properties": { "rule": { "const": true } }
+          },
+          "then": {
+            "required": ["type"],
+            "properties": {
+              "type": {
+                "enum": ["h1", "h2", "h3", "box"],
+                "description": "Only h1, h2, h3 and box content can become nested rules."
+              }
+            }
+          }
+        }
+      ]
+    },
+    "block": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "entries",
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+            "h6",
+            "box",
+            "box-section",
+            "clarification",
+            "formula",
+            "flavor",
+            "list",
+            "item",
+            "table",
+            "ability",
+            "image",
+            "hr",
+            "quote",
+            "inset",
+            "insetReadaloud",
+            "sidebar",
+            "itemSub",
+            "itemSpell"
+          ],
+          "enumDescriptions": [
+            "Text and an optional heading.",
+            "Largest heading.",
+            "Second-level heading.",
+            "Third-level heading.",
+            "Fourth-level heading.",
+            "Fifth-level heading.",
+            "Smallest heading.",
+            "A titled rules box.",
+            "A secondary section inside a box.",
+            "Paizo clarification; starts collapsed.",
+            "A displayed calculation with optional label.",
+            "Centered flavor text.",
+            "A bullet, numbered or plain list.",
+            "A labeled line, optionally with hanging indentation.",
+            "A table with optional caption and column names.",
+            "An action or feat stat block.",
+            "An image with optional caption.",
+            "A horizontal separator.",
+            "A quotation with optional attribution.",
+            "A simple inset.",
+            "A read-aloud inset.",
+            "A sidebar.",
+            "A labeled list line.",
+            "A labeled spell line."
+          ],
+          "description": "Content block style. Omit for a generic text section."
+        },
+        "id": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Optional stable id, unique within its source. If omitted, generated from ruleName or name: lowercase, accents and punctuation removed, words joined by hyphens. Set an explicit id for duplicate names or to preserve links and stars when renaming."
+        },
+        "name": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Heading displayed in the parent text. Inline tags such as {@as 1} are supported."
+        },
+        "rule": {
+          "type": "boolean",
+          "description": "Named h1, h2, h3 and box blocks become rules by default. Set false to keep an eligible block inline only. Other nested types cannot become rules, even with true; their eligible children can. No id is required.",
+          "default": true
+        },
+        "ruleName": {
+          "type": "string",
+          "pattern": "\\S",
+          "description": "Optional catalog and hover title, also used to generate the id when none is provided. For example use Degree of Success here while name stays Step 4: Degree of Success in the parent."
+        },
+        "ruleDefault": {
+          "type": "boolean",
+          "description": "For same-name rules in one source, true selects this definition for {@rule Name|Source}. Source-less links use the first authored match.",
+          "default": false
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "uniqueItems": true,
+          "description": "Alternative names used by name search and {@rule ...} links."
+        },
+        "source": {
+          "type": "string",
+          "pattern": "\\S",
+          "examples": [
+            "PC1",
+            "GMC",
+            "Avalon"
+          ],
+          "description": "Source id or abbreviation from sources. Nested blocks inherit it; an omitted top-level source defaults to Avalon."
+        },
+        "chapter": {
+          "type": "string",
+          "pattern": "\\S",
+          "examples": [
+            "Chapter 8: Playing the Game",
+            "Chapter 1: Running the Game"
+          ],
+          "description": "Browse chapter within this source. Inherits from the parent while the source stays the same."
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Printed source page. Inherits from the parent; omitted on citations for original setting material."
+        },
+        "kind": {
+          "type": "string",
+          "description": "Catalog type: core, optional or setting. On ability blocks this is the printed label, such as Feat."
+        },
+        "setting": {
+          "type": "string",
+          "enum": [
+            "original",
+            "modified"
+          ],
+          "enumDescriptions": [
+            "Original Avalon material; not attributed to a published page.",
+            "Published material adapted for Avalon."
+          ],
+          "description": "Adds an Avalon provenance note. Nested blocks inherit this marker."
+        },
+        "settingNote": {
+          "type": "string",
+          "description": "Optional explanation shown in the Avalon provenance note. Inline tags are supported."
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/content"
+          },
+          "description": "Paragraphs and nested blocks, in display order. Each string is one paragraph."
+        },
+        "entry": {
+          "$ref": "#/definitions/content",
+          "description": "A single paragraph or content block. Use entries for several paragraphs."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/content"
+          },
+          "description": "List items. Use type item with name and style hanging for bold labels and wrapped text."
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "list-decimal",
+            "list-no-bullets",
+            "hanging",
+            "table-dialogue"
+          ],
+          "description": "List numbering, plain lines, hanging labels, or a two-column dialogue table."
+        },
+        "columns": {
+          "type": "integer",
+          "minimum": 2,
+          "default": 2,
+          "examples": [2, 3, 4],
+          "description": "List column count (2 or more). Items flow down each column, then across. Columns reduce automatically in narrow readers and previews, and stack on small screens. Works with bullet, numbered and plain lists."
+        },
+        "ordered": {
+          "type": "boolean",
+          "description": "Number list items instead of using bullets.",
+          "default": false
+        },
+        "caption": {
+          "type": "string",
+          "description": "Table title, displayed above the column names."
+        },
+        "colLabels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/cell"
+          },
+          "description": "Column names, in the same order as the cells in each row."
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/cell"
+                }
+              },
+              {
+                "type": "object",
+                "required": [
+                  "row"
+                ],
+                "properties": {
+                  "row": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/cell"
+                    }
+                  }
+                },
+                "additionalProperties": false
+              }
+            ]
+          },
+          "description": "Table rows. Each row is an array of cells in column order."
+        },
+        "open": {
+          "type": "boolean",
+          "description": "On a clarification, true starts expanded. Omit or false to start collapsed.",
+          "default": false
+        },
+        "actions": {
+          "enum": [
+            "1",
+            "2",
+            "3",
+            "r",
+            "f",
+            1,
+            2,
+            3,
+            "R",
+            "F"
+          ],
+          "description": "Action symbol: 1, 2, 3, r for reaction or f for free action. Omit for a passive ability."
+        },
+        "level": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "description": "Ability level. Text such as Level is allowed for examples."
+        },
+        "traits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Trait labels displayed beneath the ability title."
+        },
+        "compact": {
+          "type": "boolean",
+          "description": "Use the condensed inline ability layout with hanging text.",
+          "default": false
+        },
+        "access": {
+          "$ref": "#/definitions/content",
+          "description": "Ability access. Accepts text or an array of paragraphs and blocks."
+        },
+        "prerequisites": {
+          "$ref": "#/definitions/content",
+          "description": "Ability prerequisites. Accepts text or an array of paragraphs and blocks."
+        },
+        "frequency": {
+          "$ref": "#/definitions/content",
+          "description": "Ability frequency. Accepts text or an array of paragraphs and blocks."
+        },
+        "trigger": {
+          "$ref": "#/definitions/content",
+          "description": "Ability trigger. Accepts text or an array of paragraphs and blocks."
+        },
+        "requirements": {
+          "$ref": "#/definitions/content",
+          "description": "Ability requirements. Accepts text or an array of paragraphs and blocks."
+        },
+        "cost": {
+          "$ref": "#/definitions/content",
+          "description": "Ability cost. Accepts text or an array of paragraphs and blocks."
+        },
+        "effect": {
+          "$ref": "#/definitions/content",
+          "description": "Ability description; overrides entries when present."
+        },
+        "special": {
+          "$ref": "#/definitions/content",
+          "description": "Ability special. Accepts text or an array of paragraphs and blocks."
+        },
+        "href": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "enum": [
+                    "internal",
+                    "external"
+                  ]
+                },
+                "path": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                }
+              },
+              "anyOf": [
+                {
+                  "required": [
+                    "path"
+                  ]
+                },
+                {
+                  "required": [
+                    "url"
+                  ]
+                }
+              ],
+              "additionalProperties": false
+            }
+          ],
+          "description": "Image path such as img/icons/example.webp, or an object with path or url."
+        },
+        "url": {
+          "type": "string",
+          "description": "Alternative image URL when href is omitted."
+        },
+        "alt": {
+          "type": "string",
+          "description": "Image description for screen readers."
+        },
+        "title": {
+          "type": "string",
+          "description": "Image caption. Use name for headings and caption for tables."
+        },
+        "by": {
+          "type": "string",
+          "description": "Quotation attribution."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "ability"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "kind": {
+                "type": "string",
+                "description": "Printed ability classification, such as Feat or Action. This is separate from the inherited catalog type.",
+                "examples": [
+                  "Feat",
+                  "Action",
+                  "Reaction"
+                ]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "core",
+                  "optional",
+                  "setting"
+                ],
+                "enumDescriptions": [
+                  "Standard published rule.",
+                  "Optional or variant rule.",
+                  "Rule specific to Avalon."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "rule"
+            ],
+            "properties": {
+              "rule": {
+                "const": true
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "name"
+            ]
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "h1",
+                  "h2",
+                  "h3",
+                  "h4",
+                  "h5",
+                  "h6"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "name"
+            ]
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "list"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "items"
+            ],
+            "properties": {
+              "style": {
+                "enum": [
+                  "list-decimal",
+                  "list-no-bullets"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "item",
+                  "itemSub",
+                  "itemSpell"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "style": {
+                "const": "hanging"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "table"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "rows"
+            ],
+            "properties": {
+              "style": {
+                "const": "table-dialogue"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "ability"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "name"
+            ]
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "image"
+              }
+            }
+          },
+          "then": {
+            "anyOf": [
+              {
+                "required": [
+                  "href"
+                ]
+              },
+              {
+                "required": [
+                  "url"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "defaultSnippets": [
+        {
+          "label": "Heading",
+          "description": "A heading and its text. Only h1, h2 and h3 become rules; h4, h5 and h6 stay inline. Use rule: false to opt out.",
+          "body": {
+            "type": "${1|h1,h2,h3,h4,h5,h6|}",
+            "name": "${2:Heading}",
+            "entries": [
+              "${3:Text.}"
+            ]
+          }
+        },
+        {
+          "label": "Inline-only heading",
+          "description": "A heading kept in its parent's text without a separate rule entry.",
+          "body": {
+            "type": "h2",
+            "name": "${1:Heading}",
+            "rule": false,
+            "entries": ["${2:Text.}"]
+          }
+        },
+        {
+          "label": "Nested rule",
+          "description": "A heading or box that also appears independently in the rules list.",
+          "body": {
+            "type": "${1|h2,h3,box|}",
+            "name": "${2:Rule name}",
+            "entries": [
+              "${3:Rule text.}"
+            ]
+          }
+        },
+        {
+          "label": "Box",
+          "description": "An inset box that also appears in the rules list. Use rule: false for an inline-only box.",
+          "body": {
+            "type": "box",
+            "name": "${1:Box title}",
+            "entries": [
+              "${2:Box text.}"
+            ]
+          }
+        },
+        {
+          "label": "Box section",
+          "description": "A secondary title inside an existing box.",
+          "body": {
+            "type": "box-section",
+            "name": "${1:Section title}",
+            "entries": [
+              "${2:Text.}"
+            ]
+          }
+        },
+        {
+          "label": "Table",
+          "description": "A titled table with column names and rows.",
+          "body": {
+            "type": "table",
+            "caption": "${1:Table title}",
+            "colLabels": [
+              "${2:Column one}",
+              "${3:Column two}"
+            ],
+            "rows": [
+              [
+                "${4:First cell}",
+                "${5:Second cell}"
+              ]
+            ]
+          }
+        },
+        {
+          "label": "List",
+          "description": "Bullet points. Use list-decimal for numbering or list-no-bullets for plain lines.",
+          "body": {
+            "type": "list",
+            "items": [
+              "${1:First item.}",
+              "${2:Second item.}"
+            ]
+          }
+        },
+        {
+          "label": "Multi-column list",
+          "description": "A list in two or more columns. Add style list-no-bullets for plain lines.",
+          "body": {
+            "type": "list",
+            "columns": 2,
+            "items": [
+              "${1:First item.}",
+              "${2:Second item.}",
+              "${3:Third item.}",
+              "${4:Fourth item.}"
+            ]
+          }
+        },
+        {
+          "label": "Plain list",
+          "description": "Compact lines with list formatting and no bullet points.",
+          "body": {
+            "type": "list",
+            "style": "list-no-bullets",
+            "items": [
+              "${1:First line.}",
+              "${2:Second line.}"
+            ]
+          }
+        },
+        {
+          "label": "Degree of success list",
+          "description": "Critical Success, Success, Failure and Critical Failure with hanging labels.",
+          "body": {
+            "type": "list",
+            "style": "list-no-bullets",
+            "items": [
+              {
+                "type": "item",
+                "style": "hanging",
+                "name": "Critical Success",
+                "entry": "${1:Critical success effect.}"
+              },
+              {
+                "type": "item",
+                "style": "hanging",
+                "name": "Success",
+                "entry": "${2:Success effect.}"
+              },
+              {
+                "type": "item",
+                "style": "hanging",
+                "name": "Failure",
+                "entry": "${3:Failure effect.}"
+              },
+              {
+                "type": "item",
+                "style": "hanging",
+                "name": "Critical Failure",
+                "entry": "${4:Critical failure effect.}"
+              }
+            ]
+          }
+        },
+        {
+          "label": "Paizo clarification",
+          "description": "A clarification that starts collapsed.",
+          "body": {
+            "type": "clarification",
+            "entries": [
+              "${1:Clarification text.}"
+            ]
+          }
+        },
+        {
+          "label": "Formula",
+          "description": "A calculation with an optional small label.",
+          "body": {
+            "type": "formula",
+            "name": "${1:Calculation}",
+            "entry": "${2:Result = d20 roll + modifier}"
+          }
+        },
+        {
+          "label": "Flavor text",
+          "description": "Centered flavor text with ornamental separators.",
+          "body": {
+            "type": "flavor",
+            "entry": "${1:Flavor text.}"
+          }
+        },
+        {
+          "label": "Ability",
+          "description": "An action or feat stat block with prerequisites and effect text.",
+          "body": {
+            "type": "ability",
+            "name": "${1:Ability name}",
+            "actions": "${2|1,2,3,r,f|}",
+            "kind": "${3:Feat}",
+            "level": 1,
+            "traits": [
+              "${4:General}"
+            ],
+            "prerequisites": "${5:Prerequisites.}",
+            "entries": [
+              "${6:Effect description.}"
+            ]
+          }
+        },
+        {
+          "label": "Compact ability",
+          "description": "An inline ability with hanging text and labeled fields.",
+          "body": {
+            "type": "ability",
+            "compact": true,
+            "name": "${1:Ability name}",
+            "actions": "${2|1,2,3,r,f|}",
+            "frequency": "${3:Once per day}",
+            "effect": "${4:Effect description.}"
+          }
+        }
+      ]
+    },
+    "cell": {
+      "anyOf": [
+        {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "entries": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/content"
+              }
+            },
+            "entry": {
+              "$ref": "#/definitions/content"
+            },
+            "roll": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "exact": {
+                  "type": [
+                    "number",
+                    "string"
+                  ]
+                },
+                "min": {
+                  "type": "number"
+                },
+                "max": {
+                  "type": "number"
+                }
+              },
+              "anyOf": [
+                {
+                  "required": [
+                    "exact"
+                  ]
+                },
+                {
+                  "required": [
+                    "min"
+                  ]
+                },
+                {
+                  "required": [
+                    "max"
+                  ]
+                }
+              ]
+            }
+          },
+          "anyOf": [
+            {
+              "required": [
+                "entries"
+              ]
+            },
+            {
+              "required": [
+                "entry"
+              ]
+            },
+            {
+              "required": [
+                "roll"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
+

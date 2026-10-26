@@ -36,22 +36,24 @@ function renderTag(body, options) {
   const tag = rawTag.toLowerCase();
   const parts = splitArguments(value);
   if (["code", "kbd"].includes(tag)) return `<${tag}>${escapeHtml(value)}</${tag}>`;
-  const text = renderInline(parts[0], options);
-  const formatting = { b: "strong", bold: "strong", i: "em", italic: "em", s: "s", u: "u", sup: "sup", sub: "sub", code: "code", kbd: "kbd" };
+  const formatting = { b: "strong", bold: "strong", i: "em", italic: "em", s: "s", u: "u", sup: "sup", sub: "sub" };
   if (Object.hasOwn(formatting, tag)) return `<${formatting[tag]}>${renderInline(value, options)}</${formatting[tag]}>`;
-  if (tag === "rule") {
+  if (tag === "rule" || tag === "action") {
     const name = inlineText(parts[0]).trim();
     const source = (parts[1] || "").trim();
     const label = escapeHtml(inlineText(parts[2] || parts[0]));
-    const attributes = `data-rule-name="${escapeHtml(name)}" data-rule-source="${escapeHtml(source)}"`;
-    const resolution = options.resolveRule?.(name, source);
+    const attributes = `data-${tag}-name="${escapeHtml(name)}" data-${tag}-source="${escapeHtml(source)}"`;
+    const resolution = (tag === "rule" ? options.resolveRule : options.resolveAction)?.(name, source);
+    const noun = tag === "rule" ? "Rule" : "Action";
     if (resolution && resolution.status !== "found") {
-      const message = resolution.status === "ambiguous" ? "More than one rule matches" : "Rule not found";
-      return `<span class="rule-link rule-link-unresolved" tabindex="0" ${attributes} title="${message}: ${escapeHtml(name)}${source ? ` (${escapeHtml(source)})` : ""}">${label}</span>`;
+      const message = resolution.status === "ambiguous" ? `More than one ${tag} matches` : `${noun} not found`;
+      return `<span class="${tag}-link rule-link-unresolved" tabindex="0" ${attributes} title="${message}: ${escapeHtml(name)}${source ? ` (${escapeHtml(source)})` : ""}">${label}</span>`;
     }
-    const fallback = `rules.html?${new URLSearchParams(source ? { rule: name, source } : { rule: name })}`;
-    return `<a class="rule-link" href="${escapeHtml(resolution?.target.href || fallback)}" ${attributes}>${label}</a>`;
+    const fallback = `${tag === "rule" ? "rules" : "actions"}.html?${new URLSearchParams(source ? { [tag]: name, source } : { [tag]: name })}`;
+    return `<a class="${tag}-link" href="${escapeHtml(resolution?.target.href || fallback)}" ${attributes}>${label}</a>`;
   }
+  if (tag === "spell") return `<em>${renderInline(parts[2] || parts[0], options)}</em>`;
+  const text = renderInline(parts[0], options);
   if (tag === "link") {
     const href = safeHref(parts[1]);
     return href ? `<a href="${escapeHtml(href)}" rel="noopener noreferrer">${text}</a>` : text;
@@ -65,15 +67,14 @@ function renderTag(body, options) {
     const action = Object.hasOwn(actions, symbol) ? actions[symbol] : null;
     return action ? `<span class="action-symbol" data-symbol="${symbol}" role="img" aria-label="${action}" title="${action}"></span>` : text;
   }
-  if (["dice", "damage", "d20", "scaledice", "scaledamage"].includes(tag)) return renderInline(parts[1] || parts[0], options);
+  if (["dice", "damage", "d20", "scaledice", "scaledamage"].includes(tag)) return parts[1] ? renderInline(parts[1], options) : text;
   if (tag === "dc") return `DC ${text}`;
   if (tag === "hit") return `${value.startsWith("-") ? "" : "+"}${text}`;
   if (tag === "chance") return `${text}%`;
   if (tag === "note") return `<em>${text}</em>`;
-  if (tag === "spell") return `<em>${renderInline(parts[2] || parts[0], options)}</em>`;
   if (["filter", "footnote", "quickref", "adventure"].includes(tag)) return text;
   // Entity tags remain readable without linking to tools that do not exist yet.
-  return renderInline(parts[2] || parts[0], options);
+  return parts[2] ? renderInline(parts[2], options) : text;
 }
 
 export function renderInline(value, options = {}) {
@@ -104,12 +105,14 @@ export function inlineText(value) {
 
 export function renderContent(content, options = {}) {
   const headings = [];
+  let outlineDepth = 0;
+  const outlineExcluded = new Set(["box", "box-section", "inset", "insetReadaloud", "sidebar", "clarification", "ability", "quote", "flavor", "formula", "table", "list"]);
   const inline = value => renderInline(value, options);
   const heading = (name, level, entry, { afterName = "", trailing = "" } = {}) => {
     const id = `${options.anchorPrefix || "section"}-${headings.length + 1}`;
     const size = Math.max(2, Math.min(6, level));
     const minorHeading = entry?.type === "h6" ? ' data-heading-level="6"' : "";
-    headings.push({ id, name: String(name), level: size, entry });
+    headings.push({ id, name: String(name), level: size, entry, outline: outlineDepth === 0 && size <= 4 });
     return `<h${size} id="${escapeHtml(id)}"${minorHeading}>${inline(name)}${afterName}${trailing}</h${size}>`;
   };
   const blocks = (entries, level) => (Array.isArray(entries) ? entries : [entries]).map(entry => block(entry, level)).join("\n");
@@ -123,7 +126,10 @@ export function renderContent(content, options = {}) {
     return blocks(value.entries ?? value.entry ?? "", 5);
   };
   const block = (entry, level = 2) => {
+    const exclude = entry && typeof entry === "object" && outlineExcluded.has(entry.type);
+    if (exclude) outlineDepth++;
     const html = renderBlock(entry, level);
+    if (exclude) outlineDepth--;
     if (!entry || !["modified", "original"].includes(entry.setting)) return html;
     const original = entry.setting === "original";
     const label = original ? "Original" : "Adapted";
@@ -189,7 +195,10 @@ export function renderContent(content, options = {}) {
     if (type === "list") {
       const ordered = entry.style === "list-decimal" || entry.ordered === true;
       const tag = ordered ? "ol" : "ul";
-      const attributes = entry.style === "list-no-bullets" ? ' class="list-no-bullets" role="list"' : "";
+      const plain = entry.style === "list-no-bullets";
+      const columns = Number.isSafeInteger(entry.columns) && entry.columns >= 2;
+      const classes = [plain && "list-no-bullets", columns && "list-columns"].filter(Boolean);
+      const attributes = `${classes.length ? ` class="${classes.join(" ")}"` : ""}${plain ? ' role="list"' : ""}${columns ? ` style="--list-columns: ${entry.columns}"` : ""}`;
       const title = entry.name ? heading(entry.name, level, entry) : "";
       return `${title}<${tag}${attributes}>${(entry.items ?? []).map(item => `<li>${block(item, level + 1)}</li>`).join("")}</${tag}>`;
     }
