@@ -1,15 +1,4 @@
 {
-  "_meta": {
-    "book": "Player Core",
-    "dataOrigin": "https://github.com/Pf2eToolsOrg/Pf2eTools",
-    "revision": "9fab2be36f4e8f036e868b67c055ebee68d2acc9",
-    "inputs": [
-      "data/actions.json"
-    ],
-    "scope": "Player Core standalone actions and activities. Feat-granted actions are excluded. Spells are represented by Cast a Spell, not listed individually.",
-    "license": "ORC; see actions-license.md",
-    "copyright": "Pathfinder Player Core (c) 2023 Paizo Inc."
-  },
   "sources": [
     {
       "id": "PC1",
@@ -66,7 +55,7 @@
     {
       "name": "Aid",
       "source": "PC1",
-      "page": 4416,
+      "page": 416,
       "category": "basic",
       "time": {
         "unit": "reaction",
@@ -98,6 +87,31 @@
               "style": "hanging",
               "name": "Critical Failure",
               "entry": "Your ally takes a –1 circumstance penalty to the triggering check."
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Aid Details",
+          "entries": [
+            "The following clarifications might be relevant when Aiding an ally.",
+            {
+              "type": "item",
+              "style": "hanging",
+              "name": "Long Tasks:",
+              "entry": "For a task that takes longer than a round, you often need to spend more than one action preparing to help, as determined by the GM."
+            },
+            {
+              "type": "item",
+              "style": "hanging",
+              "name": "Proximity:",
+              "entry": "You don't necessarily need to be next to your ally to aid, though you must be in a reasonable location to help them both when you set up and when you take the reaction."
+            },
+            {
+              "type": "item",
+              "style": "hanging",
+              "name": "Repetition:",
+              "entry": "Aiding the same creature multiple times can have diminishing returns. In particular, if you try to repeatedly Aid attacks or skill checks against a creature, the GM will usually increase the DC each time as your foe gets more savvy. This isn't the case if there's no reason the task would be less likely to work if repeated, such as Aiding someone who's climbing a wall or picking a lock."
             }
           ]
         }
@@ -748,6 +762,22 @@
             }
           ]
         }
+      ]
+    },
+    {
+      "name": "Defend",
+      "source": "PC1",
+      "page": 438,
+      "category": "general",
+      "time": {
+        "unit": "varies",
+        "label": "Ongoing / varies"
+      },
+      "traits": [
+        "exploration"
+      ],
+      "entries": [
+        "You move at half your travel speed with your shield raised. If combat breaks out, you gain the benefits of {@action Raise a Shield||Raising a Shield} before your first turn begins."
       ]
     },
     {
@@ -2497,6 +2527,23 @@
       ],
       "entries": [
         "You scout ahead and behind the group to watch danger, moving at half speed. At the start of the next encounter, every creature in your party gains a +1 circumstance bonus to their initiative rolls."
+      ]
+    },
+    {
+      "name": "Search",
+      "source": "PC1",
+      "page": 439,
+      "category": "general",
+      "time": {
+        "unit": "varies",
+        "label": "Ongoing / varies"
+      },
+      "traits": [
+        "concentrate",
+        "exploration"
+      ],
+      "entries": [
+        "You {@action Seek} meticulously for hidden doors, concealed hazards, and so on. You can usually make an educated guess as to which locations are best to check and move at half speed, but if you want to be thorough and guarantee you checked everything, you need to travel at a Speed of no more than 300 feet per minute, or 150 feet per minute to ensure you check everything before you walk into it. You can always move more slowly while Searching to cover the area more thoroughly, and the {@feat Expeditious Search} feat increases these maximum Speeds. If you come across a secret door, item, or hazard while Searching, the GM will attempt a free secret check to Seek to see if you notice the hidden object or hazard. In locations with many objects to search, you have to stop and spend significantly longer to search thoroughly."
       ]
     },
     {

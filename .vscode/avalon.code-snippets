@@ -14,19 +14,30 @@
       "}"
     ]
   },
+  "Avalon: Rule image": {
+    "scope": "json",
+    "prefix": "av-image",
+    "description": "A right-aligned image with text wrapping and a click-to-zoom viewer. Put it before the text it should sit beside.",
+    "body": [
+      "{",
+      "  \"type\": \"image\",",
+      "  \"href\": \"img/${1:areas.webp}\",",
+      "  \"alt\": \"${2:Area templates}\",",
+      "  \"align\": \"right\"",
+      "}"
+    ]
+  },
   "Avalon: Rule": {
     "scope": "json",
     "prefix": "av-rule",
-    "description": "A new top-level rule with source and chapter.",
+    "description": "An h2 rule inside a chapter. Source and chapter are inherited; set its page here.",
     "body": [
       "{",
+      "  \"type\": \"h2\",",
       "  \"name\": \"${1:Rule name}\",",
-      "  \"source\": \"${2|PC1,GMC,Avalon|}\",",
-      "  \"chapter\": \"${3:Chapter 8: Playing the Game}\",",
-      "  \"kind\": \"${4|core,optional,setting|}\",",
-      "  \"page\": 1,",
+      "  \"page\": ${2:1},",
       "  \"entries\": [",
-      "    \"${5:Rule text.}\"",
+      "    \"${3:Rule text.}\"",
       "  ]",
       "}"
     ]
@@ -34,7 +45,7 @@
   "Avalon: Heading": {
     "scope": "json",
     "prefix": "av-heading",
-    "description": "A heading and its text. Only h1, h2 and h3 become rules; h4, h5 and h6 stay inline. Use rule: false to opt out.",
+    "description": "A heading and its text. Named h1-h6 headings become rules; a top-level h1 defines a chapter. Use rule: false to keep a heading inline.",
     "body": [
       "{",
       "  \"type\": \"${1|h1,h2,h3,h4,h5,h6|}\",",
@@ -66,7 +77,7 @@
     "description": "A heading or box that also appears independently in the rules list.",
     "body": [
       "{",
-      "  \"type\": \"${1|h2,h3,box|}\",",
+      "  \"type\": \"${1|h2,h3,h4,h5,h6,box|}\",",
       "  \"name\": \"${2:Rule name}\",",
       "  \"entries\": [",
       "    \"${3:Rule text.}\"",
@@ -105,7 +116,7 @@
   "Avalon: Table": {
     "scope": "json",
     "prefix": "av-table",
-    "description": "A titled table with column names and rows.",
+    "description": "A titled table with column names, rows and optional footnotes.",
     "body": [
       "{",
       "  \"type\": \"table\",",
@@ -119,6 +130,9 @@
       "      \"${4:First cell}\",",
       "      \"${5:Second cell}\"",
       "    ]",
+      "  ],",
+      "  \"footnotes\": [",
+      "    \"${6:* Table note.}\"",
       "  ]",
       "}"
     ]
@@ -308,6 +322,79 @@
     "description": "PF2 action glyph: 1, 2, 3, reaction or free action.",
     "body": [
       "{@as ${1|1,2,3,r,f|}}"
+    ]
+  },
+  "Avalon: Chapter": {
+    "scope": "json",
+    "prefix": "av-chapter",
+    "description": "A top-level h1 chapter with introduction and nested rules; source is inherited.",
+    "body": [
+      "{",
+      "  \"type\": \"h1\",",
+      "  \"name\": \"${1:Chapter 8: Playing the Game}\",",
+      "  \"source\": \"${2|PC1,GMC,Avalon|}\",",
+      "  \"entries\": [",
+      "    \"${3:Chapter introduction.}\",",
+      "    {",
+      "      \"type\": \"h2\",",
+      "      \"name\": \"${4:Checks}\",",
+      "      \"page\": 400,",
+      "      \"entries\": [\"${5:Rule text.}\"]",
+      "    }",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Spell": {
+    "scope": "json",
+    "prefix": "av-spell",
+    "description": "A spell stat block. Fill domain to replace traditions; remove optional fields that do not apply.",
+    "body": [
+      "{",
+      "  \"type\": \"spell\",",
+      "  \"name\": \"${1:Spell name}\",",
+      "  \"level\": \"${2:1}\",",
+      "  \"traits\": [",
+      "    \"${3:Concentrate}\",",
+      "    \"${4:Manipulate}\"",
+      "  ],",
+      "  \"traditions\": [",
+      "    \"${5:arcane}\"",
+      "  ],",
+      "  \"domain\": \"\",",
+      "  \"cast\": \"${6|1,2,3,r,f,1 minute,10 minutes,1 hour|}\",",
+      "  \"cost\": \"${7:}\",",
+      "  \"trigger\": \"${8:}\",",
+      "  \"requirements\": \"${9:}\",",
+      "  \"range\": \"${10:30 feet}\",",
+      "  \"area\": \"${11:}\",",
+      "  \"targets\": \"${12:1 creature}\",",
+      "  \"defense\": \"${13:basic Reflex}\",",
+      "  \"duration\": \"${14:}\",",
+      "  \"entries\": [",
+      "    \"${15:Spell description.}\"",
+      "  ],",
+      "  \"heightened\": [",
+      "    {",
+      "      \"level\": \"${16:+1}\",",
+      "      \"entries\": [",
+      "        \"${17:Heightened effect.}\"",
+      "      ]",
+      "    }",
+      "  ]",
+      "}"
+    ]
+  },
+  "Avalon: Merged table cell": {
+    "scope": "json",
+    "prefix": "av-table-cell",
+    "description": "A row header spanning multiple rows. Omit its column from the covered rows.",
+    "body": [
+      "{",
+      "  \"entry\": \"${1:Bird}\",",
+      "  \"rowSpan\": 2,",
+      "  \"rowHeader\": true",
+      "}"
     ]
   }
 }

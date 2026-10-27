@@ -41,16 +41,20 @@ function renderTag(body, options) {
   if (tag === "rule" || tag === "action") {
     const name = inlineText(parts[0]).trim();
     const source = (parts[1] || "").trim();
-    const label = escapeHtml(inlineText(parts[2] || parts[0]));
-    const attributes = `data-${tag}-name="${escapeHtml(name)}" data-${tag}-source="${escapeHtml(source)}"`;
-    const resolution = (tag === "rule" ? options.resolveRule : options.resolveAction)?.(name, source);
+    const labelText = inlineText(parts[2] || parts[0]);
+    const label = escapeHtml(labelText);
+    const attributes = `data-${tag}-name="${escapeHtml(name)}" data-${tag}-source="${escapeHtml(source)}" data-reference-kind="${tag}"`;
+    const resolution = (tag === "rule" ? options.resolveRule : options.resolveAction)?.(name, source, { label: labelText });
     const noun = tag === "rule" ? "Rule" : "Action";
     if (resolution && resolution.status !== "found") {
       const message = resolution.status === "ambiguous" ? `More than one ${tag} matches` : `${noun} not found`;
       return `<span class="${tag}-link rule-link-unresolved" tabindex="0" ${attributes} title="${message}: ${escapeHtml(name)}${source ? ` (${escapeHtml(source)})` : ""}">${label}</span>`;
     }
     const fallback = `${tag === "rule" ? "rules" : "actions"}.html?${new URLSearchParams(source ? { [tag]: name, source } : { [tag]: name })}`;
-    return `<a class="${tag}-link" href="${escapeHtml(resolution?.target.href || fallback)}" ${attributes}>${label}</a>`;
+    const confirmedAction = tag === "action" && resolution?.status === "found" ? ' data-action-resolved="true"' : "";
+    const firstWord = /^(\s*\S+)([\s\S]*)$/u.exec(labelText);
+    const linkedLabel = firstWord ? `<span class="reference-link-start">${escapeHtml(firstWord[1])}</span>${escapeHtml(firstWord[2])}` : label;
+    return `<a class="${tag}-link" href="${escapeHtml(resolution?.target?.href || fallback)}" ${attributes}${confirmedAction}>${linkedLabel}</a>`;
   }
   if (tag === "spell") return `<em>${renderInline(parts[2] || parts[0], options)}</em>`;
   const text = renderInline(parts[0], options);
@@ -106,14 +110,16 @@ export function inlineText(value) {
 export function renderContent(content, options = {}) {
   const headings = [];
   let outlineDepth = 0;
-  const outlineExcluded = new Set(["box", "box-section", "inset", "insetReadaloud", "sidebar", "clarification", "ability", "quote", "flavor", "formula", "table", "list"]);
+  const outlineExcluded = new Set(["box", "box-section", "inset", "insetReadaloud", "sidebar", "clarification", "ability", "spell", "quote", "flavor", "formula", "table", "list"]);
   const inline = value => renderInline(value, options);
   const heading = (name, level, entry, { afterName = "", trailing = "" } = {}) => {
     const id = `${options.anchorPrefix || "section"}-${headings.length + 1}`;
-    const size = Math.max(2, Math.min(6, level));
+    const size = Math.max(2, Math.min(6, level + (options.headingOffset || 0)));
     const minorHeading = entry?.type === "h6" ? ' data-heading-level="6"' : "";
-    headings.push({ id, name: String(name), level: size, entry, outline: outlineDepth === 0 && size <= 4 });
-    return `<h${size} id="${escapeHtml(id)}"${minorHeading}>${inline(name)}${afterName}${trailing}</h${size}>`;
+    headings.push({ id, name: String(name), level: size, entry, outline: outlineDepth === 0 && level <= 4 });
+    const target = options.headingLink?.(entry);
+    const title = target ? `<a class="content-heading-link" href="${escapeHtml(target.href)}" data-select-rule="${escapeHtml(target.id)}">${inline(name)}</a>` : inline(name);
+    return `<h${size} id="${escapeHtml(id)}"${minorHeading}>${title}${afterName}${trailing}</h${size}>`;
   };
   const blocks = (entries, level) => (Array.isArray(entries) ? entries : [entries]).map(entry => block(entry, level)).join("\n");
   const cell = value => {
@@ -146,13 +152,15 @@ export function renderContent(content, options = {}) {
     if (Array.isArray(entry)) return blocks(entry, level);
     const type = entry.type || "entries";
     const children = entry.entries ?? entry.entry ?? [];
-    if (type === "ability") {
+    if (type === "ability" || type === "spell") {
+      const spell = type === "spell";
       const symbol = String(entry.actions ?? "").trim().toLowerCase();
-      const action = ["1", "2", "3", "r", "f"].includes(symbol) ? ` ${inline(`{@as ${symbol}}`)}` : "";
-      const kind = typeof entry.kind === "string" ? entry.kind.trim() : "";
+      const action = !spell && ["1", "2", "3", "r", "f"].includes(symbol) ? ` ${inline(`{@as ${symbol}}`)}` : "";
+      const spellTypes = { spell: "Spell", cantrip: "Cantrip", focus: "Focus" };
+      const kind = spell ? (Object.hasOwn(spellTypes, entry.spellType) ? spellTypes[entry.spellType] : "Spell") : typeof entry.kind === "string" ? entry.kind.trim() : "";
       const rank = typeof entry.level === "string" ? entry.level.trim() : Number.isInteger(entry.level) && entry.level >= 0 ? String(entry.level) : "";
       const classification = [kind, rank].filter(Boolean).join(" ");
-      const title = heading(entry.name || "Ability", level, entry, {
+      const title = heading(entry.name || (spell ? "Spell" : "Ability"), level, entry, {
         afterName: action,
         trailing: classification ? `<span class="ability-level">${inline(classification)}</span>` : "",
       });
@@ -161,14 +169,37 @@ export function renderContent(content, options = {}) {
       const traitRow = traits.length ? `<div class="ability-traits" role="list" aria-label="Traits">${traits.map(trait => `<span class="ability-trait" role="listitem">${inline(trait)}</span>`).join("")}</div>` : "";
       const hasContent = value => value != null && value !== false && (Array.isArray(value) ? value.length > 0 : typeof value !== "string" || value.trim().length > 0);
       const field = (label, value) => `<div class="ability-field"><dt>${label}</dt><dd>${blocks(value, level + 1)}</dd></div>`;
-      const fields = [["access", "Access"], ["prerequisites", "Prerequisites"], ["frequency", "Frequency"], ["trigger", "Trigger"], ["requirements", "Requirements"], ["cost", "Cost"]]
-        .filter(([key]) => hasContent(entry[key])).map(([key, label]) => field(label, entry[key])).join("");
+      const fieldGroup = values => {
+        const present = values.filter(([, value]) => hasContent(value));
+        if (!present.length) return "";
+        return `<div class="ability-field">${present.map(([label, value], index) => `<dt>${label}</dt><dd>${blocks(value, level + 1)}${index < present.length - 1 ? "; " : ""}</dd>`).join("")}</div>`;
+      };
+      const casting = String(entry.cast ?? "").trim().toLowerCase();
+      const cast = ["1", "2", "3", "r", "f"].includes(casting) ? `{@as ${casting}}` : entry.cast;
+      const traditions = Array.isArray(entry.traditions) ? entry.traditions.filter(value => typeof value === "string" && value.trim()).join(", ") : entry.traditions;
+      const domains = Array.isArray(entry.domain) ? entry.domain.filter(value => typeof value === "string" && value.trim()).join(", ") : entry.domain;
+      const fields = spell
+        ? [
+          [hasContent(domains) ? ["Domain", domains] : ["Traditions", traditions]],
+          [["Cast", cast], ["Cost", entry.cost]],
+          [["Trigger", entry.trigger], ["Requirements", entry.requirements]],
+          [["Range", entry.range], ["Area", entry.area], ["Targets", entry.targets]],
+          [["Defense", entry.defense ?? entry.savingThrow], ["Duration", entry.duration]],
+        ].map(fieldGroup).join("")
+        : [["Access", entry.access], ["Prerequisites", entry.prerequisites], ["Frequency", entry.frequency], ["Trigger", entry.trigger], ["Requirements", entry.requirements], ["Cost", entry.cost]]
+          .filter(([, value]) => hasContent(value)).map(([label, value]) => field(label, value)).join("");
       const metadata = fields ? `<dl class="ability-fields">${fields}</dl>` : "";
       const effect = entry.effect ?? children;
       const description = hasContent(effect) ? `<div class="ability-effect">${blocks(effect, level + 1)}</div>` : "";
-      const special = hasContent(entry.special) ? `<dl class="ability-fields ability-special">${field("Special", entry.special)}</dl>` : "";
-      const compactClass = entry.compact === true ? " ability-block--compact" : "";
-      return `<section class="ability-block${compactClass}" aria-labelledby="${escapeHtml(id)}"><header class="ability-header">${title}</header><div class="ability-content">${traitRow}${metadata}${description}${special}</div></section>`;
+      const heightened = spell && Array.isArray(entry.heightened) ? entry.heightened.filter(value => value && typeof value === "object" && hasContent(value.entries ?? value.entry)).map(value => {
+        const rank = typeof value.level === "string" ? value.level.trim() : Number.isInteger(value.level) && value.level >= 0 ? String(value.level) : "";
+        return field(rank ? `Heightened (${inline(rank)})` : "Heightened", value.entries ?? value.entry);
+      }).join("") : "";
+      const special = spell
+        ? heightened ? `<dl class="ability-fields ability-special">${heightened}</dl>` : ""
+        : hasContent(entry.special) ? `<dl class="ability-fields ability-special">${field("Special", entry.special)}</dl>` : "";
+      const compactClass = !spell && entry.compact === true ? " ability-block--compact" : "";
+      return `<section class="ability-block${spell ? " spell-block" : ""}${compactClass}" aria-labelledby="${escapeHtml(id)}"><header class="ability-header">${title}</header><div class="ability-content">${traitRow}${metadata}${description}${special}</div></section>`;
     }
     if (type === "formula") {
       const label = entry.name ? `<p class="formula-label">${inline(entry.name)}</p>` : "";
@@ -208,12 +239,35 @@ export function renderContent(content, options = {}) {
       const dialogue = entry.style === "table-dialogue";
       const tableAttributes = dialogue ? ' class="dialogue-table"' : "";
       const columns = dialogue ? '<colgroup><col class="dialogue-speaker-column"><col></colgroup>' : "";
-      return `<div class="table-wrap"><table${tableAttributes}>${entry.caption ? `<caption>${inline(entry.caption)}</caption>` : ""}${columns}${labels.length ? `<thead><tr>${labels.map(label => `<th scope="col">${cell(label)}</th>`).join("")}</tr></thead>` : ""}<tbody>${rows.map(row => `<tr>${(Array.isArray(row) ? row : row.row ?? []).map((value, index) => dialogue && index === 0 ? `<th scope="row">${cell(value)}</th>` : `<td>${cell(value)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+      const cellSpan = (value, key) => Number.isInteger(value?.[key]) && value[key] > 0 && value[key] <= 1000 ? value[key] : 1;
+      const attributes = value => ["rowSpan", "colSpan"].map(key => cellSpan(value, key) > 1 ? ` ${key.toLowerCase()}="${cellSpan(value, key)}"` : "").join("");
+      let span = Math.max(1, labels.reduce((count, value) => count + cellSpan(value, "colSpan"), 0));
+      const occupied = [];
+      const body = rows.map(row => {
+        let column = 0;
+        const cells = (Array.isArray(row) ? row : row.row ?? []).map((value, index) => {
+          while (occupied[column] > 0) column++;
+          const width = cellSpan(value, "colSpan");
+          for (let offset = 0; offset < width; offset++) occupied[column + offset] = cellSpan(value, "rowSpan");
+          column += width;
+          const header = value?.rowHeader === true || (dialogue && index === 0);
+          return header ? `<th scope="row"${attributes(value)}>${cell(value)}</th>` : `<td${attributes(value)}>${cell(value)}</td>`;
+        }).join("");
+        span = Math.max(span, occupied.length, column);
+        for (let column = 0; column < occupied.length; column++) occupied[column] = Math.max(0, (occupied[column] || 0) - 1);
+        return `<tr>${cells}</tr>`;
+      }).join("");
+      const notes = (Array.isArray(entry.footnotes) ? entry.footnotes : [entry.footnotes]).filter(value => value != null && (typeof value !== "string" || value.trim()));
+      const footer = notes.length ? `<tfoot><tr><td class="table-footnotes" colspan="${span}">${blocks(notes, level + 1)}</td></tr></tfoot>` : "";
+      return `<div class="table-wrap"><table${tableAttributes}>${entry.caption ? `<caption>${inline(entry.caption)}</caption>` : ""}${columns}${labels.length ? `<thead><tr>${labels.map(label => `<th scope="col"${attributes(label)}>${cell(label)}</th>`).join("")}</tr></thead>` : ""}<tbody>${body}</tbody>${footer}</table></div>`;
     }
     if (type === "image") {
       const href = safeHref(entry.href?.url ?? entry.href?.path ?? entry.href ?? entry.url);
       if (!href) return "";
-      return `<figure><img src="${escapeHtml(href)}" alt="${escapeHtml(entry.alt ?? entry.title ?? "")}" loading="lazy">${entry.title ? `<figcaption>${inline(entry.title)}</figcaption>` : ""}</figure>`;
+      const alt = inlineText(entry.alt ?? entry.title ?? "");
+      const label = alt ? `Enlarge image: ${alt}` : "Enlarge image";
+      const expand = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>';
+      return `<figure class="rule-image${entry.align === "right" ? " rule-image--right" : ""}"><a class="rule-image-link" href="${escapeHtml(href)}" data-image-viewer aria-label="${escapeHtml(label)}"><img src="${escapeHtml(href)}" alt="${escapeHtml(alt)}" loading="lazy"><span class="image-expand" aria-hidden="true">${expand}</span></a>${entry.title ? `<figcaption>${inline(entry.title)}</figcaption>` : ""}</figure>`;
     }
     if (type === "hr") return "<hr>";
     if (type === "flavor") return `<div class="flavor">${blocks(children, level)}</div>`;

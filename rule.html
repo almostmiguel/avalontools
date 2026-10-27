@@ -11,19 +11,41 @@
   <link rel="stylesheet" href="css/site.css">
   <link rel="stylesheet" href="css/rules.css">
   <script type="module" src="js/rules-app.js"></script>
+  <script type="module" src="js/image-viewer.js"></script>
 </head>
-<body data-page="rule">
+<body data-page="rule" data-reference-kind="rule">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Avalon home"><span class="brand-mark" aria-hidden="true">✧</span>Avalon</a>
       <nav aria-label="Main navigation" id="navigation">
-        <a class="nav-home" href="index.html">Home</a>
-        <details class="reference-menu" id="reference-menu">
-          <summary class="nav-home">Reference<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
-          <div class="reference-panel">
-            <a href="rules.html" aria-current="page">Rules</a>
-            <a href="actions.html">Actions</a>
+        <a class="nav-home nav-direct" href="rules.html" aria-current="page" data-reference-kind="rule">Rules</a>
+        <details class="nav-menu" id="player-menu" name="main-navigation">
+          <summary class="nav-home">Player<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="nav-panel">
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="ancestry"><span>Ancestries</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="archetype"><span>Archetypes</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="background"><span>Backgrounds</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="class"><span>Classes</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="feat"><span>Feats</span><small>Coming soon</small></span>
+          </div>
+        </details>
+        <details class="nav-menu" id="game-master-menu" name="main-navigation">
+          <summary class="nav-home">Game Master<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="nav-panel">
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="affliction"><span>Afflictions</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="creature"><span>Creatures</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="hazard"><span>Hazards</span><small>Coming soon</small></span>
+          </div>
+        </details>
+        <details class="nav-menu" id="reference-menu" name="main-navigation">
+          <summary class="nav-home">References<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="nav-panel">
+            <a href="actions.html" data-reference-kind="action">Actions</a>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="condition"><span>Conditions</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="equipment"><span>Equipment</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="skill"><span>Skills</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="trait"><span>Traits</span><small>Coming soon</small></span>
           </div>
         </details>
       </nav>

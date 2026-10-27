@@ -61,7 +61,7 @@ export function mountActions(library, { document, window, rules = null, attachPr
   const render = ({ save = true } = {}) => {
     const searched = searchActions(library, search.value);
     matches = sortActions(searched.filter(action => actionMatchesFilters(action, filters)), sort, order);
-    if (!selectionError && !matches.some(action => action.id === selectedId)) selectedId = matches[0]?.id || null;
+    if (selectedId && !selectionError && !matches.some(action => action.id === selectedId)) selectedId = matches[0]?.id || null;
     results.innerHTML = renderActionResults(matches, selectedId);
     $("#actions-count").textContent = `${matches.length} ${matches.length === 1 ? "action" : "actions"}`;
     const active = ACTION_FILTERS.reduce((sum, { key }) => sum + filters[key].size, 0);
@@ -87,13 +87,13 @@ export function mountActions(library, { document, window, rules = null, attachPr
       if (current) button.setAttribute("data-direction", order); else button.removeAttribute("data-direction");
       button.setAttribute("aria-label", `Sort by ${button.dataset.actionSort}${current ? `, ${order === "asc" ? "ascending" : "descending"}` : ""}`);
     }
-    const action = library.get(selectedId), key = selectionError || action?.id || "empty";
+    const action = library.get(selectedId), key = selectionError || action?.id || (matches.length ? "choose" : "empty");
     if (key !== renderedId) {
       renderedId = key; previews?.hide(); detail.scrollTop = 0;
       detail.innerHTML = action && !selectionError ? renderActionDetail(action, library, rules)
-        : `<div class="rules-detail-empty"><span class="empty-sigil" aria-hidden="true">✧</span><h2 id="action-detail-title">${selectionError ? "Action not found" : "No matching actions"}</h2><p>${escapeHtml(selectionError || "Adjust the search or filters to see actions.")}</p></div>`;
+        : `<div class="rules-detail-empty"><span class="empty-sigil" aria-hidden="true">✧</span><h2 id="action-detail-title">${selectionError ? "Action not found" : matches.length ? "Choose an action" : "No matching actions"}</h2><p>${escapeHtml(selectionError || (matches.length ? "Select an action from the list to read it here." : "Adjust the search or filters to see actions."))}</p></div>`;
       document.title = action && !selectionError ? `${action.name} · Avalon Actions` : "Actions · Avalon";
-      $("#action-selection-status").textContent = action && !selectionError ? `${action.name} selected. ${action.timeLabel}.` : selectionError || "No matching actions.";
+      $("#action-selection-status").textContent = action && !selectionError ? `${action.name} selected. ${action.timeLabel}.` : selectionError || (matches.length ? "Select an action from the list." : "No matching actions.");
     }
     if (save) saveState();
   };

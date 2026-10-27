@@ -4,4 +4,5 @@ Thumbs.db
 .vscode/*
 !.vscode/settings.json
 !.vscode/avalon.code-snippets
+!.vscode/tasks.json
 *.log

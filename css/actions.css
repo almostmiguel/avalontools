@@ -7,7 +7,7 @@
 .actions-list-columns > :not(:first-child) { text-align: center; }
 .action-result { min-height: 44px; padding: .5rem .65rem; border-left: 2px solid transparent; color: var(--text); }
 .action-result:hover { background: var(--content-wash); text-decoration: none; }
-.action-result[aria-current="true"] { border-left-color: var(--accent); background: var(--content-wash); }
+.action-result[aria-current="true"] { border-left-color: var(--accent); background: var(--selected-bg); }
 .action-result:hover strong, .action-result[aria-current="true"] strong { color: var(--accent); }
 .action-result-category { min-width: 0; text-align: center; color: var(--muted); font: .69rem/1.4 var(--font-ui); overflow-wrap: anywhere; }
 .action-result-category small { display: block; margin-top: .15rem; font-size: .62rem; }

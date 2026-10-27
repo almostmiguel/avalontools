@@ -9,6 +9,8 @@
   "scripts": {
     "start": "node scripts/serve.mjs",
     "serve:dev": "node scripts/serve.mjs",
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs",
+    "check:links": "node scripts/check-rule-links.mjs",
+    "watch:links": "node scripts/check-rule-links.mjs --watch"
   }
 }

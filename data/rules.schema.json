@@ -24,7 +24,7 @@
       "items": {
         "$ref": "#/definitions/rule"
       },
-      "description": "Top-level rules are indexed, along with named nested h1, h2, h3 and box blocks. Use rule: false to opt out. Ids are generated from ruleName or name."
+      "description": "Top-level h1 blocks define chapters, with introductory text and nested rules in entries. Named h1-h6 headings and boxes inside them become individual rules by default; rule: false keeps a block inline. Source, page and kind are inherited."
     }
   },
   "definitions": {
@@ -49,7 +49,7 @@
         "source": {
           "type": "string",
           "pattern": "\\S",
-          "description": "Optional short abbreviation shown in Index and filters; defaults to id."
+          "description": "Optional short abbreviation shown in lists and filters; defaults to id."
         }
       },
       "defaultSnippets": [
@@ -76,16 +76,42 @@
       ],
       "defaultSnippets": [
         {
-          "label": "Rule",
-          "description": "A new top-level rule with source and chapter.",
+          "label": "Chapter",
+          "description": "A chapter with introductory text, a rule and a nested section. Source and kind are inherited.",
           "body": {
+            "type": "h1",
+            "name": "${1:Chapter 8: Playing the Game}",
+            "source": "${2|PC1,GMC,Avalon|}",
+            "entries": [
+              "${3:Chapter introduction.}",
+              {
+                "type": "h2",
+                "name": "${4:Checks}",
+                "page": 400,
+                "entries": [
+                  "${5:Rule text.}",
+                  {
+                    "type": "h3",
+                    "name": "${6:Subsection}",
+                    "entries": [
+                      "${7:More detail.}"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "label": "Standalone rule",
+          "description": "A rule outside a chapter block.",
+          "body": {
+            "type": "h2",
             "name": "${1:Rule name}",
             "source": "${2|PC1,GMC,Avalon|}",
-            "chapter": "${3:Chapter 8: Playing the Game}",
-            "kind": "${4|core,optional,setting|}",
             "page": 1,
             "entries": [
-              "${5:Rule text.}"
+              "${3:Rule text.}"
             ]
           }
         }
@@ -112,18 +138,36 @@
     },
     "nestedBlock": {
       "allOf": [
-        { "$ref": "#/definitions/block" },
+        {
+          "$ref": "#/definitions/block"
+        },
         {
           "if": {
-            "required": ["rule"],
-            "properties": { "rule": { "const": true } }
+            "required": [
+              "rule"
+            ],
+            "properties": {
+              "rule": {
+                "const": true
+              }
+            }
           },
           "then": {
-            "required": ["type"],
+            "required": [
+              "type"
+            ],
             "properties": {
               "type": {
-                "enum": ["h1", "h2", "h3", "box"],
-                "description": "Only h1, h2, h3 and box content can become nested rules."
+                "enum": [
+                  "h1",
+                  "h2",
+                  "h3",
+                  "h4",
+                  "h5",
+                  "h6",
+                  "box"
+                ],
+                "description": "Named h1-h6 headings and boxes can become nested rules."
               }
             }
           }
@@ -153,6 +197,7 @@
             "item",
             "table",
             "ability",
+            "spell",
             "image",
             "hr",
             "quote",
@@ -164,7 +209,7 @@
           ],
           "enumDescriptions": [
             "Text and an optional heading.",
-            "Largest heading.",
+            "A chapter at the top level; otherwise the largest content heading.",
             "Second-level heading.",
             "Third-level heading.",
             "Fourth-level heading.",
@@ -179,6 +224,7 @@
             "A labeled line, optionally with hanging indentation.",
             "A table with optional caption and column names.",
             "An action or feat stat block.",
+            "A spell stat block with casting details and heightened effects.",
             "An image with optional caption.",
             "A horizontal separator.",
             "A quotation with optional attribution.",
@@ -193,7 +239,7 @@
         "id": {
           "type": "string",
           "pattern": "\\S",
-          "description": "Optional stable id, unique within its source. If omitted, generated from ruleName or name: lowercase, accents and punctuation removed, words joined by hyphens. Set an explicit id for duplicate names or to preserve links and stars when renaming."
+          "description": "Optional stable id, unique within its source. If omitted, generated from ruleName or name: lowercase, accents and punctuation removed, words joined by hyphens. Duplicate names add their page number (areas-300); repeated name/page combinations also add the source (areas-300-pc1). Missing pages use no-page; further collisions add a number. Set an explicit id to preserve links and stars when renaming or changing page numbers."
         },
         "name": {
           "type": "string",
@@ -202,7 +248,7 @@
         },
         "rule": {
           "type": "boolean",
-          "description": "Named h1, h2, h3 and box blocks become rules by default. Set false to keep an eligible block inline only. Other nested types cannot become rules, even with true; their eligible children can. No id is required.",
+          "description": "Named h1-h6 headings and boxes become rules by default, except a top-level h1 which defines a chapter. Set false to keep a heading or box inline only. Other block types cannot become rules; their eligible children can. No id is required.",
           "default": true
         },
         "ruleName": {
@@ -212,7 +258,7 @@
         },
         "ruleDefault": {
           "type": "boolean",
-          "description": "For same-name rules in one source, true selects this definition for {@rule Name|Source}. Source-less links use the first authored match.",
+          "description": "Prefer this definition when resolving a rule link by name. Otherwise, duplicate names are ambiguous: use a page-based target such as {@rule areas-300|PC1|Areas}. The Watch rule links editor task reports ambiguous references in the JSON and Problems panel on save. A source in the tag restricts matching to that source.",
           "default": false
         },
         "aliases": {
@@ -241,7 +287,7 @@
             "Chapter 8: Playing the Game",
             "Chapter 1: Running the Game"
           ],
-          "description": "Browse chapter within this source. Inherits from the parent while the source stays the same."
+          "description": "Optional chapter for standalone rules. A top-level h1 automatically uses its name as the chapter; nested blocks inherit it while the source stays the same."
         },
         "page": {
           "type": "integer",
@@ -300,7 +346,11 @@
           "type": "integer",
           "minimum": 2,
           "default": 2,
-          "examples": [2, 3, 4],
+          "examples": [
+            2,
+            3,
+            4
+          ],
           "description": "List column count (2 or more). Items flow down each column, then across. Columns reduce automatically in narrow readers and previews, and stack on small screens. Works with bullet, numbered and plain lists."
         },
         "ordered": {
@@ -311,6 +361,10 @@
         "caption": {
           "type": "string",
           "description": "Table title, displayed above the column names."
+        },
+        "footnotes": {
+          "$ref": "#/definitions/content",
+          "description": "Optional notes below the table rows, inside the table block. Use a string or an array of notes; inline formatting and links are supported."
         },
         "colLabels": {
           "type": "array",
@@ -378,14 +432,14 @@
               "type": "string"
             }
           ],
-          "description": "Ability level. Text such as Level is allowed for examples."
+          "description": "Ability or spell level. Text such as Level is allowed for examples."
         },
         "traits": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "Trait labels displayed beneath the ability title."
+          "description": "Trait labels displayed beneath the ability or spell title."
         },
         "compact": {
           "type": "boolean",
@@ -470,6 +524,15 @@
           "type": "string",
           "description": "Image description for screen readers."
         },
+        "align": {
+          "type": "string",
+          "enum": [
+            "center",
+            "right"
+          ],
+          "default": "center",
+          "description": "For image blocks: right shows a small thumbnail with text wrapping beside it. Clicking any image opens the zoomable viewer. Place the image before the text it should sit beside."
+        },
         "title": {
           "type": "string",
           "description": "Image caption. Use name for headings and caption for tables."
@@ -477,6 +540,109 @@
         "by": {
           "type": "string",
           "description": "Quotation attribution."
+        },
+        "spellType": {
+          "type": "string",
+          "enum": [
+            "spell",
+            "cantrip",
+            "focus"
+          ],
+          "default": "spell",
+          "description": "Printed spell classification beside its level; defaults to Spell."
+        },
+        "traditions": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "Magical traditions. An array is displayed as a comma-separated list. A non-empty domain replaces this field."
+        },
+        "cast": {
+          "$ref": "#/definitions/content",
+          "description": "Casting actions or time. Use 1, 2, 3, r or f for action symbols; longer text such as 1 minute or {@as 2} (concentrate, manipulate) is also supported."
+        },
+        "range": {
+          "$ref": "#/definitions/content",
+          "description": "Spell range, when applicable."
+        },
+        "area": {
+          "$ref": "#/definitions/content",
+          "description": "Area affected by the spell, when applicable."
+        },
+        "targets": {
+          "$ref": "#/definitions/content",
+          "description": "Creatures or objects the spell can affect."
+        },
+        "savingThrow": {
+          "$ref": "#/definitions/content",
+          "description": "Legacy name for defense. Use defense for new spell blocks."
+        },
+        "duration": {
+          "$ref": "#/definitions/content",
+          "description": "How long the spell lasts. Omit for an instantaneous spell."
+        },
+        "heightened": {
+          "type": "array",
+          "description": "Heightened effects, displayed after the spell description, in authored order.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "level"
+            ],
+            "anyOf": [
+              {
+                "required": [
+                  "entries"
+                ]
+              },
+              {
+                "required": [
+                  "entry"
+                ]
+              }
+            ],
+            "properties": {
+              "level": {
+                "$ref": "#/definitions/block/properties/level",
+                "description": "Heightened rank or increment, such as 3, +1 or Level."
+              },
+              "entries": {
+                "$ref": "#/definitions/content",
+                "description": "Heightened effect text, paragraphs or other blocks."
+              },
+              "entry": {
+                "$ref": "#/definitions/content",
+                "description": "Single heightened effect; alternative to entries."
+              }
+            }
+          }
+        },
+        "domain": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ],
+          "description": "Domain or domains of a domain spell. When non-empty, displayed instead of Traditions."
+        },
+        "defense": {
+          "$ref": "#/definitions/content",
+          "description": "Defense against the spell, such as basic Reflex, Will or AC. Shown on the same line as Duration."
         }
       },
       "allOf": [
@@ -639,7 +805,10 @@
             ],
             "properties": {
               "type": {
-                "const": "ability"
+                "enum": [
+                  "ability",
+                  "spell"
+                ]
               }
             }
           },
@@ -678,8 +847,18 @@
       ],
       "defaultSnippets": [
         {
+          "label": "Image with viewer",
+          "description": "A right-aligned thumbnail. Put it before the text it should sit beside; click to enlarge, zoom and pan.",
+          "body": {
+            "type": "image",
+            "href": "img/${1:areas.webp}",
+            "alt": "${2:Area templates}",
+            "align": "right"
+          }
+        },
+        {
           "label": "Heading",
-          "description": "A heading and its text. Only h1, h2 and h3 become rules; h4, h5 and h6 stay inline. Use rule: false to opt out.",
+          "description": "A heading and its text. Named h1-h6 headings become rules; a top-level h1 defines a chapter. Use rule: false to keep a heading inline.",
           "body": {
             "type": "${1|h1,h2,h3,h4,h5,h6|}",
             "name": "${2:Heading}",
@@ -695,14 +874,16 @@
             "type": "h2",
             "name": "${1:Heading}",
             "rule": false,
-            "entries": ["${2:Text.}"]
+            "entries": [
+              "${2:Text.}"
+            ]
           }
         },
         {
           "label": "Nested rule",
           "description": "A heading or box that also appears independently in the rules list.",
           "body": {
-            "type": "${1|h2,h3,box|}",
+            "type": "${1|h2,h3,h4,h5,h6,box|}",
             "name": "${2:Rule name}",
             "entries": [
               "${3:Rule text.}"
@@ -733,7 +914,7 @@
         },
         {
           "label": "Table",
-          "description": "A titled table with column names and rows.",
+          "description": "A titled table with column names, rows and optional footnotes.",
           "body": {
             "type": "table",
             "caption": "${1:Table title}",
@@ -746,6 +927,9 @@
                 "${4:First cell}",
                 "${5:Second cell}"
               ]
+            ],
+            "footnotes": [
+              "${6:* Table note.}"
             ]
           }
         },
@@ -866,6 +1050,43 @@
           }
         },
         {
+          "label": "Spell",
+          "description": "A spell stat block with traditions or domain, casting, targeting, defense, duration and heightened effects. Related fields share a line; omit inapplicable fields.",
+          "body": {
+            "type": "spell",
+            "name": "${1:Spell name}",
+            "level": "${2:1}",
+            "traits": [
+              "${3:Concentrate}",
+              "${4:Manipulate}"
+            ],
+            "traditions": [
+              "${5:arcane}"
+            ],
+            "domain": "",
+            "cast": "${6|1,2,3,r,f,1 minute,10 minutes,1 hour|}",
+            "cost": "${7:}",
+            "trigger": "${8:}",
+            "requirements": "${9:}",
+            "range": "${10:30 feet}",
+            "area": "${11:}",
+            "targets": "${12:1 creature}",
+            "defense": "${13:basic Reflex}",
+            "duration": "${14:}",
+            "entries": [
+              "${15:Spell description.}"
+            ],
+            "heightened": [
+              {
+                "level": "${16:+1}",
+                "entries": [
+                  "${17:Heightened effect.}"
+                ]
+              }
+            ]
+          }
+        },
+        {
           "label": "Compact ability",
           "description": "An inline ability with hanging text and labeled fields.",
           "body": {
@@ -893,6 +1114,22 @@
           "type": "object",
           "additionalProperties": false,
           "properties": {
+            "rowSpan": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000,
+              "description": "Rows this cell spans. Leave this column out of the following covered rows; do not add empty placeholders."
+            },
+            "colSpan": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000,
+              "description": "Columns this cell spans. Do not add cells for the covered columns."
+            },
+            "rowHeader": {
+              "type": "boolean",
+              "description": "Render this cell as a bold row header; useful for grouped labels such as Bird or Dog."
+            },
             "entries": {
               "type": "array",
               "items": {
@@ -955,6 +1192,17 @@
               ]
             }
           ]
+        }
+      ],
+      "defaultSnippets": [
+        {
+          "label": "Merged row label",
+          "description": "A group label covering two rows. Omit this cell from the next covered row.",
+          "body": {
+            "entry": "${1:Bird}",
+            "rowSpan": 2,
+            "rowHeader": true
+          }
         }
       ]
     }

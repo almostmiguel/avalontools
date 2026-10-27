@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Watch rule links",
+      "type": "process",
+      "command": "node",
+      "args": ["scripts/check-rule-links.mjs", "--watch"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "isBackground": true,
+      "runOptions": { "runOn": "folderOpen", "instanceLimit": 1 },
+      "presentation": { "reveal": "silent", "panel": "dedicated", "showReuseMessage": false },
+      "problemMatcher": {
+        "owner": "avalon-rule-links",
+        "source": "Avalon rule links",
+        "applyTo": "allDocuments",
+        "fileLocation": ["relative", "${workspaceFolder}"],
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):(\\d+):(\\d+): (error|warning): (.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "endLine": 4,
+          "endColumn": 5,
+          "severity": 6,
+          "message": 7
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^Checking rule links\\.\\.\\.$",
+          "endsPattern": "^Rule link check complete:"
+        }
+      }
+    }
+  ]
+}

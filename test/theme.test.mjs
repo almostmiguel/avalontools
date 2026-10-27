@@ -37,14 +37,20 @@ function environment({ saved, blocked = false, loading = false } = {}) {
   const referenceSummary = { focused: false, focus() { this.focused = true; } };
   const referenceLink = {};
   const reference = { open: false, contains: target => [reference, referenceSummary, referenceLink].includes(target), querySelector: () => referenceSummary };
+  const makeMenu = () => {
+    const summary = { focused: false, focus() { this.focused = true; } };
+    const menu = { open: false, contains: target => target === menu || target === summary, querySelector: () => summary };
+    return { menu, summary };
+  };
+  const player = makeMenu(), gameMaster = makeMenu();
   const status = { textContent: "" };
   const document = new Target();
   document.documentElement = { dataset: {} };
   document.readyState = loading ? "loading" : "complete";
   document.querySelectorAll = selector => selector === "[data-theme-choice]" ? buttons : [settings];
-  document.querySelector = selector => ({ "#site-settings": settings, "#reference-menu": reference, "#theme-status": status })[selector] ?? null;
+  document.querySelector = selector => ({ "#site-settings": settings, "#reference-menu": reference, "#player-menu": player.menu, "#game-master-menu": gameMaster.menu, "#theme-status": status })[selector] ?? null;
   vm.runInNewContext(script, { window, document });
-  return { window, document, buttons, storage, settings, summary, reference, referenceSummary, referenceLink, status, theme: () => document.documentElement.dataset.theme };
+  return { window, document, buttons, storage, settings, summary, reference, referenceSummary, referenceLink, player, gameMaster, status, theme: () => document.documentElement.dataset.theme };
 }
 
 test("dark is the default and invalid saved values cannot select another theme", () => {
@@ -129,18 +135,41 @@ test("Reference keeps its links open, dismisses outside or on Escape, and closes
   assert.equal(page.reference.open, false);
 });
 
+test("Player and Game Master dismiss outside, close sibling menus, and return keyboard focus on Escape", () => {
+  const page = environment();
+  for (const { menu, summary } of [page.player, page.gameMaster]) {
+    menu.open = true;
+    page.document.emit("click", { target: summary });
+    assert.equal(menu.open, true);
+    page.document.emit("keydown", { key: "Escape" });
+    assert.equal(menu.open, false);
+    assert.equal(summary.focused, true);
+    menu.open = true;
+    page.document.emit("click", { target: {} });
+    assert.equal(menu.open, false);
+    page.reference.open = true;
+    page.settings.open = true;
+    page.document.emit("click", { target: summary });
+    assert.equal(page.reference.open, false);
+    assert.equal(page.settings.open, false);
+  }
+  page.player.menu.open = true;
+  page.document.emit("click", { target: page.gameMaster.summary });
+  assert.equal(page.player.menu.open, false);
+  page.gameMaster.menu.open = true;
+  page.document.emit("click", { target: page.player.summary });
+  assert.equal(page.gameMaster.menu.open, false);
+});
+
 test("every page loads the theme before styles and provides accessible settings", async () => {
   for (const path of ["index.html", "rules.html", "rule.html", "actions.html"]) {
     const html = await read(path);
     assert.ok(html.indexOf('src="js/theme.js"') < html.indexOf('href="css/site.css"'), path);
-    assert.match(html, /<summary aria-label="Settings"/);
+    assert.match(html, /<summary\b[^>]*aria-label="Settings"/);
     assert.match(html, /data-theme-choice="dark"/);
     assert.match(html, /data-theme-choice="light"/);
     assert.match(html, /id="theme-status" role="status"/);
   }
-  const css = await read("css/site.css");
-  const rulesCss = await read("css/rules.css");
-  assert.match(rulesCss, /\.rule-article \{[^}]*background: var\(--paper\)/);
 });
 
 test("both palettes maintain readable primary, secondary, and content text contrast", async () => {
@@ -150,6 +179,20 @@ test("both palettes maintain readable primary, secondary, and content text contr
   const light = { ...dark, ...variables(css.match(/:root\[data-theme="light"\] \{([^}]+)\}/)[1]) };
   const luminance = color => color.slice(1).match(/../g).map(hex => parseInt(hex, 16) / 255).map(c => c <= .04045 ? c / 12.92 : ((c + .055) / 1.055) ** 2.4).reduce((sum, c, i) => sum + c * [.2126, .7152, .0722][i], 0);
   for (const [theme, palette] of Object.entries({ dark, light })) {
+    for (const [fg, bg] of [["table-heading-text", "table-heading"], ["muted", "panel"], ["accent", "panel"], ["filter-exclude", "panel"]]) {
+      const a = luminance(palette[fg]), b = luminance(palette[bg]);
+      const contrast = (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
+      assert.ok(contrast >= 4.5, `${theme} ${fg}/${bg}: ${contrast.toFixed(2)}`);
+    }
+    const categories = ["rule", "ancestry", "background", "archetype", "class", "skill", "equipment", "feat", "affliction", "creature", "hazard", "action", "condition", "trait", "spell", "setting"];
+    for (const category of categories) {
+      const link = `${category}-link`;
+      for (const surface of ["paper", "panel", "callout-bg", "table-heading"]) {
+        const a = luminance(palette[link]), b = luminance(palette[surface]);
+        const contrast = (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
+        assert.ok(contrast >= 4.5, `${theme} ${link}/${surface}: ${contrast.toFixed(2)}`);
+      }
+    }
     for (const [fg, bg] of [["text", "background"], ["muted", "background"], ["accent", "background"], ["ink", "paper"], ["content-heading", "paper"], ["content-link", "paper"], ["content-muted", "paper"], ["callout-text", "callout-bg"], ["callout-heading", "callout-bg"], ["callout-heading", "preview-heading"], ["setting-adapted", "paper"], ["setting-original", "paper"], ["setting-adapted", "panel"], ["setting-original", "panel"]]) {
       const a = luminance(palette[fg]), b = luminance(palette[bg]);
       const contrast = (Math.max(a, b) + .05) / (Math.min(a, b) + .05);

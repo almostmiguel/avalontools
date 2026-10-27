@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { createLibrary, searchRules, rulePath, renderBrowse, renderResults, renderRulePath, browseBranchIds } from "../js/rules-library.js";
+import { createLibrary, searchRules, rulePath, renderBrowse, renderRulePath, browseBranchIds } from "../js/rules-library.js";
 import { sourceTone, renderRuleCitation } from "../js/rule-sources.js";
 
-test("source colors stay consistent between Index, Browse and citations when filtered or reordered", () => {
+test("source colors stay consistent between Browse and citations when filtered or reordered", () => {
   const library = createLibrary({ sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }], rules: [
     { id: "checks", name: "Checks", source: "PC1", chapter: "Chapter 8: Playing the Game", entries: ["Roll."] },
     { id: "dc", name: "Difficulty Classes", source: "GMC", entries: ["Set a DC."] },
@@ -12,7 +12,6 @@ test("source colors stay consistent between Index, Browse and citations when fil
   assert.equal(sourceTone("pc1"), sourceTone("PC1"));
   for (const rule of [...library.rules].reverse()) {
     const attribute = `data-source-tone="${sourceTone(rule.sourceId)}"`;
-    assert.ok(renderResults([rule]).includes(attribute));
     assert.ok(renderBrowse(library, [rule]).includes(attribute));
     assert.ok(renderRuleCitation(rule).includes(attribute));
   }
@@ -118,8 +117,8 @@ test("breadcrumbs link every ancestor, use the short rule title and mark only th
   assert.deepEqual(rulePath(library, rule).map(item => item.name), ["Checks", "Attack Rolls", "Multiple Attack Penalty"]);
   const html = renderRulePath(rule, library);
   assert.match(html, /aria-label="Rule hierarchy"/);
-  assert.match(html, /data-rule-name="checks" data-rule-source="PC1">Checks<\/a>/);
-  assert.match(html, /data-rule-name="attack" data-rule-source="PC1">Attack Rolls<\/a>/);
+  assert.match(html, /data-rule-name="PC1:checks" data-rule-source="PC1">Checks<\/a>/);
+  assert.match(html, /data-rule-name="PC1:attack" data-rule-source="PC1">Attack Rolls<\/a>/);
   assert.match(html, /<span aria-current="page">Multiple Attack Penalty<\/span>/);
   assert.doesNotMatch(html, /data-rule-name="map"/);
   assert.equal(renderRulePath(library.get("PC1:checks"), library), "");

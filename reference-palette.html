@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reference colors · Avalon</title>
+  <script src="js/theme.js"></script>
+  <script type="module">
+    import { attachRulePreviews } from "./js/rule-links.js";
+    const previews = attachRulePreviews({ document, window });
+    void previews.validateActions(document);
+  </script>
+  <link rel="stylesheet" href="css/site.css">
+  <style>
+    body { padding: clamp(1rem, 4vw, 3rem); }
+    main { max-width: 1050px; margin-inline: auto; }
+    .palette-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+    .palette-header .eyebrow { margin: 0 0 .35rem; }
+    h1 { margin: 0; font: 400 2.5rem/1.2 var(--font-display); }
+    .theme-options { min-width: 200px; }
+    .palette-intro { max-width: 70ch; margin: 1.5rem 0; color: var(--muted); }
+    .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: .9rem; }
+    .palette-card { min-width: 0; padding: 1.15rem; border: 1px solid var(--line); border-top: 2px solid var(--reference-color); border-radius: 6px; background: var(--paper); box-shadow: var(--surface-shadow); }
+    .palette-card-heading { display: flex; align-items: center; gap: .65rem; }
+    .palette-card h2 { margin: 0; color: var(--ink); font: 600 .95rem var(--font-ui); }
+    .palette-card-heading > span:last-child { margin-left: auto; color: var(--content-muted); font-size: .7rem; }
+    .palette-swatch { flex: none; width: .75rem; height: .75rem; border-radius: 50%; background: var(--reference-color); }
+    .palette-card p { margin: .9rem 0 0; color: var(--ink); font-size: .95rem; line-height: 1.75; }
+    .palette-card .reference-color { text-decoration: underline dotted; text-underline-offset: .18em; }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="palette-header">
+      <div><p class="eyebrow">Avalon · Design reference</p><h1>Reference colors</h1></div>
+      <div class="theme-options" role="group" aria-label="Color theme"><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button></div>
+    </header>
+    <p class="palette-intro">A shared palette for the growing reference library. Compare the colors in context and switch themes to check both versions. Rules and actions use their matching home-page icons, immediately before the text.</p>
+    <div class="palette-grid">
+      <article class="palette-card" data-reference-kind="rule"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Rules</h2><span>Cool slate</span></div><p>See <a class="rule-link" href="rules.html?rule=Checks"><span class="reference-link-start">Checks</span></a> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="ancestry"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Ancestries</h2><span>Moss</span></div><p>See <span class="reference-color">Dwarf</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="background"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Backgrounds</h2><span>Sandstone</span></div><p>See <span class="reference-color">Scholar</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="archetype"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Archetypes</h2><span>Orchid</span></div><p>See <span class="reference-color">Duelist</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="class"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Classes</h2><span>Cobalt</span></div><p>See <span class="reference-color">Fighter</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="skill"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Skills</h2><span>Jade</span></div><p>See <span class="reference-color">Athletics</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="equipment"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Equipment</h2><span>Steel</span></div><p>See <span class="reference-color">Longsword</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="feat"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Feats</h2><span>Copper</span></div><p>See <span class="reference-color">Shield Block</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="affliction"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Afflictions</h2><span>Olive</span></div><p>See <span class="reference-color">Goblin Pox</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="creature"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Creatures</h2><span>Crimson</span></div><p>See <span class="reference-color">Goblin</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="hazard"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Hazards</h2><span>Terracotta</span></div><p>See <span class="reference-color">Pit Trap</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="action"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Actions</h2><span>Amber</span></div><p>See <a class="action-link" href="actions.html?action=Stride" data-action-name="Stride"><span class="reference-link-start">Stride</span></a> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="condition"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Conditions</h2><span>Rose</span></div><p>See <span class="reference-color">Frightened</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="trait"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Traits</h2><span>Pewter</span></div><p>See <span class="reference-color">Auditory</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="spell"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Spells</h2><span>Amethyst</span></div><p>See <span class="reference-color">Fireball</span> for more details.</p></article>
+      <article class="palette-card" data-reference-kind="setting"><div class="palette-card-heading"><span class="palette-swatch" aria-hidden="true"></span><h2>Setting</h2><span>Antique gold</span></div><p>See <span class="reference-color">Avalon</span> for more details.</p></article>
+    </div>
+    <p class="sr-only" id="theme-status" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>

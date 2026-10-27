@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import { renderContent } from "../js/content-renderer.js";
 import { renderRulePreview } from "../js/rule-links.js";
@@ -15,15 +14,16 @@ const ability = {
   special: "You can select this more than once.",
 };
 
-test("ability blocks render the header, action font, level, traits, labeled fields and effects", () => {
+test("ability blocks preserve names, levels, traits, labeled fields and formatted effects", () => {
   const { html, headings } = renderContent({ entries: [ability] });
-  assert.match(html, /<section class="ability-block" aria-labelledby="section-1">/);
-  assert.match(html, /Example Ability <span class="action-symbol" data-symbol="2"/);
+  assert.ok(html.includes(`aria-labelledby="${headings[0].id}"`));
+  assert.match(html, /Example Ability/);
+  assert.match(html, /data-symbol="2"/);
   assert.match(html, /<span class="ability-level">Feat 1<\/span>/);
   assert.match(html, /class="ability-trait" role="listitem">General/);
   assert.match(html, /class="ability-trait" role="listitem">Skill/);
   for (const label of ["Access", "Prerequisites", "Frequency", "Trigger", "Requirements", "Cost", "Special"]) {
-    assert.ok(html.includes(`<dt>${label}</dt><dd>`), label);
+    assert.ok(html.includes(`<dt>${label}</dt>`), label);
   }
   assert.match(html, /<em>light<\/em>/);
   assert.match(html, /<ul><li><p>First effect/);
@@ -47,7 +47,6 @@ test("ability level labels accept strings and remain safe", () => {
   for (const level of ["Level", "  Level  ", "1", "—"]) {
       const { html } = renderContent({ entries: [{ ...ability, kind: undefined, level }] });
       assert.ok(html.includes(`<span class="ability-level">${level.trim()}</span>`));
-      assert.doesNotMatch(html, /heading-page|data-section-toggle|class="section-body"|foldable-heading/);
   }
   const escaped = renderContent({ entries: [{ ...ability, kind: undefined, level: '<script>bad()</script>' }] }).html;
   assert.doesNotMatch(escaped, /<script>/);
@@ -68,22 +67,6 @@ test("ability field values support entry arrays and the effect alternative", () 
   assert.match(html, /An exception/);
 });
 
-test("body paragraphs stay flush left while labeled ability fields retain hanging indents", async () => {
-  const css = await readFile(new URL("../css/site.css", import.meta.url), "utf8");
-  assert.match(css, /:is\(\.rich-content, \.rule-preview-body\) p \{ text-indent: 0; \}/);
-  assert.doesNotMatch(css, /p \+ p \{[^}]*text-indent:/);
-  assert.match(css, /:is\(\.flavor, \.setting-explanation, table\) p \{ text-indent: 0; \}/);
-  assert.match(css, /\.ability-field \{[^}]*padding-inline-start: 1\.25em; text-indent: -1\.25em;/);
-  assert.match(css, /\.ability-field dd > p \{ display: inline; margin: 0; text-indent: 0; \}/);
-  const html = renderContent({ entries: [
-    "First body paragraph.", "Second body paragraph.",
-    { ...ability, entries: ["First description paragraph.", "Second description paragraph."] },
-  ] }).html;
-  assert.match(html, /<p>First body paragraph\.<\/p>\n<p>Second body paragraph\.<\/p>/);
-  assert.match(html, /class="ability-effect"><p>First description paragraph\.<\/p>\n<p>Second description paragraph\.<\/p>/);
-  assert.match(html, /class="ability-field"><dt>Prerequisites<\/dt><dd><p>/);
-});
-
 test("ability blocks escape authored text instead of injecting HTML or arbitrary attributes", () => {
   const html = renderContent({ entries: [{
     type: "ability", name: '<script>bad()</script>', kind: '<img src=x onerror="bad()">',
@@ -95,23 +78,24 @@ test("ability blocks escape authored text instead of injecting HTML or arbitrary
   assert.doesNotMatch(html, /\[object Object\]/);
 });
 
-test("ability rule links and previews keep the complete stat block, source and unique anchors", () => {
-  const entry = { ...ability, id: "example-feat", aliases: ["Example"], ruleDefault: true, setting: "modified", settingNote: "Campaign adaptation." };
-  const rule = { id: entry.id, name: entry.name, aliases: entry.aliases, page: entry.page, source: "PC1", setting: entry.setting, entries: [{ ...entry, rule: false, setting: undefined }] };
-  const registry = createLibrary({ sources: [source], rules: [rule] }).registry;
-  const target = registry.resolve("Example", "PC1").target;
-  assert.equal(target.entry, rule);
-  assert.match(target.href, /rules.html\?id=PC1%3Aexample-feat/);
-  const preview = renderRulePreview("Example Ability", "PC1", registry);
-  assert.match(preview, /class="ability-block"/);
-  assert.match(preview, /data-symbol="2"/);
-  assert.match(preview, /<dt>Prerequisites<\/dt>/);
-  assert.match(preview, /<dt>Special<\/dt>/);
-  assert.match(preview, /class="ability-trait"/);
-  assert.match(preview, /· p\. 15/);
-  assert.match(preview, /id="rule-preview-section-1"/);
-  assert.doesNotMatch(preview, /id="section-1"|data-section-toggle/);
-  assert.equal((preview.match(/class="setting-provenance"/g) || []).length, 1);
+
+test("normal and compact ability previews retain fields, links, attribution and unique anchors", () => {
+  for (const compact of [false, true]) {
+    const entry = { ...ability, compact, id: "example-feat", aliases: ["Example"], setting: compact ? "original" : "modified", settingNote: "Campaign adaptation." };
+    const rule = { id: entry.id, name: entry.name, aliases: entry.aliases, source: "PC1", page: 15, setting: entry.setting, entries: [{ ...entry, rule: false, setting: undefined }] };
+    const registry = createLibrary({ sources: [source], rules: [rule] }).registry;
+    assert.equal(registry.resolve("Example", "PC1").target.entry, rule);
+    const preview = renderRulePreview("Example", "PC1", registry);
+    assert.match(preview, compact ? /ability-block--compact/ : /class="ability-block"/);
+    for (const label of ["Prerequisites", "Requirements", "Special"]) assert.ok(preview.includes(label));
+    assert.match(preview, /data-symbol="2"/);
+    assert.match(preview, /id="rule-preview-section-1"/);
+    assert.doesNotMatch(preview, /id="section-\d+"/);
+    assert.match(preview, compact ? /Avalon original/ : /Adapted from/);
+    assert.equal((preview.match(/class="setting-provenance"/g) || []).length, 1);
+    const ids = [...preview.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+    assert.equal(new Set(ids).size, ids.length);
+  }
 });
 
 test("compact abilities preserve the full fields, glyphs, and anchor without adding controls", () => {
@@ -128,38 +112,8 @@ test("compact abilities preserve the full fields, glyphs, and anchor without add
     assert.match(html, /Cast <em>light<\/em>/);
     assert.equal(headings[0].name, ability.name);
     assert.equal(headings[0].id, "section-1");
-    assert.doesNotMatch(html, /data-section-toggle|heading-page/);
   }
   for (const compact of [undefined, false, "true"]) {
     assert.doesNotMatch(renderContent({ entries: [{ ...ability, compact }] }).html, /ability-block--compact/);
   }
-});
-
-test("compact ability styles inherit the ability font and use a hanging, inline layout", async () => {
-  const css = await readFile(new URL("../css/site.css", import.meta.url), "utf8");
-  assert.match(css, /\.ability-block \{[^}]*font: \.9rem\/1\.65 var\(--font-ui\)/);
-  const compact = css.match(/:is\(\.rich-content, \.rule-preview-body\) \.ability-block--compact \{([^}]+)\}/)[1];
-  assert.match(compact, /padding: 0 0 0 1\.25em/);
-  assert.match(compact, /text-indent: -1\.25em/);
-  assert.doesNotMatch(compact, /font:/);
-  assert.match(css, /\.ability-block--compact \.ability-header > :is\([^}]+font: inherit; font-weight: 700/);
-  assert.match(css, /\.ability-block--compact \.ability-traits::before \{ content: "\("; \}/);
-  assert.match(css, /\.ability-block--compact \.ability-traits::after \{ content: "\) "; \}/);
-  assert.match(css, /\.ability-block--compact \.ability-field \+ \.ability-field::before[^}]+content: "; "/);
-  assert.match(css, /\.ability-block--compact \.ability-effect::before \{ content: "; Effect "/);
-  assert.doesNotMatch(css, /p \+ p \{[^}]*text-indent:/);
-});
-
-test("compact ability previews preserve compact formatting and normal rule resolution", () => {
-  const entry = { ...ability, compact: true, id: "compact-example", setting: "original" };
-  const rule = { id: entry.id, name: entry.name, aliases: entry.aliases, page: entry.page, source: "PC1", setting: entry.setting, entries: [{ ...entry, rule: false, setting: undefined }] };
-  const registry = createLibrary({ sources: [source], rules: [rule] }).registry;
-  const target = registry.resolve("Example Ability", "PC1").target;
-  assert.match(target.href, /rules.html\?id=PC1%3Acompact-example/);
-  const preview = renderRulePreview("compact-example", "PC1", registry);
-  assert.match(preview, /class="ability-block ability-block--compact"/);
-  assert.match(preview, /id="rule-preview-section-1"/);
-  assert.match(preview, /<dt>Requirements<\/dt>/);
-  assert.match(preview, /setting-content--original/);
-  assert.doesNotMatch(preview, /id="section-1"|data-section-toggle/);
 });

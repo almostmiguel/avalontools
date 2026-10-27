@@ -1,15 +1,16 @@
 .avalon-home { padding-top: 2.5rem; }
 .home-heading { padding-bottom: 1.7rem; border-bottom: 1px solid var(--line); }
 .home-heading .eyebrow { margin: 0 0 .5rem; color: var(--muted); font-size: .65rem; letter-spacing: .12em; }
-.home-heading h1 { margin: 0; font: 400 3rem/1.1 var(--font-display); letter-spacing: .015em; }
+.home-heading h1 { margin: 0; color: var(--accent); font: 400 3rem/1.1 var(--font-display); letter-spacing: .015em; }
 .home-heading > p:last-child { margin: .75rem 0 0; color: var(--muted); font-size: .95rem; }
 .home-reference { padding: 1.8rem 0 2rem; }
-.home-reference > h2 { display: inline-block; margin: 0 0 1rem; padding-bottom: .35rem; border-bottom: 2px solid var(--accent); color: var(--text); font-size: 1.15rem; font-weight: 600; }
+.home-reference > h2 { display: inline-block; margin: 0 0 1rem; padding-bottom: .35rem; border-bottom: 2px solid var(--accent); color: var(--accent); font-size: 1.15rem; font-weight: 600; }
 .home-reference-grid { display: grid; grid-template-columns: repeat(2, 190px) minmax(0, 1fr); align-items: start; gap: 2rem; }
-.home-tool { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 158px; padding: 1.2rem; border: 1px solid var(--accent); border-radius: 4px; background: var(--panel); color: var(--accent); }
-.home-tool:hover { text-decoration: none; background: var(--card-hover); box-shadow: 0 3px 14px #0002; }
+.home-tool { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 158px; padding: 1.2rem; border: 1px solid var(--reference-color, var(--accent)); border-radius: 4px; background: var(--panel); color: var(--reference-color, var(--accent)); box-shadow: var(--surface-shadow); }
+.home-tool:hover { text-decoration: none; background: color-mix(in srgb, var(--reference-color, var(--accent)) 7%, var(--panel)); box-shadow: 0 3px 14px #0002; }
 .home-tool svg { width: 48px; height: 48px; margin-bottom: .6rem; }
-.home-tool strong { color: var(--text); font-size: 1.1rem; font-weight: 600; }
+.home-tool:focus-visible { outline-color: var(--reference-color, var(--accent)); }
+.home-tool strong { color: var(--reference-color, var(--accent)); font-size: 1.1rem; font-weight: 600; }
 .home-tool > span { margin-top: .3rem; color: var(--muted); font-size: .63rem; }
 .home-reference-note { max-width: 580px; padding: .4rem 0; }
 .home-reference-note h3 { margin: 0 0 .6rem; color: var(--content-heading); font-size: 1rem; font-weight: 600; }

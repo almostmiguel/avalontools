@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { createLibrary, renderRuleBody, renderRulePath } from "../js/rules-library.js";
 import { renderRulePreview } from "../js/rule-links.js";
 
-test("named h1, h2, h3 and box blocks are indexed by default with generated ids and inherited metadata", () => {
+test("named h1-h6 and box blocks are indexed by default with generated ids and inherited metadata", () => {
   const payload = { sources: [{ id: "PC1", name: "Player Core" }], rules: [{
     name: "Checks", source: "PC1", chapter: "Chapter 8", page: 400, kind: "optional", entries: [
       { type: "h2", name: "Attack Rolls", entries: [
@@ -11,13 +11,16 @@ test("named h1, h2, h3 and box blocks are indexed by default with generated ids 
       ] },
       { type: "box", name: "Secret Checks", entries: ["Hidden roll."] },
       { type: "h1", name: "Overview", entries: ["Introduction."] },
+      { type: "h4", name: "Fourth", entries: [{ type: "h5", name: "Fifth", entries: [{ type: "h6", name: "Sixth", entries: ["Deep detail."] }] }] },
       { name: "Generic Section", entries: ["Details."] },
       { type: "list", name: "Named List", items: ["An item."] },
     ],
   }] };
   const before = JSON.stringify(payload);
   const library = createLibrary(payload);
-  assert.equal(library.rules.length, 5);
+  assert.equal(library.rules.length, 8);
+  assert.equal(library.get("PC1:sixth").parentId, "PC1:fifth");
+  assert.equal(library.get("PC1:fifth").parentId, "PC1:fourth");
   assert.ok(library.get("PC1:overview"));
   assert.equal(library.get("PC1:generic-section"), undefined);
   assert.equal(library.get("PC1:named-list"), undefined);
@@ -48,7 +51,7 @@ test("rule false keeps exceptions inline without preventing named children from 
 });
 
 test("other nested types never become rules, even with an explicit rule true", () => {
-  const types = ["h4", "h5", "h6", "entries", "box-section", "formula", "ability", "item", "list", "table", "clarification", "inset", "sidebar", "quote", "image"];
+  const types = ["entries", "box-section", "formula", "ability", "spell", "item", "list", "table", "clarification", "inset", "sidebar", "quote", "image"];
   for (const flag of [undefined, true]) {
     const entries = types.map(type => ({ type, name: `Named ${type}`, rule: flag, entries: ["Inline text."], items: ["Item."], rows: [["Cell."]] }));
     entries.push({ name: "Generic section", rule: flag, entries: [
@@ -58,7 +61,6 @@ test("other nested types never become rules, even with an explicit rule true", (
     assert.deepEqual(library.rules.map(rule => rule.id), ["Avalon:eligible-child", "Avalon:parent"]);
     assert.equal(library.get("Avalon:eligible-child").parentId, "Avalon:parent");
     const html = renderRuleBody(library.get("Avalon:parent"), library);
-    assert.match(html, /Named h4/);
     assert.match(html, /Named formula/);
     assert.match(html, /Inline text/);
   }
@@ -108,7 +110,7 @@ test("generated ids work in inline links, hover cards and ancestor breadcrumbs",
   assert.equal((body.match(/href="rules.html\?id=Avalon%3Adegree-of-success"/g) || []).length, 2);
   assert.match(renderRulePreview("degree-of-success", "Avalon", library.registry), /Determine the outcome/);
   const path = renderRulePath(child, library);
-  assert.match(path, /data-rule-name="checks" data-rule-source="Avalon"/);
+  assert.match(path, /data-rule-name="Avalon:checks" data-rule-source="Avalon"/);
   assert.doesNotMatch(path, /undefined/);
   assert.match(path, /href="rules.html\?id=Avalon%3Achecks"/);
 });
@@ -127,18 +129,83 @@ test("explicit ids take priority, while generated ids remain stable across order
   }
 });
 
-test("id collisions require an explicit override within a source and invalid explicit ids are reported", () => {
+test("generated id collisions are separated automatically, explicit ids are reserved and invalid ids are reported", () => {
   const first = { name: "Armor Class", source: "PC1" };
   const second = { name: "Armor-Class", source: "PC1" };
-  assert.throws(() => createLibrary({ rules: [first, second] }), /Duplicate rule id: PC1:armor-class.*explicit, unique ids/);
+  const repeated = createLibrary({ rules: [first, second] });
+  assert.equal(repeated.rules.length, 2);
+  assert.equal(new Set(repeated.rules.map(rule => rule.id)).size, 2);
   second.id = "armor-class-summary";
   assert.equal(createLibrary({ rules: [first, second] }).rules.length, 2);
   assert.equal(createLibrary({ rules: [first, { name: "Armor Class", source: "GMC" }] }).rules.length, 2);
-  assert.throws(() => createLibrary({ rules: [{ name: "Example", id: "armor-class", source: "PC1" }, first] }), /Duplicate rule id/);
+  const reserved = createLibrary({ rules: [{ name: "Example", id: "armor-class", source: "PC1" }, first] });
+  assert.equal(reserved.get("PC1:armor-class").name, "Example");
+  assert.notEqual(reserved.rules.find(rule => rule.name === "Armor Class").id, "PC1:armor-class");
+  assert.throws(() => createLibrary({ rules: [{ ...first, id: "same" }, { ...second, id: "same" }] }), /Duplicate rule id/);
   for (const id of [null, "", " ", 12]) {
     assert.throws(() => createLibrary({ rules: [{ name: "Example", id }] }), /non-empty string id/);
   }
   assert.throws(() => createLibrary({ rules: [{ name: "---" }] }), /needs an explicit id/);
   assert.ok(createLibrary({ rules: [{ name: "---", id: "separator" }] }).get("Avalon:separator"));
   assert.throws(() => createLibrary({ rules: [{ name: "Parent", entries: [{ type: "h2", rule: true }] }] }), /promoted rule needs a name/);
+});
+
+test("same-name rules use inherited page numbers and survive reordering and parent changes without altering JSON", () => {
+  const payload = { sources: [{ id: "PC1", name: "Player Core" }], rules: [
+    { name: "Spells", source: "PC1", chapter: "Chapter 7", page: 300, entries: [{ type: "h2", name: "Areas", entries: ["Spell areas."] }] },
+    { name: "Effects", source: "PC1", chapter: "Chapter 8", page: 428, entries: [{ type: "h2", name: "Areas", entries: ["Effect areas."] }] },
+  ] };
+  const before = JSON.stringify(payload);
+  const first = createLibrary(payload);
+  const choices = first.registry.resolve("Areas", "PC1");
+  assert.equal(choices.status, "ambiguous");
+  assert.equal(new Set(choices.matches.map(rule => rule.id)).size, 2);
+  assert.deepEqual(choices.matches.map(rule => rule.localId), ["areas-300", "areas-428"]);
+  for (const rule of choices.matches) {
+    assert.equal(first.registry.resolve(rule.id).target, rule);
+    assert.equal(first.registry.resolve(rule.localId).target, rule);
+  }
+  assert.equal(JSON.stringify(payload), before);
+  payload.rules.reverse();
+  payload.rules[0].name = "Different parent";
+  payload.rules[0].chapter = "A different chapter";
+  const next = createLibrary(payload);
+  for (const rule of choices.matches) assert.equal(next.get(rule.id).entry, rule.entry);
+});
+
+test("repeated name and page combinations add the source, with a final number for identical source and page", () => {
+  const payload = { sources: [{ id: "PC1", source: "PlayerCore", name: "Player Core" }], rules: [
+    { name: "Areas", source: "PlayerCore", page: 300 },
+    { name: "Areas", source: "GMC", page: 300 },
+    { name: "Areas", source: "PC1", page: 428 },
+    { name: "Unique Rule", source: "PC1", page: 300 },
+  ] };
+  const first = createLibrary(payload);
+  assert.ok(first.get("PC1:areas-300-pc1"));
+  assert.ok(first.get("GMC:areas-300-gmc"));
+  assert.ok(first.get("PC1:areas-428"));
+  assert.ok(first.get("PC1:unique-rule"));
+  assert.equal(first.registry.resolve("Areas").status, "ambiguous");
+  assert.equal(first.registry.resolve("areas-300-gmc").target.sourceId, "GMC");
+  payload.rules.reverse();
+  const reordered = createLibrary(payload);
+  for (const rule of first.rules) assert.equal(reordered.get(rule.id).entry, rule.entry);
+  payload.rules.push({ name: "Areas", source: "PC1", page: 300 });
+  const repeated = createLibrary(payload);
+  assert.ok(repeated.get("PC1:areas-300-pc1-2"));
+  assert.equal(new Set(repeated.rules.map(rule => rule.id)).size, repeated.rules.length);
+});
+
+test("missing pages and page-link collisions still produce usable distinct targets without replacing explicit ids", () => {
+  const library = createLibrary({ rules: [
+    { name: "Areas", source: "PC1", page: 300 },
+    { name: "Areas", source: "PC1" },
+    { name: "Reserved", id: "areas-300", source: "PC1" },
+    { name: "Areas", source: "GMC" },
+  ] });
+  assert.equal(library.get("PC1:areas-300").name, "Reserved");
+  assert.ok(library.get("PC1:areas-300-pc1"));
+  assert.ok(library.get("PC1:areas-no-page-pc1"));
+  assert.ok(library.get("GMC:areas-no-page-gmc"));
+  assert.equal(library.registry.resolve("Areas").matches.length, 3);
 });

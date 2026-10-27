@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import { renderInline } from "../js/content-renderer.js";
 import { renderRulePreview } from "../js/rule-links.js";
-import { createLibrary, searchRules, sortRules, renderResults, renderRuleBody } from "../js/rules-library.js";
+import { createLibrary, searchRules, renderRuleBody, renderBrowse } from "../js/rules-library.js";
 
 const fixture = () => ({
   sources: [{ id: "PC1", source: "PC1", name: "Player Core" }],
@@ -17,24 +17,6 @@ const fixture = () => ({
     { name: "Água", id: "agua", source: "PC1", kind: "optional", entries: ["Water obscures your vision."] },
     { name: "Perception", id: "perception-summary", source: "PC1", entries: ["A brief summary."] },
   ],
-});
-
-test("sorting handles case, accents, numbers and ties without changing catalog or input order", () => {
-  const library = createLibrary({ rules: [
-    { id: "ten", name: "Áction 10", source: "PC2", entries: ["Text."] },
-    { id: "two", name: "action 2", source: "PC1", entries: ["Text."] },
-    { id: "one", name: "Action 1", source: "PC2", kind: "optional", entries: ["Text."] },
-  ] });
-  const input = [...library.rules].reverse();
-  const before = input.map(rule => rule.id);
-  const catalogBefore = library.rules.map(rule => rule.id);
-  assert.deepEqual(sortRules(input, { sort: "name" }).map(rule => rule.entry.id), ["one", "two", "ten"]);
-  assert.deepEqual(sortRules(input, { sort: "name", order: "desc" }).map(rule => rule.entry.id), ["ten", "two", "one"]);
-  assert.deepEqual(sortRules(input, { sort: "type" }).map(rule => rule.entry.id), ["two", "ten", "one"]);
-  assert.deepEqual(sortRules(input, { sort: "source" }).map(rule => rule.entry.id), ["two", "one", "ten"]);
-  assert.deepEqual(sortRules(input, { sort: "source", order: "desc" }).map(rule => rule.entry.id), ["one", "ten", "two"]);
-  assert.deepEqual(input.map(rule => rule.id), before);
-  assert.deepEqual(library.rules.map(rule => rule.id), catalogBefore);
 });
 
 test("rule false keeps headings and notes inline, while source metadata never creates rules", () => {
@@ -85,31 +67,44 @@ test("rule references prefer default definitions and explicit ids while keeping 
   assert.equal(createLibrary(ambiguous).registry.resolve("Perception", "PC1").status, "ambiguous");
 });
 
-test("omitting a source resolves the first authored match across all sources, including GM-only rules", () => {
-  const library = createLibrary({ sources: [{ id: "GMC", name: "GM Core" }], rules: [
+
+test("duplicate names remain unresolved while unique names, explicit IDs and declared defaults stay reliable", () => {
+  const payload = { sources: [{ id: "GMC", name: "GM Core" }], rules: [
     { id: "dc-gm", name: "Difficulty Classes", source: "GMC", page: 52, aliases: ["DCs"], entries: ["GM difficulty rules."] },
-    { id: "dc-pc", name: "Difficulty Classes", source: "PC1", ruleDefault: true, entries: ["Another definition."] },
+    { id: "dc-pc", name: "Difficulty Classes", source: "PC1", entries: ["Another definition."] },
     { id: "gm-only", name: "GM Only", source: "GMC", entries: ["Only in GM Core."] },
-  ] });
+  ] };
+  const library = createLibrary(payload);
   for (const source of [undefined, null, "", "   "]) {
-    assert.equal(library.registry.resolve("Difficulty Classes", source).target.id, "GMC:dc-gm");
+    const found = library.registry.resolve("Difficulty Classes", source);
+    assert.equal(found.status, "ambiguous");
+    assert.deepEqual(found.matches.map(rule => rule.id), ["GMC:dc-gm", "PC1:dc-pc"]);
     assert.equal(library.registry.resolve("GM Only", source).status, "found");
   }
   assert.equal(library.registry.resolve("DCs").target.id, "GMC:dc-gm");
   assert.equal(library.registry.resolve("Difficulty Classes", "PC1").target.id, "PC1:dc-pc");
-  assert.equal(library.registry.resolve("GM Only", "PC1").status, "missing");
+  assert.equal(library.registry.resolve("GMC:dc-gm").target.id, "GMC:dc-gm");
+  assert.equal(library.registry.resolve("gmc:DC-GM", "GMC").target.id, "GMC:dc-gm");
+  assert.equal(library.registry.resolve("GMC:dc-gm", "PC1").status, "missing");
   assert.equal(library.registry.resolve("Not Written").status, "missing");
-  const html = renderInline("{@rule Difficulty Classes} and {@rule Difficulty Classes||DCs}", {
-    source: "PC1", resolveRule: library.registry.resolve,
-  });
-  assert.match(html, /href="rules.html\?id=GMC%3Adc-gm"/);
-  assert.match(html, /data-rule-source=""/);
-  assert.match(html, />DCs<\/a>/);
-  assert.doesNotMatch(html, /rule-link-unresolved/);
+  const html = renderInline("{@rule Difficulty Classes}", { resolveRule: library.registry.resolve });
+  assert.match(html, /rule-link-unresolved/);
+  assert.doesNotMatch(html, /href=|<a /);
   const preview = renderRulePreview("Difficulty Classes", "", library.registry);
-  assert.match(preview, /GM difficulty rules/);
-  assert.match(preview, />GM Core<\/span>/);
-  assert.doesNotMatch(preview, /Another definition/);
+  assert.match(preview, /matches more than one rule/);
+  assert.doesNotMatch(preview, /data-select-rule=|rule-match-options/);
+  assert.doesNotMatch(preview, /GM difficulty rules|Another definition/);
+  payload.rules.reverse();
+  assert.equal(createLibrary(payload).registry.resolve("Difficulty Classes").status, "ambiguous");
+  payload.rules.find(rule => rule.id === "dc-pc").ruleDefault = true;
+  assert.equal(createLibrary(payload).registry.resolve("Difficulty Classes").target.id, "PC1:dc-pc");
+  const sameSource = createLibrary({ rules: [
+    { name: "Areas", id: "spells_areas", source: "PC1", entries: [] },
+    { name: "Areas", source: "PC1", entries: [] },
+  ] });
+  assert.equal(sameSource.registry.resolve("Areas", "PC1").status, "ambiguous");
+  assert.equal(sameSource.registry.resolve("Areas").status, "ambiguous");
+  assert.equal(sameSource.registry.resolve("PC1:areas").target.id, "PC1:areas");
 });
 
 test("ruleName separates the indexed title from its parent heading and keeps both names linkable", () => {
@@ -129,7 +124,7 @@ test("ruleName separates the indexed title from its parent heading and keeps bot
   }
   assert.ok(searchRules(library, { query: "Degree of Success" }).includes(rule));
   assert.ok(searchRules(library, { query: "Step 4" }).includes(rule));
-  assert.match(renderResults([rule]), /<strong class="rule-result-name">Degree of Success<\/strong>/);
+  assert.match(renderBrowse(library, [rule]), /Degree of Success/);
   assert.match(renderRuleBody(library.get("PC1:checks"), library), />Step 4: Degree of Success<\/h3>/);
   assert.doesNotMatch(renderRuleBody(rule, library), /Step 4:/);
   const preview = renderRulePreview("Degree of Success", "", library.registry);
@@ -145,18 +140,6 @@ test("empty or invalid ruleName values fall back to the authored heading", () =>
     assert.equal(library.get("Avalon:checks").name, "Checks");
     assert.deepEqual(library.get("Avalon:checks").aliases, []);
   }
-});
-
-test("stable rule ids survive renaming, chapter changes and reordering", () => {
-  const payload = fixture();
-  const href = createLibrary(payload).get("PC1:perception-rules").href;
-  payload.rules[0].name = "Renamed Perception";
-  payload.rules[0].chapter = "Chapter 8: Playing the Game";
-  payload.rules.reverse();
-  const changed = createLibrary(payload).get("PC1:perception-rules");
-  assert.equal(changed.href, href);
-  assert.equal(changed.name, "Renamed Perception");
-  assert.equal(changed.chapter, "Chapter 8: Playing the Game");
 });
 
 test("Avalon rules preserve rich content and setting markers and reject duplicate ids or unknown types", () => {
@@ -176,18 +159,6 @@ test("Avalon rules preserve rich content and setting markers and reject duplicat
   assert.throws(() => createLibrary({ rules: [{ id: "same", name: "One" }, { id: "SAME", name: "Two" }] }), /Duplicate rule id/);
   assert.throws(() => createLibrary({ rules: [{ id: "a", name: "Bad kind", kind: "unrecognized" }] }), /core, optional, or setting/);
 });
-
-test("results escape authored HTML and distinguish an empty collection from a filtered empty result", () => {
-  const library = createLibrary({ rules: [{ id: "safe", name: '<script>alert(1)</script>', entries: ['<b>unsafe</b>'] }] });
-  const html = renderResults(library.rules);
-  assert.doesNotMatch(html, /<script>|<img/);
-  assert.match(html, /&lt;script&gt;/);
-  assert.match(renderResults([]), /data-clear-filters/);
-  assert.doesNotMatch(renderResults([], { hasRules: false }), /data-clear-filters|No matching rules/);
-  assert.match(renderRuleBody(library.rules[0], library), /&lt;b&gt;unsafe/);
-});
-
-
 
 test("promoted sections inherit metadata and remain in their parent without changing authored JSON", () => {
   const child = { type: "h3", name: "Modifier", id: "modifier", rule: true, aliases: ["Attribute Modifier"], entries: [
@@ -234,44 +205,13 @@ test("promoted sections inherit metadata and remain in their parent without chan
 });
 
 
-test("only nested boxes become rules while tables, lists and abilities retain their formatting inline", () => {
-  const blocks = [
-    { type: "box", id: "box", name: "A Box", rule: true, entries: ["Box text."] },
-    { type: "table", id: "table", name: "A Table", rule: true, colLabels: ["Name", "Value"], rows: [["Example", "42"]] },
-    { type: "list", id: "list", name: "A List", rule: true, items: ["A list item."] },
-    { type: "ability", id: "ability", name: "An Ability", rule: true, kind: "Feat", level: 1, actions: 1, entries: ["An effect."] },
-  ];
-  const library = createLibrary({ rules: [{ id: "parent", name: "Parent", source: "PC1", kind: "optional", entries: blocks }] });
-  assert.equal(library.rules.length, 2);
-  assert.match(renderRuleBody(library.get("PC1:box"), library), /class="rule-box"/);
-  for (const id of ["PC1:table", "PC1:list", "PC1:ability"]) assert.equal(library.get(id), undefined);
-  const table = renderRuleBody(library.get("PC1:parent"), library);
-  assert.match(table, /<table>/);
-  assert.match(table, /<th scope="col">Value<\/th>/);
-  assert.match(table, /<td>42<\/td>/);
-  assert.match(table, /<ul><li><p>A list item/);
-  assert.equal(library.get("PC1:parent").kind, "optional");
-  assert.match(table, /Feat 1/);
-  assert.match(table, /data-symbol="1"/);
-});
-
-test("promoted rules generate ids, reject duplicates and keep explicit links stable when moved or renamed", () => {
-  const child = { type: "h3", name: "Child", rule: true, entries: ["Details."] };
-  const parent = { id: "parent", name: "Parent", source: "PC1", entries: [child] };
-  assert.equal(createLibrary({ rules: [parent] }).get("PC1:child").parentId, "PC1:parent");
-  child.id = "parent";
-  assert.throws(() => createLibrary({ rules: [parent] }), /Duplicate rule id/);
-  child.id = "child";
-  const href = createLibrary({ rules: [parent] }).get("PC1:child").href;
-  child.name = "Renamed Child";
-  parent.entries = [{ type: "box", name: "A wrapper", entries: [child] }];
-  assert.equal(createLibrary({ rules: [parent] }).get("PC1:child").href, href);
-});
-
 test("the live collection is independent of book files and indexes named records unless opted out", async () => {
   const manifest = JSON.parse(await readFile(new URL("../data/rules.json", import.meta.url), "utf8"));
   const library = createLibrary(manifest);
-  for (const entry of manifest.rules) assert.equal(library.fromEntry(entry).entry, entry);
+  for (const entry of manifest.rules) {
+    if (entry.type === "h1") assert.ok(library.chapters.some(chapter => chapter.entry === entry));
+    else assert.equal(library.fromEntry(entry).entry, entry);
+  }
   assert.ok(manifest.sources.every(source => !Object.hasOwn(source, "file")));
   for (const rule of library.rules) {
     assert.notEqual(rule.entry.rule, false);

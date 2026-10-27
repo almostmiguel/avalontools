@@ -1,6 +1,11 @@
 {
   "json.schemas": [
-    { "fileMatch": ["/data/actions.json"], "url": "./data/actions.schema.json" },
+    {
+      "fileMatch": [
+        "/data/actions.json"
+      ],
+      "url": "./data/actions.schema.json"
+    },
     {
       "fileMatch": [
         "/data/rules.json"

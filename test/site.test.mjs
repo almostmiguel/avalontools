@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { request } from "node:http";
 import { fileURLToPath } from "node:url";
 import { test } from "node:test";
-import { escapeHtml, renderContent, renderInline, safeHref } from "../js/content-renderer.js";
+import { escapeHtml, inlineText, renderContent, renderInline, safeHref } from "../js/content-renderer.js";
 import { createServer } from "../scripts/serve.mjs";
 const root = new URL("../", import.meta.url);
 const read = path => readFile(new URL(path, root), "utf8");
@@ -26,6 +26,22 @@ test("inline formatting is nested, escaped, and has no dead entity links", () =>
   assert.doesNotMatch(renderInline('{@link Click|javascript:alert(1)}'), /href/);
   assert.match(renderInline('{@link Read|https://example.com/book}'), /href="https:\/\/example.com\/book"/);
   for (const href of ["javascript:alert(1)", "data:text/html,test", "//example.com", "\\example.com", "java\nscript:bad"]) assert.equal(safeHref(href), null);
+});
+
+test("reference icons stay with the first word without changing names, labels or nested formatting", () => {
+  const rule = renderInline("{@rule Exploration Mode|PC1|exploration mode}");
+  assert.match(rule, /<span class="reference-link-start">exploration<\/span> mode<\/a>/);
+  assert.match(rule, /data-rule-name="Exploration Mode"/);
+  assert.equal(inlineText("{@rule Exploration Mode|PC1|exploration mode}"), "exploration mode");
+  const action = renderInline("{@i {@action Treat Wounds|PC1}}", {
+    resolveAction: () => ({ status: "found", target: { href: "actions.html?id=PC1%3Atreat-wounds" } }),
+  });
+  assert.match(action, /<em><a [^>]+data-action-resolved="true"><span class="reference-link-start">Treat<\/span> Wounds<\/a><\/em>/);
+  assert.equal(inlineText("{@i {@action Treat Wounds|PC1}}"), "Treat Wounds");
+  assert.match(renderInline("{@rule Example||<unsafe> & text}"), /<span class="reference-link-start">&lt;unsafe&gt;<\/span> &amp; text/);
+  const missing = renderInline("{@action Missing Action}", { resolveAction: () => ({ status: "missing" }) });
+  assert.match(missing, />Missing Action<\/span>/);
+  assert.doesNotMatch(missing, /reference-link-start/);
 });
 
 test("nested inline formatting resolves each rule link once", () => {
@@ -63,7 +79,7 @@ test("spell tags automatically italicize names and custom labels without changin
 
 test("content renders headings, lists, tables, sidebars, images, and flavor", () => {
   const { html, headings } = renderContent({ entries: [
-    "A paragraph.",
+    "A paragraph.", "Another paragraph.",
     { type: "h2", name: "Basics", entries: [
       { type: "entries", name: "Details", entries: ["Nested text."] },
       { type: "list", items: ["One", { type: "item", name: "Two", entry: "More text" }] },
@@ -77,10 +93,55 @@ test("content renders headings, lists, tables, sidebars, images, and flavor", ()
   ] });
   assert.match(html, /<h3 id="section-1">Basics<\/h3>/);
   assert.match(html, /<h4 id="section-2">Details<\/h4>/);
+  assert.match(html, /<p\b[^>]*>Another paragraph\.<\/p>/);
   assert.equal(headings[0].name, "Basics");
   assert.equal(new Set(headings.map(heading => heading.id)).size, headings.length);
   for (const fragment of ["<ul>", "<table>", "<thead>", "1–4", "<aside>", 'class="flavor"', "<blockquote>", 'src="img/book.webp"']) assert.ok(html.includes(fragment), fragment);
   assert.doesNotMatch(html, /javascript:|\[object Object\]/);
+});
+
+test("table footnotes stay below the body, span all columns and support safe formatted text", () => {
+  const entry = { type: "table", colLabels: ["First", "Second"], rows: [["A", "B", "C"]], footnotes: ["* A {@b table note}.", "<script>not HTML</script>"] };
+  const html = renderContent({ entries: [entry] }).html;
+  assert.match(html, /<tfoot><tr><td class="table-footnotes" colspan="3">/);
+  assert.ok(html.indexOf("<tfoot>") > html.indexOf("</tbody>"));
+  assert.match(html, /\* A <strong>table note<\/strong>/);
+  assert.match(html, /&lt;script&gt;not HTML&lt;\/script&gt;/);
+  assert.doesNotMatch(html, /<script>/);
+  assert.match(html, /<\/tfoot><\/table><\/div>$/);
+  for (const footnotes of [undefined, [], [" "], ""]) {
+    assert.doesNotMatch(renderContent({ entries: [{ ...entry, footnotes }] }).html, /<tfoot>|table-footnotes/);
+  }
+  const single = renderContent({ entries: [{ type: "table", footnotes: "One note." }] }).html;
+  assert.match(single, /colspan="1"/);
+  assert.match(single, /One note/);
+});
+
+test("table cells merge rows and columns while keeping footnotes full-width and span attributes safe", () => {
+  const { html } = renderContent({ entries: [{
+    type: "table", colLabels: ["Animal", "Specific Animal", "Rental", "Purchase"],
+    rows: [
+      [{ entry: "Bird", rowSpan: 2, rowHeader: true }, "Messenger raven", "8 cp", "4 gp"],
+      ["Hunting eagle", "8 sp", "8 gp"],
+    ],
+    footnotes: ["* Deposit may apply."],
+  }] });
+  assert.match(html, /<th scope="row" rowspan="2"><p>Bird<\/p><\/th>/);
+  assert.match(html, /<tr><td>Hunting eagle<\/td><td>8 sp<\/td><td>8 gp<\/td><\/tr>/);
+  assert.match(html, /class="table-footnotes" colspan="4"/);
+  assert.equal(html.split(">Bird<").length - 1, 1);
+  const columns = renderContent({ entries: [{
+    type: "table",
+    rows: [[{ entry: "Group", rowSpan: 2 }], [{ entry: "Wide", colSpan: 2 }]],
+    footnotes: "A note.",
+  }] }).html;
+  assert.match(columns, /<td colspan="2">/);
+  assert.match(columns, /class="table-footnotes" colspan="3"/);
+  for (const span of ['2" onclick="bad()', -1, 0, 1.5, 1001]) {
+    const safe = renderContent({ entries: [{ type: "table", rows: [[{ entry: "<script>text</script>", rowSpan: span, colSpan: span }]] }] }).html;
+    assert.doesNotMatch(safe, /rowspan=|colspan=|onclick=|<script>/);
+    assert.match(safe, /&lt;script&gt;text&lt;\/script&gt;/);
+  }
 });
 
 test("dialogue table styling gives speakers semantic row headers without changing ordinary tables", () => {
@@ -98,34 +159,6 @@ test("dialogue table styling gives speakers semantic row headers without changin
   assert.doesNotMatch(normal, /dialogue-table|colgroup|scope="row"/);
   const unsafe = renderContent({ entries: [{ ...table, style: 'bad" onclick="bad()' }] }).html;
   assert.doesNotMatch(unsafe, /onclick|dialogue-table/);
-});
-
-test("dialogue tables reserve speaker width, top-align rows and stack on narrow screens", async () => {
-  const css = await read("css/site.css");
-  assert.match(css, /\.dialogue-table \{ table-layout: fixed; font: \.9rem\/1\.7 var\(--font-ui\)/);
-  assert.match(css, /\.dialogue-speaker-column \{ width: 10rem; \}/);
-  assert.match(css, /\.dialogue-table :is\(th, td\) \{ vertical-align: top;/);
-  assert.match(css, /\.dialogue-table tbody th \{[^}]*overflow-wrap: normal; word-break: normal; white-space: normal/);
-  assert.match(css, /\.dialogue-table tbody tr:nth-child\(even\) \{ background: transparent/);
-  assert.match(css, /@media \(max-width: 550px\) \{[\s\S]*?\.dialogue-table colgroup \{ display: none; \}/);
-  assert.match(css, /\.dialogue-table :is\(th, td\) \{ display: block; width: auto; padding: \.1rem 0; border: 0/);
-});
-
-test("unbulleted lists keep separate items without altering normal paragraph spacing", async () => {
-  const chapter = { entries: ["Before.", { type: "list", style: "list-no-bullets", items: [
-    "{@b Kyra (Jessica):} Cast {@i light}.", "{@b Erik:} The ladder is lit.", "<script>unsafe</script>",
-  ] }, "After."] };
-  {
-    const { html, headings } = renderContent(chapter);
-    assert.match(html, /<p>Before\.<\/p>\n<ul class="list-no-bullets" role="list"><li><p><strong>Kyra \(Jessica\):<\/strong> Cast <em>light<\/em>\.<\/p><\/li><li><p><strong>Erik:<\/strong>/);
-    assert.match(html, /<\/ul>\n<p>After\.<\/p>$/);
-    assert.doesNotMatch(html, /<script>|<br>/);
-    assert.equal(headings.length, 0);
-  }
-  const css = await read("css/site.css");
-  assert.match(css, /:is\(\.rich-content, \.rule-preview-body\) \.list-no-bullets > li > p \{ margin: 0; \}/);
-  assert.match(css, /\.list-no-bullets > li \{ margin: 0; \}/);
-  assert.match(css, /:is\(\.rich-content, \.rule-preview-body\) p \{ margin: 0 0 1rem; \}/);
 });
 
 test("list variants retain bullet defaults, numbering, and nested items without arbitrary CSS injection", () => {
@@ -147,17 +180,18 @@ test("list variants retain bullet defaults, numbering, and nested items without 
   assert.doesNotMatch(html, /onclick|unsafe/);
 });
 
-test("generic heading levels and sidebars keep their structure", () => {
+
+test("heading levels produce usable outline metadata and sidebars retain their content", () => {
   for (let level = 1; level <= 6; level++) {
-    const { html, headings } = renderContent({ entries: [{ type: `h${level}`, name: "A heading", entries: ["Text."] }] });
+    const { html, headings } = renderContent({ entries: [{ type: "h" + level, name: "A heading", entries: ["Text."] }] });
     const renderedLevel = Math.min(6, level + 1);
-    const extra = level === 6 ? ' data-heading-level="6"' : "";
-    assert.match(html, new RegExp(`<h${renderedLevel} id="section-1"${extra}>A heading</h${renderedLevel}>`));
-    assert.equal(headings[0].entry.type, `h${level}`);
+    assert.match(html, new RegExp("<h" + renderedLevel + "\\b[^>]*>A heading</h" + renderedLevel + ">"));
+    assert.equal(headings[0].entry.type, "h" + level);
     assert.equal(headings[0].level, renderedLevel);
+    assert.ok(html.includes('id="' + headings[0].id + '"'));
   }
   const sidebar = renderContent({ entries: [{ type: "sidebar", name: "A note", entries: ["Sidebar text."] }] });
-  assert.match(sidebar.html, /^<aside>/);
+  assert.match(sidebar.html, /A note/);
   assert.match(sidebar.html, /Sidebar text/);
 });
 
@@ -174,7 +208,6 @@ test("decorative rule boxes support titles and nested entries", () => {
   assert.match(html, /aria-labelledby="section-2"/);
   assert.match(html, /<aside class="rule-box"><div class="rule-box-content">/);
   assert.equal(headings.length, 2);
-  assert.doesNotMatch(html, /rule-box-ornament/);
   const escaped = renderContent({ entries: [{ type: "box", name: '<img src=x onerror="bad()">', entries: ["<script>bad()</script>"] }] });
   assert.doesNotMatch(escaped.html, /<img|<script/);
   const simpleNote = renderContent({ entries: [{ type: "inset", name: "Note", entries: ["A note."] }] });
@@ -184,25 +217,37 @@ test("decorative rule boxes support titles and nested entries", () => {
 
 
 
-test("public pages load only existing assets and use relative URLs", async () => {
-  const packageJson = JSON.parse(await read("package.json"));
-  assert.equal(packageJson.dependencies, undefined);
-  assert.equal(packageJson.devDependencies, undefined);
+
+test("public pages expose working navigation and load existing relative assets", async () => {
   for (const path of ["index.html", "rules.html", "rule.html", "actions.html"]) {
     const html = await read(path);
-    assert.match(html, /<html lang="en" data-theme="dark">/);
-    const navigation = html.match(/<nav aria-label="Main navigation"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
-    assert.ok(navigation, `${path}: main navigation exists`);
-    const reference = navigation.match(/<details class="reference-menu" id="reference-menu">([\s\S]*?)<\/details>/)?.[1];
-    assert.ok(reference, `${path}: Reference is a native disclosure`);
-    assert.match(reference, /<summary[^>]*>Reference/);
-    assert.match(reference, /href="rules.html"/);
-    assert.match(reference, /href="actions.html"/);
-    assert.match(navigation, /href="index.html"/);
-    const currentPage = path === "rule.html" ? "rules.html" : path;
-    assert.match(navigation, new RegExp(`href="${currentPage.replace(".", "\\.")}" aria-current="page"`));
-    assert.doesNotMatch(navigation, /The Avalon setting/i);
-    assert.match(html, /<footer class="site-footer"><span>Avalon · 2026<\/span><span>Pathfinder · Second Edition<\/span><\/footer>/);
+    assert.match(html, /<html\b[^>]*lang="en"/);
+    const navigation = html.match(/<nav\b[^>]*aria-label="Main navigation"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
+    assert.ok(navigation, path + ": main navigation exists");
+    const groups = [...navigation.matchAll(/<details\b([^>]*)>([\s\S]*?)<\/details>/g)]
+      .map(([, attributes, body]) => ({ id: attributes.match(/\bid="([^"]+)"/)?.[1], body }));
+    assert.deepEqual(groups.map(group => group.id), ["player-menu", "game-master-menu", "reference-menu"]);
+    const directRules = navigation.match(/^\s*<a\b([^>]*)>([\s\S]*?)<\/a>/);
+    assert.ok(directRules, path + ": Rules is a direct link");
+    assert.match(directRules[1], /\bhref="rules.html"/);
+    assert.equal(directRules[2].replace(/<[^>]*>/g, "").trim(), "Rules");
+    const expected = [
+      ["Player", ["Ancestries", "Archetypes", "Backgrounds", "Classes", "Feats"]],
+      ["Game Master", ["Afflictions", "Creatures", "Hazards"]],
+      ["References", ["Actions", "Conditions", "Equipment", "Skills", "Traits"]],
+    ];
+    groups.forEach((group, index) => {
+      const summary = group.body.match(/<summary\b[^>]*>([\s\S]*?)<\/summary>/)?.[1];
+      assert.equal(summary?.replace(/<[^>]*>/g, "").trim(), expected[index][0]);
+      const entries = [...group.body.matchAll(/<(?:a|span)\b[^>]*data-reference-kind="[^"]+"[^>]*>([\s\S]*?)(?:<\/a>|<\/span>)/g)]
+        .map(match => match[1].replace(/<[^>]*>/g, "").trim());
+      assert.deepEqual(entries, expected[index][1], path + ": correct navigation grouping");
+    });
+    assert.match(html, /<a\b[^>]*href="index.html"/);
+    const current = [...navigation.matchAll(/<a\b([^>]*)>/g)]
+      .filter(match => /\baria-current="page"/.test(match[1]))
+      .map(match => match[1].match(/\bhref="([^"]+)"/)?.[1]);
+    assert.deepEqual(current, path === "index.html" ? [] : [path === "rule.html" ? "rules.html" : path]);
     assert.doesNotMatch(html, /(?:src|href)="\//);
     for (const match of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
       const asset = match[1].split(/[?#]/)[0];

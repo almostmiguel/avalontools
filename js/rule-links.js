@@ -11,9 +11,8 @@ export function renderRulePreview(name, source, registry) {
   const target = resolution.target;
   const header = previewHeading(target?.name || name, "Rules");
   if (!target) {
-    const message = resolution.status === "ambiguous"
-      ? "More than one entry has this name. Mark only the main definition with ruleDefault: true, or give the intended entry a unique id and use that id in the rule tag."
-      : "No matching rule has been added. Check the name and source, or add its definition to the rules collection.";
+    const message = resolution.status === "ambiguous" ? "This reference matches more than one rule. Open a specific rule from the Rules page."
+      : "No matching rule has been added. Check the name and source, or open the Rules page.";
     return `${header}<div class="rule-preview-body"><p>${escapeHtml(message)}</p></div>`;
   }
   const body = renderRuleBody(target, { registry }, { anchorPrefix: "rule-preview-section" });
@@ -68,6 +67,17 @@ export function attachRulePreviews({ document, window, registry, actions = null,
     }).catch(error => { actionLoad = null; throw error; });
     return actionLoad;
   };
+  const validateActions = async root => {
+    const links = [...(root?.querySelectorAll?.("[data-action-name]") || [])]
+      .filter(link => link.dataset.actionResolved == null);
+    if (!links.length) return;
+    try {
+      const library = await getActions();
+      for (const link of links) {
+        link.dataset.actionResolved = String(library.registry.resolve(link.dataset.actionName, link.dataset.actionSource).status === "found");
+      }
+    } catch { /* Unverified links keep navigation, but never display a confirmed-action icon. */ }
+  };
   const listeners = [];
   const on = (element, event, handler, options) => {
     element.addEventListener(event, handler, options);
@@ -106,19 +116,23 @@ export function attachRulePreviews({ document, window, registry, actions = null,
     if (current !== link) hide();
     const action = link.dataset.actionName != null;
     if (!action && !registry) return;
+    panel.dataset.referenceKind = action ? "action" : "rule";
     current = link;
     const requestVersion = ++version;
     const rules = registry ? { registry } : undefined;
+    if (action && actionCatalog) link.dataset.actionResolved = String(actionCatalog.registry.resolve(link.dataset.actionName, link.dataset.actionSource).status === "found");
     panel.setAttribute("aria-busy", String(action && !actionCatalog));
     panel.innerHTML = action
       ? actionCatalog ? renderActionPreview(link.dataset.actionName, link.dataset.actionSource, actionCatalog, rules)
         : `${previewHeading(link.dataset.actionName, "Actions")}<div class="rule-preview-body"><p role="status">Loading action…</p></div>`
       : renderRulePreview(link.dataset.ruleName, link.dataset.ruleSource, registry);
+    void validateActions(panel).then(position);
     panel.hidden = false;
     link.setAttribute("aria-controls", panel.id);
     link.setAttribute("aria-describedby", panel.id);
     position();
     if (action && !actionCatalog) return getActions().then(library => {
+      link.dataset.actionResolved = String(library.registry.resolve(link.dataset.actionName, link.dataset.actionSource).status === "found");
       if (current !== link || version !== requestVersion) return;
       panel.innerHTML = renderActionPreview(link.dataset.actionName, link.dataset.actionSource, library, rules);
       panel.setAttribute("aria-busy", "false");
@@ -174,5 +188,5 @@ export function attachRulePreviews({ document, window, registry, actions = null,
   on(window, "resize", position);
   on(window, "scroll", position, true);
   on(panel, "load", position, true);
-  return { show, hide, panel, destroy() { hide(); listeners.forEach(remove => remove()); panel.remove(); } };
+  return { show, hide, panel, validateActions, destroy() { hide(); listeners.forEach(remove => remove()); panel.remove(); } };
 }

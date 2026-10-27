@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { attachRulePreviews, previewPosition, renderRulePreview, renderActionPreview } from "../js/rule-links.js";
 import { createActionLibrary, renderActionBody } from "../js/actions-library.js";
-import { createLibrary } from "../js/rules-library.js";
+import { createLibrary, renderRuleBody } from "../js/rules-library.js";
 import { renderRuleCitation } from "../js/rule-sources.js";
 
 const { registry } = createLibrary({
@@ -47,21 +47,39 @@ test("previews show authored content and citation and explain missing rules", ()
   assert.doesNotMatch(renderRulePreview("<script>bad</script>", "PC1", registry), /<script>/);
 });
 
-test("previews keep structured lists and boxes with unique content anchors", () => {
-  const { registry: structured } = createLibrary({ rules: [{
-    id: "example", name: "Example", source: "Avalon", entries: [
-      { type: "list", style: "list-no-bullets", items: ["First.", "Second."] },
+
+test("reader and hover previews preserve rich blocks, nested references, safety and unique anchors", () => {
+  const library = createLibrary({ rules: [{
+    name: "Example", source: "Avalon", entries: [
+      { type: "list", columns: 2, style: "list-no-bullets", items: [
+        { type: "item", style: "hanging", name: "First", entry: "Read {@rule Example}." },
+        { type: "list", items: ["Nested item."] },
+      ] },
       { type: "box", name: "Outer", entries: [
         { type: "box-section", name: "Inner", entries: ["Cast {@spell light}."] },
       ] },
+      { type: "clarification", entries: ["A note about {@rule Example}."] },
+      { type: "formula", entry: 'd20 + {@rule Example} <script>unsafe()</script> {@link Unsafe|javascript:bad()}' },
     ],
   }] });
-  const html = renderRulePreview("Example", "Avalon", structured);
-  assert.match(html, /<ul class="list-no-bullets" role="list">/);
-  assert.match(html, /id="rule-preview-section-1"/);
-  assert.match(html, /id="rule-preview-section-2"/);
-  assert.match(html, /Cast <em>light<\/em>/);
+  const preview = renderRulePreview("Example", "Avalon", library.registry);
+  for (const html of [renderRuleBody(library.get("Avalon:example"), library), preview]) {
+    for (const text of ["Nested item.", "Outer", "Inner", "A note about", "d20"]) assert.ok(html.includes(text));
+    assert.match(html, /list-columns/);
+    assert.match(html, /--list-columns: 2/);
+    assert.match(html, /hanging-entry/);
+    assert.match(html, /<details\b/);
+    assert.match(html, /href="rules.html\?id=Avalon%3Aexample"/);
+    assert.match(html, /<em>light<\/em>/);
+    assert.match(html, /&lt;script&gt;/);
+    assert.doesNotMatch(html, /<script>|javascript:|rule-link-unresolved/);
+    const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
+    assert.equal(new Set(ids).size, ids.length);
+  }
+  assert.match(preview, /id="rule-preview-section-1"/);
+  assert.match(preview, /id="rule-preview-section-2"/);
 });
+
 test("hover cards stay inside the viewport and move above the link when needed", () => {
   assert.deepEqual(previewPosition({ left: 50, top: 100, bottom: 120 }, { width: 300, height: 100 }, { width: 800, height: 600 }), { left: 50, top: 128 });
   assert.deepEqual(previewPosition({ left: 750, top: 500, bottom: 520 }, { width: 500, height: 200 }, { width: 800, height: 600 }), { left: 288, top: 292 });
@@ -123,6 +141,41 @@ function actionLink(env, name = "Stride") {
   return link;
 }
 
+test("reader action links are checked once against the catalog before receiving an icon marker", async () => {
+  let loads = 0;
+  const env = environment({ loadActions: async () => { loads++; return actions; } });
+  const makeLink = (name, source) => {
+    const link = new env.Element();
+    link.dataset = { actionName: name, actionSource: source };
+    return link;
+  };
+  const valid = makeLink("Stride", "PC1"), missing = makeLink("Quick Draw", "PC1"), wrongSource = makeLink("Stride", "GMC"), sourceLess = makeLink("Aid", "");
+  const root = { querySelectorAll: () => [valid, missing, wrongSource, sourceLess] };
+  await env.controller.validateActions({ querySelectorAll: () => [] });
+  assert.equal(loads, 0);
+  assert.equal(valid.dataset.actionResolved, undefined);
+  await env.controller.validateActions(root);
+  assert.equal(valid.dataset.actionResolved, "true");
+  assert.equal(sourceLess.dataset.actionResolved, "true");
+  assert.equal(missing.dataset.actionResolved, "false");
+  assert.equal(wrongSource.dataset.actionResolved, "false");
+  await env.controller.validateActions(root);
+  assert.equal(loads, 1);
+  assert.equal(env.controller.panel.hidden, true);
+});
+
+test("unavailable action data leaves icons unconfirmed and a later validation can retry", async () => {
+  let loads = 0;
+  const env = environment({ loadActions: async () => { if (++loads === 1) throw Error("Offline"); return actions; } });
+  const link = actionLink(env);
+  const root = { querySelectorAll: () => [link] };
+  await env.controller.validateActions(root);
+  assert.equal(link.dataset.actionResolved, undefined);
+  await env.controller.validateActions(root);
+  assert.equal(link.dataset.actionResolved, "true");
+  assert.equal(loads, 2);
+});
+
 test("action hover and keyboard focus use the shared panel without intercepting links", () => {
   const env = environment({ actions });
   const link = actionLink(env);
@@ -131,6 +184,7 @@ test("action hover and keyboard focus use the shared panel without intercepting 
   env.flush();
   assert.equal(env.controller.panel.hidden, false);
   assert.match(env.controller.panel.innerHTML, /<span>Actions<\/span>/);
+  assert.equal(env.controller.panel.dataset.referenceKind, "action");
   env.document.emit("pointerout", { target: link });
   env.controller.panel.emit("pointerenter"); env.flush();
   assert.equal(env.controller.panel.hidden, false);
@@ -144,6 +198,8 @@ test("action hover and keyboard focus use the shared panel without intercepting 
   assert.equal(env.document.activeElement, link);
   assert.equal(link.attributes.get("href"), href);
   assert.equal(link.attributes.get("aria-controls"), undefined);
+  env.controller.show(env.link);
+  assert.equal(env.controller.panel.dataset.referenceKind, "rule");
 });
 
 test("action previews work without a rule library, including on the Actions page", () => {
@@ -289,4 +345,21 @@ test("touch hover is ignored, and resizing or scrolling cannot strand a preview 
   link.rect = { ...link.rect, top: -100, bottom: -80 };
   window.emit("scroll");
   assert.equal(controller.panel.hidden, true);
+});
+
+test("ambiguous rule previews explain the unresolved reference without a chooser or guessing", () => {
+  const library = createLibrary({ rules: [
+    { name: "Areas", source: "PC1", page: 300, entries: ["Spell text."] },
+    { name: "Areas", source: "PC1", page: 426, entries: ["General text."] },
+  ] });
+  const env = environment({ registry: library.registry });
+  const link = new env.Element();
+  link.dataset = { ruleName: "Areas", ruleSource: "" };
+  env.document.body.append(link);
+  env.controller.show(link);
+  const html = env.controller.panel.innerHTML;
+  assert.match(html, /matches more than one rule/);
+  assert.doesNotMatch(html, /data-select-rule=|rule-match-options|Spell text|General text/);
+  env.document.emit("keydown", { key: "Escape" });
+  assert.equal(env.controller.panel.hidden, true);
 });

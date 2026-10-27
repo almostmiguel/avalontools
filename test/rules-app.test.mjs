@@ -34,6 +34,7 @@ function environment(search = "", page = "rules", { mobile = false, storage = ne
       if (!elements.has(selector)) {
         let markup = "";
         let rows = [];
+        let chapterRows = [];
         let branches = [];
         let pills = [];
         let anchors = new Map();
@@ -59,6 +60,15 @@ function environment(search = "", page = "rules", { mobile = false, storage = ne
             branches = [...value.matchAll(/<details [^>]*data-rule-branch="([^"]+)"[^>]*>/g)].map(match => ({
               dataset: { ruleBranch: match[1].replaceAll("&quot;", '"').replaceAll("&amp;", "&") }, open: /\sopen(?:>|\s)/.test(match[0]),
             }));
+            chapterRows = [...value.matchAll(/<a [^>]*data-select-chapter="([^"]+)"[^>]*>/g)].map(match => {
+              const attributes = new Map();
+              if (match[0].includes('aria-current="true"')) attributes.set("aria-current", "true");
+              return {
+                dataset: { selectChapter: match[1].replaceAll("&quot;", '"').replaceAll("&amp;", "&") }, attributes,
+                setAttribute(name, value) { attributes.set(name, value); }, removeAttribute(name) { attributes.delete(name); },
+                closest(selector) { return selector === "[data-select-chapter]" ? this : null; },
+              };
+            });
             rows = [...value.matchAll(/<a [^>]*data-select-rule="([^"]+)"[^>]*>/g)].map(match => {
               const attributes = new Map();
               if (match[0].includes('aria-current="true"')) attributes.set("aria-current", "true");
@@ -70,7 +80,7 @@ function environment(search = "", page = "rules", { mobile = false, storage = ne
               };
             });
           },
-          querySelectorAll(selector) { return selector === "[data-rule-branch]" ? branches : selector === "[data-filter-group]" ? pills : rows; },
+          querySelectorAll(selector) { return selector === "[data-select-chapter]" ? chapterRows : selector === "[data-rule-branch]" ? branches : selector === "[data-filter-group]" ? pills : rows; },
           contains(target) { return target === this; },
           addEventListener(name, fn) { handlers.set(name, fn); },
           emit(name, event = {}) { const e = eventFor(this, event); handlers.get(name)?.(e); return e; },
@@ -86,11 +96,11 @@ function environment(search = "", page = "rules", { mobile = false, storage = ne
     },
     getElementById(id) { for (const element of elements.values()) if (element.anchors.has(id)) return element.anchors.get(id); return null; },
   };
-  const previews = { attached: 0, hidden: 0 };
+  const previews = { attached: 0, hidden: 0, validated: [] };
   return {
     document, window, storage, get: selector => document.querySelector(selector), listeners, previews,
     row: id => document.querySelector("#rules-results").querySelectorAll().find(row => row.dataset.selectRule === id),
-    attachPreviews() { previews.attached++; return { hide() { previews.hidden++; } }; },
+    attachPreviews() { previews.attached++; return { hide() { previews.hidden++; }, validateActions(root) { previews.validated.push(root); } }; },
   };
 }
 
@@ -106,6 +116,24 @@ const clickFilter = (ui, group, value, extra = {}) => ui.get("#rules-filter-grou
 const clearFilterGroup = (ui, group) => ui.get("#rules-filter-groups").emit("click", { target: { closest: selector => selector === "[data-clear-filter]" ? { dataset: { clearFilter: group } } : null } });
 const savedView = (ui, view) => ui.get("#rules-saved").emit("click", { target: { closest: selector => selector === "[data-saved-view]" ? { dataset: { savedView: view } } : null } });
 
+test("Rules always browses, ignores old Index URLs, and starts without a selection or recent visit", () => {
+  for (const query of ["", "?view=browse", "?view=index"]) {
+    const ui = environment(query);
+    const controller = mountCatalog(fixture(), ui);
+    assert.equal(controller.selectedId, null);
+    assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule/);
+    assert.doesNotMatch(ui.get("#rules-results").innerHTML, /aria-current="true"/);
+    assert.equal(ui.window.location.searchParams.has("id"), false);
+    assert.equal(ui.storage.get(RULE_MEMORY_KEY), undefined);
+    assert.match(ui.get("#rules-results").innerHTML, /aria-label="Rules by source and chapter"/);
+    assert.equal(ui.window.location.searchParams.has("view"), false);
+    controller.selectRule("PC1:actions");
+    assert.match(ui.get("#rule-detail").innerHTML, /Spend three actions/);
+    assert.deepEqual(ui.previews.validated, [ui.get("#rule-detail")]);
+    assert.deepEqual(JSON.parse(ui.storage.get(RULE_MEMORY_KEY)).recent, ["PC1:actions"]);
+  }
+});
+
 test("rules expose section navigation with working reload anchors and omit it for short rules", () => {
   const ui = environment("?id=PC1%3Aactions#rule-section-1");
   const controller = mountCatalog(fixture(), ui);
@@ -119,7 +147,7 @@ test("rules expose section navigation with working reload anchors and omit it fo
 
 test("reader metadata shares the preview citation and avoids duplicate source badges", () => {
   const library = fixture();
-  const ui = environment();
+  const ui = environment("?id=PC1%3Aactions");
   const controller = mountCatalog(library, ui);
   const html = ui.get("#rule-detail").innerHTML;
   const metadata = html.match(/<p class="rule-page-source">([\s\S]*?)<\/p>/)[1];
@@ -130,7 +158,7 @@ test("reader metadata shares the preview citation and avoids duplicate source ba
 });
 
 test("section navigation stays in the reader tools and closes after a jump, Escape or outside click", () => {
-  const ui = environment();
+  const ui = environment("?id=PC1%3Aactions");
   mountCatalog(fixture(), ui);
   const html = ui.get("#rule-detail").innerHTML;
   assert.ok(html.indexOf('class="rule-reader-tools"') < html.indexOf('class="rule-outline"'));
@@ -151,7 +179,7 @@ test("section navigation stays in the reader tools and closes after a jump, Esca
 });
 
 test("starring preserves the current content and reloads by stable rule id", () => {
-  const ui = environment();
+  const ui = environment("?id=PC1%3Aactions");
   const controller = mountCatalog(fixture(), ui);
   const detail = ui.get("#rule-detail");
   detail.scrollTop = 120;
@@ -176,7 +204,7 @@ test("starring preserves the current content and reloads by stable rule id", () 
 });
 
 test("recent shortcuts navigate in place, deduplicate, clear and synchronize across tabs", () => {
-  const ui = environment();
+  const ui = environment("?id=PC1%3Aactions");
   const controller = mountCatalog(fixture(), ui);
   controller.selectRule("PC1:stride");
   controller.selectRule("Avalon:camp");
@@ -291,7 +319,7 @@ test("Include and Exclude modes allow touch and keyboard filtering without right
   assert.match(filterPill(ui, "kind", "optional").getAttribute("aria-label"), /Click to exclude/);
   clickFilter(ui, "kind", "optional");
   assert.equal(filterPill(ui, "kind", "optional").getAttribute("data-state"), "exclude");
-  assert.deepEqual(resultIds(ui), ["PC1:actions", "Avalon:camp"]);
+  assert.deepEqual(new Set(resultIds(ui)), new Set(["PC1:actions", "Avalon:camp"]));
   clickFilter(ui, "kind", "optional");
   assert.equal(filterPill(ui, "kind", "optional").getAttribute("data-state"), "neutral");
   ui.get("#filter-mode-include").emit("click");
@@ -302,7 +330,7 @@ test("Include and Exclude modes allow touch and keyboard filtering without right
 test("multi-select filters and excluded chips restore with reload and Back/Forward", () => {
   const ui = environment("?source=PC1&source=Avalon&not-kind=optional&id=PC1%3Aactions");
   mountCatalog(fixture(), ui);
-  assert.deepEqual(resultIds(ui), ["PC1:actions", "Avalon:camp"]);
+  assert.deepEqual(new Set(resultIds(ui)), new Set(["PC1:actions", "Avalon:camp"]));
   assert.equal(ui.get("#rules-filter-count").textContent, "3");
   assert.equal(filterPill(ui, "kind", "optional").getAttribute("data-state"), "exclude");
   ui.get("#rules-results").emit("click", { target: ui.row("Avalon:camp") });
@@ -316,7 +344,7 @@ test("multi-select filters and excluded chips restore with reload and Back/Forwa
   assert.equal(filterPill(reloaded, "source", "Avalon").getAttribute("data-state"), "include");
   assert.equal(filterPill(reloaded, "kind", "optional").getAttribute("data-state"), "exclude");
   ui.window.history.back();
-  assert.deepEqual(resultIds(ui), ["PC1:actions", "Avalon:camp"]);
+  assert.deepEqual(new Set(resultIds(ui)), new Set(["PC1:actions", "Avalon:camp"]));
   assert.equal(filterPill(ui, "source", "PC1").getAttribute("data-state"), "include");
   ui.window.history.forward();
   assert.deepEqual(resultIds(ui), ["Avalon:camp"]);
@@ -384,8 +412,7 @@ test("Browse reveals and remembers source and chapter groups for direct links an
   group.open = true;
   ui.get("#rules-results").emit("toggle", { target: group });
   assert.equal(controller.selectedId, "PC1:attack");
-  ui.get("#view-index").emit("click");
-  ui.get("#view-browse").emit("click");
+  ui.get("#rules-filter-reset").emit("click");
   assert.equal(browseBranch(ui, gmc).open, true);
   assert.equal(browseBranch(ui, gmcChapter).open, false);
   const target = { closest: selector => selector === "[data-rule-name]" ? { dataset: { ruleName: "dc", ruleSource: "GMC" } } : null };
@@ -401,43 +428,6 @@ test("Browse reveals and remembers source and chapter groups for direct links an
   assert.equal(searched.get("#rules-count").textContent, "1 rule");
 });
 
-test("view switching preserves the open rule, filters and sort, and supports reload and Back/Forward", () => {
-  const ui = environment("?sort=name&order=desc&id=PC1%3Amap");
-  const controller = mountCatalog(browseFixture(), ui);
-  const detail = ui.get("#rule-detail");
-  const before = detail.innerHTML;
-  detail.scrollTop = 80;
-  ui.get("#view-browse").emit("click");
-  assert.equal(ui.get("#rules-sort").hidden, true);
-  assert.equal(ui.get("#view-browse").getAttribute("aria-pressed"), "true");
-  assert.equal(ui.get("#view-index").getAttribute("aria-pressed"), "false");
-  assert.equal(controller.selectedId, "PC1:map");
-  assert.equal(detail.innerHTML, before);
-  assert.equal(detail.scrollTop, 80);
-  assert.equal(browseBranch(ui, "PC1:checks").open, true);
-  assert.equal(browseBranch(ui, "PC1:attack").open, true);
-  assert.equal(ui.window.location.searchParams.get("view"), "browse");
-  const reloaded = environment(ui.window.location.search);
-  mountCatalog(browseFixture(), reloaded);
-  assert.equal(reloaded.get("#view-browse").getAttribute("aria-pressed"), "true");
-  assert.equal(reloaded.get("#rules-sort").hidden, true);
-  assert.equal(browseBranch(reloaded, "PC1:attack").open, true);
-  ui.window.history.back();
-  assert.equal(ui.get("#rules-sort").hidden, false);
-  assert.deepEqual(resultIds(ui), ["PC1:map", "PC1:damage-types", "PC1:damage", "PC1:checks", "PC1:attack"]);
-  ui.window.history.forward();
-  assert.equal(ui.get("#rules-sort").hidden, true);
-  ui.get("#rules-search").value = "Multiple Attack Penalty";
-  ui.get("#rules-search").emit("input");
-  assert.deepEqual(resultIds(ui), ["PC1:checks", "PC1:attack", "PC1:map"]);
-  assert.equal(ui.get("#rules-count").textContent, "1 rule");
-  ui.get("#view-index").emit("click");
-  assert.deepEqual(resultIds(ui), ["PC1:map"]);
-  assert.equal(ui.get("#rules-search").value, "Multiple Attack Penalty");
-  assert.equal(ui.window.location.searchParams.get("sort"), "name");
-  assert.equal(ui.window.location.searchParams.get("order"), "desc");
-});
-
 test("Browse remembers disclosures, clicking a name opens its rule and links reveal collapsed parents", () => {
   const ui = environment("?view=browse&id=PC1%3Achecks");
   const controller = mountCatalog(browseFixture(), ui);
@@ -446,8 +436,7 @@ test("Browse remembers disclosures, clicking a name opens its rule and links rev
   branch.open = true;
   ui.get("#rules-results").emit("toggle", { target: branch });
   assert.equal(controller.selectedId, "PC1:checks");
-  ui.get("#view-index").emit("click");
-  ui.get("#view-browse").emit("click");
+  ui.get("#rules-filter-reset").emit("click");
   assert.equal(browseBranch(ui, "PC1:damage").open, true);
   const row = ui.row("PC1:attack");
   const clicked = ui.get("#rules-results").emit("click", { target: row });
@@ -460,14 +449,14 @@ test("Browse remembers disclosures, clicking a name opens its rule and links rev
   assert.equal(controller.selectedId, "PC1:map");
   assert.equal(browseBranch(ui, "PC1:attack").open, true);
   assert.equal(ui.row("PC1:map").attributes.get("aria-current"), "true");
-  assert.match(ui.get("#rule-detail").innerHTML, /data-rule-name="checks".*data-rule-name="attack".*aria-current="page">Multiple Attack Penalty/);
+  assert.match(ui.get("#rule-detail").innerHTML, /data-rule-name="PC1:checks".*data-rule-name="PC1:attack".*aria-current="page">Multiple Attack Penalty/);
   const parentRef = { closest: selector => selector === "[data-rule-name]" ? { dataset: { ruleName: "checks", ruleSource: "PC1" } } : null };
   ui.document.emit("click", { target: parentRef });
   assert.equal(controller.selectedId, "PC1:checks");
 });
 
 test("Browse ancestor navigation clears excluding filters and modified clicks retain native navigation", () => {
-  const ui = environment("?view=browse&q=Multiple+Attack+Penalty");
+  const ui = environment("?view=browse&q=Multiple+Attack+Penalty&id=PC1%3Amap");
   const controller = mountCatalog(browseFixture(), ui);
   const event = ui.get("#rules-results").emit("click", { target: ui.row("PC1:checks"), ctrlKey: true });
   assert.equal(event.defaultPrevented, false);
@@ -476,108 +465,22 @@ test("Browse ancestor navigation clears excluding filters and modified clicks re
   assert.equal(controller.selectedId, "PC1:checks");
   assert.equal(ui.get("#rules-search").value, "");
   assert.equal(ui.get("#rules-count").textContent, "5 rules");
-  assert.equal(ui.get("#view-browse").getAttribute("aria-pressed"), "true");
   ui.get("#rules-search").value = "not a rule";
   ui.get("#rules-search").emit("input");
   assert.match(ui.get("#rules-results").innerHTML, /No matching rules/);
   const missing = environment("?view=unknown");
   mountCatalog(browseFixture(), missing);
-  assert.equal(missing.get("#view-index").getAttribute("aria-pressed"), "true");
+  assert.match(missing.get("#rules-results").innerHTML, /aria-label="Rules by source and chapter"/);
   assert.equal(missing.window.location.searchParams.get("view"), null);
 });
 
-test("Name, Type and Source sort in both directions without changing the open rule", () => {
-  const orders = {
-    name: [["PC1:stride", "Avalon:camp", "PC1:actions"], ["PC1:actions", "Avalon:camp", "PC1:stride"]],
-    type: [["PC1:actions", "PC1:stride", "Avalon:camp"], ["Avalon:camp", "PC1:stride", "PC1:actions"]],
-    source: [["Avalon:camp", "PC1:actions", "PC1:stride"], ["PC1:actions", "PC1:stride", "Avalon:camp"]],
-  };
-  for (const [key, expected] of Object.entries(orders)) {
-    const ui = environment();
-    const controller = mountCatalog(fixture(), ui);
-    const button = ui.get(`#sort-${key}`);
-    const detail = ui.get("#rule-detail");
-    detail.scrollTop = 95;
-    const markup = detail.innerHTML;
-    for (let click = 0; click < 2; click++) {
-      button.emit("click");
-      assert.deepEqual(resultIds(ui), expected[click], `${key}, click ${click + 1}`);
-      assert.equal(controller.selectedId, "PC1:actions");
-      assert.equal(detail.innerHTML, markup);
-      assert.equal(detail.scrollTop, 95);
-      assert.equal(button.getAttribute("aria-pressed"), "true");
-      const order = (key === "name") === (click === 0) ? "desc" : "asc";
-      assert.equal(button.getAttribute("data-direction"), order);
-      assert.equal(ui.window.location.searchParams.get("sort"), key);
-      assert.equal(ui.window.location.searchParams.get("order"), order);
-      assert.match(button.getAttribute("aria-label"), /sorted (A to Z|Z to A)\. Sort (A to Z|Z to A)\./);
-    }
-  }
-});
-
-test("switching from another sort to Name starts A to Z before toggling to Z to A", () => {
-  for (const previous of ["type", "source"]) {
-    for (const reverse of [false, true]) {
-      const ui = environment();
-      mountCatalog(fixture(), ui);
-      assert.equal(ui.get("#sort-name").getAttribute("data-direction"), "asc");
-      ui.get(`#sort-${previous}`).emit("click");
-      if (reverse) ui.get(`#sort-${previous}`).emit("click");
-      assert.match(ui.get("#sort-name").getAttribute("aria-label"), /Sort A to Z\./);
-      ui.get("#sort-name").emit("click");
-      assert.deepEqual(resultIds(ui), ["PC1:actions", "Avalon:camp", "PC1:stride"]);
-      assert.equal(ui.get("#sort-name").getAttribute("data-direction"), "asc");
-      ui.get("#sort-name").emit("click");
-      assert.deepEqual(resultIds(ui), ["PC1:stride", "Avalon:camp", "PC1:actions"]);
-      assert.equal(ui.get("#sort-name").getAttribute("data-direction"), "desc");
-    }
-  }
-});
-
-test("sorting survives filtering, reload and history navigation, and inactive controls lose their arrow", () => {
-  const ui = environment("?sort=source&order=asc");
-  mountCatalog(fixture(), ui);
-  assert.deepEqual(resultIds(ui), ["Avalon:camp", "PC1:actions", "PC1:stride"]);
-  assert.equal(ui.get("#sort-source").getAttribute("data-direction"), "asc");
-  clickFilter(ui, "source", "PC1");
-  ui.get("#rules-search").value = "s";
-  ui.get("#rules-search").emit("input");
-  ui.get("#sort-name").emit("click");
-  assert.deepEqual(resultIds(ui), ["PC1:actions", "PC1:stride"]);
-  assert.equal(ui.get("#sort-source").getAttribute("aria-pressed"), "false");
-  assert.equal(ui.get("#sort-source").getAttribute("data-direction"), null);
-  const reloaded = environment(ui.window.location.search);
-  mountCatalog(fixture(), reloaded);
-  assert.deepEqual(resultIds(reloaded), resultIds(ui));
-  assert.equal(reloaded.get("#sort-name").getAttribute("data-direction"), "asc");
-  ui.get("#rules-results").emit("click", { target: ui.row("PC1:stride") });
-  ui.get("#sort-type").emit("click");
-  ui.window.history.back();
-  assert.equal(ui.get("#sort-name").getAttribute("data-direction"), "asc");
-  ui.window.history.forward();
-  assert.equal(ui.get("#sort-type").getAttribute("data-direction"), "asc");
-});
-
-test("invalid sort URL values are ignored and search relevance stays the default", () => {
-  const ui = environment("?q=Stride&sort=unknown&order=desc");
-  mountCatalog(fixture(), ui);
-  assert.deepEqual(resultIds(ui), ["PC1:stride"]);
-  assert.equal(ui.window.location.searchParams.get("sort"), null);
-  assert.equal(ui.window.location.searchParams.get("order"), null);
-  assert.equal(ui.get("#sort-name").getAttribute("aria-pressed"), "false");
-  const invalidOrder = environment("?sort=name&order=unknown");
-  mountCatalog(fixture(), invalidOrder);
-  assert.deepEqual(resultIds(invalidOrder), ["PC1:actions", "Avalon:camp", "PC1:stride"]);
-  assert.equal(invalidOrder.get("#sort-name").getAttribute("data-direction"), "asc");
-});
-
-test("the first matching rule opens beside the list and search updates the selection without navigation", () => {
+test("search and clearing filters leave the reader unselected until a rule is chosen", () => {
   const ui = environment("?q=act&source=PC1");
   mountCatalog(fixture(), ui);
   assert.equal(ui.get("#rules-search").value, "act");
   assert.equal(ui.get("#results-title").textContent, "Search results");
-  assert.match(ui.get("#rule-detail").innerHTML, /Spend three actions/);
-  assert.equal(ui.row("PC1:actions").attributes.get("aria-current"), "true");
+  assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule/);
+  assert.equal(ui.row("PC1:actions").attributes.has("aria-current"), false);
   ui.get("#rules-search").value = "nothing matches";
   ui.get("#rules-search").emit("input");
   assert.match(ui.get("#rules-results").innerHTML, /No matching rules/);
@@ -588,7 +491,7 @@ test("the first matching rule opens beside the list and search updates the selec
   assert.equal(ui.window.location.searchParams.get("q"), null);
   assert.equal(ui.window.location.searchParams.get("source"), null);
   assert.equal(ui.get("#rules-search").focused, true);
-  assert.match(ui.get("#rule-detail").innerHTML, /Spend three actions/);
+  assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule/);
 });
 
 test("clicking a list entry updates only the detail pane and supports Back and Forward", () => {
@@ -606,7 +509,8 @@ test("clicking a list entry updates only the detail pane and supports Back and F
   assert.equal(ui.row("PC1:actions").attributes.has("aria-current"), false);
   assert.equal(ui.previews.attached, 1);
   ui.window.history.back();
-  assert.match(ui.get("#rule-detail").innerHTML, /Spend three actions/);
+  assert.equal(controller.selectedId, null);
+  assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule/);
   ui.window.history.forward();
   assert.match(ui.get("#rule-detail").innerHTML, /Rest and recover/);
 });
@@ -616,7 +520,7 @@ test("modified list clicks keep native new-tab navigation and do not change sele
   const controller = mountCatalog(fixture(), ui);
   const event = ui.get("#rules-results").emit("click", { target: ui.row("Avalon:camp"), ctrlKey: true });
   assert.equal(event.defaultPrevented, false);
-  assert.equal(controller.selectedId, "PC1:actions");
+  assert.equal(controller.selectedId, null);
   assert.match(ui.get("#rules-results").innerHTML, /href="rules.html\?id=Avalon%3Acamp"/);
 });
 
@@ -626,14 +530,14 @@ test("obsolete category URL parameters are discarded while selection and Browse 
   assert.equal(controller.selectedId, "PC1:actions");
   assert.equal(ui.window.location.searchParams.get("topic"), null);
   assert.equal(ui.window.location.searchParams.get("not-topic"), null);
-  assert.equal(ui.window.location.searchParams.get("view"), "browse");
+  assert.equal(ui.window.location.searchParams.get("view"), null);
   assert.equal(ui.get("#rules-count").textContent, "3 rules");
   assert.doesNotMatch(ui.get("#rules-filter-groups").innerHTML, /Topics|data-filter-group="topic"/);
   assert.doesNotMatch(ui.get("#library-summary").textContent, /topics/i);
 });
 
 test("source and type filters combine with search and retain the current rule when possible", () => {
-  const ui = environment();
+  const ui = environment("?id=PC1%3Aactions");
   mountCatalog(fixture(), ui);
   ui.get("#rule-detail").scrollTop = 75;
   clickFilter(ui, "kind", "core");
@@ -642,7 +546,7 @@ test("source and type filters combine with search and retain the current rule wh
   assert.equal(ui.get("#rules-count").textContent, "0 rules");
   clickFilter(ui, "kind", "core");
   assert.equal(ui.get("#rules-count").textContent, "1 rule");
-  assert.match(ui.get("#rule-detail").innerHTML, /Rest and recover/);
+  assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule/);
   clickFilter(ui, "kind", "optional");
   assert.equal(ui.get("#rules-count").textContent, "0 rules");
 });
@@ -712,12 +616,12 @@ test("promoted sections select independently and link back to their containing r
   ui.get("#rules-results").emit("click", { target: ui.row("PC1:modifier") });
   assert.match(ui.get("#rule-detail").innerHTML, /Modifier description/);
   assert.doesNotMatch(ui.get("#rule-detail").innerHTML, /Parent introduction/);
-  assert.match(ui.get("#rule-detail").innerHTML, /<nav class="rule-path"[^>]*>.*data-rule-name="checks"[^>]*>Checks<\/a>/);
+  assert.match(ui.get("#rule-detail").innerHTML, /<nav class="rule-path"[^>]*>.*data-rule-name="PC1:checks"[^>]*>Checks<\/a>/);
   assert.match(ui.get("#rule-detail").innerHTML, /p\. 400/);
   ui.get("#rules-search").value = "Modifier";
   ui.get("#rules-search").emit("input");
   assert.equal(ui.get("#rules-count").textContent, "1 rule");
-  assert.equal(ui.row("PC1:checks"), undefined);
+  assert.match(ui.get("#rules-results").innerHTML, /rule-branch-link--context/);
   const target = { closest: selector => selector === "[data-rule-name]" ? { dataset: { ruleName: "checks", ruleSource: "PC1" } } : null };
   ui.document.emit("click", { target });
   assert.match(ui.get("#rule-detail").innerHTML, /Parent introduction/);
@@ -804,12 +708,111 @@ test("type filters are restored from the URL and cleared together", () => {
   mountCatalog(fixture(), ui);
   assert.equal(filterPill(ui, "kind", "optional").getAttribute("data-state"), "include");
   assert.equal(ui.get("#rules-count").textContent, "1 rule");
-  assert.match(ui.get("#rule-detail").innerHTML, /Move your Speed/);
+  assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule/);
   clearFilterGroup(ui, "kind");
   clickFilter(ui, "kind", "setting");
   assert.equal(ui.window.location.searchParams.get("kind"), "setting");
-  assert.match(ui.get("#rule-detail").innerHTML, /Rest and recover/);
+  assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule/);
   ui.get("#clear-search").emit("click");
   assert.equal(ui.window.location.searchParams.get("kind"), null);
   assert.equal(ui.get("#rules-count").textContent, "3 rules");
+});
+
+
+test("chapter clicks read the full authored chapter once, clear filters and support history without populating recent rules", () => {
+  const library = createLibrary({ sources: [{ id: "PC1", name: "Player Core" }], rules: [
+    { type: "h1", name: "Chapter 8", source: "PC1", entries: [
+      "Chapter introduction.",
+      { type: "h2", name: "First", entries: ["First text.", { type: "h3", name: "Child", entries: ["Child text."] }] },
+      { type: "h2", name: "Second", entries: ["Second text."] },
+    ] },
+  ] });
+  const ui = environment("?q=Child");
+  const controller = mountCatalog(library, ui);
+  const chapter = ui.get("#rules-results").querySelectorAll("[data-select-chapter]")[0];
+  assert.equal(ui.get("#rules-results").emit("click", { target: chapter, ctrlKey: true }).defaultPrevented, false);
+  assert.equal(controller.selectedChapter, null);
+  assert.equal(ui.get("#rules-results").emit("click", { target: chapter }).defaultPrevented, true);
+  assert.equal(controller.selectedId, null);
+  assert.equal(controller.selectedChapter.title, "Chapter 8");
+  assert.equal(ui.get("#rules-search").value, "");
+  const html = ui.get("#rule-detail").innerHTML;
+  for (const text of ["Chapter introduction.", "First text.", "Child text.", "Second text."]) assert.equal(html.split(text).length - 1, 1);
+  assert.equal(ui.storage.get(RULE_MEMORY_KEY), undefined);
+  assert.equal(ui.window.location.searchParams.get("chapter-source"), "PC1");
+  assert.equal(ui.window.location.searchParams.get("chapter"), "Chapter 8");
+  assert.equal(ui.window.location.searchParams.has("id"), false);
+  assert.equal(ui.previews.validated.at(-1), ui.get("#rule-detail"));
+  const reloaded = environment(ui.window.location.search);
+  assert.equal(mountCatalog(library, reloaded).selectedChapter.title, "Chapter 8");
+  controller.selectRule("PC1:child");
+  assert.equal(ui.window.location.searchParams.has("chapter"), false);
+  ui.window.history.back();
+  assert.equal(controller.selectedChapter.title, "Chapter 8");
+  ui.window.history.back();
+  assert.equal(controller.selectedChapter, null);
+  assert.equal(controller.selectedId, null);
+  assert.equal(ui.get("#rules-search").value, "Child");
+  ui.window.history.forward();
+  assert.equal(controller.selectedChapter.title, "Chapter 8");
+});
+
+test("intro-only chapters can be selected while empty searches and clear restore the right prompts", () => {
+  const library = createLibrary({ rules: [{ type: "h1", name: "Chapter 8", source: "PC1", entries: ["Chapter introduction."] }] });
+  const ui = environment();
+  const controller = mountCatalog(library, ui);
+  assert.equal(controller.selectedChapter, null);
+  assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule or chapter/);
+  ui.get("#rules-search").value = "missing";
+  ui.get("#rules-search").emit("input");
+  assert.match(ui.get("#rule-detail").innerHTML, /No matching rules/);
+  ui.get("#clear-search").emit("click");
+  assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule or chapter/);
+  const chapter = ui.get("#rules-results").querySelectorAll("[data-select-chapter]")[0];
+  assert.equal(ui.get("#rules-results").emit("click", { target: chapter }).defaultPrevented, true);
+  assert.equal(controller.selectedChapter.title, "Chapter 8");
+  assert.match(ui.get("#rule-detail").innerHTML, /Chapter introduction/);
+  for (const query of ["?rule=Chapter+8&source=PC1", "?id=PC1%3Achapter-8"]) {
+    const direct = environment(query);
+    assert.equal(mountCatalog(library, direct).selectedChapter.title, "Chapter 8");
+    assert.match(direct.get("#rule-detail").innerHTML, /Chapter introduction/);
+    assert.equal(direct.window.location.searchParams.get("chapter"), "Chapter 8");
+  }
+  const fresh = environment();
+  const freshController = mountCatalog(library, fresh);
+  assert.equal(freshController.selectRule("PC1:chapter-8"), true);
+  assert.equal(freshController.selectedChapter.title, "Chapter 8");
+});
+
+test("chapter errors remain recoverable and individual-rule URLs take priority over chapter parameters", () => {
+  const library = createLibrary({ rules: [{ name: "First", source: "PC1", chapter: "Chapter 8", entries: ["First text."] }] });
+  const missing = environment("?chapter-source=PC1&chapter=Unknown");
+  const controller = mountCatalog(library, missing);
+  assert.match(missing.get("#rule-detail").innerHTML, /Chapter not found/);
+  assert.equal(controller.selectChapter("PC1", "Unknown"), false);
+  controller.selectRule("PC1:first");
+  assert.match(missing.get("#rule-detail").innerHTML, /First text/);
+  const direct = environment("?chapter-source=PC1&chapter=Unknown&id=PC1%3Afirst");
+  assert.equal(mountCatalog(library, direct).selectedId, "PC1:first");
+  assert.equal(direct.window.location.searchParams.has("chapter"), false);
+});
+
+test("ambiguous rule URLs show an error without choosing a target, and recover through exact links and history", () => {
+  const library = createLibrary({ rules: [
+    { name: "Areas", source: "PC1", page: 300, entries: ["Spell areas text."] },
+    { name: "Areas", source: "PC1", page: 426, entries: ["General areas text."] },
+  ] });
+  const ui = environment("?rule=Areas");
+  const controller = mountCatalog(library, ui);
+  assert.equal(controller.selectedId, null);
+  const detail = ui.get("#rule-detail");
+  assert.match(detail.innerHTML, /Ambiguous rule link/);
+  assert.doesNotMatch(detail.innerHTML, /data-select-rule=|rule-match-options|Spell areas text|General areas text/);
+  controller.selectRule("PC1:areas-426");
+  assert.match(detail.innerHTML, /General areas text/);
+  ui.window.history.back();
+  assert.equal(controller.selectedId, null);
+  assert.match(detail.innerHTML, /Ambiguous rule link/);
+  ui.get("#clear-search").emit("click");
+  assert.match(detail.innerHTML, /Choose a rule or chapter/);
 });

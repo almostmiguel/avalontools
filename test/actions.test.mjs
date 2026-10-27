@@ -58,6 +58,22 @@ test("action content shares formatting and citations, escapes authors' text and 
   assert.match(rendered, /&lt;script&gt;/);
 });
 
+test("only confirmed action references receive the marker used to show the action icon", () => {
+  const resolveAction = fixture().registry.resolve;
+  const found = renderInline("{@action Stride|PC1|move}", { resolveAction });
+  assert.match(found, /data-action-resolved="true"/);
+  assert.match(found, />move<\/span><\/a>/);
+  assert.match(renderInline("{@action Walk}", { resolveAction }), /data-action-resolved="true"/);
+  for (const tag of ["{@action Quick Draw|PC1}", "{@action Stride|GMC}"]) {
+    const html = renderInline(tag, { resolveAction });
+    assert.match(html, /rule-link-unresolved/);
+    assert.doesNotMatch(html, /<a |data-action-resolved="true"/);
+  }
+  const unchecked = renderInline("{@action Stride|PC1}");
+  assert.match(unchecked, /href="actions.html/);
+  assert.doesNotMatch(unchecked, /data-action-resolved="true"/);
+});
+
 test("malformed action records report usable errors and name variants can pick a primary definition", () => {
   assert.throws(() => createActionLibrary({}), /actions.*array/);
   const entry = { name: "Example", category: "basic", time: { unit: "action", value: 1 }, entries: [] };
@@ -109,6 +125,30 @@ function environment(query = "") {
   return { document, window, handlers, previewCalls, attachPreviews(options) { previewCalls.push(options); return { hide() {} }; }, get: selector => document.querySelector(selector), target(dataset) { const el = new Element(); el.dataset = dataset; return el; } };
 }
 
+test("entering Actions stays unselected through search and sorting and Back restores the empty reader", () => {
+  const ui = environment(), controller = mountActions(fixture(), ui);
+  assert.equal(controller.selectedId, null);
+  assert.match(ui.get("#action-detail").innerHTML, /Choose an action/);
+  assert.doesNotMatch(ui.get("#actions-results").innerHTML, /aria-current="true"/);
+  assert.equal(ui.window.location.searchParams.has("id"), false);
+  const sort = ui.get("#actions-sort").querySelectorAll().find(el => el.dataset.actionSort === "name");
+  ui.get("#actions-sort").emit("click", { target: sort });
+  assert.equal(controller.selectedId, null);
+  ui.get("#actions-search").value = "no match";
+  ui.get("#actions-search").emit("input");
+  assert.match(ui.get("#action-detail").innerHTML, /No matching actions/);
+  ui.get("#actions-clear").emit("click");
+  assert.match(ui.get("#action-detail").innerHTML, /Choose an action/);
+  assert.equal(controller.selectedId, null);
+  controller.selectAction("PC1:stride");
+  assert.match(ui.get("#action-detail").innerHTML, /Move your Speed/);
+  ui.window.history.back();
+  assert.equal(controller.selectedId, null);
+  assert.match(ui.get("#action-detail").innerHTML, /Choose an action/);
+  ui.window.history.forward();
+  assert.equal(controller.selectedId, "PC1:stride");
+});
+
 test("actions select in place, preserve open content, restore history and retain native modified clicks", () => {
   const ui = environment("?action=Stride&source=PC1"), controller = mountActions(fixture(), ui);
   assert.equal(controller.selectedId, "PC1:stride");
@@ -128,7 +168,7 @@ test("actions select in place, preserve open content, restore history and retain
 });
 
 test("action filters, exclusion mode, name search, sort and reference links work together", () => {
-  const library = fixture(), ui = environment(), controller = mountActions(library, ui);
+  const library = fixture(), ui = environment("?id=PC1%3Aaid"), controller = mountActions(library, ui);
   const category = ui.get("#actions-filter-groups").children.find(el => el.dataset.actionFilter === "category" && el.dataset.filterValue === "skill");
   ui.get("#actions-filter-groups").emit("click", { target: category });
   assert.equal(controller.selectedId, "PC1:coerce");
@@ -153,7 +193,8 @@ test("action filters, exclusion mode, name search, sort and reference links work
 
 test("action filters restore from URLs and dismiss without changing selections", () => {
   const ui = environment("?category=skill&time=minute&sort=source&order=desc"), controller = mountActions(fixture(), ui);
-  assert.equal(controller.selectedId, "PC1:coerce");
+  assert.equal(controller.selectedId, null);
+  assert.match(ui.get("#action-detail").innerHTML, /Choose an action/);
   const menu = ui.get("#actions-filter-menu"); menu.open = true;
   ui.handlers.get("document:keydown")({ key: "Escape" });
   assert.equal(menu.open, false); assert.equal(ui.get("#actions-filter-summary").focused, true);
@@ -166,7 +207,7 @@ test("Actions remains usable if optional rule-reference data is unavailable and 
   const original = globalThis.fetch; t.after(() => { globalThis.fetch = original; });
   const data = { actions: [{ name: "Stride", category: "basic", time: { unit: "action", value: 1 }, entries: ["Move."] }] };
   globalThis.fetch = async path => ({ ok: path === "data/actions.json", status: 404, json: async () => data });
-  const ui = environment(); await startActions(ui);
+  const ui = environment("?action=Stride"); await startActions(ui);
   assert.match(ui.get("#action-detail").innerHTML, /Move\./);
   globalThis.fetch = async () => ({ ok: false, status: 404 });
   const failed = environment(); await startActions(failed);
@@ -174,24 +215,21 @@ test("Actions remains usable if optional rule-reference data is unavailable and 
   assert.match(failed.get("#main").innerHTML, /HTTP 404/);
 });
 
-test("the Player Core catalog contains standalone actions, excluding feat-granted actions", async () => {
+
+test("authored actions load without optional import metadata and remain valid and renderable", async () => {
   const data = JSON.parse(await readFile(new URL("../data/actions.json", import.meta.url), "utf8"));
-  const library = createActionLibrary(data);
-  assert.ok(library.actions.length >= 90);
-  assert.match(data._meta.dataOrigin, /Pf2eToolsOrg/);
-  assert.match(data._meta.revision, /^[0-9a-f]{40}$/);
-  assert.deepEqual(new Set(library.actions.map(action => action.category)), new Set(Object.keys(ACTION_CATEGORIES)));
-  for (const action of library.actions) for (const key of action.costKeys) assert.ok(Object.hasOwn(ACTION_TIMES, key));
-  assert.equal(library.get("PC1:stride").category, "basic");
-  assert.equal(library.get("PC1:fly").category, "specialty");
-  assert.equal(library.get("PC1:treat-wounds").time.value, 10);
-  assert.equal(library.get("PC1:refocus").time.unit, "minute");
-  for (const name of ["Reach Spell", "Boulder Roll", "Quick Draw"]) assert.equal(library.registry.resolve(name, "PC1").status, "missing");
-  for (const name of ["Hunt Prey", "Reactive Strike", "Call on Ancient Blood", "Jinx"]) assert.equal(library.registry.resolve(name, "PC1").status, "found");
+  const authored = { ...data };
+  delete authored._meta;
+  const library = createActionLibrary(authored);
+  assert.equal(library.actions.length, data.actions.length);
+  assert.deepEqual(createActionLibrary({ ...authored, _meta: { note: "Optional author notes" } }).actions.map(action => action.id), library.actions.map(action => action.id));
   for (const action of library.actions) {
-    assert.equal(action.source, "PC1");
-    assert.ok(action.page > 0);
-    assert.ok(action.entry.entries.length);
+    assert.ok(Object.hasOwn(ACTION_CATEGORIES, action.category));
+    assert.ok(library.sources.includes(action.source));
+    for (const key of action.costKeys) assert.ok(Object.hasOwn(ACTION_TIMES, key));
+    if (action.entry.page != null) assert.ok(Number.isInteger(action.entry.page) && action.entry.page > 0);
+    assert.ok(Array.isArray(action.entry.entries));
     assert.doesNotMatch(renderActionDetail(action, library), /\[object Object\]|undefined/);
   }
+  for (const name of ["Reach Spell", "Boulder Roll", "Quick Draw"]) assert.equal(library.registry.resolve(name, "PC1").status, "missing");
 });

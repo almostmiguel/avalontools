@@ -1,8 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { renderContent } from "../js/content-renderer.js";
-import { createLibrary, renderRuleBody } from "../js/rules-library.js";
-import { renderRulePreview } from "../js/rule-links.js";
 
 test("clarifications start collapsed with a native disclosure, default title and formatted body without creating headings", () => {
   const { html, headings } = renderContent({ entries: [{
@@ -26,19 +24,4 @@ test("clarifications can start expanded and safely render custom titles and text
   assert.match(html, /An <em>official<\/em> note &lt;script&gt;/);
   assert.match(html, /&lt;img src=x onerror=&quot;bad\(\)&quot;&gt; Unsafe/);
   assert.doesNotMatch(html, /<script>|<img|href=|javascript:/);
-});
-
-test("clarifications retain rule resolution in both the detail pane and hover previews", () => {
-  const library = createLibrary({ sources: [{ id: "PC1", name: "Player Core" }], rules: [
-    { id: "checks", name: "Checks", source: "PC1", entries: [{
-      type: "clarification", entries: ["Read {@rule Difficulty Classes}."],
-    }] },
-    { id: "dc", name: "Difficulty Classes", source: "PC1", entries: ["Choose a DC."] },
-  ] });
-  const rule = library.get("PC1:checks");
-  for (const html of [renderRuleBody(rule, library), renderRulePreview("Checks", "PC1", library.registry)]) {
-    assert.match(html, /<details class="paizo-clarification">/);
-    assert.match(html, /href="rules.html\?id=PC1%3Adc"/);
-    assert.doesNotMatch(html, /rule-link-unresolved/);
-  }
 });

@@ -11,18 +11,39 @@
   <link rel="stylesheet" href="css/site.css">
   <link rel="stylesheet" href="css/home.css">
 </head>
-<body data-page="home">
+<body data-page="home" data-reference-kind="setting">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="index.html" aria-label="Avalon home"><span class="brand-mark" aria-hidden="true">✧</span>Avalon</a>
       <nav aria-label="Main navigation" id="navigation">
-        <a class="nav-home" href="index.html" aria-current="page">Home</a>
-        <details class="reference-menu" id="reference-menu">
-          <summary class="nav-home">Reference<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
-          <div class="reference-panel">
-            <a href="rules.html">Rules</a>
-            <a href="actions.html">Actions</a>
+        <a class="nav-home nav-direct" href="rules.html" data-reference-kind="rule">Rules</a>
+        <details class="nav-menu" id="player-menu" name="main-navigation">
+          <summary class="nav-home">Player<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="nav-panel">
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="ancestry"><span>Ancestries</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="archetype"><span>Archetypes</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="background"><span>Backgrounds</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="class"><span>Classes</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="feat"><span>Feats</span><small>Coming soon</small></span>
+          </div>
+        </details>
+        <details class="nav-menu" id="game-master-menu" name="main-navigation">
+          <summary class="nav-home">Game Master<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="nav-panel">
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="affliction"><span>Afflictions</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="creature"><span>Creatures</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="hazard"><span>Hazards</span><small>Coming soon</small></span>
+          </div>
+        </details>
+        <details class="nav-menu" id="reference-menu" name="main-navigation">
+          <summary class="nav-home">References<svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg></summary>
+          <div class="nav-panel">
+            <a href="actions.html" data-reference-kind="action">Actions</a>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="condition"><span>Conditions</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="equipment"><span>Equipment</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="skill"><span>Skills</span><small>Coming soon</small></span>
+            <span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="trait"><span>Traits</span><small>Coming soon</small></span>
           </div>
         </details>
       </nav>
@@ -49,11 +70,11 @@
     <section class="home-reference" aria-labelledby="reference-title">
       <h2 id="reference-title">Reference</h2>
       <div class="home-reference-grid">
-        <a class="home-tool" href="rules.html">
+        <a class="home-tool" href="rules.html" data-reference-kind="rule">
           <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="5" width="30" height="38" rx="3"/><path d="M17 15h14M17 23h14M17 31h9"/><path d="M5 11h4M5 19h4M5 27h4M5 35h4"/></svg>
           <strong>Rules</strong>
         </a>
-        <a class="home-tool" href="actions.html">
+        <a class="home-tool" href="actions.html" data-reference-kind="action">
           <svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 5 17 19-17 19L5 24Z"/><path d="m17 16 8 8-8 8m8-16 8 8-8 8"/></svg>
           <strong>Actions</strong>
         </a>

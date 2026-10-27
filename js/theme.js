@@ -27,7 +27,7 @@
         try { window.localStorage.setItem(storageKey, theme); } catch { /* The selection still works for this visit. */ }
       });
     }
-    const menus = ["#site-settings", "#reference-menu"].map(selector => document.querySelector(selector)).filter(Boolean);
+    const menus = ["#site-settings", "#player-menu", "#game-master-menu", "#reference-menu"].map(selector => document.querySelector(selector)).filter(Boolean);
     document.addEventListener("click", event => {
       for (const menu of menus) {
         if (!menu.contains(event.target)) menu.open = false;
