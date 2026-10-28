@@ -1,8 +1,8 @@
-import { escapeHtml } from "./content-renderer.js";
-import { renderRuleBody } from "./rules-library.js";
-import { renderRuleCitation } from "./rule-sources.js";
-import { loadJson } from "./data-loader.js";
-import { ACTION_CATEGORIES, createActionLibrary, actionTimeHtml, renderActionBody } from "./actions-library.js";
+// Shared hover and keyboard previews for rules and reference catalogs.
+import { escapeHtml, renderContent } from "./content-renderer.js";
+import { renderRuleBody } from "./rule-library.js";
+import { createLazyResource, loadJson, renderReferenceCitation } from "./reference-data.js";
+import { ACTION_CATEGORIES, actionTimeHtml, createActionLibrary, createCatalog, renderActionBody } from "./reference-library.js";
 
 const previewHeading = (title, label) => `<header class="rule-preview-heading"><h2 id="rule-preview-title">${escapeHtml(title)}</h2><span>${label}</span></header>`;
 
@@ -16,7 +16,7 @@ export function renderRulePreview(name, source, registry) {
     return `${header}<div class="rule-preview-body"><p>${escapeHtml(message)}</p></div>`;
   }
   const body = renderRuleBody(target, { registry }, { anchorPrefix: "rule-preview-section" });
-  return `${header}<p class="rule-preview-source">${renderRuleCitation(target)}</p><div class="rule-preview-body">${body}</div>`;
+  return `${header}<p class="rule-preview-source">${renderReferenceCitation(target)}</p><div class="rule-preview-body">${body}</div>`;
 }
 
 export function renderActionPreview(name, source, actions, rules) {
@@ -30,7 +30,20 @@ export function renderActionPreview(name, source, actions, rules) {
   }
   const context = `${ACTION_CATEGORIES[target.category]} action${target.owners.length ? ` · ${target.owners.join(", ")}` : ""}`;
   const body = renderActionBody(target, actions, rules, { anchorPrefix: "action-preview-section" });
-  return `${header}<p class="rule-preview-source">${renderRuleCitation(target)}</p><div class="rule-preview-body"><p class="action-preview-meta">${actionTimeHtml(target)}<span>${escapeHtml(context)}</span></p>${body}</div>`;
+  return `${header}<p class="rule-preview-source">${renderReferenceCitation(target)}</p><div class="rule-preview-body"><p class="action-preview-meta">${actionTimeHtml(target)}<span>${escapeHtml(context)}</span></p>${body}</div>`;
+}
+
+export function renderCatalogPreview(name, source, catalog, { plural, singular }) {
+  const resolution = catalog.registry.resolve(name, source);
+  const target = resolution.target;
+  const header = previewHeading(target?.name || name, plural);
+  if (!target) {
+    const message = resolution.status === "ambiguous" ? `More than one ${singular} has this name. Choose an entry from the ${plural} page.`
+      : `No matching ${singular} has been added. Check the name and source, or open the ${plural} page.`;
+    return `${header}<div class="rule-preview-body"><p>${escapeHtml(message)}</p></div>`;
+  }
+  const body = renderContent({ entries: target.entry.entries }, { source: target.source, anchorPrefix: `${singular}-preview-section` }).html || "<p>No description has been added yet.</p>";
+  return `${header}<p class="rule-preview-source">${renderReferenceCitation(target)}</p><div class="rule-preview-body"><p class="action-preview-meta"><span>${escapeHtml(target.category)} ${escapeHtml(singular)}</span></p>${body}</div>`;
 }
 
 export function previewPosition(anchor, panel, viewport) {
@@ -43,7 +56,10 @@ export function previewPosition(anchor, panel, viewport) {
   return { left, top };
 }
 
-export function attachRulePreviews({ document, window, registry, actions = null, loadActions = () => loadJson("data/actions.json").then(createActionLibrary) }) {
+export function attachReferencePreviews({ document, window, registry, actions = null, conditions = null, skills = null,
+  loadActions = () => loadJson("data/actions.json").then(createActionLibrary),
+  loadConditions = () => loadJson("data/conditions.json").then(data => createCatalog(data, { collection: "conditions", href: "conditions.html" })),
+  loadSkills = () => loadJson("data/skills.json").then(data => createCatalog(data, { collection: "skills", href: "skills.html" })) }) {
   const panel = document.createElement("section");
   panel.id = "rule-preview";
   panel.className = "rule-preview";
@@ -56,17 +72,13 @@ export function attachRulePreviews({ document, window, registry, actions = null,
   let closeTimer;
   let openTimer;
   let restoringFocus = false;
-  let actionCatalog = actions;
-  let actionLoad;
+  const actionResource = createLazyResource(actions, loadActions);
+  const conditionResource = createLazyResource(conditions, loadConditions);
+  const skillResource = createLazyResource(skills, loadSkills);
   let version = 0;
-  const getActions = () => {
-    if (actionCatalog) return Promise.resolve(actionCatalog);
-    if (!actionLoad) actionLoad = Promise.resolve().then(loadActions).then(library => {
-      actionCatalog = library;
-      return library;
-    }).catch(error => { actionLoad = null; throw error; });
-    return actionLoad;
-  };
+  const getActions = actionResource.load;
+  const getConditions = conditionResource.load;
+  const getSkills = skillResource.load;
   const validateActions = async root => {
     const links = [...(root?.querySelectorAll?.("[data-action-name]") || [])]
       .filter(link => link.dataset.actionResolved == null);
@@ -114,16 +126,46 @@ export function attachRulePreviews({ document, window, registry, actions = null,
     if (panel.contains(link)) return;
     if (current === link && !panel.hidden) return position();
     if (current !== link) hide();
+    const catalogType = link.dataset.conditionName != null ? "condition" : link.dataset.skillName != null ? "skill" : null;
+    if (catalogType) {
+      const settings = catalogType === "condition"
+        ? { plural: "Conditions", singular: "condition", catalog: conditionResource.current, get: getConditions }
+        : { plural: "Skills", singular: "skill", catalog: skillResource.current, get: getSkills };
+      panel.dataset.referenceKind = catalogType;
+      current = link;
+      const requestVersion = ++version;
+      const name = link.dataset[`${catalogType}Name`], source = link.dataset[`${catalogType}Source`];
+      panel.setAttribute("aria-busy", String(!settings.catalog));
+      panel.innerHTML = settings.catalog
+        ? renderCatalogPreview(name, source, settings.catalog, settings)
+        : `${previewHeading(name, settings.plural)}<div class="rule-preview-body"><p role="status">Loading ${settings.singular}…</p></div>`;
+      panel.hidden = false;
+      link.setAttribute("aria-controls", panel.id);
+      link.setAttribute("aria-describedby", panel.id);
+      position();
+      if (!settings.catalog) return settings.get().then(library => {
+        if (current !== link || version !== requestVersion) return;
+        panel.innerHTML = renderCatalogPreview(name, source, library, settings);
+        panel.setAttribute("aria-busy", "false");
+        position();
+      }).catch(() => {
+        if (current !== link || version !== requestVersion) return;
+        panel.innerHTML = `${previewHeading(name, settings.plural)}<div class="rule-preview-body"><p>Unable to load this preview. Follow the link to open ${settings.plural}, or try again.</p></div>`;
+        panel.setAttribute("aria-busy", "false");
+        position();
+      });
+      return;
+    }
     const action = link.dataset.actionName != null;
     if (!action && !registry) return;
     panel.dataset.referenceKind = action ? "action" : "rule";
     current = link;
     const requestVersion = ++version;
     const rules = registry ? { registry } : undefined;
-    if (action && actionCatalog) link.dataset.actionResolved = String(actionCatalog.registry.resolve(link.dataset.actionName, link.dataset.actionSource).status === "found");
-    panel.setAttribute("aria-busy", String(action && !actionCatalog));
+    if (action && actionResource.current) link.dataset.actionResolved = String(actionResource.current.registry.resolve(link.dataset.actionName, link.dataset.actionSource).status === "found");
+    panel.setAttribute("aria-busy", String(action && !actionResource.current));
     panel.innerHTML = action
-      ? actionCatalog ? renderActionPreview(link.dataset.actionName, link.dataset.actionSource, actionCatalog, rules)
+      ? actionResource.current ? renderActionPreview(link.dataset.actionName, link.dataset.actionSource, actionResource.current, rules)
         : `${previewHeading(link.dataset.actionName, "Actions")}<div class="rule-preview-body"><p role="status">Loading action…</p></div>`
       : renderRulePreview(link.dataset.ruleName, link.dataset.ruleSource, registry);
     void validateActions(panel).then(position);
@@ -131,7 +173,7 @@ export function attachRulePreviews({ document, window, registry, actions = null,
     link.setAttribute("aria-controls", panel.id);
     link.setAttribute("aria-describedby", panel.id);
     position();
-    if (action && !actionCatalog) return getActions().then(library => {
+    if (action && !actionResource.current) return getActions().then(library => {
       link.dataset.actionResolved = String(library.registry.resolve(link.dataset.actionName, link.dataset.actionSource).status === "found");
       if (current !== link || version !== requestVersion) return;
       panel.innerHTML = renderActionPreview(link.dataset.actionName, link.dataset.actionSource, library, rules);
@@ -151,7 +193,7 @@ export function attachRulePreviews({ document, window, registry, actions = null,
       if (!panel.contains(document.activeElement) && document.activeElement !== current) hide();
     }, 180);
   };
-  const referenceLink = target => target?.closest?.(registry ? "[data-rule-name], [data-action-name]" : "[data-action-name]");
+  const referenceLink = target => target?.closest?.(registry ? "[data-rule-name], [data-action-name], [data-condition-name], [data-skill-name]" : "[data-action-name], [data-condition-name], [data-skill-name]");
   on(document, "pointerover", event => {
     if (event.pointerType === "touch") return;
     const link = referenceLink(event.target);

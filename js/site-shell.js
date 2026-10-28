@@ -1,3 +1,4 @@
+// Shared navigation, appearance controls and cross-tab theme synchronization.
 // Run before the stylesheet so a saved theme is applied before the first paint.
 (() => {
   const storageKey = "avalon-theme";

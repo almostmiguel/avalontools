@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { createLibrary, chapterHref, renderBrowse, renderRuleBody } from "../js/rules-library.js";
-import { findChapter, renderChapter } from "../js/rule-chapters.js";
-import { renderRulePreview } from "../js/rule-links.js";
+import { createRuleLibrary, chapterHref, renderBrowse, renderRuleBody } from "../js/rule-library.js";
+import { findChapter, renderChapter } from "../js/chapter-reader.js";
+import { renderRulePreview } from "../js/reference-previews.js";
 
 const fixture = () => ({ sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }], rules: [
   { name: "First", source: "PC1", chapter: "Chapter 8", page: 400, entries: [
@@ -18,7 +18,7 @@ const fixture = () => ({ sources: [{ id: "PC1", name: "Player Core" }, { id: "GM
 ] });
 
 test("whole chapters preserve authored order, include descendants once and exclude other chapters and sources", () => {
-  const data = fixture(), before = JSON.stringify(data), library = createLibrary(data);
+  const data = fixture(), before = JSON.stringify(data), library = createRuleLibrary(data);
   const chapter = findChapter(library, "pc1", "Chapter 8");
   assert.equal(chapter.sourceName, "Player Core");
   assert.equal(chapter.rules.length, 4);
@@ -54,7 +54,7 @@ test("authored h1 chapters keep introduction and interleaved prose while indexin
     "Closing paragraph.",
   ] };
   const payload = { sources: [{ id: "PC1", name: "Player Core" }], rules: [chapterEntry] };
-  const before = JSON.stringify(payload), library = createLibrary(payload);
+  const before = JSON.stringify(payload), library = createRuleLibrary(payload);
   assert.equal(library.chapters.length, 1);
   assert.equal(library.rules.length, 7);
   assert.equal(library.fromEntry(chapterEntry), undefined);
@@ -85,7 +85,7 @@ test("authored h1 chapters keep introduction and interleaved prose while indexin
 });
 
 test("a chapter with introductory text and no rules remains browsable and readable", () => {
-  const library = createLibrary({ rules: [{ type: "h1", name: "Chapter 1", source: "PC1", entries: ["Just the introduction."] }] });
+  const library = createRuleLibrary({ rules: [{ type: "h1", name: "Chapter 1", source: "PC1", entries: ["Just the introduction."] }] });
   assert.equal(library.rules.length, 0);
   assert.deepEqual(library.sources, ["PC1"]);
   assert.match(renderBrowse(library, []), /data-select-chapter=/);
@@ -99,11 +99,11 @@ test("a chapter with introductory text and no rules remains browsable and readab
   }
   assert.equal(library.registry.resolve("Chapter 1", "GMC").status, "missing");
   assert.match(renderRulePreview("Chapter 1", "PC1", library.registry), /Just the introduction/);
-  assert.throws(() => createLibrary({ rules: [{ type: "h1" }] }), /chapter needs a name/);
+  assert.throws(() => createRuleLibrary({ rules: [{ type: "h1" }] }), /chapter needs a name/);
 });
 
 test("chapter links reload their source and title and chapter outlines point to unique existing anchors", () => {
-  const library = createLibrary(fixture());
+  const library = createRuleLibrary(fixture());
   const chapter = findChapter(library, "PC1", "Chapter 8");
   const url = new URL(chapterHref(chapter.sourceId, chapter.title), "http://localhost/project/");
   assert.equal(url.searchParams.get("chapter-source"), "PC1");

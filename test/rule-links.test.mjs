@@ -1,20 +1,28 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { attachRulePreviews, previewPosition, renderRulePreview, renderActionPreview } from "../js/rule-links.js";
-import { createActionLibrary, renderActionBody } from "../js/actions-library.js";
-import { createLibrary, renderRuleBody } from "../js/rules-library.js";
-import { renderRuleCitation } from "../js/rule-sources.js";
+import { attachReferencePreviews, previewPosition, renderRulePreview, renderActionPreview, renderCatalogPreview } from "../js/reference-previews.js";
+import { createActionLibrary, createCatalog, renderActionBody } from "../js/reference-library.js";
+import { createRuleLibrary, renderRuleBody } from "../js/rule-library.js";
+import { renderReferenceCitation } from "../js/reference-data.js";
 
-const { registry } = createLibrary({
+const { registry } = createRuleLibrary({
   sources: [{ id: "PC1", name: "Player Core" }],
   rules: [{ id: "action", name: "Action", source: "PC1", page: 10, entries: ["Use an action to do something.", { type: "clarification", entries: ["An explanation."] }] }],
 });
 
 const actions = createActionLibrary({ sources: [{ id: "PC1", name: "Player Core" }], actions: [
-  { name: "Stride", source: "PC1", page: 418, category: "basic", time: { unit: "action", value: 1 }, traits: ["move"], requirements: "You can move.", entries: ["Move up to your Speed.", { type: "h3", name: "Movement", entries: ["See {@rule Action|PC1} or {@action Aid|PC1}."] }] },
+  { name: "Stride", source: "PC1", page: 418, category: "basic", time: { unit: "action", value: 1 }, traits: ["move"], requirements: "You can move.", entries: ["Move up to your Speed.", { type: "h3", name: "Movement", entries: ["See {@rule Action} or {@action Aid}."] }] },
   { name: "Aid", source: "PC1", page: 416, category: "basic", time: { unit: "reaction" }, trigger: "An ally acts.", entries: ["Help the ally."] },
   { name: "Refocus", source: "PC1", page: 298, category: "general", time: { unit: "minute", value: 10 }, entries: ["Restore a Focus Point."] },
 ] });
+
+const conditions = createCatalog({ sources: [{ id: "PC1", name: "Player Core" }], conditions: [
+  { name: "Blinded", source: "PC1", category: "Sense", entries: ["You cannot see."] },
+] }, { collection: "conditions", href: "conditions.html" });
+
+const skills = createCatalog({ sources: [{ id: "PC1", name: "Player Core" }], skills: [
+  { name: "Acrobatics", source: "PC1", category: "Skill", entries: ["Keep your balance."] },
+] }, { collection: "skills", href: "skills.html" });
 
 test("action previews share the full reader body, citation, symbols and formatting", () => {
   const action = actions.get("PC1:stride");
@@ -23,7 +31,7 @@ test("action previews share the full reader body, citation, symbols and formatti
   assert.match(html, /data-symbol="1"/);
   assert.match(html, /class="ability-trait" role="listitem">move/);
   assert.match(html, /<dt>Requirements<\/dt>/);
-  assert.ok(html.includes(renderRuleCitation(action)));
+  assert.ok(html.includes(renderReferenceCitation(action)));
   assert.ok(html.includes(renderActionBody(action, actions, { registry }, { anchorPrefix: "action-preview-section" })));
   assert.match(html, /id="action-preview-section-1"/);
   assert.doesNotMatch(html, /id="action-section-1"|data-close-rule-preview|<button/);
@@ -39,7 +47,7 @@ test("previews show authored content and citation and explain missing rules", ()
   assert.match(html, /Player Core/);
   assert.match(html, /· p\. 10/);
   const citation = html.match(/<p class="rule-preview-source">([\s\S]*?)<\/p>/)[1];
-  assert.equal(citation, renderRuleCitation(registry.resolve("Action", "PC1").target));
+  assert.equal(citation, renderReferenceCitation(registry.resolve("Action", "PC1").target));
   assert.doesNotMatch(citation, /<a\b|href=/);
   assert.doesNotMatch(html, /data-close-rule-preview|<button/);
   assert.match(html, /<span>Rules<\/span><\/header>/);
@@ -47,9 +55,19 @@ test("previews show authored content and citation and explain missing rules", ()
   assert.doesNotMatch(renderRulePreview("<script>bad</script>", "PC1", registry), /<script>/);
 });
 
+test("condition and skill previews use their catalog entries and explain missing references", () => {
+  const condition = renderCatalogPreview("Blinded", "PC1", conditions, { plural: "Conditions", singular: "condition" });
+  const skill = renderCatalogPreview("Acrobatics", "PC1", skills, { plural: "Skills", singular: "skill" });
+  assert.match(condition, /<span>Conditions<\/span>/);
+  assert.match(condition, /You cannot see/);
+  assert.match(skill, /<span>Skills<\/span>/);
+  assert.match(skill, /Keep your balance/);
+  assert.match(renderCatalogPreview("Missing", "PC1", conditions, { plural: "Conditions", singular: "condition" }), /No matching condition/);
+});
+
 
 test("reader and hover previews preserve rich blocks, nested references, safety and unique anchors", () => {
-  const library = createLibrary({ rules: [{
+  const library = createRuleLibrary({ rules: [{
     name: "Example", source: "Avalon", entries: [
       { type: "list", columns: 2, style: "list-no-bullets", items: [
         { type: "item", style: "hanging", name: "First", entry: "Read {@rule Example}." },
@@ -109,6 +127,8 @@ function environment(options = {}) {
       const selectors = selector.split(",").map(value => value.trim());
       if (selectors.includes("[data-rule-name]") && this.dataset.ruleName) return this;
       if (selectors.includes("[data-action-name]") && this.dataset.actionName) return this;
+      if (selectors.includes("[data-condition-name]") && this.dataset.conditionName) return this;
+      if (selectors.includes("[data-skill-name]") && this.dataset.skillName) return this;
       return this.parent?.closest(selector) || null;
     }
     getBoundingClientRect() { return this.rect; }
@@ -129,7 +149,7 @@ function environment(options = {}) {
   link.dataset = { ruleName: "Action", ruleSource: "PC1" };
   link.setAttribute("href", registry.resolve("Action", "PC1").target.href);
   document.body.append(link);
-  const controller = attachRulePreviews({ document, window, registry, ...options });
+  const controller = attachReferencePreviews({ document, window, registry, ...options });
   return { document, window, flush, link, controller, Element };
 }
 
@@ -137,6 +157,22 @@ function actionLink(env, name = "Stride") {
   const link = new env.Element();
   link.dataset = { actionName: name, actionSource: "PC1" };
   link.setAttribute("href", actions.registry.resolve(name, "PC1").target.href);
+  env.document.body.append(link);
+  return link;
+}
+
+function conditionLink(env, name = "Blinded") {
+  const link = new env.Element();
+  link.dataset = { conditionName: name, conditionSource: "PC1" };
+  link.setAttribute("href", `conditions.html?condition=${name}&source=PC1`);
+  env.document.body.append(link);
+  return link;
+}
+
+function skillLink(env, name = "Acrobatics") {
+  const link = new env.Element();
+  link.dataset = { skillName: name, skillSource: "PC1" };
+  link.setAttribute("href", `skills.html?skill=${name}&source=PC1`);
   env.document.body.append(link);
   return link;
 }
@@ -200,6 +236,25 @@ test("action hover and keyboard focus use the shared panel without intercepting 
   assert.equal(link.attributes.get("aria-controls"), undefined);
   env.controller.show(env.link);
   assert.equal(env.controller.panel.dataset.referenceKind, "rule");
+});
+
+test("condition and skill links show shared hover previews without changing their destinations", () => {
+  const env = environment({ conditions });
+  const link = conditionLink(env), href = link.attributes.get("href");
+  env.document.emit("pointerover", { target: link, pointerType: "mouse" });
+  env.flush();
+  assert.equal(env.controller.panel.hidden, false);
+  assert.equal(env.controller.panel.dataset.referenceKind, "condition");
+  assert.match(env.controller.panel.innerHTML, /You cannot see/);
+  assert.equal(link.attributes.get("href"), href);
+
+  const skillEnv = environment({ skills });
+  const skill = skillLink(skillEnv), skillHref = skill.attributes.get("href");
+  skillEnv.document.emit("pointerover", { target: skill, pointerType: "mouse" });
+  skillEnv.flush();
+  assert.equal(skillEnv.controller.panel.dataset.referenceKind, "skill");
+  assert.match(skillEnv.controller.panel.innerHTML, /Keep your balance/);
+  assert.equal(skill.attributes.get("href"), skillHref);
 });
 
 test("action previews work without a rule library, including on the Actions page", () => {
@@ -348,7 +403,7 @@ test("touch hover is ignored, and resizing or scrolling cannot strand a preview 
 });
 
 test("ambiguous rule previews explain the unresolved reference without a chooser or guessing", () => {
-  const library = createLibrary({ rules: [
+  const library = createRuleLibrary({ rules: [
     { name: "Areas", source: "PC1", page: 300, entries: ["Spell text."] },
     { name: "Areas", source: "PC1", page: 426, entries: ["General text."] },
   ] });

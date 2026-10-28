@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { renderContent } from "../js/content-renderer.js";
-import { renderRulePreview } from "../js/rule-links.js";
-import { createLibrary } from "../js/rules-library.js";
+import { renderRulePreview } from "../js/reference-previews.js";
+import { createRuleLibrary } from "../js/rule-library.js";
 
 const source = { id: "PC1", source: "PC1", name: "Player Core" };
 const ability = {
@@ -83,7 +83,7 @@ test("normal and compact ability previews retain fields, links, attribution and 
   for (const compact of [false, true]) {
     const entry = { ...ability, compact, id: "example-feat", aliases: ["Example"], setting: compact ? "original" : "modified", settingNote: "Campaign adaptation." };
     const rule = { id: entry.id, name: entry.name, aliases: entry.aliases, source: "PC1", page: 15, setting: entry.setting, entries: [{ ...entry, rule: false, setting: undefined }] };
-    const registry = createLibrary({ sources: [source], rules: [rule] }).registry;
+    const registry = createRuleLibrary({ sources: [source], rules: [rule] }).registry;
     assert.equal(registry.resolve("Example", "PC1").target.entry, rule);
     const preview = renderRulePreview("Example", "PC1", registry);
     assert.match(preview, compact ? /ability-block--compact/ : /class="ability-block"/);

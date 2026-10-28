@@ -3,8 +3,8 @@ import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import { renderContent } from "../js/content-renderer.js";
 import { imageView, attachImageViewer } from "../js/image-viewer.js";
-import { createLibrary } from "../js/rules-library.js";
-import { renderRulePreview } from "../js/rule-links.js";
+import { createRuleLibrary } from "../js/rule-library.js";
+import { renderRulePreview } from "../js/reference-previews.js";
 
 test("rule images wrap on the right, stay accessible, and retain a working image link without JavaScript", () => {
   const image = { type: "image", href: "img/areas.webp", alt: 'Area "templates"', title: "Areas: {@b bursts and cones}", align: "right" };
@@ -16,7 +16,7 @@ test("rule images wrap on the right, stay accessible, and retain a working image
   assert.match(html, /<figcaption>Areas: <strong>bursts and cones<\/strong><\/figcaption>/);
   assert.ok(html.indexOf("<figure") < html.indexOf("<p>Rule text"));
   assert.equal(headings.length, 0);
-  const { registry } = createLibrary({ rules: [{ name: "Area", source: "PC1", entries: [image] }] });
+  const { registry } = createRuleLibrary({ rules: [{ name: "Area", source: "PC1", entries: [image] }] });
   assert.ok(renderRulePreview("Area", "PC1", registry).includes(renderContent({ entries: [image] }).html));
   const ordinary = renderContent({ entries: [{ type: "image", href: { path: "img/other.webp" }, align: 'right" onclick="bad()' }] }).html;
   assert.match(ordinary, /class="rule-image"/);

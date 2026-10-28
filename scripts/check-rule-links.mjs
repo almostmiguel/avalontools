@@ -3,7 +3,7 @@ import { watch } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { renderInline } from "../js/content-renderer.js";
-import { createLibrary } from "../js/rules-library.js";
+import { createRuleLibrary } from "../js/rule-library.js";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const files = ["data/rules.json", "data/actions.json"];
@@ -62,7 +62,7 @@ async function validate() {
   if (errors) { console.log(`Rule link check complete: ${errors} errors.`); return errors; }
   const texts = reads.map(result => result.value);
   try {
-    library = createLibrary(JSON.parse(texts[0]));
+    library = createRuleLibrary(JSON.parse(texts[0]));
   } catch (error) {
     reportError(files[0], texts[0], error);
     console.log("Rule link check complete: 1 error.");

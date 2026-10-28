@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
-import { createLibrary } from "../js/rules-library.js";
-import { loadLibrary, mountCatalog, mountRule, startRules } from "../js/rules-app.js";
-import { RULE_MEMORY_KEY } from "../js/rule-memory.js";
-import { renderRuleCitation } from "../js/rule-sources.js";
+import { createRuleLibrary } from "../js/rule-library.js";
+import { loadLibrary, mountRuleBrowser, mountRule, startRules } from "../js/rule-browser.js";
+import { READER_STATE_KEY } from "../js/reader-state.js";
+import { renderReferenceCitation } from "../js/reference-data.js";
 
 function environment(search = "", page = "rules", { mobile = false, storage = new Map() } = {}) {
   const elements = new Map();
@@ -104,9 +104,9 @@ function environment(search = "", page = "rules", { mobile = false, storage = ne
   };
 }
 
-const fixture = () => createLibrary({ rules: [
+const fixture = () => createRuleLibrary({ rules: [
   { id: "actions", name: "Actions", source: "PC1", page: 10, entries: ["Spend three actions.", { type: "h3", name: "Stride", rule: false, entries: ["Move your Speed."] }] },
-  { id: "camp", name: "Camp", source: "Avalon", setting: "original", entries: ["Rest and recover. See {@rule Actions|PC1}."] },
+  { id: "camp", name: "Camp", source: "Avalon", setting: "original", entries: ["Rest and recover. See {@rule Actions}."] },
   { id: "stride", name: "Stride", source: "PC1", kind: "optional", entries: ["Move your Speed."] },
 ] });
 
@@ -119,24 +119,24 @@ const savedView = (ui, view) => ui.get("#rules-saved").emit("click", { target: {
 test("Rules always browses, ignores old Index URLs, and starts without a selection or recent visit", () => {
   for (const query of ["", "?view=browse", "?view=index"]) {
     const ui = environment(query);
-    const controller = mountCatalog(fixture(), ui);
+    const controller = mountRuleBrowser(fixture(), ui);
     assert.equal(controller.selectedId, null);
     assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule/);
     assert.doesNotMatch(ui.get("#rules-results").innerHTML, /aria-current="true"/);
     assert.equal(ui.window.location.searchParams.has("id"), false);
-    assert.equal(ui.storage.get(RULE_MEMORY_KEY), undefined);
+    assert.equal(ui.storage.get(READER_STATE_KEY), undefined);
     assert.match(ui.get("#rules-results").innerHTML, /aria-label="Rules by source and chapter"/);
     assert.equal(ui.window.location.searchParams.has("view"), false);
     controller.selectRule("PC1:actions");
     assert.match(ui.get("#rule-detail").innerHTML, /Spend three actions/);
     assert.deepEqual(ui.previews.validated, [ui.get("#rule-detail")]);
-    assert.deepEqual(JSON.parse(ui.storage.get(RULE_MEMORY_KEY)).recent, ["PC1:actions"]);
+    assert.deepEqual(JSON.parse(ui.storage.get(READER_STATE_KEY)).recent, ["PC1:actions"]);
   }
 });
 
 test("rules expose section navigation with working reload anchors and omit it for short rules", () => {
   const ui = environment("?id=PC1%3Aactions#rule-section-1");
-  const controller = mountCatalog(fixture(), ui);
+  const controller = mountRuleBrowser(fixture(), ui);
   assert.match(ui.get("#rule-detail").innerHTML, /On this page/);
   assert.match(ui.get("#rule-detail").innerHTML, /href="#rule-section-1">Stride<\/a>/);
   assert.equal(ui.document.getElementById("rule-section-1").scrolled, true);
@@ -148,10 +148,10 @@ test("rules expose section navigation with working reload anchors and omit it fo
 test("reader metadata shares the preview citation and avoids duplicate source badges", () => {
   const library = fixture();
   const ui = environment("?id=PC1%3Aactions");
-  const controller = mountCatalog(library, ui);
+  const controller = mountRuleBrowser(library, ui);
   const html = ui.get("#rule-detail").innerHTML;
   const metadata = html.match(/<p class="rule-page-source">([\s\S]*?)<\/p>/)[1];
-  assert.ok(metadata.startsWith(renderRuleCitation(library.get(controller.selectedId))));
+  assert.ok(metadata.startsWith(renderReferenceCitation(library.get(controller.selectedId))));
   assert.match(metadata, /class="rule-meta-kind rule-kind--core">Core rule/);
   assert.equal((metadata.match(/>PC1</g) || []).length, 1);
   assert.doesNotMatch(metadata, /class="rule-kind /);
@@ -159,7 +159,7 @@ test("reader metadata shares the preview citation and avoids duplicate source ba
 
 test("section navigation stays in the reader tools and closes after a jump, Escape or outside click", () => {
   const ui = environment("?id=PC1%3Aactions");
-  mountCatalog(fixture(), ui);
+  mountRuleBrowser(fixture(), ui);
   const html = ui.get("#rule-detail").innerHTML;
   assert.ok(html.indexOf('class="rule-reader-tools"') < html.indexOf('class="rule-outline"'));
   assert.ok(html.indexOf('class="rule-outline"') < html.indexOf("</header>"));
@@ -180,7 +180,7 @@ test("section navigation stays in the reader tools and closes after a jump, Esca
 
 test("starring preserves the current content and reloads by stable rule id", () => {
   const ui = environment("?id=PC1%3Aactions");
-  const controller = mountCatalog(fixture(), ui);
+  const controller = mountRuleBrowser(fixture(), ui);
   const detail = ui.get("#rule-detail");
   detail.scrollTop = 120;
   const writes = detail.writes;
@@ -194,10 +194,10 @@ test("starring preserves the current content and reloads by stable rule id", () 
   assert.equal(ui.get("#rule-star").getAttribute("aria-label"), "Unstar Actions");
   assert.equal(ui.get("#rule-star").getAttribute("title"), "Unstar Actions");
   assert.doesNotMatch(ui.get("#rule-star").innerHTML, /<span>/);
-  assert.deepEqual(JSON.parse(ui.storage.get(RULE_MEMORY_KEY)).starred, ["PC1:actions"]);
+  assert.deepEqual(JSON.parse(ui.storage.get(READER_STATE_KEY)).starred, ["PC1:actions"]);
   assert.match(ui.get("#rules-saved").innerHTML, /data-saved-menu open/);
   const reloaded = environment(ui.window.location.search, "rules", { storage: ui.storage });
-  mountCatalog(fixture(), reloaded);
+  mountRuleBrowser(fixture(), reloaded);
   assert.equal(reloaded.get("#rule-star").getAttribute("aria-pressed"), "true");
   detail.emit("click", { target: star });
   assert.equal(ui.get("#rule-star").getAttribute("aria-pressed"), "false");
@@ -205,11 +205,11 @@ test("starring preserves the current content and reloads by stable rule id", () 
 
 test("recent shortcuts navigate in place, deduplicate, clear and synchronize across tabs", () => {
   const ui = environment("?id=PC1%3Aactions");
-  const controller = mountCatalog(fixture(), ui);
+  const controller = mountRuleBrowser(fixture(), ui);
   controller.selectRule("PC1:stride");
   controller.selectRule("Avalon:camp");
   controller.selectRule("PC1:stride");
-  assert.deepEqual(JSON.parse(ui.storage.get(RULE_MEMORY_KEY)).recent, ["PC1:stride", "Avalon:camp", "PC1:actions"]);
+  assert.deepEqual(JSON.parse(ui.storage.get(READER_STATE_KEY)).recent, ["PC1:stride", "Avalon:camp", "PC1:actions"]);
   clickFilter(ui, "source", "Avalon");
   const shortcut = { closest: selector => selector === "[data-saved-rule]" ? { dataset: { savedRule: "PC1:actions" } } : null };
   const modified = ui.get("#rules-saved").emit("click", { target: shortcut, ctrlKey: true });
@@ -222,18 +222,18 @@ test("recent shortcuts navigate in place, deduplicate, clear and synchronize acr
   savedView(ui, "recent");
   const clear = { closest: selector => selector === "[data-clear-recent]" ? {} : null };
   ui.get("#rules-saved").emit("click", { target: clear });
-  assert.deepEqual(JSON.parse(ui.storage.get(RULE_MEMORY_KEY)).recent, []);
+  assert.deepEqual(JSON.parse(ui.storage.get(READER_STATE_KEY)).recent, []);
   assert.equal(controller.selectedId, "PC1:actions");
-  const before = ui.storage.get(RULE_MEMORY_KEY);
-  ui.listeners.get("storage")({ key: RULE_MEMORY_KEY, newValue: JSON.stringify({ starred: ["PC1:actions"], recent: ["Avalon:camp"] }) });
+  const before = ui.storage.get(READER_STATE_KEY);
+  ui.listeners.get("storage")({ key: READER_STATE_KEY, newValue: JSON.stringify({ starred: ["PC1:actions"], recent: ["Avalon:camp"] }) });
   assert.equal(ui.get("#rule-star").getAttribute("aria-pressed"), "true");
   assert.match(ui.get("#rules-saved").innerHTML, /data-saved-rule="Avalon:camp"/);
-  assert.equal(ui.storage.get(RULE_MEMORY_KEY), before);
+  assert.equal(ui.storage.get(READER_STATE_KEY), before);
 });
 
 test("saved rules show one list at a time and dismiss on selection, Escape or outside click", () => {
   const ui = environment();
-  const controller = mountCatalog(fixture(), ui);
+  const controller = mountRuleBrowser(fixture(), ui);
   const star = { closest: selector => selector === "[data-star-rule]" ? { dataset: { starRule: "PC1:actions" } } : null };
   ui.get("#rule-detail").emit("click", { target: star });
   controller.selectRule("Avalon:camp");
@@ -266,7 +266,7 @@ test("standalone rule links expose the same outline and save stars and visits", 
   const ui = environment("?id=PC1%3Aactions", "rule");
   mountRule(fixture(), ui);
   assert.match(ui.get("#rule-article").innerHTML, /On this page/);
-  assert.deepEqual(JSON.parse(ui.storage.get(RULE_MEMORY_KEY)).recent, ["PC1:actions"]);
+  assert.deepEqual(JSON.parse(ui.storage.get(READER_STATE_KEY)).recent, ["PC1:actions"]);
   const star = { closest: selector => selector === "[data-star-rule]" ? {} : null };
   ui.get("#rule-article").emit("click", { target: star });
   assert.equal(ui.get("#rule-star").getAttribute("aria-pressed"), "true");
@@ -274,7 +274,7 @@ test("standalone rule links expose the same outline and save stars and visits", 
 
 test("filter pills support multiple includes, exclusions, live counts and resetting without losing name search", () => {
   const ui = environment();
-  mountCatalog(fixture(), ui);
+  mountRuleBrowser(fixture(), ui);
   const pc1 = filterPill(ui, "source", "PC1");
   assert.match(pc1.innerHTML, /filter-pill-count">2<\/span>/);
   ui.get("#rule-detail").scrollTop = 60;
@@ -312,7 +312,7 @@ test("filter pills support multiple includes, exclusions, live counts and resett
 
 test("Include and Exclude modes allow touch and keyboard filtering without right-click", () => {
   const ui = environment();
-  mountCatalog(fixture(), ui);
+  mountRuleBrowser(fixture(), ui);
   ui.get("#filter-mode-exclude").emit("click");
   assert.equal(ui.get("#filter-mode-exclude").getAttribute("aria-pressed"), "true");
   assert.equal(ui.get("#filter-mode-include").getAttribute("aria-pressed"), "false");
@@ -329,7 +329,7 @@ test("Include and Exclude modes allow touch and keyboard filtering without right
 
 test("multi-select filters and excluded chips restore with reload and Back/Forward", () => {
   const ui = environment("?source=PC1&source=Avalon&not-kind=optional&id=PC1%3Aactions");
-  mountCatalog(fixture(), ui);
+  mountRuleBrowser(fixture(), ui);
   assert.deepEqual(new Set(resultIds(ui)), new Set(["PC1:actions", "Avalon:camp"]));
   assert.equal(ui.get("#rules-filter-count").textContent, "3");
   assert.equal(filterPill(ui, "kind", "optional").getAttribute("data-state"), "exclude");
@@ -339,7 +339,7 @@ test("multi-select filters and excluded chips restore with reload and Back/Forwa
   assert.deepEqual(resultIds(ui), ["Avalon:camp"]);
   assert.equal(ui.get("#rules-filter-summary").focused, true);
   const reloaded = environment(ui.window.location.search);
-  mountCatalog(fixture(), reloaded);
+  mountRuleBrowser(fixture(), reloaded);
   assert.deepEqual(resultIds(reloaded), ["Avalon:camp"]);
   assert.equal(filterPill(reloaded, "source", "Avalon").getAttribute("data-state"), "include");
   assert.equal(filterPill(reloaded, "kind", "optional").getAttribute("data-state"), "exclude");
@@ -352,7 +352,7 @@ test("multi-select filters and excluded chips restore with reload and Back/Forwa
 
 test("the filter panel dismisses on Escape or outside interaction without clearing selections", () => {
   const ui = environment();
-  mountCatalog(fixture(), ui);
+  mountRuleBrowser(fixture(), ui);
   clickFilter(ui, "source", "PC1");
   const menu = ui.get("#rules-filter-menu");
   menu.open = true;
@@ -368,18 +368,18 @@ test("the filter panel dismisses on Escape or outside interaction without cleari
 });
 
 test("multi-select filters work in Browse while retaining nonmatching parents as context", () => {
-  const library = createLibrary({ rules: [{ id: "checks", name: "Checks", source: "PC1", entries: [
+  const library = createRuleLibrary({ rules: [{ id: "checks", name: "Checks", source: "PC1", entries: [
     { type: "h2", id: "child", name: "Optional Check", kind: "optional", rule: true, entries: ["Text."] },
   ] }] });
   const ui = environment("?view=browse&kind=optional");
-  mountCatalog(library, ui);
+  mountRuleBrowser(library, ui);
   assert.deepEqual(resultIds(ui), ["PC1:checks", "PC1:child"]);
   assert.equal(ui.get("#rules-count").textContent, "1 rule");
   assert.equal(browseBranch(ui, "PC1:checks").open, true);
   assert.match(ui.get("#rules-results").innerHTML, /rule-branch-link--context/);
 });
 
-const browseFixture = () => createLibrary({ rules: [
+const browseFixture = () => createRuleLibrary({ rules: [
   { id: "checks", name: "Checks", source: "PC1", entries: [
     { type: "h2", id: "attack", name: "Attack Rolls", rule: true, entries: [
       { type: "h3", id: "map", name: "Multiple Attack Penalty", rule: true, entries: ["Attack again."] },
@@ -392,14 +392,14 @@ const browseFixture = () => createLibrary({ rules: [
 const browseBranch = (ui, id) => ui.get("#rules-results").querySelectorAll("[data-rule-branch]").find(branch => branch.dataset.ruleBranch === id);
 
 test("Browse reveals and remembers source and chapter groups for direct links and in-page rule links", () => {
-  const library = createLibrary({ sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }], rules: [
+  const library = createRuleLibrary({ sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }], rules: [
     { id: "checks", name: "Checks", source: "PC1", chapter: "Chapter 8: Playing the Game", entries: [
       { type: "h2", id: "attack", name: "Attack Rolls", rule: true, entries: ["Attack."] },
     ] },
     { id: "dc", name: "Difficulty Classes", source: "GMC", chapter: "Chapter 1: Running the Game", entries: ["DCs."] },
   ] });
   const ui = environment("?view=browse&id=PC1%3Aattack");
-  const controller = mountCatalog(library, ui);
+  const controller = mountRuleBrowser(library, ui);
   const pc1 = JSON.stringify(["source", "PC1"]);
   const pc1Chapter = JSON.stringify(["chapter", "PC1", "Chapter 8: Playing the Game"]);
   const gmc = JSON.stringify(["source", "GMC"]);
@@ -421,7 +421,7 @@ test("Browse reveals and remembers source and chapter groups for direct links an
   assert.equal(browseBranch(ui, gmcChapter).open, true);
   assert.equal(ui.get("#rules-count").textContent, "3 rules");
   const searched = environment("?view=browse&q=Attack");
-  mountCatalog(library, searched);
+  mountRuleBrowser(library, searched);
   assert.equal(browseBranch(searched, pc1).open, true);
   assert.equal(browseBranch(searched, pc1Chapter).open, true);
   assert.equal(browseBranch(searched, gmc), undefined);
@@ -430,7 +430,7 @@ test("Browse reveals and remembers source and chapter groups for direct links an
 
 test("Browse remembers disclosures, clicking a name opens its rule and links reveal collapsed parents", () => {
   const ui = environment("?view=browse&id=PC1%3Achecks");
-  const controller = mountCatalog(browseFixture(), ui);
+  const controller = mountRuleBrowser(browseFixture(), ui);
   const branch = browseBranch(ui, "PC1:damage");
   assert.equal(branch.open, false);
   branch.open = true;
@@ -457,7 +457,7 @@ test("Browse remembers disclosures, clicking a name opens its rule and links rev
 
 test("Browse ancestor navigation clears excluding filters and modified clicks retain native navigation", () => {
   const ui = environment("?view=browse&q=Multiple+Attack+Penalty&id=PC1%3Amap");
-  const controller = mountCatalog(browseFixture(), ui);
+  const controller = mountRuleBrowser(browseFixture(), ui);
   const event = ui.get("#rules-results").emit("click", { target: ui.row("PC1:checks"), ctrlKey: true });
   assert.equal(event.defaultPrevented, false);
   assert.equal(controller.selectedId, "PC1:map");
@@ -469,14 +469,14 @@ test("Browse ancestor navigation clears excluding filters and modified clicks re
   ui.get("#rules-search").emit("input");
   assert.match(ui.get("#rules-results").innerHTML, /No matching rules/);
   const missing = environment("?view=unknown");
-  mountCatalog(browseFixture(), missing);
+  mountRuleBrowser(browseFixture(), missing);
   assert.match(missing.get("#rules-results").innerHTML, /aria-label="Rules by source and chapter"/);
   assert.equal(missing.window.location.searchParams.get("view"), null);
 });
 
 test("search and clearing filters leave the reader unselected until a rule is chosen", () => {
   const ui = environment("?q=act&source=PC1");
-  mountCatalog(fixture(), ui);
+  mountRuleBrowser(fixture(), ui);
   assert.equal(ui.get("#rules-search").value, "act");
   assert.equal(ui.get("#results-title").textContent, "Search results");
   assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule/);
@@ -496,7 +496,7 @@ test("search and clearing filters leave the reader unselected until a rule is ch
 
 test("clicking a list entry updates only the detail pane and supports Back and Forward", () => {
   const ui = environment();
-  const controller = mountCatalog(fixture(), ui);
+  const controller = mountRuleBrowser(fixture(), ui);
   const row = ui.row("Avalon:camp");
   const event = ui.get("#rules-results").emit("click", { target: row });
   assert.equal(event.defaultPrevented, true);
@@ -517,7 +517,7 @@ test("clicking a list entry updates only the detail pane and supports Back and F
 
 test("modified list clicks keep native new-tab navigation and do not change selection", () => {
   const ui = environment();
-  const controller = mountCatalog(fixture(), ui);
+  const controller = mountRuleBrowser(fixture(), ui);
   const event = ui.get("#rules-results").emit("click", { target: ui.row("Avalon:camp"), ctrlKey: true });
   assert.equal(event.defaultPrevented, false);
   assert.equal(controller.selectedId, null);
@@ -526,7 +526,7 @@ test("modified list clicks keep native new-tab navigation and do not change sele
 
 test("obsolete category URL parameters are discarded while selection and Browse remain usable", () => {
   const ui = environment("?topic=Checks&not-topic=Other&id=PC1%3Aactions&view=browse");
-  const controller = mountCatalog(fixture(), ui);
+  const controller = mountRuleBrowser(fixture(), ui);
   assert.equal(controller.selectedId, "PC1:actions");
   assert.equal(ui.window.location.searchParams.get("topic"), null);
   assert.equal(ui.window.location.searchParams.get("not-topic"), null);
@@ -538,7 +538,7 @@ test("obsolete category URL parameters are discarded while selection and Browse 
 
 test("source and type filters combine with search and retain the current rule when possible", () => {
   const ui = environment("?id=PC1%3Aactions");
-  mountCatalog(fixture(), ui);
+  mountRuleBrowser(fixture(), ui);
   ui.get("#rule-detail").scrollTop = 75;
   clickFilter(ui, "kind", "core");
   assert.equal(ui.get("#rule-detail").scrollTop, 75);
@@ -553,7 +553,7 @@ test("source and type filters combine with search and retain the current rule wh
 
 test("rule references in details or hover cards open in place and reveal rules excluded by filters", () => {
   const ui = environment("?source=Avalon&id=Avalon%3Acamp");
-  mountCatalog(fixture(), ui);
+  mountRuleBrowser(fixture(), ui);
   const target = { closest: selector => selector === "[data-rule-name]" ? { dataset: { ruleName: "Actions", ruleSource: "PC1" } } : null };
   const event = ui.document.emit("click", { target });
   assert.equal(event.defaultPrevented, true);
@@ -567,37 +567,37 @@ test("rule references in details or hover cards open in place and reveal rules e
 
 test("deep links and missing rule ids keep the list usable", () => {
   const ui = environment("?id=Avalon%3Acamp&q=unrelated");
-  mountCatalog(fixture(), ui);
+  mountRuleBrowser(fixture(), ui);
   assert.match(ui.get("#rule-detail").innerHTML, /Rest and recover/);
   assert.equal(ui.get("#rules-search").value, "");
   const missing = environment("?id=missing");
-  const controller = mountCatalog(fixture(), missing);
+  const controller = mountRuleBrowser(fixture(), missing);
   assert.match(missing.get("#rule-detail").innerHTML, /Rule not found/);
   assert.ok(missing.row("PC1:actions"));
   controller.selectRule("PC1:actions");
   assert.match(missing.get("#rule-detail").innerHTML, /Spend three actions/);
   const named = environment("?rule=Actions&source=PC1");
-  mountCatalog(fixture(), named);
+  mountRuleBrowser(fixture(), named);
   assert.equal(named.window.location.searchParams.get("id"), "PC1:actions");
 });
 
 test("source-less tags and name-based URLs open GM-only rules in place", () => {
-  const library = createLibrary({ rules: [
+  const library = createRuleLibrary({ rules: [
     { id: "checks", name: "Checks", source: "PC1", entries: ["See {@rule Difficulty Classes}."] },
     { id: "dc", name: "Difficulty Classes", source: "GMC", entries: ["GM difficulty rules."] },
   ] });
   const ui = environment("?id=PC1%3Achecks");
-  mountCatalog(library, ui);
+  mountRuleBrowser(library, ui);
   assert.match(ui.get("#rule-detail").innerHTML, /href="rules.html\?id=GMC%3Adc"/);
   const target = { closest: selector => selector === "[data-rule-name]" ? { dataset: { ruleName: "Difficulty Classes", ruleSource: "" } } : null };
   const event = ui.document.emit("click", { target });
   assert.equal(event.defaultPrevented, true);
   assert.match(ui.get("#rule-detail").innerHTML, /GM difficulty rules/);
   const named = environment("?rule=Difficulty+Classes");
-  mountCatalog(library, named);
+  mountRuleBrowser(library, named);
   assert.equal(named.window.location.searchParams.get("id"), "GMC:dc");
   const explicit = environment("?rule=Difficulty+Classes&source=PC1");
-  mountCatalog(library, explicit);
+  mountRuleBrowser(library, explicit);
   assert.match(explicit.get("#rule-detail").innerHTML, /Rule not found/);
   const standalone = environment("?rule=Difficulty+Classes", "rule");
   mountRule(library, standalone);
@@ -605,12 +605,12 @@ test("source-less tags and name-based URLs open GM-only rules in place", () => {
 });
 
 test("promoted sections select independently and link back to their containing rule", () => {
-  const library = createLibrary({ rules: [{ id: "checks", name: "Checks", source: "PC1", page: 400, entries: [
+  const library = createRuleLibrary({ rules: [{ id: "checks", name: "Checks", source: "PC1", page: 400, entries: [
     "Parent introduction. See {@rule Modifier}.",
     { type: "h3", id: "modifier", name: "Modifier", rule: true, entries: ["Modifier description."] },
   ] }] });
   const ui = environment("?id=PC1%3Achecks");
-  mountCatalog(library, ui);
+  mountRuleBrowser(library, ui);
   assert.ok(ui.row("PC1:modifier"));
   assert.match(ui.get("#rule-detail").innerHTML, /href="rules.html\?id=PC1%3Amodifier"/);
   ui.get("#rules-results").emit("click", { target: ui.row("PC1:modifier") });
@@ -629,7 +629,7 @@ test("promoted sections select independently and link back to their containing r
 
 test("mobile selection reveals the rule without adding a back-to-list button", () => {
   const ui = environment("", "rules", { mobile: true });
-  mountCatalog(fixture(), ui);
+  mountRuleBrowser(fixture(), ui);
   ui.get("#rules-results").emit("click", { target: ui.row("Avalon:camp") });
   assert.equal(ui.get("#rule-detail").scrolled, true);
   assert.equal(ui.get("#rule-detail").focused, true);
@@ -684,14 +684,14 @@ test("Rules fetches its JSON once and shows an honest empty collection", async t
 });
 
 test("source deep links retain selection and standalone related rules follow the chapter", () => {
-  const library = createLibrary({ sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }], rules: [
+  const library = createRuleLibrary({ sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }], rules: [
     { id: "dual", name: "Main Rule", source: "PC1", chapter: "Chapter 8: Playing the Game", entries: ["Main text."] },
     { id: "related", name: "Related Rule", source: "PC1", chapter: "Chapter 8: Playing the Game", entries: ["Related text."] },
     { id: "other", name: "Other Chapter", source: "PC1", chapter: "Chapter 1: Introduction", entries: ["Other text."] },
     { id: "gm", name: "GM Rule", source: "GMC", chapter: "Chapter 8: Playing the Game", entries: ["GM text."] },
   ] });
   const ui = environment("?source=PC1&id=PC1%3Adual");
-  mountCatalog(library, ui);
+  mountRuleBrowser(library, ui);
   assert.equal(filterPill(ui, "source", "PC1").getAttribute("data-state"), "include");
   assert.equal(ui.get("#rules-count").textContent, "3 rules");
   assert.match(ui.get("#library-summary").textContent, /4 rules · 2 sources/);
@@ -705,7 +705,7 @@ test("source deep links retain selection and standalone related rules follow the
 
 test("type filters are restored from the URL and cleared together", () => {
   const ui = environment("?kind=optional");
-  mountCatalog(fixture(), ui);
+  mountRuleBrowser(fixture(), ui);
   assert.equal(filterPill(ui, "kind", "optional").getAttribute("data-state"), "include");
   assert.equal(ui.get("#rules-count").textContent, "1 rule");
   assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule/);
@@ -720,7 +720,7 @@ test("type filters are restored from the URL and cleared together", () => {
 
 
 test("chapter clicks read the full authored chapter once, clear filters and support history without populating recent rules", () => {
-  const library = createLibrary({ sources: [{ id: "PC1", name: "Player Core" }], rules: [
+  const library = createRuleLibrary({ sources: [{ id: "PC1", name: "Player Core" }], rules: [
     { type: "h1", name: "Chapter 8", source: "PC1", entries: [
       "Chapter introduction.",
       { type: "h2", name: "First", entries: ["First text.", { type: "h3", name: "Child", entries: ["Child text."] }] },
@@ -728,7 +728,7 @@ test("chapter clicks read the full authored chapter once, clear filters and supp
     ] },
   ] });
   const ui = environment("?q=Child");
-  const controller = mountCatalog(library, ui);
+  const controller = mountRuleBrowser(library, ui);
   const chapter = ui.get("#rules-results").querySelectorAll("[data-select-chapter]")[0];
   assert.equal(ui.get("#rules-results").emit("click", { target: chapter, ctrlKey: true }).defaultPrevented, false);
   assert.equal(controller.selectedChapter, null);
@@ -738,13 +738,13 @@ test("chapter clicks read the full authored chapter once, clear filters and supp
   assert.equal(ui.get("#rules-search").value, "");
   const html = ui.get("#rule-detail").innerHTML;
   for (const text of ["Chapter introduction.", "First text.", "Child text.", "Second text."]) assert.equal(html.split(text).length - 1, 1);
-  assert.equal(ui.storage.get(RULE_MEMORY_KEY), undefined);
+  assert.equal(ui.storage.get(READER_STATE_KEY), undefined);
   assert.equal(ui.window.location.searchParams.get("chapter-source"), "PC1");
   assert.equal(ui.window.location.searchParams.get("chapter"), "Chapter 8");
   assert.equal(ui.window.location.searchParams.has("id"), false);
   assert.equal(ui.previews.validated.at(-1), ui.get("#rule-detail"));
   const reloaded = environment(ui.window.location.search);
-  assert.equal(mountCatalog(library, reloaded).selectedChapter.title, "Chapter 8");
+  assert.equal(mountRuleBrowser(library, reloaded).selectedChapter.title, "Chapter 8");
   controller.selectRule("PC1:child");
   assert.equal(ui.window.location.searchParams.has("chapter"), false);
   ui.window.history.back();
@@ -758,9 +758,9 @@ test("chapter clicks read the full authored chapter once, clear filters and supp
 });
 
 test("intro-only chapters can be selected while empty searches and clear restore the right prompts", () => {
-  const library = createLibrary({ rules: [{ type: "h1", name: "Chapter 8", source: "PC1", entries: ["Chapter introduction."] }] });
+  const library = createRuleLibrary({ rules: [{ type: "h1", name: "Chapter 8", source: "PC1", entries: ["Chapter introduction."] }] });
   const ui = environment();
-  const controller = mountCatalog(library, ui);
+  const controller = mountRuleBrowser(library, ui);
   assert.equal(controller.selectedChapter, null);
   assert.match(ui.get("#rule-detail").innerHTML, /Choose a rule or chapter/);
   ui.get("#rules-search").value = "missing";
@@ -774,36 +774,36 @@ test("intro-only chapters can be selected while empty searches and clear restore
   assert.match(ui.get("#rule-detail").innerHTML, /Chapter introduction/);
   for (const query of ["?rule=Chapter+8&source=PC1", "?id=PC1%3Achapter-8"]) {
     const direct = environment(query);
-    assert.equal(mountCatalog(library, direct).selectedChapter.title, "Chapter 8");
+    assert.equal(mountRuleBrowser(library, direct).selectedChapter.title, "Chapter 8");
     assert.match(direct.get("#rule-detail").innerHTML, /Chapter introduction/);
     assert.equal(direct.window.location.searchParams.get("chapter"), "Chapter 8");
   }
   const fresh = environment();
-  const freshController = mountCatalog(library, fresh);
+  const freshController = mountRuleBrowser(library, fresh);
   assert.equal(freshController.selectRule("PC1:chapter-8"), true);
   assert.equal(freshController.selectedChapter.title, "Chapter 8");
 });
 
 test("chapter errors remain recoverable and individual-rule URLs take priority over chapter parameters", () => {
-  const library = createLibrary({ rules: [{ name: "First", source: "PC1", chapter: "Chapter 8", entries: ["First text."] }] });
+  const library = createRuleLibrary({ rules: [{ name: "First", source: "PC1", chapter: "Chapter 8", entries: ["First text."] }] });
   const missing = environment("?chapter-source=PC1&chapter=Unknown");
-  const controller = mountCatalog(library, missing);
+  const controller = mountRuleBrowser(library, missing);
   assert.match(missing.get("#rule-detail").innerHTML, /Chapter not found/);
   assert.equal(controller.selectChapter("PC1", "Unknown"), false);
   controller.selectRule("PC1:first");
   assert.match(missing.get("#rule-detail").innerHTML, /First text/);
   const direct = environment("?chapter-source=PC1&chapter=Unknown&id=PC1%3Afirst");
-  assert.equal(mountCatalog(library, direct).selectedId, "PC1:first");
+  assert.equal(mountRuleBrowser(library, direct).selectedId, "PC1:first");
   assert.equal(direct.window.location.searchParams.has("chapter"), false);
 });
 
 test("ambiguous rule URLs show an error without choosing a target, and recover through exact links and history", () => {
-  const library = createLibrary({ rules: [
+  const library = createRuleLibrary({ rules: [
     { name: "Areas", source: "PC1", page: 300, entries: ["Spell areas text."] },
     { name: "Areas", source: "PC1", page: 426, entries: ["General areas text."] },
   ] });
   const ui = environment("?rule=Areas");
-  const controller = mountCatalog(library, ui);
+  const controller = mountRuleBrowser(library, ui);
   assert.equal(controller.selectedId, null);
   const detail = ui.get("#rule-detail");
   assert.match(detail.innerHTML, /Ambiguous rule link/);

@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { createLibrary, renderRuleContent, renderRuleBody, renderRuleOutline } from "../js/rules-library.js";
+import { createRuleLibrary, renderRuleContent, renderRuleBody, renderRuleOutline } from "../js/rule-library.js";
 
 test("On this page uses real heading anchors and excludes boxes, notes and minor headings", () => {
-  const library = createLibrary({ rules: [{ id: "checks", name: "Checks", entries: [
+  const library = createRuleLibrary({ rules: [{ id: "checks", name: "Checks", entries: [
     { type: "h2", name: "Step 1: Roll", entries: [
       { type: "h3", name: "Bonuses", entries: ["Text."] },
       { type: "h4", name: "Minor Heading", entries: ["Small detail."] },
@@ -28,7 +28,7 @@ test("On this page uses real heading anchors and excludes boxes, notes and minor
 });
 
 test("short rules have no empty outline and duplicate names get separate anchors", () => {
-  const library = createLibrary({ rules: [
+  const library = createRuleLibrary({ rules: [
     { id: "short", name: "Short", entries: ["One paragraph."] },
     { id: "long", name: "Long", entries: [
       { type: "h2", name: "Example", rule: false, entries: ["First."] },

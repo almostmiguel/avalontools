@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { createLibrary, searchRules } from "../js/rules-library.js";
-import { FILTER_GROUPS, emptyFilters, filterOptions, readFilters, writeFilters, toggleFilter, filterCounts, renderFilterGroups, renderFilterChips } from "../js/rules-filters.js";
+import { createRuleLibrary, searchRules } from "../js/rule-library.js";
+import { FILTER_GROUPS, emptyFilters, filterOptions, readFilters, writeFilters, toggleFilter, filterCounts, renderFilterGroups, renderFilterChips } from "../js/rule-filters.js";
 
-const fixture = () => createLibrary({ rules: [
+const fixture = () => createRuleLibrary({ rules: [
   { id: "one", name: "One", source: "PC1", entries: ["Not searchable content."] },
   { id: "two", name: "Two", source: "GMC", kind: "optional", entries: ["More text."] },
   { id: "three", name: "Three", source: "PC1", kind: "optional", entries: ["Text."] },

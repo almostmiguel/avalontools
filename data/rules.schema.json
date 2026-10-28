@@ -258,7 +258,7 @@
         },
         "ruleDefault": {
           "type": "boolean",
-          "description": "Prefer this definition when resolving a rule link by name. Otherwise, duplicate names are ambiguous: use a page-based target such as {@rule areas-300|PC1|Areas}. The Watch rule links editor task reports ambiguous references in the JSON and Problems panel on save. A source in the tag restricts matching to that source.",
+          "description": "Prefer this definition when resolving a rule link by name. Otherwise, duplicate names are ambiguous: use a page-based target such as {@rule areas-300|Areas}. The Watch rule links editor task reports ambiguous references in the JSON and Problems panel on save. A source in the tag restricts matching to that source.",
           "default": false
         },
         "aliases": {

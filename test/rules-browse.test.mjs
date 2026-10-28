@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { createLibrary, searchRules, rulePath, renderBrowse, renderRulePath, browseBranchIds } from "../js/rules-library.js";
-import { sourceTone, renderRuleCitation } from "../js/rule-sources.js";
+import { createRuleLibrary, searchRules, rulePath, renderBrowse, renderRulePath, browseBranchIds } from "../js/rule-library.js";
+import { sourceTone, renderReferenceCitation } from "../js/reference-data.js";
 
 test("source colors stay consistent between Browse and citations when filtered or reordered", () => {
-  const library = createLibrary({ sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }], rules: [
+  const library = createRuleLibrary({ sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }], rules: [
     { id: "checks", name: "Checks", source: "PC1", chapter: "Chapter 8: Playing the Game", entries: ["Roll."] },
     { id: "dc", name: "Difficulty Classes", source: "GMC", entries: ["Set a DC."] },
   ] });
@@ -13,7 +13,7 @@ test("source colors stay consistent between Browse and citations when filtered o
   for (const rule of [...library.rules].reverse()) {
     const attribute = `data-source-tone="${sourceTone(rule.sourceId)}"`;
     assert.ok(renderBrowse(library, [rule]).includes(attribute));
-    assert.ok(renderRuleCitation(rule).includes(attribute));
+    assert.ok(renderReferenceCitation(rule).includes(attribute));
   }
   const browse = renderBrowse(library, library.rules);
   assert.match(browse, /data-browse-group="source"/);
@@ -23,7 +23,7 @@ test("source colors stay consistent between Browse and citations when filtered o
   assert.match(browse, /data-select-rule="PC1:checks"/);
 });
 
-const fixture = () => createLibrary({ rules: [
+const fixture = () => createRuleLibrary({ rules: [
   { id: "checks", name: "Checks", source: "PC1", entries: [
     { type: "h2", id: "attack", name: "Attack Rolls", rule: true, entries: [
       { type: "h3", id: "map", name: "Multiple Attack Penalty", aliases: ["MAP"], rule: true, entries: ["Attack again."] },
@@ -35,7 +35,7 @@ const fixture = () => createLibrary({ rules: [
 ] });
 
 test("Browse groups sources and chapters before rules, preserving source and authored rule order", () => {
-  const library = createLibrary({ sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }], rules: [
+  const library = createRuleLibrary({ sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }], rules: [
     { id: "z", name: "Z First", source: "PC1", chapter: "Chapter 8: Playing the Game", entries: [
       { type: "h2", id: "child", name: "Child", rule: true, entries: ["Text."] },
     ] },
@@ -67,7 +67,7 @@ test("chapter overrides and source changes create independent groups without dup
     ] },
   ] };
   const before = JSON.stringify(payload);
-  const library = createLibrary(payload);
+  const library = createRuleLibrary(payload);
   assert.equal(library.get("PC1:chapter").chapter, "Chapter 9: Other");
   assert.equal(library.get("GMC:source").chapter, null);
   assert.equal(library.get("GMC:source").parentId, "PC1:parent");
@@ -125,7 +125,7 @@ test("breadcrumbs link every ancestor, use the short rule title and mark only th
 });
 
 test("Browse and breadcrumbs escape authored labels and preserve empty states", () => {
-  const library = createLibrary({ rules: [{ id: "safe", name: "<script>Parent</script>", entries: [
+  const library = createRuleLibrary({ rules: [{ id: "safe", name: "<script>Parent</script>", entries: [
     { type: "h2", id: "child", name: "Step 1: <img>", ruleName: "<b>Child</b>", rule: true, entries: ["Text."] },
   ] }] });
   const rule = library.get("Avalon:child");
@@ -134,6 +134,6 @@ test("Browse and breadcrumbs escape authored labels and preserve empty states", 
     assert.match(html, /&lt;b&gt;Child&lt;\/b&gt;/);
   }
   assert.match(renderBrowse(library, []), /No matching rules/);
-  const empty = createLibrary({ rules: [] });
+  const empty = createRuleLibrary({ rules: [] });
   assert.match(renderBrowse(empty, []), /No rules have been added/);
 });

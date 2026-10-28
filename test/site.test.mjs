@@ -22,6 +22,8 @@ test("inline formatting is nested, escaped, and has no dead entity links", () =>
   assert.ok(renderInline("{@rule Checks|PC1}").includes('href="rules.html?rule=Checks&amp;source=PC1"'));
   assert.ok(renderInline("{@rule Difficulty Classes}").includes('href="rules.html?rule=Difficulty+Classes"'));
   assert.doesNotMatch(renderInline("{@rule Difficulty Classes}"), /source=PC1/);
+  assert.ok(renderInline("{@condition Blinded|PC1}").includes('href="conditions.html?condition=Blinded&amp;source=PC1"'));
+  assert.ok(renderInline("{@skill Acrobatics|PC1|Acrobatics checks}").includes('href="skills.html?skill=Acrobatics&amp;source=PC1"'));
   assert.equal(escapeHtml('<script>"&'), "&lt;script&gt;&quot;&amp;");
   assert.doesNotMatch(renderInline('{@link Click|javascript:alert(1)}'), /href/);
   assert.match(renderInline('{@link Read|https://example.com/book}'), /href="https:\/\/example.com\/book"/);
@@ -75,6 +77,57 @@ test("spell tags automatically italicize names and custom labels without changin
     { type: "table", rows: [["{@spell light|PC1|Light}"]] },
   ] });
   assert.equal((html.match(/<em>/g) || []).length, 3);
+});
+
+test("clarifications, formulas and labeled entries retain structure and escape authored content", () => {
+  const clarification = renderContent({ entries: [{
+    type: "clarification", entries: ["A {@b clarification}.", { type: "list", items: ["An example."] }],
+  }] });
+  assert.match(clarification.html, /^<details class="paizo-clarification"><summary>/);
+  assert.match(clarification.html, /<span>Paizo Clarification<\/span>/);
+  assert.match(clarification.html, /class="clarification-body"><p>A <strong>clarification<\/strong>\.<\/p>/);
+  assert.match(clarification.html, /<ul><li><p>An example\.<\/p><\/li><\/ul>/);
+  assert.equal(clarification.headings.length, 0);
+
+  const expanded = renderContent({ entries: [{
+    type: "clarification", open: true, name: "An {@i official} note <script>", entry: '<img src=x onerror="bad()"> {@link Unsafe|javascript:bad()}',
+  }] }).html;
+  assert.match(expanded, /^<details class="paizo-clarification" open><summary>/);
+  assert.match(expanded, /An <em>official<\/em> note &lt;script&gt;/);
+  assert.match(expanded, /&lt;img src=x onerror=&quot;bad\(\)&quot;&gt; Unsafe/);
+  assert.doesNotMatch(expanded, /<script>|<img|<a\b|javascript:/);
+
+  const formula = renderContent({ entries: [
+    { type: "formula", name: "Attack <roll>", entry: "{@b d20} + modifier" },
+    { type: "formula", entries: ["First calculation.", "Second calculation."] },
+  ] });
+  for (const text of ["Attack &lt;roll&gt;", "<strong>d20</strong> + modifier", "First calculation.", "Second calculation."]) assert.ok(formula.html.includes(text));
+  assert.equal(formula.headings.length, 0);
+
+  const labeled = renderContent({ entries: [
+    { type: "item", style: "hanging", name: "Éditos", entry: "Protect {@i nature} & friends." },
+    { type: "item", style: "hanging", name: "<Anátema>", entries: ["First line.", "Second line."] },
+    { type: "item", name: "Ordinary", entry: "Unchanged." }, "Normal paragraph.",
+  ] }).html;
+  assert.match(labeled, /<p class="hanging-entry"><strong>Éditos<\/strong> Protect <em>nature<\/em> &amp; friends\.<\/p>/);
+  assert.match(labeled, /<div class="hanging-entry"><strong>&lt;Anátema&gt;<\/strong> <p>First line\.<\/p>\n<p>Second line\.<\/p><\/div>/);
+  assert.match(labeled, /<p><strong>Ordinary<\/strong> Unchanged\.<\/p>\n<p>Normal paragraph\.<\/p>/);
+});
+
+test("list columns retain list semantics and reject invalid style values", () => {
+  const render = block => renderContent({ entries: [{ type: "list", columns: 3, items: ["{@b First}", "Second", "Third"], ...block }] }).html;
+  assert.match(render({}), /<ul class="list-columns" style="--list-columns: 3"><li><p><strong>First<\/strong><\/p><\/li>/);
+  assert.match(render({ style: "list-decimal" }), /<ol class="list-columns" style="--list-columns: 3">/);
+  assert.match(render({ ordered: true }), /<ol class="list-columns" style="--list-columns: 3">/);
+  assert.match(render({ style: "list-no-bullets" }), /<ul class="list-no-bullets list-columns" role="list" style="--list-columns: 3">/);
+  assert.match(render({ columns: 4 }), /--list-columns: 4/);
+  for (const columns of [undefined, null, 0, 1, -2, 2.5, "3", "2; color: red", Number.MAX_SAFE_INTEGER + 1]) {
+    const { html } = renderContent({ entries: [{ type: "list", columns, items: ["One", "Two"] }] });
+    assert.equal((html.match(/<li\b/g) || []).length, 2);
+    assert.match(html, /One/);
+    assert.match(html, /Two/);
+    assert.doesNotMatch(html, /list-columns|style=/);
+  }
 });
 
 test("content renders headings, lists, tables, sidebars, images, and flavor", () => {
@@ -219,7 +272,7 @@ test("decorative rule boxes support titles and nested entries", () => {
 
 
 test("public pages expose working navigation and load existing relative assets", async () => {
-  for (const path of ["index.html", "rules.html", "rule.html", "actions.html"]) {
+  for (const path of ["index.html", "rules.html", "rule.html", "actions.html", "conditions.html", "skills.html"]) {
     const html = await read(path);
     assert.match(html, /<html\b[^>]*lang="en"/);
     const navigation = html.match(/<nav\b[^>]*aria-label="Main navigation"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
@@ -264,8 +317,8 @@ test("the local server serves current pages, data and fonts while blocking priva
   });
   t.after(() => new Promise(resolve => { server.close(resolve); server.closeAllConnections(); }));
   const base = `http://127.0.0.1:${server.address().port}`;
-  for (const path of ["/", "/rules.html", "/actions.html", "/actions.html?id=PC1:stride", "/rules.html?id=PC1:rolling-checks", "/css/site.css", "/css/home.css", "/css/rules.css", "/css/actions.css",
-    "/js/theme.js", "/js/content-renderer.js", "/js/rules-app.js", "/js/rules-library.js", "/js/rule-links.js", "/js/data-loader.js", "/js/actions-app.js", "/js/actions-library.js", "/data/rules.json", "/data/actions.json", "/data/actions.schema.json"]) {
+  for (const path of ["/", "/rules.html", "/actions.html", "/conditions.html", "/skills.html", "/actions.html?id=PC1:stride", "/rules.html?id=PC1:rolling-checks", "/css/site.css", "/css/home.css", "/css/rules.css", "/css/actions.css", "/css/catalog.css",
+    "/js/site-shell.js", "/js/content-renderer.js", "/js/rule-browser.js", "/js/rule-library.js", "/js/reference-previews.js", "/js/reference-data.js", "/js/reference-browser.js", "/js/reference-library.js", "/data/rules.json", "/data/actions.json", "/data/actions.schema.json", "/data/conditions.json", "/data/skills.json"]) {
     const response = await fetch(`${base}${path}`);
     assert.equal(response.status, 200, path);
     assert.equal(response.headers.get("cache-control"), "no-store");

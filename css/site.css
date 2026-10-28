@@ -50,7 +50,7 @@
   --line: #ffffff18;
   --paper: #20232a;
   --ink: #dce0e7;
-  --header-bg: #15171bf2;
+  --header-bg: #15171b;
   --content-heading: #e1c58f;
   --content-link: #9bc5e5;
   /* Reference categories: earthy character options, cool tools, warm threats and magic. */
@@ -120,7 +120,7 @@
   --line: #5c514126;
   --paper: #fffdf9;
   --ink: #343632;
-  --header-bg: #f7f5f0f5;
+  --header-bg: #f7f5f0;
   --content-heading: #64472d;
   --content-link: #315e85;
   --rule-link: #485b73;
@@ -217,7 +217,7 @@ button, summary { font: inherit; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
 .skip-link { position: fixed; top: -5rem; left: 1rem; z-index: 60; background: var(--background); padding: .5rem 1rem; }
 .skip-link:focus { top: .5rem; }
-.site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: var(--header-bg); backdrop-filter: blur(14px); }
+.site-header { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line); background: var(--header-bg); }
 .brand { display: inline-flex; align-items: center; gap: .45rem; color: var(--text); font: 400 1.25rem/1 var(--font-display); letter-spacing: .02em; white-space: nowrap; }
 .brand-mark { font-size: 1.5rem; color: var(--accent); }
 .brand:hover { text-decoration: none; color: var(--accent); }
@@ -262,7 +262,7 @@ button, summary { font: inherit; }
 code { font-size: .83em; padding: .15em .35em; background: var(--code-bg); border: 1px solid var(--line); border-radius: 2px; overflow-wrap: anywhere; }
 :is(.rich-content, .rule-preview-body) { --content-surface: var(--paper); display: flow-root; color: var(--ink); font: 1rem/1.8 var(--font-ui); overflow-wrap: anywhere; }
 :is(.rich-content, .rule-preview-body) p { margin: 0 0 1rem; }
-:is(.rich-content, .rule-preview-body) a:where(:not(.rule-link, .action-link)) { color: var(--content-link); }
+:is(.rich-content, .rule-preview-body) a:where(:not(.rule-link, .action-link, .condition-link, .skill-link)) { color: var(--content-link); }
 :is(.rich-content, .rule-preview-body) h2, :is(.rich-content, .rule-preview-body) h3, :is(.rich-content, .rule-preview-body) h4, :is(.rich-content, .rule-preview-body) h5, :is(.rich-content, .rule-preview-body) h6 { font-family: var(--font-ui); font-weight: 400; line-height: 1.3; margin: 1.7em 0 .6em; scroll-margin-top: calc(var(--header-height) + 1.5rem); color: var(--content-heading); }
 :is(.rich-content, .rule-preview-body) h2 { font-family: var(--font-display); font-size: 1.75rem; padding-bottom: .35rem; border-bottom: 1px solid var(--content-line); }
 :is(.rich-content, .rule-preview-body) h3 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
@@ -312,7 +312,7 @@ code { font-size: .83em; padding: .15em .35em; background: var(--code-bg); borde
 :is(.rich-content, .rule-preview-body) .box-section { margin: 2rem 0 0; padding: .5rem 0 0; border: 0; background: none; }
 :is(.rich-content, .rule-preview-body) .box-section > :is(h2, h3, h4, h5, h6) { margin: 0 0 .8rem; padding: 0 0 .6rem; border-bottom: 1px solid var(--callout-inner); color: var(--callout-heading); font: 400 1.3rem/1.3 var(--font-display); font-variant: small-caps; letter-spacing: .035em; }
 :is(.rich-content, .rule-preview-body) .box-section > :last-child { margin-bottom: 0; }
-:is(.rich-content, .rule-preview-body) .rule-box a:where(:not(.rule-link, .action-link)) { color: var(--callout-heading); text-decoration: underline; }
+:is(.rich-content, .rule-preview-body) .rule-box a:where(:not(.rule-link, .action-link, .condition-link, .skill-link)) { color: var(--callout-heading); text-decoration: underline; }
 :is(.rich-content, .rule-preview-body) .rule-box code { color: inherit; background: var(--code-bg); border-color: var(--callout-inner); }
 :is(.rich-content, .rule-preview-body) .rule-box li::marker { color: var(--callout-heading); }
 :is(.rich-content, .rule-preview-body) .rule-box :focus-visible { outline-color: var(--callout-heading); }
@@ -377,15 +377,19 @@ code { font-size: .83em; padding: .15em .35em; background: var(--code-bg); borde
 }
 .action-symbol { display: inline-block; white-space: nowrap; font: normal 1.78em/0 "Pathfinder2eActions", sans-serif; letter-spacing: normal; text-transform: none; text-indent: 0; }
 .action-symbol::before { content: attr(data-symbol); }
-:is(.rule-link, .action-link) { text-decoration: underline; text-decoration-style: dotted; text-underline-offset: .18em; }
+:is(.rule-link, .action-link, .condition-link, .skill-link) { text-decoration: underline; text-decoration-style: dotted; text-underline-offset: .18em; }
 .rule-link { color: var(--rule-link); }
 .action-link { color: var(--action-link); }
+.condition-link { color: var(--condition-link); }
+.skill-link { color: var(--skill-link); }
 /* Reference icons always precede the link text, in readers and hover previews. */
-a:is(.rule-link, .action-link) > .reference-link-start { white-space: nowrap; overflow-wrap: normal; }
-a:is(.rule-link, .action-link[data-action-resolved="true"]) > .reference-link-start::before { content: ""; display: inline-block; width: .8em; height: .8em; margin-left: .25em; margin-right: .15em; vertical-align: -.04em; background: currentColor; -webkit-mask: var(--reference-icon) center / contain no-repeat; mask: var(--reference-icon) center / contain no-repeat; }
-a.rule-link { --reference-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%229%22%20y%3D%225%22%20width%3D%2230%22%20height%3D%2238%22%20rx%3D%223%22%2F%3E%3Cpath%20d%3D%22M17%2015h14M17%2023h14M17%2031h9%22%2F%3E%3Cpath%20d%3D%22M5%2011h4M5%2019h4M5%2027h4M5%2035h4%22%2F%3E%3C%2Fsvg%3E"); }
-a.action-link { --reference-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2048%2048%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.8%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m22%205%2017%2019-17%2019L5%2024Z%22%2F%3E%3Cpath%20d%3D%22m17%2016%208%208-8%208m8-16%208%208-8%208%22%2F%3E%3C%2Fsvg%3E"); }
-:is(.rule-link, .action-link):is(:hover, :focus) { text-decoration-style: solid; }
+a:is(.rule-link, .action-link, .condition-link, .skill-link) > .reference-link-start { white-space: nowrap; overflow-wrap: normal; }
+a:is(.rule-link, .condition-link, .skill-link, .action-link[data-action-resolved="true"]) > .reference-link-start::before { content: ""; display: inline-block; width: .8em; height: .8em; margin-left: .25em; margin-right: .15em; vertical-align: -.04em; background: currentColor; -webkit-mask: var(--reference-icon) center / contain no-repeat; mask: var(--reference-icon) center / contain no-repeat; }
+a.rule-link { --reference-icon: url("../img/icons/book-open.svg"); }
+a.action-link { --reference-icon: url("../img/icons/zap.svg"); }
+a.condition-link { --reference-icon: url("../img/icons/circle-alert.svg"); }
+a.skill-link { --reference-icon: url("../img/icons/feather.svg"); }
+:is(.rule-link, .action-link, .condition-link, .skill-link):is(:hover, :focus) { text-decoration-style: solid; }
 .rule-link-unresolved { cursor: help; }
 :is(.rich-content, .rule-preview-body) :target { scroll-margin-top: calc(var(--header-height) + 1.5rem); outline: 1px solid var(--content-line); outline-offset: .35rem; background: var(--content-wash); }
 .rule-preview { position: fixed; z-index: 50; width: min(560px, calc(100vw - 24px)); max-height: min(470px, calc(100dvh - 24px)); overflow: auto; overscroll-behavior: contain; color: var(--text); background: var(--panel); border: 1px solid var(--callout-line); box-shadow: 0 10px 35px var(--popup-shadow); font: .9rem/1.65 var(--font-ui); }
@@ -510,7 +514,7 @@ a.action-link { --reference-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22ht
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
 @media print {
   body[data-reference-kind], .rule-preview[data-reference-kind] { --reference-color: black; }
-  :root, :root[data-theme="light"] { --paper: white; --ink: black; --content-heading: black; --content-link: black; --rule-link: black; --action-link: black; --content-muted: #444; --content-line: #bbb; --table-row: #eee; }
+  :root, :root[data-theme="light"] { --paper: white; --ink: black; --content-heading: black; --content-link: black; --rule-link: black; --action-link: black; --condition-link: black; --skill-link: black; --content-muted: #444; --content-line: #bbb; --table-row: #eee; }
   :root, body { color-scheme: light; background: white; color: black; }
   .site-header, .site-footer, .skip-link, .rule-preview, .image-viewer, .image-expand { display: none; }
   .rich-content { font-size: 11pt; }

@@ -1,3 +1,4 @@
+// Rule source/type facets and their URL representation.
 import { escapeHtml } from "./content-renderer.js";
 
 export const FILTER_GROUPS = [

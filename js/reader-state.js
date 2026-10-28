@@ -1,21 +1,23 @@
-import { escapeHtml } from "./content-renderer.js";
+// Saved entries and reading history, scoped to a library and storage key.
+import { escapeHtml, renderIcon } from "./content-renderer.js";
 
-export const RULE_MEMORY_KEY = "avalon-rule-memory-v1";
-export const RECENT_RULE_LIMIT = 6;
+export const READER_STATE_KEY = "avalon-rule-memory-v1";
+export const RECENT_ENTRY_LIMIT = 6;
 const compareNames = new Intl.Collator("en", { sensitivity: "base", numeric: true }).compare;
 
-export function createRuleMemory(library, window) {
+export function createReaderState(library, window, { storageKey = READER_STATE_KEY, recentLimit = RECENT_ENTRY_LIMIT } = {}) {
+  if (!Number.isInteger(recentLimit) || recentLimit < 1) throw new Error("recentLimit must be a positive integer.");
   const normalize = raw => {
     let value;
     try { value = JSON.parse(raw); } catch { value = null; }
     const ids = (items, limit) => [...new Set((Array.isArray(items) ? items : [])
       .filter(id => typeof id === "string" && library.get(id)))].slice(0, limit);
-    return { starred: ids(value?.starred, 500), recent: ids(value?.recent, RECENT_RULE_LIMIT) };
+    return { starred: ids(value?.starred, 500), recent: ids(value?.recent, recentLimit) };
   };
   let state;
-  try { state = normalize(window.localStorage.getItem(RULE_MEMORY_KEY)); }
+  try { state = normalize(window.localStorage.getItem(storageKey)); }
   catch { state = normalize(null); }
-  const save = () => { try { window.localStorage.setItem(RULE_MEMORY_KEY, JSON.stringify(state)); } catch { /* Keep working for this visit. */ } };
+  const save = () => { try { window.localStorage.setItem(storageKey, JSON.stringify(state)); } catch { /* Keep working for this visit. */ } };
   return {
     get starred() { return state.starred.map(id => library.get(id)).sort((a, b) => compareNames(a.name, b.name)); },
     get recent() { return state.recent.map(id => library.get(id)); },
@@ -28,19 +30,19 @@ export function createRuleMemory(library, window) {
     },
     visit(id) {
       if (!library.get(id) || state.recent[0] === id) return;
-      state.recent = [id, ...state.recent.filter(value => value !== id)].slice(0, RECENT_RULE_LIMIT);
+      state.recent = [id, ...state.recent.filter(value => value !== id)].slice(0, recentLimit);
       save();
     },
     clearRecent() { state.recent = []; save(); },
     sync(event) {
-      if (event.key !== RULE_MEMORY_KEY && event.key !== null) return false;
+      if (event.key !== storageKey && event.key !== null) return false;
       state = normalize(event.key === null ? null : event.newValue);
       return true;
     },
   };
 }
 
-const starIcon = active => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="${active ? "currentColor" : "none"}" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="m12 3 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3-5.6-3-5.6 3 1.1-6.3L3 9.6l6.2-.9Z"/></svg>`;
+const starIcon = active => renderIcon("star", "", { filled: active });
 const starLabel = (rule, active) => `${active ? "Unstar" : "Star"} ${rule.name}`;
 
 export function renderStarButton(rule, active) {

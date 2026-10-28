@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { renderContent } from "../js/content-renderer.js";
-import { renderRulePreview } from "../js/rule-links.js";
-import { createLibrary } from "../js/rules-library.js";
+import { renderRulePreview } from "../js/reference-previews.js";
+import { createRuleLibrary } from "../js/rule-library.js";
 
 const source = { id: "PC1", name: "Player Core" };
 
@@ -49,7 +49,7 @@ test("notes escape author text and unsafe links and cannot inject markup", () =>
 test("rule previews preserve markers and do not attribute setting originals to published pages", () => {
   for (const setting of ["modified", "original"]) {
     const entry = { id: "avalon", source: "PC1", type: "h4", name: "Avalon", page: 10, setting, settingNote: "Campaign-specific text.", entries: ["A world."] };
-    const registry = createLibrary({ sources: [source], rules: [entry] }).registry;
+    const registry = createRuleLibrary({ sources: [source], rules: [entry] }).registry;
     const preview = renderRulePreview("Avalon", "PC1", registry);
     assert.match(preview, new RegExp(`setting-content--${setting}`));
     assert.match(preview, /Campaign-specific text/);

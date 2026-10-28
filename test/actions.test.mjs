@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
-import { renderInline } from "../js/content-renderer.js";
-import { ACTION_CATEGORIES, ACTION_TIMES, createActionLibrary, emptyActionFilters, actionMatchesFilters, searchActions, sortActions, actionTimeHtml, renderActionDetail, renderActionResults } from "../js/actions-library.js";
-import { mountActions, startActions } from "../js/actions-app.js";
+import { inlineText, renderContent, renderInline } from "../js/content-renderer.js";
+import { ACTION_CATEGORIES, ACTION_TIMES, createActionLibrary, createCatalog, emptyActionFilters, emptyCatalogFilters, actionMatchesFilters, catalogMatchesFilters, catalogOptions, searchActions, searchCatalog, sortActions, actionTimeHtml, renderActionDetail, renderActionResults } from "../js/reference-library.js";
+import { mountActions, mountReferenceBrowser, REFERENCE_TYPES, startActions } from "../js/reference-browser.js";
 
 const fixture = () => createActionLibrary({ sources: [{ id: "PC1", name: "Player Core" }], actions: [
   { name: "Stride", source: "PC1", page: 418, category: "basic", time: { unit: "action", value: 1 }, aliases: ["Walk"], entries: ["Move your Speed. See {@action Aid|PC1}."] },
@@ -74,6 +74,59 @@ test("only confirmed action references receive the marker used to show the actio
   assert.doesNotMatch(unchecked, /data-action-resolved="true"/);
 });
 
+test("action symbols render accessibly and the bundled font provides each glyph", async () => {
+  const labels = { "1": "One action", "2": "Two actions", "3": "Three actions", r: "Reaction", f: "Free action" };
+  for (const [symbol, label] of Object.entries(labels)) {
+    const html = renderInline(`{@as ${symbol}}`);
+    assert.ok(html.includes(`data-symbol="${symbol}"`));
+    assert.ok(html.includes(`aria-label="${label}"`));
+    assert.match(html, /role="img"/);
+    assert.equal(renderInline(`{@actionsymbol ${symbol}}`), html);
+    assert.equal(renderInline(`{@as ${symbol.toUpperCase()} }`), html);
+  }
+  assert.equal(renderInline("{@as unknown}"), "unknown");
+  assert.equal(renderInline("{@code {@as 1}}"), "<code>{@as 1}</code>");
+  assert.doesNotMatch(renderInline('{@as <script>bad</script>}'), /<script>/);
+  assert.equal(inlineText("{@as 1} Single Actions").trim(), "Single Actions");
+  const html = renderContent({ entries: [
+    { type: "h4", name: "{@as 1} Single Actions", entries: ["Use {@as 2}, {@as 3}, {@as r}, or {@as f}."] },
+  ] }).html;
+  assert.equal((html.match(/class="action-symbol"/g) || []).length, 5);
+
+  const font = await readFile(new URL("../fonts/Pathfinder2eActions.ttf", import.meta.url));
+  assert.equal(font.readUInt32BE(0), 0x00010000);
+  const tables = new Map();
+  for (let index = 0; index < font.readUInt16BE(4); index++) {
+    const offset = 12 + index * 16;
+    tables.set(font.toString("ascii", offset, offset + 4), font.readUInt32BE(offset + 8));
+  }
+  const cmap = tables.get("cmap");
+  assert.ok(cmap);
+  const glyphs = new Map();
+  for (let index = 0; index < font.readUInt16BE(cmap + 2); index++) {
+    const record = cmap + 4 + index * 8;
+    const offset = cmap + font.readUInt32BE(record + 4);
+    if (font.readUInt16BE(offset) !== 4) continue;
+    const count = font.readUInt16BE(offset + 6) / 2;
+    const end = offset + 14, start = end + count * 2 + 2;
+    const delta = start + count * 2, range = delta + count * 2;
+    for (const symbol of "123rf") {
+      const code = symbol.charCodeAt(0);
+      for (let segment = 0; segment < count; segment++) {
+        if (code < font.readUInt16BE(start + segment * 2) || code > font.readUInt16BE(end + segment * 2)) continue;
+        const distance = font.readUInt16BE(range + segment * 2);
+        let glyph = distance ? font.readUInt16BE(range + segment * 2 + distance + 2 * (code - font.readUInt16BE(start + segment * 2))) : code;
+        if (!distance || glyph) glyph = (glyph + font.readInt16BE(delta + segment * 2)) & 0xffff;
+        glyphs.set(symbol, glyph);
+        break;
+      }
+    }
+  }
+  assert.equal(glyphs.size, 5);
+  assert.ok([...glyphs.values()].every(glyph => glyph > 0));
+  assert.equal(new Set(glyphs.values()).size, 5);
+});
+
 test("malformed action records report usable errors and name variants can pick a primary definition", () => {
   assert.throws(() => createActionLibrary({}), /actions.*array/);
   const entry = { name: "Example", category: "basic", time: { unit: "action", value: 1 }, entries: [] };
@@ -87,7 +140,33 @@ test("malformed action records report usable errors and name variants can pick a
   assert.equal(variants.registry.resolve("second", "Avalon").target.id, "Avalon:second");
 });
 
-function environment(query = "") {
+test("catalogs create stable records, search aliases, filter inclusions and exclusions, and sort", () => {
+  const catalog = createCatalog({
+    sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }],
+    conditions: [
+      { name: "Blinded", source: "PC1", category: "Sense", entries: ["You cannot see."] },
+      { name: "Dying", source: "GMC", category: "Health", entries: ["You are close to death."] },
+      { name: "Drained", source: "PC1", category: "Health", aliases: ["Exhausted"], entries: ["Your vitality is reduced."] },
+    ],
+  }, { collection: "conditions", href: "conditions.html" });
+  const filters = emptyCatalogFilters();
+  assert.equal(catalog.get("PC1:blinded").href, "conditions.html?id=PC1%3Ablinded");
+  assert.equal(catalog.registry.resolve("Blinded", "PC1").target.id, "PC1:blinded");
+  assert.deepEqual(catalogOptions(catalog).category.map(option => option.value), ["Health", "Sense"]);
+  assert.deepEqual(searchCatalog(catalog, "exhausted").map(record => record.name), ["Drained"]);
+  filters.category.set("Health", 1);
+  assert.deepEqual(catalog.records.filter(record => catalogMatchesFilters(record, filters)).map(record => record.name), ["Drained", "Dying"]);
+  filters.source.set("PC1", -1);
+  assert.deepEqual(catalog.records.filter(record => catalogMatchesFilters(record, filters)).map(record => record.name), ["Dying"]);
+});
+
+test("catalogs reject missing collections, entries, and invalid categories", () => {
+  assert.throws(() => createCatalog({}, { collection: "skills", href: "skills.html" }), /skills/);
+  assert.throws(() => createCatalog({ skills: [{ name: "Acrobatics", entries: "not an array" }] }, { collection: "skills", href: "skills.html" }), /entries array/);
+  assert.throws(() => createCatalog({ skills: [{ name: "Acrobatics", category: {}, entries: [] }] }, { collection: "skills", href: "skills.html" }), /text category/);
+});
+
+function environment(query = "", definition = REFERENCE_TYPES.actions) {
   const elements = new Map(), handlers = new Map(), history = [new URL(`http://localhost/avalon/actions.html${query}`)];
   let cursor = 0;
   const window = { location: new URL(history[0]), matchMedia: () => ({ matches: false }), addEventListener: (type, handler) => handlers.set(type, handler), history: {
@@ -100,27 +179,30 @@ function environment(query = "") {
     constructor(selector = "") { this.selector = selector; this.dataset = {}; this.attributes = new Map(); this.listeners = new Map(); this.value = ""; this.open = false; this.writes = 0; this.children = []; }
     set innerHTML(html) {
       this.html = html; this.writes++;
-      if (this.selector === "#actions-filter-groups") this.children = [...html.matchAll(/data-action-filter="([^"]+)" data-filter-value="([^"]+)"/g)].map(([, group, value]) => { const el = new Element(); el.dataset = { actionFilter: group, filterValue: value }; return el; });
+      if (this.selector === `#${definition.prefix}-filter-groups`) this.children = [...html.matchAll(new RegExp(`data-${definition.attribute}-filter="([^"]+)" data-filter-value="([^"]+)"`, "g"))].map(([, group, value]) => { const el = new Element(); el.dataset = { [`${definition.attribute}Filter`]: group, filterValue: value }; return el; });
     }
     get innerHTML() { return this.html || ""; }
     querySelectorAll() {
-      if (this.selector === "#actions-sort" && !this.children.length) this.children = ["name", "category", "time", "source"].map(key => { const el = new Element(); el.dataset.actionSort = key; return el; });
+      if (this.selector === `#${definition.prefix}-sort` && !this.children.length) this.children = ["name", ...definition.filters.map(({ key }) => key)].map(key => { const el = new Element(); el.dataset[`${definition.attribute}Sort`] = key; return el; });
       return this.children;
     }
     closest(selector) {
-      const fields = { "[data-action-filter]": "actionFilter", "[data-action-sort]": "actionSort", "[data-select-action]": "selectAction", "[data-action-name]": "actionName", "[data-remove-action-filter]": "removeActionFilter" };
-      return fields[selector] && this.dataset[fields[selector]] != null ? this : null;
+      const attribute = /^\[data-([a-z-]+)\]$/.exec(selector)?.[1];
+      const field = attribute?.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+      return field && this.dataset[field] != null ? this : null;
     }
     setAttribute(key, value) { this.attributes.set(key, String(value)); }
-    getAttribute(key) { return this.attributes.get(key); }
+    getAttribute(key) { return this.attributes.get(key) ?? (key.startsWith("data-") ? this.dataset[key.slice(5).replace(/-([a-z])/g, (_, letter) => letter.toUpperCase())] : undefined); }
     removeAttribute(key) { this.attributes.delete(key); }
     contains(target) { return target === this || this.children.includes(target); }
     focus() { this.focused = true; }
     scrollIntoView() { this.scrolled = true; }
     addEventListener(type, handler) { this.listeners.set(type, handler); }
+    removeEventListener(type) { this.listeners.delete(type); }
     emit(type, extra = {}) { const event = { target: this, defaultPrevented: false, preventDefault() { this.defaultPrevented = true; }, ...extra }; this.listeners.get(type)?.(event); return event; }
   }
-  const document = { title: "", querySelector(selector) { if (!elements.has(selector)) elements.set(selector, new Element(selector)); return elements.get(selector); }, addEventListener: (type, handler) => handlers.set(`document:${type}`, handler) };
+  window.removeEventListener = type => handlers.delete(type);
+  const document = { title: "", querySelector(selector) { if (!elements.has(selector)) elements.set(selector, new Element(selector)); return elements.get(selector); }, addEventListener: (type, handler) => handlers.set(`document:${type}`, handler), removeEventListener: type => handlers.delete(`document:${type}`) };
   const previewCalls = [];
   return { document, window, handlers, previewCalls, attachPreviews(options) { previewCalls.push(options); return { hide() {} }; }, get: selector => document.querySelector(selector), target(dataset) { const el = new Element(); el.dataset = dataset; return el; } };
 }
@@ -213,6 +295,59 @@ test("Actions remains usable if optional rule-reference data is unavailable and 
   const failed = environment(); await startActions(failed);
   assert.match(failed.get("#main").innerHTML, /Unable to open actions/);
   assert.match(failed.get("#main").innerHTML, /HTTP 404/);
+});
+
+test("the shared browser handles condition and skill deep links, references and history", () => {
+  for (const collection of ["conditions", "skills"]) {
+    const config = REFERENCE_TYPES[collection], first = collection === "conditions" ? "Blinded" : "Acrobatics";
+    const second = collection === "conditions" ? "Dying" : "Athletics";
+    const catalog = createCatalog({ [collection]: [
+      { name: first, source: "PC1", category: "First", entries: ["First description."] },
+      { name: second, source: "PC1", category: "Second", entries: ["Second description."] },
+    ] }, config);
+    const ui = environment(`?${config.kind}=${first}&q=excluded&category=Second`, config);
+    const browser = mountReferenceBrowser(catalog, { ...ui, config });
+    assert.equal(browser.selectedId, `PC1:${first.toLowerCase()}`);
+    assert.match(ui.get("#catalog-detail").innerHTML, /First description/);
+    assert.equal(ui.get("#catalog-search").value, "");
+    assert.equal(ui.window.location.searchParams.has(config.kind), false);
+    assert.equal(ui.window.location.searchParams.has("category"), false);
+    const ref = ui.target({ [`${config.kind}Name`]: second, [`${config.kind}Source`]: "PC1" });
+    const click = { target: ref, preventDefault() { this.defaultPrevented = true; } };
+    ui.handlers.get("document:click")(click);
+    assert.equal(click.defaultPrevented, true);
+    assert.match(ui.get("#catalog-detail").innerHTML, /Second description/);
+    ui.window.history.back();
+    assert.equal(browser.selectedId, `PC1:${first.toLowerCase()}`);
+    assert.match(ui.get("#catalog-detail").innerHTML, /First description/);
+  }
+});
+
+test("custom reference definitions reuse filter counts and release their event handlers", () => {
+  let visits = 0;
+  const config = { ...REFERENCE_TYPES.skills, collection: "equipment", singular: "Item", plural: "Equipment", kind: "item", href: "equipment.html",
+    values(record, key) { visits++; return [record[key]]; } };
+  const catalog = createCatalog({ equipment: Array.from({ length: 8 }, (_, index) => ({
+    name: `Item ${index}`, source: "PC1", category: `Category ${index}`, entries: ["Equipment description."],
+  })) }, config);
+  let searchReads = 0;
+  for (const record of catalog.records) {
+    const text = record.searchText;
+    Object.defineProperty(record, "searchText", { get() { searchReads++; return text; } });
+  }
+  const ui = environment("?q=item", config);
+  const browser = mountReferenceBrowser(catalog, { ...ui, config });
+  assert.equal(visits, catalog.records.length * config.filters.length);
+  const category = ui.get("#catalog-filter-groups").children.find(el => el.dataset.catalogFilter === "category" && el.dataset.filterValue === "Category 0");
+  ui.get("#catalog-filter-groups").emit("click", { target: category });
+  assert.equal(ui.get("#catalog-count").textContent, "1 item");
+  ui.get("#catalog-filter-groups").emit("contextmenu", { target: category });
+  assert.equal(ui.get("#catalog-count").textContent, "7 equipment");
+  assert.equal(searchReads, catalog.records.length, "changing filters reuses the previous name search");
+  browser.destroy();
+  assert.equal(ui.get("#catalog-search").listeners.size, 0);
+  assert.equal(ui.handlers.size, 0);
+  assert.equal(browser.select(catalog.records[0].id), false);
 });
 
 

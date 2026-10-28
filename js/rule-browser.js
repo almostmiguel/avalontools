@@ -1,14 +1,14 @@
+// Hierarchical rule browsing, chapter reading and standalone rule views.
 import { escapeHtml } from "./content-renderer.js";
-import { loadJson } from "./data-loader.js";
-import { findChapter, renderChapter } from "./rule-chapters.js";
-import { attachRulePreviews } from "./rule-links.js";
-import { renderRuleCitation } from "./rule-sources.js";
-import { createLibrary, chapterHref, renderBrowse, renderRulePath, browseBranchIds, renderRuleContent, renderRuleOutline, RULE_KINDS, searchRules } from "./rules-library.js";
-import { FILTER_GROUPS, emptyFilters, filterOptions, readFilters, writeFilters, toggleFilter, matchesFilters, filterCounts, renderFilterGroups, renderFilterChips } from "./rules-filters.js";
-import { createRuleMemory, renderStarButton, updateStarButton, renderSavedMenu } from "./rule-memory.js";
+import { loadJson, renderReferenceCitation } from "./reference-data.js";
+import { findChapter, renderChapter } from "./chapter-reader.js";
+import { attachReferencePreviews } from "./reference-previews.js";
+import { createRuleLibrary, chapterHref, renderBrowse, renderRulePath, browseBranchIds, renderRuleContent, renderRuleOutline, RULE_KINDS, searchRules } from "./rule-library.js";
+import { FILTER_GROUPS, emptyFilters, filterOptions, readFilters, writeFilters, toggleFilter, matchesFilters, filterCounts, renderFilterGroups, renderFilterChips } from "./rule-filters.js";
+import { createReaderState, renderStarButton, updateStarButton, renderSavedMenu } from "./reader-state.js";
 
 export async function loadLibrary() {
-  return createLibrary(await loadJson("data/rules.json"));
+  return createRuleLibrary(await loadJson("data/rules.json"));
 }
 
 const link = rule => `<a href="${escapeHtml(rule.href)}">${escapeHtml(rule.name)}</a>`;
@@ -27,10 +27,10 @@ const dismissOutlineOutside = (document, event) => {
 function ruleArticle(rule, library, embedded = false, starred = false) {
   const tag = embedded ? "h2" : "h1";
   const content = renderRuleContent(rule, library);
-  return `<header class="rule-page-heading">${renderRulePath(rule, library)}<div class="rule-title-row"><${tag}${embedded ? ' id="rule-detail-title"' : ""}>${escapeHtml(rule.name)}</${tag}></div><div class="rule-meta-row"><p class="rule-page-source">${renderRuleCitation(rule)}<span class="rule-meta-kind rule-kind--${rule.kind}">${RULE_KINDS[rule.kind]}</span></p><div class="rule-reader-tools">${renderRuleOutline(content.headings)}${renderStarButton(rule, starred)}</div></div></header><article class="rich-content rule-page-content">${content.html}</article>`;
+  return `<header class="rule-page-heading">${renderRulePath(rule, library)}<div class="rule-title-row"><${tag}${embedded ? ' id="rule-detail-title"' : ""}>${escapeHtml(rule.name)}</${tag}></div><div class="rule-meta-row"><p class="rule-page-source">${renderReferenceCitation(rule)}<span class="rule-meta-kind rule-kind--${rule.kind}">${RULE_KINDS[rule.kind]}</span></p><div class="rule-reader-tools">${renderRuleOutline(content.headings)}${renderStarButton(rule, starred)}</div></div></header><article class="rich-content rule-page-content">${content.html}</article>`;
 }
 
-export function mountCatalog(library, { document, window, attachPreviews = attachRulePreviews }) {
+export function mountRuleBrowser(library, { document, window, attachPreviews = attachReferencePreviews }) {
   const search = document.querySelector("#rules-search");
   const options = filterOptions(library);
   const filterPanel = document.querySelector("#rules-filter-groups");
@@ -45,7 +45,7 @@ export function mountCatalog(library, { document, window, attachPreviews = attac
   const detail = document.querySelector("#rule-detail");
   const status = document.querySelector("#rule-selection-status");
   const saved = document.querySelector("#rules-saved");
-  const memory = createRuleMemory(library, window);
+  const memory = createReaderState(library, window);
   let savedOpen = false;
   let savedView = "starred";
   const expanded = new Set();
@@ -54,6 +54,7 @@ export function mountCatalog(library, { document, window, attachPreviews = attac
   let selectionError = "";
   let renderedKey;
   let matches = [];
+  let searchFrame = null;
   const previews = attachPreviews({ document, window, registry: library.registry });
   const refreshMemory = () => {
     saved.innerHTML = renderSavedMenu(memory, savedOpen, savedView);
@@ -216,8 +217,26 @@ export function mountCatalog(library, { document, window, attachPreviews = attac
     return true;
   };
   const clear = () => { resetFilters(); if (selectedChapter?.invalid) selectedChapter = null; selectionError = ""; update(); search.focus(); };
-  const filterChanged = () => { if (selectedChapter?.invalid) selectedChapter = null; selectionError = ""; update(); };
-  search.addEventListener("input", filterChanged);
+  const filterChanged = () => {
+    if (searchFrame != null) {
+      window.cancelAnimationFrame?.(searchFrame);
+      searchFrame = null;
+    }
+    if (selectedChapter?.invalid) selectedChapter = null;
+    selectionError = "";
+    update();
+  };
+  // Typing can produce input events faster than the browser can paint. Rendering at
+  // most once per frame keeps the search field responsive on large rule libraries.
+  const scheduleFilterChanged = () => {
+    if (typeof window.requestAnimationFrame !== "function") return filterChanged();
+    if (searchFrame != null) window.cancelAnimationFrame?.(searchFrame);
+    searchFrame = window.requestAnimationFrame(() => {
+      searchFrame = null;
+      filterChanged();
+    });
+  };
+  search.addEventListener("input", scheduleFilterChanged);
   document.querySelector("#rules-search-form").addEventListener("submit", event => { event.preventDefault(); filterChanged(); });
   document.querySelector("#clear-search").addEventListener("click", clear);
   const changePill = (event, exclude) => {
@@ -342,7 +361,7 @@ export function mountCatalog(library, { document, window, attachPreviews = attac
 }
 
 // Existing standalone URLs remain usable; new rule links use the split view.
-export function mountRule(library, { document, window, attachPreviews = attachRulePreviews }) {
+export function mountRule(library, { document, window, attachPreviews = attachReferencePreviews }) {
   const parameters = new URLSearchParams(window.location.search);
   let rule = library.get(parameters.get("id"));
   if (!rule && parameters.has("rule")) {
@@ -351,7 +370,7 @@ export function mountRule(library, { document, window, attachPreviews = attachRu
     else if (found.status === "ambiguous") throw new Error("This rule reference is ambiguous. Use a specific rule link.");
   }
   if (!rule) throw new Error("This rule could not be found. Search the library for its current name.");
-  const memory = createRuleMemory(library, window);
+  const memory = createReaderState(library, window);
   memory.visit(rule.id);
   document.title = `${rule.name} · Avalon Rules`;
   const browseUrl = rule.chapter ? chapterHref(rule.sourceId, rule.chapter) : `rules.html?${new URLSearchParams({ id: rule.id })}`;
@@ -382,7 +401,7 @@ export async function startRules(context) {
   try {
     const library = await loadLibrary();
     if (document.body.dataset.page === "rule") mountRule(library, context);
-    else mountCatalog(library, context);
+    else mountRuleBrowser(library, context);
   } catch (error) {
     main.innerHTML = `<section class="rules-load-error" role="alert"><p class="eyebrow">Avalon reference</p><h1>Unable to open rules</h1><p>${escapeHtml(error.message)}</p><a href="rules.html">Back to the rules library</a></section>`;
   } finally { main.removeAttribute("aria-busy"); }

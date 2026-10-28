@@ -1,33 +1,38 @@
-.avalon-home { padding-top: 2.5rem; }
-.home-heading { padding-bottom: 1.7rem; border-bottom: 1px solid var(--line); }
-.home-heading .eyebrow { margin: 0 0 .5rem; color: var(--muted); font-size: .65rem; letter-spacing: .12em; }
-.home-heading h1 { margin: 0; color: var(--accent); font: 400 3rem/1.1 var(--font-display); letter-spacing: .015em; }
-.home-heading > p:last-child { margin: .75rem 0 0; color: var(--muted); font-size: .95rem; }
-.home-reference { padding: 1.8rem 0 2rem; }
-.home-reference > h2 { display: inline-block; margin: 0 0 1rem; padding-bottom: .35rem; border-bottom: 2px solid var(--accent); color: var(--accent); font-size: 1.15rem; font-weight: 600; }
-.home-reference-grid { display: grid; grid-template-columns: repeat(2, 190px) minmax(0, 1fr); align-items: start; gap: 2rem; }
-.home-tool { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 158px; padding: 1.2rem; border: 1px solid var(--reference-color, var(--accent)); border-radius: 4px; background: var(--panel); color: var(--reference-color, var(--accent)); box-shadow: var(--surface-shadow); }
-.home-tool:hover { text-decoration: none; background: color-mix(in srgb, var(--reference-color, var(--accent)) 7%, var(--panel)); box-shadow: 0 3px 14px #0002; }
-.home-tool svg { width: 48px; height: 48px; margin-bottom: .6rem; }
+.avalon-home { width: min(1120px, calc(100% - 2 * var(--site-gutter))); margin: 0 auto; padding: 0 0 3rem; }
+.home-heading { position: relative; display: flex; flex-direction: column; justify-content: center; min-block-size: calc(100svh - var(--header-height)); padding: clamp(3.5rem, 10vh, 7rem) 0; }
+.home-heading::after { content: ""; position: absolute; inset: auto 0 0; height: 1px; background: linear-gradient(90deg, var(--accent), var(--line) 45%, transparent); }
+.home-heading .eyebrow, .home-section-heading > p { margin: 0 0 .55rem; color: var(--muted); font-size: .67rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.home-heading h1 { max-width: 8ch; margin: 0; color: var(--accent); font: 400 clamp(4rem, 11vw, 7.5rem)/.91 var(--font-display); letter-spacing: .01em; }
+.home-heading > p:last-of-type { max-width: 39rem; margin: 1.35rem 0 0; color: var(--content-muted); font: 1.03rem/1.7 var(--serif); }
+.home-scroll-link { display: inline-flex; align-items: center; gap: .65rem; width: fit-content; margin-top: 2.15rem; color: var(--accent); font-size: .79rem; font-weight: 600; }
+.home-scroll-link span { display: grid; place-items: center; width: 1.7rem; height: 1.7rem; border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent); border-radius: 50%; font-size: 1rem; }
+.home-scroll-link:hover { text-decoration: none; color: var(--text); }
+.home-section { position: relative; display: grid; grid-template-columns: minmax(210px, .56fr) minmax(0, 1.44fr); column-gap: clamp(2rem, 7vw, 7rem); align-content: center; min-block-size: min(46rem, calc(100svh - var(--header-height))); padding: 4.5rem 0; border-bottom: 1px solid var(--line); scroll-margin-top: var(--header-height); }
+.home-section--rules { --reference-color: var(--rule-link); }
+.home-section--player { --reference-color: var(--class-link); }
+.home-section--gm { --reference-color: var(--creature-link); }
+.home-section--reference { --reference-color: var(--action-link); }
+.home-section--setting { --reference-color: var(--setting-link); }
+.home-section-heading { align-self: start; position: sticky; top: calc(var(--header-height) + 2rem); }
+.home-section-heading h2 { margin: 0; color: var(--reference-color, var(--accent)); font: 400 clamp(2.4rem, 5vw, 4.2rem)/1 var(--font-display); letter-spacing: .015em; }
+.home-section-heading > span { display: block; margin-top: 1rem; color: color-mix(in srgb, var(--reference-color, var(--accent)) 65%, var(--muted)); font: .7rem/1 var(--font-ui); letter-spacing: .16em; }
+.home-section-description { grid-column: 2; margin: 0 0 1.5rem; color: var(--content-muted); font: .94rem/1.7 var(--serif); }
+.home-tool-grid { grid-column: 2; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .85rem; }
+.home-tool-grid--single { max-width: 260px; }
+.home-tool { position: relative; display: flex; flex-direction: column; justify-content: end; min-block-size: 190px; padding: 1rem; overflow: hidden; border: 1px solid color-mix(in srgb, var(--reference-color, var(--accent)) 78%, var(--line)); border-radius: 7px; background: linear-gradient(145deg, color-mix(in srgb, var(--reference-color, var(--panel)) 7%, var(--panel)), var(--panel)); color: var(--reference-color, var(--accent)); box-shadow: var(--surface-shadow); transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease; }
+.home-tool::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--reference-color, var(--accent)); transform: scaleX(.2); transform-origin: left; transition: transform 180ms ease; }
+a.home-tool:hover { transform: translateY(-4px); background: color-mix(in srgb, var(--reference-color, var(--accent)) 11%, var(--panel)); box-shadow: 0 10px 28px var(--soft-shadow); text-decoration: none; }
+a.home-tool:hover::before, a.home-tool:focus-visible::before { transform: scaleX(1); }
 .home-tool:focus-visible { outline-color: var(--reference-color, var(--accent)); }
-.home-tool strong { color: var(--reference-color, var(--accent)); font-size: 1.1rem; font-weight: 600; }
-.home-tool > span { margin-top: .3rem; color: var(--muted); font-size: .63rem; }
-.home-reference-note { max-width: 580px; padding: .4rem 0; }
-.home-reference-note h3 { margin: 0 0 .6rem; color: var(--content-heading); font-size: 1rem; font-weight: 600; }
-.home-reference-note p { margin: 0 0 .7rem; font-size: .87rem; line-height: 1.8; color: var(--muted); }
-.home-about { padding: 1.2rem 1.4rem; border: 1px solid var(--line); border-radius: 4px; background: var(--panel); margin-bottom: 2.2rem; }
-.home-about h2 { margin: 0 0 .5rem; font-size: .95rem; font-weight: 600; }
-.home-about p { margin: 0; font-size: .83rem; color: var(--muted); line-height: 1.8; }
-@media (max-width: 800px) {
-  .home-reference-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-  .home-reference-note { grid-column: 1 / -1; max-width: none; }
-  .avalon-home { padding-top: 1.8rem; }
-}
-@media (max-width: 580px) {
-  .home-heading h1 { font-size: 2.5rem; }
-  .home-reference-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .home-tool { flex-direction: row; justify-content: start; gap: 1rem; min-height: 85px; padding: 1rem; }
-  .home-tool svg { flex-shrink: 0; width: 38px; height: 38px; margin: 0; }
-  .home-tool > span { margin: 0 0 0 auto; font-size: .58rem; }
-  .home-reference-note { padding: .3rem 0; }
-}
+.home-tool svg { position: absolute; top: 1rem; left: 1rem; width: 42px; height: 42px; }
+.home-tool strong { color: inherit; font-size: 1rem; font-weight: 650; }
+.home-tool > span { margin-top: .2rem; color: var(--content-muted); font-size: .7rem; }
+.home-tool--featured { min-block-size: 250px; }
+.home-tool--featured svg { width: 58px; height: 58px; }
+.home-tool--featured strong { font-size: 1.25rem; }
+.home-tool--pending { opacity: .72; cursor: default; }
+.home-tool--pending::before { transform: scaleX(.12); }
+.site-footer { padding-top: 2.25rem; }
+@media (max-width: 760px) { .home-heading { min-block-size: min(760px, calc(100svh - var(--header-height))); } .home-section { display: block; min-block-size: 0; padding: 3.5rem 0; } .home-section-heading { position: static; margin-bottom: 1.1rem; } .home-section-heading h2 { font-size: 3rem; } .home-section-heading > span { display: none; } .home-section-description { margin-bottom: 1.25rem; } .home-tool-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 430px) { .avalon-home { width: min(100% - 2rem, 1120px); } .home-heading h1 { font-size: clamp(3.7rem, 22vw, 5.5rem); } .home-tool-grid { grid-template-columns: 1fr; } .home-tool-grid--single { max-width: none; } .home-tool { min-block-size: 130px; } .home-tool--featured { min-block-size: 180px; } }
+@media (prefers-reduced-motion: reduce) { .home-tool, .home-tool::before { transition: none; } }

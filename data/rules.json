@@ -14,6 +14,1401 @@
   "rules": [
     {
       "type": "h1",
+      "name": "Chapter 1: Introduction",
+      "source": "PC1",
+      "page": 5,
+      "entries": [
+        {
+          "type": "flavor",
+          "entry": "Pathfinder is a fantasy tabletop roleplaying game (RPG) where you and a group of friends gather to tell a tale of brave heroes and cunning villains in a world filled with terrifying monsters and amazing treasures. More importantly, Pathfinder is a game where your character's choices determine how the story unfolds."
+        },
+        {
+          "type": "box",
+          "name": "The First Rule",
+          "rule": false,
+          "entries": [
+            "The first rule of Pathfinder is that this game is yours. Use it to tell the stories you want to tell, be the character you want to be, and share exciting adventures with friends. If any other rule gets in the way of your fun, as long as your group agrees, you can alter or ignore it to fit your story. The true goal of Pathfinder is for everyone to enjoy themselves."
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "What is a Roleplaying Game?",
+          "entries": [
+            "A roleplaying game is an interactive story where one player, the Game Master (GM), sets the scene and presents challenges, while other players take the roles of player characters (PCs) and attempt to overcome those challenges. Danger comes in the form of monsters, devious traps, and the machinations of adversarial agents, but Pathfinder also provides political schemes, puzzles, interpersonal drama, and much, much more.",
+            "The game is typically played in a group of four to seven players, with one of those players serving as the group's GM. The GM prepares, presents, and presides over the game's world and story, posing challenges and playing adversaries, allies, and bystanders alike. As each scene flows, each player contributes to the story, responding to situations according to the personality and abilities of their character. Dice rolls, combined with preassigned statistics, add an element of chance to the game and determine whether characters succeed or fail at actions.",
+            {
+              "type": "h3",
+              "name": "The Flow of the Game",
+              "entries": [
+                "Pathfinder is played in sessions, during which players gather in person or online for a few hours to play the game. A complete story can be as short as a single session, often referred to as a “one-shot,” or it can stretch for multiple sessions, forming a campaign that might last for months or even years. If the GM enjoys telling the story and the players are entertained, the game can go as long as you like.",
+                "A session can be mostly action, featuring battles with vile beasts, escapes from fiendish traps, and the completion of heroic quests. Alternatively, it could include negotiating with a baron for rights to a fort, infiltrating an army of lumbering giants, or bargaining with an angel for a strand of hair to revive a slain friend. Ultimately, it's up to you and your group to determine what kind of game you're playing, from dungeon exploration to a nuanced political drama, or anything in between."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "The Players",
+              "entries": [
+                "Everyone involved in a Pathfinder game is a player, including the Game Master, but for the sake of simplicity, “player” usually refers to participants other than the GM. Before the game begins, players invent a history and personality for their characters, using the rules to determine their characters' statistics, abilities, strengths, and weaknesses. The GM might limit the options available during character creation, but the limits are discussed ahead of time so everyone can create interesting heroes. In general, the only limits to character concepts are the players' imaginations and the GM's guidelines.",
+                "During the game, players describe the actions their characters take and roll dice, using their characters' abilities. The GM resolves the outcome of these actions. Some players enjoy acting out (or roleplaying) what they do as if they were their characters, while others describe their characters' actions as if telling a story. Do whatever feels best!",
+                "If this is your first experience with a roleplaying game, it's recommended that you take on the role of a player to familiarize yourself with the rules and the world."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "The Game Master",
+              "entries": [
+                "While the other players create and control their characters, the Game Master (or GM) is in charge of the story and world. The GM describes all the situations player characters experience in an adventure, considers how the actions of player characters affect the story, and interprets the rules along the way. The Game Master uses the rules and advice found in Pathfinder GM Core.",
+                "The GM can create a new adventure—crafting a narrative, selecting monsters, and assigning treasure on their own—or they can instead rely on a published adventure, using it as a basis for the session and modifying it as needed to accommodate their individual players and the group's style of play. Some even run games that combine original and published content, mixing both together to form a new narrative.",
+                "Being the GM is a challenge, requiring you to adjudicate the rules, narrate the story, and juggle other responsibilities. But it can also be very rewarding and worth all the work required to run a good game. If it's your first time running a game, remember that the only thing that matters is that everyone, including you, has a fun time. Everything else will come naturally with practice and patience."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Gaming Is for All",
+              "page": 6,
+              "entries": [
+                "Whether you're the GM or a player, participating in a tabletop roleplaying game includes a social contract: everyone's gathered together to have fun. For many, roleplaying is a way to escape the troubles of everyday life. Be mindful of everyone at the table and what they want out of the game; when a group gathers for the first time, they should talk about what they hope to experience at the table, as well as any topics they'd like to avoid. Everyone should understand that elements might come up that make some players feel uncomfortable or even unwelcome, and everyone should agree to respect those boundaries during play. That way, everyone can enjoy the game together.",
+                "Pathfinder is a game for everyone, regardless of their age, gender, race or ethnicity, religion, sexual orientation, or any other identities and life experiences. It's the responsibility of all of the players, not just the GM, to make sure the table is fun and welcoming for everyone."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Tools of Play",
+              "page": 6,
+              "entries": [
+                "In addition to this book, there are a few things you will need to play Pathfinder. These supplies can be found at your local hobby shop or online at paizo.com.",
+                "{@b Character Sheet:} Each player will need a character sheet to create their character and to record what happens to them during play. You can find a character sheet in the back of this book and online as a free PDF.",
+                "{@b Dice:} The players and GM will need at least one set of polyhedral dice, although most participants bring their own. Six-sided dice are quite common, but all the dice in the set can be found at hobby game stores or online. See the Dice sidebar for more on the different kinds of dice and how they are discussed in the text.",
+                "{@b Adventure:} Every table needs an adventure to play, whether it's designed by the GM or found in a published resource. You can find a variety of exciting adventures and even entire Adventure Path campaigns at paizo.com.",
+                "{@b Pathfinder Monster Core:} From terrifying dragons to mischievous gremlins, monsters are a common threat that the PCs might face, and each type has its own statistics and abilities. These can be found in the Pathfinder Monster Core, an invaluable book for GMs. Monster statistics can also be found online for free at paizo.com/prd.",
+                "{@b Maps and Miniatures:} The chaos of combat can be difficult to imagine, so many groups use maps to represent the battlefield. These maps are marked with a 1-inch grid, and each square represents 5 feet in the game. Miniatures and illustrated tokens called pawns are used to represent the characters and the adversaries they face.",
+                "{@b Additional Accessories:} There are many additional accessories you can add to your game to enhance the experience, including tools that help you track turns in combat, decks of cards for referencing common rules, digital character-creation tools, virtual tabletops for online play, and even background music and sound-effect sets.",
+                {
+                  "type": "box",
+                  "name": "Dice",
+                  "entries": [
+                    "Pathfinder requires a set of polyhedral dice. Each die has a different number of sides—four, six, eight, or more. When these dice are mentioned in the text, they’re indicated by a “d” followed by the number of sides on the die. Pathfinder uses 4-sided dice (or d4), 6-sided dice (d6), 8-sided dice (d8), 10-sided dice (d10), 12-sided dice (d12), and 20-sided dice (d20). If you need to roll multiple dice, a number before the “d” tells you how many. For example, “4d6” means you should roll four dice, all 6-sided. If a rule asks for d%, you generate a number from 1 to 100 by rolling two 10-sided dice, treating one as the tens place and the other as the ones place."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Basics of Play",
+          "page": 6,
+          "entries": [
+            "Before creating your first character or adventure, you should understand a number of basic concepts used in the game. New concepts are presented in bold to make them easy to find, but this chapter is only an introduction to the basics of play. The complete game rules are defined in later chapters, and the Glossary and Index in the back of this book will help you find specific rules you need.",
+            {
+              "type": "h3",
+              "name": "Defining Characters",
+              "entries": [
+                "In Pathfinder, the players take on the role of player characters (PCs), while the Game Master portrays nonplayer characters (NPCs) and monsters. While PCs and NPCs are both important to the story, they serve very different purposes in the game. PCs are the protagonists—the narrative is about them—while NPCs and monsters are allies, contacts, adversaries, and villains. That said, PCs, NPCs, and monsters share several characteristics.",
+                "Level is one of the most important statistics of the game, as it conveys the approximate power and capabilities of every individual creature. PCs range in level from 1st, at the start of the character's adventuring career, to 20th, the very height of power. As the characters overcome challenges, defeat foes, and complete adventures, they accumulate Experience Points (XP). Every time a character amasses 1,000 XP, they go up a level, gaining new abilities so they can take on even greater challenges. A 1st-level PC might face off against a giant rat or a group of bandits, but at 20th level, that same character might be able to destroy an entire city with a single spell.",
+                "In addition to level, characters are defined by attributes, which measure a character's raw potential and are used to calculate most of their other statistics. There are six attributes in the game. Strength represents a character's physical might, while Dexterity represents agility and the ability to avoid danger. Constitution indicates a character's overall health and well-being. Intelligence represents raw knowledge and problem-solving ability, while Wisdom measures a character's insight and the ability to evaluate a situation. Finally, Charisma indicates charm, persuasiveness, and force of personality. Attribute modifiers for ordinary creatures range from as low as –5 to as high as +5, with +0 representing average human capabilities. High-level characters can have attribute modifiers that range much higher than +5. An attribute modifier above the average increases your chance of success at tasks related to the attribute, while those below the average decrease your chance.",
+                "Your player character is also defined by some key choices you make. The first choice is a PC's ancestry, representing the character's parents and heritage, such as human, elf, or goblin. Next up is the PC's background, which describes their upbringing, from lowly street urchin to wealthy noble. Finally, and most importantly, a PC's class defines the majority of their aptitudes and abilities, like a wizard's command of powerful arcane spells or a druid's power to transform into a fearsome beast!",
+                "In addition to these key choices, player characters also have a number of feats—individual abilities selected during character creation and as the character increases in level. Every feat has a type to denote where its explanation can be found (for example, elf feats can be found in the elf ancestry) and its theme (wizard feats, for example, grant abilities that deal with spells). Finally, characters have skills that measure their ability to hide, swim, bargain, and perform other common tasks."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Creating a Narrative",
+              "page": 7,
+              "entries": [
+                "Characters and their choices create the story of Pathfinder, but how they interact with each other and the world around them is governed by rules. So, while you might decide that your character undertakes an epic journey to overcome terrifying foes and make the world a safer place, your character's chance of success is determined by their abilities, the choices you make, and the roll of the dice.",
+                "The Game Master determines the premise and background of most adventures, although character histories and personalities certainly play a part. Once a game session begins, the players take turns describing what their characters attempt to do, while the GM determines the outcome, with the table working together to create the story. The GM also describes the environment, other characters' actions, and events. For example, the GM might announce that the characters' hometown has been regularly attacked by marauding trolls. The characters might track the trolls to a nearby swamp—only to discover that the trolls were driven from their swamp by a fearsome dragon! The PCs then have the choice of taking on an entire tribe of trolls, the dragon, or both. Whatever they decide, their success depends on their choices and the die rolls they make during play.",
+                "A single narrative—including the setup, plot, and conclusion—is called an adventure. A series of adventures creates an even larger narrative, called a campaign. An adventure might take several sessions to complete, whereas a campaign might take months or even years!",
+                {
+                  "type": "box",
+                  "name": "The World as a Participant",
+                  "entry": "Aside from characters and monsters, the world of Pathfinder itself can be a force at the table and in the narrative. While the presence of the larger world can sometimes be an obvious hazard, such as when a powerful storm wreaks the countryside, the world can also act in subtle, small ways. Traps and treasures are just as important in many tales as cunning beasts. To help you understand these game elements, many of them use the same characteristics as characters and monsters. For example, most environmental hazards have a level, which indicates how dangerous they are, and the level of a magic item gives you a sense of its overall power and impact on a story."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Playing the Game",
+          "page": 8,
+          "entries": [
+            "In a Pathfinder game, three {@rule modes of play} determine the pacing of each scene in the story. Most of your character's time is spent in {@rule Exploration Mode||exploration}, uncovering mysteries, solving problems, and interacting with other characters. The land abounds with danger, however, and characters often find themselves in an {@rule Encounter Mode||encounter}, fighting savage beasts and terrifying monsters. Finally, time moves quickly when the characters enjoy {@rule Downtime Mode||downtime}, a respite from the world's troubles and a chance to rest and train for future expeditions. Throughout an adventure, gameplay moves between these three modes many times, as needed for the story. The more you play the game, the more you'll see that each mode has its own play style, but moving from mode to mode has few hard boundaries.",
+            "During the game, your character will face situations where the outcome is uncertain. A character might need to climb a sheer cliff, track down a wounded chimera, or sneak past a sleeping dragon, all of which are dangerous tasks with a price for failure. In such cases, the acting character (or characters) will be asked to attempt a {@rule Checks-400||check} to determine whether or not they succeed. A check is usually made by rolling a single 20-sided die (a d20) and adding a number based on the relevant attribute. In such cases, rolling high is always good.",
+            "Once a check is rolled, the GM compares the result to a target number called the difficulty class (DC) to determine the outcome. If the result of the check is equal to or greater than the DC, the check is successful. If it is less, the check is a failure. Beating the DC by 10 or more is referred to as a critical success, which usually grants an especially positive outcome. Similarly, failing the check by 10 or more is a critical failure (sometimes called a fumble). This sometimes results in additional negative effects. You also often score a critical success by rolling a 20 on the die when attempting a check (before adding anything). Likewise, rolling a 1 on the die when attempting a check often results in a critical failure. Note that not all checks have a special effect on a critical success or critical failure and such results should be treated just like an ordinary success or failure instead.",
+            "For example, in pursuit of the wounded chimera, your character might find the path blocked by a fast-moving river. You decide to swim across, but the GM declares this a dangerous task and asks you to roll an {@skill Athletics} skill check (since swimming is covered by the Athletics skill). On your character sheet, you see that your character has a +8 modifier for such checks. Rolling the d20, you get an 18, for a total of 26. The GM compares this to the DC (which was 16) and finds that you got a critical success (since the result exceeded the DC by 10). Your character swims quickly across the river and continues the pursuit, drenched but unharmed. Had you gotten a result less than 26 but equal to or greater than 16, your character would have made it halfway across the river. Had your result been less than 16, your character might have been swept downriver or, worse, been pulled under the current and begun to drown!",
+            "Checks like this are the heart of the game and are rolled all the time, in every mode of play, to determine the outcome of tasks. While the roll of the die is critical, the statistic you add to the roll (called a modifier) often makes the difference between success and failure. Every character is made up of many such statistics governing what the character is good at, each consisting of a relevant attribute modifier plus a proficiency bonus, and sometimes modified further by other factors, such as bonuses or penalties from gear, spells, feats, magic items, and other special circumstances.",
+            "Proficiency is a simple way of assessing your character's general level of training and aptitude for a given task. It is broken into five different ranks: untrained, trained, expert, master, and legendary. Each rank grants a different proficiency bonus. If you're untrained at a statistic, your proficiency bonus is +0—you must rely solely on the raw potential represented by your attribute modifier. If your proficiency rank for a statistic is trained, expert, master, and legendary, your bonus equals your character's level plus another number based on the rank (2, 4, 6, and 8, respectively). Proficiency ranks are part of almost every statistic in the game.",
+            {
+              "type": "h3",
+              "name": "Exploration",
+              "page": 9,
+              "entries": [
+                "Most of the time, your character will explore the world, interact with characters, travel from place to place, and overcome challenges. This is called {@rule Exploration Mode||exploration}. Gameplay is relatively free-form during exploration, with players responding to the narrative whenever they have an idea of what to do next. Leaving town via horseback, following the trail of a marauding orc tribe, avoiding the tribe's scouts, and convincing a local hunter to help in an upcoming fight are all examples of things that might occur during exploration.",
+                "Throughout this mode of play, the GM asks the players what their characters are doing as they explore. This is important in case a conflict arises. If combat breaks out, the tasks the PCs undertook while exploring might give them an edge or otherwise inform how the combat begins."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Encounters",
+              "page": 9,
+              "entries": [
+                "In the course of your adventures, there will be times when a simple skill check is not enough to resolve a challenge—when fearsome monsters stand in your character's way and the only choice is to do battle. In Pathfinder, this is called an {@rule Encounter Mode||encounter}. Encounters usually involve combat, but they can also be used in situations where timing is critical, such as during a chase or when dodging hazards.",
+                "While exploration is handled in a free-form manner, encounters are more structured. The players and GM roll initiative to determine who acts in what order. The encounter occurs over a number of rounds, each of which is equal to about 6 seconds of time in the world of the game. During a round, each participant takes a turn. When it's your turn to act, you can use up to three actions. Most simple things, such as drawing a weapon, moving a short distance, opening a door, or swinging a sword, use a single action to perform. There are also activities that use more than a single action to perform; these are often special abilities from your character's class and feats. One common activity in the game is casting a spell, which usually uses two actions.",
+                "Free actions, such as dropping an object, don't count toward the three actions you can take on your turn. Finally, each character can use up to one reaction during a round. This special type of action can be used even when it's not your turn, but only in response to certain events, and only if you have an ability that allows it. Rogues, for example, can select a feat that lets them use their reaction to dodge an incoming attack.",
+                "Attacking another creature is one of the most common actions in combat, and is done by using the {@action Strike} action. This requires an attack roll—a kind of check made against the {@rule armor-class-404||Armor Class} (AC) of the creature you're attacking. Strikes can be made using weapons, spells, or even parts of a creature's body, like a fist, claw, or tail. You add a modifier to this roll based on your proficiency rank with the type of attack you're using, your attributes, and any other bonuses or penalties based on the situation. The target's AC is calculated using their proficiency rank in the armor they're wearing and their Dexterity modifier. An attack deals damage if it hits, and rolling a critical success results in the attack dealing double damage!",
+                "You can use more than one Strike action on your turn, but each additional attack after the first becomes less accurate. This is reflected by a {@rule multiple-attack-penalty-402||multiple attack penalty} that starts at –5 on the second attack, but increases to –10 on the third. There are many ways to reduce this penalty, and it resets at the end of your turn.",
+                "If your character finds themself the target of a magical {@spell lightning bolt} or the victim of a venomous snake bite, you will be called on to attempt a saving throw, representing your character's ability to avoid danger or otherwise withstand an assault to their mind or body. A saving throw is a check attempted against the DC of the spell or special ability targeting your character. There are three types of saving throws, and a character's proficiency in each says a great deal about what they can endure. A Fortitude saving throw is used when your character's health or vitality is under attack, such as from poison or disease. A Reflex saving throw is called for when your character must dodge away from danger, usually something that affects a large area, such as the scorching blast of a {@spell fireball} spell. Finally, a Will saving throw is often your defense against spells and effects that target your character's mind, such as a {@spell charm} or {@spell confusion} spell. For all saving throws, a success lessens the harmful effect, and scoring a critical success usually means your character escapes unscathed.",
+                "Attacks, spells, hazards, and special abilities frequently either deal damage to a character or impose one or more conditions—and sometimes both. Damage is subtracted from a creature's Hit Points (HP)—a measure of health—and when a creature is reduced to 0 HP, it falls {@condition unconscious} and may die! A combat encounter typically lasts until one side has been defeated, and while this can mean retreat or surrender, it most often happens because one side is dead or dying. Conditions can hinder a creature for a time, limiting the actions they can use and applying penalties to future checks. Some conditions are even permanent, requiring a character to seek out powerful magic to undo their effects."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Downtime",
+              "page": 9,
+              "entry": "PCs don't have to spend every waking moment adventuring. They might also recover from wounds, plan future conquests, or pursue a trade. In Pathfinder, this is called {@action Downtime Mode||downtime}, and it allows time to pass quickly while characters work on long-term tasks or objectives. Most characters can practice a trade in downtime, earning a few coins, but those with the right skills can also spend time crafting, creating new gear or even magic items. Characters can also use downtime to retrain, replacing one character choice with another to reflect their evolving priorities. They might also research a problem, learn new spells, or even run a business or kingdom!"
+            },
+            {
+              "type": "h3",
+              "name": "Key Terms",
+              "page": 10,
+              "entries": [
+                "There are a number of important terms that you'll need to know as you create your first character or adventure. Some of the most important terms mentioned on previous pages are also included here for reference.",
+                {
+                  "type": "h4",
+                  "name": "Action",
+                  "entry": [
+                    "During encounters, each creature gets three {@rule actions-414||actions} during their turn. These actions are spent to attack, interact with objects, move, and use special abilities. Actions available to all characters can be found in {@rule Basic Actions||Chapter 8}."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Ancestry",
+                  "entry": "An ancestry is the broad family of people that a character belongs to. Ancestry determines a character's starting {@rule hit-points-41|Hit Points}, {@rule languages-41-pc1|languages}, {@rule senses}, and {@rule speed-420||Speed}, and it grants access to ancestry feats. Ancestries can be found in {@rule Chapter 2: Ancestries & Backgrounds||Chapter 2}."
+                },
+                {
+                  "type": "h4",
+                  "name": "Armor Class (AC)",
+                  "entry": "All creatures in the game have an {@rule armor-class-404||Armor Class}. This score represents how hard it is to hit and damage a creature. It serves as the Difficulty Class for hitting a creature with an attack."
+                },
+                {
+                  "type": "h4",
+                  "name": "Attack",
+                  "entry": "When a creature tries to harm another creature, it makes a {@action Strike} or uses some other attack action. Most attacks are Strikes made with a weapon, but a character might Strike with their {@equipment fist}, {@action grapple} or {@action shove} with their hands, or attack with a {@rule Chapter 7: Spells||spell}."
+                },
+                {
+                  "type": "h4",
+                  "name": "Attribute Modifier",
+                  "entry": "Each creature has six attribute modifiers: Strength, Dexterity, Constitution, Intelligence, Wisdom, and Charisma. Each of these numbers represents a creature's raw potential and general training. Attributes are described in full {@rule Character Creation||later in this chapter}."
+                },
+                {
+                  "type": "h4",
+                  "name": "Background",
+                  "entry": "A background represents what a character experienced before they took up the life of an adventurer. Each background grants a feat and training in one or more skills. You can read more about backgrounds in {@rule Backgrounds||Chapter 2}."
+                },
+                {
+                  "type": "h4",
+                  "name": "Bonuses And Penalties",
+                  "entries": [
+                    "{@rule Bonuses} and {@rule penalties} apply to checks and certain statistics. There are several types of bonuses and penalties. If you have more than one bonus of the same type, you use only the highest bonus. Likewise, you use only the worst penalty of each type."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Check",
+                  "entries": [
+                    "When a character attempts an action where success is uncertain, they may roll a {@rule checks-400||check}. This is a roll of one twenty-sided die plus the named proficiency bonus. For example, a {@rule perception-404||Perception} check would add your Perception proficiency."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Class",
+                  "entries": [
+                    "A class represents the adventuring profession chosen by a character. A character's class determines most of their proficiencies, grants the character Hit Points each time they gain a new level, and gives access to a set of class feats. Classes appear in {@rule Chapter 3: Classes||Chapter 3}."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Condition",
+                  "entries": [
+                    "An ongoing effect that changes how a character can act, or that alters some of their statistics, is called a condition. The rules for the basic conditions used in the game can be found in the {@rule Conditions Appendix} at the back of this book."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Currency",
+                  "entries": [
+                    "The most common currencies in the game are gold pieces (gp) and silver pieces (sp). One gp is worth 10 sp. In addition, 1 sp is worth 10 copper pieces (cp), and 10 gp are worth 1 platinum piece (pp). Characters begin play with 15 gp (or 150 sp) to spend on equipment."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Feat",
+                  "entries": [
+                    "A feat is an ability you can select for your character due to their ancestry, background, class, general training, or skill training. Some feats grant the ability to use special actions, while others make your existing actions more effective."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Game Master (GM)",
+                  "entries": [
+                    "The Game Master is the player who adjudicates the rules and narrates the various elements of the Pathfinder story and world that the other players explore. The GM uses the rules found in {@rule Introduction|GMC|Pathfinder GM Core}."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Hit Points (HP)",
+                  "entry": "{@rule hit-points-410|Hit Points} represent the amount of punishment a creature can take before it falls {@condition unconscious} and begins {@condition dying}. Damage decreases Hit Points on a 1-to-1 basis, while healing restores Hit Points at the same rate."
+                },
+                {
+                  "type": "h4",
+                  "name": "Initiative",
+                  "entry": "At the start of an encounter, all creatures involved roll for initiative to determine the order in which they act. The higher the result of its roll, the earlier a creature gets to act. Initiative and combat are described in {@rule Encounter Mode||Chapter 8}."
+                },
+                {
+                  "type": "h4",
+                  "name": "Level",
+                  "page": 11,
+                  "entry": "A level is a number that measures something's overall power. Player characters have a level, ranging from 1st to 20th, representing their level of experience. Monsters, NPCs, hazards, diseases, and poisons have levels ranging from –1 to 30 that measure the danger they pose. An item's level, usually within the range of 0 to 20 but sometimes higher, indicates its power and suitability as treasure."
+                },
+                {
+                  "type": "h4",
+                  "name": "Nonplayer Character (NPC)",
+                  "page": 11,
+                  "entry": "A nonplayer character, controlled by the GM, interacts with players and helps advance the story."
+                },
+                {
+                  "type": "h4",
+                  "name": "Perception",
+                  "page": 11,
+                  "entry": "Perception measures your character's ability to notice hidden objects or unusual situations, and it usually determines how quickly the character springs into action in combat. It is described in full in {@rule perception-404||Chapter 8}."
+                },
+                {
+                  "type": "h4",
+                  "name": "Player Character (PC)",
+                  "page": 11,
+                  "entry": "This is a character created and controlled by a player."
+                },
+                {
+                  "type": "h4",
+                  "name": "Proficiency",
+                  "page": 11,
+                  "entry": "Proficiency is a system that measures a character's aptitude at a specific task or quality, and it has five ranks: untrained, trained, expert, master, and legendary. Proficiency gives you a bonus that's added when determining the following modifiers and statistics: AC, attack rolls, Perception, saving throws, skills, and the effectiveness of spells. If you're untrained, your proficiency bonus is +0. If you're trained, expert, master, or legendary, your proficiency bonus equals your level plus 2, 4, 6, or 8, respectively."
+                },
+                {
+                  "type": "h4",
+                  "name": "Rarity",
+                  "page": 11,
+                  "entry": "Some elements of the game have a rarity to denote how often they're encountered in the game world. Rarity primarily applies to equipment and magic items, but spells, feats, and other rules elements also have a rarity. If no rarity appears in the traits of an item, spell, or other game element, it's of common rarity. {@trait Uncommon} options are available only to those who have special training, grew up in a certain culture, or come from a particular part of the world. This can be explained with an 'Access' entry, explaining criteria for characters to choose it as a common option. {@trait Rare} options are almost impossible to find and are usually given out only by the GM, while {@trait unique} ones are literally one-of-a-kind in the game. The GM might alter the way rarity works or change the rarity of individual items to suit the story they want to tell."
+                },
+                {
+                  "type": "h4",
+                  "name": "Roleplaying",
+                  "page": 11,
+                  "entry": "Describing a character's actions, often while acting from the perspective of the character, is called roleplaying. When a player speaks or describes action from the perspective of a character, they are 'in character.'"
+                },
+                {
+                  "type": "h4",
+                  "name": "Round",
+                  "page": 11,
+                  "entry": "A round is a period of time during an {@rule Encounter Mode||encounter} in which all participants get a chance to act. A round represents approximately 6 seconds in game time."
+                },
+                {
+                  "type": "h4",
+                  "name": "Saving Throw (Save)",
+                  "page": 11,
+                  "entries": [
+                    "When a creature is subject to a dangerous effect that must be avoided, it attempts a saving throw to mitigate the effect. You attempt a saving throw automatically—you don't have to use an action or a reaction. Unlike for most checks, the character who isn't acting rolls the d20 for a saving throw, and the creature who is acting provides the DC.",
+                    "There are three types of saving throws: Fortitude (to resist diseases, poisons, and physical effects), Reflex (to evade effects a character could quickly dodge), and Will (to resist effects that target the mind and personality)."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Skill",
+                  "page": 11,
+                  "entry": "A skill represents a creature's ability to perform certain tasks that require instruction or practice. All characters are trained in certain skills due to their background and class. Skills are fully described in {@rule Chapter 4: Skills||Chapter 4}. Each skill includes ways anyone can use that skill even if untrained, as well as uses that require a character to be trained in the skill."
+                },
+                {
+                  "type": "h4",
+                  "name": "Speed",
+                  "page": 11,
+                  "entry": "Speed is the distance a character can move using a single action, measured in feet."
+                },
+                {
+                  "type": "h4",
+                  "name": "Spell",
+                  "page": 11,
+                  "entries": [
+                    "Spells are magical effects created by performing mystical incantations and gestures known only to those with special training or inborn abilities. Casting a spell is an activity that usually uses 2 actions. Each spell specifies what it targets, the actions needed to cast it, its effects, and how it can be resisted. If a class grants spells, the basics of that ability are provided in the class description in {@rule Chapter 3: Classes||Chapter 3}, while the spells themselves are detailed in {@rule Chapter 7: Spells||Chapter 7}.",
+                    "Spells have ranks ranging from 1st to 10th, which measure their power; characters and monsters can usually cast only a certain number of spells of any given rank."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Trait",
+                  "page": 11,
+                  "entries": [
+                    "A trait is a keyword that conveys additional information about a rules element, such as which ancestry a feat belongs to or the rarity of an item. Often, a trait indicates how other rules interact with an ability, creature, item, or another rules element that has that trait.",
+                    "All the traits can be found {@link here|traits}."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Turn",
+                  "page": 11,
+                  "entries": [
+                    "During the course of a round, each creature takes a single turn according to initiative. A creature can typically use up to three actions during its turn."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h1",
+          "name": "Character Creation",
+          "page": 17,
+          "entries": [
+            {
+              "type": "flavor",
+              "entry": "Unless you're the GM, the first thing you need to do when playing Pathfinder is create your character. It's up to you to imagine your character's past experiences, personality, and worldview, and this will set the stage for your roleplaying during the game. You'll use the game's mechanics to determine your character's ability to perform various tasks and use special abilities during the game."
+            },
+            "This section provides a step-by-step guide for creating a character using the Pathfinder rules, preceded by a guide to help you understand attribute modifiers. These modifiers are a critical part of your character, and you will be asked to make choices about them during many of the following steps. The steps of character creation are presented in a suggested order, but you can complete them in whatever order you prefer.",
+            "Many of the steps on pages 18–27 instruct you to fill out fields on your character sheet. The character sheet is shown on pages 22–23; you can find a copy in the back of this book or on paizo.com as a free PDF. The character sheet is designed to be easy to use when you're actually playing the game, but creating a character happens in a different order, so you'll move back and forth through the character sheet as you go through the character creation process. Additionally, the character sheet includes every field you might need, even though not all characters will have something to put in each field. If a field on your character sheet is not applicable to your character, you can just leave that field blank.",
+            "All the steps of character creation are detailed on the following pages; each is marked with a number that corresponds to the sample character sheet on pages 22–23, showing you where the information goes. If the field you need to fill out is on the third or fourth page of the character sheet, which aren't shown, the text will tell you.",
+            "If you're creating a higher-level character, it's a good idea to begin with the instructions here, then turn to page 29 for instructions on leveling up characters.",
+            {
+              "type": "box",
+              "name": "Overview",
+              "entries": [
+                "When you turn the page, you'll see a visual representation of ancestries and classes that provides at-a-glance information for players looking to make the most of their starting attribute modifiers. In the ancestries overview on page 20, each entry lists which attribute modifiers it boosts, and also indicates any attribute flaws the ancestry might have. You can find more about attribute boosts and flaws in Attribute Modifiers on page 19.",
+                "The summaries of the classes on page 21 list each class's key attribute—the attribute modifier used to calculate the potency of many of their class abilities. Characters receive an attribute boost in their key attribute when you choose their class. This summary also lists one or more secondary attribute modifiers important to members of that class.",
+                "A character's background also affects their attribute modifiers, though there's more flexibility in the attribute boosts from backgrounds than in those from classes. For descriptions of backgrounds, see pages 84–88."
+              ]
+            },
+            {
+              "type": "box",
+              "name": "The Six Attribute Modifiers",
+              "entries": [
+                "One of the most important aspects of your character is their attribute modifiers. These numbers represent your character's raw potential, and they influence nearly every other statistic on your character sheet. Determining your attribute modifiers is not done all at once, but instead happens over several steps during character creation.",
+                "Attribute modifiers are split into two main groups: physical and mental. Strength, Dexterity, and Constitution are physical attribute modifiers, measuring your character's physical power, agility, and stamina. In contrast, Intelligence, Wisdom, and Charisma are mental attribute modifiers and measure your character's learned prowess, awareness, and force of personality.",
+                "Excellence in an attribute modifier improves the checks and statistics related to that ability, as described below. When imagining your character, you should also decide what attribute modifiers you want to focus on to give you the best chance at success.",
+                {
+                  "type": "h2",
+                  "name": "Strength",
+                  "entry": "Strength measures your character's physical power. Strength is important if your character plans to engage in hand-to-hand combat. Your Strength modifier gets added to melee damage rolls and determines how much your character can carry."
+                },
+                {
+                  "type": "h2",
+                  "name": "Dexterity",
+                  "entry": "Dexterity measures your character's agility, balance, and reflexes. Dexterity is important if your character plans to make attacks with ranged weapons or use stealth to surprise foes. Your Dexterity modifier is also added to your character's AC and Reflex saving throws."
+                },
+                {
+                  "type": "h2",
+                  "name": "Constitution",
+                  "entry": "Constitution measures your character's health and stamina. Constitution is important for all characters, especially those who fight in close range. Your Constitution modifier is added to your Hit Points and Fortitude saving throws."
+                },
+                {
+                  "type": "h2",
+                  "name": "Intelligence",
+                  "entry": "Intelligence measures how well your character can learn and reason. A high Intelligence allows your character to analyze situations and understand patterns, and it means they can become trained in additional skills and might be able to master additional languages."
+                },
+                {
+                  "type": "h2",
+                  "name": "Wisdom",
+                  "entry": "Wisdom measures your character's common sense, awareness, and intuition. High Wisdom helps your character detect hidden things and resist mental effects. Your Wisdom modifier is added to your Perception and Will saving throws."
+                },
+                {
+                  "type": "h2",
+                  "name": "Charisma",
+                  "entry": "Charisma measures your character's personal magnetism and strength of personality. A high Charisma modifier helps you build relationships and influence the thoughts and moods of others with social skills."
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "name": "Attribute Modifier Overview",
+              "entries": [
+                "Each attribute modifier starts at +0, representing the human average, but as you make character choices, you'll adjust these modifiers by applying attribute boosts, which increase an attribute modifier, and attribute flaws, which decrease an attribute modifier. As you build your character, remember to apply attribute modifier adjustments when making the following decisions.",
+                "{@b Ancestry:} Each ancestry provides attribute boosts, and sometimes an attribute flaw. If you are taking any voluntary flaws, apply them in this step (see the sidebar on page 24).",
+                "{@b Background:} Your character's background provides two attribute boosts.",
+                "{@b Class:} Your character's class applies an attribute boost to their key attribute: the attribute modifier most important for that class.",
+                "{@b Four Free Boosts:} After the other steps, you apply four more attribute boosts to attributes of your choice to finalize your starting attribute modifiers.",
+                {
+                  "type": "h2",
+                  "name": "Attribute Boosts",
+                  "entries": [
+                    "An attribute boost normally increases an attribute modifier's value by 1. However, if the attribute modifier to which you're applying an attribute boost is already +4 or higher, instead mark “partial boost” on the character sheet for that attribute. If the attribute already has a partial boost invested in it, increase the modifier by 1 and uncheck the box. At 1st level, a character can never have any attribute modifier that's higher than +4.",
+                    "When your character receives an attribute boost, the rules indicate whether it must be applied to a specific attribute modifier, to one of a limited list, or whether it is a “free” attribute boost that can be applied to any attribute modifier of your choice. Dwarves, for example, receive an attribute boost to their Constitution modifier and their Wisdom modifier, as well as one free attribute boost, which can be applied to any other attribute.",
+                    "When you gain multiple attribute boosts at the same time, you must apply each one to a different modifier. This means you can't apply a partial boost to an attribute modifier and apply another boost simultaneously to increase it."
+                  ]
+                },
+                {
+                  "type": "h2",
+                  "name": "Attribute Flaws",
+                  "entry": "Attribute flaws are not nearly as common in Pathfinder as attribute boosts. If your character has an attribute flaw—likely from their ancestry—you decrease that attribute modifier by 1."
+                }
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Step 1: Create a Concept",
+              "page": 18,
+              "entries": [
+                "What sort of hero do you want to play? The answer to this question might be as simple as \"a brave warrior,\" or as complicated as \"the child of elven wanderers, raised in a city dominated by humans and devoted to Sarenrae, goddess of the sun.\" Consider your character's personality, sketch out a few details about their past, and think about how and why they adventure. You'll want to peruse Pathfinder's available ancestries, backgrounds, and classes. The summaries on pages 20–21 might help you match your concept with some of these basic rule elements. Before a game begins, it's also a good idea for the players to discuss how their characters might know each other and how they'll work together throughout the course of their adventures.",
+                "Each player takes a different approach to creating a character. Some want a character who will fit well into the story, while others look for a combination of abilities that complement each other mechanically. You might combine these two approaches. There is no wrong way!",
+                "Once you have a good idea of the character you'd like to play, move on to Step 2 to start building your character.",
+                {
+                  "type": "h3",
+                  "name": "Ancestry, Background, Class, or Details",
+                  "entries": [
+                    "If one of Pathfinder's character ancestries, backgrounds, or classes particularly intrigues you, it's easy to build a character concept around these options. The summaries of ancestries and classes on pages 20–21 give a brief overview of these options (full details appear in Chapters 2 and 3, respectively). Each ancestry also has several heritages that might refine your concept further, such as a gnome with a stronger connection to fey magic or one who comes from the underground, or an arctic or woodland elf. Some heritages, known as versatile heritages, can even be applied to any ancestry; for instance, mortals with divine influence can be born to any ancestry as nephilim. Additionally, the game has many backgrounds to choose from, representing your character's upbringing, their family's livelihood, or their earliest profession. Backgrounds are detailed later in Chapter 2, beginning on page 84.",
+                    "Building a character around a specific ancestry, background, or class can be a fun way to interact with the world's lore. Would you like to build a typical member of your character's ancestry or class, as described in the relevant entry, or would you prefer to play a character who defies commonly held notions about their people? For example, you could play a dwarf with a wide-eyed sense of wonder and a zest for change, or a performing rogue capable of amazing acrobatic feats but with little interest in sneaking about.",
+                    "You can draw your concept from any aspect of a character's details. You can use roleplaying to challenge not only the norms of Pathfinder's fictional world but even real-life societal norms. Your character might challenge gender notions, explore cultural identity, have a disability, or any combination of these suggestions. Your character can live any life you see fit."
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Faith",
+                  "entry": "Perhaps you'd like to play a character who is a devout follower of a specific deity. Pathfinder is a rich world with myriad faiths and philosophies spanning a wide pantheon, from Cayden Cailean, the Drunken Hero of good-hearted adventuring; to Desna, the Song of Spheres and goddess of dreaming and the stars; to Iomedae, the Inheritor, goddess of honor, justice, and rulership. Pathfinder's major deities appear on pages 35–39. Your character might be so drawn to a particular faith that you decide they should be a cleric of that deity; they might instead be a lay worshipper who applies their faith's teachings to daily life, or simply the child of devout parents."
+                },
+                {
+                  "type": "h3",
+                  "name": "Your Allies",
+                  "entry": "You might want to coordinate with other players when forming your character concept. Your characters could have something in common already; perhaps they are relatives, or travelers from the same village, or maybe they met each other during a different adventure in their backstory. You might discuss mechanical aspects with the other players, creating characters whose combat abilities complement each other. In the latter case, it can be helpful for a party to include characters who deal damage, characters who can absorb damage, and characters who can heal and support their allies. However, Pathfinder's classes include a lot of choices, and there are many options for building each type of character, so don't let these broad categories restrict your decisions."
+                }
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Step 2: Start Building Attribute Modifiers",
+              "page": 22,
+              "entries": [
+                "At this point, you need to start building your character's attribute modifiers. See the overview of attribute modifiers on page 19 for more information about these important aspects of your character and an overview of the process.",
+                "Your character's attribute modifiers each start at +0, and as you select your ancestry, background, and class, you'll apply attribute boosts, which increase a modifier by 1, and attribute flaws, which decrease a modifier by 1. At this point, just note a +0 in each attribute modifier and familiarize yourself with the rules for attribute boosts and flaws on page 19. This is also a good time to identify which attribute modifiers will be most important to your character; for instance, if you want to play a dashing and nimble archer, you might want to focus on a character with a high Dexterity attribute (to ensure they're good with ranged weapons) who also has a bit of Charisma (to fast-talk the authorities if they get caught). See The Six Attribute Modifiers on page 19 and the class summaries on page 21 for more information."
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Step 3: Select an Ancestry",
+              "page": 23,
+              "entries": [
+                "Select an ancestry for your character. The ancestry summaries on page 20 provide an overview of Pathfinder's core ancestry options, and each is fully detailed in Chapter 2. Ancestry determines your character's size, Speed, and languages, and contributes to their Hit Points. Each also grants attribute boosts and attribute flaws to represent the ancestry's basic capabilities.",
+                "You'll make four decisions when you select your character's ancestry:",
+                {
+                  "type": "list",
+                  "items": [
+                    "Pick the ancestry itself.",
+                    "Select a heritage from those available within that ancestry, further defining the traits your character was born with.",
+                    "Assign any free attribute boosts and decide if you are taking any voluntary flaws.",
+                    "Choose an ancestry feat, representing an ability your hero learned at an early age."
+                  ]
+                },
+                {
+                  "type": "box",
+                  "name": "Alternate Ancestry Boosts",
+                  "kind": "optional",
+                  "entry": "The attribute boosts and flaws listed in each ancestry represent general trends or help guide players to create the kinds of characters from that ancestry most likely to pursue the life of an adventurer. However, ancestries aren't a monolith. You always have the option to replace your ancestry's listed attribute boosts and attribute flaws entirely and instead select two free attribute boosts when creating your character."
+                },
+                {
+                  "type": "box",
+                  "name": "Optional: Voluntary Flaws",
+                  "kind": "optional",
+                  "entry": "Sometimes, it's fun to play a character with a major flaw regardless of your ancestry. You can elect to take additional attribute flaws when applying the attribute boosts and attribute flaws from your ancestry. This is purely for roleplaying a highly flawed character, and you should consult with the rest of your group if you plan to do this! You can't apply more than one flaw to any single attribute modifier."
+                }
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Step 4: Pick a Background",
+              "page": 23,
+              "entry": "Your character's background might represent their upbringing, an aptitude they've been honing since their youth, or another aspect of their life before they became an adventurer. Character backgrounds appear in Chapter 2, starting on page 84. They typically provide two attribute boosts (one that can be applied to either of two specific attribute modifiers, and one that is free), training in a specific skill, training in a Lore skill, and a specific skill feat."
+            },
+            {
+              "type": "h2",
+              "name": "Step 5: Choose a Class",
+              "page": 24,
+              "entries": [
+                "At this point, you need to decide your character's class. A class gives your character access to a suite of heroic abilities, determines how effectively they fight, and governs how easily they can shake off or avoid certain harmful effects. Each class is fully detailed in Chapter 3, but the summaries on page 21 provide an overview of each.",
+                "You don't need to write down all of your character's class features yet. You simply need to know which class you want to play, which determines the attribute modifiers that will be most important for your character."
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Step 6: Finish Attribute Modifiers",
+              "page": 24,
+              "entries": [
+                "Now that you've made the main mechanical choices about your character, it's time to finalize their attribute modifiers. Do these two things:",
+                {
+                  "type": "list",
+                  "items": [
+                    "First, make sure you've applied all the attribute boosts and attribute flaws you've noted in previous steps (from your ancestry, background, and class).",
+                    "Then, apply four free attribute boosts to your character's attribute modifiers. Choose a different attribute modifier for each and increase that attribute modifier by 1."
+                  ]
+                },
+                "Remember that each attribute boost adds 1 to the base modifier of +0, and each attribute flaw subtracts 1. You should have no attribute modifier lower than -1 or higher than +4."
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Step 7: Record Class Details",
+              "page": 24,
+              "entries": [
+                "Now, record all the benefits and class features that your character receives from the class you've chosen. While you've already noted your key attribute modifier, you'll want to be sure to record the following class features:",
+                {
+                  "type": "list",
+                  "items": [
+                    "To determine your character's total starting Hit Points, add together the number of Hit Points your character gains from their ancestry (chosen in Step 3) and the number of Hit Points they gain from their class.",
+                    "The Initial Proficiencies section of your class entry indicates your character's starting proficiency ranks in a number of areas. Choose which skills your character is trained in and record those, along with the ones set by your class. If your class would make you trained in a skill you're already trained in (typically due to your background), you can select another skill to become trained in.",
+                    "See the class advancement table in your class entry to learn the class features your character gains at 1st level. You already chose an ancestry, background, and free attribute boosts, but these are listed in the table as a reminder. Some class features require you to make additional choices, such as selecting spells."
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Step 8: Buy Equipment",
+              "page": 25,
+              "entries": [
+                "At 1st level, your character has 15 gold pieces (150 silver pieces) to spend on armor, weapons, and other basic equipment. Your character's class lists the types of weapons and armor with which they are trained (or better!). Their weapons determine how much damage they deal in combat, and their armor influences their Armor Class; these calculations are covered in more detail in Step 10.",
+                "You'll also want equipment like rope, torches, and other traveling gear, and maybe even an alchemical healing item or two if you get into a pinch. For more on the available equipment and how much it costs, see Chapter 6—there are even starting loadouts listed for each class on page 268 for quicker selection and to give you a sense of what items and equipment certain classes prioritize."
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Step 9: Calculate Modifiers",
+              "page": 25,
+              "entries": [
+                "With most of the big decisions for your character made, it's time to calculate the modifiers for each of the following statistics. If your proficiency rank for a statistic is trained, expert, master, or legendary, your bonus equals your character's level plus another number based on the rank (2, 4, 6, and 8, respectively). If your character is untrained, your proficiency bonus is +0.",
+                {
+                  "type": "box",
+                  "name": "Spells and Spellcasting",
+                  "entry": "Many characters can learn a few cantrips or focus spells, but the bard, cleric, druid, witch, and wizard all gain spellcasting—the ability to cast a wide variety of spells. If your character’s class grants spells, you should take time during Step 7 to learn about the spells they know and how to cast them. The fourth page of the character sheet provides space to note your character's magic tradition and their proficiency rank for their spell attack modifier and spell DC. It also gives space to record the spells in your character's repertoire or spellbook. Each class determines how and which spells a character can cast, but the spells themselves and detailed rules for spellcasting are located in Chapter 7."
+                },
+                {
+                  "type": "h3",
+                  "name": "Perception",
+                  "entry": "Your character's Perception modifier measures how alert they are and is equal to their proficiency bonus in Perception plus their Wisdom modifier. See page 404 for more details."
+                },
+                {
+                  "type": "h3",
+                  "name": "Saving Throws",
+                  "page": 26,
+                  "entry": "For each kind of saving throw, add your character's Fortitude, Reflex, or Will proficiency bonus (as appropriate) plus the attribute modifier associated with that kind of saving throw. For Fortitude saving throws, use your character's Constitution modifier. For Reflex saving throws, use your character's Dexterity modifier. For Will saving throws, use your character's Wisdom modifier. Then add in any bonuses or penalties from abilities, feats, or items that always apply (but not modifiers, bonuses, or penalties that apply only in certain situations). Record this number on the line for that saving throw."
+                },
+                {
+                  "type": "h3",
+                  "name": "Melee Strikes and Ranged Strikes",
+                  "page": 26,
+                  "entry": "Next to where you've written your character's melee and ranged weapons, calculate the modifier to Strike with each weapon and how much damage that Strike deals. The modifier for a Strike is equal to your character's proficiency bonus with the weapon plus an attribute modifier (usually Strength for melee Strikes and Dexterity for ranged Strikes). You also add any item bonus from the weapon and any other permanent bonuses or penalties. You also need to calculate how much damage each weapon's Strike deals. Melee weapons usually add your character's Strength modifier to damage rolls, while ranged weapons might add some or all of your character's Strength modifier, depending on the weapon's traits. See the weapon entries in Chapter 6 for more information."
+                },
+                {
+                  "type": "h3",
+                  "name": "Skills",
+                  "page": 26,
+                  "entry": "In the second box to the right of each skill on your character sheet, there's an abbreviation to remind you of the attribute modifier for that skill. For each skill in which your character is trained, add your proficiency bonus for that skill (typically +3 for a 1st-level character) to the indicated attribute's modifier, as well as any other applicable bonuses and penalties, to determine the total modifier for that skill. For skills your character is untrained in, use the same method, but your proficiency bonus is +0."
+                }
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Step 10: Finishing Details",
+              "page": 26,
+              "entries": [
+                "Now add the following details to your character sheet. There are boxes for edicts and anathema, deity, age, and gender and pronouns on page 3 of the character sheet.",
+                {
+                  "type": "h3",
+                  "name": "Edicts and Anathema",
+                  "entries": [
+                    "You can choose to take on edicts and anathema to reinforce your character's beliefs and guide how they'd react in certain situations. Edicts are behaviors your personal philosophy or code encourages. Anathema are the opposite: actions contrary to your point of view and violations of your personal code. For example, you might declare that you follow an edict to keep detailed records of any dungeon you explore, or you might consider it anathema to refuse to help a friend in need.",
+                    "For most characters, these are entirely optional, though it's best to consider taking some on as you create your character to hone in on how they think. If you follow a deity, you might take inspiration from the edicts and anathema listed for them on pages 35–39. Ancestry entries list edicts and anathema prevalent among their societies."
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Required Edicts and Anathema",
+                  "entries": [
+                    "Certain classes have anathema tied to them; for example, a cleric gains the edicts and anathema of their deity. Violating these can cause you to lose some class abilities until you atone or make amends, as described in the class."
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Changing Edicts and Anathema",
+                  "entries": [
+                    "Edicts and anathema can change during play as a character's beliefs evolve, or as you realize that your character's actions reflect a different set of values than you once thought. In most cases, you can just change a relevant edict or anathema and continue playing."
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Deity",
+                  "entries": [
+                    "Write down the deity your character worships, if any. Clerics must worship a deity. See pages 35–39 for more about Pathfinder's deities."
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Age",
+                  "page": 27,
+                  "entries": [
+                    "Decide your character's age and note it on the third page of the character sheet. The description for your character's ancestry in Chapter 2 gives some guidance on the age ranges of members of that ancestry. Beyond that, you can play a character of whatever age you like. There aren't any mechanical adjustments to your character for being particularly old, but you might want to take it into account when considering your starting attribute modifiers and future advancement. Particularly young characters can change the tone of some of the game's threats, so it's recommended that characters are at least young adults."
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Gender and Pronouns",
+                  "page": 27,
+                  "entries": [
+                    "Characters of all genders are equally likely to become adventurers. Record your character's gender, if applicable, and their pronouns on the third page of the character sheet."
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Class DC",
+                  "page": 27,
+                  "entries": [
+                    "A class DC sets the difficulty for certain abilities granted by your character's class. This DC equals 10 plus their proficiency bonus for their class DC (typically +3 for most 1st-level characters) plus the modifier for the class's key attribute modifier."
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Hero Points",
+                  "page": 27,
+                  "entries": [
+                    "Your character usually begins each game session with 1 Hero Point, and you can gain additional Hero Points during sessions by performing heroic deeds or devising clever strategies. Your character can use Hero Points to gain certain benefits, such as staving off death or rerolling a d20. See page 413 for more about Hero Points."
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Armor Class (AC)",
+                  "page": 27,
+                  "entries": [
+                    "Your character's Armor Class represents how difficult they are to hit in combat. To calculate your AC, add 10 plus your character's Dexterity modifier (up to their armor's Dexterity modifier cap; page 271), plus their proficiency bonus with their armor, plus their armor's item bonus to AC and any other permanent bonuses and penalties."
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Bulk",
+                  "page": 27,
+                  "entries": [
+                    "Your character's maximum Bulk determines how much weight they can comfortably carry. If they're carrying a total amount of Bulk that exceeds 5 plus their Strength modifier, they are encumbered. A character can't carry a total amount of Bulk that exceeds 10 plus their Strength modifier. The Bulk your character is carrying equals the sum of all of their items; keep in mind that 10 light items make up 1 Bulk. You can find out more about Bulk in Chapter 6."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h1",
+          "name": "Leveling Up",
+          "page": 29,
+          "entries": [
+            {
+              "type": "flavor",
+              "entry": "With each terrifying beast and deadly trap bested, a character earns Experience Points (XP) that allow them to increase in level. Each level grants greater skill, increased resiliency, and new capabilities, allowing your character to face even greater challenges and go on to earn even more impressive rewards."
+            },
+            "Each time your character reaches 1,000 Experience Points, their level increases by 1. On your character sheet, indicate your character's new level beside the name of their class, and deduct 1,000 XP from their XP total. If you have any Experience Points left after this, record them—they count toward your next level, so your character is already on their way to advancing yet again!",
+            "Next, return to your character's class entry. Increase your character's total Hit Points by the number indicated for your class. Then, take a look at the class advancement table and find the row for your character's new level. Your character gains all the abilities listed for that level, including new abilities specific to your class and additional benefits all characters gain as they level up. For example, all characters gain four attribute boosts at 5th level and every 5 levels thereafter.",
+            "You can find all the new abilities specific to your class, including class feats, right in your class entry, though you can also use class feats to take an archetype (page 215). Your character's class entry also explains how to apply any attribute boosts and skill increases your character gains. If they gain an ancestry feat, head back to the entry for your character's ancestry in Chapter 2 and select another ancestry feat from the list of options. If they gain a skill increase, refer to Chapter 4 when deciding which skill to apply it to. If they gain a general feat or a skill feat, you can choose from the feats listed in Chapter 5. If they can cast spells, see the class entry for details on adding spell slots and spells. It's also a good idea to review your character's spells in Chapter 7 and see if there are heightened versions they can now cast.",
+            "Once you've made all your choices for your character's new level, be sure to go over your character sheet and adjust any values that have changed. At a bare minimum, your trained or higher proficiency bonuses all increase by 1 because you've gained a level, so your AC, attack rolls, Perception, saving throws, skill modifiers, spell DC, and class DC all increase by at least 1. You might need to change other values because of skill increases, attribute boosts, or class features that either increase your proficiency rank or increase other statistics at certain levels. If an attribute boost increases your character's Constitution modifier, recalculate their maximum Hit Points using their new Constitution modifier (typically this adds 1 Hit Point per level). If an attribute boost increases your character's Intelligence modifier, they become trained in an additional skill and language. Some feats grant a benefit based on your level, such as Toughness, and these benefits are adjusted whenever you gain a level as well.",
+            "You can perform the steps in the leveling-up process in whichever order you want. For example, if you wanted to take the skill feat Intimidating Prowess as your skill feat at 10th level, but your character's Strength modifier was only +2, you could first increase their Strength modifier to +3 using the attribute boosts gained at 10th level, and then take Intimidating Prowess as a skill feat at the same level.",
+            {
+              "type": "box",
+              "name": "Leveling-up Checklist",
+              "entries": [
+                "Every time you gain a level, make sure you do each of the following:",
+                {
+                  "type": "list",
+                  "items": [
+                    "Increase your level by 1 and subtract 1,000 XP from your XP total.",
+                    "Increase your maximum Hit Points by the amount listed in your class entry in Chapter 3.",
+                    "Add class features from your class advancement table, including attribute boosts and skill increases.",
+                    "Select feats as indicated on your class advancement table. For ancestry feats, see Chapter 2. For class feats, see your class entry in Chapter 3. For general feats and skill feats, see Chapter 5.",
+                    "Add spells and spell slots if your class grants spellcasting. See Chapter 7 for spells.",
+                    "Increase all of your trained or higher proficiency bonuses by 1 from your new level, and make other increases to your proficiency bonuses as necessary from skill increases or other class features. Increase any other statistics that changed as a result of attribute boosts or other abilities.",
+                    "Adjust bonuses from feats and other abilities that are based on your level."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h1",
+          "name": "Religion",
+          "page": 35,
+          "entries": [
+            "Selection of a deity is critical for clerics, but most characters pay respect to at least one deity to find a focus in life and guide their choices, especially in times of hardship or need. Some people instead worship a group of deities arranged in a pantheon, follow a non-deific religion like the Green Faith, or adhere to a specific philosophy. Note that far more deities, religions, and philosophies exist on any world, Avalon included, than those detailed below.",
+            {
+              "type": "h2",
+              "name": "Deities",
+              "entries": [
+                "Anyone can worship a deity, but those who do so devoutly should take care to pursue the faith's edicts (behaviors the faith encourages) and avoid its anathemas (actions considered blasphemous, and could cause a god to revoke their blessings). Each deity below has their name and title, followed by a short description and cultural information, including the attributes for characters who have the {@background Raised by Belief} background. Following that are the benefits available to the most ardent devotees of the deities. You get these benefits only if you're a {@class cleric} of the deity or some other rule specifically gives you a devotee benefit.",
+                {
+                  "type": "box",
+                  "name": "Sanctification",
+                  "entries": [
+                    "Some deities sanctify their clerics and similarly devoted followers. This gives the follower the holy or unholy trait. The holy trait indicates a powerful devotion to altruism, helping others, and battling against unholy forces like fiends and undead. The unholy trait, in turn, shows devotion to victimizing others, inflicting harm, and battling celestial powers. Deities that list \"must choose\" mandate gaining the trait and those that list \"can choose\" give the devotee the option to choose the trait or not. You can have the holy trait, unholy trait, or neither, but can never have both the holy and unholy traits.",
+                    "Spells and other effects can also have these traits, making them more powerful against creatures with the opposite trait. Some spells and abilities have the sanctified trait. If you have the holy or unholy trait, your sanctified actions and spells gain the same trait."
+                  ]
+                },
+                {
+                  "type": "box",
+                  "name": "Domains",
+                  "entry": "Clerics and some other devotees can gain domain spells from their deities. The following domains are used by the primary deities of Avalon. See page 113 to learn how clerics gain domain spells, and find the spells on pages 372–381."
+                }
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Faiths and Philosophies",
+              "page": 39,
+              "entry": "Of course, faith can express itself in more ways than venerating a single deity—or a deity at all. A few examples of non-deific religions and philosophies are presented below. These faiths and philosophies don't have an external godhead that offers benefits to devotees."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h1",
+      "name": "Chapter 2: Ancestries & Backgrounds",
+      "source": "PC1",
+      "page": 41,
+      "entries": [
+        {
+          "type": "flavor",
+          "entry": "Your character's ancestry determines which people they call their own, whether it's diverse and ambitious humans, insular but vivacious elves, traditionalist and family-focused dwarves, or any of the other folk who call Golarion home. A character's ancestry and their experiences prior to their life as an adventurer—represented by a background—might be key parts of their identity, shape how they see the world, and help them find their place in it."
+        },
+        "A character has one ancestry and one background, both of which you select during character creation. You'll also select a number of languages for your character. Once chosen, your ancestry and background can't be changed.",
+        "This chapter is divided into four parts:",
+        {
+          "type": "list",
+          "items": [
+            "{@b Ancestries} express the culture your character hails from. Within ancestries are heritages—subgroups that have unique characteristics. An ancestry provides attribute boosts (and perhaps attribute flaws), Hit Points,ancestry feats, and sometimes additional abilities.",
+            "{@b Versatile heritages}, starting on page 74, are heritage options available to all ancestries for extra customization, such as a character who has a mixed ancestry or one with a more unique or unusual origin.",
+            "{@b Backgrounds}, starting on page 84, describe training or environments your character experienced before becoming an adventurer. Your character's background provides attribute boosts, skill training, and a skill feat.",
+            "{@b Languages}, starting on page 89, let your character communicate with the wonderful and weird people and creatures of the world."
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Ancestry Entries",
+          "entries": [
+            "Each entry includes details about the ancestry and presents the rules elements described below",
+            {
+              "type": "h3",
+              "name": "Hit Points",
+              "entry": "This tells you how many Hit Points your character gains from their ancestry at 1st level. You'll add the Hit Points from your character's class (including their Constitution modifier) to this number. For more on calculating Hit Points, see Step 7: Record Class Details, on page 24."
+            },
+            {
+              "type": "h3",
+              "name": "Size",
+              "entry": "This tells you the physical size of members of the ancestry. Medium corresponds roughly to the height and weight range of a human adult, and Small is roughly half that."
+            },
+            {
+              "type": "h3",
+              "name": "Speed",
+              "entry": "This entry lists how far a member of the ancestry can move each time they spend an action (such as Stride) to do so."
+            },
+            {
+              "type": "h3",
+              "name": "Attribute Boosts & Flaws",
+              "entries": [
+                "When creating a character of this ancestry, you apply attribute boosts to increases some attribute modifiers, and possibly attribute flaws to decrease others (depending on the ancestry). For more about attribute boosts and flaws, see page 19.",
+                "Alternate Ancestry Boosts: Because of the wide variety of people within any ancestry, you can always choose to take two free boosts to represent your character, even if the ancestry normally has three boosts and a flaw."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Languages",
+              "entry": "This tells you the languages that members of the ancestry speak at 1st level. If your Intelligence modifier is +1 or higher, you can select more languages from a list given here. More about languages can be found {@rule languages-89||here}."
+            },
+            {
+              "type": "h3",
+              "name": "Traits",
+              "entry": "The traits for this book's ancestries have no rules benefit, but are important for determining how spells, effects, and other aspects of the game interact with your character."
+            },
+            {
+              "type": "h3",
+              "name": "Special Abilities",
+              "entry": "Any other entries in the sidebar represent abilities, senses, and other qualities all members of the ancestry manifest. These are omitted for ancestries with no special rules."
+            },
+            {
+              "type": "h3",
+              "name": "Heritages",
+              "entry": "You select a heritage at 1st level to reflect abilities passed down to you from your ancestors or common among those of your ancestry in the environment where you were born or grew up. You have only one heritage and can't change it later. A heritage is not the same as a culture or ethnicity, though some cultures or ethnicities might have more or fewer members from a particular heritage."
+            },
+            {
+              "type": "h3",
+              "name": "Ancestry Feats",
+              "entries": [
+                "This section presents ancestry feats, which allow you to customize your character. You gain your first ancestry feat at 1st level, and you gain another at 5th level, 9th level, 13th level, and 17th level, as indicated in the class advancement table in the descriptions of each class.",
+                "Ancestry feats are organized by level. As a starting character, you can choose from only 1st-level ancestry feats, but later choices can be made from any feat of your level or lower. These feats also sometimes list prerequisites—requirements that your character must fulfill to select that feat."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h1",
+          "name": "Versatile Heritages",
+          "entries": [
+            {
+              "type": "flavor",
+              "entry": "The peoples of Avalon are many, and they have a long history of intermingling or dabbling with forces capable of altering the very fabric of a mortal body or soul. The children born to such parents might have traits from each of their parents or physiological manifestations of the forces their ancestors were influenced by, manifesting as a specific heritage."
+            },
+            "The most common of these by far are the aiuvarin and dromaar versatile heritages, usually born to a human parent on one side and either an elf or orc parent on the other. Other individuals are born under far stranger circumstances, such as having a parent who was affected by monstrous, undead, or extraplanar energies. As these circumstances aren't unique to a single ancestry, these heritages—called versatile heritages—are likewise shared by many ancestries.",
+            "Avalon is home to a variety of versatile heritages. Some are born to unusual creatures or arise through specific mundane or supernatural circumstances. Many, however, result from an infusion of extraplanar energy, whether through direct parentage, more distant ancestors, or simply direct exposure to the quintessence of that plane. These individuals are known as planar scions.",
+            "Because the circumstances that give rise to versatile heritages aren't limited to a single ancestry, a versatile heritage can be chosen by a character of nearly any ancestry. Some versatile heritages are more common among some ancestries than others, and some might list additional restrictions specific to that heritage. Your GM may place other restrictions on which ancestries can use a given versatile heritage based on the story and setting.",
+            {
+              "type": "h2",
+              "name": "Unlimited Possibilities!",
+              "entry": "Though a character can have only one heritage and one lineage feat, the possible permutations of a character's background and family tree are virtually unlimited. An aiuvarin character might still have a changeling parent whose nature is visible in the coloration of their eyes even if they don't have access to changeling ancestry feats, and a pitborn dwarf might very well have an ancestor with fey influences on their bloodline, reflected with a fey muse or patron gained through their class alongside their ancestral fiendishness."
+            },
+            {
+              "type": "h2",
+              "name": "Playing a Versatile Heritage",
+              "entries": [
+                "To play a character with a versatile heritage, first select your ancestry, just like you would for any character. You gain Hit Points, size, Speed, attribute boosts and attribute flaws, languages, traits, and other abilities from that ancestry. Then, instead of choosing a heritage from those normally available to that ancestry, apply your chosen versatile heritage. You gain all the features from your versatile heritage, some of which might modify or replace statistics, abilities, or traits from your ancestry.",
+                "Since a versatile heritage is a heritage, you can have only one, and you can't have any other heritage in addition to your versatile heritage.",
+                "Sometimes a versatile heritage might give you an ability that conflicts with an ability from your ancestry. In these cases, you choose which of the conflicting abilities your character has.",
+                "When selecting ancestry feats, you can choose from those available to your ancestry as well as those specific to your versatile heritage.",
+                {
+                  "type": "h3",
+                  "name": "Lineage Feats",
+                  "entry": "Some ancestry feats within a versatile heritage have the lineage trait. These feats specify a physiological lineage your character has—such as the type of hag that birthed a changeling character, or the type of extraplanar entity that influenced a nephilim's birth. You can have only one lineage feat; you can select such a feat only at 1st level, and you can't retrain into or out of this feat."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h1",
+          "name": "Mixed Ancestry",
+          "page": 82,
+          "entries": [
+            "You can choose a mixed ancestry to represent having two ancestral lines for your character. This doesn't preclude having more than two ancestries in your genealogy, but you'll need to work with your GM if you want to have more than two reflected in the rules. The possible combinations of ancestries are immeasurable.",
+            "{@b Custom Mixed Heritage:} You can work with your GM to create a mixed heritage for an ancestry other than elf or orc. A custom mixed-ancestry heritage is an uncommon heritage. Choose an ancestry to tie to the heritage. You gain any traits of that ancestry and a new trait for your combined ancestry, similar to how the aiuvarin heritage below grants the “elf” and “aiuvarin” traits. You also gain low-light vision if the ancestry tied to the heritage has low-light vision or darkvision. The heritage lets you select ancestry feats for the chosen ancestry in addition to those from your base ancestry. The aiuvarin and dromaar heritages both have special feats, but a custom heritage will need you to work with your GM to create or adapt some."
+          ]
+        },
+        {
+          "type": "h1",
+          "name": "Backgrounds",
+          "page": 84,
+          "entries": [
+            {
+              "type": "flavor",
+              "entry": "Backgrounds allow you to customize your character based on their life before adventuring. This is the next step in their life story after their ancestry, which reflects the circumstances of their birth. Your character's background can help you learn or portray more about their personality while also suggesting what sorts of things they're likely to know. Consider what events set your character on their path to the life of an adventurer and how those circumstances relate to their background."
+            },
+            "At 1st level, when you create your character, you gain a background of your choice. This decision is permanent; you can't change it at later levels. Each background listed here grants two boosts, a skill feat, and the trained proficiency rank in two skills, one of which is a Lore skill. If you gain the trained proficiency rank in a skill from your background and would then gain the trained proficiency rank in the same skill from your class at 1st level, you instead become trained in another skill of your choice.",
+            "Lore skills represent deep knowledge of a specific subject and are described on page 240. If a Lore skill involves a choice (for instance, a choice of terrain), explain your preference to the GM, who has the final say on whether it's acceptable or not. If you'd like some suggestions, the Common Lore Subcategories sidebar on page 240 lists a number of Lore skills that are suitable for most campaigns.",
+            "Skill feats expand the functions of your skills and appear in Chapter 5: Feats."
+          ]
+        },
+        {
+          "type": "h1",
+          "name": "Languages",
+          "page": 89,
+          "entries": [
+            {
+              "type": "flavor",
+              "entry": "The people of Avalon speak dozens of different languages, along with hundreds of dialects and regional variations. While a character can generally get by with Taldane, also known as Common, knowing another language is vital in some regions. Being able to speak these tongues can help you with negotiation, spying on enemies, or just conducting simple commerce. Languages also afford you the chance to contextualize your character in the world and give meaning to your other character choices."
+            },
+            "Your ancestry entry states which languages you know at 1st level. Typically, this means you can both speak and read these languages. Having a positive Intelligence modifier grants a number of additional languages equal to your Intelligence modifier. You can choose these languages from the list presented in your character's ancestry entry and from those available from your region or ethnicity. Ask your GM if there's a language you want to select that isn't on these lists.",
+            "The languages presented here are grouped according to how common they are. Languages that are common are regularly encountered, even among those who aren't native speakers. Languages that are uncommon (see the Uncommon Languages table and Regional Languages) are most frequently spoken by native speakers, but they are also spoken by certain scholars and others interested in the associated cultures.",
+            "Many uncommon languages are spoken by natives of other planes who rarely appear unless summoned. Mortals learning these languages might spend a lifetime without meeting a native speaker.",
+            "It is possible for your character to learn languages later in their adventuring career. Selecting the Multilingual feat, for example, grants a character two new languages chosen from those listed below. If your Intelligence changes later on, you also adjust your number of languages accordingly. Other abilities and effects might grant access to common or uncommon languages, as detailed in their descriptions. Rare or secret languages can only be discovered through play.",
+            {
+              "type": "table",
+              "caption": "Common Languages",
+              "colLabels": [
+                "Language",
+                "Speakers"
+              ],
+              "rows": [
+                [
+                  "Common",
+                  "Humans, dwarves, elves, halflings, and other common ancestries"
+                ],
+                [
+                  "Draconic",
+                  "Dragons, reptilian humanoids"
+                ],
+                [
+                  "Dwarven",
+                  "Dwarves"
+                ],
+                [
+                  "Elven",
+                  "Elves, aiuvarins"
+                ],
+                [
+                  "Fey",
+                  "Fey, centaurs, plant and fungus creatures"
+                ],
+                [
+                  "Gnomish",
+                  "Gnomes"
+                ],
+                [
+                  "Goblin",
+                  "Goblins, hobgoblins, bugbears"
+                ],
+                [
+                  "Halfling",
+                  "Halflings"
+                ],
+                [
+                  "Jotun",
+                  "Giants, ogres, trolls, ettins, cyclopes"
+                ],
+                [
+                  "Orcish",
+                  "Orcs, dromaars"
+                ],
+                [
+                  "Sakvroth",
+                  "Subterranean civilizations, serpentfolk"
+                ]
+              ]
+            },
+            {
+              "type": "table",
+              "caption": "Uncommon Languages",
+              "colLabels": [
+                "Language",
+                "Speakers"
+              ],
+              "rows": [
+                [
+                  "Aklo",
+                  "Evil fey, otherworldly monsters"
+                ],
+                [
+                  "Chthonian",
+                  "Demons"
+                ],
+                [
+                  "Diabolic",
+                  "Devils"
+                ],
+                [
+                  "Empyrean",
+                  "Angels and other celestials"
+                ],
+                [
+                  "Kholo",
+                  "The hyena-like kholos"
+                ],
+                [
+                  "Necril",
+                  "Ghouls, intelligent undead"
+                ],
+                [
+                  "Petran",
+                  "Earth elemental creatures"
+                ],
+                [
+                  "Pyric",
+                  "Fire elemental creatures"
+                ],
+                [
+                  "Shadowtongue",
+                  "Nidalese, Netherworld creatures"
+                ],
+                [
+                  "Sussuran",
+                  "Air elemental creatures, flying creatures"
+                ],
+                [
+                  "Thalassic",
+                  "Aquatic creatures, water elemental creatures"
+                ],
+                [
+                  "Muan",
+                  "Wood elemental creatures"
+                ],
+                [
+                  "Talican",
+                  "Metal elemental creatures"
+                ]
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Regional Languages",
+              "entries": [
+                "Regional languages depend on the game world you're playing in.",
+                "Regional languages are uncommon, but characters from that region have access to choose them at character creation. For characters with less exposure to the region or language, check with your GM to make sure speaking that language makes sense for your character.",
+                "Most characters learn the Common language. This is the most widely used language in the region where the campaign takes place. Characters with Common might face a language barrier if they travel somewhere with a different Common language."
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Sign Language",
+              "entry": "The language entry for most characters lists languages they use to communicate in spoken words. However, you might know the signed languages associated with the languages you know, or how to read lips. You can learn these by taking the Sign Language or Read Lips skill feats, or both. If you are creating a character who is deaf, hard of hearing, or unable to speak, discuss with your GM whether it makes sense for your character to know sign languages or lip reading. If so, your GM might allow you to select one of these feats for free (even if you don't meet the prerequisites) to represent your character concept."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h1",
+      "name": "Chapter 3: Classes",
+      "source": "PC1",
+      "page": 91,
+      "entries": [
+        {
+          "type": "flavor",
+          "entry": "Just as your character's ancestry plays a key role in expressing their identity and worldview, their class indicates the training they have and will improve upon as an adventurer. Choosing your character's class is perhaps the most important decision you will make for them. Groups of players often create characters whose skills and abilities complement each other mechanically—for example, ensuring your party includes a healer, a combat-oriented character, a stealthy character, and someone with command over magic—so you may wish to discuss options with your group before deciding."
+        },
+        "The rules within each class allow you to bring a wealth of character concepts to life. Perhaps you want to create a brilliant but scatterbrained wizard who can rattle off complex formulas for magic items but has trouble remembering his best friend's birthday. Or perhaps you want your character to be a muscle-bound swordswoman who becomes as immovable as a mountain when she hoists a shield. Maybe they'll be a hot-tempered witch whose gesticulating fingers pulse with power granted through dealings with a mysterious patron. The choices you make for your character within their class—such as a cleric's choice of deity, a fighter's choice of weapon, or a school where a wizard studied—bring these visions to life within the context of the rules and the world.",
+        "The entries on the pages that follow describe 8 classes in Pathfinder. Each entry contains the information you need to play a character of that class, as well as how to develop them from their humble beginnings at 1st level to the dizzying heights of power at 20th level. In addition to the class entries, you might need to reference the following sections, which detail additional character options and how to advance your character in level.",
+        "{@b Leveling Up} on page 29 tells you how to make your character stronger when you get enough Experience Points to reach a new level.",
+        "{@b Companions and Familiars} on page 206 provides rules to create an animal companion or a familiar to share your adventures with. You must have a class feature or feat that grants you a companion or familiar to use these rules.",
+        "{@b Archetypes} on page 215 gives you thematic options that allow you to further customize your character's abilities. Though these rules are not recommended for beginners, the archetypes in this book allow you to gain abilities from other classes starting at 2nd level.",
+        {
+          "type": "h2",
+          "name": "Reading Class Entries",
+          "entries": [
+            "Every class entry includes information about typical members of the class, plus suggestions for roleplaying characters of that class and playing these characters in the game's various modes. Each class provides your character with an attribute boost to a key attribute; a number of Hit Points they receive at each level; proficiency ranks for various abilities, equipment, and skills; special abilities from their class features; and more. Your character's class entry also provides the information needed when they gain levels, so it will be a vital reference throughout the course of your campaign.",
+            {
+              "type": "h3",
+              "name": "Playing the Class",
+              "entry": "The first section of each class describes the interests and tendencies typical of that class, as well as information on how others view them. This can help inspire you as you determine your character's actions and define their personality, but you aren't obligated to play your character as this section describes."
+            },
+            {
+              "type": "h3",
+              "name": "Key Attribute",
+              "entries": [
+                "This is the attribute modifier that a member of your class cares about the most. Many of your most useful and powerful abilities are tied to this attribute in some way.",
+                "For instance, this is the attribute modifier you'll use to determine the Difficulty Class (DC) associated with your character's class features and feats. This is called your class DC. If your character is a member of a spellcasting class, this key attribute is used to calculate spell DCs and similar values.",
+                "Most classes are associated with one key attribute modifier, but some allow you to choose from two options. For instance, if you're a fighter, you can choose either Strength or Dexterity as your key attribute. A fighter who chooses Strength will excel in hand to hand combat, while those who choose Dexterity prefer ranged or finesse weapons.",
+                "Additionally, when you choose your character's class, they gain an attribute boost to their key attribute modifier, increasing that attribute modifier by 1. For more about attribute boosts, see page 19."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Hit Points",
+              "entries": [
+                "This section tells you how many Hit Points your character gains from their class at each level. To determine your character's starting Hit Points, add together the Hit Points they got when you chose their ancestry and the amount listed in this entry, which equals your Constitution modifier plus a fixed number. Classes that intend for characters to rush into battle with weapons bared gain a higher number of Hit Points each level, while those for characters who cast spells or engage in trickery gain fewer.",
+                "Each time your character gains a level, they increase their maximum Hit Points by the amount listed in this entry. For more about calculating your character's Constitution modifier and determining their Hit Points, see page 24."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Initial Proficiencies",
+              "page": 92,
+              "entries": [
+                "When you choose your character's class, they gain a set of initial proficiencies. Proficiencies measure your character's ability to perform tasks, use abilities, and succeed at checks. Proficiency ranks range from trained to legendary. For instance, a character who is trained with a longbow can use it effectively, while a person who is legendary with the weapon might be able to split an arrow from 100 paces away!",
+                "Each class entry specifies your character's initial proficiency rank in Perception, saving throws, attacks, defenses, and class DC. You gain the trained proficiency rank in several skills—the exact number depends on your class, and some classes specify certain additional skills that you're trained in. If your class would make you trained in a skill you're already trained in (typically due to your background), you can select another skill to become trained in.",
+                "A proficiency rank can unlock various feats and class features, and it also helps determine the modifier for any check you roll or DC you calculate related to that statistic. If your character is trained in Perception, a saving throw, or another statistic, they gain a proficiency bonus equal to their level + 2, while if they have expert proficiency, they gain a proficiency bonus equal to their level + 4. For more about proficiency ranks, see page 11.",
+                "Spellcasting classes grant a proficiency rank for spell attacks and DCs, which are further detailed in each class's entry. These classes rarely use their class DC.",
+                "If something isn't listed in your character's class entry, their proficiency rank in that statistic is untrained unless they gain training from another source. If your character is untrained in something, you add a proficiency bonus of +0 when attempting a check or calculating a DC related to that statistic."
+              ]
+            },
+            {
+              "type": "h3",
+              "name": "Advancement Table",
+              "page": 92,
+              "entry": "This table summarizes the feats, skill increases, attribute boosts, and other benefits your character gains as they advance in level. The first column of the class table indicates a level, and the second column lists each feature your character receives when they reach that level. The 1st-level entry includes a reminder to select your ancestry and background."
+            },
+            {
+              "type": "h3",
+              "name": "Class Features",
+              "page": 92,
+              "entries": [
+                "This section presents all the abilities the class grants your character. An ability gained at a higher level lists the required level next to the ability's name. All classes include the class features detailed below, and each class also gets special class features specific to it. Many class features require you to choose between options. Unless the specific ability states otherwise, such decisions can't be changed without retraining (as explained on page 440).",
+                {
+                  "type": "h4",
+                  "name": "Class Feats",
+                  "entry": "This section specifies the levels at which your character gains class feats—special feats that only members of that class can access. Class feats are granted beginning at 1st or 2nd level, depending on the class. Specific class feats are detailed at the end of each class entry."
+                },
+                {
+                  "type": "h4",
+                  "name": "Skill Feats",
+                  "entry": "This section specifies the levels at which your character gains feats with the skill trait, called skill feats. Skill feats can be found in Chapter 5: Feats, beginning on page 248. At 2nd level and every 2 levels thereafter, most classes gain a skill feat, though rogues gain them earlier and more often. Your character must be trained in the corresponding skill to take a skill feat."
+                },
+                {
+                  "type": "h2",
+                  "name": "h4 Feats",
+                  "entry": "This section specifies the levels at which your character gains general feats. Most classes grant a general feat at 3rd level and every 4 levels thereafter. At each of these levels, you can select any general feat (including skill feats) as long as your character qualifies for it. More information can be found in Chapter 5: Feats (page 248)."
+                },
+                {
+                  "type": "h4",
+                  "name": "Skill Increases",
+                  "entries": [
+                    "This section specifies the levels at which your character can increase their proficiency rank in a skill. At 3rd level and every 2 levels thereafter, most classes grant a skill increase, though rogues gain them earlier and more often. Your character can use a skill increase to either become trained in one skill in which they're untrained or become an expert in one skill in which they're already trained.",
+                    "If your character is at least 7th level, they can use a skill increase to become a master of a skill in which they're already an expert. If they're at least 15th level, they can use an increase to become legendary in a skill in which they're already a master."
+                  ]
+                },
+                {
+                  "type": "h4",
+                  "name": "Attribute Boosts",
+                  "entry": "At 5th level and every 5 levels thereafter, your character boosts four different attribute modifiers. This is described briefly in the class. For the full details on attribute modifiers and applying them during character creation, see page 19."
+                },
+                {
+                  "type": "h4",
+                  "name": "Ancestry Feats",
+                  "entry": "This section serves as a reminder of the ancestry feats your character gains at 5th, 9th, 13th, and 17th levels. Ancestry feats are detailed in each ancestry entry in Chapter 2, which begins on page 240."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h2",
+          "name": "Companions",
+          "page": 206,
+          "entries": [
+            {
+              "type": "flavor",
+              "entry": "Some adventurers travel with loyal allies known as animal companions and familiars. The former begin as young animals but acquire impressive physical abilities as you level up, while the latter share a magical bond with you."
+            },
+            "Animal companions and familiars are special benefits for certain classes or class feats. If you simply want a pet regardless of your class, you can take the Pet feat (page 259). You can have a familiar or pet, but not both. Because animal companions function much differently, you can have both an animal companion and a familiar or pet.",
+            {
+              "type": "h2",
+              "name": "Animal Companions",
+              "entries": [
+                "An animal companion is a loyal comrade who follows your orders. Your animal companion has the animal and minion traits, and it gains 2 actions during your turn if you use the Command an Animal action to command it; this replaces the usual effects of Command an Animal, and you don't need to attempt a Nature check. If your companion dies, you can spend a week of downtime to replace it at no cost. You can have only one animal companion at a time.",
+                "A list of available animal companions can be found {@link here|companions-and-familiars}.",
+                {
+                  "type": "h3",
+                  "name": "Young Animal Companions",
+                  "entries": [
+                    "The following are the base statistics for a young animal companion, the first animal companion most characters get. You adjust these statistics depending on the type of animal you choose. Animal companions calculate their modifiers and DCs just as you do with one difference: the only item bonuses they can benefit from are to Speed and AC (their maximum item bonus to AC is +3). As you gain levels, you might be able to make your companion stronger by {@rule Companion Advancement||advancing it}.",
+                    "An animal companion's starting statistics are as follows.",
+                    {
+                      "type": "list",
+                      "style": "list-no-bullets",
+                      "items": [
+                        "{@b Level:} Your animal companion's level is equal to yours.",
+                        "{@b Proficiencies:} Your animal companion is trained in its unarmed attacks, unarmored defense, barding (a type of armor for animals), all saving throws, Perception, Acrobatics, and Athletics. Animal companions can't use abilities that require greater Intelligence, such as Coerce or Decipher Writing, even if trained in the appropriate skill, unless they have a specialization that allows it.",
+                        "{@b Attribute Modifiers:} An animal companion begins with base attribute modifiers listed in its stat block.",
+                        "{@b Hit Points:} Your animal companion has ancestry Hit Points from its type, plus a number of Hit Points equal to 6 plus its Constitution modifier for each level you have."
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Companion Types",
+                  "entries": [
+                    "The species of animal you choose is called your companion's type. Each companion type has its own statistics, as follows.",
+                    {
+                      "type": "list",
+                      "style": "list-no-bullets",
+                      "items": [
+                        "{@b Size} The companion's size",
+                        "{@b Unarmed Attacks} One or more entries with the companion's unarmed attacks and their traits and damage",
+                        "{@b Attribute Modifiers} Starting attribute modifiers",
+                        "{@b Hit Points} The companion's ancestry Hit Points",
+                        "{@b Skill} An additional trained skill your companion has",
+                        "{@b Senses Special} senses your companion has",
+                        "{@b Speed} Your companion's Speeds",
+                        "{@b Special} If present, this lists any special ability your companion has, such as whether it often serves as a mount.",
+                        "{@b Support Benefit} A special benefit you gain by Commanding the Animal to use the Support action (see below).",
+                        "{@b Advanced Maneuver} A powerful new action your companion learns how to use if it becomes a nimble or savage animal companion."
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "box",
+                  "name": "Riding Animal Companions",
+                  "entry": "You or an ally can ride your animal companion as long as it is at least one size larger than the rider. If it is carrying a rider, the animal companion can use only its land Speed, and it can't move and Support you on the same turn. However, if your companion has the mount special ability, it's especially suited for riding and ignores both of these restrictions."
+                },
+                {
+                  "type": "h3",
+                  "name": "Companion Advancement",
+                  "page": 211,
+                  "entries": [
+                    "You can advance an animal companion, usually due to one of your class feat choices. Normally, you can advance a young animal companion to a mature animal companion, advance a mature companion to either a nimble or savage companion, and advance a nimble or savage companion into a specialized companion."
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Mature Animal Companions",
+                  "page": 211,
+                  "entries": [
+                    "When you advance a young animal companion to a mature animal companion:",
+                    {
+                      "type": "list",
+                      "items": [
+                        "If your companion is Medium or smaller, it grows by one size.",
+                        "Increase its Strength, Dexterity, Constitution, and Wisdom modifiers by 1.",
+                        "Increase its proficiency rank for Perception and all saving throws to expert. Increase its proficiency ranks in Intimidation, Stealth, and Survival to trained, and if it was already trained in one of those skills from its type, increase its proficiency rank in that skill to expert.",
+                        "Increase its unarmed attack damage from one die to two dice (for instance 1d8 to 2d8)"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Nimble Animal Companions",
+                  "page": 211,
+                  "entries": [
+                    "To advance a mature animal companion to a nimble animal companion:",
+                    {
+                      "type": "list",
+                      "items": [
+                        "Increase its Dexterity modifier by 2 and its Strength, Constitution, and Wisdom modifiers by 1.",
+                        "Increase its proficiency ranks in Acrobatics to expert.",
+                        "It deals 2 additional damage with its unarmed attacks. Its attacks become magical for the purpose of ignoring resistances.",
+                        "It learns the advanced maneuver for its type."
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Savage Animal Companions",
+                  "page": 211,
+                  "entries": [
+                    "To advance a mature animal companion to a savage animal companion:",
+                    {
+                      "type": "list",
+                      "items": [
+                        "If your companion is Medium or smaller, it grows by one size.",
+                        "Increase its Strength modifier by 2 and its Dexterity, Constitution, and Wisdom modifiers by 1.",
+                        "Increase its proficiency rank in Athletics to expert.",
+                        "It deals 3 additional damage with its unarmed attacks. Its attacks become magical for the purpose of ignoring resistances.",
+                        "It learns the advanced maneuver for its type."
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "h3",
+                  "name": "Specialized Animal Companions",
+                  "page": 211,
+                  "entries": [
+                    "Specialized animal companions are more intelligent and engage in more complex behaviors. Most animal companions can have only one specialization. The first time an animal gains a specialization, it also gains the following.",
+                    {
+                      "type": "list",
+                      "items": [
+                        "Its proficiency rank for unarmed attacks increases to expert.",
+                        "Its proficiency ranks for saving throws and Perception increase to master.",
+                        "Increase its Dexterity modifier by 1 and its Intelligence modifier by 2.",
+                        "Its unarmed attack damage increases from two dice to three dice, and it increases its additional damage with unarmed attacks from 2 to 4 or from 3 to 6.",
+                        "The extra benefit of the specialization listed below."
+                      ]
+                    },
+                    "{@b Ambusher:} In your companion's natural environment, it can use a Sneak action even if it's currently observed. Its proficiency rank in Stealth increases to expert (or master if it was already an expert from its type), and its Dexterity modifier increases by 1. Its proficiency rank for unarmored defense increases to expert.",
+                    "{@b Bully:} Your companion terrorizes foes with dominance displays and pushes them around the battlefield. Its proficiency ranks for Athletics and Intimidation increase to expert (or master if it was already expert from its type), its Strength modifier increases by 1, and its Charisma modifier increases by 3.",
+                    "{@b Daredevil:} Your companion joins the fray with graceful leaps and dives. It gains the deny advantage ability, so it isn't off-guard to hidden, undetected, or flanking creatures unless such a creature's level is greater than yours. Its proficiency rank in Acrobatics increases to master, and its Dexterity modifier increases by 1. Its proficiency rank in unarmored defense increases to expert.",
+                    "{@b Racer:} Your companion races. It gains a +10-foot status bonus to its Speed, swim Speed, or fly Speed (your choice). Its proficiency in Fortitude saves increases to legendary, and its Constitution modifier increases by 1.",
+                    "{@b Tracker:} Your companion is an incredible tracker. It can move at full Speed while following tracks. Its proficiency rank in Survival increases to expert (or master if it was already an expert from its type), and its Wisdom modifier increases by 1.",
+                    "{@b Wrecker:} Your companion smashes things. Its unarmed attacks ignore half an object's Hardness. Its Athletics proficiency increases to master, and its Strength modifier increases by 1."
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Familiars",
+              "page": 212,
+              "entries": [
+                "Familiars are mystically bonded creatures tied to your magic. Most familiars were originally animals, though the ritual of becoming a familiar makes them something more. You gain the {@feat Pet} general feat, except that your pet has special abilities. Common choices for familiars include bats, cats, foxes, ravens, and snakes. Some familiars are different, usually described in the ability that granted you a familiar; for example, a druid's leshy familiar has the plant or fungus trait instead of animal. You can replace a familiar or gain a new one as described in the Pet feat. A familiar is different from a basic pet in the following ways.",
+                {
+                  "type": "h3",
+                  "name": "Modifiers and AC",
+                  "entry": "For Perception, Acrobatics, and Stealth, you can have your familiar use your spellcasting attribute modifier + your level instead of 3 + your level if it's higher."
+                },
+                {
+                  "type": "h3",
+                  "name": "Communication",
+                  "entry": "Your familiar can communicate empathically with you as long as it's within 1 mile of you, sharing emotions. It doesn't understand or speak languages normally, but it can gain speech from a familiar ability."
+                },
+                {
+                  "type": "h3",
+                  "name": "Selecting Familiar and Master Abilities",
+                  "entry": "Instead of choosing two abilities only when you gain your familiar as you do with a normal pet, you can choose the two abilities each day during your daily preparations. You can choose from familiar abilities and master abilities. You can choose the pet abilities from the feat as familiar abilities as well. You can't swap out abilities that are innate to your familiar. For example, you couldn't choose not to give a raven familiar flying."
+                },
+                {
+                  "type": "h3",
+                  "name": "Familiar Abilities",
+                  "entry": "Familiar abilities primarily affect the familiar itself. A familiar can have no more than one ability that changes its creature trait (such as construct or plant). You can choose a pet ability (from the Pet feat, page 259) as a familiar ability: amphibious, burrower, climber, darkvision, echolocation, fast movement, flier, manual dexterity, scent, or tough (see the sidebar)."
+                },
+                {
+                  "type": "h3",
+                  "name": "Master Abilities",
+                  "entry": "Master abilities primarily affect you or the magic that passes between you and your familiar."
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "page": 212,
+              "name": "Targeting Companions",
+              "entries": [
+                "Some spells and abilities can affect your companion. When “companion” is used in a stat block, it refers to animal companions, familiars, and types of companions appearing in other books—such as elemental companions. Some spells are even more specific. For example, if the spell says, “Targets your familiar,” you could cast it only on a familiar, not other kinds of companions. If you Cast a Spell that can benefit only a type of creature you don't have, such as Casting a Spell that can target only a familiar when you don't have a familiar, the spell does nothing.",
+                "If the spell would affect an ability the creature doesn't have, the spell doesn't give the creature that ability unless the spell says it does. For example, a spell that causes your companion to make a Strike wouldn't let a familiar make a Strike but would give it all other benefits of the spell."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h1",
+          "name": "Archetypes",
+          "page": 215,
+          "entries": [
+            {
+              "type": "flavor",
+              "entry": "Character concepts come in infinite possibilities, but you might find that the feats and skill choices from a single class aren't sufficient to fully realize your character. Archetypes allow you to expand the scope of your character's class."
+            },
+            "You gain an archetype by selecting archetype feats instead of your normal feats. First, find the archetype that best fits your character concept. Then select that archetype's dedication feat, using one of your class feat choices. Once you've taken the dedication feat, you can select any feat from that archetype, as long as you meet its prerequisites. Most archetype feats are taken in place of class feats, and so these are called archetype class feats.",
+            "An archetype feat is subject to any restrictions on the class feat it replaces. For example, if you had an ability at 6th level that granted you a bonus class feat, but that class feat had to be 4th level or lower and have the dwarf trait, you could use that class feat to take an archetype class feat, but only one of 4th level or lower with the dwarf trait.",
+            {
+              "type": "h2",
+              "name": "Dedication Details",
+              "entries": [
+                "Each archetype's dedication feat represents your character's dedicated effort learning a new set of abilities, making it impossible to split your focus and pursue another archetype at the same time. Once you take a dedication feat, you can't select a different dedication feat until you complete your dedication by taking two other feats from your current archetype. You can't retrain a dedication feat as long as you have any other feats from that archetype.",
+                {
+                  "type": "h2",
+                  "name": "Multiclass Dedications",
+                  "entries": [
+                    "All archetypes in this book have the multiclass trait. These allow you to diversify your training into another class's specialties. You can't select a multiclass archetype's dedication feat if you are already a member of that class."
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Additional Feats",
+              "entries": [
+                "Some archetypes include a list of “Additional Feats” that appear in other sources. The list includes each feat's level, which might be different than normal when gained from the archetype. You can take the feat as an archetype feat of that level, meaning it counts toward the number of feats required by the archetype's dedication feat. When selected this way, a feat that normally has a class's trait (such as the fighter trait) doesn't have that class trait."
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Feats that Grant Feats",
+              "entries": [
+                "Sometimes an archetype feat lets you select another feat, such as a class feat of a lower level. You must always meet any prerequisites of the feat you gain in this way. These always count as only one feat for the purposes of your dedication; for example, taking the cleric archetype's Basic Dogma feat to gain the Healing Hands class feat counts as only one feat, not two."
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Spellcasting Archetypes",
+              "entries": [
+                "Some archetypes grant you a substantial degree of spellcasting, albeit delayed compared to a character from a spellcasting class. The spellcasting ability from a spellcasting archetype also allows you to use {@action Cast a Spell} activations of items (such as scrolls, staves, and wands).",
+                "Spellcasting archetypes always grant the ability to cast cantrips in their dedication, and then they have a basic spellcasting feat, an expert spellcasting feat, and a master spellcasting feat. These feats share their name with the archetype; for instance, the druid's master spellcasting feat is called {@feat Master Druid Spellcasting}. All spell slots you gain from spellcasting archetypes are subject to the restrictions within the archetype. For instance, the witch archetype allows you to pick a patron when you take its dedication feat. If you pick patron granting occult spells, the archetype then grants you spell slots you can use only to cast occult spells you prepare as a {@class witch}, even if you are a {@class bard} with occult spells in your repertoire.",
+                "{@b Basic Spellcasting Feat:} Usually available at 4th level, these feats grant a 1st-rank spell slot. At 6th level, they grant you a 2nd-rank spell slot, and if you have a spell repertoire, you can select one spell from your repertoire as a signature spell. At 8th level, they grant you a 3rd-rank spell slot. Archetypes refer to these benefits as the “basic spellcasting benefits.”",
+                "{@b Expert Spellcasting Feat:} Typically taken at 12th level, these feats make you an expert in spell attack modifiers and spell DCs and grant you a 4th-rank spell slot. If you have a spell repertoire, you can select a second spell from your repertoire as a signature spell. At 14th level, they grant you a 5th-rank spell slot, and at 16th level, they grant you a 6th-rank spell slot. Archetypes refer to these benefits as the “expert spellcasting benefits.”",
+                "{@b Master Spellcasting Feat:} Usually found at 18th level, these feats make you a master in spell attack modifiers and spell DCs and grant you a 7th-rank spell slot. If you have a spell repertoire, you can select a third spell from your repertoire as a signature spell. At 20th level, they grant you an 8th-rank spell slot. Archetypes refer to these benefits as the “master spellcasting benefits.”"
+              ]
+            },
+            {
+              "type": "h2",
+              "name": "Special Archetypes",
+              "entries": [
+                "Some archetype feats in other books have the skill trait, allowing you to take them in place of a skill feat rather than a class feat. A skill feat still counts to satisfy the requirement of the dedication. There are also class archetypes that can modify your class’s abilities as soon as 1st level. You can never have more than one class archetype."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h1",
       "name": "Chapter 4: Skills",
       "source": "PC1",
       "page": 225,
@@ -81,11 +1476,26 @@
                 "Simple DC"
               ],
               "rows": [
-                ["Untrained", "10"],
-                ["Trained", "15"],
-                ["Expert", "20"],
-                ["Master", "30"],
-                ["Legendary", "40"]
+                [
+                  "Untrained",
+                  "10"
+                ],
+                [
+                  "Trained",
+                  "15"
+                ],
+                [
+                  "Expert",
+                  "20"
+                ],
+                [
+                  "Master",
+                  "30"
+                ],
+                [
+                  "Legendary",
+                  "40"
+                ]
               ]
             },
             "When someone or something tests your skill, they attempt a check against your skill DC, which is equal to 10 plus your skill modifier. A skill DC works like any other DC to determine the effect of an opposing creature's skill action.",
@@ -286,15 +1696,34 @@
                   "type": "table",
                   "caption": "Creature Bulk",
                   "colLabels": [
-                    "Size of Creature", "Bulk"
+                    "Size of Creature",
+                    "Bulk"
                   ],
                   "rows": [
-                    ["Tiny", "1"],
-                    ["Small", "3"],
-                    ["Medium", "6"],
-                    ["Large", "12"],
-                    ["Huge", "24"],
-                    ["Gargantuan", "48"]
+                    [
+                      "Tiny",
+                      "1"
+                    ],
+                    [
+                      "Small",
+                      "3"
+                    ],
+                    [
+                      "Medium",
+                      "6"
+                    ],
+                    [
+                      "Large",
+                      "12"
+                    ],
+                    [
+                      "Huge",
+                      "24"
+                    ],
+                    [
+                      "Gargantuan",
+                      "48"
+                    ]
                   ]
                 }
               ]
@@ -349,14 +1778,42 @@
                   "type": "table",
                   "caption": "Bulk Conversions",
                   "colLabels": [
-                    "Creature Size", "Bulk Limit", "Treats as Light","Treats as Negligible"
+                    "Creature Size",
+                    "Bulk Limit",
+                    "Treats as Light",
+                    "Treats as Negligible"
                   ],
                   "rows": [
-                    ["Tiny", "Half", "—", "none"],
-                    ["Small or Medium", "Standard", "L", "—"],
-                    ["Large", "x2", "1 Bulk", "L"],
-                    ["Huge", "x4", "2 Bulk", "1 Bulk"],
-                    ["Gargantuan", "x8", "4 Bulk", "2 Bulk"]
+                    [
+                      "Tiny",
+                      "Half",
+                      "—",
+                      "none"
+                    ],
+                    [
+                      "Small or Medium",
+                      "Standard",
+                      "L",
+                      "—"
+                    ],
+                    [
+                      "Large",
+                      "x2",
+                      "1 Bulk",
+                      "L"
+                    ],
+                    [
+                      "Huge",
+                      "x4",
+                      "2 Bulk",
+                      "1 Bulk"
+                    ],
+                    [
+                      "Gargantuan",
+                      "x8",
+                      "4 Bulk",
+                      "2 Bulk"
+                    ]
                   ]
                 }
               ]
@@ -372,14 +1829,48 @@
                   "type": "table",
                   "caption": "Differently Sized Objects",
                   "colLabels": [
-                    "Creature Size", "Price", "Bulk Limit", "Treats as Light","Treats as Negligible"
+                    "Creature Size",
+                    "Price",
+                    "Bulk Limit",
+                    "Treats as Light",
+                    "Treats as Negligible"
                   ],
                   "rows": [
-                    ["Tiny", "Standard", "Half*", "—", "—"],
-                    ["Small or Medium", "Standard", "Standard", "L", "—"],
-                    ["Large", "x2", "x2", "1 Bulk", "L"],
-                    ["Huge", "x4", "x4", "2 Bulk", "1 Bulk"],
-                    ["Gargantuan", "x8", "x8", "4 Bulk", "2 Bulk"]
+                    [
+                      "Tiny",
+                      "Standard",
+                      "Half*",
+                      "—",
+                      "—"
+                    ],
+                    [
+                      "Small or Medium",
+                      "Standard",
+                      "Standard",
+                      "L",
+                      "—"
+                    ],
+                    [
+                      "Large",
+                      "x2",
+                      "x2",
+                      "1 Bulk",
+                      "L"
+                    ],
+                    [
+                      "Huge",
+                      "x4",
+                      "x4",
+                      "2 Bulk",
+                      "1 Bulk"
+                    ],
+                    [
+                      "Gargantuan",
+                      "x8",
+                      "x8",
+                      "4 Bulk",
+                      "2 Bulk"
+                    ]
                   ],
                   "footnotes": "*An item that would have its Bulk reduced below 1 has light Bulk."
                 }
@@ -436,12 +1927,34 @@
                       "type": "table",
                       "caption": "Damaging Armor",
                       "colLabels": [
-                        "Material", "Hardness", "HP", "BT", "Armors"
+                        "Material",
+                        "Hardness",
+                        "HP",
+                        "BT",
+                        "Armors"
                       ],
                       "rows": [
-                        ["Cloth", "1", "4", "2", "Explorer's clothing, padded armor"],
-                        ["Leather", "4", "16", "8", "Hide, leather, studded leather"],
-                        ["Metal", "9", "36", "18", "Breastplate, chain mail, chain shirt, full plate, half plate, scale mail, splint mail"]
+                        [
+                          "Cloth",
+                          "1",
+                          "4",
+                          "2",
+                          "Explorer's clothing, padded armor"
+                        ],
+                        [
+                          "Leather",
+                          "4",
+                          "16",
+                          "8",
+                          "Hide, leather, studded leather"
+                        ],
+                        [
+                          "Metal",
+                          "9",
+                          "36",
+                          "18",
+                          "Breastplate, chain mail, chain shirt, full plate, half plate, scale mail, splint mail"
+                        ]
                       ]
                     }
                   ]
@@ -729,7 +2242,7 @@
               "type": "h2",
               "name": "Alchemical Gear",
               "entries": [
-                "The Alchemical items listen on the {@link equipment} page are the most widely available alchemical items on Avalon, which a 1st-level character could likely access. Each item's full entry appears in GM Core. Your GM might allow you to start with other alchemical items from there on a case-by-case basis.",
+                "The Alchemical items listen on the {@link equipment} page are the most widely available alchemical items on the planet, which a 1st-level character could likely access. Each item's full entry appears in GM Core. Your GM might allow you to start with other alchemical items from there on a case-by-case basis.",
                 {
                   "type": "h3",
                   "name": "Alchemical Bombs",
@@ -780,30 +2293,94 @@
                   "type": "table",
                   "caption": "Formulas",
                   "colLabels": [
-                    "Item Level", "Formula Price"
+                    "Item Level",
+                    "Formula Price"
                   ],
                   "rows": [
-                    ["0*", "5 sp"],
-                    ["1", "1 gp"],
-                    ["2", "2 gp"],
-                    ["3", "3 gp"],
-                    ["4", "5 gp"],
-                    ["5", "8 gp"],
-                    ["6", "13 gp"],
-                    ["7", "18 gp"],
-                    ["8", "25 gp"],
-                    ["9", "35 gp"],
-                    ["10", "50 gp"],
-                    ["11", "70 gp"],
-                    ["12", "100 gp"],
-                    ["13", "150 gp"],
-                    ["14", "225 gp"],
-                    ["15", "325 gp"],
-                    ["16", "500 gp"],
-                    ["17", "750 gp"],
-                    ["18", "1,200 gp"],
-                    ["19", "2,000 gp"],
-                    ["20", "3,500 gp"]
+                    [
+                      "0*",
+                      "5 sp"
+                    ],
+                    [
+                      "1",
+                      "1 gp"
+                    ],
+                    [
+                      "2",
+                      "2 gp"
+                    ],
+                    [
+                      "3",
+                      "3 gp"
+                    ],
+                    [
+                      "4",
+                      "5 gp"
+                    ],
+                    [
+                      "5",
+                      "8 gp"
+                    ],
+                    [
+                      "6",
+                      "13 gp"
+                    ],
+                    [
+                      "7",
+                      "18 gp"
+                    ],
+                    [
+                      "8",
+                      "25 gp"
+                    ],
+                    [
+                      "9",
+                      "35 gp"
+                    ],
+                    [
+                      "10",
+                      "50 gp"
+                    ],
+                    [
+                      "11",
+                      "70 gp"
+                    ],
+                    [
+                      "12",
+                      "100 gp"
+                    ],
+                    [
+                      "13",
+                      "150 gp"
+                    ],
+                    [
+                      "14",
+                      "225 gp"
+                    ],
+                    [
+                      "15",
+                      "325 gp"
+                    ],
+                    [
+                      "16",
+                      "500 gp"
+                    ],
+                    [
+                      "17",
+                      "750 gp"
+                    ],
+                    [
+                      "18",
+                      "1,200 gp"
+                    ],
+                    [
+                      "19",
+                      "2,000 gp"
+                    ],
+                    [
+                      "20",
+                      "3,500 gp"
+                    ]
                   ],
                   "footnotes": [
                     "*Formulas for all 0-level common items from this chapter can be purchased collectively in a {@equipment basic crafter's book}."
@@ -830,18 +2407,46 @@
                       "type": "table",
                       "caption": "Spellcasting Services",
                       "colLabels": [
-                        "Spell Rank", "Price*"
+                        "Spell Rank",
+                        "Price*"
                       ],
                       "rows": [
-                        ["1st", "3 gp"],
-                        ["2nd", "7 gp"],
-                        ["3rd", "18 gp"],
-                        ["4th", "40 gp"],
-                        ["5th", "80 gp"],
-                        ["6th", "160 gp"],
-                        ["7th", "360 gp"],
-                        ["8th", "720 gp"],
-                        ["9th", "1,800 gp"]
+                        [
+                          "1st",
+                          "3 gp"
+                        ],
+                        [
+                          "2nd",
+                          "7 gp"
+                        ],
+                        [
+                          "3rd",
+                          "18 gp"
+                        ],
+                        [
+                          "4th",
+                          "40 gp"
+                        ],
+                        [
+                          "5th",
+                          "80 gp"
+                        ],
+                        [
+                          "6th",
+                          "160 gp"
+                        ],
+                        [
+                          "7th",
+                          "360 gp"
+                        ],
+                        [
+                          "8th",
+                          "720 gp"
+                        ],
+                        [
+                          "9th",
+                          "1,800 gp"
+                        ]
                       ],
                       "footnotes": [
                         "*Plus any cost required to cast the specific spell."
@@ -860,13 +2465,36 @@
                   "type": "table",
                   "caption": "Cost of Living",
                   "colLabels": [
-                    "Standard of Living", "Week", "Month", "Year"
+                    "Standard of Living",
+                    "Week",
+                    "Month",
+                    "Year"
                   ],
                   "rows": [
-                    ["Subsistence*", "4 sp", "2 gp", "24 gp"],
-                    ["Comfortable", "1 gp", "4 gp", "52 gp"],
-                    ["Fine", "30 gp", "130 gp", "1,600 gp"],
-                    ["Extravagant", "100 gp", "430 gp", "5,200 gp"]
+                    [
+                      "Subsistence*",
+                      "4 sp",
+                      "2 gp",
+                      "24 gp"
+                    ],
+                    [
+                      "Comfortable",
+                      "1 gp",
+                      "4 gp",
+                      "52 gp"
+                    ],
+                    [
+                      "Fine",
+                      "30 gp",
+                      "130 gp",
+                      "1,600 gp"
+                    ],
+                    [
+                      "Extravagant",
+                      "100 gp",
+                      "430 gp",
+                      "5,200 gp"
+                    ]
                   ],
                   "footnotes": [
                     "*You can attempt to {@action Subsist} using {@skill Society} or {@skill Survival} for free."
@@ -892,19 +2520,76 @@
                     "Purchase Price"
                   ],
                   "rows": [
-                    [{"entry": "Bird", "rowSpan": 2, "rowHeader": true}, "Messenger raven", "8 cp per day", "4 gp"],
-                    ["Hunting eagle", "8 sp per day", "8 gp"],
-
-                    [{"entry": "Dog", "rowSpan": 3, "rowHeader": true}, "Guard dog", "1 cp per day", "2 sp"],
-                    ["Service dog", "6 cp per day", "4 gp"],
-                    ["Riding dog", "6 cp per day", "4 gp"],
-
-                    [{"entry": "Horse", "rowSpan": 3, "rowHeader": true}, "Riding horse", "1 sp per day", "8 gp"],
-                    ["Warhorse", "1 gp per day", "30 gp (level 2)"],
-                    ["Pack animal", "2 cp per day", "2 gp"],
-
-                    [{"entry": "Pony", "rowSpan": 2, "rowHeader": true}, "Riding pony", "8 cp per day", "7 gp"],
-                    ["Warpony", "8 sp per day", "24 gp (level 2)"]
+                    [
+                      {
+                        "entry": "Bird",
+                        "rowSpan": 2,
+                        "rowHeader": true
+                      },
+                      "Messenger raven",
+                      "8 cp per day",
+                      "4 gp"
+                    ],
+                    [
+                      "Hunting eagle",
+                      "8 sp per day",
+                      "8 gp"
+                    ],
+                    [
+                      {
+                        "entry": "Dog",
+                        "rowSpan": 3,
+                        "rowHeader": true
+                      },
+                      "Guard dog",
+                      "1 cp per day",
+                      "2 sp"
+                    ],
+                    [
+                      "Service dog",
+                      "6 cp per day",
+                      "4 gp"
+                    ],
+                    [
+                      "Riding dog",
+                      "6 cp per day",
+                      "4 gp"
+                    ],
+                    [
+                      {
+                        "entry": "Horse",
+                        "rowSpan": 3,
+                        "rowHeader": true
+                      },
+                      "Riding horse",
+                      "1 sp per day",
+                      "8 gp"
+                    ],
+                    [
+                      "Warhorse",
+                      "1 gp per day",
+                      "30 gp (level 2)"
+                    ],
+                    [
+                      "Pack animal",
+                      "2 cp per day",
+                      "2 gp"
+                    ],
+                    [
+                      {
+                        "entry": "Pony",
+                        "rowSpan": 2,
+                        "rowHeader": true
+                      },
+                      "Riding pony",
+                      "8 cp per day",
+                      "7 gp"
+                    ],
+                    [
+                      "Warpony",
+                      "8 sp per day",
+                      "24 gp (level 2)"
+                    ]
                   ],
                   "footnotes": [
                     "*Might require a deposit equal to the purchase Price."
@@ -931,18 +2616,54 @@
                       ],
                       "rows": [
                         [
-                          {"entry": "Light", "rowSpan": 2, "rowHeader": true},
-                          "Small or Medium", "10 gp", "+1", "+5", "-1", "-5 ft.", "2", "+3"
+                          {
+                            "entry": "Light",
+                            "rowSpan": 2,
+                            "rowHeader": true
+                          },
+                          "Small or Medium",
+                          "10 gp",
+                          "+1",
+                          "+5",
+                          "-1",
+                          "-5 ft.",
+                          "2",
+                          "+3"
                         ],
                         [
-                          "Large", "20 gp", "+1", "+5", "-1", "-5 ft.", "4", "+3"
+                          "Large",
+                          "20 gp",
+                          "+1",
+                          "+5",
+                          "-1",
+                          "-5 ft.",
+                          "4",
+                          "+3"
                         ],
                         [
-                          {"entry": "Heavy", "rowSpan": 2, "rowHeader": true},
-                          "Small or Medium (Level 2)", "25 gp", "+3", "+3", "-3", "-10 ft.", "4", "+5"
+                          {
+                            "entry": "Heavy",
+                            "rowSpan": 2,
+                            "rowHeader": true
+                          },
+                          "Small or Medium (Level 2)",
+                          "25 gp",
+                          "+3",
+                          "+3",
+                          "-3",
+                          "-10 ft.",
+                          "4",
+                          "+5"
                         ],
                         [
-                          "Large (Level 3)", "50 gp", "+3", "+3", "-3", "-10 ft.", "8", "+5"
+                          "Large (Level 3)",
+                          "50 gp",
+                          "+3",
+                          "+3",
+                          "-3",
+                          "-10 ft.",
+                          "8",
+                          "+5"
                         ]
                       ]
                     }
@@ -1428,24 +3149,96 @@
                         "Cost"
                       ],
                       "rows": [
-                        ["-1 or 0", "2", "15 gp"],
-                        ["1", "2", "60 gp"],
-                        ["2", "3", "105 gp"],
-                        ["3", "3", "180 gp"],
-                        ["4", "4", "300 gp"],
-                        ["5", "4", "480 gp"],
-                        ["6", "5", "750 gp"],
-                        ["7", "5", "1,080 gp"],
-                        ["8", "6", "1,500 gp"],
-                        ["9", "6", "2,100 gp"],
-                        ["10", "7", "3,000 gp"],
-                        ["11", "7", "4,200 gp"],
-                        ["12", "8", "6,000 gp"],
-                        ["13", "8", "9,000 gp"],
-                        ["14", "9", "13,500 gp"],
-                        ["15", "9", "19,500 gp"],
-                        ["16", "10", "30,000 gp"],
-                        ["17", "10", "45,000 gp"]
+                        [
+                          "-1 or 0",
+                          "2",
+                          "15 gp"
+                        ],
+                        [
+                          "1",
+                          "2",
+                          "60 gp"
+                        ],
+                        [
+                          "2",
+                          "3",
+                          "105 gp"
+                        ],
+                        [
+                          "3",
+                          "3",
+                          "180 gp"
+                        ],
+                        [
+                          "4",
+                          "4",
+                          "300 gp"
+                        ],
+                        [
+                          "5",
+                          "4",
+                          "480 gp"
+                        ],
+                        [
+                          "6",
+                          "5",
+                          "750 gp"
+                        ],
+                        [
+                          "7",
+                          "5",
+                          "1,080 gp"
+                        ],
+                        [
+                          "8",
+                          "6",
+                          "1,500 gp"
+                        ],
+                        [
+                          "9",
+                          "6",
+                          "2,100 gp"
+                        ],
+                        [
+                          "10",
+                          "7",
+                          "3,000 gp"
+                        ],
+                        [
+                          "11",
+                          "7",
+                          "4,200 gp"
+                        ],
+                        [
+                          "12",
+                          "8",
+                          "6,000 gp"
+                        ],
+                        [
+                          "13",
+                          "8",
+                          "9,000 gp"
+                        ],
+                        [
+                          "14",
+                          "9",
+                          "13,500 gp"
+                        ],
+                        [
+                          "15",
+                          "9",
+                          "19,500 gp"
+                        ],
+                        [
+                          "16",
+                          "10",
+                          "30,000 gp"
+                        ],
+                        [
+                          "17",
+                          "10",
+                          "45,000 gp"
+                        ]
                       ]
                     }
                   ]
@@ -1638,7 +3431,7 @@
               "entries": [
                 "During an encounter, you get {@b 3 actions and 1 reaction} per {@rule Turns||turn}. Icons indicate whether your abilities take a single action {@as 1}, 2 actions {@as 2}, 3 actions {@as 3}, a reaction {@as r}, or a free action {@as f}. {@b Reactions} have {@rule Actions with Triggers||triggers}, allowing you to take them whenever they come up. The {@action Ready} basic action lets you prepare to use a single action as a reaction. Free actions can have triggers like reactions; a free action with no trigger can be used like a single action, but don't cost any of your actions for the turn.",
                 "The most important actions to learn are the {@rule basic actions}. {@rule Specialty basic actions} come up less frequently, and you typically won't look them up until you need them. {@b Speaking} normally doesn't take an action.",
-                "{@b Related:} {@rule Activities}, {@rule Disrupting Actions}"
+                "{@b Related:} {@rule activities-414|Activities}, {@rule Disrupting Actions}"
               ]
             },
             {
@@ -1646,7 +3439,7 @@
               "name": "Rolling Checks",
               "entries": [
                 "An action that can potentially fail requires rolling a {@rule Checks-400||check}. Roll a d20 (20-sided die) and identify the modifiers, bonuses, and penalties that apply. Then, calculate the result, compare it to the DC (your target number), and determine the degree of success and the effect.",
-                "Most checks are modified by your {@rule attribute modifier} (Strength, Dexterity, Constitution, Intelligence, Wisdom, or Charisma) and your {@b proficiency modifier} (untrained, trained, expert, master, or legendary) for the statistic. You might get a {@b circumstance}, {@b status}, or {@b item bonus} or {@b penalty} as well.",
+                "Most checks are modified by your {@rule attribute-modifier-400|attribute modifier} (Strength, Dexterity, Constitution, Intelligence, Wisdom, or Charisma) and your {@b proficiency modifier} (untrained, trained, expert, master, or legendary) for the statistic. You might get a {@b circumstance}, {@b status}, or {@b item bonus} or {@b penalty} as well.",
                 "The {@rule Step 4: Degree of Success||degrees of success} are critical success, success, failure, and critical failure. You get a success if you meet or exceed the DC, or a critical success if you exceed the DC by 10 or more. If your result is lower than the DC, you get a failure, or a critical failure if you failed by 10 or more.",
                 "{@b Related:} {@rule Flat checks}, {@rule fortune and misfortune}, {@rule secret checks-405||secret checks}"
               ]
@@ -1682,7 +3475,7 @@
               "name": "Defenses",
               "page": 399,
               "entries": [
-                "Your {@rule Armor Class-404||Armor Class} (AC) is the main DC used for attacks against you. You might also roll a type of check called a {@rule Saving Throws||saving throw}, also called a save, against spells, afflictions, and a wide variety of other effects. There are three kinds of saving throw: {@b Fortitude}, {@b Reflex}, and {@b Will}."
+                "Your {@rule Armor Class-404||Armor Class} (AC) is the main DC used for attacks against you. You might also roll a type of check called a {@rule saving-throws-404|saving throw}, also called a save, against spells, afflictions, and a wide variety of other effects. There are three kinds of saving throw: {@b Fortitude}, {@b Reflex}, and {@b Will}."
               ]
             },
             {
@@ -1691,7 +3484,7 @@
               "page": 399,
               "entries": [
                 "Attacks, spells, and other dangers {@rule damage-rolls-406||deal damage}. The amount is typically determined by a {@rule damage-rolls-406||damage roll}, which can use a variety of sizes and numbers of dice.",
-                "Damage reduces the {@rule Hit Points} (HP) that measure a creature's overall health or an object's durability. A creature might have {@rule immunity} to damage or effects of certain kinds, a {@rule resistance} that reduces the damage it takes, or a {@rule weakness} that increases damage it takes. These are typically keyed to {@rule Step 2: Damage Type||damage types} such as slashing damage or fire damage.",
+                "Damage reduces the {@rule hit-points-410|Hit Points} (HP) that measure a creature's overall health or an object's durability. A creature might have {@rule immunity} to damage or effects of certain kinds, a {@rule resistance} that reduces the damage it takes, or a {@rule weakness} that increases damage it takes. These are typically keyed to {@rule Step 2: Damage Type||damage types} such as slashing damage or fire damage.",
                 "{@b Related:} {@condition Persistent Damage||Persistent damage condition}"
               ]
             },
@@ -1716,7 +3509,7 @@
               "type": "h2",
               "name": "Perception and Detection",
               "entries": [
-                "Your {@rule Perception||Perception modifier} indicates how good you are at noticing things around you. You typically use the {@action Seek} basic action to find physical things or the {@action Sense Motive} basic action in social situations. While in exploration mode, the {@action Search} activity lets you keep an eye out for things around you.",
+                "Your {@rule perception-404|Perception modifier} indicates how good you are at noticing things around you. You typically use the {@action Seek} basic action to find physical things or the {@action Sense Motive} basic action in social situations. While in exploration mode, the {@action Search} activity lets you keep an eye out for things around you.",
                 "Four main conditions indicate how well you can pinpoint and target a creature: {@condition observed}, {@condition hidden}, {@condition undetected}, and {@condition unnoticed}. A creature with the {@condition concealed} or {@condition invisible} condition is harder to find and target.",
                 "{@b Related:} {@rule Light}, {@rule special senses}"
               ]
@@ -1786,7 +3579,7 @@
                   "type": "h3",
                   "name": "Bonuses",
                   "entries": [
-                    "When attempting a check that involves something you have some training in, you will also add your {@rule proficiency bonus}. This bonus depends on your proficiency rank: untrained, trained, expert, master, or legendary. If you're untrained, your bonus is +0—you must rely on raw talent and any bonuses from the situation. Otherwise, the bonus equals your character's level plus a certain amount depending on your rank. If your proficiency rank is trained, this bonus is equal to your level + 2, and higher proficiency ranks further increase the amount you add to your level.",
+                    "When attempting a check that involves something you have some training in, you will also add your {@b proficiency bonus}. This bonus depends on your proficiency rank: untrained, trained, expert, master, or legendary. If you're untrained, your bonus is +0—you must rely on raw talent and any bonuses from the situation. Otherwise, the bonus equals your character's level plus a certain amount depending on your rank. If your proficiency rank is trained, this bonus is equal to your level + 2, and higher proficiency ranks further increase the amount you add to your level.",
                     {
                       "type": "table",
                       "caption": "Proficiency Bonus",
@@ -3346,7 +5139,7 @@
               "type": "flavor",
               "entry": "Your Perception measures your ability to notice things, search for what's hidden, and tell whether something about a situation is suspicious."
             },
-            "Perception is frequently used for rolling initiative in an encounter, and for the {@action Seek} action. See {@rule Perception||here} for the procedure for rolling a Perception check.",
+            "Perception is frequently used for rolling initiative in an encounter, and for the {@action Seek} action. See {@rule perception-404|here} for the procedure for rolling a Perception check.",
             {
               "type": "h2",
               "name": "Light",
@@ -3614,7 +5407,7 @@
               "type": "h2",
               "name": "Activities in Encounters",
               "page": 436,
-              "entry": "Activities that take longer than a turn can't normally be performed during an encounter. Spells with a casting time of 1 minute or more are a common example, as are several skill actions. When you commit to an activity during your turn in an encounter, you commit to spending all of the actions it requires. If the activity gets interrupted partway through, you lose all of the actions you would have spent on that activity. Activities are described on {@rule Activities||here}."
+              "entry": "Activities that take longer than a turn can't normally be performed during an encounter. Spells with a casting time of 1 minute or more are a common example, as are several skill actions. When you commit to an activity during your turn in an encounter, you commit to spending all of the actions it requires. If the activity gets interrupted partway through, you lose all of the actions you would have spent on that activity. Activities are described on {@rule activities-414|here}."
             },
             {
               "type": "h2",

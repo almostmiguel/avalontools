@@ -4,7 +4,7 @@ import { test } from "node:test";
 import vm from "node:vm";
 
 const read = path => readFile(new URL(`../${path}`, import.meta.url), "utf8");
-const script = await read("js/theme.js");
+const script = await read("js/site-shell.js");
 
 class Target {
   listeners = new Map();
@@ -164,7 +164,7 @@ test("Player and Game Master dismiss outside, close sibling menus, and return ke
 test("every page loads the theme before styles and provides accessible settings", async () => {
   for (const path of ["index.html", "rules.html", "rule.html", "actions.html"]) {
     const html = await read(path);
-    assert.ok(html.indexOf('src="js/theme.js"') < html.indexOf('href="css/site.css"'), path);
+    assert.ok(html.indexOf('src="js/site-shell.js"') < html.indexOf('href="css/site.css"'), path);
     assert.match(html, /<summary\b[^>]*aria-label="Settings"/);
     assert.match(html, /data-theme-choice="dark"/);
     assert.match(html, /data-theme-choice="light"/);

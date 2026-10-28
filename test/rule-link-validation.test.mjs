@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
-import { createLibrary } from "../js/rules-library.js";
+import { createRuleLibrary } from "../js/rule-library.js";
 import { renderInline } from "../js/content-renderer.js";
 import { checkRuleLinks, formatDiagnostic } from "../scripts/check-rule-links.mjs";
 
-const fixture = () => createLibrary({ sources: [{ id: "PC1", name: "Player Core" }], rules: [
+const fixture = () => createRuleLibrary({ sources: [{ id: "PC1", name: "Player Core" }], rules: [
   { name: "Areas", source: "PC1", page: 300 },
   { name: "Areas", source: "PC1", page: 426 },
   { name: "Unique", source: "PC1", aliases: ["Only one"] },

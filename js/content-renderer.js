@@ -5,6 +5,12 @@ export function escapeHtml(value) {
   })[character]);
 }
 
+// Local Lucide sprite; the surrounding control supplies its accessible label.
+export function renderIcon(name, className = "", { filled = false } = {}) {
+  if (!/^[a-z][a-z0-9-]*$/.test(name)) return "";
+  return `<svg${className ? ` class="${escapeHtml(className)}"` : ""} viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false" fill="${filled ? "currentColor" : "none"}" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="img/icons/lucide.svg#${name}"></use></svg>`;
+}
+
 export function safeHref(value) {
   if (typeof value !== "string" || !value.trim()) return null;
   const href = value.trim();
@@ -38,19 +44,25 @@ function renderTag(body, options) {
   if (["code", "kbd"].includes(tag)) return `<${tag}>${escapeHtml(value)}</${tag}>`;
   const formatting = { b: "strong", bold: "strong", i: "em", italic: "em", s: "s", u: "u", sup: "sup", sub: "sub" };
   if (Object.hasOwn(formatting, tag)) return `<${formatting[tag]}>${renderInline(value, options)}</${formatting[tag]}>`;
-  if (tag === "rule" || tag === "action") {
+  const references = {
+    rule: { noun: "Rule", href: "rules.html", parameter: "rule", resolver: "resolveRule" },
+    action: { noun: "Action", href: "actions.html", parameter: "action", resolver: "resolveAction" },
+    condition: { noun: "Condition", href: "conditions.html", parameter: "condition", resolver: "resolveCondition" },
+    skill: { noun: "Skill", href: "skills.html", parameter: "skill", resolver: "resolveSkill" },
+  };
+  if (Object.hasOwn(references, tag)) {
+    const reference = references[tag];
     const name = inlineText(parts[0]).trim();
     const source = (parts[1] || "").trim();
     const labelText = inlineText(parts[2] || parts[0]);
     const label = escapeHtml(labelText);
     const attributes = `data-${tag}-name="${escapeHtml(name)}" data-${tag}-source="${escapeHtml(source)}" data-reference-kind="${tag}"`;
-    const resolution = (tag === "rule" ? options.resolveRule : options.resolveAction)?.(name, source, { label: labelText });
-    const noun = tag === "rule" ? "Rule" : "Action";
+    const resolution = options[reference.resolver]?.(name, source, { label: labelText });
     if (resolution && resolution.status !== "found") {
-      const message = resolution.status === "ambiguous" ? `More than one ${tag} matches` : `${noun} not found`;
+      const message = resolution.status === "ambiguous" ? `More than one ${tag} matches` : `${reference.noun} not found`;
       return `<span class="${tag}-link rule-link-unresolved" tabindex="0" ${attributes} title="${message}: ${escapeHtml(name)}${source ? ` (${escapeHtml(source)})` : ""}">${label}</span>`;
     }
-    const fallback = `${tag === "rule" ? "rules" : "actions"}.html?${new URLSearchParams(source ? { [tag]: name, source } : { [tag]: name })}`;
+    const fallback = `${reference.href}?${new URLSearchParams(source ? { [reference.parameter]: name, source } : { [reference.parameter]: name })}`;
     const confirmedAction = tag === "action" && resolution?.status === "found" ? ' data-action-resolved="true"' : "";
     const firstWord = /^(\s*\S+)([\s\S]*)$/u.exec(labelText);
     const linkedLabel = firstWord ? `<span class="reference-link-start">${escapeHtml(firstWord[1])}</span>${escapeHtml(firstWord[2])}` : label;
@@ -207,8 +219,8 @@ export function renderContent(content, options = {}) {
     }
     if (type === "clarification") {
       const title = inline(entry.name || "Paizo Clarification");
-      const icon = '<svg class="clarification-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></svg>';
-      const toggle = '<svg class="clarification-toggle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>';
+      const icon = renderIcon("info", "clarification-icon");
+      const toggle = renderIcon("chevron-right", "clarification-toggle");
       return `<details class="paizo-clarification"${entry.open === true ? " open" : ""}><summary>${icon}<span>${title}</span>${toggle}</summary><div class="clarification-body">${blocks(children, level)}</div></details>`;
     }
     if (type === "box-section") {
@@ -266,7 +278,7 @@ export function renderContent(content, options = {}) {
       if (!href) return "";
       const alt = inlineText(entry.alt ?? entry.title ?? "");
       const label = alt ? `Enlarge image: ${alt}` : "Enlarge image";
-      const expand = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>';
+      const expand = renderIcon("maximize-2");
       return `<figure class="rule-image${entry.align === "right" ? " rule-image--right" : ""}"><a class="rule-image-link" href="${escapeHtml(href)}" data-image-viewer aria-label="${escapeHtml(label)}"><img src="${escapeHtml(href)}" alt="${escapeHtml(alt)}" loading="lazy"><span class="image-expand" aria-hidden="true">${expand}</span></a>${entry.title ? `<figcaption>${inline(entry.title)}</figcaption>` : ""}</figure>`;
     }
     if (type === "hr") return "<hr>";

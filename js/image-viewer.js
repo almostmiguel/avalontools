@@ -1,4 +1,4 @@
-import { safeHref } from "./content-renderer.js";
+import { renderIcon, safeHref } from "./content-renderer.js";
 
 const MAX_ZOOM = 8;
 const clamp = (value, limit) => limit ? Math.max(-limit, Math.min(limit, value)) : 0;
@@ -53,17 +53,16 @@ export function attachImageViewer({ document, window }) {
     dialog.className = "image-viewer";
     dialog.setAttribute("aria-labelledby", "image-viewer-title");
     dialog.setAttribute("aria-describedby", "image-viewer-help");
-    const icon = path => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
     dialog.innerHTML = `<div class="image-viewer-shell">
       <div class="image-viewer-caption"><span>Reference image</span><h2 class="image-viewer-title" id="image-viewer-title"></h2></div>
-      <button type="button" data-image-close aria-label="Close image viewer" title="Close (Escape)" autofocus>${icon('<path d="m6 6 12 12M6 18 18 6"/>')}</button>
+      <button type="button" data-image-close aria-label="Close image viewer" title="Close (Escape)" autofocus>${renderIcon("x")}</button>
       <div class="image-viewer-stage"><img alt="" draggable="false" hidden><p class="image-viewer-loading" role="status">Loading image…</p></div>
       <div class="image-viewer-controls" role="group" aria-label="Image zoom">
-        <button type="button" data-image-out aria-label="Zoom out" title="Zoom out (−)">${icon('<path d="M5 12h14"/>')}</button>
+        <button type="button" data-image-out aria-label="Zoom out" title="Zoom out (−)">${renderIcon("minus")}</button>
         <output class="image-viewer-zoom" aria-live="polite">100%</output>
-        <button type="button" data-image-in aria-label="Zoom in" title="Zoom in (+)">${icon('<path d="M5 12h14M12 5v14"/>')}</button>
+        <button type="button" data-image-in aria-label="Zoom in" title="Zoom in (+)">${renderIcon("plus")}</button>
         <span class="image-viewer-divider" aria-hidden="true"></span>
-        <button type="button" data-image-fit aria-label="Fit image" title="Fit image (0)">${icon('<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>')}<span>Fit</span></button>
+        <button type="button" data-image-fit aria-label="Fit image" title="Fit image (0)">${renderIcon("scan")}<span>Fit</span></button>
       </div>
       <p class="image-viewer-help" id="image-viewer-help">Scroll to zoom <span>·</span> Drag to pan <span>·</span> <kbd>Esc</kbd> to close</p>
     </div>`;

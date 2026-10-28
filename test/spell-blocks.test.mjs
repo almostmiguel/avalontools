@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { renderContent } from "../js/content-renderer.js";
-import { createLibrary, renderRuleBody } from "../js/rules-library.js";
-import { renderRulePreview } from "../js/rule-links.js";
+import { createRuleLibrary, renderRuleBody } from "../js/rule-library.js";
+import { renderRulePreview } from "../js/reference-previews.js";
 
 const spell = {
   type: "spell", name: "Example Spell", level: "Level", traits: ["Concentrate", "Manipulate"],
@@ -64,7 +64,7 @@ test("optional spell fields disappear, casting accepts action costs or time, and
 test("spell blocks remain safe and render consistently inside rule previews without becoming catalog rules", () => {
   const entry = { ...spell, name: '<script>spell</script>', heightened: [{ level: '<img src=x onerror="bad()">', entries: ["{@b Heightened} effect."] }] };
   const payload = { sources: [{ id: "PC1", name: "Player Core" }], rules: [{ type: "h2", name: "Reading Spells", source: "PC1", entries: [entry] }] };
-  const before = JSON.stringify(payload), library = createLibrary(payload);
+  const before = JSON.stringify(payload), library = createRuleLibrary(payload);
   assert.equal(library.rules.length, 1);
   const html = renderRuleBody(library.get("PC1:reading-spells"), library);
   const preview = renderRulePreview("Reading Spells", "PC1", library.registry);

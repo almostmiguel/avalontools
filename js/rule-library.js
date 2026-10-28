@@ -1,6 +1,7 @@
-import { escapeHtml, inlineText, renderContent } from "./content-renderer.js";
-import { matchesFilters } from "./rules-filters.js";
-import { sourceTone } from "./rule-sources.js";
+// Rule indexing, name resolution, search and hierarchical reader markup.
+import { escapeHtml, inlineText, renderContent, renderIcon } from "./content-renderer.js";
+import { matchesFilters } from "./rule-filters.js";
+import { sourceTone } from "./reference-data.js";
 
 const fold = value => String(value ?? "").normalize("NFKD").replace(/\p{M}/gu, "").toLocaleLowerCase("en").replace(/\s+/g, " ").trim();
 const slug = value => fold(value).replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-+|-+$/g, "");
@@ -72,7 +73,7 @@ function collectRules(entries, chapters) {
 }
 
 // Top-level h1 blocks are chapters; other named headings and boxes are rules unless opted out.
-export function createLibrary(payload) {
+export function createRuleLibrary(payload) {
   if (!payload || !Array.isArray(payload.rules)) throw new Error('data/rules.json needs a "rules" array.');
   if (payload.sources != null && !Array.isArray(payload.sources)) throw new Error('"sources" must be an array of reference metadata.');
   const sourceMap = new Map();
@@ -209,7 +210,7 @@ export function renderRuleOutline(headings) {
   const sections = headings.filter(heading => heading.outline);
   if (!sections.length) return "";
   const firstLevel = Math.min(...sections.map(heading => heading.level));
-  return `<details id="rule-outline" class="rule-outline"><summary aria-label="On this page" title="On this page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg></summary><nav class="rule-outline-panel" aria-label="On this page"><div class="outline-panel-heading">On this page <span>${sections.length} ${sections.length === 1 ? "section" : "sections"}</span></div><ol>${sections.map(heading => `<li data-depth="${heading.level - firstLevel}"><a data-outline-link href="#${escapeHtml(heading.id)}">${escapeHtml(inlineText(heading.name))}</a></li>`).join("")}</ol></nav></details>`;
+  return `<details id="rule-outline" class="rule-outline"><summary aria-label="On this page" title="On this page">${renderIcon("list")}</summary><nav class="rule-outline-panel" aria-label="On this page"><div class="outline-panel-heading">On this page <span>${sections.length} ${sections.length === 1 ? "section" : "sections"}</span></div><ol>${sections.map(heading => `<li data-depth="${heading.level - firstLevel}"><a data-outline-link href="#${escapeHtml(heading.id)}">${escapeHtml(inlineText(heading.name))}</a></li>`).join("")}</ol></nav></details>`;
 }
 
 export function rulePath(library, rule) {
@@ -280,7 +281,7 @@ export function renderBrowse(library, matches, { selectedId = null, selectedChap
     if (!parent) chapter.roots.push(rule);
     if (matched.has(rule.id)) { source.count++; chapter.count++; }
   }
-  const chevron = '<svg class="rule-branch-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>';
+  const chevron = renderIcon("chevron-right", "rule-branch-chevron");
   const branch = rules => `<ul class="rules-branches">${rules.map(rule => {
     const hasChildren = children.has(rule.id);
     const context = matched.has(rule.id) ? "" : " rule-branch-link--context";
@@ -289,13 +290,11 @@ export function renderBrowse(library, matches, { selectedId = null, selectedChap
       : `<li><div class="rule-branch-row">${row}</div></li>`;
   }).join("")}</ul>`;
   const group = (id, label, count, content, type, sourceId, chapter = null) => {
-    const icon = type === "source"
-      ? '<path d="M4 4h6a3 3 0 0 1 3 3v14a4 4 0 0 0-4-2H4zM13 7a3 3 0 0 1 3-3h4v15h-4a4 4 0 0 0-3 2"/>'
-      : '<path d="M6 3h9l4 4v14H6zM14 3v5h5M9 12h7M9 16h7"/>';
+    const icon = renderIcon(type === "source" ? "book-open" : "file-text", "browse-group-icon");
     const name = type === "chapter" && chapter != null
       ? '<a class="browse-group-name" href="' + escapeHtml(chapterHref(sourceId, chapter)) + '" data-select-chapter="' + escapeHtml(chapterKey(sourceId, chapter)) + '"' + (selectedChapter?.sourceId === sourceId && selectedChapter.title === chapter ? ' aria-current="true"' : "") + ">" + escapeHtml(label) + "</a>"
       : '<span class="browse-group-name">' + (type === "source" ? '<span class="browse-group-type">Source</span>' : "") + escapeHtml(label) + "</span>";
-    return `<li><details data-rule-branch="${escapeHtml(id)}" data-browse-group="${type}"${open.has(id) ? " open" : ""}><summary class="rule-branch-row browse-group-row"${type === "source" ? ` data-source-tone="${sourceTone(sourceId)}"` : ""}>${chevron}<svg class="browse-group-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icon}</svg>${name}<span class="browse-group-count" aria-label="${count} matching rules">${count}</span></summary>${content}</details></li>`;
+    return `<li><details data-rule-branch="${escapeHtml(id)}" data-browse-group="${type}"${open.has(id) ? " open" : ""}><summary class="rule-branch-row browse-group-row"${type === "source" ? ` data-source-tone="${sourceTone(sourceId)}"` : ""}>${chevron}${icon}${name}<span class="browse-group-count" aria-label="${count} matching rules">${count}</span></summary>${content}</details></li>`;
   };
   const sourceOrder = id => { const index = library.sourceOrder.indexOf(id); return index === -1 ? Infinity : index; };
   const sourceEntries = [...sources].sort(([a, first], [b, second]) => sourceOrder(a) - sourceOrder(b) || first.name.localeCompare(second.name, "en"));
