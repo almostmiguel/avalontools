@@ -3,7 +3,11 @@ import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import { inlineText, renderContent, renderInline } from "../js/content-renderer.js";
 import { ACTION_CATEGORIES, ACTION_TIMES, createActionLibrary, createCatalog, emptyActionFilters, emptyCatalogFilters, actionMatchesFilters, catalogMatchesFilters, catalogOptions, searchActions, searchCatalog, sortActions, actionTimeHtml, renderActionDetail, renderActionResults } from "../js/reference-library.js";
-import { mountActions, mountReferenceBrowser, REFERENCE_TYPES, startActions } from "../js/reference-browser.js";
+import { mountActions, mountReferenceBrowser, REFERENCE_TYPES, startActions, startReferenceBrowser } from "../js/reference-browser.js";
+import { createFeatCatalog, FEAT_BROWSER_DEFINITION } from "../js/feat-library.js";
+import { CLASS_BROWSER_DEFINITION } from "../js/class-reader.js";
+import { ARCHETYPE_BROWSER_DEFINITION, BACKGROUND_BROWSER_DEFINITION } from "../js/character-library.js";
+import { ANCESTRY_BROWSER_DEFINITION } from "../js/ancestry-reader.js";
 
 const fixture = () => createActionLibrary({ sources: [{ id: "PC1", name: "Player Core" }], actions: [
   { name: "Stride", source: "PC1", page: 418, category: "basic", time: { unit: "action", value: 1 }, aliases: ["Walk"], entries: ["Move your Speed. See {@action Aid|PC1}."] },
@@ -30,7 +34,7 @@ test("action records generate ids, preserve sources and distinguish categories a
   filters.time.set("action-1", -1);
   assert.deepEqual(library.actions.filter(action => actionMatchesFilters(action, filters)).map(action => action.name), ["Aid"]);
   assert.equal(searchActions(library, "Speed").length, 0);
-  assert.equal(searchActions(library, "walk")[0].name, "Stride");
+  assert.deepEqual(searchActions(library, "walk"), []);
 });
 
 test("action timing renders the actual glyphs and accepts rounds, minutes, hours and days", () => {
@@ -140,7 +144,7 @@ test("malformed action records report usable errors and name variants can pick a
   assert.equal(variants.registry.resolve("second", "Avalon").target.id, "Avalon:second");
 });
 
-test("catalogs create stable records, search aliases, filter inclusions and exclusions, and sort", () => {
+test("catalogs create stable records, search names, filter inclusions and exclusions, and sort", () => {
   const catalog = createCatalog({
     sources: [{ id: "PC1", name: "Player Core" }, { id: "GMC", name: "GM Core" }],
     conditions: [
@@ -153,7 +157,9 @@ test("catalogs create stable records, search aliases, filter inclusions and excl
   assert.equal(catalog.get("PC1:blinded").href, "conditions.html?id=PC1%3Ablinded");
   assert.equal(catalog.registry.resolve("Blinded", "PC1").target.id, "PC1:blinded");
   assert.deepEqual(catalogOptions(catalog).category.map(option => option.value), ["Health", "Sense"]);
-  assert.deepEqual(searchCatalog(catalog, "exhausted").map(record => record.name), ["Drained"]);
+  assert.deepEqual(searchCatalog(catalog, "exhausted"), []);
+  assert.deepEqual(searchCatalog(catalog, "drain").map(record => record.name), ["Drained"]);
+  assert.deepEqual(searchCatalog(catalog, "health"), []);
   filters.category.set("Health", 1);
   assert.deepEqual(catalog.records.filter(record => catalogMatchesFilters(record, filters)).map(record => record.name), ["Drained", "Dying"]);
   filters.source.set("PC1", -1);
@@ -179,6 +185,7 @@ function environment(query = "", definition = REFERENCE_TYPES.actions) {
     constructor(selector = "") { this.selector = selector; this.dataset = {}; this.attributes = new Map(); this.listeners = new Map(); this.value = ""; this.open = false; this.writes = 0; this.children = []; }
     set innerHTML(html) {
       this.html = html; this.writes++;
+      if (this.selector === `#${definition.prefix}-lists`) this.children = [...html.matchAll(new RegExp(`data-${definition.attribute}-list="([^"]+)"`, "g"))].map(([, id]) => { const el = new Element(); el.dataset[`${definition.attribute}List`] = id; return el; });
       if (this.selector === `#${definition.prefix}-filter-groups`) this.children = [...html.matchAll(new RegExp(`data-${definition.attribute}-filter="([^"]+)" data-filter-value="([^"]+)"`, "g"))].map(([, group, value]) => { const el = new Element(); el.dataset = { [`${definition.attribute}Filter`]: group, filterValue: value }; return el; });
     }
     get innerHTML() { return this.html || ""; }
@@ -323,9 +330,112 @@ test("the shared browser handles condition and skill deep links, references and 
   }
 });
 
+test("Traits loads PC1 data, filters individual types, sorts and opens descriptions", async () => {
+  const config = REFERENCE_TYPES.traits;
+  const payload = JSON.parse(await readFile(new URL("../data/traits.json", import.meta.url), "utf8"));
+  const catalog = config.create(payload, config);
+  assert.equal(catalog.records.length, 141);
+  assert.ok(catalog.records.every(record => record.source === "PC1" && Number.isInteger(record.page)));
+  assert.ok(!catalog.records.some(record => record.name === "Oil"));
+  for (const record of catalog.records) assert.ok(config.renderDetail(record, catalog, null, config).includes(record.name));
+  const acid = catalog.registry.resolve("Acid", "PC1").target;
+  assert.equal(config.matches(acid, { category: new Map([["Energy", 1]]) }), true);
+  assert.equal(config.matches(acid, { category: new Map([["Energy", 1], ["Monster", -1]]) }), false);
+  const ui = environment("?category=Energy", config);
+  const browser = mountReferenceBrowser(catalog, { ...ui, config });
+  assert.match(ui.get("#catalog-results").innerHTML, />Acid</);
+  assert.match(ui.get("#catalog-results").innerHTML, /catalog-result-source[^>]*>PC1<\/span><\/a>/);
+  const typeSort = ui.get("#catalog-sort").querySelectorAll().find(el => el.dataset.catalogSort === "category");
+  ui.get("#catalog-sort").emit("click", { target: typeSort });
+  assert.equal(ui.window.location.searchParams.get("sort"), "category");
+  ui.get("#catalog-sort").emit("click", { target: ui.target({ catalogSort: "source" }) });
+  assert.equal(ui.window.location.searchParams.get("sort"), "source");
+  ui.handlers.get("popstate")();
+  assert.equal(ui.window.location.searchParams.get("sort"), "source");
+  ui.get("#catalog-filter-reset").emit("click");
+  browser.select("PC1:summon");
+  assert.match(ui.get("#catalog-detail").innerHTML, /<table/);
+  assert.match(ui.get("#catalog-detail").innerHTML, /Maximum Creature Level/);
+  browser.destroy();
+});
+
+test("Feats restores filters, selects named references in place and preserves Back navigation", () => {
+  const config = { ...REFERENCE_TYPES.feats, ...FEAT_BROWSER_DEFINITION };
+  const library = createFeatCatalog({ feats: [
+    { name: "Reach Spell", add_hash: "Wizard", source: "PC1", page: 201, level: 1, traits: ["wizard", "spellshape", "concentrate"], entries: ["Wizard variant."] },
+    { name: "Reach Spell", add_hash: "Cleric", source: "PC1", page: 123, level: 1, traits: ["cleric", "spellshape"], entries: ["Cleric variant."] },
+  ] });
+  const ui = environment("?trait=concentrate&level=1", config);
+  const browser = mountReferenceBrowser(library, { ...ui, config });
+  assert.equal(ui.get("#catalog-count").textContent, "1 feat");
+  assert.equal(browser.selectedId, null);
+  const ref = ui.target({ featName: "Reach Spell (Cleric)", featSource: "PC1" });
+  const click = { target: ref, preventDefault() { this.defaultPrevented = true; } };
+  ui.handlers.get("document:click")(click);
+  assert.equal(click.defaultPrevented, true);
+  assert.match(ui.get("#catalog-detail").innerHTML, /Cleric variant/);
+  assert.equal(ui.window.location.searchParams.has("trait"), false);
+  ui.window.history.back();
+  assert.equal(browser.selectedId, null);
+  assert.equal(ui.get("#catalog-count").textContent, "1 feat");
+  assert.equal(ui.previewCalls[0].feats, library);
+  browser.destroy();
+});
+
+test("Feats loads archetype membership and restores, excludes and clears archetype filters", async t => {
+  const original = globalThis.fetch;
+  t.after(() => { globalThis.fetch = original; });
+  const payloads = Object.fromEntries(await Promise.all(["feats", "archetypes", "traits"].map(async name => [
+    `data/${name}.json`, JSON.parse(await readFile(new URL(`../data/${name}.json`, import.meta.url), "utf8")),
+  ])));
+  globalThis.fetch = async path => ({ ok: true, json: async () => payloads[path] || { rules: [] } });
+  const config = { ...REFERENCE_TYPES.feats, ...FEAT_BROWSER_DEFINITION };
+  const ui = environment("?archetype=bard", config);
+  const browser = await startReferenceBrowser({ ...ui, config });
+  assert.ok(browser);
+  assert.equal(ui.get("#catalog-count").textContent, "9 feats");
+  assert.match(ui.get("#catalog-results").innerHTML, /Basic Muse&#39;s Whispers/);
+  assert.equal(ui.window.location.searchParams.get("archetype"), "Bard");
+  const groups = ui.get("#catalog-filter-groups");
+  const bard = groups.children.find(button => button.dataset.catalogFilter === "archetype" && button.dataset.filterValue === "Bard");
+  assert.equal(bard.getAttribute("data-state"), "include");
+  groups.emit("contextmenu", { target: bard });
+  assert.equal(ui.window.location.searchParams.get("not-archetype"), "Bard");
+  assert.equal(ui.get("#catalog-count").textContent, "876 feats");
+  ui.handlers.get("popstate")();
+  assert.equal(bard.getAttribute("data-state"), "exclude");
+  ui.get("#catalog-filter-reset").emit("click");
+  assert.equal(ui.get("#catalog-count").textContent, "885 feats");
+  assert.equal(ui.window.location.searchParams.has("not-archetype"), false);
+  browser.destroy();
+});
+
+test("Classes loads the shared feat JSON once and reports a missing dependency", async t => {
+  const original = globalThis.fetch; t.after(() => { globalThis.fetch = original; });
+  const config = { ...REFERENCE_TYPES.classes, ...CLASS_BROWSER_DEFINITION };
+  const classData = JSON.parse(await readFile(new URL("../data/classes.json", import.meta.url), "utf8"));
+  const featData = JSON.parse(await readFile(new URL("../data/feats.json", import.meta.url), "utf8"));
+  const requests = [];
+  globalThis.fetch = async path => { requests.push(path); return { ok: true, json: async () => path === "data/classes.json" ? classData : path === "data/feats.json" ? featData : { rules: [] } }; };
+  const ui = environment("", config);
+  const browser = await startReferenceBrowser({ ...ui, config });
+  assert.ok(browser);
+  assert.equal(ui.get("#catalog-count").textContent, "8 classes");
+  assert.equal(requests.filter(path => path === "data/feats.json").length, 1);
+  assert.equal(ui.previewCalls[0].feats.records.length, 885, "previews reuse the loaded collection");
+  browser.destroy();
+  globalThis.fetch = async path => ({ ok: path !== "data/feats.json", status: 404, json: async () => path === "data/classes.json" ? classData : { rules: [] } });
+  const failed = environment("", config);
+  await startReferenceBrowser({ ...failed, config });
+  assert.match(failed.get("#main").innerHTML, /Unable to open classes/);
+  assert.match(failed.get("#main").innerHTML, /HTTP 404/);
+});
+
 test("custom reference definitions reuse filter counts and release their event handlers", () => {
   let visits = 0;
-  const config = { ...REFERENCE_TYPES.skills, collection: "equipment", singular: "Item", plural: "Equipment", kind: "item", href: "equipment.html",
+  let mountedDetails = 0, disposedDetails = 0;
+  const config = { ...REFERENCE_TYPES.conditions, collection: "equipment", singular: "Item", plural: "Equipment", kind: "item", href: "equipment.html",
+    mountDetail() { mountedDetails++; return { destroy() { disposedDetails++; } }; },
     values(record, key) { visits++; return [record[key]]; } };
   const catalog = createCatalog({ equipment: Array.from({ length: 8 }, (_, index) => ({
     name: `Item ${index}`, source: "PC1", category: `Category ${index}`, entries: ["Equipment description."],
@@ -344,10 +454,152 @@ test("custom reference definitions reuse filter counts and release their event h
   ui.get("#catalog-filter-groups").emit("contextmenu", { target: category });
   assert.equal(ui.get("#catalog-count").textContent, "7 equipment");
   assert.equal(searchReads, catalog.records.length, "changing filters reuses the previous name search");
+  browser.select(catalog.records[0].id);
+  browser.select(catalog.records[1].id);
+  assert.equal(mountedDetails, 2);
+  assert.equal(disposedDetails, 1, "changing selection releases the previous detail controller");
   browser.destroy();
+  assert.equal(disposedDetails, 2);
   assert.equal(ui.get("#catalog-search").listeners.size, 0);
   assert.equal(ui.handlers.size, 0);
   assert.equal(browser.select(catalog.records[0].id), false);
+});
+
+test("Actions and Feats group trait filters by type and synchronize traits in multiple groups", () => {
+  const traits = createCatalog({ traits: [
+    { name: "Acid", source: "PC1", categories: ["Energy", "Monster"], entries: [] },
+    { name: "Dwarf", source: "PC1", categories: ["Ancestry"], entries: [] },
+  ] }, REFERENCE_TYPES.traits);
+  for (const config of [REFERENCE_TYPES.actions, { ...REFERENCE_TYPES.feats, ...FEAT_BROWSER_DEFINITION }]) {
+    const library = config.create({ [config.collection]: [
+      { name: "Acid Example", source: "PC1", category: "basic", level: 1, traits: ["acid"], time: { unit: "action", value: 1 }, entries: [] },
+      { name: "Dwarf Example", source: "PC1", category: "basic", level: 1, traits: ["dwarf"], time: { unit: "reaction" }, entries: [] },
+      { name: "Custom Example", source: "PC1", category: "basic", level: 2, traits: ["custom"], time: { unit: "free" }, entries: [] },
+    ] }, config);
+    const ui = environment("", config);
+    const browser = mountReferenceBrowser(library, { ...ui, config, traits });
+    const groups = ui.get(`#${config.prefix}-filter-groups`);
+    for (const type of ["Ancestry", "Energy", "Monster", "Other"]) assert.ok(groups.innerHTML.includes(`<legend>${type}</legend>`));
+    const acid = groups.children.filter(button => button.dataset.filterValue === "acid");
+    assert.equal(acid.length, 2);
+    groups.emit("click", { target: acid[0] });
+    assert.equal(ui.get(`#${config.prefix}-count`).textContent, `1 ${config.singular.toLowerCase()}`);
+    assert.ok(acid.every(button => button.getAttribute("data-state") === "include"));
+    assert.deepEqual(ui.window.location.searchParams.getAll("trait"), ["acid"]);
+    assert.equal(ui.get(`#${config.prefix}-filter-count`).textContent, "1");
+    groups.emit("contextmenu", { target: acid[1] });
+    assert.ok(acid.every(button => button.getAttribute("data-state") === "exclude"));
+    assert.equal(ui.get(`#${config.prefix}-count`).textContent, `2 ${config.plural.toLowerCase()}`);
+    assert.deepEqual(ui.window.location.searchParams.getAll("not-trait"), ["acid"]);
+    ui.handlers.get("popstate")();
+    assert.ok(acid.every(button => button.getAttribute("data-state") === "exclude"));
+    ui.get(`#${config.prefix}-filter-reset`).emit("click");
+    assert.ok(acid.every(button => button.getAttribute("data-state") === "neutral"));
+    assert.equal(ui.window.location.searchParams.has("not-trait"), false);
+    browser.destroy();
+  }
+});
+
+test("Skills works without filter controls and clears old filters while retaining search and source sorting", () => {
+  const config = REFERENCE_TYPES.skills;
+  const library = config.create({ skills: [
+    { name: "Arcana", source: "PC1", category: "Intelligence", entries: ["Arcana description."] },
+    { name: "Athletics", source: "PC1", category: "Strength", entries: [] },
+  ] }, config);
+  const ui = environment("?category=Intelligence&not-source=PC1&sort=category", config);
+  const query = ui.document.querySelector;
+  ui.document.querySelector = selector => /filter|include|exclude/.test(selector) ? null : query(selector);
+  const browser = mountReferenceBrowser(library, { ...ui, config });
+  assert.equal(ui.get("#catalog-count").textContent, "2 skills");
+  assert.equal(ui.window.location.search, "");
+  assert.doesNotMatch(ui.get("#catalog-results").innerHTML, /catalog-result-category/);
+  ui.get("#catalog-search").value = "arcana";
+  ui.get("#catalog-search").emit("input");
+  assert.equal(ui.get("#catalog-count").textContent, "1 skill");
+  ui.get("#catalog-sort").emit("click", { target: ui.target({ catalogSort: "source" }) });
+  assert.equal(ui.window.location.searchParams.get("sort"), "source");
+  browser.select("PC1:arcana");
+  assert.match(ui.get("#catalog-detail").innerHTML, /<h2[^>]*>Arcana<\/h2><span class="reader-kind">Skill<\/span>/);
+  ui.handlers.get("document:keydown")({ key: "Escape" });
+  ui.handlers.get("document:pointerdown")({ target: ui.target({}) });
+  browser.destroy();
+});
+
+test("Backgrounds and Archetypes load their PC1 catalogs and restore named selections and filters", async t => {
+  const original = globalThis.fetch;
+  t.after(() => { globalThis.fetch = original; });
+  const payloads = Object.fromEntries(await Promise.all(["backgrounds", "archetypes", "feats"].map(async collection => [
+    `data/${collection}.json`, JSON.parse(await readFile(new URL(`../data/${collection}.json`, import.meta.url), "utf8")),
+  ])));
+  const requests = [];
+  globalThis.fetch = async path => {
+    requests.push(path);
+    return { ok: true, json: async () => payloads[path] || { rules: [] } };
+  };
+  const backgrounds = { ...REFERENCE_TYPES.backgrounds, ...BACKGROUND_BROWSER_DEFINITION };
+  const ui = environment("?background=Acolyte&source=PC1&category=Wisdom&skill=Religion", backgrounds);
+  const browser = await startReferenceBrowser({ ...ui, config: backgrounds });
+  assert.equal(browser.selectedId, "PC1:acolyte");
+  assert.match(ui.get("#catalog-detail").innerHTML, /Student of the Canon/);
+  assert.equal(ui.window.location.searchParams.get("skill"), "Religion");
+  const skill = ui.get("#catalog-filter-groups").children.find(button => button.dataset.catalogFilter === "skill" && button.dataset.filterValue === "Religion");
+  ui.get("#catalog-filter-groups").emit("contextmenu", { target: skill });
+  assert.equal(ui.window.location.searchParams.get("not-skill"), "Religion");
+  browser.destroy();
+  const archetypes = { ...REFERENCE_TYPES.archetypes, ...ARCHETYPE_BROWSER_DEFINITION };
+  const other = environment("?archetype=Wizard&source=PC1", archetypes);
+  const reader = await startReferenceBrowser({ ...other, config: archetypes });
+  assert.equal(reader.selectedId, "PC1:wizard");
+  assert.equal(other.get("#catalog-count").textContent, "8 archetypes");
+  assert.match(other.get("#catalog-detail").innerHTML, /Wizard Dedication/);
+  assert.match(other.get("#catalog-detail").innerHTML, /Master Wizard Spellcasting/);
+  assert.equal(other.previewCalls[0].feats.records.length, 885);
+  assert.equal(requests.filter(path => path === "data/feats.json").length, 1);
+  reader.destroy();
+});
+
+test("Ancestries loads English PC1 data, switches lists and restores the selected reader with history", async t => {
+  const original = globalThis.fetch;
+  t.after(() => { globalThis.fetch = original; });
+  const payloads = Object.fromEntries(await Promise.all(["ancestries", "feats"].map(async name => [
+    `data/${name}.json`, JSON.parse(await readFile(new URL(`../data/${name}.json`, import.meta.url), "utf8")),
+  ])));
+  const requests = [];
+  globalThis.fetch = async path => { requests.push(path); return { ok: true, json: async () => payloads[path] || { rules: [] } }; };
+  const config = { ...REFERENCE_TYPES.ancestries, ...ANCESTRY_BROWSER_DEFINITION, loadDefinition: undefined, mountDetail(record, _root, { library }) {
+    assert.ok(library.featsByAncestry.get(record.id).length > 0);
+    return { destroy() {} };
+  } };
+  const ui = environment("?ancestry=Dwarf&source=PC1", config);
+  const browser = await startReferenceBrowser({ ...ui, config });
+  assert.equal(browser.selectedId, "PC1:dwarf");
+  assert.equal(ui.get("#catalog-count").textContent, "8 ancestries");
+  assert.match(ui.get("#catalog-detail").innerHTML, /data-ancestry-tab="heritages"/);
+  browser.select("PC1:nephilim");
+  assert.doesNotMatch(ui.get("#catalog-detail").innerHTML, /data-ancestry-tab="heritages"/);
+  assert.equal(requests.filter(path => path === "data/feats.json").length, 1);
+  assert.equal(ui.previewCalls[0].ancestries.records.length, 12);
+  assert.equal(browser.selectedList, "versatile-heritages");
+  assert.equal(ui.get("#catalog-count").textContent, "4 versatile heritages");
+  browser.switchList("ancestries");
+  assert.equal(browser.selectedId, null);
+  browser.select("PC1:dwarf");
+  ui.window.history.replaceState(null, "", `${ui.window.location.pathname}${ui.window.location.search}&tab=heritages`);
+  const click = { target: ui.target({ catalogList: "versatile-heritages" }), preventDefault() { this.defaultPrevented = true; } };
+  ui.handlers.get("document:click")(click);
+  assert.equal(click.defaultPrevented, true);
+  assert.equal(browser.selectedId, null);
+  assert.equal(ui.window.location.searchParams.get("list"), "versatile-heritages");
+  assert.equal(ui.window.location.searchParams.has("tab"), false);
+  assert.match(ui.get("#catalog-detail").innerHTML, /Choose a versatile heritage/);
+  const listButtons = ui.get("#catalog-lists").children;
+  assert.equal(listButtons.find(button => button.dataset.catalogList === "versatile-heritages").getAttribute("aria-pressed"), "true");
+  ui.window.history.back();
+  assert.equal(browser.selectedList, "ancestries");
+  assert.equal(browser.selectedId, "PC1:dwarf");
+  assert.equal(ui.window.location.searchParams.get("tab"), "heritages");
+  assert.equal(ui.get("#catalog-count").textContent, "8 ancestries");
+  browser.destroy();
 });
 
 

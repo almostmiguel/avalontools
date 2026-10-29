@@ -1,9 +1,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { readFile } from "node:fs/promises";
 import { attachReferencePreviews, previewPosition, renderRulePreview, renderActionPreview, renderCatalogPreview } from "../js/reference-previews.js";
 import { createActionLibrary, createCatalog, renderActionBody } from "../js/reference-library.js";
 import { createRuleLibrary, renderRuleBody } from "../js/rule-library.js";
 import { renderReferenceCitation } from "../js/reference-data.js";
+import { createFeatCatalog } from "../js/feat-library.js";
+import { createClassOverviewCatalog } from "../js/class-reader.js";
+import { createAncestryCatalog } from "../js/ancestry-reader.js";
 
 const { registry } = createRuleLibrary({
   sources: [{ id: "PC1", name: "Player Core" }],
@@ -27,11 +31,13 @@ const skills = createCatalog({ sources: [{ id: "PC1", name: "Player Core" }], sk
 test("action previews share the full reader body, citation, symbols and formatting", () => {
   const action = actions.get("PC1:stride");
   const html = renderActionPreview("Stride", "PC1", actions, { registry });
-  assert.match(html, /<h2 id="rule-preview-title">Stride<\/h2><span>Actions<\/span>/);
+  assert.match(html, /<h2 id="rule-preview-title">Stride .*data-symbol="1".*<\/h2><span>Action<\/span>/);
   assert.match(html, /data-symbol="1"/);
-  assert.match(html, /class="ability-trait" role="listitem">move/);
+  assert.match(html, /data-trait-name="move"/);
   assert.match(html, /<dt>Requirements<\/dt>/);
   assert.ok(html.includes(renderReferenceCitation(action)));
+  assert.match(html, /<footer class="reader-footer">[\s\S]*Player Core[\s\S]*<\/footer>$/);
+  assert.doesNotMatch(html, /action-preview-meta|rule-preview-source/);
   assert.ok(html.includes(renderActionBody(action, actions, { registry }, { anchorPrefix: "action-preview-section" })));
   assert.match(html, /id="action-preview-section-1"/);
   assert.doesNotMatch(html, /id="action-section-1"|data-close-rule-preview|<button/);
@@ -46,11 +52,11 @@ test("previews show authored content and citation and explain missing rules", ()
   assert.match(html, /Use an action to do something/);
   assert.match(html, /Player Core/);
   assert.match(html, /· p\. 10/);
-  const citation = html.match(/<p class="rule-preview-source">([\s\S]*?)<\/p>/)[1];
+  const citation = html.match(/<p class="rule-page-source">([\s\S]*?)<\/p>/)[1];
   assert.equal(citation, renderReferenceCitation(registry.resolve("Action", "PC1").target));
   assert.doesNotMatch(citation, /<a\b|href=/);
   assert.doesNotMatch(html, /data-close-rule-preview|<button/);
-  assert.match(html, /<span>Rules<\/span><\/header>/);
+  assert.match(html, /<span>Rule<\/span><\/header>/);
   assert.match(renderRulePreview("Missing", "PC1", registry), /No matching rule has been added/);
   assert.doesNotMatch(renderRulePreview("<script>bad</script>", "PC1", registry), /<script>/);
 });
@@ -58,9 +64,9 @@ test("previews show authored content and citation and explain missing rules", ()
 test("condition and skill previews use their catalog entries and explain missing references", () => {
   const condition = renderCatalogPreview("Blinded", "PC1", conditions, { plural: "Conditions", singular: "condition" });
   const skill = renderCatalogPreview("Acrobatics", "PC1", skills, { plural: "Skills", singular: "skill" });
-  assert.match(condition, /<span>Conditions<\/span>/);
+  assert.match(condition, /<span>Condition<\/span>/);
   assert.match(condition, /You cannot see/);
-  assert.match(skill, /<span>Skills<\/span>/);
+  assert.match(skill, /<span>Skill<\/span>/);
   assert.match(skill, /Keep your balance/);
   assert.match(renderCatalogPreview("Missing", "PC1", conditions, { plural: "Conditions", singular: "condition" }), /No matching condition/);
 });
@@ -104,6 +110,27 @@ test("hover cards stay inside the viewport and move above the link when needed",
   assert.deepEqual(previewPosition({ left: 0, top: 0, bottom: 10 }, { width: 296, height: 176 }, { width: 320, height: 200 }), { left: 12, top: 12 });
 });
 
+test("ancestry hovers load once, show English mechanics and keep source and destination links", async () => {
+  const data = JSON.parse(await readFile(new URL("../data/ancestries.json", import.meta.url), "utf8"));
+  let loads = 0;
+  const env = environment({ loadAncestries: async () => { loads++; return createAncestryCatalog(data); } });
+  const link = new env.Element();
+  link.dataset = { ancestryName: "Dwarf", ancestrySource: "PC1" };
+  link.setAttribute("href", "ancestries.html?ancestry=Dwarf&source=PC1");
+  env.document.body.append(link);
+  await env.controller.show(link);
+  assert.equal(loads, 1);
+  assert.match(env.controller.panel.innerHTML, /Hit Points/);
+  assert.match(env.controller.panel.innerHTML, /20 feet/);
+  assert.match(env.controller.panel.innerHTML, /reader-footer/);
+  assert.equal(link.attributes.get("href"), "ancestries.html?ancestry=Dwarf&source=PC1");
+  env.controller.hide();
+  link.focus();
+  assert.equal(loads, 1);
+  assert.equal(env.controller.panel.hidden, false);
+  env.controller.destroy();
+});
+
 function environment(options = {}) {
   class EventTarget {
     handlers = new Map();
@@ -129,6 +156,10 @@ function environment(options = {}) {
       if (selectors.includes("[data-action-name]") && this.dataset.actionName) return this;
       if (selectors.includes("[data-condition-name]") && this.dataset.conditionName) return this;
       if (selectors.includes("[data-skill-name]") && this.dataset.skillName) return this;
+      if (selectors.includes("[data-feat-name]") && this.dataset.featName) return this;
+      if (selectors.includes("[data-class-name]") && this.dataset.className) return this;
+      if (selectors.includes("[data-trait-name]") && this.dataset.traitName) return this;
+      if (selectors.includes("[data-ancestry-name]") && this.dataset.ancestryName) return this;
       return this.parent?.closest(selector) || null;
     }
     getBoundingClientRect() { return this.rect; }
@@ -219,7 +250,7 @@ test("action hover and keyboard focus use the shared panel without intercepting 
   env.document.emit("pointerover", { target: link, pointerType: "mouse" });
   env.flush();
   assert.equal(env.controller.panel.hidden, false);
-  assert.match(env.controller.panel.innerHTML, /<span>Actions<\/span>/);
+  assert.match(env.controller.panel.innerHTML, /<span>Action<\/span>/);
   assert.equal(env.controller.panel.dataset.referenceKind, "action");
   env.document.emit("pointerout", { target: link });
   env.controller.panel.emit("pointerenter"); env.flush();
@@ -257,6 +288,137 @@ test("condition and skill links show shared hover previews without changing thei
   assert.equal(skill.attributes.get("href"), skillHref);
 });
 
+test("trait previews load once, support hover and keyboard focus, and retain navigation", async t => {
+  const original = globalThis.fetch; t.after(() => { globalThis.fetch = original; });
+  const data = JSON.parse(await readFile(new URL("../data/traits.json", import.meta.url), "utf8"));
+  const requests = [];
+  globalThis.fetch = async path => { requests.push(path); return { ok: true, json: async () => data }; };
+  const env = environment({ registry: undefined });
+  const link = new env.Element(); link.dataset = { traitName: "Fire", traitSource: "PC1" };
+  const href = "traits.html?trait=Fire&source=PC1"; link.setAttribute("href", href); env.document.body.append(link);
+  const loading = env.controller.show(link);
+  assert.match(env.controller.panel.innerHTML, /Loading trait/);
+  await loading;
+  assert.deepEqual(requests, ["data/traits.json"]);
+  assert.equal(env.controller.panel.dataset.referenceKind, "trait");
+  assert.match(env.controller.panel.innerHTML, /fire damage/);
+  env.controller.hide();
+  env.document.emit("pointerover", { target: link, pointerType: "mouse" }); env.flush();
+  assert.equal(env.controller.panel.hidden, false);
+  env.controller.hide(); link.focus();
+  assert.equal(env.controller.panel.hidden, false);
+  env.document.emit("keydown", { key: "Escape" });
+  assert.equal(env.controller.panel.hidden, true);
+  assert.equal(requests.length, 1);
+  assert.equal(link.attributes.get("href"), href);
+  env.controller.destroy();
+});
+
+test("trait badges inside previews open a separate card and close with their parent", () => {
+  const traits = createCatalog({ traits: [{ name: "Move", source: "PC1", entries: ["Movement trait description."] }] }, { collection: "traits", href: "traits.html" });
+  const env = environment({ actions, traits });
+  const original = actionLink(env);
+  env.controller.show(original);
+  const parentBody = env.controller.panel.innerHTML;
+  const badge = new env.Element(); badge.dataset = { traitName: "Move", traitSource: "" };
+  badge.setAttribute("href", "traits.html?trait=Move"); env.controller.panel.append(badge);
+  env.document.emit("pointerover", { target: badge, pointerType: "mouse" }); env.flush();
+  const nested = env.document.body.children.find(child => child.id === "trait-preview");
+  assert.ok(nested);
+  assert.equal(nested.hidden, false);
+  assert.match(nested.innerHTML, /Movement trait description/);
+  assert.match(nested.innerHTML, /id="trait-preview-title"/);
+  assert.equal(env.controller.panel.innerHTML, parentBody);
+  assert.equal(env.controller.panel.hidden, false);
+  env.controller.hide(); assert.equal(nested.hidden, true);
+  env.controller.show(original); badge.focus();
+  assert.equal(nested.hidden, false);
+  nested.focus();
+  env.document.emit("keydown", { key: "Escape" });
+  assert.equal(env.controller.panel.hidden, true);
+  assert.equal(nested.hidden, true);
+  assert.equal(env.document.activeElement, original);
+  assert.equal(badge.attributes.get("href"), "traits.html?trait=Move");
+  env.controller.destroy();
+  assert.ok(!env.document.body.children.includes(nested));
+});
+
+test("feat hover loads once, includes metadata and ignores results after dismissal", async () => {
+  const feats = createFeatCatalog({ feats: [{ name: "Sudden Charge", source: "PC1", page: 141, level: 1, traits: ["fighter"], activity: { number: 2, unit: "action" }, prerequisites: "Strength +1", entries: ["Sprint forward."] }] });
+  let loads = 0, finish;
+  const pending = new Promise(resolve => { finish = resolve; });
+  const env = environment({ registry: undefined, loadFeats: () => { loads++; return pending; } });
+  const link = env.document.createElement("a"); link.dataset = { featName: "Sudden Charge", featSource: "PC1" }; link.setAttribute("href", "feats.html?feat=Sudden+Charge&source=PC1"); env.document.body.append(link);
+  link.focus();
+  assert.equal(env.controller.panel.dataset.referenceKind, "feat");
+  assert.match(env.controller.panel.innerHTML, /Loading feat/);
+  env.controller.hide(); finish(feats);
+  await pending; await Promise.resolve();
+  assert.equal(env.controller.panel.hidden, true);
+  await env.controller.show(link);
+  assert.equal(loads, 1);
+  assert.match(env.controller.panel.innerHTML, /Sprint forward/);
+  assert.match(env.controller.panel.innerHTML, /data-symbol="2"/);
+  assert.match(env.controller.panel.innerHTML, /Prerequisites/);
+  assert.equal(link.attributes.get("href"), "feats.html?feat=Sudden+Charge&source=PC1");
+  env.controller.destroy();
+});
+
+test("class hover loads only class data once, supports keyboard focus and keeps navigation", async t => {
+  const original = globalThis.fetch; t.after(() => { globalThis.fetch = original; });
+  const data = JSON.parse(await readFile(new URL("../data/classes.json", import.meta.url), "utf8"));
+  const requests = [];
+  globalThis.fetch = async path => { requests.push(path); return { ok: true, json: async () => data }; };
+  const env = environment({ registry: undefined });
+  const link = new env.Element(); link.dataset = { className: "Wizard", classSource: "PC1" };
+  const href = "classes.html?class=Wizard&source=PC1"; link.setAttribute("href", href); env.document.body.append(link);
+  assert.equal(requests.length, 0);
+  const loading = env.controller.show(link);
+  assert.match(env.controller.panel.innerHTML, /Loading class/);
+  await loading;
+  assert.deepEqual(requests, ["data/classes.json"]);
+  assert.equal(env.controller.panel.dataset.referenceKind, "class");
+  assert.match(env.controller.panel.innerHTML, /Intelligence/);
+  assert.match(env.controller.panel.innerHTML, /6 \+ Constitution per level/);
+  assert.match(env.controller.panel.innerHTML, /img\/classes\/wizard.webp/);
+  env.controller.hide();
+  env.document.emit("pointerover", { target: link, pointerType: "mouse" }); env.flush();
+  assert.equal(env.controller.panel.hidden, false);
+  assert.match(env.controller.panel.innerHTML, /Wizard/);
+  env.controller.hide(); link.focus();
+  assert.equal(env.controller.panel.hidden, false);
+  env.document.emit("keydown", { key: "Escape" });
+  assert.equal(env.controller.panel.hidden, true);
+  assert.equal(link.attributes.get("href"), href);
+  assert.deepEqual(requests, ["data/classes.json"]);
+  env.controller.destroy();
+
+  const cached = environment({ classes: createClassOverviewCatalog(data), loadClasses: () => { throw new Error("Must reuse supplied classes"); } });
+  const cachedLink = new cached.Element(); cachedLink.dataset = link.dataset;
+  await cached.controller.show(cachedLink);
+  assert.match(cached.controller.panel.innerHTML, /Intelligence/);
+  cached.controller.destroy();
+});
+
+test("failed class previews keep links usable, retry and cannot reopen after dismissal", async () => {
+  const classes = createClassOverviewCatalog(JSON.parse(await readFile(new URL("../data/classes.json", import.meta.url), "utf8")));
+  let attempts = 0, finish;
+  const pending = new Promise(resolve => { finish = resolve; });
+  const env = environment({ loadClasses: () => ++attempts === 1 ? Promise.reject(new Error("Offline")) : pending });
+  const link = new env.Element(); link.dataset = { className: "Fighter", classSource: "PC1" };
+  link.setAttribute("href", "classes.html?class=Fighter");
+  await env.controller.show(link);
+  assert.match(env.controller.panel.innerHTML, /Unable to load this preview/);
+  assert.equal(link.attributes.get("href"), "classes.html?class=Fighter");
+  env.controller.hide();
+  const loading = env.controller.show(link); env.controller.hide(); finish(classes); await loading;
+  assert.equal(env.controller.panel.hidden, true);
+  await env.controller.show(link);
+  assert.match(env.controller.panel.innerHTML, /10 \+ Constitution per level/);
+  assert.equal(attempts, 2);
+  env.controller.destroy();
+});
+
 test("action previews work without a rule library, including on the Actions page", () => {
   const env = environment({ actions, registry: undefined });
   const link = actionLink(env);
@@ -280,7 +442,7 @@ test("action data loads on first action hover, once, and stale results cannot re
   resolve(actions);
   await Promise.all([pendingFirst, pendingSecond]);
   assert.equal(loads, 1);
-  assert.match(env.controller.panel.innerHTML, /<h2 id="rule-preview-title">Aid<\/h2>/);
+  assert.match(env.controller.panel.innerHTML, /<h2 id="rule-preview-title">Aid .*data-symbol="r".*<\/h2>/);
   assert.match(env.controller.panel.innerHTML, /data-symbol="r"/);
   env.controller.show(first);
   assert.match(env.controller.panel.innerHTML, /Move up to your Speed/);

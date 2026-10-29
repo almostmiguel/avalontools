@@ -12,11 +12,6 @@
 .action-result-category small { display: block; margin-top: .15rem; font-size: .62rem; }
 .action-time { display: inline-flex; align-items: center; justify-content: center; min-width: 0; color: var(--content-heading); font: .72rem/1.35 var(--font-ui); text-align: center; }
 .action-time .action-symbol { font-size: 1.25rem; }
-.action-category-label { margin: 0 0 .65rem; color: var(--accent); font: 600 .7rem/1.5 var(--font-ui); }
-.action-category-label > span { color: var(--content-muted); font-weight: 400; }
-#action-detail .rule-title-row { align-items: center; }
-#action-detail .rule-title-row > .action-time { flex-shrink: 0; margin-left: 1rem; font-size: .85rem; }
-#action-detail .rule-title-row .action-symbol { font-size: 1.6rem; }
 @media (max-width: 1100px) {
   .actions-list-columns, .action-result { grid-template-columns: minmax(0, 1fr) 75px 52px 35px; gap: .35rem; }
 }

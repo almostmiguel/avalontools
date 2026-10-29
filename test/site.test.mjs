@@ -11,7 +11,7 @@ const read = path => readFile(new URL(path, root), "utf8");
 test("inline formatting is nested, escaped, and has no dead entity links", () => {
   assert.equal(renderInline("A {@b bold {@i word}}."), "A <strong>bold <em>word</em></strong>.");
   assert.equal(renderInline("{@spell fireball|PC1|Fireball}"), "<em>Fireball</em>");
-  assert.equal(renderInline("{@trait fire|PC1}"), "fire");
+  assert.match(renderInline("{@trait fire|PC1}"), /href="traits.html\?trait=fire&amp;source=PC1"/);
   assert.equal(renderInline("{@dice 1d20|a check}"), "a check");
   assert.equal(renderInline("{@dc 15}"), "DC 15");
   assert.equal(renderInline("{@hit 3}"), "+3");
@@ -70,7 +70,7 @@ test("spell tags automatically italicize names and custom labels without changin
   assert.equal(renderInline("{@spell light|PC1|{@b Light}}"), "<em><strong>Light</strong></em>");
   assert.equal(renderInline("{@spell <script>unsafe</script>}"), "<em>&lt;script&gt;unsafe&lt;/script&gt;</em>");
   assert.equal(renderInline("{@code {@spell light}}"), "<code>{@spell light}</code>");
-  assert.equal(renderInline("{@trait fire|PC1}"), "fire");
+  assert.match(renderInline("{@trait fire|PC1}"), /href="traits.html\?trait=fire&amp;source=PC1"/);
   const { html } = renderContent({ entries: [
     "Cast {@spell light}.",
     { type: "list", style: "list-no-bullets", items: ["Cast {@spell light|PC1}."] },
@@ -272,7 +272,7 @@ test("decorative rule boxes support titles and nested entries", () => {
 
 
 test("public pages expose working navigation and load existing relative assets", async () => {
-  for (const path of ["index.html", "rules.html", "rule.html", "actions.html", "conditions.html", "skills.html"]) {
+  for (const path of ["index.html", "rules.html", "rule.html", "actions.html", "conditions.html", "skills.html", "classes.html", "feats.html", "traits.html", "backgrounds.html", "archetypes.html", "ancestries.html"]) {
     const html = await read(path);
     assert.match(html, /<html\b[^>]*lang="en"/);
     const navigation = html.match(/<nav\b[^>]*aria-label="Main navigation"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
@@ -317,7 +317,7 @@ test("the local server serves current pages, data and fonts while blocking priva
   });
   t.after(() => new Promise(resolve => { server.close(resolve); server.closeAllConnections(); }));
   const base = `http://127.0.0.1:${server.address().port}`;
-  for (const path of ["/", "/rules.html", "/actions.html", "/conditions.html", "/skills.html", "/actions.html?id=PC1:stride", "/rules.html?id=PC1:rolling-checks", "/css/site.css", "/css/home.css", "/css/rules.css", "/css/actions.css", "/css/catalog.css",
+  for (const path of ["/", "/rules.html", "/actions.html", "/conditions.html", "/skills.html", "/classes.html", "/feats.html", "/backgrounds.html", "/archetypes.html", "/ancestries.html", "/data/ancestries.json", "/js/ancestry-reader.js", "/data/backgrounds.json", "/data/archetypes.json", "/js/character-library.js", "/feats.html?trait=wizard", "/data/feats.json", "/js/feat-library.js", ...["bard", "cleric", "druid", "fighter", "ranger", "rogue", "witch", "wizard"].map(name => `/img/classes/${name}.webp`), "/classes.html?id=PC1%3Awizard&tab=options", "/css/classes.css", "/js/class-reader.js", "/data/classes.json", "/actions.html?id=PC1:stride", "/rules.html?id=PC1:rolling-checks", "/css/site.css", "/css/home.css", "/css/rules.css", "/css/actions.css", "/css/catalog.css",
     "/js/site-shell.js", "/js/content-renderer.js", "/js/rule-browser.js", "/js/rule-library.js", "/js/reference-previews.js", "/js/reference-data.js", "/js/reference-browser.js", "/js/reference-library.js", "/data/rules.json", "/data/actions.json", "/data/actions.schema.json", "/data/conditions.json", "/data/skills.json"]) {
     const response = await fetch(`${base}${path}`);
     assert.equal(response.status, 200, path);

@@ -22,7 +22,7 @@
       "traits": [
         "manipulate"
       ],
-      "requirements": "You're wearing or holding a {@item healer's toolkit}.",
+      "requirements": "You're wearing or holding a {@equipment healer's toolkit}.",
       "entries": [
         "You perform first aid on an adjacent creature that is {@condition dying} or {@condition persistent damage|bleeding}. If a creature is both {@condition dying} and {@condition persistent damage|bleeding}, choose which ailment you're trying to treat before you roll. You can Administer First Aid again to attempt to remedy the other effect.",
         {
@@ -578,9 +578,9 @@
           "type": "entries",
           "name": "Crafting Example",
           "entries": [
-            "Ezren is a 5th-level wizard and an expert in {@skill Crafting}. He has a {@skill Crafting} modifier of +13 and the {@feat Magical Crafting} feat. With 2 weeks of downtime ahead of him, he decides to craft a {@item striking} rune, a 4th-level item. The GM secretly chooses a DC of 19.",
+            "Ezren is a 5th-level wizard and an expert in {@skill Crafting}. He has a {@skill Crafting} modifier of +13 and the {@feat Magical Crafting} feat. With 2 weeks of downtime ahead of him, he decides to craft a {@equipment striking} rune, a 4th-level item. The GM secretly chooses a DC of 19.",
             "The item has a Price of 65 gp, so Ezren prepares 32 gp, 5 sp worth of raw materials. He has another 32 gp, 5 sp worth of raw materials on hand. After spending 1 day building and incanting spells, he rolls a 12 on his {@skill Crafting} check, for a result of 25. That's a success! At this point, Ezren can spend the additional 32 gp, 5 sp worth of materials to complete the item immediately for 65 gp.",
-            "However, Ezren has 13 more days on his hands, so he decides to spend additional time to complete the item. Because he's a 5th-level character and an expert at {@skill Crafting}, he reduces the amount he has to pay by 1 gp for each day spent. After spending 13 days working, he reduces the total cost to complete the item from 65 gp to 52 gp. He spends the remaining portion of its Price in materials, completes the {@item striking} rune, and goes out on his next adventure. (He could have stayed home to keep working on the {@item striking} rune, eventually reducing the item's total Price to just the half he paid up front, but adventuring is far more lucrative!)",
+            "However, Ezren has 13 more days on his hands, so he decides to spend additional time to complete the item. Because he's a 5th-level character and an expert at {@skill Crafting}, he reduces the amount he has to pay by 1 gp for each day spent. After spending 13 days working, he reduces the total cost to complete the item from 65 gp to 52 gp. He spends the remaining portion of its Price in materials, completes the {@equipment striking} rune, and goes out on his next adventure. (He could have stayed home to keep working on the {@equipment striking} rune, eventually reducing the item's total Price to just the half he paid up front, but adventuring is far more lucrative!)",
             "If Ezren's {@skill Crafting} check result were a 29 or higher, he'd have gotten a critical success. In that case, he'd reduce the remaining amount by 2 gp per day (the amount for a 6th-level expert), lowering the amount needed to complete the item after 13 additional days of work to 39 gp."
           ]
         }
@@ -869,7 +869,7 @@
         "manipulate"
       ],
       "entries": [
-        "This action allows you to disarm a trap or another complex device. Often, a device requires numerous successes before becoming disabled, depending on its construction and complexity. A {@item thieves' toolkit} is helpful and sometimes even required to Disable a Device, as determined by the GM, and sometimes a device requires a higher proficiency rank in {@skill Thievery} to disable it.",
+        "This action allows you to disarm a trap or another complex device. Often, a device requires numerous successes before becoming disabled, depending on its construction and complexity. A {@equipment thieves' toolkit} is helpful and sometimes even required to Disable a Device, as determined by the GM, and sometimes a device requires a higher proficiency rank in {@skill Thievery} to disable it.",
         "Your {@skill Thievery} check result determines your progress.",
         {
           "type": "list",
@@ -1222,7 +1222,7 @@
         "attack"
       ],
       "entries": [
-        "Using your body, a lever, or some other tool, you attempt to forcefully open a door, window, container or heavy gate. With a high enough result, you can even smash through walls. Without a {@item crowbar}, prying something open takes a –2 item penalty to the {@skill Athletics} check to Force Open.",
+        "Using your body, a lever, or some other tool, you attempt to forcefully open a door, window, container or heavy gate. With a high enough result, you can even smash through walls. Without a {@equipment crowbar}, prying something open takes a –2 item penalty to the {@skill Athletics} check to Force Open.",
         {
           "type": "list",
           "style": "list-no-bullets",
@@ -1513,9 +1513,9 @@
         "exploration",
         "secret"
       ],
-      "requirements": "You are holding or wearing an {@item alchemist's toolkit}.",
+      "requirements": "You are holding or wearing an {@equipment alchemist's toolkit}.",
       "entries": [
-        "You can identify the nature of an alchemical item with 10 minutes of testing using your {@item alchemist's toolkit}. If your attempt is interrupted in any way, you must start over",
+        "You can identify the nature of an alchemical item with 10 minutes of testing using your {@equipment alchemist's toolkit}. If your attempt is interrupted in any way, you must start over",
         {
           "type": "list",
           "style": "list-no-bullets",
@@ -1616,7 +1616,7 @@
         "secret"
       ],
       "entries": [
-        "You create a disguise to pass yourself off as someone or something you are not. Assembling a convincing disguise takes 10 minutes and requires a {@item disguise kit}, but a simpler, quicker disguise might do the job if you're not trying to imitate a specific individual, at the GM's discretion.",
+        "You create a disguise to pass yourself off as someone or something you are not. Assembling a convincing disguise takes 10 minutes and requires a {@equipment disguise kit}, but a simpler, quicker disguise might do the job if you're not trying to imitate a specific individual, at the GM's discretion.",
         "In most cases, creatures have a chance to detect your deception only if they use the {@action Seek} action to attempt {@skill Perception} checks against your {@skill Deception} DC. If you attempt to directly interact with someone while disguised, the GM rolls a secret {@skill Deception} check for you against that creature's {@skill Perception} DC instead.",
         "If you're disguised as a specific individual, the GM might give creatures you interact with a circumstance bonus based on how well they know the person you're imitating, or the GM might roll a secret {@skill Deception} check even if you aren't directly interacting with others.",
         {
@@ -2171,7 +2171,7 @@
       "traits": [
         "manipulate"
       ],
-      "requirements": "You're holding or wearing a {@item thieves' tools}.",
+      "requirements": "You're holding or wearing a {@equipment thieves' tools}.",
       "entries": [
         "Opening a lock without a key is very similar to {@action Disable a Device|Disabling a Device}, but the DC of the check is determined by the complexity and construction of the lock you are attempting to pick (locks and their DCs are found on page 288). Locks of higher quality might require multiple successes to unlock. If you lack the proper tools, the GM might let you use improvised picks, which are treated as a shoddy toolkit.",
         {
@@ -2194,7 +2194,7 @@
               "type": "item",
               "style": "hanging",
               "name": "Critical Failure",
-              "entry": "You break your toolkit and leave behind obvious damage. Fixing a broken toolkit requires using {@skill Crafting} to {@action Repair} it or else swapping in replacement picks (costing 3 sp, or 3 gp for {@item infiltrator thieves' tools})."
+              "entry": "You break your toolkit and leave behind obvious damage. Fixing a broken toolkit requires using {@skill Crafting} to {@action Repair} it or else swapping in replacement picks (costing 3 sp, or 3 gp for {@equipment infiltrator thieves' tools})."
             }
           ]
         }
@@ -2370,7 +2370,7 @@
         "exploration",
         "manipulate"
       ],
-      "requirements": "You are holding or wearing a {@item repair toolkit}.",
+      "requirements": "You are holding or wearing a {@equipment repair toolkit}.",
       "entries": [
         "You spend 10 minutes attempting to fix a damaged item, placing the item on a stable surface and using the repair toolkit with both hands. Roll a {@skill Crafting} check. The GM sets the DC, but it's usually about the same DC to Repair a given item as it is to {@action Craft} it in the first place. You can't Repair a destroyed item.",
         {
@@ -2599,7 +2599,7 @@
         "secret"
       ],
       "entries": [
-        "Using the stars, the position of the sun, traits of the geography or flora, or the behavior of fauna, you can stay oriented in the wild. Typically, you attempt a {@skill Survival} check only once per day, but some environments or changes might necessitate rolling more often. The GM determines the DC and how long this activity takes (usually just a minute or so). More unusual locales or those you're unfamiliar with might require you to have a minimum proficiency rank to Sense Direction. Without a {@item compass}, you take a –2 item penalty to checks to Sense Direction.",
+        "Using the stars, the position of the sun, traits of the geography or flora, or the behavior of fauna, you can stay oriented in the wild. Typically, you attempt a {@skill Survival} check only once per day, but some environments or changes might necessitate rolling more often. The GM determines the DC and how long this activity takes (usually just a minute or so). More unusual locales or those you're unfamiliar with might require you to have a minimum proficiency rank to Sense Direction. Without a {@equipment compass}, you take a –2 item penalty to checks to Sense Direction.",
         {
           "type": "list",
           "style": "list-no-bullets",
@@ -3134,7 +3134,7 @@
         "downtime",
         "manipulate"
       ],
-      "requirements": "You're wearing or holding a {@item healer's toolkit}.",
+      "requirements": "You're wearing or holding a {@equipment healer's toolkit}.",
       "entries": [
         "You spend at least 8 hours caring for a diseased creature. Attempt a {@skill Medicine} check against the disease's DC. After you attempt to Treat a Disease for a creature, you can't try again until after that creature's next save against the disease.",
         {
@@ -3178,7 +3178,7 @@
       "traits": [
         "manipulate"
       ],
-      "requirements": "You're wearing or holding a {@item healer's toolkit}.",
+      "requirements": "You're wearing or holding a {@equipment healer's toolkit}.",
       "entries": [
         "You treat a patient to prevent the spread of poison. Attempt a {@skill Medicine} check against the poison's DC. After you attempt to Treat a Poison for a creature, you can't try again until after the next time that creature attempts a save against the poison.",
         {
@@ -3224,7 +3224,7 @@
         "healing",
         "manipulate"
       ],
-      "requirements": "You're wearing or holding a {@item healer's toolkit}.",
+      "requirements": "You're wearing or holding a {@equipment healer's toolkit}.",
       "entries": [
         "You spend 10 minutes treating one injured living creature (targeting yourself, if you so choose). The target is then temporarily immune to Treat Wounds actions for 1 hour, but this interval overlaps with the time you spent treating (so a patient can be treated once per hour, not once per 70 minutes).",
         "The {@skill Medicine} check DC is usually 15, though the GM might adjust it based on the circumstances, such as treating a patient outside in a storm, or treating magically cursed wounds. If you're an expert in {@skill Medicine}, you can instead attempt a DC 20 check to increase the Hit Points regained by 10; if you're a master of {@skill Medicine}, you can instead attempt a DC 30 check to increase the Hit Points regained by 30; and if you're legendary, you can instead attempt a DC 40 check to increase the Hit Points regained by 50. The damage dealt on a critical failure remains the same.",

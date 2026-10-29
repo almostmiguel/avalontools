@@ -30,7 +30,7 @@ export function createServer(root = projectRoot) {
       const segments = path.split("/");
       if (segments.some(segment => segment.startsWith(".")) || /[\\\u0000]/u.test(path)) return fail(404, "Not found");
       const name = path === "/" ? "index.html" : path.slice(1);
-      if (!["index.html", "rules.html", "rule.html", "actions.html", "conditions.html", "skills.html", "reference-palette.html"].includes(name) && !/^(css|js|data|img|fonts)\//.test(name)) return fail(404, "Not found");
+      if (!["index.html", "rules.html", "rule.html", "actions.html", "conditions.html", "skills.html", "classes.html", "feats.html", "traits.html", "backgrounds.html", "archetypes.html", "ancestries.html", "reference-palette.html"].includes(name) && !/^(css|js|data|img|fonts)\//.test(name)) return fail(404, "Not found");
       const type = types[extname(name).toLowerCase()];
       if (!type) return fail(404, "Not found");
       const target = await realpath(resolve(absoluteRoot, name));

@@ -1,6 +1,6 @@
 // Hierarchical rule browsing, chapter reading and standalone rule views.
 import { escapeHtml } from "./content-renderer.js";
-import { loadJson, renderReferenceCitation } from "./reference-data.js";
+import { loadJson, renderReaderHeading, renderReaderFooter } from "./reference-data.js";
 import { findChapter, renderChapter } from "./chapter-reader.js";
 import { attachReferencePreviews } from "./reference-previews.js";
 import { createRuleLibrary, chapterHref, renderBrowse, renderRulePath, browseBranchIds, renderRuleContent, renderRuleOutline, RULE_KINDS, searchRules } from "./rule-library.js";
@@ -27,7 +27,7 @@ const dismissOutlineOutside = (document, event) => {
 function ruleArticle(rule, library, embedded = false, starred = false) {
   const tag = embedded ? "h2" : "h1";
   const content = renderRuleContent(rule, library);
-  return `<header class="rule-page-heading">${renderRulePath(rule, library)}<div class="rule-title-row"><${tag}${embedded ? ' id="rule-detail-title"' : ""}>${escapeHtml(rule.name)}</${tag}></div><div class="rule-meta-row"><p class="rule-page-source">${renderReferenceCitation(rule)}<span class="rule-meta-kind rule-kind--${rule.kind}">${RULE_KINDS[rule.kind]}</span></p><div class="rule-reader-tools">${renderRuleOutline(content.headings)}${renderStarButton(rule, starred)}</div></div></header><article class="rich-content rule-page-content">${content.html}</article>`;
+  return `${renderReaderHeading(rule, { tag, id: "rule-detail-title", kind: "Rule", tools: renderRuleOutline(content.headings) + renderStarButton(rule, starred), after: renderRulePath(rule, library) })}<article class="rich-content rule-page-content">${content.html}</article>${renderReaderFooter(rule, { metadata: `<span class="rule-meta-kind rule-kind--${rule.kind}">${RULE_KINDS[rule.kind]}</span>` })}`;
 }
 
 export function mountRuleBrowser(library, { document, window, attachPreviews = attachReferencePreviews }) {

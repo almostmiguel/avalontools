@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse all Player Core backgrounds by attribute boosts and trained skills.">
+  <title>Backgrounds · Avalon</title>
+  <script src="js/site-shell.js"></script>
+  <link rel="preload" href="fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/Gin-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="stylesheet" href="css/rules.css">
+  <link rel="stylesheet" href="css/catalog.css">
+  <script type="module" src="js/reference-browser.js"></script>
+  <script type="module" src="js/image-viewer.js"></script>
+</head>
+<body data-page="backgrounds" data-catalog="backgrounds" data-reference-kind="background">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html" aria-label="Avalon home"><span class="brand-mark" aria-hidden="true">✧</span>Avalon</a>
+      <nav aria-label="Main navigation" id="navigation">
+        <a class="nav-home nav-direct" href="rules.html" data-reference-kind="rule">Rules</a>
+        <details class="nav-menu" id="player-menu" name="main-navigation"><summary class="nav-home">Player<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="img/icons/lucide.svg#chevron-down"></use></svg></summary><div class="nav-panel"><a href="ancestries.html" data-reference-kind="ancestry">Ancestries</a><a href="archetypes.html" data-reference-kind="archetype">Archetypes</a><a href="backgrounds.html" aria-current="page" data-reference-kind="background">Backgrounds</a><a href="classes.html" data-reference-kind="class">Classes</a><a href="feats.html" data-reference-kind="feat">Feats</a></div></details>
+        <details class="nav-menu" id="game-master-menu" name="main-navigation"><summary class="nav-home">Game Master<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="img/icons/lucide.svg#chevron-down"></use></svg></summary><div class="nav-panel"><span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="affliction"><span>Afflictions</span><small>Coming soon</small></span><span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="creature"><span>Creatures</span><small>Coming soon</small></span><span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="hazard"><span>Hazards</span><small>Coming soon</small></span></div></details>
+        <details class="nav-menu" id="reference-menu" name="main-navigation"><summary class="nav-home">References<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="img/icons/lucide.svg#chevron-down"></use></svg></summary><div class="nav-panel"><a href="actions.html" data-reference-kind="action">Actions</a><a href="conditions.html" data-reference-kind="condition">Conditions</a><span class="nav-pending" role="link" aria-disabled="true" data-reference-kind="equipment"><span>Equipment</span><small>Coming soon</small></span><a href="skills.html" data-reference-kind="skill">Skills</a><a href="traits.html" data-reference-kind="trait">Traits</a></div></details>
+      </nav>
+      <details class="settings-menu" id="site-settings"><summary aria-label="Settings" title="Appearance settings"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="img/icons/lucide.svg#sliders-horizontal"></use></svg><span>Settings</span></summary><div class="settings-panel"><p class="settings-heading">Appearance</p><div class="theme-options" role="group" aria-label="Color theme"><button type="button" data-theme-choice="dark" aria-pressed="true">Dark</button><button type="button" data-theme-choice="light" aria-pressed="false">Light</button></div><p class="settings-note">Remembered on this browser.</p><p class="sr-only" id="theme-status" role="status" aria-live="polite"></p></div></details>
+    </div>
+  </header>
+  <main id="main" class="rules-library" aria-busy="true">
+    <header class="rules-intro"><div><h1>Backgrounds</h1><p class="rules-description">Choose the story that shaped your character.</p></div><p id="catalog-summary" class="library-summary" role="status">Loading backgrounds…</p></header>
+    <div class="rules-browser catalog-browser">
+      <section class="rules-list-pane" aria-labelledby="catalog-results-title">
+        <form id="catalog-search-form" class="rules-search-form" action="backgrounds.html" role="search">
+          <div class="rules-search-toolbar"><div class="rules-search-field"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="img/icons/lucide.svg#search"></use></svg><label class="sr-only" for="catalog-search">Search backgrounds</label><input id="catalog-search" name="q" type="search" placeholder="Search backgrounds…" autocomplete="off"><button id="catalog-clear" type="button">Clear</button></div><details id="catalog-filter-menu" class="rules-filter-menu"><summary id="catalog-filter-summary"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="img/icons/lucide.svg#list-filter"></use></svg>Filters <span id="catalog-filter-count"></span></summary><div class="rules-filter-panel"><div class="filter-panel-heading"><strong>Filter backgrounds</strong><button id="catalog-filter-reset" type="button">Reset filters</button></div><div class="filter-mode" role="group" aria-label="Filter selection mode"><button id="catalog-include" type="button" aria-pressed="true">+ Include</button><button id="catalog-exclude" type="button" aria-pressed="false">− Exclude</button></div><p class="filter-help">Choose a mode, then select options. Select again to clear. Shift-click or right-click also excludes.</p><p class="filter-help">Match any included option in each group. Exclusions always win.</p><div id="catalog-filter-groups"></div></div></details></div>
+          <div id="catalog-active-filters" class="rules-active-filters" role="group" aria-label="Active background filters" hidden></div><button class="sr-only" type="submit">Search</button>
+        </form>
+        <header class="results-heading"><h2 id="catalog-results-title">All backgrounds</h2><p id="catalog-count" role="status" aria-live="polite" aria-atomic="true"></p></header>
+        <div class="rules-results-scroll"><div id="catalog-sort" class="rules-list-columns catalog-list-columns" role="group" aria-label="Sort backgrounds"><button class="rule-sort" data-catalog-sort="name" type="button"><span>Name</span></button><button class="rule-sort" data-catalog-sort="category" type="button"><span>Attributes</span></button><button class="rule-sort" data-catalog-sort="source" type="button"><span>Source</span></button></div><div id="catalog-results"><p class="muted" role="status">Loading backgrounds…</p></div></div>
+      </section>
+      <section id="catalog-detail" class="rule-article rules-detail" tabindex="-1" aria-labelledby="catalog-detail-title"><div class="rules-detail-empty"><span class="empty-sigil" aria-hidden="true">✧</span><h2 id="catalog-detail-title">Choose a background</h2><p>Select a background to read its full entry here.</p></div></section>
+    </div>
+    <p id="catalog-selection-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+    <footer class="site-footer"><span>Avalon · 2026</span><span>Pathfinder · Second Edition</span></footer>
+  </main>
+  <noscript><p class="notice">Enable JavaScript to search and browse backgrounds.</p></noscript>
+</body>
+</html>

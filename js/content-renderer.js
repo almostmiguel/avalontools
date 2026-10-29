@@ -49,6 +49,12 @@ function renderTag(body, options) {
     action: { noun: "Action", href: "actions.html", parameter: "action", resolver: "resolveAction" },
     condition: { noun: "Condition", href: "conditions.html", parameter: "condition", resolver: "resolveCondition" },
     skill: { noun: "Skill", href: "skills.html", parameter: "skill", resolver: "resolveSkill" },
+    class: { noun: "Class", href: "classes.html", parameter: "class", resolver: "resolveClass" },
+    feat: { noun: "Feat", href: "feats.html", parameter: "feat", resolver: "resolveFeat" },
+    trait: { noun: "Trait", href: "traits.html", parameter: "trait", resolver: "resolveTrait" },
+    background: { noun: "Background", href: "backgrounds.html", parameter: "background", resolver: "resolveBackground" },
+    archetype: { noun: "Archetype", href: "archetypes.html", parameter: "archetype", resolver: "resolveArchetype" },
+    ancestry: { noun: "Ancestry", href: "ancestries.html", parameter: "ancestry", resolver: "resolveAncestry" },
   };
   if (Object.hasOwn(references, tag)) {
     const reference = references[tag];
@@ -119,6 +125,17 @@ export function inlineText(value) {
   return renderInline(value).replace(/<[^>]*>/g, "").replace(/&(amp|lt|gt|quot|#39);/g, (_, entity) => entities[entity]);
 }
 
+export function renderTraitBadges(traits, options = {}) {
+  const names = Array.isArray(traits) ? traits.filter(trait => typeof trait === "string" && trait.trim()) : [];
+  if (!names.length) return "";
+  return `<div class="ability-traits" role="list" aria-label="Traits">${names.map(trait => {
+    const tag = /^\s*\{@trait\s/i.test(trait) ? trait : `{@trait ${trait}}`;
+    const name = inlineText(splitArguments(tag.trim().slice(2, -1).replace(/^trait\s+/i, ""))[0]).trim().toLowerCase();
+    const tone = ["uncommon", "rare", "unique", "secret"].includes(name) ? ` data-trait-badge="${name}"` : "";
+    return `<span class="ability-trait" role="listitem"${tone}>${renderInline(tag, options)}</span>`;
+  }).join("")}</div>`;
+}
+
 export function renderContent(content, options = {}) {
   const headings = [];
   let outlineDepth = 0;
@@ -172,13 +189,13 @@ export function renderContent(content, options = {}) {
       const kind = spell ? (Object.hasOwn(spellTypes, entry.spellType) ? spellTypes[entry.spellType] : "Spell") : typeof entry.kind === "string" ? entry.kind.trim() : "";
       const rank = typeof entry.level === "string" ? entry.level.trim() : Number.isInteger(entry.level) && entry.level >= 0 ? String(entry.level) : "";
       const classification = [kind, rank].filter(Boolean).join(" ");
-      const title = heading(entry.name || (spell ? "Spell" : "Ability"), level, entry, {
+      const showHeading = entry.heading !== false;
+      const title = showHeading ? heading(entry.name || (spell ? "Spell" : "Ability"), level, entry, {
         afterName: action,
         trailing: classification ? `<span class="ability-level">${inline(classification)}</span>` : "",
-      });
-      const id = headings.at(-1).id;
-      const traits = Array.isArray(entry.traits) ? entry.traits.filter(trait => typeof trait === "string" && trait.trim()) : [];
-      const traitRow = traits.length ? `<div class="ability-traits" role="list" aria-label="Traits">${traits.map(trait => `<span class="ability-trait" role="listitem">${inline(trait)}</span>`).join("")}</div>` : "";
+      }) : "";
+      const id = showHeading ? headings.at(-1).id : null;
+      const traitRow = renderTraitBadges(entry.traits, options);
       const hasContent = value => value != null && value !== false && (Array.isArray(value) ? value.length > 0 : typeof value !== "string" || value.trim().length > 0);
       const field = (label, value) => `<div class="ability-field"><dt>${label}</dt><dd>${blocks(value, level + 1)}</dd></div>`;
       const fieldGroup = values => {
@@ -211,6 +228,7 @@ export function renderContent(content, options = {}) {
         ? heightened ? `<dl class="ability-fields ability-special">${heightened}</dl>` : ""
         : hasContent(entry.special) ? `<dl class="ability-fields ability-special">${field("Special", entry.special)}</dl>` : "";
       const compactClass = !spell && entry.compact === true ? " ability-block--compact" : "";
+      if (!showHeading) return `<div class="ability-block ability-block--body${spell ? " spell-block" : ""}"><div class="ability-content">${traitRow}${metadata}${description}${special}</div></div>`;
       return `<section class="ability-block${spell ? " spell-block" : ""}${compactClass}" aria-labelledby="${escapeHtml(id)}"><header class="ability-header">${title}</header><div class="ability-content">${traitRow}${metadata}${description}${special}</div></section>`;
     }
     if (type === "formula") {

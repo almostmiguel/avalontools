@@ -16,7 +16,7 @@ test("spell blocks preserve traits, casting fields, description and heightened e
   const { html, headings } = renderContent({ entries: [spell] });
   assert.match(html, /class="ability-block spell-block"/);
   assert.match(html, /class="ability-level">Spell Level<\/span>/);
-  assert.match(html, /role="listitem">Concentrate/);
+  assert.match(html, /data-trait-name="Concentrate"/);
   assert.match(html, /arcane, primal/);
   assert.match(html, /data-symbol="2"/);
   assert.doesNotMatch(html.split("</header>")[0], /action-symbol/);

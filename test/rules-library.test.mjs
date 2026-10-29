@@ -34,10 +34,10 @@ test("rule false keeps headings and notes inline, while source metadata never cr
   assert.equal(createRuleLibrary({ sources: payload.sources, rules: [] }).rules.length, 0);
 });
 
-test("search matches names and aliases only and combines source and type filters", () => {
+test("search matches names only and combines source and type filters", () => {
   const library = createRuleLibrary(fixture());
   assert.equal(searchRules(library, { query: "Perception" })[0].id, "PC1:perception-rules");
-  assert.equal(searchRules(library, { query: "awareness" })[0].id, "PC1:perception-rules");
+  assert.deepEqual(searchRules(library, { query: "awareness" }), []);
   assert.equal(searchRules(library, { query: "agua" })[0].name, "Água");
   assert.deepEqual(searchRules(library, { source: "pc1", kind: "optional" }).map(rule => rule.name), ["Água"]);
   assert.deepEqual(searchRules(library, { query: "HIDDEN creatures", kind: "core" }), []);
@@ -123,7 +123,7 @@ test("ruleName separates the indexed title from its parent heading and keeps bot
     assert.equal(library.registry.resolve(name, "PC1").target, rule);
   }
   assert.ok(searchRules(library, { query: "Degree of Success" }).includes(rule));
-  assert.ok(searchRules(library, { query: "Step 4" }).includes(rule));
+  assert.ok(!searchRules(library, { query: "Step 4" }).includes(rule));
   assert.match(renderBrowse(library, [rule]), /Degree of Success/);
   assert.match(renderRuleBody(library.get("PC1:checks"), library), />Step 4: Degree of Success<\/h3>/);
   assert.doesNotMatch(renderRuleBody(rule, library), /Step 4:/);

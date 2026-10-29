@@ -1,0 +1,1787 @@
+{
+  "sources": [
+    {
+      "id": "PC1",
+      "name": "Player Core",
+      "source": "PC1"
+    }
+  ],
+  "traits": [
+    {
+      "name": "Aberration",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Aberrations are creatures from beyond the planes or corruptions of the natural order."
+      ]
+    },
+    {
+      "name": "Acid",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Energy",
+        "Monster"
+      ],
+      "category": "Energy · Monster",
+      "entries": [
+        "Effects with this trait deal acid damage. Creatures with this trait have a connection to magical acid."
+      ]
+    },
+    {
+      "name": "Air",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Elemental",
+        "Monster",
+        "Planar"
+      ],
+      "category": "Elemental · Monster · Planar",
+      "entries": [
+        "Effects with the air trait either manipulate or conjure air. Those that manipulate air have no effect in a vacuum or an area without air. Creatures with this trait consist primarily of air or have a connection to magical air.",
+        "Planes with this trait consist mostly of open spaces and air of various levels of turbulence, though they also contain rare islands of floating stone and other elements and energies. Air planes usually have breathable atmospheres, though they might include clouds of acidic or toxic gas. Earth creatures often find themselves at a disadvantage within air planes, as there's little solid ground for them to gain their bearings, which tends to at least make them uncomfortable."
+      ]
+    },
+    {
+      "name": "Aiuvarin",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait has the aiuvarin versatile heritage. Aiuvarins are of mixed ancestry, including elves or other aiuvarins. An ability with this trait can be used or selected only by aiuvarins."
+      ]
+    },
+    {
+      "name": "Alchemical",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Equipment",
+        "Monster",
+        "Weapon"
+      ],
+      "category": "Equipment · Monster · Weapon",
+      "entries": [
+        "Alchemical items are powered by reactions of alchemical reagents. Unless otherwise noted, alchemical items aren't magical and don't radiate a magical aura.",
+        "Alchemical creatures are partially powered by alchemical reactions."
+      ]
+    },
+    {
+      "name": "Amphibious",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "An amphibious creature can breathe in water and in air, even outside of its preferred environment, usually indefinitely but at least for hours. These creatures often have a swim Speed. Their bludgeoning and slashing unarmed Strikes don't take the usual –2 penalty for being underwater."
+      ]
+    },
+    {
+      "name": "Angel",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "This family of celestials is native to the plane of Nirvana."
+      ]
+    },
+    {
+      "name": "Animal",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "An animal is a creature with a relatively low intelligence. It typically doesn't have an Intelligence attribute modifier over –4, can't speak languages, and can't be trained in Intelligence-based skills."
+      ]
+    },
+    {
+      "name": "Aquatic",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "Aquatic creatures are at home underwater. Their bludgeoning and slashing unarmed Strikes don't take the usual –2 penalty for being underwater. Aquatic creatures can breathe water but not air."
+      ]
+    },
+    {
+      "name": "Arcane",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Monster",
+        "Tradition"
+      ],
+      "category": "Monster · Tradition",
+      "entries": [
+        "This magic comes from the arcane tradition, which is built on logic and rationality. Anything with this trait is magical.",
+        "A creature with this trait is primarily constituted of or has a strong connection to arcane magic."
+      ]
+    },
+    {
+      "name": "Archetype",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Feat"
+      ],
+      "category": "Feat",
+      "entries": [
+        "This feat belongs to an archetype."
+      ]
+    },
+    {
+      "name": "Archon",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "This family of celestials protect Heaven."
+      ]
+    },
+    {
+      "name": "Attack",
+      "source": "PC1",
+      "page": 452,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "An ability with this trait involves an attack. For each attack you make beyond the first on your turn, you take a multiple attack penalty."
+      ]
+    },
+    {
+      "name": "Auditory",
+      "source": "PC1",
+      "page": 453,
+      "categories": [
+        "Sense"
+      ],
+      "category": "Sense",
+      "entries": [
+        "Auditory actions and effects rely on sound. An action with the auditory trait can be successfully performed only if the creature using the action can speak or otherwise produce the required sounds. A spell or effect with the auditory trait has its effect only if the target can hear it. This applies only to sound-based parts of the effect, as determined by the GM. This is different from a sonic effect, which still affects targets who can't hear it (such as deaf targets) as long as the effect itself makes sound."
+      ]
+    },
+    {
+      "name": "Aura",
+      "source": "PC1",
+      "page": 453,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "An aura is an emanation that continually ebbs out from you, affecting creatures within a certain radius. Aura can also refer to the magical signature of an item."
+      ]
+    },
+    {
+      "name": "Azata",
+      "source": "PC1",
+      "page": 453,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "This family of celestials is native to Elysium."
+      ]
+    },
+    {
+      "name": "Bard",
+      "source": "PC1",
+      "page": 453,
+      "categories": [
+        "Class"
+      ],
+      "category": "Class",
+      "entries": [
+        "This indicates abilities from the bard class."
+      ]
+    },
+    {
+      "name": "Beast",
+      "source": "PC1",
+      "page": 453,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "A creature similar to an animal but with an Intelligence modifier of –3 or higher is usually a beast. Unlike an animal, a beast might be able to speak and reason."
+      ]
+    },
+    {
+      "name": "Bomb",
+      "source": "PC1",
+      "page": 453,
+      "categories": [
+        "Equipment"
+      ],
+      "category": "Equipment",
+      "entries": [
+        "An alchemical bomb combines volatile alchemical components that explode when the bomb hits a creature or object. Most alchemical bombs deal damage, though some produce other effects."
+      ]
+    },
+    {
+      "name": "Cantrip",
+      "source": "PC1",
+      "page": 453,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A spell you can cast at will that is automatically heightened to half your level rounded up."
+      ]
+    },
+    {
+      "name": "Celestial",
+      "source": "PC1",
+      "page": 453,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Creatures that hail from or have a strong connection to the holy planes are called celestials. Celestials can survive the basic environmental effects of planes in the Outer Sphere."
+      ]
+    },
+    {
+      "name": "Changeling",
+      "source": "PC1",
+      "page": 453,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait has the changeling versatile heritage. Changelings are the children of hags and members of other humanoid ancestries. An ability with this trait can be used or selected only by changelings."
+      ]
+    },
+    {
+      "name": "Cleric",
+      "source": "PC1",
+      "page": 454,
+      "categories": [
+        "Class"
+      ],
+      "category": "Class",
+      "entries": [
+        "This indicates abilities from the cleric class."
+      ]
+    },
+    {
+      "name": "Cold",
+      "source": "PC1",
+      "page": 454,
+      "categories": [
+        "Energy"
+      ],
+      "category": "Energy",
+      "entries": [
+        "Effects with this trait deal cold damage. Creatures with this trait have a connection to magical cold."
+      ]
+    },
+    {
+      "name": "Common",
+      "source": "PC1",
+      "page": 11,
+      "categories": [
+        "Rarity"
+      ],
+      "category": "Rarity",
+      "entries": [
+        "Anything that doesn't list another rarity trait (uncommon, rare, or unique) automatically has the common trait. This rarity indicates that an ability, item, or spell is available to all players who meet the prerequisites for it. A creature of this rarity is generally known and can be summoned with the appropriate {@i summon} spell."
+      ]
+    },
+    {
+      "name": "Composition",
+      "source": "PC1",
+      "page": 99,
+      "categories": [
+        "Class-specific"
+      ],
+      "category": "Class-specific",
+      "entries": [
+        "To cast a composition cantrip or focus spell, you use a type of Performance. If the spell requires an auditory performance, you might recite a poem, sing a song, or perform a dramatic monologue. If the spell requires a visual performance, you might dance or pantomime. You can cast only one composition spell each turn, and you can have only one active at a time. If you cast a new composition spell, any ongoing effects from your previous composition spell end immediately."
+      ]
+    },
+    {
+      "name": "Concentrate",
+      "source": "PC1",
+      "page": 454,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "An action with this trait requires a degree of mental concentration and discipline."
+      ]
+    },
+    {
+      "name": "Consecration",
+      "source": "PC1",
+      "page": 454,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A consecration spell enhances an area for an extended period of time. A given area can have only a single consecration effect at a time. The new effect attempts to counteract any existing one in areas of overlap."
+      ]
+    },
+    {
+      "name": "Construct",
+      "source": "PC1",
+      "page": 454,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "A construct is an artificial creature empowered by a force other than vitality or void. Constructs are often mindless; they're immune to bleed damage, death effects, disease, healing, nonlethal attacks, poison, vitality, void, and the doomed, drained, fatigued, paralyzed, sickened, and unconscious conditions; and they might have Hardness based on the materials used to construct their bodies. Constructs are not living creatures, nor are they undead. When reduced to 0 Hit Points, a construct creature is destroyed."
+      ]
+    },
+    {
+      "name": "Consumable",
+      "source": "PC1",
+      "page": 454,
+      "categories": [
+        "Equipment"
+      ],
+      "category": "Equipment",
+      "entries": [
+        "An item with this trait can be used only once. Unless stated otherwise, it's destroyed after activation. Consumable items include alchemical items and magical consumables such as scrolls and talismans. A character can Craft consumable items in batches of four."
+      ]
+    },
+    {
+      "name": "Curse",
+      "source": "PC1",
+      "page": 454,
+      "categories": [
+        "Affliction"
+      ],
+      "category": "Affliction",
+      "entries": [
+        "A curse is an effect that places some long-term affliction on a creature. Curses are always magical and are typically the result of a spell or trap. Effects with this trait can be removed only by effects that specifically target curses."
+      ]
+    },
+    {
+      "name": "Daemon",
+      "source": "PC1",
+      "page": 454,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "A family of fiends from Abaddon."
+      ]
+    },
+    {
+      "name": "Darkness",
+      "source": "PC1",
+      "page": 454,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Darkness effects extinguish non-magical light in the area and can counteract less powerful magical light. You must usually target light magic with your darkness magic directly to counteract it, but some darkness spells automatically attempt to counteract light."
+      ]
+    },
+    {
+      "name": "Death",
+      "source": "PC1",
+      "page": 454,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "An effect with the death trait kills you immediately if it reduces you to 0 HP. Some death effects can bring you closer to death or slay you outright without reducing you to 0 HP."
+      ]
+    },
+    {
+      "name": "Dedication",
+      "source": "PC1",
+      "page": 215,
+      "categories": [
+        "Feat"
+      ],
+      "category": "Feat",
+      "entries": [
+        "Each archetype's dedication feat represents your character's dedicated effort learning a new set of abilities, making it impossible to split your focus and pursue another archetype at the same time. Once you take a dedication feat, you can't select a different dedication feat until you complete your dedication by taking two other feats from your current archetype. You can't retrain a dedication feat as long as you have any other feats from that archetype."
+      ]
+    },
+    {
+      "name": "Demon",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "A family of sinful fiends from the Outer Rifts."
+      ]
+    },
+    {
+      "name": "Detection",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Effects with this trait attempt to determine the presence or location of a person, object, or aura."
+      ]
+    },
+    {
+      "name": "Devil",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "A family of regimented fiends from Hell."
+      ]
+    },
+    {
+      "name": "Dinosaur",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "These reptiles have survived from prehistoric times."
+      ]
+    },
+    {
+      "name": "Disease",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Affliction"
+      ],
+      "category": "Affliction",
+      "entries": [
+        "An effect with this trait applies one or more diseases. A disease is typically an affliction."
+      ]
+    },
+    {
+      "name": "Divine",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Tradition"
+      ],
+      "category": "Tradition",
+      "entries": [
+        "This magic comes from the divine tradition, drawing power from deities or similar sources. Anything with this trait is magical.",
+        "A creature with this trait is primarily constituted of or has a strong connection to divine magic."
+      ]
+    },
+    {
+      "name": "Downtime",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A mode of play in which characters are not adventuring. Days pass quickly at the table, and characters engage in longterm activities."
+      ]
+    },
+    {
+      "name": "Dragon",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Dragons are reptilian creatures, often winged or with the power of flight. Most can exhale magical energy and are immune to sleep and paralysis."
+      ]
+    },
+    {
+      "name": "Dromaar",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait has the dromaar versatile heritage. Dromaars are of mixed ancestry, including orcs or other dromaars. An ability with this trait can be used or selected only by dromaars."
+      ]
+    },
+    {
+      "name": "Druid",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Class"
+      ],
+      "category": "Class",
+      "entries": [
+        "This indicates abilities from the druid class."
+      ]
+    },
+    {
+      "name": "Dwarf",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait is a member of the dwarf ancestry. Dwarves are stout folk who often live underground and typically have darkvision. An ability with this trait can be used or selected only by dwarves. An item with this trait is created and used by dwarves."
+      ]
+    },
+    {
+      "name": "Earth",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Elemental",
+        "Planar"
+      ],
+      "category": "Elemental · Planar",
+      "entries": [
+        "Effects with the earth trait either manipulate or conjure earth. Those that manipulate earth have no effect in an area without earth. Creatures with this trait consist primarily of earth or have a connection to magical earth.",
+        "These planes are mostly solid. Travelers arriving upon an earth plane risk suffocation if they don't reach a cavern or some other air pocket within the plane's solid matter. Creatures who can't burrow are entombed in the plane's substance and must attempt to dig their way toward an air pocket. Air creatures are ill at ease, as they rarely have the space to move freely through even the loftiest warrens."
+      ]
+    },
+    {
+      "name": "Electricity",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Energy"
+      ],
+      "category": "Energy",
+      "entries": [
+        "Effects with this trait deal electricity damage. A creature with this trait has a connection to magical electricity."
+      ]
+    },
+    {
+      "name": "Elemental",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Elementals are creatures directly tied to an element and native to the elemental planes. Elementals don't need to breathe."
+      ]
+    },
+    {
+      "name": "Elf",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait is a member of the elf ancestry. Elves are mysterious people with rich traditions of magic and scholarship who typically have low-light vision. An ability with this trait can be used or selected only by elves. A weapon with this trait is created and used by elves."
+      ]
+    },
+    {
+      "name": "Elixir",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Equipment"
+      ],
+      "category": "Equipment",
+      "entries": [
+        "Elixirs are alchemical liquids that are used by drinking them."
+      ]
+    },
+    {
+      "name": "Emotion",
+      "source": "PC1",
+      "page": 455,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "This effect alters a creature's emotions. Effects with this trait always have the mental trait as well. Creatures with special training or that have mechanical or artificial intelligence are immune to emotion effects."
+      ]
+    },
+    {
+      "name": "Ethereal",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "Ethereal creatures are natives of the Ethereal Plane. They can survive the basic environmental effects of the Ethereal Plane."
+      ]
+    },
+    {
+      "name": "Exploration",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "An activity with this trait takes more than a turn to use, and can usually be used only during exploration mode."
+      ]
+    },
+    {
+      "name": "Extradimensional",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "This effect or item creates an extradimensional space. An extradimensional effect placed inside another extradimensional space ceases to function until it is removed."
+      ]
+    },
+    {
+      "name": "Fear",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Fear effects evoke the emotion of fear. Effects with this trait always have the mental and emotion traits as well."
+      ]
+    },
+    {
+      "name": "Fey",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Creatures of the First World are called the fey"
+      ]
+    },
+    {
+      "name": "Fiend",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Creatures that hail from or have a strong connection to the unholy planes are called fiends. Fiends can survive the basic environmental effects of planes in the Outer Sphere."
+      ]
+    },
+    {
+      "name": "Fighter",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Class"
+      ],
+      "category": "Class",
+      "entries": [
+        "This indicates abilities from the fighter class."
+      ]
+    },
+    {
+      "name": "Fire",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Elemental",
+        "Energy",
+        "Planar"
+      ],
+      "category": "Elemental · Energy · Planar",
+      "entries": [
+        "Effects with the fire trait deal fire damage or either conjure or manipulate fire. Those that manipulate fire have no effect in an area without fire. Creatures with this trait consist primarily of fire or have a connection to magical fire.",
+        "Planes with this trait are composed of flames that continually burn with no fuel source. Fire planes are extremely hostile to non-fire creatures. Unprotected wood, paper, cloth, and other flammable materials catch fire almost immediately, and creatures wearing unprotected flammable clothing catch fire, typically taking 1d6 persistent fire damage. Extraplanar creatures take moderate environmental fire damage at the end of each round (sometimes minor environmental damage in safer areas, or major or massive damage in even more fiery areas). Ice creatures are extremely uncomfortable on a fire plane, assuming they don't outright melt in the heat."
+      ]
+    },
+    {
+      "name": "Flourish",
+      "source": "PC1",
+      "page": 139,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Actions with the flourish trait are special techniques that require too much exertion for you to perform frequently. You can use only one action with the flourish trait per round."
+      ]
+    },
+    {
+      "name": "Focus",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A spell you can cast by spending a Focus Point, and that is automatically heightened to half your level rounded up."
+      ]
+    },
+    {
+      "name": "Force",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Energy"
+      ],
+      "category": "Energy",
+      "entries": [
+        "Effects with this trait deal force damage or create objects made of pure magical force."
+      ]
+    },
+    {
+      "name": "Fortune",
+      "source": "PC1",
+      "page": 401,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A fortune effect beneficially alters how you roll your dice. You can never have more than one fortune effect alter a single roll. If multiple fortune effects would apply, you have to pick which to use. If a fortune effect and a misfortune effect would apply to the same roll, the two cancel each other out, and you roll normally."
+      ]
+    },
+    {
+      "name": "Fungus",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Fungal creatures have the fungus trait. They are distinct from normal fungi."
+      ]
+    },
+    {
+      "name": "General",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Feat"
+      ],
+      "category": "Feat",
+      "entries": [
+        "A type of feat that any character can select, regardless of ancestry and class, as long as they meet the prerequisites. You can select a feat with this trait when your class grants a general feat."
+      ]
+    },
+    {
+      "name": "Giant",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Giants are massive humanoid creatures."
+      ]
+    },
+    {
+      "name": "Gnome",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait is a member of the gnome ancestry. Gnomes are small people skilled at magic who seek out new experiences and usually have low-light vision. An ability with this trait can be used or selected only by gnomes. A weapon with this trait is created and used by gnomes."
+      ]
+    },
+    {
+      "name": "Goblin",
+      "source": "PC1",
+      "page": 456,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait is a small, frantic goblinoid. Goblins tend to have darkvision. An ability with this trait can be used or chosen only by goblins. A weapon with this trait is created and used by goblins."
+      ]
+    },
+    {
+      "name": "Hag",
+      "source": "PC1",
+      "page": 457,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "These malevolent spellcasters form covens."
+      ]
+    },
+    {
+      "name": "Halfling",
+      "source": "PC1",
+      "page": 457,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait is a member of the halfling ancestry. These small people are friendly wanderers considered to be lucky. An ability with this trait can be used or selected only by halflings. A weapon with this trait is created and used by halflings."
+      ]
+    },
+    {
+      "name": "Healing",
+      "source": "PC1",
+      "page": 457,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A healing effect restores a creature's body, typically by restoring Hit Points, but sometimes by removing diseases or other debilitating effects."
+      ]
+    },
+    {
+      "name": "Hex",
+      "source": "PC1",
+      "page": 183,
+      "categories": [
+        "Class-specific"
+      ],
+      "category": "Class-specific",
+      "entries": [
+        "A hex is a spell caused by your patron's direct attention and intervention. Your patron does not take well to being disturbed repeatedly, so you can cast only one spell that has the hex trait each turn; attempts to use a second automatically fail and usually cause your familiar to hiss in displeasure as your patron rejects your call."
+      ]
+    },
+    {
+      "name": "Holy",
+      "source": "PC1",
+      "page": 457,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Effects with the holy trait are tied to powerful magical forces of benevolence and virtue. They often have stronger effects on unholy creatures. Creatures with this trait are strongly devoted to holy causes and often have weakness to unholy. If a creature with weakness to holy uses a holy item or effect, it takes damage from its weakness."
+      ]
+    },
+    {
+      "name": "Hryngar",
+      "source": "PC1",
+      "page": 457,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "Subterranean kin of the dwarves, hryngars typically have darkvision, resist poison, and recoil from bright light."
+      ]
+    },
+    {
+      "name": "Human",
+      "source": "PC1",
+      "page": 457,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait is a member of the human ancestry. Humans are a diverse array of people known for their adaptability. An ability with this trait can be used or selected only by humans."
+      ]
+    },
+    {
+      "name": "Humanoid",
+      "source": "PC1",
+      "page": 457,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Humanoid creatures reason and act much like humans. They typically stand upright and have two arms and two legs."
+      ]
+    },
+    {
+      "name": "Illusion",
+      "source": "PC1",
+      "page": 457,
+      "categories": [
+        "Mechanics",
+        "Equipment"
+      ],
+      "category": "Mechanics · Equipment",
+      "entries": [
+        "Effects and magic items with this trait involve false sensory stimuli. Magic with the illusion trait creates false sensory stimuli. Sometimes illusions allow creatures a chance to disbelieve the spell, which lets the creature ignore the spell if it succeeds at doing so. This usually happens when a creature Seeks, Interacts, or otherwise spends actions to engage with the illusion, comparing the result of its Perception check (or another check or save the GM chooses) to the caster's spell DC. Mental illusions typically provide rules in the spell's description for disbelieving the effect (usually via a Will save).",
+        "If a creature engages with an illusion in a way that would prove it's not what it seems, the creature might know that an illusion is present, but it still can't ignore the illusion without successfully disbelieving it. Disbelieving a visual illusion makes it and those things it blocks seem hazy and indistinct, which might block vision enough to leave the other side concealed."
+      ]
+    },
+    {
+      "name": "Incapacitation",
+      "source": "PC1",
+      "page": 457,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "An ability with this trait can take a character completely out of the fight or even kill them, and it's harder to use on a more powerful character. If a spell has the incapacitation trait, any creature of more than twice the spell's rank treats the result of their check to prevent being incapacitated by the spell as one degree of success better, or the result of any check the spellcaster made to incapacitate them as one degree of success worse. If any other effect has the incapacitation trait, a creature of higher level than the item, creature, or hazard generating the effect gains the same benefits."
+      ]
+    },
+    {
+      "name": "Leshy",
+      "source": "PC1",
+      "page": 458,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait is a member of the leshy ancestry. These small plant or fungus creatures are humanoid in form. An ability with this trait can be used or selected only by leshies. A weapon with this trait is created and used by leshies."
+      ]
+    },
+    {
+      "name": "Light",
+      "source": "PC1",
+      "page": 458,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Light effects overcome non-magical darkness in the area and can counteract magical darkness. You must usually target darkness magic with your light magic directly to counteract the darkness, but some light spells automatically attempt to counteract darkness."
+      ]
+    },
+    {
+      "name": "Lineage",
+      "source": "PC1",
+      "page": 458,
+      "categories": [
+        "Feat"
+      ],
+      "category": "Feat",
+      "entries": [
+        "A feat with this trait indicates a character's descendance from a particular type of creature. You can have only one lineage feat. You can select a lineage feat only at 1st level, and you can't retrain into or out of these feats."
+      ]
+    },
+    {
+      "name": "Linguistic",
+      "source": "PC1",
+      "page": 458,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "An effect with this trait depends on language comprehension. A linguistic effect that targets a creature works only if the target understands the language you are using."
+      ]
+    },
+    {
+      "name": "Magical",
+      "source": "PC1",
+      "page": 458,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Something with the magical trait is imbued with magical energies not tied to a specific tradition of magic. Some items or effects are closely tied to a particular tradition of magic. In these cases, the item has the arcane, divine, occult, or primal trait instead of the magical trait. Any of these traits indicate that the item is magical."
+      ]
+    },
+    {
+      "name": "Manipulate",
+      "source": "PC1",
+      "page": 458,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "You must physically manipulate an item or make gestures to use an action with this trait. Creatures without a suitable appendage can't perform actions with this trait. Manipulate actions often trigger reactions."
+      ]
+    },
+    {
+      "name": "Mechanical",
+      "source": "PC1",
+      "page": 458,
+      "categories": [
+        "Hazard"
+      ],
+      "category": "Hazard",
+      "entries": [
+        "A hazard with this trait is a constructed physical object."
+      ]
+    },
+    {
+      "name": "Mental",
+      "source": "PC1",
+      "page": 458,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A mental effect can alter the target's mind. It has no effect on an object or a mindless creature."
+      ]
+    },
+    {
+      "name": "Metal",
+      "source": "PC1",
+      "page": 458,
+      "categories": [
+        "Elemental",
+        "Planar"
+      ],
+      "category": "Elemental · Planar",
+      "entries": [
+        "Effects with the metal trait conjure or manipulate metal. Those that manipulate metal have no effect in an area without metal. Creatures with this trait consist primarily of metal or have a connection to magical metal.",
+        "These planes consist of chaotic and shifting structures and oceans of metal. Metal planes tend to exist in a state of change and decay, leaving plentiful pockets of air for visitors to breathe or move within. Creatures unlucky enough to be entombed in the plane's substance risk suffocation if they can't phase through metal. Wood creatures find the lack of stability and soil on a metal plane disconcerting and often fail to thrive in such environments."
+      ]
+    },
+    {
+      "name": "Mindless",
+      "source": "PC1",
+      "page": 458,
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster",
+      "entries": [
+        "A mindless creature has either programmed or rudimentary mental attributes. Most, if not all, of their mental attribute modifiers are –5. They are immune to all mental effects."
+      ]
+    },
+    {
+      "name": "Minion",
+      "source": "PC1",
+      "page": 301,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Minions are creatures that directly serve another creature. Your minion acts on your turn in combat, once per turn, when you spend an action to issue it commands. For an animal companion, you Command an Animal; for a minion that's a spell or magic item effect, like a summoned minion, you Sustain the effect; if not otherwise specified, you issue a verbal command as a single action with the auditory and concentrate traits. If given no commands, minions use no actions except to defend themselves or to escape obvious harm. If left unattended for long enough, typically 1 minute, mindless minions usually don't act, animals follow their instincts, and sapient minions act how they please. You can have a maximum of four minions under your control.",
+        "A minion has only 2 actions and 0 reactions per turn, though certain conditions (such as slowed or quickened) or abilities might give them additional actions or a reaction. Alterations to a minion's actions occur when they gain their actions for the round. A minion can't control other creatures."
+      ]
+    },
+    {
+      "name": "Misfortune",
+      "source": "PC1",
+      "page": 401,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A misfortune effect detrimentally alters how you roll your dice. You can never have more than one misfortune effect alter a single roll. If multiple misfortune effects would apply, the GM decides which is worse and applies it. If a fortune effect and a misfortune effect would apply to the same roll, the two cancel each other out, and you roll normally."
+      ]
+    },
+    {
+      "name": "Monitor",
+      "source": "PC1",
+      "page": 458,
+      "category": "Creature type",
+      "entries": [
+        "Creatures that hail from or have a strong connection to Axis, the Boneyard, or the Maelstrom are called monitors. Monitors can survive the basic environmental effects of planes in the Outer Sphere."
+      ]
+    },
+    {
+      "name": "Morph",
+      "source": "PC1",
+      "page": 301,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Effects that slightly alter a creature's form have the morph trait. Any Strikes specifically granted by a morph effect are magical. You can be affected by multiple morph spells at once, but if you morph the same body part more than once, the second morph effect attempts to counteract the first (in the same manner as two polymorph effects, described in that trait).",
+        "Your morph effects might also end if you are polymorphed and the polymorph effect invalidates or overrides your morph effect. The GM determines which morph effects can be used together and which can't."
+      ]
+    },
+    {
+      "name": "Move",
+      "source": "PC1",
+      "page": 458,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "An action with this trait involves moving from one space to another."
+      ]
+    },
+    {
+      "name": "Multiclass",
+      "source": "PC1",
+      "page": 215,
+      "categories": [
+        "Feat"
+      ],
+      "category": "Feat",
+      "entries": [
+        "Archetypes with the multiclass trait represent diversifying your training into another class's specialties. You can't select a multiclass archetype's dedication feat if you are a member of the class of the same name."
+      ]
+    },
+    {
+      "name": "Nephilim",
+      "source": "PC1",
+      "page": 459,
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait has the nephilim versatile heritage. Nephilim are planar scions descended from immortal beings from other planes. An ability with this trait can be used or selected only by nephilim."
+      ]
+    },
+    {
+      "name": "Nonlethal",
+      "source": "PC1",
+      "page": 282,
+      "categories": [
+        "Weapon"
+      ],
+      "category": "Weapon",
+      "entries": [
+        "Attacks with this weapon are nonlethal, and are used to knock creatures unconscious instead of kill them. You can use a nonlethal weapon to make a lethal attack with a –2 circumstance penalty."
+      ]
+    },
+    {
+      "name": "Occult",
+      "source": "PC1",
+      "page": 459,
+      "categories": [
+        "Tradition"
+      ],
+      "category": "Tradition",
+      "entries": [
+        "This magic comes from the occult tradition, calling upon bizarre and ephemeral mysteries. Anything with this trait is magical.",
+        "A creature with this trait is primarily constituted of or has a strong connection to occult magic."
+      ]
+    },
+    {
+      "name": "Olfactory",
+      "source": "PC1",
+      "page": 459,
+      "categories": [
+        "Sense"
+      ],
+      "category": "Sense",
+      "entries": [
+        "An olfactory effect can affect only creatures that can smell it. This applies only to olfactory parts of the effect, as determined by the GM."
+      ]
+    },
+    {
+      "name": "Ooze",
+      "source": "PC1",
+      "page": 459,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Oozes are creatures with simple anatomies. They tend to have low mental attribute modifiers and immunity to mental effects and precision damage."
+      ]
+    },
+    {
+      "name": "Orc",
+      "source": "PC1",
+      "page": 459,
+      "category": "Ancestry",
+      "entries": [
+        "A creature with this trait is a member of the orc ancestry. These green-skinned people tend to have darkvision. An ability with this trait can be used or selected only by orcs. An item with this trait is created and used by orcs."
+      ]
+    },
+    {
+      "name": "Plant",
+      "source": "PC1",
+      "page": 459,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Vegetable creatures have the plant trait. They are distinct from normal plants. Magical effects with this trait manipulate or conjure plants or plant matter in some way. Effects that manipulate plants have no effect in an area with no plants."
+      ]
+    },
+    {
+      "name": "Poison",
+      "source": "PC1",
+      "page": 459,
+      "categories": [
+        "Affliction",
+        "Poison",
+        "Equipment"
+      ],
+      "category": "Affliction · Poison · Equipment",
+      "entries": [
+        "An effect with this trait delivers a poison or deals poison damage. An item with this trait is poisonous and might cause an affliction."
+      ]
+    },
+    {
+      "name": "Polymorph",
+      "source": "PC1",
+      "page": 301,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "These effects transform the target into a new form. A target can't be under the effect of more than one polymorph effect at a time. If it comes under the effect of a second polymorph effect, the second polymorph effect attempts to counteract the first. If it succeeds, it takes effect, and if it fails, the spell has no effect on that target. Any Strikes specifically granted by a polymorph effect are magical. Unless otherwise stated, polymorph spells don't allow the target to take on the appearance of a specific individual creature.",
+        "If you take on a battle form with a polymorph spell, the special statistics can be adjusted only by circumstance bonuses, status bonuses, and penalties. Unless otherwise noted, the battle form prevents you from casting spells, speaking, and using most manipulate actions that require hands. (If there's doubt about whether you can use an action, the GM decides.) Your gear is absorbed into you; the constant abilities of your gear still function, but you can't activate any items. You lose your Speeds and gain those of the battle form. If a polymorph effect causes you to increase in size, you must have space to expand into or the effect is disrupted."
+      ]
+    },
+    {
+      "name": "Possession",
+      "source": "PC1",
+      "page": 459,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Effects with this trait allow a creature to project its mind and spirit into a target. A creature immune to mental effects can't use a possession effect. While possessing a target, a possessor's true body is unconscious (and can't wake up normally), unless the possession effect allows the creature to physically enter the target. Whenever the target takes damage, the possessor takes half that amount of damage as mental damage.",
+        "A possessor loses the benefits of any of its active spells or abilities that affect its physical body, though it gains the benefits of the target's active spells and abilities that affect their body. A possessor can use any of the target's abilities that are purely physical, and it can't use any of its own abilities except spells and purely mental abilities. The GM decides whether an ability is purely physical or purely mental. A possessor uses the target's attack modifier, AC, Fortitude save, Reflex save, Perception, and physical skills, and its own Will save, mental skills, spell attack modifier, and spell DC; benefits of invested items apply where relevant (the possessor's invested items apply when using its own values, and the target's invested items apply when using the target's values). A possessor gains no benefit from casting spells that normally affect only the caster, since it isn't in its own body. The possessor must use its own actions to make the possessed creature act.",
+        "If a possessor reaches 0 Hit Points through any combination of damage to its true body and mental damage from the possession, it is knocked out as normal and the possession immediately ends. If the target reaches 0 Hit Points first, the possessor can either fall unconscious with the body and continue the possession or end the effect as a free action and return to its body. If the target dies, the possession ends immediately, and the possessor is stunned for 1 minute."
+      ]
+    },
+    {
+      "name": "Potion",
+      "source": "PC1",
+      "page": 459,
+      "categories": [
+        "Equipment"
+      ],
+      "category": "Equipment",
+      "entries": [
+        "A potion is a consumable magical liquid activated when you drink it."
+      ]
+    },
+    {
+      "name": "Prediction",
+      "source": "PC1",
+      "page": 460,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Effects with this trait determine what is likely to happen in the near future."
+      ]
+    },
+    {
+      "name": "Press",
+      "source": "PC1",
+      "page": 139,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Actions with this trait allow you to follow up earlier attacks. An action with the press trait can be used only if you are currently affected by a multiple attack penalty. You can't use a press action when it's not your turn, even if you use the Ready activity.",
+        "Some actions with the press trait also grant an effect on a failure. The effects that are added on a failure don't apply on a critical failure. If your press action succeeds, you can choose to apply the failure effect instead. (For example, you may wish to do this when an attack deals no damage due to resistance.)"
+      ]
+    },
+    {
+      "name": "Primal",
+      "source": "PC1",
+      "page": 460,
+      "category": "Tradition",
+      "entries": [
+        "This magic comes from the primal tradition, connecting to the natural world and instinct. Anything with this trait is magical.",
+        "A creature with this trait is primarily constituted of or has a strong connection to primal magic."
+      ]
+    },
+    {
+      "name": "Ranger",
+      "source": "PC1",
+      "page": 460,
+      "categories": [
+        "Class"
+      ],
+      "category": "Class",
+      "entries": [
+        "This indicates abilities from the ranger class."
+      ]
+    },
+    {
+      "name": "Rare",
+      "source": "PC1",
+      "page": 11,
+      "categories": [
+        "Rarity"
+      ],
+      "category": "Rarity",
+      "entries": [
+        "This rarity indicates that a rules element is very difficult to find in the game world. A rare feat, spell, item or the like is available to players only if the GM decides to include it in the game, typically through discovery during play. Creatures with this trait are rare. They typically can't be summoned. The DC of Recall Knowledge checks related to these creatures is increased by 5."
+      ]
+    },
+    {
+      "name": "Revelation",
+      "source": "PC1",
+      "page": 460,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Effects with this trait see things as they truly are."
+      ]
+    },
+    {
+      "name": "Rogue",
+      "source": "PC1",
+      "page": 460,
+      "categories": [
+        "Class"
+      ],
+      "category": "Class",
+      "entries": [
+        "This indicates abilities from the rogue class."
+      ]
+    },
+    {
+      "name": "Sanctified",
+      "source": "PC1",
+      "page": 113,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "If you are holy or unholy, your sanctified actions and spells gain the same trait."
+      ]
+    },
+    {
+      "name": "Scrying",
+      "source": "PC1",
+      "page": 460,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A scrying effect lets you see, hear, or otherwise get sensory information from a distance using a sensor or apparatus, rather than your own eyes and ears."
+      ]
+    },
+    {
+      "name": "Secret",
+      "source": "PC1",
+      "page": 460,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "The GM rolls the check for this ability in secret."
+      ]
+    },
+    {
+      "name": "Shadow",
+      "source": "PC1",
+      "page": 460,
+      "categories": [
+        "Planar"
+      ],
+      "category": "Planar",
+      "entries": [
+        "Magic with this trait involves shadows or the energy of the Netherworld.",
+        "Planes with this trait are umbral with murky light. In the Netherworld, the radius of all light from light sources and the areas of light spells are halved."
+      ]
+    },
+    {
+      "name": "Skill",
+      "source": "PC1",
+      "page": 461,
+      "categories": [
+        "Feat"
+      ],
+      "category": "Feat",
+      "entries": [
+        "A general feat with the skill trait improves your skills and their actions or gives you new actions for a skill. A feat with this trait can be selected when a class grants a skill feat or general feat. Archetype feats with the skill trait can be selected in place of a skill feat if you have that archetype's dedication feat."
+      ]
+    },
+    {
+      "name": "Sleep",
+      "source": "PC1",
+      "page": 461,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "This effect makes a creature fall asleep or get drowsy"
+      ]
+    },
+    {
+      "name": "Sonic",
+      "source": "PC1",
+      "page": 461,
+      "categories": [
+        "Energy"
+      ],
+      "category": "Energy",
+      "entries": [
+        "An effect with the sonic trait functions only if it makes sound, meaning it has no effect in an area of silence or in a vacuum. This is different from an auditory spell, which is effective only if the target can hear it. A sonic effect might deal sonic damage."
+      ]
+    },
+    {
+      "name": "Spellshape",
+      "source": "PC1",
+      "page": 302,
+      "categories": [
+        "Class-specific"
+      ],
+      "category": "Class-specific",
+      "entries": [
+        "Actions with the spellshape trait tweak the properties of your spells. You must use a spellshape action directly before casting the spell you want to alter. If you use any action (including free actions and reactions) other than casting a spell directly after, you waste the benefits of the spellshape action. The benefit is also lost if your turn ends before you cast the spell. Any additional effects added by a spellshape action are part of the spell's effect, not of the spellshape action itself."
+      ]
+    },
+    {
+      "name": "Spirit",
+      "source": "PC1",
+      "page": 461,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Effects with this trait can affect creatures with spiritual essence and might deal spirit damage. A creature with this trait is defined by its spiritual essence. Spirit creatures often lack a material form."
+      ]
+    },
+    {
+      "name": "Stance",
+      "source": "PC1",
+      "page": 139,
+      "categories": [
+        "Class-specific"
+      ],
+      "category": "Class-specific",
+      "entries": [
+        "A stance is a general combat strategy that you enter by using an action with the stance trait, and you remain in for some time. A stance lasts until you get knocked out, until its requirements (if any) are violated, until the encounter ends, or until you use a stance action again, whichever comes first. After you take an action with the stance trait, you can't take another one for 1 round. You can enter or be in a stance only in encounter mode. You can Dismiss a stance."
+      ]
+    },
+    {
+      "name": "Structure",
+      "source": "PC1",
+      "page": 462,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A spell, item activation, or ability with the structure trait creates a magical building or other structure. The structure must be created on a plot of land free of other structures. The structure adapts to the natural terrain, adopting the structural requirements for being built there. The structure adjusts around small features such as ponds or spires of rock, but it can't be created on water or other nonsolid surfaces. If created on snow, sand dunes, or other soft surfaces with a solid surface underneath, the structure's foundation (if any) reaches the solid ground. If the structure is on a solid but unstable surface, such as a swamp or an area plagued by tremors, roll a DC 3 flat check each day; on a failure, the structure begins to sink or collapse.",
+        "The structure doesn't harm creatures within the area when it appears, and it can't be created within a crowd or in a densely populated area. Any creature inadvertently caught inside the structure when it's created ends up unharmed inside the complete structure and always has a clear path of escape. A creature inside the structure when the effect ends isn't harmed, and it lands harmlessly on the ground if it was on an upper level of the structure."
+      ]
+    },
+    {
+      "name": "Subtle",
+      "source": "PC1",
+      "page": 460,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A spell with the subtle trait can be cast without incantations and doesn't have obvious manifestations."
+      ]
+    },
+    {
+      "name": "Summon",
+      "source": "PC1",
+      "page": 360,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Spells with the summon trait can conjure creatures, typically ones with a particular trait. Such creatures can be found in {@i Monster Core} and similar books. Unless noted otherwise, the creature must be common, it gains the summoned trait, and it must appear in an unoccupied space in range large enough to contain it. The highest level of creature the spell can summon depends on the rank of the spell, as listed below. The spell can still summon a creature of a lower level if you so choose. These rules apply only to spells that have the summon trait; other spells that call or conjure items or beings but that don't have the trait, like {@i summon instrument}, work as explained in the spell.",
+        {
+          "type": "table",
+          "colLabels": [
+            "Spell Rank",
+            "Maximum Creature Level"
+          ],
+          "rows": [
+            [
+              "1st",
+              "–1"
+            ],
+            [
+              "2nd",
+              "1"
+            ],
+            [
+              "3rd",
+              "2"
+            ],
+            [
+              "4th",
+              "3"
+            ],
+            [
+              "5th",
+              "5"
+            ],
+            [
+              "6th",
+              "7"
+            ],
+            [
+              "7th",
+              "9"
+            ],
+            [
+              "8th",
+              "11"
+            ],
+            [
+              "9th",
+              "13"
+            ],
+            [
+              "10th",
+              "15"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Summoned",
+      "source": "PC1",
+      "page": 301,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "A creature called by a spell or effect gains the summoned trait. A summoned creature can't summon other creatures, create things of value, or cast spells that require a cost. It has the minion trait. If it tries to Cast a Spell of equal or higher rank than the spell that summoned it, it overpowers the summoning magic, causing its own spell to fail and the summon spell to end. Otherwise, the summoned creature uses the standard abilities for a creature of its kind. It generally attacks your enemies to the best of its ability. If you can communicate with it, you can attempt to command it, but the GM determines the degree to which it follows your commands.",
+        "Immediately when you finish Casting the Spell, the summoned creature uses its 2 actions for that turn. A spawn or other creature generated from a summoned creature returns to its unaltered state (usually a corpse in the case of spawn) once the summoned creature is gone. If it's unclear what this state would be, the GM decides. Summoned creatures can be banished by various spells and effects. They are automatically banished if reduced to 0 Hit Points or if the spell that called them ends."
+      ]
+    },
+    {
+      "name": "Teleportation",
+      "source": "PC1",
+      "page": 462,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Teleportation effects instantaneously move something from one point in space to another. Teleportation does not usually trigger reactions based on movement."
+      ]
+    },
+    {
+      "name": "Trap",
+      "source": "PC1",
+      "page": 462,
+      "categories": [
+        "Equipment",
+        "Hazard"
+      ],
+      "category": "Equipment · Hazard",
+      "entries": [
+        "A hazard constructed to hinder interlopers."
+      ]
+    },
+    {
+      "name": "Uncommon",
+      "source": "PC1",
+      "page": 11,
+      "categories": [
+        "Rarity"
+      ],
+      "category": "Rarity",
+      "entries": [
+        "Something of uncommon rarity requires special training or comes from a particular culture or part of the world. Some character choices give access to uncommon options, and the GM can choose to allow access for anyone. Less is known about uncommon creatures than common creatures. They typically can't be summoned. The DC of Recall Knowledge checks related to these creature is increased by 2."
+      ]
+    },
+    {
+      "name": "Undead",
+      "source": "PC1",
+      "page": 462,
+      "categories": [
+        "Creature type"
+      ],
+      "category": "Creature type",
+      "entries": [
+        "Once living, these creatures were infused after death with void energy and soul-corrupting unholy magic. When reduced to 0 Hit Points, an undead creature is destroyed. Undead creatures are damaged by vitality energy and are healed by void energy, and don't benefit from healing vitality effects."
+      ]
+    },
+    {
+      "name": "Unholy",
+      "source": "PC1",
+      "page": 462,
+      "categories": [
+        "Mechanics"
+      ],
+      "category": "Mechanics",
+      "entries": [
+        "Effects with the unholy trait are tied to powerful magical forces of cruelty and sin. They often have stronger effects on holy creatures. Creatures with this trait are strongly devoted to unholy causes, and often have weakness to holy. If a creature with weakness to unholy uses an unholy item or effect, it takes damage from its weakness."
+      ]
+    },
+    {
+      "name": "Unique",
+      "source": "PC1",
+      "page": 11,
+      "categories": [
+        "Rarity"
+      ],
+      "category": "Rarity",
+      "entries": [
+        "A rules element with this trait is one-of-a-kind. The DC of Recall Knowledge checks related to creatures with this trait is increased by 10."
+      ]
+    },
+    {
+      "name": "Visual",
+      "source": "PC1",
+      "page": 463,
+      "categories": [
+        "Sense"
+      ],
+      "category": "Sense",
+      "entries": [
+        "A visual effect can affect only creatures that can see it. This applies only to visible parts of the effect, as determined by the GM."
+      ]
+    },
+    {
+      "name": "Vitality",
+      "source": "PC1",
+      "page": 463,
+      "categories": [
+        "Creature type",
+        "Energy",
+        "Planar"
+      ],
+      "category": "Creature type · Energy · Planar",
+      "entries": [
+        "Effects with this trait heal living creatures with energy from the Forge of Creation, deal vitality energy damage to undead, or manipulate vitality energy.",
+        "These planes are awash with life energy. Colors are brighter, fires are hotter, noises are louder, and sensations are more intense. At the end of each round, an undead creature takes at least minor vitality environmental damage. In the strongest areas of a vitality plane, they could take moderate or even major vitality damage instead. While this might seem safe for living creatures, vitality planes present a different danger. Living creatures regain an amount of HP each round equal to the environmental damage undead take in the same area. If this would bring the living creature above their maximum HP, any excess becomes temporary HP. Unlike normal, these temporary HP combine with each other, and they last until the creature leaves the plane. If a creature's temporary HP from a vitality plane ever exceeds its maximum HP, it explodes in a burst of overloaded vitality energy, spreading across the area to birth new souls."
+      ]
+    },
+    {
+      "name": "Void",
+      "source": "PC1",
+      "page": 463,
+      "categories": [
+        "Creature type",
+        "Energy",
+        "Planar"
+      ],
+      "category": "Creature type · Energy · Planar",
+      "entries": [
+        "Effects with this trait heal undead creatures with void energy, deal void damage to living creatures, or manipulate void energy.",
+        "Planes with this trait are vast, empty reaches that suck the life from the living. They tend to be lonely, haunted planes, drained of color and filled with winds carrying the moans of the dead At the end of each round, a living creature takes at least minor void environmental damage. In the strongest areas of a void plane, they could take moderate or even major void damage at the end of each round. This damage has the death trait, and if a living creature is reduced to 0 Hit Points by this void damage and killed, it crumbles into ash and can become a wraith (see Monster Core)."
+      ]
+    },
+    {
+      "name": "Wand",
+      "source": "PC1",
+      "page": 463,
+      "categories": [
+        "Equipment"
+      ],
+      "category": "Equipment",
+      "entries": [
+        "A wand contains a single spell which you can cast once per day."
+      ]
+    },
+    {
+      "name": "Water",
+      "source": "PC1",
+      "page": 463,
+      "categories": [
+        "Elemental",
+        "Monster",
+        "Planar"
+      ],
+      "category": "Elemental · Monster · Planar",
+      "entries": [
+        "Effects with the water trait either manipulate or conjure water. Those that manipulate water have no effect in an area without water. Creatures with this trait consist primarily of water or have a connection to magical water.",
+        "Planes with this trait are mostly liquid. Visitors who can't breathe water or reach an air pocket likely drown. The rules for aquatic combat aquatic combat usually apply, including the inability to cast fire spells or use actions with the fire trait. Creatures with a weakness to water take damage equal to double their weakness at the end of each round."
+      ]
+    },
+    {
+      "name": "Witch",
+      "source": "PC1",
+      "page": 463,
+      "categories": [
+        "Class"
+      ],
+      "category": "Class",
+      "entries": [
+        "This trait indicates abilities from the witch class."
+      ]
+    },
+    {
+      "name": "Wizard",
+      "source": "PC1",
+      "page": 463,
+      "categories": [
+        "Class"
+      ],
+      "category": "Class",
+      "entries": [
+        "This indicates abilities from the wizard class."
+      ]
+    },
+    {
+      "name": "Wood",
+      "source": "PC1",
+      "page": 463,
+      "categories": [
+        "Elemental",
+        "Planar"
+      ],
+      "category": "Elemental · Planar",
+      "entries": [
+        "Effects with the wood trait conjure or manipulate wood. Those that manipulate wood have no effect in an area without wood. Creatures with this trait consist primarily of wood or have a connection to magical wood.",
+        "These planes consist of trees and other flora latticed in organic patterns. Wood planes are often perfectly constructed to match their desired purpose or environment but aren't usually outright hostile to visitors."
+      ]
+    }
+  ]
+}

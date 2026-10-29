@@ -80,7 +80,7 @@ test("chapter overrides and source changes create independent groups without dup
 
 test("Browse preserves full ancestry for name and filter matches without showing unrelated rules", () => {
   const library = fixture();
-  const matches = searchRules(library, { query: "MAP" });
+  const matches = searchRules(library, { query: "Multiple Attack Penalty" });
   assert.equal(matches.length, 1);
   const html = renderBrowse(library, matches, { selectedId: matches[0].id });
   assert.match(html, /data-rule-branch="PC1:checks" open/);

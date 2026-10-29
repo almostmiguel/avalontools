@@ -68,6 +68,10 @@
   --action-link: #edc16f;
   --condition-link: #e4a8bf;
   --trait-link: #bdbdc5;
+  --trait-uncommon: #efb578;
+  --trait-rare: #83bafa;
+  --trait-unique: #cd9ef1;
+  --trait-secret: #bdc5d4;
   --spell-link: #bda6ed;
   --setting-link: #d8c88d;
   --content-muted: #b0b7c2;
@@ -137,6 +141,10 @@
   --action-link: #885c14;
   --condition-link: #8b4866;
   --trait-link: #64616d;
+  --trait-uncommon: #8b4b0d;
+  --trait-rare: #245e9e;
+  --trait-unique: #743da1;
+  --trait-secret: #4f596b;
   --spell-link: #7048a3;
   --setting-link: #75602d;
   --content-muted: #68665f;
@@ -262,7 +270,7 @@ button, summary { font: inherit; }
 code { font-size: .83em; padding: .15em .35em; background: var(--code-bg); border: 1px solid var(--line); border-radius: 2px; overflow-wrap: anywhere; }
 :is(.rich-content, .rule-preview-body) { --content-surface: var(--paper); display: flow-root; color: var(--ink); font: 1rem/1.8 var(--font-ui); overflow-wrap: anywhere; }
 :is(.rich-content, .rule-preview-body) p { margin: 0 0 1rem; }
-:is(.rich-content, .rule-preview-body) a:where(:not(.rule-link, .action-link, .condition-link, .skill-link)) { color: var(--content-link); }
+:is(.rich-content, .rule-preview-body) a:where(:not(.rule-link, .action-link, .condition-link, .skill-link, .class-link, .feat-link, .background-link, .archetype-link, .ancestry-link, .trait-link)) { color: var(--content-link); }
 :is(.rich-content, .rule-preview-body) h2, :is(.rich-content, .rule-preview-body) h3, :is(.rich-content, .rule-preview-body) h4, :is(.rich-content, .rule-preview-body) h5, :is(.rich-content, .rule-preview-body) h6 { font-family: var(--font-ui); font-weight: 400; line-height: 1.3; margin: 1.7em 0 .6em; scroll-margin-top: calc(var(--header-height) + 1.5rem); color: var(--content-heading); }
 :is(.rich-content, .rule-preview-body) h2 { font-family: var(--font-display); font-size: 1.75rem; padding-bottom: .35rem; border-bottom: 1px solid var(--content-line); }
 :is(.rich-content, .rule-preview-body) h3 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
@@ -312,7 +320,7 @@ code { font-size: .83em; padding: .15em .35em; background: var(--code-bg); borde
 :is(.rich-content, .rule-preview-body) .box-section { margin: 2rem 0 0; padding: .5rem 0 0; border: 0; background: none; }
 :is(.rich-content, .rule-preview-body) .box-section > :is(h2, h3, h4, h5, h6) { margin: 0 0 .8rem; padding: 0 0 .6rem; border-bottom: 1px solid var(--callout-inner); color: var(--callout-heading); font: 400 1.3rem/1.3 var(--font-display); font-variant: small-caps; letter-spacing: .035em; }
 :is(.rich-content, .rule-preview-body) .box-section > :last-child { margin-bottom: 0; }
-:is(.rich-content, .rule-preview-body) .rule-box a:where(:not(.rule-link, .action-link, .condition-link, .skill-link)) { color: var(--callout-heading); text-decoration: underline; }
+:is(.rich-content, .rule-preview-body) .rule-box a:where(:not(.rule-link, .action-link, .condition-link, .skill-link, .class-link, .feat-link, .background-link, .archetype-link, .ancestry-link, .trait-link)) { color: var(--callout-heading); text-decoration: underline; }
 :is(.rich-content, .rule-preview-body) .rule-box code { color: inherit; background: var(--code-bg); border-color: var(--callout-inner); }
 :is(.rich-content, .rule-preview-body) .rule-box li::marker { color: var(--callout-heading); }
 :is(.rich-content, .rule-preview-body) .rule-box :focus-visible { outline-color: var(--callout-heading); }
@@ -377,19 +385,31 @@ code { font-size: .83em; padding: .15em .35em; background: var(--code-bg); borde
 }
 .action-symbol { display: inline-block; white-space: nowrap; font: normal 1.78em/0 "Pathfinder2eActions", sans-serif; letter-spacing: normal; text-transform: none; text-indent: 0; }
 .action-symbol::before { content: attr(data-symbol); }
-:is(.rule-link, .action-link, .condition-link, .skill-link) { text-decoration: underline; text-decoration-style: dotted; text-underline-offset: .18em; }
+:is(.rule-link, .action-link, .condition-link, .skill-link, .class-link, .feat-link, .background-link, .archetype-link, .ancestry-link, .trait-link) { text-decoration: underline; text-decoration-style: dotted; text-underline-offset: .18em; }
 .rule-link { color: var(--rule-link); }
 .action-link { color: var(--action-link); }
 .condition-link { color: var(--condition-link); }
 .skill-link { color: var(--skill-link); }
+.class-link { color: var(--class-link); }
+.feat-link { color: var(--feat-link); }
+.trait-link { color: var(--trait-link); }
+.background-link { color: var(--background-link); }
+.archetype-link { color: var(--archetype-link); }
+.ancestry-link { color: var(--ancestry-link); }
 /* Reference icons always precede the link text, in readers and hover previews. */
-a:is(.rule-link, .action-link, .condition-link, .skill-link) > .reference-link-start { white-space: nowrap; overflow-wrap: normal; }
-a:is(.rule-link, .condition-link, .skill-link, .action-link[data-action-resolved="true"]) > .reference-link-start::before { content: ""; display: inline-block; width: .8em; height: .8em; margin-left: .25em; margin-right: .15em; vertical-align: -.04em; background: currentColor; -webkit-mask: var(--reference-icon) center / contain no-repeat; mask: var(--reference-icon) center / contain no-repeat; }
+a:is(.rule-link, .action-link, .condition-link, .skill-link, .class-link, .feat-link, .background-link, .archetype-link, .ancestry-link, .trait-link) > .reference-link-start { white-space: nowrap; overflow-wrap: normal; }
+a:is(.rule-link, .condition-link, .skill-link, .class-link, .feat-link, .background-link, .archetype-link, .ancestry-link, .trait-link, .action-link[data-action-resolved="true"]) > .reference-link-start::before { content: ""; display: inline-block; width: .8em; height: .8em; margin-left: .25em; margin-right: .15em; vertical-align: -.04em; background: currentColor; -webkit-mask: var(--reference-icon) center / contain no-repeat; mask: var(--reference-icon) center / contain no-repeat; }
 a.rule-link { --reference-icon: url("../img/icons/book-open.svg"); }
 a.action-link { --reference-icon: url("../img/icons/zap.svg"); }
 a.condition-link { --reference-icon: url("../img/icons/circle-alert.svg"); }
 a.skill-link { --reference-icon: url("../img/icons/feather.svg"); }
-:is(.rule-link, .action-link, .condition-link, .skill-link):is(:hover, :focus) { text-decoration-style: solid; }
+a.class-link { --reference-icon: url("../img/icons/shield.svg"); }
+a.feat-link { --reference-icon: url("../img/icons/sparkles.svg"); }
+a.background-link { --reference-icon: url("../img/icons/scroll-text.svg"); }
+a.ancestry-link { --reference-icon: url("../img/icons/users.svg"); }
+a.archetype-link { --reference-icon: url("../img/icons/layers.svg"); }
+a.trait-link { --reference-icon: url("../img/icons/tag.svg"); }
+:is(.rule-link, .action-link, .condition-link, .skill-link, .class-link, .feat-link, .background-link, .archetype-link, .ancestry-link, .trait-link):is(:hover, :focus) { text-decoration-style: solid; }
 .rule-link-unresolved { cursor: help; }
 :is(.rich-content, .rule-preview-body) :target { scroll-margin-top: calc(var(--header-height) + 1.5rem); outline: 1px solid var(--content-line); outline-offset: .35rem; background: var(--content-wash); }
 .rule-preview { position: fixed; z-index: 50; width: min(560px, calc(100vw - 24px)); max-height: min(470px, calc(100dvh - 24px)); overflow: auto; overscroll-behavior: contain; color: var(--text); background: var(--panel); border: 1px solid var(--callout-line); box-shadow: 0 10px 35px var(--popup-shadow); font: .9rem/1.65 var(--font-ui); }
@@ -399,13 +419,16 @@ a.skill-link { --reference-icon: url("../img/icons/feather.svg"); }
 .rule-preview-heading h2 { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 .rule-preview-heading > span { flex-shrink: 0; text-align: right; text-transform: uppercase; }
 .rule-page-source, .rule-preview-source { color: var(--content-muted); font: .72rem/1.5 var(--font-ui); }
-.rule-preview-source { margin: .7rem 1rem 0; }
+.rule-page-source { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; margin: 0; }
+.reader-footer { margin-top: 1.5rem; color: var(--content-muted); text-align: right; }
+.reader-footer .rule-page-source { justify-content: flex-end; }
+.rule-preview > .reader-footer { margin: 0; padding: 0 1rem .85rem; }
+:is(.rule-title-row, .rule-preview-heading) :is(h1, h2) .action-time { display: inline-flex; align-items: center; margin-left: .15em; color: inherit; font: .55em/1.35 var(--font-ui); vertical-align: middle; }
+:is(.rule-title-row, .rule-preview-heading) :is(h1, h2) .action-time:has(.action-symbol) { display: inline; font-size: inherit; vertical-align: baseline; }
+:is(.rule-title-row, .rule-preview-heading) :is(h1, h2) .action-symbol { font-size: 1.6em; }
 .rule-preview-body { --content-surface: var(--panel); padding: .8rem 1rem 1rem; }
 .rule-preview-body > :first-child { margin-top: 0; }
 .rule-preview-body > :last-child { margin-bottom: 0; }
-.rule-preview-body .action-preview-meta { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem; margin: 0 0 1rem; color: var(--content-muted); font: .75rem/1.5 var(--font-ui); }
-.rule-preview-body .action-preview-meta .action-time { display: inline-flex; align-items: center; color: var(--content-heading); font: inherit; }
-.rule-preview-body .action-preview-meta .action-symbol { font-size: 1.25rem; }
 :is(.action-page-content, .rule-preview-body) > .ability-traits { margin-bottom: 1rem; }
 :is(.rich-content, .rule-preview-body) p { text-indent: 0; }
 :is(.rich-content, .rule-preview-body) :is(.flavor, .setting-explanation, table) p { text-indent: 0; }
@@ -423,11 +446,29 @@ a.skill-link { --reference-icon: url("../img/icons/feather.svg"); }
 :is(.rich-content, .rule-preview-body) .dialogue-table tbody td { overflow-wrap: anywhere; }
 :is(.rich-content, .rule-preview-body) .dialogue-table tbody tr:nth-child(even) { background: transparent; }
 :is(.rich-content, .rule-preview-body) .ability-block { margin: 1.8rem 0; padding: 1rem 0; border-block: 1px solid var(--content-line); font: .9rem/1.65 var(--font-ui); break-inside: avoid; }
+:is(.rich-content, .rule-preview-body) .ability-block--body { margin: 0; padding: 0; border: 0; }
+.feat-heading-qualifier { color: var(--content-muted); font: .65em/1.4 var(--font-ui); }
+.class-preview-overview { min-width: 0; }
+.class-preview-overview--illustrated { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 30%); align-items: start; gap: 1rem; }
+.rule-preview-body .class-preview-summary { margin: 0 0 1rem; }
+.class-preview-stats { margin: 0; }
+.class-preview-stats > div + div { margin-top: .65rem; }
+.class-preview-stats dt { color: var(--content-muted); font: 600 .65rem/1.4 var(--font-ui); text-transform: uppercase; letter-spacing: .04em; }
+.class-preview-stats dd { margin: .2rem 0 0; color: var(--content-heading); font: 600 .8rem/1.5 var(--font-ui); overflow-wrap: anywhere; }
+.rule-preview-body .class-preview-image { width: 100%; height: 180px; object-fit: contain; object-position: top center; }
 :is(.rich-content, .rule-preview-body) .ability-block .ability-header > :is(h2, h3, h4, h5, h6) { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem .9rem; margin: 0; padding: 0 0 .55rem; border: 0; color: var(--content-heading); font: 400 1.15rem/1.4 var(--font-display); text-transform: uppercase; letter-spacing: .035em; }
 .ability-header .action-symbol { margin-inline: .1em; }
 .ability-level { margin-left: auto; white-space: nowrap; font-size: .9em; }
 .ability-traits { display: flex; flex-wrap: wrap; gap: .3rem; margin: .1rem 0 .65rem; }
 .ability-trait { padding: .12rem .45rem; border: 1px solid var(--callout-line); color: var(--callout-text); background: var(--callout-bg); font: 700 .65rem/1.5 var(--font-ui); text-transform: uppercase; letter-spacing: .04em; }
+.ability-trait[data-trait-badge="uncommon"] { --badge-color: var(--trait-uncommon); }
+.ability-trait[data-trait-badge="rare"] { --badge-color: var(--trait-rare); }
+.ability-trait[data-trait-badge="unique"] { --badge-color: var(--trait-unique); }
+.ability-trait[data-trait-badge="secret"] { --badge-color: var(--trait-secret); }
+.ability-trait[data-trait-badge] { color: var(--badge-color); border-color: color-mix(in srgb, var(--badge-color) 60%, var(--callout-bg)); background: color-mix(in srgb, var(--badge-color) 12%, var(--callout-bg)); }
+.ability-trait > a.trait-link { display: inline-block; padding: .12rem .45rem; margin: -.12rem -.45rem; color: inherit; text-decoration: none; }
+.ability-trait > a.trait-link > .reference-link-start::before { display: none; }
+.ability-trait > a.trait-link:is(:hover, :focus-visible) { background: var(--content-wash); text-decoration: underline; text-underline-offset: .15em; }
 .ability-fields { margin: 0; }
 .ability-field { margin: 0 0 .15rem; padding-inline-start: 1.25em; text-indent: -1.25em; }
 .ability-field dt { display: inline; font-weight: 700; color: var(--content-heading); }
@@ -449,6 +490,8 @@ a.skill-link { --reference-icon: url("../img/icons/feather.svg"); }
 .ability-block--compact .ability-traits::before { content: "("; }
 .ability-block--compact .ability-traits::after { content: ") "; }
 .ability-block--compact .ability-trait { padding: 0; border: 0; color: inherit; background: none; font: inherit; text-transform: none; letter-spacing: normal; }
+.ability-block--compact .ability-trait[data-trait-badge] { color: var(--badge-color); background: none; }
+.ability-block--compact .ability-trait > a.trait-link { padding: 0; margin: 0; }
 .ability-block--compact .ability-trait + .ability-trait::before { content: ", "; }
 .ability-block--compact .ability-fields, .ability-block--compact .ability-field, .ability-block--compact .ability-effect { display: inline; margin: 0; padding: 0; border: 0; }
 .ability-block--compact .ability-field + .ability-field::before, .ability-block--compact .ability-special::before { content: "; "; }
@@ -514,7 +557,7 @@ a.skill-link { --reference-icon: url("../img/icons/feather.svg"); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
 @media print {
   body[data-reference-kind], .rule-preview[data-reference-kind] { --reference-color: black; }
-  :root, :root[data-theme="light"] { --paper: white; --ink: black; --content-heading: black; --content-link: black; --rule-link: black; --action-link: black; --condition-link: black; --skill-link: black; --content-muted: #444; --content-line: #bbb; --table-row: #eee; }
+  :root, :root[data-theme="light"] { --paper: white; --ink: black; --content-heading: black; --content-link: black; --rule-link: black; --action-link: black; --condition-link: black; --skill-link: black; --class-link: black; --feat-link: black; --trait-link: black; --content-muted: #444; --content-line: #bbb; --table-row: #eee; }
   :root, body { color-scheme: light; background: white; color: black; }
   .site-header, .site-footer, .skip-link, .rule-preview, .image-viewer, .image-expand { display: none; }
   .rich-content { font-size: 11pt; }
@@ -525,5 +568,5 @@ a.skill-link { --reference-icon: url("../img/icons/feather.svg"); }
   .rich-content aside.rule-box { background: #f4f1e8; color: black; border-color: #777; box-shadow: none; }
   .rich-content .rule-box::before { border-color: #bbb; }
   .rich-content .rule-box :is(h2, h3, h4, h5, h6, a) { color: black; }
-  .ability-trait { background: none; color: black; border-color: #777; }
+  .ability-trait, .ability-trait[data-trait-badge], .ability-block--compact .ability-trait[data-trait-badge] { background: none; color: black; border-color: #777; }
 }

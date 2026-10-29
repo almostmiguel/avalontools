@@ -6,7 +6,7 @@ License: ISC, with MIT notices for icons derived from Feather; see LICENSE.txt.
 
 The local sprite contains only the icons used by Avalon. Geometry is unchanged
 from the upstream SVGs. Root SVG attributes are supplied by each usage so colors
-and size follow the site theme. Four standalone SVGs are used by CSS masks.
+and size follow the site theme. Standalone SVGs are used by CSS reference-link masks.
 
 In HTML, use an accessible, decorative SVG inside an already labeled control:
 

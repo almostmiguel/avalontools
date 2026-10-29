@@ -184,10 +184,8 @@ export function searchRules(library, { query = "", source = "", kind = "", filte
   return candidates
     .map(rule => {
       const name = fold(rule.name);
-      const aliases = rule.aliases.map(fold);
-      const haystack = [name, ...aliases].join(" ");
-      if (!terms.every(term => haystack.includes(term))) return null;
-      const score = !phrase ? 0 : name === phrase ? 100 : aliases.includes(phrase) ? 90 : name.startsWith(phrase) ? 80 : name.includes(phrase) ? 70 : terms.every(term => name.includes(term)) ? 60 : 0;
+      if (!terms.every(term => name.includes(term))) return null;
+      const score = name === phrase ? 100 : name.startsWith(phrase) ? 80 : name.includes(phrase) ? 70 : 60;
       return { rule, score: score + (phrase && rule.entry.ruleDefault === true ? 1 : 0) };
     }).filter(Boolean).sort((a, b) => b.score - a.score || compareText(a.rule.name, b.rule.name)).map(result => result.rule);
 }

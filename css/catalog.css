@@ -10,6 +10,90 @@
 .catalog-result:hover strong, .catalog-result[aria-current="true"] strong { color: var(--accent); }
 .catalog-result-category { min-width: 0; text-align: center; color: var(--muted); font: .69rem/1.4 var(--font-ui); overflow-wrap: anywhere; }
 .catalog-result-source { text-align: center; font: .68rem/1.4 var(--font-ui); }
-.catalog-category-label { margin: 0 0 .65rem; color: var(--accent); font: 600 .7rem/1.5 var(--font-ui); text-transform: uppercase; letter-spacing: .06em; }
+.feat-result-qualifier { display: block; margin-top: .15rem; color: var(--muted); font: .65rem/1.4 var(--font-ui); }
+.feat-result-source { min-width: 0; text-align: center; font: .66rem/1.4 var(--font-ui); white-space: nowrap; }
+.feat-result { grid-template-columns: minmax(0, 1fr) minmax(85px, .7fr) minmax(90px, .7fr) 46px; }
+.feat-list-columns { grid-template-columns: minmax(0, 1fr) minmax(85px, .7fr) minmax(90px, .7fr) 46px; }
 @media (max-width: 1100px) { .catalog-list-columns, .catalog-result { grid-template-columns: minmax(0, 1fr) 85px 40px; gap: .35rem; } }
+@media (max-width: 1100px) { .feat-result, .feat-list-columns { grid-template-columns: minmax(0, 1fr) minmax(72px, .55fr) minmax(68px, .6fr) 34px; gap: .3rem; } }
 @media print { #catalog-detail { overflow: visible; } }
+[data-catalog="traits"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) minmax(100px, .8fr) 46px; }
+
+[data-catalog="skills"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) 46px; }
+[data-catalog="archetypes"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) 46px; }
+[data-catalog="ancestries"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) 46px; }
+.library-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .25rem; padding: .7rem .7rem 0; }
+.library-lists button { padding: .5rem .35rem; border: 1px solid var(--control-border); border-radius: 4px; background: transparent; color: var(--content-muted); font: 600 .76rem/1.4 var(--font-ui); cursor: pointer; }
+.library-lists button:hover, .library-lists button[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); background: var(--selected-bg); }
+[data-catalog="backgrounds"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) minmax(110px, .8fr) 46px; }
+.character-feats > h2 { color: var(--content-heading); font: 600 1.25rem/1.4 var(--font-ui); }
+.character-feat { border: 1px solid var(--line); border-radius: 5px; margin-bottom: .65rem; background: var(--content-inset); }
+.character-feat > summary { display: flex; align-items: center; gap: .6rem; padding: .8rem .9rem; list-style: none; cursor: pointer; }
+.character-feat > summary::-webkit-details-marker { display: none; }
+.character-feat > summary strong { flex: 1; min-width: 0; color: var(--accent); font: 600 .88rem/1.4 var(--font-ui); }
+.character-feat > summary > span { color: var(--content-muted); font-size: .7rem; }
+.character-feat > summary svg { width: 15px; height: 15px; flex-shrink: 0; color: var(--accent); }
+.character-feat[open] > summary { border-bottom: 1px solid var(--line); background: var(--content-wash); }
+.character-feat[open] > summary svg { transform: rotate(180deg); }
+.character-feat > .rich-content { padding: 1rem; }
+.character-feat .ability-block { margin: 0; }
+
+/* Shared illustration and flavor layout for character readers. */
+.reader-overview { position: relative; padding: .5rem .5rem 1.5rem; margin-bottom: 1.8rem; border-bottom: 1px solid var(--content-line); }
+.reader-overview--illustrated { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: 1.75rem; }
+.reader-overview::after { content: "◇"; position: absolute; bottom: -.5em; left: calc(50% - 1rem); width: 2rem; line-height: 1; text-align: center; background: var(--paper); color: var(--content-heading); }
+.reader-introduction { min-width: 0; }
+.reader-overview .reader-introduction > .flavor { margin: 0; padding: .5rem 0; border: 0; }
+.reader-introduction .flavor::before { display: none; }
+.reader-introduction .flavor > :first-child { margin-top: 0; }
+.reader-portrait { min-width: 0; }
+.reader-portrait .rule-image { margin: 0; }
+.reader-portrait .rule-image-link { display: block; width: 100%; padding: 0; background: transparent; border: 0; }
+.reader-portrait img { display: block; width: 100%; height: auto; max-height: 500px; object-fit: contain; }
+@media (max-width: 550px) { .reader-overview--illustrated { grid-template-columns: 1fr; gap: 1rem; } .reader-portrait { order: -1; width: min(70%, 260px); justify-self: center; } .reader-portrait img { max-height: 340px; } }
+
+/* Shared tabs for character readers. */
+:is(.class-tabs, .reader-tabs) { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: .25rem; padding: 0 0 1.2rem; margin: 1.2rem 0 1.4rem; border-bottom: 1px solid var(--line); }
+:is(.class-tabs, .reader-tabs) button { border: 1px solid transparent; border-radius: 4px; background: transparent; color: var(--content-muted); padding: .5rem .6rem; font: 600 .73rem/1.4 var(--font-ui); cursor: pointer; }
+:is(.class-tabs, .reader-tabs) button:hover, :is(.class-tabs, .reader-tabs) button[aria-selected="true"] { color: var(--accent); background: var(--selected-bg); border-color: var(--control-border); }
+.reader-details { margin: 1.2rem 0 1.8rem; padding: 1.1rem 1.2rem; border: 1px solid var(--content-line); border-radius: 6px; background: var(--content-inset); color: var(--ink); font-family: var(--font-ui); }
+.ancestry-traits .ability-traits { margin: 0; }
+.reader-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0; }
+.reader-details dt { color: var(--content-muted); font: .74rem/1.4 var(--font-ui); }
+.reader-facts dd { margin: .25rem 0 0; color: var(--content-heading); font: 600 1.1rem/1.5 var(--font-ui); }
+.ancestry-attributes { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: .9rem 0 0; padding-top: .9rem; border-top: 1px solid var(--content-line); }
+.ancestry-attributes > div { min-width: 0; }
+.ancestry-attributes dd { margin: .4rem 0 0; color: var(--content-heading); font: 600 .9rem/1.5 var(--font-ui); }
+.ancestry-attributes--standalone { margin: 0; padding: 0; border: 0; }
+.ancestry-panel { min-width: 0; }
+.reader-art { display: flex; align-items: flex-end; justify-content: center; gap: clamp(.75rem, 2vw, 1.75rem); margin: .5rem 0 1rem; }
+.reader-art > .rule-image { flex: 0 1 340px; min-width: 0; margin: 0; }
+.reader-art .rule-image-link { width: 100%; padding: 0; border: 0; background: transparent; }
+.reader-art img { width: 100%; height: clamp(180px, 35vw, 420px); object-fit: contain; object-position: center bottom; }
+.reader-art + .flavor { margin-top: 1rem; }
+.ancestry-panel > .rich-content > .flavor:first-child { border-top: 0; padding-top: .4rem; }
+.reader-detail-row { display: grid; grid-template-columns: minmax(120px, .3fr) minmax(0, 1fr); gap: .5rem 1.2rem; margin: 1rem 0 0; padding-top: 1rem; border-top: 1px solid var(--content-line); }
+.reader-detail-row > :is(h2, dt) { margin: 0; padding: .1rem 0 0; color: var(--content-heading); font: 600 .92rem/1.5 var(--font-ui); }
+.reader-detail-row > :is(div, dd) { min-width: 0; margin: 0; font-size: .9rem; line-height: 1.65; }
+.ancestry-details h2 { margin: 0; padding: .1rem 0 0; border: 0; color: var(--content-heading); font: 600 .92rem/1.5 var(--font-ui); }
+.ancestry-feature > div > :last-child, .ancestry-languages > div > :last-child { margin-bottom: 0; }
+.ancestry-languages .ancestry-language-list { display: flex; flex-wrap: wrap; gap: .35rem .7rem; list-style: none; padding: 0; margin: 0 0 .5rem; }
+.ancestry-language-list li { margin: 0; }
+.ancestry-language-list li:not(:last-child)::after { content: "·"; margin-left: .7rem; color: var(--content-muted); }
+.ancestry-languages .ancestry-language-note { color: var(--content-muted); font-size: .82rem; line-height: 1.65; }
+@media (max-width: 600px) { .reader-details { padding: 1rem; } .reader-detail-row { grid-template-columns: minmax(0, 1fr); gap: .35rem; } }
+.ancestry-heritage-intro { margin-bottom: 1.2rem; }
+:is(.class-option-group--separated, .reader-option-group--separated) { padding-top: 1rem; margin-top: 1.25rem; border-top: 1px solid var(--line); }
+.ancestry-versatile-prompt { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.ancestry-versatile-prompt p, .ancestry-lineage-note { margin: 0; color: var(--content-muted); font-size: .85rem; line-height: 1.6; }
+.ancestry-versatile-prompt button { padding: .45rem .7rem; border: 1px solid var(--control-border); border-radius: 4px; background: var(--panel); color: var(--accent); font: 600 .8rem/1.4 var(--font-ui); cursor: pointer; }
+.ancestry-versatile-prompt button:hover { background: var(--selected-bg); border-color: var(--accent); }
+.ancestry-lineage-note { margin-bottom: 1rem; }
+.character-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-bottom: 1.2rem; }
+.character-toolbar h2 { margin: 0; color: var(--content-heading); font: 600 1.25rem/1.4 var(--font-ui); }
+.character-toolbar label { display: inline-flex; align-items: center; gap: .4rem; color: var(--content-muted); font-size: .75rem; }
+.character-toolbar input, .character-toolbar select { min-width: 0; max-width: 100%; min-height: 34px; padding: .35rem .5rem; border: 1px solid var(--control-border); border-radius: 4px; background: var(--panel); color: var(--text); font: .8rem var(--font-ui); }
+.character-search { flex: 1 1 150px; }
+.character-search input { width: 100%; }
+#ancestry-feat-count { color: var(--content-muted); font-size: .7rem; }
+@media (max-width: 550px) { .reader-tabs button { font-size: .7rem; padding: .5rem; } }

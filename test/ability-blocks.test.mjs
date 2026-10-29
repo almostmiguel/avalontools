@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { renderContent } from "../js/content-renderer.js";
+import { renderContent, renderTraitBadges } from "../js/content-renderer.js";
 import { renderRulePreview } from "../js/reference-previews.js";
 import { createRuleLibrary } from "../js/rule-library.js";
 
@@ -14,14 +14,33 @@ const ability = {
   special: "You can select this more than once.",
 };
 
+test("trait badges share links across blocks and preserve explicit sources and labels", () => {
+  const badges = renderTraitBadges(["Changeling", "{@trait Fire|PC1|Flame}", "<unsafe>", null, ""]);
+  assert.match(badges, /href="traits.html\?trait=Changeling"/);
+  assert.match(badges, /href="traits.html\?trait=Fire&amp;source=PC1"/);
+  assert.match(badges, /data-trait-name="Fire"/);
+  assert.match(badges, /reference-link-start">Flame/);
+  assert.equal((badges.match(/<a\b/g) || []).length, 3);
+  assert.equal((badges.match(/role="listitem"/g) || []).length, 3);
+  assert.doesNotMatch(badges, /<unsafe>|\{@trait/);
+  assert.equal(renderTraitBadges([]), "");
+  const colored = renderTraitBadges([" UNCOMMON ", "{@trait Rare|PC1|Special find}", "Unique", "secret", "General"]);
+  for (const tone of ["uncommon", "rare", "unique", "secret"]) assert.match(colored, new RegExp(`data-trait-badge="${tone}"`));
+  assert.equal((colored.match(/data-trait-badge=/g) || []).length, 4);
+  for (const type of ["ability", "spell"]) {
+    const html = renderContent({ entries: [{ type, traits: ["Changeling"], entries: ["Description."] }] }).html;
+    assert.match(html, /data-trait-name="Changeling"/);
+  }
+});
+
 test("ability blocks preserve names, levels, traits, labeled fields and formatted effects", () => {
   const { html, headings } = renderContent({ entries: [ability] });
   assert.ok(html.includes(`aria-labelledby="${headings[0].id}"`));
   assert.match(html, /Example Ability/);
   assert.match(html, /data-symbol="2"/);
   assert.match(html, /<span class="ability-level">Feat 1<\/span>/);
-  assert.match(html, /class="ability-trait" role="listitem">General/);
-  assert.match(html, /class="ability-trait" role="listitem">Skill/);
+  assert.match(html, /data-trait-name="General"/);
+  assert.match(html, /data-trait-name="Skill"/);
   for (const label of ["Access", "Prerequisites", "Frequency", "Trigger", "Requirements", "Cost", "Special"]) {
     assert.ok(html.includes(`<dt>${label}</dt>`), label);
   }
@@ -105,7 +124,7 @@ test("compact abilities preserve the full fields, glyphs, and anchor without add
     assert.match(html, /class="ability-block ability-block--compact" aria-labelledby="section-1"/);
     assert.match(html, /data-symbol="2"/);
     assert.match(html, /class="ability-level">Feat 1/);
-    assert.match(html, /class="ability-trait" role="listitem">General/);
+    assert.match(html, /data-trait-name="General"/);
     assert.match(html, /<dt>Frequency<\/dt>/);
     assert.match(html, /<dt>Trigger<\/dt>/);
     assert.match(html, /<dt>Special<\/dt>/);

@@ -1,49 +1,49 @@
 // Shared hover and keyboard previews for rules and reference catalogs.
 import { escapeHtml, renderContent } from "./content-renderer.js";
 import { renderRuleBody } from "./rule-library.js";
-import { createLazyResource, loadJson, renderReferenceCitation } from "./reference-data.js";
-import { ACTION_CATEGORIES, actionTimeHtml, createActionLibrary, createCatalog, renderActionBody } from "./reference-library.js";
+import { createLazyResource, loadJson, renderReaderFooter } from "./reference-data.js";
+import { actionTimeHtml, createActionLibrary, createCatalog, renderActionBody } from "./reference-library.js";
 
-const previewHeading = (title, label) => `<header class="rule-preview-heading"><h2 id="rule-preview-title">${escapeHtml(title)}</h2><span>${label}</span></header>`;
+const previewHeading = (title, label, headingId = "rule-preview-title", suffix = "") => `<header class="rule-preview-heading"><h2 id="${headingId}">${escapeHtml(title)}${suffix}</h2><span>${label}</span></header>`;
 
 export function renderRulePreview(name, source, registry) {
   const resolution = registry.resolve(name, source);
   const target = resolution.target;
-  const header = previewHeading(target?.name || name, "Rules");
+  const header = previewHeading(target?.name || name, "Rule");
   if (!target) {
     const message = resolution.status === "ambiguous" ? "This reference matches more than one rule. Open a specific rule from the Rules page."
       : "No matching rule has been added. Check the name and source, or open the Rules page.";
     return `${header}<div class="rule-preview-body"><p>${escapeHtml(message)}</p></div>`;
   }
   const body = renderRuleBody(target, { registry }, { anchorPrefix: "rule-preview-section" });
-  return `${header}<p class="rule-preview-source">${renderReferenceCitation(target)}</p><div class="rule-preview-body">${body}</div>`;
+  return `${header}<div class="rule-preview-body">${body}</div>${renderReaderFooter(target)}`;
 }
 
 export function renderActionPreview(name, source, actions, rules) {
   const resolution = actions.registry.resolve(name, source);
   const target = resolution.target;
-  const header = previewHeading(target?.name || name, "Actions");
+  const header = previewHeading(target?.name || name, "Action", undefined, target ? ` ${actionTimeHtml(target)}` : "");
   if (!target) {
     const message = resolution.status === "ambiguous" ? "More than one action matches this name. Choose its entry on the Actions page."
       : "No matching action has been added. Check the name and source, or open the Actions page.";
     return `${header}<div class="rule-preview-body"><p>${message}</p></div>`;
   }
-  const context = `${ACTION_CATEGORIES[target.category]} action${target.owners.length ? ` · ${target.owners.join(", ")}` : ""}`;
   const body = renderActionBody(target, actions, rules, { anchorPrefix: "action-preview-section" });
-  return `${header}<p class="rule-preview-source">${renderReferenceCitation(target)}</p><div class="rule-preview-body"><p class="action-preview-meta">${actionTimeHtml(target)}<span>${escapeHtml(context)}</span></p>${body}</div>`;
+  return `${header}<div class="rule-preview-body">${body}</div>${renderReaderFooter(target)}`;
 }
 
-export function renderCatalogPreview(name, source, catalog, { plural, singular }) {
+export function renderCatalogPreview(name, source, catalog, { plural, singular, headingId }) {
   const resolution = catalog.registry.resolve(name, source);
   const target = resolution.target;
-  const header = previewHeading(target?.name || name, plural);
+  const header = previewHeading(target?.name || name, singular[0].toUpperCase() + singular.slice(1), headingId);
   if (!target) {
     const message = resolution.status === "ambiguous" ? `More than one ${singular} has this name. Choose an entry from the ${plural} page.`
       : `No matching ${singular} has been added. Check the name and source, or open the ${plural} page.`;
     return `${header}<div class="rule-preview-body"><p>${escapeHtml(message)}</p></div>`;
   }
+  if (catalog.renderPreview) return catalog.renderPreview(target);
   const body = renderContent({ entries: target.entry.entries }, { source: target.source, anchorPrefix: `${singular}-preview-section` }).html || "<p>No description has been added yet.</p>";
-  return `${header}<p class="rule-preview-source">${renderReferenceCitation(target)}</p><div class="rule-preview-body"><p class="action-preview-meta"><span>${escapeHtml(target.category)} ${escapeHtml(singular)}</span></p>${body}</div>`;
+  return `${header}<div class="rule-preview-body">${body}</div>${renderReaderFooter(target)}`;
 }
 
 export function previewPosition(anchor, panel, viewport) {
@@ -56,29 +56,42 @@ export function previewPosition(anchor, panel, viewport) {
   return { left, top };
 }
 
-export function attachReferencePreviews({ document, window, registry, actions = null, conditions = null, skills = null,
+export function attachReferencePreviews({ document, window, registry, actions = null, conditions = null, skills = null, feats = null, classes = null, traits = null, backgrounds = null, archetypes = null, ancestries = null, parentPreview = null,
   loadActions = () => loadJson("data/actions.json").then(createActionLibrary),
   loadConditions = () => loadJson("data/conditions.json").then(data => createCatalog(data, { collection: "conditions", href: "conditions.html" })),
-  loadSkills = () => loadJson("data/skills.json").then(data => createCatalog(data, { collection: "skills", href: "skills.html" })) }) {
+  loadSkills = () => loadJson("data/skills.json").then(data => createCatalog(data, { collection: "skills", href: "skills.html" })),
+  loadTraits = () => loadJson("data/traits.json").then(data => createCatalog(data, { collection: "traits", href: "traits.html" })),
+  loadBackgrounds = () => loadJson("data/backgrounds.json").then(data => createCatalog(data, { collection: "backgrounds", href: "backgrounds.html" })),
+  loadArchetypes = () => loadJson("data/archetypes.json").then(data => createCatalog(data, { collection: "archetypes", href: "archetypes.html" })),
+  loadAncestries = () => Promise.all([loadJson("data/ancestries.json"), import("./ancestry-reader.js")]).then(([data, module]) => module.createAncestryCatalog(data)),
+  loadFeats = () => Promise.all([loadJson("data/feats.json"), import("./feat-library.js")]).then(([data, module]) => module.createFeatCatalog(data)),
+  loadClasses = () => Promise.all([loadJson("data/classes.json"), import("./class-reader.js")]).then(([data, module]) => module.createClassOverviewCatalog(data)) }) {
   const panel = document.createElement("section");
-  panel.id = "rule-preview";
+  panel.id = parentPreview ? "trait-preview" : "rule-preview";
   panel.className = "rule-preview";
   panel.hidden = true;
   panel.tabIndex = -1;
   panel.setAttribute("role", "region");
-  panel.setAttribute("aria-labelledby", "rule-preview-title");
+  panel.setAttribute("aria-labelledby", `${panel.id}-title`);
   document.body.append(panel);
   let current = null;
   let closeTimer;
   let openTimer;
   let restoringFocus = false;
+  let nestedPreview;
   const actionResource = createLazyResource(actions, loadActions);
-  const conditionResource = createLazyResource(conditions, loadConditions);
-  const skillResource = createLazyResource(skills, loadSkills);
+  const catalogs = {
+    ancestry: { plural: "Ancestries", singular: "ancestry", resource: createLazyResource(ancestries, loadAncestries) },
+    background: { plural: "Backgrounds", singular: "background", resource: createLazyResource(backgrounds, loadBackgrounds) },
+    archetype: { plural: "Archetypes", singular: "archetype", resource: createLazyResource(archetypes, loadArchetypes) },
+    condition: { plural: "Conditions", singular: "condition", resource: createLazyResource(conditions, loadConditions) },
+    skill: { plural: "Skills", singular: "skill", resource: createLazyResource(skills, loadSkills) },
+    feat: { plural: "Feats", singular: "feat", resource: createLazyResource(feats, loadFeats) },
+    class: { plural: "Classes", singular: "class", resource: createLazyResource(classes, loadClasses) },
+    trait: { plural: "Traits", singular: "trait", headingId: `${panel.id}-title`, resource: createLazyResource(traits, loadTraits) },
+  };
   let version = 0;
   const getActions = actionResource.load;
-  const getConditions = conditionResource.load;
-  const getSkills = skillResource.load;
   const validateActions = async root => {
     const links = [...(root?.querySelectorAll?.("[data-action-name]") || [])]
       .filter(link => link.dataset.actionResolved == null);
@@ -96,7 +109,9 @@ export function attachReferencePreviews({ document, window, registry, actions = 
     listeners.push(() => element.removeEventListener(event, handler, options));
   };
   const cancelClose = () => window.clearTimeout(closeTimer);
+  const containsPreview = target => panel.contains(target) || Boolean(nestedPreview?.panel.contains(target));
   const hide = (restoreFocus = false) => {
+    nestedPreview?.hide();
     version++;
     window.clearTimeout(openTimer);
     cancelClose();
@@ -106,7 +121,7 @@ export function attachReferencePreviews({ document, window, registry, actions = 
     panel.removeAttribute("aria-busy");
     link?.removeAttribute("aria-describedby");
     link?.removeAttribute("aria-controls");
-    if (restoreFocus && link && panel.contains(document.activeElement)) {
+    if (restoreFocus && link && containsPreview(document.activeElement)) {
       restoringFocus = true;
       link.focus();
       restoringFocus = false;
@@ -126,11 +141,10 @@ export function attachReferencePreviews({ document, window, registry, actions = 
     if (panel.contains(link)) return;
     if (current === link && !panel.hidden) return position();
     if (current !== link) hide();
-    const catalogType = link.dataset.conditionName != null ? "condition" : link.dataset.skillName != null ? "skill" : null;
+    const catalogType = Object.keys(catalogs).find(kind => link.dataset[`${kind}Name`] != null);
     if (catalogType) {
-      const settings = catalogType === "condition"
-        ? { plural: "Conditions", singular: "condition", catalog: conditionResource.current, get: getConditions }
-        : { plural: "Skills", singular: "skill", catalog: skillResource.current, get: getSkills };
+      const { resource, ...labels } = catalogs[catalogType];
+      const settings = { ...labels, catalog: resource.current, get: resource.load };
       panel.dataset.referenceKind = catalogType;
       current = link;
       const requestVersion = ++version;
@@ -138,7 +152,7 @@ export function attachReferencePreviews({ document, window, registry, actions = 
       panel.setAttribute("aria-busy", String(!settings.catalog));
       panel.innerHTML = settings.catalog
         ? renderCatalogPreview(name, source, settings.catalog, settings)
-        : `${previewHeading(name, settings.plural)}<div class="rule-preview-body"><p role="status">Loading ${settings.singular}…</p></div>`;
+        : `${previewHeading(name, settings.plural, settings.headingId)}<div class="rule-preview-body"><p role="status">Loading ${settings.singular}…</p></div>`;
       panel.hidden = false;
       link.setAttribute("aria-controls", panel.id);
       link.setAttribute("aria-describedby", panel.id);
@@ -150,7 +164,7 @@ export function attachReferencePreviews({ document, window, registry, actions = 
         position();
       }).catch(() => {
         if (current !== link || version !== requestVersion) return;
-        panel.innerHTML = `${previewHeading(name, settings.plural)}<div class="rule-preview-body"><p>Unable to load this preview. Follow the link to open ${settings.plural}, or try again.</p></div>`;
+        panel.innerHTML = `${previewHeading(name, settings.plural, settings.headingId)}<div class="rule-preview-body"><p>Unable to load this preview. Follow the link to open ${settings.plural}, or try again.</p></div>`;
         panel.setAttribute("aria-busy", "false");
         position();
       });
@@ -190,32 +204,56 @@ export function attachReferencePreviews({ document, window, registry, actions = 
     window.clearTimeout(openTimer);
     cancelClose();
     closeTimer = window.setTimeout(() => {
-      if (!panel.contains(document.activeElement) && document.activeElement !== current) hide();
+      if (!containsPreview(document.activeElement) && document.activeElement !== current) hide();
     }, 180);
   };
-  const referenceLink = target => target?.closest?.(registry ? "[data-rule-name], [data-action-name], [data-condition-name], [data-skill-name]" : "[data-action-name], [data-condition-name], [data-skill-name]");
+  const referenceSelector = parentPreview ? "[data-trait-name]" : [registry && "[data-rule-name]", "[data-action-name]", ...Object.keys(catalogs).map(kind => `[data-${kind}-name]`)].filter(Boolean).join(", ");
+  const referenceLink = target => {
+    const link = target?.closest?.(referenceSelector);
+    return parentPreview && !parentPreview.contains(link) ? null : link;
+  };
+  const showNestedTrait = link => {
+    if (!nestedPreview) {
+      nestedPreview = attachReferencePreviews({ document, window, parentPreview: panel, traits: catalogs.trait.resource.current, loadTraits: catalogs.trait.resource.load });
+      on(nestedPreview.panel, "pointerenter", cancelClose);
+      on(nestedPreview.panel, "pointerleave", scheduleClose);
+    }
+    return nestedPreview.show(link);
+  };
   on(document, "pointerover", event => {
     if (event.pointerType === "touch") return;
     const link = referenceLink(event.target);
-    if (!link || panel.contains(link) || link.contains(event.relatedTarget)) return;
+    if (!link || link.contains(event.relatedTarget) || nestedPreview?.panel.contains(link)) return;
+    if (panel.contains(link)) {
+      if (!parentPreview && link.dataset.traitName != null) {
+        cancelClose(); window.clearTimeout(openTimer);
+        openTimer = window.setTimeout(() => showNestedTrait(link), 120);
+      }
+      return;
+    }
     cancelClose();
     window.clearTimeout(openTimer);
     openTimer = window.setTimeout(() => show(link), 120);
   });
   on(document, "pointerout", event => {
     const link = referenceLink(event.target);
-    if (link && !link.contains(event.relatedTarget) && !panel.contains(event.relatedTarget)) scheduleClose();
+    if (link && !link.contains(event.relatedTarget) && !containsPreview(event.relatedTarget)) scheduleClose();
   });
   on(panel, "pointerenter", cancelClose);
   on(panel, "pointerleave", scheduleClose);
   on(document, "focusin", event => {
-    if (restoringFocus || panel.contains(event.target)) return;
+    if (restoringFocus || nestedPreview?.panel.contains(event.target)) return;
+    if (panel.contains(event.target)) {
+      const link = referenceLink(event.target);
+      if (!parentPreview && link?.dataset.traitName != null) { cancelClose(); showNestedTrait(link); }
+      return;
+    }
     const link = referenceLink(event.target);
     if (link) show(link);
     else hide();
   });
   on(document, "focusout", event => {
-    if (!panel.contains(event.relatedTarget) && event.relatedTarget !== current) scheduleClose();
+    if (!containsPreview(event.relatedTarget) && event.relatedTarget !== current) scheduleClose();
   });
   on(document, "keydown", event => {
     if (event.key === "Escape") hide(true);
@@ -225,10 +263,10 @@ export function attachReferencePreviews({ document, window, registry, actions = 
     }
   });
   on(document, "pointerdown", event => {
-    if (!panel.contains(event.target) && !current?.contains(event.target)) hide();
+    if (!containsPreview(event.target) && !current?.contains(event.target)) hide();
   });
   on(window, "resize", position);
   on(window, "scroll", position, true);
   on(panel, "load", position, true);
-  return { show, hide, panel, validateActions, destroy() { hide(); listeners.forEach(remove => remove()); panel.remove(); } };
+  return { show, hide, panel, validateActions, destroy() { hide(); nestedPreview?.destroy(); listeners.forEach(remove => remove()); panel.remove(); } };
 }

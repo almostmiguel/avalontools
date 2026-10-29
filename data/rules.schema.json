@@ -261,15 +261,6 @@
           "description": "Prefer this definition when resolving a rule link by name. Otherwise, duplicate names are ambiguous: use a page-based target such as {@rule areas-300|Areas}. The Watch rule links editor task reports ambiguous references in the JSON and Problems panel on save. A source in the tag restricts matching to that source.",
           "default": false
         },
-        "aliases": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "pattern": "\\S"
-          },
-          "uniqueItems": true,
-          "description": "Alternative names used by name search and {@rule ...} links."
-        },
         "source": {
           "type": "string",
           "pattern": "\\S",
@@ -1208,4 +1199,3 @@
     }
   }
 }
-

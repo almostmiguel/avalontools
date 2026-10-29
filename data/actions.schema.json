@@ -46,13 +46,6 @@
           "pattern": "\\S",
           "description": "Action name."
         },
-        "aliases": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "uniqueItems": true
-        },
         "primary": {
           "type": "boolean",
           "description": "Default target for a name shared by several class variants.",
@@ -267,4 +260,3 @@
     }
   }
 }
-
