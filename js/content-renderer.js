@@ -45,6 +45,7 @@ function renderTag(body, options) {
   const formatting = { b: "strong", bold: "strong", i: "em", italic: "em", s: "s", u: "u", sup: "sup", sub: "sub" };
   if (Object.hasOwn(formatting, tag)) return `<${formatting[tag]}>${renderInline(value, options)}</${formatting[tag]}>`;
   const references = {
+    wiki: { noun: "Article", href: "setting.html", parameter: "article", resolver: "resolveWiki" },
     rule: { noun: "Rule", href: "rules.html", parameter: "rule", resolver: "resolveRule" },
     action: { noun: "Action", href: "actions.html", parameter: "action", resolver: "resolveAction" },
     condition: { noun: "Condition", href: "conditions.html", parameter: "condition", resolver: "resolveCondition" },
@@ -144,11 +145,12 @@ export function renderContent(content, options = {}) {
   const heading = (name, level, entry, { afterName = "", trailing = "" } = {}) => {
     const id = `${options.anchorPrefix || "section"}-${headings.length + 1}`;
     const size = Math.max(2, Math.min(6, level + (options.headingOffset || 0)));
-    const minorHeading = entry?.type === "h6" ? ' data-heading-level="6"' : "";
+    const authoredLevel = /^h([1-6])$/.exec(entry?.type)?.[1];
+    const headingLevel = authoredLevel ? ` data-heading-level="${authoredLevel}"` : "";
     headings.push({ id, name: String(name), level: size, entry, outline: outlineDepth === 0 && level <= 4 });
     const target = options.headingLink?.(entry);
     const title = target ? `<a class="content-heading-link" href="${escapeHtml(target.href)}" data-select-rule="${escapeHtml(target.id)}">${inline(name)}</a>` : inline(name);
-    return `<h${size} id="${escapeHtml(id)}"${minorHeading}>${title}${afterName}${trailing}</h${size}>`;
+    return `<h${size} id="${escapeHtml(id)}"${headingLevel}>${title}${afterName}${trailing}</h${size}>`;
   };
   const blocks = (entries, level) => (Array.isArray(entries) ? entries : [entries]).map(entry => block(entry, level)).join("\n");
   const cell = value => {

@@ -20,7 +20,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Intelligence or Wisdom, and one is a free attribute boost.",
-        "You're trained in the {@skill Religion|PC1} skill and the {@skill Lore|PC1|Scribing Lore} skill. You gain the {@feat Student of the Canon|PC1} skill feat."
+        "You're trained in the {@skill Religion} skill and the {@skill Lore||Scribing Lore} skill. You gain the {@feat Student of the Canon} skill feat."
       ],
       "boosts": [
         "intelligence",
@@ -34,7 +34,7 @@
         "Scribing"
       ],
       "feats": [
-        "Student of the Canon|PC1"
+        "Student of the Canon"
       ],
       "categories": [
         "Intelligence",
@@ -55,7 +55,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Strength or Dexterity, and one is a free attribute boost.",
-        "You're trained in the {@skill Acrobatics|PC1} skill and the {@skill Lore|PC1|Circus Lore} skill. You gain the {@feat Steady Balance|PC1} skill feat"
+        "You're trained in the {@skill Acrobatics} skill and the {@skill Lore||Circus Lore} skill. You gain the {@feat Steady Balance} skill feat"
       ],
       "boosts": [
         "strength",
@@ -69,7 +69,7 @@
         "Circus"
       ],
       "feats": [
-        "Steady Balance|PC1"
+        "Steady Balance"
       ],
       "categories": [
         "Strength",
@@ -90,7 +90,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Wisdom or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Nature|PC1} skill and a {@skill Lore|PC1} skill related to one terrain inhabited by animals you like (such as {@skill Lore|PC1|Plains Lore} or {@skill Lore|PC1|Swamp Lore}). You gain the {@feat Train Animal|PC1} skill feat."
+        "You're trained in the {@skill Nature} skill and a {@skill Lore} skill related to one terrain inhabited by animals you like (such as {@skill Lore||Plains Lore} or {@skill Lore||Swamp Lore}). You gain the {@feat Train Animal} skill feat."
       ],
       "boosts": [
         "wisdom",
@@ -106,7 +106,7 @@
         "Terrain"
       ],
       "feats": [
-        "Train Animal|PC1"
+        "Train Animal"
       ],
       "categories": [
         "Wisdom",
@@ -127,7 +127,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Strength or Intelligence, and one is a free attribute boost.",
-        "You're trained in the {@skill Crafting|PC1} skill and the {@skill Lore|PC1|Guild Lore} skill. You gain the {@feat Specialty Crafting|PC1} skill feat."
+        "You're trained in the {@skill Crafting} skill and the {@skill Lore||Guild Lore} skill. You gain the {@feat Specialty Crafting} skill feat."
       ],
       "boosts": [
         "strength",
@@ -141,7 +141,7 @@
         "Guild"
       ],
       "feats": [
-        "Specialty Crafting|PC1"
+        "Specialty Crafting"
       ],
       "categories": [
         "Strength",
@@ -161,7 +161,7 @@
             "Your art is your greatest passion, whatever form it takes. Adventuring might help you find inspiration, or simply be a way to survive until you become a world-famous artist. Choose two attribute boosts. One must be to Dexterity or Charisma, and one is a free attribute boost."
           ]
         },
-        "You're trained in the {@skill Crafting|PC1} skill and the {@skill Lore|PC1|Art Lore} skill. You gain the {@feat Specialty Crafting|PC1} skill feat."
+        "You're trained in the {@skill Crafting} skill and the {@skill Lore||Art Lore} skill. You gain the {@feat Specialty Crafting} skill feat."
       ],
       "boosts": [
         "dexterity",
@@ -175,7 +175,7 @@
         "Art"
       ],
       "feats": [
-        "Specialty Crafting|PC1"
+        "Specialty Crafting"
       ],
       "categories": [
         "Dexterity",
@@ -196,7 +196,7 @@
           ]
         },
         "Choose two ability boosts. One must be to Dexterity or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Intimidation|PC1} skill and a {@skill Lore|PC1} skill related to the terrain you worked in (such as {@skill Lore|PC1|Desert Lore} or {@skill Lore|PC1|Plains Lore}). You gain the {@feat Group Coercion|PC1} skill feat."
+        "You're trained in the {@skill Intimidation} skill and a {@skill Lore} skill related to the terrain you worked in (such as {@skill Lore||Desert Lore} or {@skill Lore||Plains Lore}). You gain the {@feat Group Coercion} skill feat."
       ],
       "boosts": [
         "dexterity",
@@ -212,7 +212,7 @@
         "Terrain"
       ],
       "feats": [
-        "Group Coercion|PC1"
+        "Group Coercion"
       ],
       "categories": [
         "Dexterity",
@@ -233,7 +233,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Constitution or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Diplomacy|PC1} skill and the {@skill Lore|PC1|Alcohol Lore} skill. You gain the {@feat Hobnobber|PC1} skill feat."
+        "You're trained in the {@skill Diplomacy} skill and the {@skill Lore||Alcohol Lore} skill. You gain the {@feat Hobnobber} skill feat."
       ],
       "boosts": [
         "constitution",
@@ -247,7 +247,7 @@
         "Alcohol"
       ],
       "feats": [
-        "Hobnobber|PC1"
+        "Hobnobber"
       ],
       "categories": [
         "Constitution",
@@ -268,8 +268,8 @@
           ]
         },
         "Choose two attribute boosts. One must be to Intelligence or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Diplomacy|PC1} skill and the {@skill Lore|PC1|Legal Lore} skill.",
-        "You gain the {@feat Group Impression|PC1} skill feat."
+        "You're trained in the {@skill Diplomacy} skill and the {@skill Lore||Legal Lore} skill.",
+        "You gain the {@feat Group Impression} skill feat."
       ],
       "boosts": [
         "intelligence",
@@ -283,7 +283,7 @@
         "Legal"
       ],
       "feats": [
-        "Group Impression|PC1"
+        "Group Impression"
       ],
       "categories": [
         "Intelligence",
@@ -304,7 +304,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Strength or Wisdom, and one is a free attribute boost.",
-        "You're trained in the {@skill Survival|PC1} skill and the {@skill Lore|PC1|Legal Lore} skill. You gain the {@feat Experienced Tracker|PC1} skill feat."
+        "You're trained in the {@skill Survival} skill and the {@skill Lore||Legal Lore} skill. You gain the {@feat Experienced Tracker} skill feat."
       ],
       "boosts": [
         "strength",
@@ -318,7 +318,7 @@
         "Legal"
       ],
       "feats": [
-        "Experienced Tracker|PC1"
+        "Experienced Tracker"
       ],
       "categories": [
         "Strength",
@@ -339,7 +339,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Intelligence or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Deception|PC1} skill and the {@skill Lore|PC1|Underworld Lore} skill. You gain the {@feat Charming Liar|PC1} skill feat."
+        "You're trained in the {@skill Deception} skill and the {@skill Lore||Underworld Lore} skill. You gain the {@feat Charming Liar} skill feat."
       ],
       "boosts": [
         "intelligence",
@@ -353,7 +353,7 @@
         "Underworld"
       ],
       "feats": [
-        "Charming Liar|PC1"
+        "Charming Liar"
       ],
       "categories": [
         "Intelligence",
@@ -374,7 +374,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Constitution or Intelligence, and one is a free attribute boost.",
-        "You're trained in the {@skill Survival|PC1} skill, and the {@skill Lore|PC1|Cooking Lore} skill. You gain the {@feat Seasoned|PC1} skill feat."
+        "You're trained in the {@skill Survival} skill, and the {@skill Lore||Cooking Lore} skill. You gain the {@feat Seasoned} skill feat."
       ],
       "boosts": [
         "constitution",
@@ -388,7 +388,7 @@
         "Cooking"
       ],
       "feats": [
-        "Seasoned|PC1"
+        "Seasoned"
       ],
       "categories": [
         "Constitution",
@@ -409,7 +409,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Dexterity or Intelligence, and one is a free attribute boost.",
-        "You're trained in the {@skill Stealth|PC1} skill and the {@skill Lore|PC1|Underworld Lore} skill. You gain the {@feat Experienced Smuggler|PC1} skill feat."
+        "You're trained in the {@skill Stealth} skill and the {@skill Lore||Underworld Lore} skill. You gain the {@feat Experienced Smuggler} skill feat."
       ],
       "boosts": [
         "dexterity",
@@ -423,7 +423,7 @@
         "Underworld"
       ],
       "feats": [
-        "Experienced Smuggler|PC1"
+        "Experienced Smuggler"
       ],
       "categories": [
         "Dexterity",
@@ -444,7 +444,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Intelligence or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Occultism|PC1} skill, and a {@skill Lore|PC1} skill related to your deity or cult. You gain the {@feat Schooled in Secrets|PC1} skill feat."
+        "You're trained in the {@skill Occultism} skill, and a {@skill Lore} skill related to your deity or cult. You gain the {@feat Schooled in Secrets} skill feat."
       ],
       "boosts": [
         "intelligence",
@@ -458,7 +458,7 @@
         "Your deity or cult"
       ],
       "feats": [
-        "Schooled in Secrets|PC1"
+        "Schooled in Secrets"
       ],
       "categories": [
         "Intelligence",
@@ -479,7 +479,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Intelligence or Wisdom, and one is a free attribute boost.",
-        "You're trained in the {@skill Society|PC1} skill and the {@skill Lore|PC1|Underworld Lore} skill. You gain the {@feat Streetwise|PC1} skill feat."
+        "You're trained in the {@skill Society} skill and the {@skill Lore||Underworld Lore} skill. You gain the {@feat Streetwise} skill feat."
       ],
       "boosts": [
         "intelligence",
@@ -493,7 +493,7 @@
         "Underworld"
       ],
       "feats": [
-        "Streetwise|PC1"
+        "Streetwise"
       ],
       "categories": [
         "Intelligence",
@@ -514,7 +514,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Intelligence or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Society|PC1} skill and a {@skill Lore|PC1} skill related to one city you've visited often. You gain the {@feat Multilingual|PC1} skill feat."
+        "You're trained in the {@skill Society} skill and a {@skill Lore} skill related to one city you've visited often. You gain the {@feat Multilingual} skill feat."
       ],
       "boosts": [
         "intelligence",
@@ -528,7 +528,7 @@
         "Your city"
       ],
       "feats": [
-        "Multilingual|PC1"
+        "Multilingual"
       ],
       "categories": [
         "Intelligence",
@@ -549,7 +549,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Dexterity or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Performance|PC1} skill and the {@skill Lore|PC1|Theater Lore} skill. You gain the {@feat Fascinating Performance|PC1} skill feat."
+        "You're trained in the {@skill Performance} skill and the {@skill Lore||Theater Lore} skill. You gain the {@feat Fascinating Performance} skill feat."
       ],
       "boosts": [
         "dexterity",
@@ -563,7 +563,7 @@
         "Theater"
       ],
       "feats": [
-        "Fascinating Performance|PC1"
+        "Fascinating Performance"
       ],
       "categories": [
         "Dexterity",
@@ -583,7 +583,7 @@
             "With a strong back and an understanding of seasonal cycles, you tilled the land and tended crops. Your farm could have been razed by invaders, you could have lost the family tying you to the land, or you might have simply tired of the drudgery, but at some point, you became an adventurer. Choose two attribute boosts. One must be to Constitution or Wisdom, and one is a free attribute boost."
           ]
         },
-        "You're trained in the {@skill Athletics|PC1} skill and the {@skill Lore|PC1|Farming Lore} skill. You gain the {@feat Assurance|PC1} skill feat with {@skill Athletics|PC1}."
+        "You're trained in the {@skill Athletics} skill and the {@skill Lore||Farming Lore} skill. You gain the {@feat Assurance} skill feat with {@skill Athletics}."
       ],
       "boosts": [
         "constitution",
@@ -597,7 +597,7 @@
         "Farming"
       ],
       "feats": [
-        "Assurance|PC1"
+        "Assurance"
       ],
       "categories": [
         "Constitution",
@@ -619,7 +619,7 @@
         },
         "You patched up soldiers, guards, or other combatants, and learned a fair amount about the logistics of war.",
         "Choose two attribute boosts. One must be to Constitution or Wisdom, and one is a free attribute boost.",
-        "You're trained in the {@skill Medicine|PC1} skill and the {@skill Lore|PC1|Warfare Lore} skill. You gain the {@feat Battle Medicine|PC1} skill feat."
+        "You're trained in the {@skill Medicine} skill and the {@skill Lore||Warfare Lore} skill. You gain the {@feat Battle Medicine} skill feat."
       ],
       "boosts": [
         "constitution",
@@ -633,7 +633,7 @@
         "Warfare"
       ],
       "feats": [
-        "Battle Medicine|PC1"
+        "Battle Medicine"
       ],
       "categories": [
         "Constitution",
@@ -655,7 +655,7 @@
         },
         "You might have used these skills to guide your community, or simply to make money. But even the slightest peek into these practices connects you to the occult mysteries of the universe.",
         "Choose two attribute boosts. One must be to Intelligence or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Occultism|PC1} skill and the {@skill Lore|PC1|Fortune-Telling Lore} skill. You gain the {@feat Oddity Identification|PC1} skill feat."
+        "You're trained in the {@skill Occultism} skill and the {@skill Lore||Fortune-Telling Lore} skill. You gain the {@feat Oddity Identification} skill feat."
       ],
       "boosts": [
         "intelligence",
@@ -669,7 +669,7 @@
         "Fortune-Telling"
       ],
       "feats": [
-        "Oddity Identification|PC1"
+        "Oddity Identification"
       ],
       "categories": [
         "Intelligence",
@@ -690,7 +690,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Dexterity or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Deception|PC1} skill and the {@skill Lore|PC1|Games Lore} skill. You gain the {@feat Lie to Me|PC1} skill feat."
+        "You're trained in the {@skill Deception} skill and the {@skill Lore||Games Lore} skill. You gain the {@feat Lie to Me} skill feat."
       ],
       "boosts": [
         "dexterity",
@@ -704,7 +704,7 @@
         "Games"
       ],
       "feats": [
-        "Lie to Me|PC1"
+        "Lie to Me"
       ],
       "categories": [
         "Dexterity",
@@ -725,7 +725,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Strength or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Performance|PC1} skill and the {@skill Lore|PC1|Gladiatorial Lore} skill. You gain the {@feat Impressive Performance|PC1} skill feat."
+        "You're trained in the {@skill Performance} skill and the {@skill Lore||Gladiatorial Lore} skill. You gain the {@feat Impressive Performance} skill feat."
       ],
       "boosts": [
         "strength",
@@ -739,7 +739,7 @@
         "Gladiatorial"
       ],
       "feats": [
-        "Impressive Performance|PC1"
+        "Impressive Performance"
       ],
       "categories": [
         "Strength",
@@ -760,7 +760,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Strength or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Intimidation|PC1} skill and the {@skill Lore|PC1|Legal Lore} or {@skill Lore|PC1|Warfare Lore} skill. You gain the {@feat Quick Coercion|PC1} skill feat."
+        "You're trained in the {@skill Intimidation} skill and the {@skill Lore||Legal Lore} or {@skill Lore||Warfare Lore} skill. You gain the {@feat Quick Coercion} skill feat."
       ],
       "boosts": [
         "strength",
@@ -775,7 +775,7 @@
         "Warfare"
       ],
       "feats": [
-        "Quick Coercion|PC1"
+        "Quick Coercion"
       ],
       "categories": [
         "Strength",
@@ -796,7 +796,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Constitution or Wisdom, and one is a free attribute boost.",
-        "You're trained in the {@skill Nature|PC1} skill and the {@skill Lore|PC1|Herbalism Lore} skill. You gain the {@feat Natural Medicine|PC1} skill feat."
+        "You're trained in the {@skill Nature} skill and the {@skill Lore||Herbalism Lore} skill. You gain the {@feat Natural Medicine} skill feat."
       ],
       "boosts": [
         "constitution",
@@ -810,7 +810,7 @@
         "Herbalism"
       ],
       "feats": [
-        "Natural Medicine|PC1"
+        "Natural Medicine"
       ],
       "categories": [
         "Constitution",
@@ -831,7 +831,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Constitution or Intelligence, and one is a free attribute boost.",
-        "You're trained in the {@skill Nature|PC1} or {@skill Occultism|PC1} skill, plus a {@skill Lore|PC1} skill related to the terrain you lived in as a hermit (such as {@skill Lore|PC1|Cave Lore} or {@skill Lore|PC1|Desert Lore}). You gain the {@feat Dubious Knowledge|PC1} skill feat."
+        "You're trained in the {@skill Nature} or {@skill Occultism} skill, plus a {@skill Lore} skill related to the terrain you lived in as a hermit (such as {@skill Lore||Cave Lore} or {@skill Lore||Desert Lore}). You gain the {@feat Dubious Knowledge} skill feat."
       ],
       "boosts": [
         "constitution",
@@ -848,7 +848,7 @@
         "Terrain"
       ],
       "feats": [
-        "Dubious Knowledge|PC1"
+        "Dubious Knowledge"
       ],
       "categories": [
         "Constitution",
@@ -869,8 +869,8 @@
           ]
         },
         "Choose two attribute boosts. One must be to Dexterity or Wisdom, and one is a free attribute boost.",
-        "You're trained in the {@skill Survival|PC1} skill and the {@skill Lore|PC1|Tanning Lore} skill.",
-        "You gain the {@feat Survey Wildlife|PC1} skill feat."
+        "You're trained in the {@skill Survival} skill and the {@skill Lore||Tanning Lore} skill.",
+        "You gain the {@feat Survey Wildlife} skill feat."
       ],
       "boosts": [
         "dexterity",
@@ -884,7 +884,7 @@
         "Tanning"
       ],
       "feats": [
-        "Survey Wildlife|PC1"
+        "Survey Wildlife"
       ],
       "categories": [
         "Dexterity",
@@ -905,8 +905,8 @@
           ]
         },
         "Choose two attribute boosts. One must be to Strength or Constitution, and one is a free attribute boost.",
-        "You're trained in the {@skill Athletics|PC1} skill and the {@skill Lore|PC1|Labor Lore} skill.",
-        "You gain the {@feat Hefty Hauler|PC1} skill feat."
+        "You're trained in the {@skill Athletics} skill and the {@skill Lore||Labor Lore} skill.",
+        "You gain the {@feat Hefty Hauler} skill feat."
       ],
       "boosts": [
         "strength",
@@ -920,7 +920,7 @@
         "Labor"
       ],
       "feats": [
-        "Hefty Hauler|PC1"
+        "Hefty Hauler"
       ],
       "categories": [
         "Strength",
@@ -941,7 +941,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Strength or Dexterity, and one is a free attribute boost.",
-        "You're trained in your choice of the {@skill Acrobatics|PC1} or {@skill Athletics|PC1} skill. You gain a skill feat: {@feat Cat Fall|PC1} if you chose {@skill Acrobatics|PC1} or {@feat Quick Jump|PC1} if you chose {@skill Athletics|PC1}. You're also trained in the {@skill Lore|PC1|Warfare Lore} skill."
+        "You're trained in your choice of the {@skill Acrobatics} or {@skill Athletics} skill. You gain a skill feat: {@feat Cat Fall} if you chose {@skill Acrobatics} or {@feat Quick Jump} if you chose {@skill Athletics}. You're also trained in the {@skill Lore||Warfare Lore} skill."
       ],
       "boosts": [
         "strength",
@@ -956,8 +956,8 @@
         "Warfare"
       ],
       "feats": [
-        "Cat Fall|PC1",
-        "Quick Jump|PC1"
+        "Cat Fall",
+        "Quick Jump"
       ],
       "categories": [
         "Strength",
@@ -978,7 +978,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Intelligence or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Diplomacy|PC1} skill and the {@skill Lore|PC1|Mercantile Lore} skill. You gain the {@feat Bargain Hunter|PC1} skill feat."
+        "You're trained in the {@skill Diplomacy} skill and the {@skill Lore||Mercantile Lore} skill. You gain the {@feat Bargain Hunter} skill feat."
       ],
       "boosts": [
         "intelligence",
@@ -992,7 +992,7 @@
         "Mercantile"
       ],
       "feats": [
-        "Bargain Hunter|PC1"
+        "Bargain Hunter"
       ],
       "categories": [
         "Intelligence",
@@ -1013,8 +1013,8 @@
           ]
         },
         "Choose two attribute boosts. One must be to Strength or Wisdom, and one is a free attribute boost.",
-        "You're trained in the {@skill Survival|PC1} skill and the {@skill Lore|PC1|Mining Lore} skill.",
-        "You gain the {@feat Terrain Expertise|PC1} skill feat with underground terrain."
+        "You're trained in the {@skill Survival} skill and the {@skill Lore||Mining Lore} skill.",
+        "You gain the {@feat Terrain Expertise} skill feat with underground terrain."
       ],
       "boosts": [
         "strength",
@@ -1028,7 +1028,7 @@
         "Mining"
       ],
       "feats": [
-        "Terrain Expertise|PC1"
+        "Terrain Expertise"
       ],
       "categories": [
         "Strength",
@@ -1049,7 +1049,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Intelligence or Charisma, and one is a free attribute boost.",
-        "You're trained in the {@skill Society|PC1} skill and your choice of the {@skill Lore|PC1|Genealogy Lore} or {@skill Lore|PC1|Heraldry Lore} skill. You gain the {@feat Courtly Graces|PC1} skill feat."
+        "You're trained in the {@skill Society} skill and your choice of the {@skill Lore||Genealogy Lore} or {@skill Lore||Heraldry Lore} skill. You gain the {@feat Courtly Graces} skill feat."
       ],
       "boosts": [
         "intelligence",
@@ -1064,7 +1064,7 @@
         "Heraldry"
       ],
       "feats": [
-        "Courtly Graces|PC1"
+        "Courtly Graces"
       ],
       "categories": [
         "Intelligence",
@@ -1084,7 +1084,7 @@
             "Traveling far and wide, you picked up basic tactics for surviving on the road and in unknown lands, getting by with few supplies and even fewer comforts. As an adventurer, you travel still, often into even more dangerous places. Choose two attribute boosts. One must be to Constitution or Wisdom, and one is a free attribute boost."
           ]
         },
-        "You're trained in the {@skill Survival|PC1} skill and a {@skill Lore|PC1} skill related to one terrain you traveled in (such as {@skill Lore|PC1|Desert Lore} or {@skill Lore|PC1|Swamp Lore}). You gain the {@feat Assurance|PC1} skill feat with {@skill Survival|PC1}."
+        "You're trained in the {@skill Survival} skill and a {@skill Lore} skill related to one terrain you traveled in (such as {@skill Lore||Desert Lore} or {@skill Lore||Swamp Lore}). You gain the {@feat Assurance} skill feat with {@skill Survival}."
       ],
       "boosts": [
         "constitution",
@@ -1100,7 +1100,7 @@
         "Terrain"
       ],
       "feats": [
-        "Assurance|PC1"
+        "Assurance"
       ],
       "categories": [
         "Constitution",
@@ -1121,7 +1121,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Strength or Constitution, and one is a free attribute boost.",
-        "You're trained in the {@skill Stealth|PC1} skill and the {@skill Lore|PC1|Underworld Lore} skill. You gain the {@feat Experienced Smuggler|PC1} skill feat."
+        "You're trained in the {@skill Stealth} skill and the {@skill Lore||Underworld Lore} skill. You gain the {@feat Experienced Smuggler} skill feat."
       ],
       "boosts": [
         "strength",
@@ -1135,7 +1135,7 @@
         "Underworld"
       ],
       "feats": [
-        "Experienced Smuggler|PC1"
+        "Experienced Smuggler"
       ],
       "categories": [
         "Strength",
@@ -1155,7 +1155,7 @@
             "Whether in a monastery, a religious household, or just as part of your everyday life, your upbringing was steeped in the traditions of a particular deity. You might remain committed or you may have turned from your childhood creed, but your skills are still founded in your devotion. Choose two attribute boosts. One must be to an attribute specified in your deity's Divine Attribute and the other is a free attribute boost."
           ]
         },
-        "You're trained in the deity's listed Divine Skill and gain the {@feat Assurance|PC1} feat with that skill. You are also trained in a {@skill Lore|PC1} skill related to your deity ({@skill Lore|PC1|Abadar Lore}, for example)."
+        "You're trained in the deity's listed Divine Skill and gain the {@feat Assurance} feat with that skill. You are also trained in a {@skill Lore} skill related to your deity ({@skill Lore||Abadar Lore}, for example)."
       ],
       "boosts": [
         "divine ability",
@@ -1183,7 +1183,7 @@
         "Your deity"
       ],
       "feats": [
-        "Assurance|PC1"
+        "Assurance"
       ],
       "categories": [
         "Divine ability"
@@ -1203,8 +1203,8 @@
           ]
         },
         "Choose two attribute boosts. One must be to Strength or Dexterity, and one is a free attribute boost.",
-        "You're trained in the {@skill Athletics|PC1} skill and the {@skill Lore|PC1|Sailing Lore} skill.",
-        "You gain the {@feat Underwater Marauder|PC1} skill feat."
+        "You're trained in the {@skill Athletics} skill and the {@skill Lore||Sailing Lore} skill.",
+        "You gain the {@feat Underwater Marauder} skill feat."
       ],
       "boosts": [
         "strength",
@@ -1218,7 +1218,7 @@
         "Sailing"
       ],
       "feats": [
-        "Underwater Marauder|PC1"
+        "Underwater Marauder"
       ],
       "categories": [
         "Strength",
@@ -1239,7 +1239,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Intelligence or Wisdom, and one is a free attribute boost.",
-        "You're trained in your choice of the {@skill Arcana|PC1}, {@skill Nature|PC1}, {@skill Occultism|PC1}, or {@skill Religion|PC1} skill, and gain the {@feat Assurance|PC1} skill feat in your chosen skill. You're also trained in the {@skill Lore|PC1|Academia Lore} skill."
+        "You're trained in your choice of the {@skill Arcana}, {@skill Nature}, {@skill Occultism}, or {@skill Religion} skill, and gain the {@feat Assurance} skill feat in your chosen skill. You're also trained in the {@skill Lore||Academia Lore} skill."
       ],
       "boosts": [
         "intelligence",
@@ -1256,7 +1256,7 @@
         "Academia"
       ],
       "feats": [
-        "Assurance|PC1"
+        "Assurance"
       ],
       "categories": [
         "Intelligence",
@@ -1277,7 +1277,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Dexterity or Wisdom, and one is a free attribute boost.",
-        "You're trained in the {@skill Survival|PC1} skill and a {@skill Lore|PC1} skill related to one terrain you scouted in (such as {@skill Lore|PC1|Forest Lore} or {@skill Lore|PC1|Cavern Lore}). You gain the {@feat Forager|PC1} skill feat."
+        "You're trained in the {@skill Survival} skill and a {@skill Lore} skill related to one terrain you scouted in (such as {@skill Lore||Forest Lore} or {@skill Lore||Cavern Lore}). You gain the {@feat Forager} skill feat."
       ],
       "boosts": [
         "dexterity",
@@ -1293,7 +1293,7 @@
         "Terrain"
       ],
       "feats": [
-        "Forager|PC1"
+        "Forager"
       ],
       "categories": [
         "Dexterity",
@@ -1313,7 +1313,7 @@
             "You eked out a living by picking pockets on the streets of a major city, never knowing where you'd find your next meal. While some adventure for the glory, you do so to survive. Choose two attribute boosts. One must be to Dexterity or Constitution, and one is a free attribute boost."
           ]
         },
-        "You're trained in {@skill Thievery|PC1} and a {@skill Lore|PC1} skill for the city you lived in as a street urchin (such as {@skill Lore|PC1|Absalom Lore} or {@skill Lore|PC1|Magnimar Lore}). You gain the {@feat Pickpocket|PC1} skill feat."
+        "You're trained in {@skill Thievery} and a {@skill Lore} skill for the city you lived in as a street urchin (such as {@skill Lore||Absalom Lore} or {@skill Lore||Magnimar Lore}). You gain the {@feat Pickpocket} skill feat."
       ],
       "boosts": [
         "dexterity",
@@ -1329,7 +1329,7 @@
         "Your city"
       ],
       "feats": [
-        "Pickpocket|PC1"
+        "Pickpocket"
       ],
       "categories": [
         "Dexterity",
@@ -1350,7 +1350,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Intelligence or Wisdom, and one is a free attribute boost.",
-        "You're trained in your choice of either the {@skill Performance|PC1} or {@skill Society|PC1} skill, as well as the {@skill Lore|PC1|Academia Lore} skill. You gain the {@feat Experienced Professional|PC1} skill feat."
+        "You're trained in your choice of either the {@skill Performance} or {@skill Society} skill, as well as the {@skill Lore||Academia Lore} skill. You gain the {@feat Experienced Professional} skill feat."
       ],
       "boosts": [
         "intelligence",
@@ -1365,7 +1365,7 @@
         "Academia"
       ],
       "feats": [
-        "Experienced Professional|PC1"
+        "Experienced Professional"
       ],
       "categories": [
         "Intelligence",
@@ -1386,7 +1386,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Dexterity or Intelligence, and one is a free attribute boost.",
-        "You're trained in the {@skill Crafting|PC1} skill and the {@skill Lore|PC1|Engineering Lore} skill. You gain the {@feat Specialty Crafting|PC1} skill feat."
+        "You're trained in the {@skill Crafting} skill and the {@skill Lore||Engineering Lore} skill. You gain the {@feat Specialty Crafting} skill feat."
       ],
       "boosts": [
         "dexterity",
@@ -1400,7 +1400,7 @@
         "Engineering"
       ],
       "feats": [
-        "Specialty Crafting|PC1"
+        "Specialty Crafting"
       ],
       "categories": [
         "Dexterity",
@@ -1421,7 +1421,7 @@
           ]
         },
         "Choose two attribute boosts. One must be to Strength or Constitution, and one is a free attribute boost.",
-        "You're trained in the {@skill Intimidation|PC1} skill and the {@skill Lore|PC1|Warfare Lore} skill. You gain the {@feat Intimidating Glare|PC1} skill feat."
+        "You're trained in the {@skill Intimidation} skill and the {@skill Lore||Warfare Lore} skill. You gain the {@feat Intimidating Glare} skill feat."
       ],
       "boosts": [
         "strength",
@@ -1435,7 +1435,7 @@
         "Warfare"
       ],
       "feats": [
-        "Intimidating Glare|PC1"
+        "Intimidating Glare"
       ],
       "categories": [
         "Strength",

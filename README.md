@@ -1,3 +1,6 @@
+Wiki setup and authoring: [Setting wiki guide](content/setting/README.md).
+Run `npm install`, then `npm start`. Build publishable files with `npm run build`.
+
 things to do gpt friend:
 
 remove the initial proficiences header and make it all the same table and well consistent

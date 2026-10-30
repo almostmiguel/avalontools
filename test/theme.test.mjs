@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import vm from "node:vm";
 
-const read = path => readFile(new URL(`../${path}`, import.meta.url), "utf8");
+const read = path => readFile(new URL(`../${path === "setting.html" ? "_site/setting.html" : path}`, import.meta.url), "utf8");
 const script = await read("js/site-shell.js");
 
 class Target {
@@ -162,7 +162,7 @@ test("Player and Game Master dismiss outside, close sibling menus, and return ke
 });
 
 test("every page loads the theme before styles and provides accessible settings", async () => {
-  for (const path of ["index.html", "rules.html", "rule.html", "actions.html"]) {
+  for (const path of ["index.html", "rules.html", "rule.html", "actions.html", "setting.html"]) {
     const html = await read(path);
     assert.ok(html.indexOf('src="js/site-shell.js"') < html.indexOf('href="css/site.css"'), path);
     assert.match(html, /<summary\b[^>]*aria-label="Settings"/);

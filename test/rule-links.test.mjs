@@ -143,7 +143,20 @@ function environment(options = {}) {
   }
   const document = new EventTarget();
   class Element extends EventTarget {
-    attributes = new Map(); dataset = {}; style = {}; children = []; innerHTML = "";
+    attributes = new Map(); dataset = {}; style = {}; children = []; markup = ""; actionLinks;
+    get innerHTML() { return this.markup; }
+    set innerHTML(value) { this.markup = value; this.actionLinks = undefined; }
+    querySelectorAll(selector) {
+      if (selector !== "[data-action-name]") return [];
+      return this.actionLinks ??= [...this.markup.matchAll(/<(?:a|span)\b([^>]*\bdata-action-name="[^"]*"[^>]*)>/g)].map(([, attributes]) => {
+        const link = new Element();
+        link.parent = this;
+        for (const [, key, value] of attributes.matchAll(/data-action-(name|source|resolved)="([^"]*)"/g)) {
+          link.dataset[`action${key[0].toUpperCase()}${key.slice(1)}`] = value;
+        }
+        return link;
+      });
+    }
     rect = { left: 100, top: 100, bottom: 125, width: 400, height: 200 };
     append(child) { child.parent = this; this.children.push(child); }
     remove() { this.parent.children = this.parent.children.filter(child => child !== this); }
@@ -243,6 +256,30 @@ test("unavailable action data leaves icons unconfirmed and a later validation ca
   assert.equal(loads, 2);
 });
 
+test("every catalog preview confirms action links on its first load and when reopened from cache", async () => {
+  for (const [kind, collection] of [["condition", "conditions"], ["skill", "skills"], ["feat", "feats"], ["class", "classes"], ["trait", "traits"], ["background", "backgrounds"], ["archetype", "archetypes"], ["ancestry", "ancestries"]]) {
+    let catalogLoads = 0, actionLoads = 0;
+    const catalog = createCatalog({ [collection]: [{ name: "Example", source: "PC1", entries: ["Use {@action Stride|PC1}, {@action Aid}, or {@action Missing|PC1}."] }] }, { collection, href: `${collection}.html` });
+    const loader = `load${collection[0].toUpperCase()}${collection.slice(1)}`;
+    const env = environment({ registry: undefined,
+      [loader]: async () => { catalogLoads++; return catalog; },
+      loadActions: async () => { actionLoads++; return actions; },
+    });
+    const link = new env.Element(); link.dataset = { [`${kind}Name`]: "Example", [`${kind}Source`]: "PC1" };
+    for (let open = 0; open < 2; open++) {
+      await env.controller.show(link);
+      await new Promise(resolve => setImmediate(resolve));
+      const links = env.controller.panel.querySelectorAll("[data-action-name]");
+      assert.deepEqual(links.map(link => link.dataset.actionResolved), ["true", "true", "false"], `${kind}, opening ${open + 1}`);
+      assert.equal(env.controller.panel.hidden, false);
+      env.controller.hide();
+    }
+    assert.equal(catalogLoads, 1, kind);
+    assert.equal(actionLoads, 1, kind);
+    env.controller.destroy();
+  }
+});
+
 test("action hover and keyboard focus use the shared panel without intercepting links", () => {
   const env = environment({ actions });
   const link = actionLink(env);
@@ -314,9 +351,9 @@ test("trait previews load once, support hover and keyboard focus, and retain nav
   env.controller.destroy();
 });
 
-test("trait badges inside previews open a separate card and close with their parent", () => {
-  const traits = createCatalog({ traits: [{ name: "Move", source: "PC1", entries: ["Movement trait description."] }] }, { collection: "traits", href: "traits.html" });
-  const env = environment({ actions, traits });
+test("trait badges inside previews open a separate card and close with their parent", async () => {
+  const traits = createCatalog({ traits: [{ name: "Move", source: "PC1", entries: ["Movement trait description. See {@action Stride|PC1}."] }] }, { collection: "traits", href: "traits.html" });
+  const env = environment({ actions, traits, loadActions: () => { throw new Error("Reuse the parent's actions"); } });
   const original = actionLink(env);
   env.controller.show(original);
   const parentBody = env.controller.panel.innerHTML;
@@ -328,6 +365,8 @@ test("trait badges inside previews open a separate card and close with their par
   assert.equal(nested.hidden, false);
   assert.match(nested.innerHTML, /Movement trait description/);
   assert.match(nested.innerHTML, /id="trait-preview-title"/);
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(nested.querySelectorAll("[data-action-name]")[0].dataset.actionResolved, "true");
   assert.equal(env.controller.panel.innerHTML, parentBody);
   assert.equal(env.controller.panel.hidden, false);
   env.controller.hide(); assert.equal(nested.hidden, true);

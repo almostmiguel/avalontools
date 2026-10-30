@@ -13,6 +13,13 @@
   font-display: swap;
 }
 @font-face {
+  font-family: "Taroca";
+  src: url("../fonts/Taroca.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: "Source Sans 3";
   src: url("../fonts/source-sans-3-latin-wght-normal.woff2") format("woff2");
   font-weight: 200 900;
@@ -108,6 +115,7 @@
   --site-gutter: 1.2rem;
   --font-ui: "Source Sans 3", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-display: "Gin", "Source Serif 4", Georgia, serif;
+  --font-heading: "Taroca", "Gin", "Source Serif 4", Georgia, serif;
   --serif: "Source Serif 4", Georgia, serif;
   font: 15px/1.65 var(--font-ui);
   font-optical-sizing: auto;
@@ -218,6 +226,7 @@ body[data-reference-kind], .rule-preview[data-reference-kind] {
   --table-heading-text: var(--reference-color);
 }
 body { margin: 0; min-height: 100vh; background: var(--background); }
+h2 { font-family: var(--font-heading); }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 button, summary { font: inherit; }
@@ -272,12 +281,15 @@ code { font-size: .83em; padding: .15em .35em; background: var(--code-bg); borde
 :is(.rich-content, .rule-preview-body) p { margin: 0 0 1rem; }
 :is(.rich-content, .rule-preview-body) a:where(:not(.rule-link, .action-link, .condition-link, .skill-link, .class-link, .feat-link, .background-link, .archetype-link, .ancestry-link, .trait-link)) { color: var(--content-link); }
 :is(.rich-content, .rule-preview-body) h2, :is(.rich-content, .rule-preview-body) h3, :is(.rich-content, .rule-preview-body) h4, :is(.rich-content, .rule-preview-body) h5, :is(.rich-content, .rule-preview-body) h6 { font-family: var(--font-ui); font-weight: 400; line-height: 1.3; margin: 1.7em 0 .6em; scroll-margin-top: calc(var(--header-height) + 1.5rem); color: var(--content-heading); }
-:is(.rich-content, .rule-preview-body) h2 { font-family: var(--font-display); font-size: 1.75rem; padding-bottom: .35rem; border-bottom: 1px solid var(--content-line); }
-:is(.rich-content, .rule-preview-body) h3 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 400; }
+:is(.rich-content, .rule-preview-body) h2 { font-family: var(--font-heading); font-size: 1.6rem; padding-bottom: .35rem; border-bottom: 1px solid var(--content-line); }
+:is(.rich-content, .rule-preview-body) h3 { font-family: var(--font-ui); font-size: 1.45rem; font-weight: 650; }
 :is(.rich-content, .rule-preview-body) h4 { font-size: 1.25rem; font-weight: 650; }
 :is(.rich-content, .rule-preview-body) h5 { font-size: 1.1rem; font-weight: 650; }
 :is(.rich-content, .rule-preview-body) h6 { font-size: 1rem; font-weight: 700; }
 :is(.rich-content, .rule-preview-body) h6[data-heading-level="6"] { font-size: .95rem; font-weight: 600; font-style: italic; }
+/* Authored levels keep their font when a reader shifts the HTML outline. */
+:is(.rich-content, .rule-preview-body) [data-heading-level="1"] { font-family: var(--font-display); font-weight: 400; }
+:is(.rich-content, .rule-preview-body) [data-heading-level="2"] { font-family: var(--font-heading); font-weight: 400; }
 :is(.rich-content, .rule-preview-body) ul, :is(.rich-content, .rule-preview-body) ol { padding-left: 1.4rem; }
 :is(.rich-content, .rule-preview-body) li { margin-bottom: .4rem; }
 :is(.rich-content, .rule-preview-body) li::marker { color: var(--content-muted); }
@@ -313,12 +325,14 @@ code { font-size: .83em; padding: .15em .35em; background: var(--code-bg); borde
 :is(.rich-content, .rule-preview-body) aside.rule-box { --content-surface: var(--callout-bg); position: relative; padding: 1.4rem 1.6rem; margin: 2rem 0; color: var(--callout-text); background: var(--callout-bg); border: 1px solid var(--callout-line); box-shadow: 0 4px 12px #15271a14; break-inside: avoid; }
 :is(.rich-content, .rule-preview-body) .rule-box::before { content: ""; position: absolute; inset: 5px; border: 1px solid var(--callout-inner); pointer-events: none; }
 :is(.rich-content, .rule-preview-body) .rule-box > :is(h2, h3, h4, h5, h6) { margin: 0 0 .9rem; padding: 0 0 .7rem; border-bottom: 1px solid var(--callout-inner); color: var(--callout-heading); font: 400 1.3rem/1.3 var(--font-display); font-variant: small-caps; letter-spacing: .035em; }
+:is(.rich-content, .rule-preview-body) .rule-box > h2 { font-family: var(--font-heading); }
 :is(.rich-content, .rule-preview-body) .rule-box-content { font: 1rem/1.75 var(--serif); }
 :is(.rich-content, .rule-preview-body) :is(.rule-box-content, .box-section) > p { margin: 0 0 1rem; }
 :is(.rich-content, .rule-preview-body) .rule-box-content > :last-child { margin-bottom: 0; }
 :is(.rich-content, .rule-preview-body) .rule-box-content :is(h2, h3, h4, h5, h6) { color: var(--callout-heading); border-color: var(--callout-inner); }
 :is(.rich-content, .rule-preview-body) .box-section { margin: 2rem 0 0; padding: .5rem 0 0; border: 0; background: none; }
 :is(.rich-content, .rule-preview-body) .box-section > :is(h2, h3, h4, h5, h6) { margin: 0 0 .8rem; padding: 0 0 .6rem; border-bottom: 1px solid var(--callout-inner); color: var(--callout-heading); font: 400 1.3rem/1.3 var(--font-display); font-variant: small-caps; letter-spacing: .035em; }
+:is(.rich-content, .rule-preview-body) .box-section > h2 { font-family: var(--font-heading); }
 :is(.rich-content, .rule-preview-body) .box-section > :last-child { margin-bottom: 0; }
 :is(.rich-content, .rule-preview-body) .rule-box a:where(:not(.rule-link, .action-link, .condition-link, .skill-link, .class-link, .feat-link, .background-link, .archetype-link, .ancestry-link, .trait-link)) { color: var(--callout-heading); text-decoration: underline; }
 :is(.rich-content, .rule-preview-body) .rule-box code { color: inherit; background: var(--code-bg); border-color: var(--callout-inner); }
@@ -457,6 +471,7 @@ a.trait-link { --reference-icon: url("../img/icons/tag.svg"); }
 .class-preview-stats dd { margin: .2rem 0 0; color: var(--content-heading); font: 600 .8rem/1.5 var(--font-ui); overflow-wrap: anywhere; }
 .rule-preview-body .class-preview-image { width: 100%; height: 180px; object-fit: contain; object-position: top center; }
 :is(.rich-content, .rule-preview-body) .ability-block .ability-header > :is(h2, h3, h4, h5, h6) { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem .9rem; margin: 0; padding: 0 0 .55rem; border: 0; color: var(--content-heading); font: 400 1.15rem/1.4 var(--font-display); text-transform: uppercase; letter-spacing: .035em; }
+:is(.rich-content, .rule-preview-body) .ability-block .ability-header > h2 { font-family: var(--font-heading); }
 .ability-header .action-symbol { margin-inline: .1em; }
 .ability-level { margin-left: auto; white-space: nowrap; font-size: .9em; }
 .ability-traits { display: flex; flex-wrap: wrap; gap: .3rem; margin: .1rem 0 .65rem; }
@@ -482,6 +497,7 @@ a.trait-link { --reference-icon: url("../img/icons/tag.svg"); }
 :is(.rich-content, .rule-preview-body) .ability-block--compact { margin: 1rem 0; padding: 0 0 0 1.25em; border: 0; text-indent: -1.25em; }
 .ability-block--compact .ability-header, .ability-block--compact .ability-content { display: inline; }
 :is(.rich-content, .rule-preview-body) .ability-block--compact .ability-header > :is(h2, h3, h4, h5, h6) { display: inline; margin: 0; padding: 0; font: inherit; font-weight: 700; text-transform: none; letter-spacing: normal; }
+:is(.rich-content, .rule-preview-body) .ability-block--compact .ability-header > h2 { font-family: var(--font-heading); }
 .ability-block--compact .ability-content::before { content: " "; }
 .ability-block--compact .ability-level { margin: 0 0 0 .35em; font-size: inherit; font-weight: 400; }
 .ability-block--compact .ability-level::before { content: "("; }

@@ -46,7 +46,7 @@
         "Dwarves have a well-earned reputation as a stoic and stern people, but they also have an unbridled zeal and deeply value artisanship. To a stranger, they can seem untrusting and clannish, but to their friends and family, they are warm and caring. While trust from a dwarf is hard-won, once gained it is as strong as iron.",
         "If you want to play a character who is as hard as nails, a stubborn and unrelenting adventurer, with a mix of rugged toughness and deep wisdom, you should play a dwarf.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -59,7 +59,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -72,7 +72,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Physical Description",
           "entries": [
             "Dwarves are short and stocky, standing about a foot shorter than most humans. They have wide, compact bodies and burly frames. Dwarves of all genders pride themselves on the length of their hair and beards, which they often braid into intricate patterns, some of which represent specific clans. A long beard is a sign of maturity and honor among many dwarf clans.",
@@ -80,7 +80,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Society",
           "entries": [
             "Though the ancient dwarven empire fell long ago, overwhelmed by orc and goblinoid enemies, dwarves today retain many of the qualities that once propelled them to greatness: fierceness, gumption, and stubbornness in their endeavors. Dwarves live within mountain Sky Citadels dotted over the surface, which can create vast cultural divides between dwarf clans. Yet nearly all dwarven peoples share a passion for stonework, metalwork, and family.",
@@ -88,7 +88,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Beliefs",
           "entries": [
             "Dwarves tend to value honor and closely follow the traditions of their clans and kingdoms. They have a strong sense of friendship and justice, though they are often very particular about who they consider a friend. They work hard and play harder—especially when strong ale is involved. Torag, god of dwarvenkind, is dwarves' primary deity, though worship of Torag's family members is also common.",
@@ -97,7 +97,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Names",
           "entries": [
             "Agna, Bodill, Edrukk, Grunyar, Ingra, Kotri, Morgrym, Rogar, Torra, Yangrit"
@@ -138,7 +138,7 @@
           "page": 43,
           "traits": [],
           "entries": [
-            "Dwarven heroes of old could shrug off their enemies' magic, and some of that resistance manifests in you. You gain the {@action Call on Ancient Blood|PC1} reaction."
+            "Dwarven heroes of old could shrug off their enemies' magic, and some of that resistance manifests in you. You gain the {@action Call on Ancient Blood} reaction."
           ]
         },
         {
@@ -147,7 +147,7 @@
           "page": 43,
           "traits": [],
           "entries": [
-            "Your blood runs hearty and strong, and you can shake off toxins. You gain poison resistance equal to half your level (minimum 1), and each of your successful saving throws against a {@trait poison|PC1} affliction reduces its stage by 2, or by 1 for a virulent poison. Each critical success against an ongoing poison reduces its stage by 3, or by 2 for a virulent poison."
+            "Your blood runs hearty and strong, and you can shake off toxins. You gain poison resistance equal to half your level (minimum 1), and each of your successful saving throws against a {@trait poison} affliction reduces its stage by 2, or by 1 for a virulent poison. Each critical success against an ongoing poison reduces its stage by 3, or by 2 for a virulent poison."
           ]
         },
         {
@@ -156,7 +156,7 @@
           "page": 43,
           "traits": [],
           "entries": [
-            "Your ancestors were tomb guardians, and their power to ward off death passed on to you. If you roll a success on a saving throw against an effect that has the {@trait void|PC1} trait or was created by an {@trait undead|PC1} creature, you get a critical success instead."
+            "Your ancestors were tomb guardians, and their power to ward off death passed on to you. If you roll a success on a saving throw against an effect that has the {@trait void} trait or was created by an {@trait undead} creature, you get a critical success instead."
           ]
         },
         {
@@ -165,7 +165,7 @@
           "page": 43,
           "traits": [],
           "entries": [
-            "Your ancestors lived and worked among the ancient stones of the mountains or the depths of the earth. This makes you solid as a rock when you plant your feet. You gain a +2 circumstance bonus to your Fortitude or Reflex DC against attempts to {@action Reposition|PC1}, {@action Shove|PC1}, or {@action Trip|PC1} you. This bonus also applies to saving throws against spells or effects that attempt to force you to move or knock you prone. In addition, if any effect would force you to move 10 feet or more, you are moved only half the distance."
+            "Your ancestors lived and worked among the ancient stones of the mountains or the depths of the earth. This makes you solid as a rock when you plant your feet. You gain a +2 circumstance bonus to your Fortitude or Reflex DC against attempts to {@action Reposition}, {@action Shove}, or {@action Trip} you. This bonus also applies to saving throws against spells or effects that attempt to force you to move or knock you prone. In addition, if any effect would force you to move 10 feet or more, you are moved only half the distance."
           ]
         }
       ],
@@ -213,7 +213,7 @@
         "As an ancient people, elves have seen great change and have the perspective that can come only from watching the arc of history. After leaving Golarion in ancient times, they returned to a changed land, and they still struggle to reclaim their ancestral homes. Elves value kindness, intellect, and beauty, with many elves striving to improve their manners, appearance, and culture. Their studies delve into a level of detail that most shorter-lived peoples find excessive or inefficient. Elves are often rather private people, steeped in the secrets of their groves and kinship groups. They're slow to build friendships outside their kinsfolk, as elves who spend their lives among shorter-lived peoples often become morose after watching generations of companions age and die. These elves are known as Forlorn among their fellow elves.",
         "If you want a character who is magical, mystical, and mysterious, you should play an elf.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -226,7 +226,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -239,7 +239,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Physical Description",
           "entries": [
             "While generally taller than humans, elves possess a fragile grace, accentuated by long features and sharply pointed ears. Their eyes are wide and rounded, featuring large and often vibrantly colored pupils that make up the entire visible portion of the eye. These pupils give them an alien look and allow them to see sharply even in very little light.",
@@ -247,7 +247,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Society",
           "entries": [
             "The inborn patience and intellectual curiosity of elves make them excellent sages, philosophers, and wizards, and their societies are built upon their inherent sense of wonder and knowledge.",
@@ -256,7 +256,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Beliefs",
           "entries": [
             "Elves are often emotional and capricious, yet they hold high ideals close to their hearts. They prefer deities who share their love of all things mystic and artistic. Desna and Shelyn are particular favorites, the former for her sense of wonder and the latter for her appreciation of artistry. Calistria is the most notorious of elven deities, as she represents many of the elven ideals taken to the extreme.",
@@ -265,7 +265,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Names",
           "entries": [
             "Aerel, Amrunelara, Caladrel, Dardlara, Faunra, Heldalel, Jathal, Lanliss, Oparal, Seldlon, Soumral, Talathel, Tessara, Variel, Yalandlara, Zordlon"
@@ -291,7 +291,7 @@
           "page": 47,
           "traits": [],
           "entries": [
-            "In your long life, you've dabbled in many paths and many styles. A typical ancient elf is at least 100 years old, though you might be younger at the GM's discretion. Choose a class other than your own. You gain the {@trait multiclass dedication|PC1} feat for that class, even though you don't meet its level prerequisite. You must still meet its other prerequisites to gain the feat."
+            "In your long life, you've dabbled in many paths and many styles. A typical ancient elf is at least 100 years old, though you might be younger at the GM's discretion. Choose a class other than your own. You gain the {@trait multiclass dedication} feat for that class, even though you don't meet its level prerequisite. You must still meet its other prerequisites to gain the feat."
           ]
         },
         {
@@ -318,8 +318,8 @@
           "page": 47,
           "traits": [],
           "entries": [
-            "You're adapted to life in the forest, the deep jungle, or a similar environment, and you know how to climb trees and use foliage to your advantage. When {@action Climb|PC1|Climbing} trees, vines, and other foliage, you move at half your Speed on a success and at full Speed on a critical success (and you move at full Speed on a success if you have {@feat Quick Climb|PC1}). This doesn't affect you if you're using a climb Speed.",
-            "You can always use the {@action Take Cover|PC1} action when you are within forest terrain to gain cover, even if you're not next to an obstacle you can Take Cover behind."
+            "You're adapted to life in the forest, the deep jungle, or a similar environment, and you know how to climb trees and use foliage to your advantage. When {@action Climb||Climbing} trees, vines, and other foliage, you move at half your Speed on a success and at full Speed on a critical success (and you move at full Speed on a success if you have {@feat Quick Climb}). This doesn't affect you if you're using a climb Speed.",
+            "You can always use the {@action Take Cover} action when you are within forest terrain to gain cover, even if you're not next to an obstacle you can Take Cover behind."
           ]
         },
         {
@@ -328,7 +328,7 @@
           "page": 47,
           "traits": [],
           "entries": [
-            "Your ears are finely tuned, able to detect even the slightest whispers of sound. You gain a +2 circumstance bonus when using the {@action Seek|PC1} action to find hidden or undetected creatures within 30 feet of you. When you target an opponent that is concealed from you or hidden from you, reduce the DC of the flat check to 3 for a concealed target or 9 for a hidden one. This benefit doesn't apply if you can't hear or if the creature is incapable of making sound (for example, if it's affected by a {@spell silence|PC1} spell)."
+            "Your ears are finely tuned, able to detect even the slightest whispers of sound. You gain a +2 circumstance bonus when using the {@action Seek} action to find hidden or undetected creatures within 30 feet of you. When you target an opponent that is concealed from you or hidden from you, reduce the DC of the flat check to 3 for a concealed target or 9 for a hidden one. This benefit doesn't apply if you can't hear or if the creature is incapable of making sound (for example, if it's affected by a {@spell silence} spell)."
           ]
         },
         {
@@ -337,7 +337,7 @@
           "page": 47,
           "traits": [],
           "entries": [
-            "You have an inborn ability to detect and understand magical phenomena. You can cast the {@spell detect magic|PC1} cantrip as an arcane innate spell at will. A cantrip is heightened to a spell rank equal to half your level rounded up. In addition, you gain a +1 circumstance bonus to checks to {@action Identify Magic|PC1} and to {@action Decipher Writing|PC1} of a magical nature. These skill actions typically use the {@skill Arcana|PC1}, {@skill Nature|PC1}, {@skill Occultism|PC1}, or {@skill Religion|PC1} skill."
+            "You have an inborn ability to detect and understand magical phenomena. You can cast the {@spell detect magic} cantrip as an arcane innate spell at will. A cantrip is heightened to a spell rank equal to half your level rounded up. In addition, you gain a +1 circumstance bonus to checks to {@action Identify Magic} and to {@action Decipher Writing} of a magical nature. These skill actions typically use the {@skill Arcana}, {@skill Nature}, {@skill Occultism}, or {@skill Religion} skill."
           ]
         }
       ],
@@ -383,11 +383,11 @@
             "Gnomes are short and hardy folk, with an unquenchable curiosity and eccentric habits."
           ]
         },
-        "Long ago, early gnome ancestors emigrated from the First World, realm of the {@trait fey|PC1}. While it's unclear why the first gnomes wandered to Golarion, this lineage manifests in modern gnomes as bizarre reasoning, eccentricity, obsessive tendencies, and what some see as naivete.",
+        "Long ago, early gnome ancestors emigrated from the First World, realm of the {@trait fey}. While it's unclear why the first gnomes wandered to Golarion, this lineage manifests in modern gnomes as bizarre reasoning, eccentricity, obsessive tendencies, and what some see as naivete.",
         "Always hungry for new experiences, gnomes constantly wander both mentally and physically, attempting to stave off a terrible ailment that threatens all of their people. This affliction, known as the Bleaching, strikes gnomes who fail to dream, innovate, and take in new experiences. The Bleaching slowly drains the color— literally—from gnomes, and it plunges those affected into states of deep depression that eventually claim their lives. Very few gnomes survive this scourge, becoming deeply morose and wise survivors known as bleachlings.",
         "If you want a character with boundless enthusiasm and an alien, fey outlook on morality and life, you should play a gnome.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -400,7 +400,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -413,7 +413,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Physical Description",
           "entries": [
             "Most gnomes stand just over 3 feet in height and weigh little more than a human child. They exhibit a wide range of natural skin, hair, and eye colors. For gnomes that haven't begun the Bleaching, nearly any hair and eye color other than white is possible, with vibrant colors most frequent, while skin tones span a slightly narrower spectrum and tend toward earthy tones and pinkish hues, though occasionally green, black, or pale blue.",
@@ -421,7 +421,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Society",
           "entries": [
             "While most gnomes adopt some of the cultural practices of the region in which they live, they tend to pick and choose, adjusting their communities to fit their own fey logic. This often leads to majority gnome communities eventually consisting almost entirely of gnomes, as other people, bewildered by gnomish political decisions, choose to move elsewhere. Gnomes have little culture that they would consider entirely their own. Exceptionally few gnome kingdoms or nations exist on the surface of Golarion, and most gnomes wouldn't know what to do with such a state if they had one.",
@@ -429,7 +429,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Beliefs",
           "entries": [
             "Though gnomes are impulsive tricksters with inscrutable motives and confusing methods, many at least attempt to make the world a better place. They are prone to fits of powerful emotion and are rarely shy about helping those they believe deserve it. Gnomes most commonly worship deities that value individuality and nature, such as Cayden Cailean, Desna, Gozreh, and Shelyn.",
@@ -438,7 +438,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Names",
           "entries": [
             "Abroshtor, Bastargre, Besh, Fijit, Halungalom, Krolmnite, Neji, Majet, Pai, Poshment, Queck, Trig, Zarzuket, Zatqualmie"
@@ -464,7 +464,7 @@
           "page": 51,
           "traits": [],
           "entries": [
-            "The color of your hair and skin is mutable, possibly due to latent magic from First World influences or lingering illusion effects. You can slowly change the vibrancy and the exact color, and the coloration can be different across your body, allowing you to create patterns or other colorful designs. It takes a single action for minor localized shifts and up to an hour for dramatic shifts throughout your body. While you're asleep, the colors shift on their own in tune with your dreams, giving you an unusual coloration each morning. When you're in an area where your coloration is roughly similar to the environment (for instance, forest green in a forest), you can use the single action to make minor localized shifts designed to help you blend into your surroundings. This grants you a +2 circumstance bonus to {@skill Stealth|PC1} checks until your surroundings shift in coloration or pattern."
+            "The color of your hair and skin is mutable, possibly due to latent magic from First World influences or lingering illusion effects. You can slowly change the vibrancy and the exact color, and the coloration can be different across your body, allowing you to create patterns or other colorful designs. It takes a single action for minor localized shifts and up to an hour for dramatic shifts throughout your body. While you're asleep, the colors shift on their own in tune with your dreams, giving you an unusual coloration each morning. When you're in an area where your coloration is roughly similar to the environment (for instance, forest green in a forest), you can use the single action to make minor localized shifts designed to help you blend into your surroundings. This grants you a +2 circumstance bonus to {@skill Stealth} checks until your surroundings shift in coloration or pattern."
           ]
         },
         {
@@ -473,7 +473,7 @@
           "page": 51,
           "traits": [],
           "entries": [
-            "The blood of the fey flows through your veins, saturating you with their magic and making you truly one of them. You gain the {@trait fey|PC1} trait, in addition to the {@trait gnome|PC1} and {@trait humanoid|PC1} traits. Choose one cantrip from the primal spell list. You can cast this spell as a primal innate spell at will. A cantrip is heightened to a spell rank equal to half your level rounded up. You can change this cantrip to a different one from the same list once per day by meditating to realign yourself with the First World; this is a 10-minute activity that has the {@trait concentrate|PC1} trait."
+            "The blood of the fey flows through your veins, saturating you with their magic and making you truly one of them. You gain the {@trait fey} trait, in addition to the {@trait gnome} and {@trait humanoid} traits. Choose one cantrip from the primal spell list. You can cast this spell as a primal innate spell at will. A cantrip is heightened to a spell rank equal to half your level rounded up. You can change this cantrip to a different one from the same list once per day by meditating to realign yourself with the First World; this is a 10-minute activity that has the {@trait concentrate} trait."
           ]
         },
         {
@@ -550,7 +550,7 @@
         "The convoluted histories other people cling to don't interest goblins. These small folk live in the moment, and they prefer tall tales over factual records. Goblin virtues are about being present, creative, and honest. They strive to lead fulfilled lives, rather than worrying about how their journeys will end. To tell stories, not nitpick the facts. To be small, but dream big. Many goblins enjoy simpler delights like songs, fire, and eating, and hate reading, dogs, and horses. Other goblins might have more complex pursuits, though, such as tinkering with scraps or concocting snacks and explosives from most anything.",
         "If you want a character who is eccentric, enthusiastic, and fun-loving, you should play a goblin.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -563,7 +563,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -576,7 +576,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Physical Description",
           "entries": [
             "Goblins are stumpy humanoids with large bodies, scrawny limbs, and massively oversized heads with large ears and beady red eyes. Their skin ranges from green to gray to blue, and they often bear scars, boils, and rashes. Goblins average 3 feet tall. Most are bald, with little or no body hair. Their jagged teeth fall out and regrow constantly, and their fast metabolism means they eat constantly and nap frequently. Mutations are also more common among goblins than other peoples, and goblins usually view particularly salient mutations as a sign of power or fortune.",
@@ -584,7 +584,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Society",
           "entries": [
             "Goblins tend to flock to strong leaders, forming small tribes. These tribes rarely number more than a hundred, though the larger a tribe is, the more diligent the leader must be to keep order—a notoriously difficult task. Play and creativity matter more to goblins than productivity or study, and their encampments erupt with songs and laughter.",
@@ -592,7 +592,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Beliefs",
           "entries": [
             "Even the most well-intentioned goblins have trouble following the rules, meaning goblin adventurers are often unsure whether they're on the right side of the law. Organized worship likewise confounds goblins, and most of them would rather pick their own deities, choosing powerful monsters, natural wonders, or anything else they find fascinating— sometimes even attributing deific status to fellow goblins of note. Goblins who spend time around people of other ancestries might adopt some of their beliefs, though, and many goblin adventurers adopt the worship of Cayden Cailean.",
@@ -601,7 +601,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Names",
           "entries": [
             "Ak, Bokker, Frum, Guzmuk, Krobby, Loohi, Mazmord, Neeka, Omgot, Ranzak, Rickle, Tup, Wakla, Yonk, Zibini"
@@ -645,7 +645,7 @@
           "page": 55,
           "traits": [],
           "entries": [
-            "You can subsist on food that most folks would consider spoiled. You can keep yourself fed with poor meals in a settlement as long as garbage is readily available, without using the {@action Subsist|PC1} downtime activity. You can eat and drink things when you are sickened.",
+            "You can subsist on food that most folks would consider spoiled. You can keep yourself fed with poor meals in a settlement as long as garbage is readily available, without using the {@action Subsist} downtime activity. You can eat and drink things when you are sickened.",
             "You gain a +2 circumstance bonus to saving throws against afflictions, against gaining the sickened condition, and to remove the sickened condition. When you roll a success on a Fortitude save affected by this bonus, you get a critical success instead. All these benefits apply only when the affliction or condition resulted from something you ingested."
           ]
         },
@@ -664,7 +664,7 @@
           "page": 55,
           "traits": [],
           "entries": [
-            "Your family's teeth are formidable weapons. You gain a jaws {@trait unarmed|PC1} attack that deals 1d6 piercing damage. Your jaws are in the brawling group and have the {@trait finesse|PC1} and unarmed traits."
+            "Your family's teeth are formidable weapons. You gain a jaws {@trait unarmed} attack that deals 1d6 piercing damage. Your jaws are in the brawling group and have the {@trait finesse} and unarmed traits."
           ]
         }
       ],
@@ -712,7 +712,7 @@
         "Claiming no place as their own, halflings control few settlements larger than villages. Instead, they frequently live among humans within larger cities, carving out small communities alongside taller folk. Optimistic, cheerful, and driven by powerful wanderlust, halflings make up for their short stature with an abundance of bravado. At once excitable and easygoing, halflings are the best kind of opportunists, and their passions favor joy over violence. While their curiosity sometimes drives them toward adventure, halflings also carry strong ties to house and home.",
         "If you want to play a character who must contend with these opposing drives toward adventure and comfort, you should play a halfling.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -725,7 +725,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -738,7 +738,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Physical Description",
           "entries": [
             "Halflings are short humanoids who look vaguely like smaller humans. They rarely grow to be more than 3 feet in height. Halfling proportions vary, with some looking like shorter adult humans with slightly larger heads and others having proportions closer to those of a human child. Most halflings prefer to walk barefoot rather than wear shoes, and those who do so develop roughly calloused soles on their feet over time. Tufts of thick, often-curly hair warm the tops of their broad, tanned feet. Halfling skin tones tend toward rich, tawny shades like amber or oak, and their hair color ranges from a light golden blond to raven black.",
@@ -746,14 +746,14 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Society",
           "entries": [
             "Despite their jovial and friendly nature, halflings don't usually tend to congregate. They have few cultural centers in the Inner Sea region, and they instead tend to weave themselves throughout the societies of the world. Halflings eke out whatever living they can manage, many performing menial labor or holding simple service jobs. Some halflings reject city life, instead turning to the open road and traveling from place to place in search of fortune and fame. These nomadic halflings often travel in small groups, sharing hardships and simple pleasures among close friends and family. Halfling names are usually two to three syllables, with a gentle sound that avoids hard consonants. Preferring their names to sound humble, halflings see overly long or complex names as a sign of arrogance for their people. However, they understand that elves and humans might have longer names to suit their own aesthetics."
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Beliefs",
           "entries": [
             "Halflings are loyal to their friends and their family, but they aren't afraid to do what needs to be done in order to survive. Wherever halflings go, they seamlessly blend into the society they find themselves in, adapting to the culture and beliefs of the predominant ancestry around them and adding their uniquely halfling twists, creating a blend of cultural diffusion that enriches both cultures. Halflings favor gods that either grant luck, like Desna, or encourage guile, like Norgorber, and many appreciate Cayden Cailean's role as a liberator, as well as any religions common among other ancestries around them.",
@@ -762,7 +762,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Names",
           "entries": [
             "Anafa, Antal, Bellis, Boram, Etune, Filiu, Jamir, Kaleb, Linna, Marra, Miro, Rillka, Sistra, Sumak, Yamyra"
@@ -773,7 +773,7 @@
         {
           "name": "Keen Eyes",
           "entries": [
-            "Your eyes are sharp, allowing you to make out small details about concealed or even invisible creatures that others might miss. You gain a +2 circumstance bonus when using the {@action Seek|PC1} action to find hidden or undetected creatures within 30 feet of you. When you target an opponent that is concealed from you or hidden from you, reduce the DC of the flat check to 3 for a concealed target or 9 for a hidden one."
+            "Your eyes are sharp, allowing you to make out small details about concealed or even invisible creatures that others might miss. You gain a +2 circumstance bonus when using the {@action Seek} action to find hidden or undetected creatures within 30 feet of you. When you target an opponent that is concealed from you or hidden from you, reduce the DC of the flat check to 3 for a concealed target or 9 for a hidden one."
           ]
         }
       ],
@@ -790,7 +790,7 @@
             "uncommon"
           ],
           "entries": [
-            "You were born with a strange blessing: bereft of the typical halfling luck, you can instead manipulate the fortunes of others. You can never take the {@feat Halfling Luck|PC1} feat, and you gain the {@action Jinx|PC1} action."
+            "You were born with a strange blessing: bereft of the typical halfling luck, you can instead manipulate the fortunes of others. You can never take the {@feat Halfling Luck} feat, and you gain the {@action Jinx} action."
           ]
         },
         {
@@ -799,7 +799,7 @@
           "page": 59,
           "traits": [],
           "entries": [
-            "Accustomed to a calm life in the hills, your people find rest and relaxation especially replenishing, particularly when indulging in creature comforts. When you regain Hit Points overnight, add your level to the Hit Points regained. When anyone uses the {@skill Medicine|PC1} skill to {@action Treat Wounds|PC1|Treat your Wounds}, you can eat a snack to add your level to the Hit Points you regain from their treatment."
+            "Accustomed to a calm life in the hills, your people find rest and relaxation especially replenishing, particularly when indulging in creature comforts. When you regain Hit Points overnight, add your level to the Hit Points regained. When anyone uses the {@skill Medicine} skill to {@action Treat Wounds||Treat your Wounds}, you can eat a snack to add your level to the Hit Points you regain from their treatment."
           ]
         },
         {
@@ -826,7 +826,7 @@
           "page": 59,
           "traits": [],
           "entries": [
-            "Your family line is known for keeping a level head and staving off fear when the chips were down. When you roll a success on a saving throw against an {@trait emotion|PC1} effect, you get a critical success instead."
+            "Your family line is known for keeping a level head and staving off fear when the chips were down. When you roll a success on a saving throw against an {@trait emotion} effect, you get a critical success instead."
           ]
         },
         {
@@ -835,7 +835,7 @@
           "page": 59,
           "traits": [],
           "entries": [
-            "Your ancestors have traveled from place to place for generations, never content to settle down. You gain two additional languages of your choice, chosen from among the common and uncommon languages available to you, and every time you take the {@feat Multilingual|PC1} feat, you gain another new language."
+            "Your ancestors have traveled from place to place for generations, never content to settle down. You gain two additional languages of your choice, chosen from among the common and uncommon languages available to you, and every time you take the {@feat Multilingual} feat, you gain another new language."
           ]
         }
       ],
@@ -879,7 +879,7 @@
         "Humans' ambition, versatility, and exceptional potential have led to their status as the world's predominant ancestry. Their empires and nations are vast, sprawling things, and their citizens carve names for themselves with the strength of their sword arms and the power of their spells. Humanity is diverse and tumultuous, running the gamut from nomadic to imperial, sinister to saintly. Many of them venture forth to explore, to map the expanse of the multiverse, to search for long-lost treasure, or to lead mighty armies to conquer their neighbors—for no better reason than because they can.",
         "If you want a character who can be just about anything, you should play a human.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -893,7 +893,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -907,7 +907,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Physical Description",
           "entries": [
             "Humans' physical characteristics are as varied as the world's climes. Humans have a wide variety of skin and hair colors, body types, and facial features. Generally speaking, their skin has a darker hue the closer to the equator they or their ancestors lived.",
@@ -915,7 +915,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Society",
           "entries": [
             "Human variety also manifests in terms of their governments, attitudes, and social norms. Though the oldest of human cultures can trace their shared histories thousands of years into the past, when compared to the societies of the elves or dwarves, human civilizations seem in a state of constant flux as empires fragment and new kingdoms subsume the old.",
@@ -924,14 +924,14 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Names",
           "entries": [
             "Unlike many ancestral cultures, which generally cleave to specific traditions and shared histories, humanity's diversity has resulted in a near-infinite set of names. The humans of northern tribes have different names than those dwelling in southern nation-states. Humans throughout much of the world speak Common (though some continents on Golarion have their own regional common languages), yet their names are as varied as their beliefs and appearances."
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Ethnicities",
           "entries": [
             "A variety of human ethnic groups populates the continents within Golarion's Inner Sea region and in the lands beyond it. Human characters can be of any ethnicity, regardless of what lands they call home. Some examples of Golarion's ethnicities are presented below. Characters of human ethnicities in the Inner Sea region speak Common (also known as Taldane), and some ethnicities grant access to an uncommon regional language.",
@@ -973,7 +973,7 @@
           "page": 63,
           "traits": [],
           "entries": [
-            "Humanity's versatility and ambition have fueled its ascendance to be the most common ancestry in most nations throughout the world. Select a {@feat general feat|PC1} of your choice for which you meet the prerequisites (as with your ancestry feat, you can select this general feat at any point during character creation)."
+            "Humanity's versatility and ambition have fueled its ascendance to be the most common ancestry in most nations throughout the world. Select a {@feat general feat} of your choice for which you meet the prerequisites (as with your ancestry feat, you can select this general feat at any point during character creation)."
           ]
         }
       ],
@@ -1021,7 +1021,7 @@
         "Leshies are immortal spirits of nature temporarily granted physical forms. As guardians and emissaries of the environment, leshies are “born” when a skilled druid or other master of primal magic conducts a ritual to create a suitable vessel, and then a spirit chooses that vessel to be their temporary home. Leshies are self-sufficient from the moment the ritual ends, though it isn't uncommon for leshies to maintain lifelong bonds with their creators. Many leshies relish the opportunity to interact with the physical world. While most leshy spirits are ancient, they rarely recall past lifetimes and see their new life as a chance to experience the wonders of the world once more.",
         "If you want to play a character who is curious and connected to nature, you should play a leshy.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -1034,7 +1034,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -1047,14 +1047,14 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Physical Description",
           "entries": [
             "Leshies are as varied as the material used to create their vessels, usually appearing as a bizarre mishmash of various plants or fungi. Their bodies are vaguely humanoid in shape, with numerous characteristics of the plant or fungus from which they were made. A typical leshy is about 3 feet tall. Leshies begin their lives as adults and don't age."
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Society",
           "entries": [
             "To most leshies, the concept of family is not a matter of birth, but rather determined by bonds of loyalty and friendship. Leshies are dedicated allies, but they have little tolerance for those who would despoil nature. As much as they are happy to accept someone who earns their trust into their family, they expect family members to look out for them and their natural wards in return.",
@@ -1062,7 +1062,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Beliefs",
           "entries": [
             "Leshies' beliefs generally focus on the natural world. Those with a philosophical bent lean toward the Green Faith, and Gozreh is the most popular deity among faithful leshies. Some leshies also venerate green men, powerful spirits of nature.",
@@ -1071,7 +1071,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Names",
           "entries": [
             "Scarlet in Summer, Verdant Taleweaver, Lurking Hunter, Masterful Sun Drinker, Noon Sky Evening Song, Snowy Pine Branch, Cascading Rapids"
@@ -1112,7 +1112,7 @@
           "page": 67,
           "traits": [],
           "entries": [
-            "You have a large gourd for a skull, and since you don't have a physical brain, you can use the space inside your head. You can store a collection of up to 1 Bulk of objects within your head. The DC of checks to {@action Steal|PC1} objects from inside your head increases by 4. Additionally, if you store only one object within your head, you can draw it effortlessly into your hand as part of another action to use the object. Drawing the item grants this other action the {@trait manipulate|PC1} trait."
+            "You have a large gourd for a skull, and since you don't have a physical brain, you can use the space inside your head. You can store a collection of up to 1 Bulk of objects within your head. The DC of checks to {@action Steal} objects from inside your head increases by 4. Additionally, if you store only one object within your head, you can draw it effortlessly into your hand as part of another action to use the object. Drawing the item grants this other action the {@trait manipulate} trait."
           ]
         },
         {
@@ -1121,7 +1121,7 @@
           "page": 67,
           "traits": [],
           "entries": [
-            "Spines cover your body. You gain a spine {@trait unarmed|PC1} attack that deals 1d6 piercing damage. Your spines are in the brawling group and have the {@trait finesse|PC1} and unarmed traits."
+            "Spines cover your body. You gain a spine {@trait unarmed} attack that deals 1d6 piercing damage. Your spines are in the brawling group and have the {@trait finesse} and unarmed traits."
           ]
         },
         {
@@ -1130,7 +1130,7 @@
           "page": 68,
           "traits": [],
           "entries": [
-            "Your prehensile vines grant you unmatched skill at climbing. You do not need to have any hands free to {@action Climb|PC1}. Additionally, if you roll a success on an {@skill Athletics|PC1} check to Climb, you get a critical success instead."
+            "Your prehensile vines grant you unmatched skill at climbing. You do not need to have any hands free to {@action Climb}. Additionally, if you roll a success on an {@skill Athletics} check to Climb, you get a critical success instead."
           ]
         },
         {
@@ -1148,7 +1148,7 @@
           "page": 67,
           "traits": [],
           "entries": [
-            "Your body continually produces small fruits imbued with primal magic. At dawn each day, a new fruit ripens. You or an ally can remove this fruit as an Interact action. If a living creature that can derive sustenance from fruit consumes it as an Interact action within the next hour, they regain 1d8 Hit Points, plus an additional 1d8 Hit Points for every 2 of your levels beyond 1st. This effect has the {@trait healing|PC1} and {@trait vitality|PC1} traits."
+            "Your body continually produces small fruits imbued with primal magic. At dawn each day, a new fruit ripens. You or an ally can remove this fruit as an Interact action. If a living creature that can derive sustenance from fruit consumes it as an Interact action within the next hour, they regain 1d8 Hit Points, plus an additional 1d8 Hit Points for every 2 of your levels beyond 1st. This effect has the {@trait healing} and {@trait vitality} traits."
           ]
         },
         {
@@ -1157,7 +1157,7 @@
           "page": 67,
           "traits": [],
           "entries": [
-            "Your body was made from fungi that grows in the shade of caves and trees, and you are at home in dark caverns and warrens. You gain darkvision. You lose the {@trait plant|PC1} trait and gain the {@trait fungus|PC1} trait."
+            "Your body was made from fungi that grows in the shade of caves and trees, and you are at home in dark caverns and warrens. You gain darkvision. You lose the {@trait plant} trait and gain the {@trait fungus} trait."
           ]
         },
         {
@@ -1166,7 +1166,7 @@
           "page": 67,
           "traits": [],
           "entries": [
-            "You effortlessly float on the surface of water. You can walk on the surface of still water and other non-damaging liquids, moving at half your normal Speed. You can also attempt to {@action Balance|PC1} to move across the surface of flowing water, using the DC of a {@action Swim|PC1} check to move through the water. When you do this, you can't move faster than half your Speed, and if you fail or critically fail, you fall into the water rather than the normal effects."
+            "You effortlessly float on the surface of water. You can walk on the surface of still water and other non-damaging liquids, moving at half your normal Speed. You can also attempt to {@action Balance} to move across the surface of flowing water, using the DC of a {@action Swim} check to move through the water. When you do this, you can't move faster than half your Speed, and if you fail or critically fail, you fall into the water rather than the normal effects."
           ]
         },
         {
@@ -1175,7 +1175,7 @@
           "page": 67,
           "traits": [],
           "entries": [
-            "Your body is made from hardy roots that attach you firmly to the ground. You gain 10 Hit Points from your ancestry instead of 8. You can go without sunlight for 2 weeks before you begin to starve. You gain a +2 circumstance bonus to your Fortitude or Reflex DC against attempts to Reposition, {@action Shove|PC1}, or {@action Trip|PC1} you. This bonus also applies to saving throws against spells or effects that attempt to move you or knock you prone."
+            "Your body is made from hardy roots that attach you firmly to the ground. You gain 10 Hit Points from your ancestry instead of 8. You can go without sunlight for 2 weeks before you begin to starve. You gain a +2 circumstance bonus to your Fortitude or Reflex DC against attempts to Reposition, {@action Shove}, or {@action Trip} you. This bonus also applies to saving throws against spells or effects that attempt to move you or knock you prone."
           ]
         }
       ],
@@ -1219,7 +1219,7 @@
         "Orcs are forged in the fires of violence and conflict, often from the moment they are born. As they live lives that are frequently cut brutally short, orcs revel in testing their strength against worthy foes, often by challenging a higher-ranking member of their community for dominance. Orcs often struggle to gain acceptance among other communities, who frequently see them as brutes. Those who earn the loyalty of an orc friend, however, soon learn that an orc's fidelity and honesty are unparalleled. Orc culture teaches that they are shaped by the challenges they survive, and the most worthy survive the most hardships. Orcs who attain both a long life and great triumphs command immense respect.",
         "If you want a character who is hardy, fearsome, and excels at feats of physical prowess, you should play an orc.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -1232,7 +1232,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -1245,7 +1245,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Physical Description",
           "entries": [
             "Orcs are tall and powerfully built, with long arms and stocky legs. Many orcs top 7 feet in height, though they tend to adopt broad, almost bow-legged stances and slouch forward at the shoulders. Orcs have rough skin, thick bones, and rock-hard muscles, making them suited to war and other physically demanding tasks. Orc skin color is typically some shade of green, though some orcs have other skin colors that reflect adaptations to their environments.",
@@ -1253,14 +1253,14 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Society",
           "entries": [
             "Most orc communities—known as holds—define themselves through two things: pain and glory. Each earns respect in near equal measure, so long as the pain is borne with stoicism. An orc with many scars who walks uncomplaining with a broken leg draws as much admiration as one who wins a great victory on the battlefield. Additionally, power defines the dynamics among families and holds. Weaker orcs work at the behest of the strong, with power constantly shifting between orcs that prove their might. Orcs tend to share in familial duties, raising children as a community and sharing responsibilities among the entire hold."
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Beliefs",
           "entries": [
             "A common orc saying is “you are the scars that shape you.” Violent, chaotic lives in violent, chaotic lands mean that most orcs tend to expect and accept violence. Lamashtu, and Rovagug are commonly worshiped among more war-minded orc communities, while less violent holds worship gods like Sarenrae, whose tenets of fire, redemption, and glory all hold some appeal to orc sensibilities.",
@@ -1270,7 +1270,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Names",
           "entries": [
             "Arkus, Durra, Grask, Grillgiss, Krugga, Mahja, Murdut, Ollak, Onyat, Thurk, Uirch, Unach"
@@ -1298,7 +1298,7 @@
           "page": 71,
           "traits": [],
           "entries": [
-            "You descend from a line of terrifying battlefield commanders. You become trained in {@skill Intimidation|PC1}, and you gain the {@feat Intimidating Glare|PC1} skill feat."
+            "You descend from a line of terrifying battlefield commanders. You become trained in {@skill Intimidation}, and you gain the {@feat Intimidating Glare} skill feat."
           ]
         },
         {
@@ -1307,7 +1307,7 @@
           "page": 71,
           "traits": [],
           "entries": [
-            "Your calloused hands and red eyes speak to a life spent in the deep darkness of mountain caverns, where you learned to battle on rocky cliffs and survive with minimal resources. You gain the {@feat Terrain Expertise|PC1} skill feat for underground terrain and the {@feat Combat Climber|PC1} skill feat."
+            "Your calloused hands and red eyes speak to a life spent in the deep darkness of mountain caverns, where you learned to battle on rocky cliffs and survive with minimal resources. You gain the {@feat Terrain Expertise} skill feat for underground terrain and the {@feat Combat Climber} skill feat."
           ]
         },
         {
@@ -1316,7 +1316,7 @@
           "page": 71,
           "traits": [],
           "entries": [
-            "You were born in a rain forest with only tangles of trees providing protection from torrential rainstorms and flash floods. You've learned to move adeptly through jungle terrain and resist the various ailments common in humid environs. You gain a +2 circumstance bonus to {@skill Athletics|PC1} checks to {@action Climb|PC1} or {@action Swim|PC1} and a +1 circumstance bonus to saving throws against {@trait diseases|PC1}."
+            "You were born in a rain forest with only tangles of trees providing protection from torrential rainstorms and flash floods. You've learned to move adeptly through jungle terrain and resist the various ailments common in humid environs. You gain a +2 circumstance bonus to {@skill Athletics} checks to {@action Climb} or {@action Swim} and a +1 circumstance bonus to saving throws against {@trait disease||diseases}."
           ]
         },
         {
@@ -1325,7 +1325,7 @@
           "page": 71,
           "traits": [],
           "entries": [
-            "You come from sun-scorched badlands, where long legs and an ability to withstand the elements helped you thrive. You can {@action Hustle|PC1} twice as long while exploring before you have to stop, and you treat environmental heat effects as if they were one step less extreme (incredible heat becomes extreme, extreme heat becomes severe, and so on)."
+            "You come from sun-scorched badlands, where long legs and an ability to withstand the elements helped you thrive. You can {@action Hustle} twice as long while exploring before you have to stop, and you treat environmental heat effects as if they were one step less extreme (incredible heat becomes extreme, extreme heat becomes severe, and so on)."
           ]
         },
         {
@@ -1334,7 +1334,7 @@
           "page": 71,
           "traits": [],
           "entries": [
-            "Your ancestors survived in cold climates. You become trained in {@skill Survival|PC1}, and you treat environmental cold effects as if they were one step less extreme (incredible cold becomes extreme, extreme cold becomes severe, and so on)."
+            "Your ancestors survived in cold climates. You become trained in {@skill Survival}, and you treat environmental cold effects as if they were one step less extreme (incredible cold becomes extreme, extreme cold becomes severe, and so on)."
           ]
         },
         {
@@ -1343,7 +1343,7 @@
           "page": 71,
           "traits": [],
           "entries": [
-            "You are part of an orc community that participates in ritual scarification or tattooing. The marks on your skin show your exceptional hardiness and vitality. You gain 12 Hit Points from your ancestry instead of 10. You also gain the {@feat Diehard|PC1} feat."
+            "You are part of an orc community that participates in ritual scarification or tattooing. The marks on your skin show your exceptional hardiness and vitality. You gain 12 Hit Points from your ancestry instead of 10. You also gain the {@feat Diehard} feat."
           ]
         },
         {
@@ -1352,7 +1352,7 @@
           "page": 71,
           "traits": [],
           "entries": [
-            "You were exposed to powerful necromantic energies that should have killed you—but you survived. Your skin is cold, clammy, and gray. You gain resistance to void damage equal to half your level (minimum 1). You also gain a +1 circumstance bonus to saving throws against effects with the {@trait death|PC1} or {@trait void|PC1} trait."
+            "You were exposed to powerful necromantic energies that should have killed you—but you survived. Your skin is cold, clammy, and gray. You gain resistance to void damage equal to half your level (minimum 1). You also gain a +1 circumstance bonus to saving throws against effects with the {@trait death} or {@trait void} trait."
           ]
         }
       ],
@@ -1383,7 +1383,7 @@
         "Aiuvarins often have pointed ears and can be lanky, along with manifesting traits from their non-elven ancestors. They lack the almost-alien eyes of their elf parents, and their work to find a place for themselves in communities where they're often out of sync with the dominant culture leads many to become artists or entertainers. Despite this innate socialization, many aiuvarins have difficulty forming lasting bonds with either of their parents' people due to the distance they feel from both communities as a whole.",
         "Aiuvarins gain some, but not all, of their elven parent's longevity, and those with a human parent often live for around 150 years. This causes some of them to fear friendship and romance with humans, knowing that they'll likely outlive their companions.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -1397,7 +1397,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -1411,16 +1411,16 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Versatile Heritage",
           "entries": []
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Aiuvarin",
           "entries": [
             "{@b Ancestry Page} Aiuvarin",
-            "You have elves, or possibly other aiuvarins, in your family tree. You have pointed ears and other telltale signs of elf heritage. You gain the {@trait elf|PC1} trait, the {@trait aiuvarin|PC1} trait, and low-light vision. In addition, when you gain an ancestry feat, you can choose from aiuvarin and elf feats in addition to those from your ancestry."
+            "You have elves, or possibly other aiuvarins, in your family tree. You have pointed ears and other telltale signs of elf heritage. You gain the {@trait elf} trait, the {@trait aiuvarin} trait, and low-light vision. In addition, when you gain an ancestry feat, you can choose from aiuvarin and elf feats in addition to those from your ancestry."
           ]
         }
       ],
@@ -1428,7 +1428,7 @@
         {
           "name": "Aiuvarin Heritage",
           "entries": [
-            "You have elves, or possibly other aiuvarins, in your family tree. You have pointed ears and other telltale signs of elf heritage. You gain the {@trait elf|PC1} trait, the {@trait aiuvarin|PC1} trait, and low-light vision. In addition, when you gain an ancestry feat, you can choose from aiuvarin and elf feats in addition to those from your ancestry."
+            "You have elves, or possibly other aiuvarins, in your family tree. You have pointed ears and other telltale signs of elf heritage. You gain the {@trait elf} trait, the {@trait aiuvarin} trait, and low-light vision. In addition, when you gain an ancestry feat, you can choose from aiuvarin and elf feats in addition to those from your ancestry."
           ]
         }
       ],
@@ -1460,7 +1460,7 @@
         "Though a changeling generally resembles an ordinary member of their ancestry, their distinctive eyes—each a different color—set them apart. One of their eyes matches that of their father's lineage, while the other matches the color of their hag mother's, often in an unnatural shade such as violet or vivid green. Not everyone with differently colored eyes is a changeling, but this manifestation of changeling heritage makes it difficult for them to hide their nature and can lead to banishment. As they come of age, they manifest other characteristics from their mother, including supernatural abilities. Darkvision, clawlike fingernails, and innate magic are the most common.",
         "Changelings can be any gender, but women in particular are vulnerable to the Call, a psychic influence that urges them to abandon their mortal life, join the hag's coven, and eventually become a hag themselves. Changelings who understand their heritage often fear the Call and work to resist its pull. Those who remain ignorant of their origin may find themselves subject to a terrible compulsion without knowing why.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -1474,7 +1474,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -1488,17 +1488,17 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Versatile Heritage",
           "entries": [
             "There is a Legacy version here."
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Changeling",
           "entries": [
-            "{@trait Uncommon|PC1}",
+            "{@trait Uncommon}",
             "{@b Ancestry Page} Changeling",
             "Your mother was a hag. Your eyes' heterochromia is the most obvious signifier of this parentage, but you likely also have a slighter build, paler skin, and darker hair than most members of your other parent's ancestry. You gain the changeling trait. You also gain low-light vision, or you gain darkvision if your ancestry already has low-light vision. You can select from changeling feats and feats from your other parent's ancestry whenever you gain an ancestry feat."
           ]
@@ -1540,7 +1540,7 @@
         "Some humans assume dromaars are less intelligent or uncivilized, and dromaars rarely find acceptance among societies with many such folk. To an orc hold, a dromaar is often considered a valuable addition, making up for anything they might lack in physical strength with gifts inherited from their other ancestral line. While some dromaars struggle to claim a name for themselves in the unforgiving hierarchies of orc holds, others may find that orcish society is far more tolerant and can create opportunities to rise high.",
         "A dromaar with a human parent can typically live to around 70 years old.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -1554,7 +1554,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -1568,16 +1568,16 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Versatile Heritage",
           "entries": []
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Dromaar",
           "entries": [
             "{@b Ancestry Page} Dromaar",
-            "Orcish strength emboldens your bloodline. You have a green tinge to your skin and other indicators of orc heritage. You gain the {@trait orc|PC1} trait, the {@trait dromaar|PC1} trait, and low-light vision. When you gain an ancestry feat, you can choose from dromaar and orc feats in addition to those from your ancestry."
+            "Orcish strength emboldens your bloodline. You have a green tinge to your skin and other indicators of orc heritage. You gain the {@trait orc} trait, the {@trait dromaar} trait, and low-light vision. When you gain an ancestry feat, you can choose from dromaar and orc feats in addition to those from your ancestry."
           ]
         }
       ],
@@ -1585,7 +1585,7 @@
         {
           "name": "Dromaar Heritage",
           "entries": [
-            "Orcish strength emboldens your bloodline. You have a green tinge to your skin and other indicators of orc heritage. You gain the {@trait orc|PC1} trait, the {@trait dromaar|PC1} trait, and low-light vision. When you gain an ancestry feat, you can choose from dromaar and orc feats in addition to those from your ancestry."
+            "Orcish strength emboldens your bloodline. You have a green tinge to your skin and other indicators of orc heritage. You gain the {@trait orc} trait, the {@trait dromaar} trait, and low-light vision. When you gain an ancestry feat, you can choose from dromaar and orc feats in addition to those from your ancestry."
           ]
         }
       ],
@@ -1619,7 +1619,7 @@
         "While the term nephilim broadly describes these individuals, some cultures use the name empyrean or cambion to refer to nephilim with celestial influence or fiendish influence respectively. Other nephilim sometimes earn the names of aphorite or ganzi, though this entry only focuses on empyreans and cambions.",
         "If you want a character who is supernaturally infused with the power of the Outer Planes, whose appearance is striking and notable, and whose personal connections might extend beyond the bounds of the Universe, you should play a nephilim.",
         {
-          "type": "h2",
+          "type": "h3",
           "name": "You Might...",
           "entries": [
             {
@@ -1633,7 +1633,7 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Others Probably...",
           "entries": [
             {
@@ -1647,15 +1647,15 @@
           ]
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Versatile Heritage",
           "entries": []
         },
         {
-          "type": "h2",
+          "type": "h3",
           "name": "Nephilim",
           "entries": [
-            "{@trait Uncommon|PC1}",
+            "{@trait Uncommon}",
             "{@b Ancestry Page} Nephilim",
             "Your nature is influenced by celestials, fiends, or monitors. This manifests as a combination of features that belie your heritage, such as golden eyes, a halo, horns, or a tail. You gain the nephilim trait, in addition to the traits from your ancestry. You gain low-light vision, or you gain darkvision if your ancestry already has low-light vision. You can choose from nephilim feats and feats from your ancestry whenever you gain an ancestry feat."
           ]

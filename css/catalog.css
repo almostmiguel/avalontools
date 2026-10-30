@@ -26,7 +26,7 @@
 .library-lists button { padding: .5rem .35rem; border: 1px solid var(--control-border); border-radius: 4px; background: transparent; color: var(--content-muted); font: 600 .76rem/1.4 var(--font-ui); cursor: pointer; }
 .library-lists button:hover, .library-lists button[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); background: var(--selected-bg); }
 [data-catalog="backgrounds"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) minmax(110px, .8fr) 46px; }
-.character-feats > h2 { color: var(--content-heading); font: 600 1.25rem/1.4 var(--font-ui); }
+.character-feats > h2 { color: var(--content-heading); font: 400 1.25rem/1.4 var(--font-heading); }
 .character-feat { border: 1px solid var(--line); border-radius: 5px; margin-bottom: .65rem; background: var(--content-inset); }
 .character-feat > summary { display: flex; align-items: center; gap: .6rem; padding: .8rem .9rem; list-style: none; cursor: pointer; }
 .character-feat > summary::-webkit-details-marker { display: none; }
@@ -73,9 +73,10 @@
 .reader-art + .flavor { margin-top: 1rem; }
 .ancestry-panel > .rich-content > .flavor:first-child { border-top: 0; padding-top: .4rem; }
 .reader-detail-row { display: grid; grid-template-columns: minmax(120px, .3fr) minmax(0, 1fr); gap: .5rem 1.2rem; margin: 1rem 0 0; padding-top: 1rem; border-top: 1px solid var(--content-line); }
-.reader-detail-row > :is(h2, dt) { margin: 0; padding: .1rem 0 0; color: var(--content-heading); font: 600 .92rem/1.5 var(--font-ui); }
+.reader-detail-row > :is(h2, h3, dt) { margin: 0; padding: .1rem 0 0; color: var(--content-heading); font: 600 .92rem/1.5 var(--font-ui); }
 .reader-detail-row > :is(div, dd) { min-width: 0; margin: 0; font-size: .9rem; line-height: 1.65; }
-.ancestry-details h2 { margin: 0; padding: .1rem 0 0; border: 0; color: var(--content-heading); font: 600 .92rem/1.5 var(--font-ui); }
+.ancestry-details :is(h2, h3) { margin: 0; padding: .1rem 0 0; border: 0; color: var(--content-heading); font: 600 .92rem/1.5 var(--font-ui); }
+.reader-detail-row > h2, .ancestry-details h2 { font-family: var(--font-heading); font-weight: 400; }
 .ancestry-feature > div > :last-child, .ancestry-languages > div > :last-child { margin-bottom: 0; }
 .ancestry-languages .ancestry-language-list { display: flex; flex-wrap: wrap; gap: .35rem .7rem; list-style: none; padding: 0; margin: 0 0 .5rem; }
 .ancestry-language-list li { margin: 0; }
@@ -90,7 +91,7 @@
 .ancestry-versatile-prompt button:hover { background: var(--selected-bg); border-color: var(--accent); }
 .ancestry-lineage-note { margin-bottom: 1rem; }
 .character-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; margin-bottom: 1.2rem; }
-.character-toolbar h2 { margin: 0; color: var(--content-heading); font: 600 1.25rem/1.4 var(--font-ui); }
+.character-toolbar :is(h2, h3) { margin: 0; }
 .character-toolbar label { display: inline-flex; align-items: center; gap: .4rem; color: var(--content-muted); font-size: .75rem; }
 .character-toolbar input, .character-toolbar select { min-width: 0; max-width: 100%; min-height: 34px; padding: .35rem .5rem; border: 1px solid var(--control-border); border-radius: 4px; background: var(--panel); color: var(--text); font: .8rem var(--font-ui); }
 .character-search { flex: 1 1 150px; }

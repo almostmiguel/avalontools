@@ -2928,16 +2928,7 @@
           "classSource": "PC1",
           "level": 1,
           "entries": [
-            "Ever watchful for weaknesses, you can quickly attack foes that leave an opening in their defenses. You gain the {@action Reactive Strike} reaction.",
-            {
-              "type": "ability",
-              "name": "Reactive Strike",
-              "actions": "r",
-              "trigger": "A creature within your reach uses a {@trait manipulate} action or a {@trait move} action, makes a ranged attack, or leaves a square during a {@trait move} action it's using.",
-              "entries": [
-                "You lash out at a foe that leaves an opening. Make a melee {@action Strike} against the triggering creature. If your attack is a critical hit and the trigger was a {@trait manipulate} action, you disrupt that action. This {@action Strike} doesn't count toward your multiple attack penalty, and your multiple attack penalty doesn't apply to this {@action Strike}."
-              ]
-            }
+            "Ever watchful for weaknesses, you can quickly attack foes that leave an opening in their defenses. You gain the {@action Reactive Strike} reaction."
           ]
         },
         {

@@ -135,6 +135,10 @@ export function attachReferencePreviews({ document, window, registry, actions = 
     panel.style.left = `${left}px`;
     panel.style.top = `${top}px`;
   };
+  const setContent = html => {
+    panel.innerHTML = html;
+    void validateActions(panel).then(position);
+  };
   const show = link => {
     window.clearTimeout(openTimer);
     cancelClose();
@@ -150,21 +154,21 @@ export function attachReferencePreviews({ document, window, registry, actions = 
       const requestVersion = ++version;
       const name = link.dataset[`${catalogType}Name`], source = link.dataset[`${catalogType}Source`];
       panel.setAttribute("aria-busy", String(!settings.catalog));
-      panel.innerHTML = settings.catalog
+      setContent(settings.catalog
         ? renderCatalogPreview(name, source, settings.catalog, settings)
-        : `${previewHeading(name, settings.plural, settings.headingId)}<div class="rule-preview-body"><p role="status">Loading ${settings.singular}…</p></div>`;
+        : `${previewHeading(name, settings.plural, settings.headingId)}<div class="rule-preview-body"><p role="status">Loading ${settings.singular}…</p></div>`);
       panel.hidden = false;
       link.setAttribute("aria-controls", panel.id);
       link.setAttribute("aria-describedby", panel.id);
       position();
       if (!settings.catalog) return settings.get().then(library => {
         if (current !== link || version !== requestVersion) return;
-        panel.innerHTML = renderCatalogPreview(name, source, library, settings);
+        setContent(renderCatalogPreview(name, source, library, settings));
         panel.setAttribute("aria-busy", "false");
         position();
       }).catch(() => {
         if (current !== link || version !== requestVersion) return;
-        panel.innerHTML = `${previewHeading(name, settings.plural, settings.headingId)}<div class="rule-preview-body"><p>Unable to load this preview. Follow the link to open ${settings.plural}, or try again.</p></div>`;
+        setContent(`${previewHeading(name, settings.plural, settings.headingId)}<div class="rule-preview-body"><p>Unable to load this preview. Follow the link to open ${settings.plural}, or try again.</p></div>`);
         panel.setAttribute("aria-busy", "false");
         position();
       });
@@ -178,11 +182,10 @@ export function attachReferencePreviews({ document, window, registry, actions = 
     const rules = registry ? { registry } : undefined;
     if (action && actionResource.current) link.dataset.actionResolved = String(actionResource.current.registry.resolve(link.dataset.actionName, link.dataset.actionSource).status === "found");
     panel.setAttribute("aria-busy", String(action && !actionResource.current));
-    panel.innerHTML = action
+    setContent(action
       ? actionResource.current ? renderActionPreview(link.dataset.actionName, link.dataset.actionSource, actionResource.current, rules)
         : `${previewHeading(link.dataset.actionName, "Actions")}<div class="rule-preview-body"><p role="status">Loading action…</p></div>`
-      : renderRulePreview(link.dataset.ruleName, link.dataset.ruleSource, registry);
-    void validateActions(panel).then(position);
+      : renderRulePreview(link.dataset.ruleName, link.dataset.ruleSource, registry));
     panel.hidden = false;
     link.setAttribute("aria-controls", panel.id);
     link.setAttribute("aria-describedby", panel.id);
@@ -190,12 +193,12 @@ export function attachReferencePreviews({ document, window, registry, actions = 
     if (action && !actionResource.current) return getActions().then(library => {
       link.dataset.actionResolved = String(library.registry.resolve(link.dataset.actionName, link.dataset.actionSource).status === "found");
       if (current !== link || version !== requestVersion) return;
-      panel.innerHTML = renderActionPreview(link.dataset.actionName, link.dataset.actionSource, library, rules);
+      setContent(renderActionPreview(link.dataset.actionName, link.dataset.actionSource, library, rules));
       panel.setAttribute("aria-busy", "false");
       position();
     }).catch(() => {
       if (current !== link || version !== requestVersion) return;
-      panel.innerHTML = `${previewHeading(link.dataset.actionName, "Actions")}<div class="rule-preview-body"><p>Unable to load this preview. Follow the link to open Actions, or try again.</p></div>`;
+      setContent(`${previewHeading(link.dataset.actionName, "Actions")}<div class="rule-preview-body"><p>Unable to load this preview. Follow the link to open Actions, or try again.</p></div>`);
       panel.setAttribute("aria-busy", "false");
       position();
     });
@@ -214,7 +217,7 @@ export function attachReferencePreviews({ document, window, registry, actions = 
   };
   const showNestedTrait = link => {
     if (!nestedPreview) {
-      nestedPreview = attachReferencePreviews({ document, window, parentPreview: panel, traits: catalogs.trait.resource.current, loadTraits: catalogs.trait.resource.load });
+      nestedPreview = attachReferencePreviews({ document, window, parentPreview: panel, actions: actionResource.current, loadActions: getActions, traits: catalogs.trait.resource.current, loadTraits: catalogs.trait.resource.load });
       on(nestedPreview.panel, "pointerenter", cancelClose);
       on(nestedPreview.panel, "pointerleave", scheduleClose);
     }

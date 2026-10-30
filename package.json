@@ -5,12 +5,22 @@
   "description": "The Avalon setting hub and curated rules reference.",
   "license": "MIT",
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "start": "node scripts/serve.mjs",
-    "serve:dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "prestart": "npm run build",
+    "start": "eleventy --serve --port=8080",
+    "serve:dev": "npm start",
+    "pretest": "npm run build",
     "test": "node --test test/*.test.mjs",
     "check:links": "node scripts/check-rule-links.mjs",
     "watch:links": "node scripts/check-rule-links.mjs --watch"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.7",
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.3.3"
   }
 }

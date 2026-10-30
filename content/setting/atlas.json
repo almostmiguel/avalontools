@@ -1,0 +1,42 @@
+{
+  "title": "The Avalon Atlas",
+  "description": "People, places, and the stories that connect them. A living guide to the world at your table.",
+  "categories": [
+    {
+      "id": "world",
+      "name": "The World",
+      "icon": "map",
+      "description": "An introduction to Avalon and the lands beyond the horizon."
+    },
+    {
+      "id": "places",
+      "name": "Places",
+      "icon": "map",
+      "description": "From familiar streets to the edges of the known world."
+    },
+    {
+      "id": "people",
+      "name": "People",
+      "icon": "users",
+      "description": "The faces behind the stories, and the names worth remembering."
+    },
+    {
+      "id": "factions",
+      "name": "Factions",
+      "icon": "shield",
+      "description": "Orders, alliances, and the causes that bring people together."
+    },
+    {
+      "id": "beliefs",
+      "name": "Faith & Magic",
+      "icon": "sparkles",
+      "description": "The beliefs, mysteries, and powers that shape everyday life."
+    },
+    {
+      "id": "history",
+      "name": "History",
+      "icon": "scroll-text",
+      "description": "Turning points, old stories, and echoes of what came before."
+    }
+  ]
+}

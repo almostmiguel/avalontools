@@ -51,7 +51,7 @@
 .active-filter > span:first-child { min-width: 0; overflow-wrap: anywhere; }
 .active-filter--exclude { color: var(--filter-exclude); border-color: var(--filter-exclude); }
 .results-heading { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--line); padding: .5rem .75rem; gap: .6rem; background: var(--content-wash); }
-.results-heading h2 { margin: 0; font: 600 .78rem/1.4 var(--font-ui); }
+.results-heading h2 { margin: 0; font: 400 .78rem/1.4 var(--font-heading); }
 .results-heading p { margin: 0; color: var(--muted); font-size: .65rem; white-space: nowrap; }
 .rules-list-columns { display: grid; grid-template-columns: minmax(0, 1fr) 80px 45px; gap: .55rem; align-items: center; }
 .rules-list-columns { position: sticky; top: 0; z-index: 1; background: var(--panel); padding: .2rem .65rem .2rem calc(.65rem + 2px); border-bottom: 1px solid var(--line); color: var(--muted); font-size: .64rem; font-weight: 600; }
@@ -101,14 +101,14 @@ details[open] > .rule-branch-row > .rule-branch-chevron { transform: rotate(90de
 .rule-kind--optional { color: var(--setting-adapted); }
 .rule-kind--setting { color: var(--setting-original); }
 .rules-empty { padding: 2rem 1rem; text-align: center; }
-.rules-empty h2 { font: 600 1.1rem var(--font-ui); }
+.rules-empty h2 { font: 400 1.1rem var(--font-heading); }
 .rules-empty p { color: var(--muted); font-size: .82rem; }
 .empty-sigil { font: 2rem/1 var(--serif); color: var(--accent); }
 .rules-empty button { padding: .45rem .8rem; background: var(--panel); border: 1px solid var(--line); color: var(--accent); cursor: pointer; border-radius: 3px; }
 .rule-article { min-width: 0; padding: 1.6rem 1.8rem; background: var(--paper); border: 1px solid var(--line); border-radius: 4px; box-shadow: var(--surface-shadow); }
 .rules-detail { scroll-margin-top: calc(var(--header-height) + .7rem); }
 .rules-detail-empty { text-align: center; padding: 4rem 1rem; color: var(--muted); }
-.rules-detail-empty h2 { font: 600 1.4rem/1.4 var(--font-ui); color: var(--content-heading); }
+.rules-detail-empty h2 { font: 400 1.4rem/1.4 var(--font-heading); color: var(--content-heading); }
 .rules-detail-empty p { font-size: .85rem; }
 .rule-page-heading { border-bottom: 1px solid var(--content-line); margin-bottom: 1.2rem; padding-bottom: .9rem; }
 .rule-title-row { display: flex; align-items: start; justify-content: space-between; gap: .8rem; }

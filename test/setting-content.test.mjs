@@ -15,7 +15,7 @@ test("marked entries distinguish adaptations and originals without changing head
     assert.match(marked.html, new RegExp(`Avalon <span aria-hidden="true">·</span> ${setting === "original" ? "Original" : "Adapted"}`));
     assert.match(marked.html, /<details class="setting-provenance"><summary>/);
     assert.match(marked.html, /Written for <em>our campaign<\/em>/);
-    assert.match(marked.html, /<h3 id="section-1">Avalon<\/h3>/);
+    assert.match(marked.html, /<h3 id="section-1" data-heading-level="2">Avalon<\/h3>/);
     assert.match(marked.html, /A <strong>new<\/strong> world/);
     assert.equal(marked.headings.length, 1);
     assert.equal(marked.headings[0].id, plain.headings[0].id);

@@ -14,7 +14,7 @@
 .home-section--reference { --reference-color: var(--action-link); }
 .home-section--setting { --reference-color: var(--setting-link); }
 .home-section-heading { align-self: start; position: sticky; top: calc(var(--header-height) + 2rem); }
-.home-section-heading h2 { margin: 0; color: var(--reference-color, var(--accent)); font: 400 clamp(2.4rem, 5vw, 4.2rem)/1 var(--font-display); letter-spacing: .015em; }
+.home-section-heading h2 { margin: 0; color: var(--reference-color, var(--accent)); font: 400 clamp(2.4rem, 5vw, 4.2rem)/1 var(--font-heading); letter-spacing: .015em; }
 .home-section-heading > span { display: block; margin-top: 1rem; color: color-mix(in srgb, var(--reference-color, var(--accent)) 65%, var(--muted)); font: .7rem/1 var(--font-ui); letter-spacing: .16em; }
 .home-section-description { grid-column: 2; margin: 0 0 1.5rem; color: var(--content-muted); font: .94rem/1.7 var(--serif); }
 .home-tool-grid { grid-column: 2; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .85rem; }

@@ -152,7 +152,7 @@ export async function importPC1Ancestries() {
     const flavorMatch = /^\s*<i>([\s\S]*?)<\/i>(?:<br\s*\/?>)+/i.exec(description);
     const flavor = flavorMatch ? plain(flavorMatch[1]) : null;
     const infoSections = sections.slice(1, mechanicsIndex < 0 ? sections.length : mechanicsIndex);
-    const entries = [...(flavor ? [{ type: "flavor", entries: [flavor] }] : []), ...ancestryHtmlEntries(flavorMatch ? description.slice(flavorMatch[0].length) : description), ...infoSections.map(section => ({ type: "h2", name: section.name, entries: ancestryHtmlEntries(section.html) }))];
+    const entries = [...(flavor ? [{ type: "flavor", entries: [flavor] }] : []), ...ancestryHtmlEntries(flavorMatch ? description.slice(flavorMatch[0].length) : description), ...infoSections.map(section => ({ type: "h3", name: section.name, entries: ancestryHtmlEntries(section.html) }))];
     const values = title => ancestryHtmlEntries(mechanics.find(section => section.name === title)?.html || "").filter(value => typeof value === "string");
     const mechanicsFields = new Set(["Hit Points", "Size", "Speed", "Attribute Boosts", "Attribute Flaw", "Attribute Flaws", "Languages"]);
     const features = mechanics.filter(section => !mechanicsFields.has(section.name)).map(section => ({ name: section.name, entries: ancestryHtmlEntries(section.html) }));

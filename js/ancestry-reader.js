@@ -18,7 +18,7 @@ export function createAncestryCatalog(payload, config = {}) {
     // Nethys includes the heritage rules again after the cultural overview.
     // Keep those rules in features so every view renders them exactly once.
     record.overviewEntries = record.entry.entries.filter(entry => !record.entry.versatile || !(
-      entry?.type === "h2" && (entry.name === "Versatile Heritage" && !entry.entries?.length
+      /^h[1-6]$/.test(entry?.type) && (entry.name === "Versatile Heritage" && !entry.entries?.length
         || entry.name === record.name && entry.entries?.some(value => typeof value === "string" && value.startsWith("{@b Ancestry Page}")))
     ));
   }
@@ -47,7 +47,7 @@ export function renderAncestryPreview(record) {
 }
 
 export function renderAncestryDetail(record) {
-  return `${renderReaderHeading(record, { kind: record.entry.versatile ? "Versatile Heritage" : "Ancestry" })}<div class="reader-tabs" role="tablist" aria-label="Ancestry information">${Object.entries(tabs(record)).map(([key, label]) => `<button type="button" role="tab" id="ancestry-tab-${key}" data-ancestry-tab="${key}" aria-controls="ancestry-panel" aria-selected="${key === "overview"}" tabindex="${key === "overview" ? "0" : "-1"}">${label}</button>`).join("")}</div><div id="ancestry-panel" class="ancestry-panel" role="tabpanel" aria-labelledby="ancestry-tab-overview" tabindex="0"></div>${renderReaderFooter(record)}`;
+  return `${renderReaderHeading(record, { kind: record.entry.versatile ? "Versatile Heritage" : "Ancestry" })}<div class="reader-tabs" role="tablist" aria-label="Ancestry information">${Object.entries(tabs(record)).map(([key, label]) => `<button type="button" role="tab" id="ancestry-tab-${key}" data-ancestry-tab="${key}" aria-controls="ancestry-panel" aria-selected="${key === "overview"}" tabindex="${key === "overview" ? "0" : "-1"}">${label}</button>`).join("")}</div><div id="ancestry-panel" class="ancestry-panel rich-content" role="tabpanel" aria-labelledby="ancestry-tab-overview" tabindex="0"></div>${renderReaderFooter(record)}`;
 }
 
 export function mountAncestryReader(record, root, { library, window, rules, previews }) {
@@ -70,7 +70,7 @@ export function mountAncestryReader(record, root, { library, window, rules, prev
     if (state.level) url.searchParams.set("feat-level", String(state.level));
     if (url.href !== window.location.href) window.history[push ? "pushState" : "replaceState"](null, "", `${url.pathname}${url.search}`);
   };
-  const rich = (entries, prefix) => renderContent({ entries }, { source: record.source, resolveRule: rules?.registry.resolve, resolveFeat: library.featLibrary?.registry.resolve, anchorPrefix: prefix }).html;
+  const rich = (entries, prefix) => renderContent({ entries }, { source: record.source, headingOffset: -1, resolveRule: rules?.registry.resolve, resolveFeat: library.featLibrary?.registry.resolve, anchorPrefix: prefix }).html;
   const validate = () => { void previews?.validateActions?.(panel); };
   const renderFeats = () => {
     const matches = searchCatalog({ records: feats }, state.query).filter(feat => !state.level || feat.level === state.level);
@@ -93,14 +93,14 @@ export function mountAncestryReader(record, root, { library, window, rules, prev
       const badges = renderTraitBadges([...(record.entry.rarity === "common" ? [] : [record.entry.rarity]), ...record.entry.traits]);
       const startingLanguages = (record.entry.languages || []).filter(value => !/^Additional languages/i.test(value));
       const additionalLanguages = (record.entry.languages || []).filter(value => /^Additional languages/i.test(value));
-      const languages = record.entry.languages?.length ? `<section class="reader-detail-row ancestry-languages"><h2>Languages</h2><div><ul class="ancestry-language-list" aria-label="Starting languages">${startingLanguages.map(value => `<li>${renderInline(value)}</li>`).join("")}</ul>${additionalLanguages.map(value => `<p class="ancestry-language-note">${renderInline(value)}</p>`).join("")}</div></section>` : "";
-      const features = record.entry.features.map((feature, index) => `<section class="reader-detail-row ancestry-feature"><h2>${escapeHtml(feature.name)}</h2><div>${rich(feature.entries, `ancestry-feature-${index}`)}</div></section>`).join("");
+      const languages = record.entry.languages?.length ? `<section class="reader-detail-row ancestry-languages"><h3>Languages</h3><div><ul class="ancestry-language-list" aria-label="Starting languages">${startingLanguages.map(value => `<li>${renderInline(value)}</li>`).join("")}</ul>${additionalLanguages.map(value => `<p class="ancestry-language-note">${renderInline(value)}</p>`).join("")}</div></section>` : "";
+      const features = record.entry.features.map((feature, index) => `<section class="reader-detail-row ancestry-feature"><h3>${escapeHtml(feature.name)}</h3><div>${rich(feature.entries, `ancestry-feature-${index}`)}</div></section>`).join("");
       panel.innerHTML = `<div class="rich-content">${artwork}${hasFlavor ? rich([first], "ancestry-intro") : ""}<div class="reader-details ancestry-details">${stats(record, false, badges)}${languages}${features}</div>${rich(hasFlavor ? rest : record.overviewEntries, "ancestry-info")}</div>`;
     } else if (state.tab === "heritages") {
       const ownHeritages = record.entry.heritages.map((heritage, index) => `<details class="character-feat"><summary><strong>${escapeHtml(heritage.name)}</strong>${renderIcon("chevron-down")}</summary><div class="rich-content">${renderTraitBadges(heritage.traits)}${rich(heritage.entries, `ancestry-heritage-${index}`)}</div></details>`).join("");
-      panel.innerHTML = `<div class="rich-content ancestry-heritage-intro">${rich(record.entry.heritageInfo, "heritage-intro")}</div><section class="reader-option-group" data-heritage-group="ancestry" aria-label="${escapeHtml(record.name)} heritages">${ownHeritages}</section><div class="ancestry-versatile-prompt"><p>You can also choose a versatile heritage.</p><button type="button" data-catalog-list="versatile-heritages">Versatile Heritages</button></div>`;
+      panel.innerHTML = `<div class="character-toolbar"><h2>Heritages</h2></div><div class="rich-content ancestry-heritage-intro">${rich(record.entry.heritageInfo, "heritage-intro")}</div><section class="reader-option-group" data-heritage-group="ancestry" aria-label="${escapeHtml(record.name)} heritages">${ownHeritages}</section><div class="ancestry-versatile-prompt"><p>You can also choose a versatile heritage.</p><button type="button" data-catalog-list="versatile-heritages">Versatile Heritages</button></div>`;
     } else if (state.tab === "lineages") {
-      panel.innerHTML = `<section class="character-feats"><h2>Lineages</h2><p class="ancestry-lineage-note">Choose a lineage.</p>${renderCharacterFeatCards(lineages, library.featLibrary, rules)}</section>`;
+      panel.innerHTML = `<section class="character-feats"><div class="character-toolbar"><h2>Lineages</h2></div><p class="ancestry-lineage-note">Choose a lineage.</p>${renderCharacterFeatCards(lineages, library.featLibrary, rules)}</section>`;
     } else {
       panel.innerHTML = `<div class="character-toolbar"><h2>Ancestry Feats</h2><label class="character-search"><span class="sr-only">Search ${escapeHtml(record.name)} feats</span><input type="search" data-ancestry-feat-search placeholder="Search ancestry feats…" value="${escapeHtml(state.query)}" autocomplete="off"></label><label>Level <select data-ancestry-feat-level><option value="0">All levels</option>${[...new Set(feats.map(feat => feat.level))].sort((a, b) => a - b).map(level => `<option value="${level}"${state.level === level ? " selected" : ""}>${level}</option>`).join("")}</select></label><span id="ancestry-feat-count" role="status" aria-live="polite"></span></div><div id="ancestry-feat-results"></div>`;
       renderFeats();

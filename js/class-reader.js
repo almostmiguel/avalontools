@@ -73,7 +73,8 @@ const plainClick = event => !event.defaultPrevented && !event.ctrlKey && !event.
 
 function contentOptions(record, library, rules, anchorPrefix) {
   return {
-    source: "PC1", anchorPrefix, resolveRule: rules?.registry.resolve,
+    // Match authored h2–h6 blocks to their HTML levels alongside the native h3 feature titles.
+    source: "PC1", anchorPrefix, headingOffset: -1, resolveRule: rules?.registry.resolve,
     resolveFeat(name, source) {
       const result = resolveRelatedFeat(library.featLibrary, [record.name.toLowerCase()], name, source);
       return result.target && library.featsByClass.get(record.id).includes(result.target)

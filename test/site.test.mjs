@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 import { escapeHtml, inlineText, renderContent, renderInline, safeHref } from "../js/content-renderer.js";
 import { createServer } from "../scripts/serve.mjs";
-const root = new URL("../", import.meta.url);
+const root = new URL("../_site/", import.meta.url);
 const read = path => readFile(new URL(path, root), "utf8");
 
 test("inline formatting is nested, escaped, and has no dead entity links", () => {
@@ -144,7 +144,7 @@ test("content renders headings, lists, tables, sidebars, images, and flavor", ()
     { type: "image", href: { type: "internal", path: "img/book.webp" }, title: 'Art "title"' },
     { type: "image", href: { url: "javascript:alert(1)" } },
   ] });
-  assert.match(html, /<h3 id="section-1">Basics<\/h3>/);
+  assert.match(html, /<h3 id="section-1" data-heading-level="2">Basics<\/h3>/);
   assert.match(html, /<h4 id="section-2">Details<\/h4>/);
   assert.match(html, /<p\b[^>]*>Another paragraph\.<\/p>/);
   assert.equal(headings[0].name, "Basics");
@@ -241,6 +241,7 @@ test("heading levels produce usable outline metadata and sidebars retain their c
     assert.match(html, new RegExp("<h" + renderedLevel + "\\b[^>]*>A heading</h" + renderedLevel + ">"));
     assert.equal(headings[0].entry.type, "h" + level);
     assert.equal(headings[0].level, renderedLevel);
+    assert.match(html, new RegExp('data-heading-level="' + level + '"'));
     assert.ok(html.includes('id="' + headings[0].id + '"'));
   }
   const sidebar = renderContent({ entries: [{ type: "sidebar", name: "A note", entries: ["Sidebar text."] }] });
@@ -272,7 +273,7 @@ test("decorative rule boxes support titles and nested entries", () => {
 
 
 test("public pages expose working navigation and load existing relative assets", async () => {
-  for (const path of ["index.html", "rules.html", "rule.html", "actions.html", "conditions.html", "skills.html", "classes.html", "feats.html", "traits.html", "backgrounds.html", "archetypes.html", "ancestries.html"]) {
+  for (const path of ["index.html", "rules.html", "rule.html", "actions.html", "conditions.html", "skills.html", "classes.html", "feats.html", "traits.html", "backgrounds.html", "archetypes.html", "ancestries.html", "setting.html"]) {
     const html = await read(path);
     assert.match(html, /<html\b[^>]*lang="en"/);
     const navigation = html.match(/<nav\b[^>]*aria-label="Main navigation"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
@@ -284,6 +285,7 @@ test("public pages expose working navigation and load existing relative assets",
     assert.ok(directRules, path + ": Rules is a direct link");
     assert.match(directRules[1], /\bhref="rules.html"/);
     assert.equal(directRules[2].replace(/<[^>]*>/g, "").trim(), "Rules");
+    assert.match(navigation, /href="setting.html"/);
     const expected = [
       ["Player", ["Ancestries", "Archetypes", "Backgrounds", "Classes", "Feats"]],
       ["Game Master", ["Afflictions", "Creatures", "Hazards"]],
@@ -317,7 +319,7 @@ test("the local server serves current pages, data and fonts while blocking priva
   });
   t.after(() => new Promise(resolve => { server.close(resolve); server.closeAllConnections(); }));
   const base = `http://127.0.0.1:${server.address().port}`;
-  for (const path of ["/", "/rules.html", "/actions.html", "/conditions.html", "/skills.html", "/classes.html", "/feats.html", "/backgrounds.html", "/archetypes.html", "/ancestries.html", "/data/ancestries.json", "/js/ancestry-reader.js", "/data/backgrounds.json", "/data/archetypes.json", "/js/character-library.js", "/feats.html?trait=wizard", "/data/feats.json", "/js/feat-library.js", ...["bard", "cleric", "druid", "fighter", "ranger", "rogue", "witch", "wizard"].map(name => `/img/classes/${name}.webp`), "/classes.html?id=PC1%3Awizard&tab=options", "/css/classes.css", "/js/class-reader.js", "/data/classes.json", "/actions.html?id=PC1:stride", "/rules.html?id=PC1:rolling-checks", "/css/site.css", "/css/home.css", "/css/rules.css", "/css/actions.css", "/css/catalog.css",
+  for (const path of ["/", "/setting.html", "/setting/articles.html", "/setting/category-places.html", "/setting/the-crossroads.html", "/setting.html?article=the-crossroads", "/css/wiki.css", "/js/wiki.js", "/rules.html", "/actions.html", "/conditions.html", "/skills.html", "/classes.html", "/feats.html", "/backgrounds.html", "/archetypes.html", "/ancestries.html", "/data/ancestries.json", "/js/ancestry-reader.js", "/data/backgrounds.json", "/data/archetypes.json", "/js/character-library.js", "/feats.html?trait=wizard", "/data/feats.json", "/js/feat-library.js", ...["bard", "cleric", "druid", "fighter", "ranger", "rogue", "witch", "wizard"].map(name => `/img/classes/${name}.webp`), "/classes.html?id=PC1%3Awizard&tab=options", "/css/classes.css", "/js/class-reader.js", "/data/classes.json", "/actions.html?id=PC1:stride", "/rules.html?id=PC1:rolling-checks", "/css/site.css", "/css/home.css", "/css/rules.css", "/css/actions.css", "/css/catalog.css",
     "/js/site-shell.js", "/js/content-renderer.js", "/js/rule-browser.js", "/js/rule-library.js", "/js/reference-previews.js", "/js/reference-data.js", "/js/reference-browser.js", "/js/reference-library.js", "/data/rules.json", "/data/actions.json", "/data/actions.schema.json", "/data/conditions.json", "/data/skills.json"]) {
     const response = await fetch(`${base}${path}`);
     assert.equal(response.status, 200, path);
