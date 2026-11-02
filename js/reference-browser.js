@@ -3,12 +3,39 @@ import { loadJson } from "./reference-data.js";
 import { createRuleLibrary } from "./rule-library.js";
 import { attachReferencePreviews } from "./reference-previews.js";
 import {
-  ACTION_CATEGORIES, ACTION_TIMES, ACTION_FILTERS, CATALOG_FILTERS,
+  ACTION_CATEGORIES, ACTION_TIMES, ACTION_FILTERS, CATALOG_FILTERS, ENCOUNTER_FILTERS,
   createActionLibrary, createCatalog, catalogOptions, catalogValues, actionMatchesFilters, catalogMatchesFilters, actionValues, actionTraitOptions, groupTraitFilterOptions,
   searchCatalog, sortActions, sortCatalog, renderActionResults, renderActionDetail, renderCatalogResults, renderCatalogDetail,
+  createEncounterCatalog, encounterOptions, encounterValues, encounterMatchesFilters, renderEncounterDetail,
 } from "./reference-library.js";
 
 export const REFERENCE_TYPES = {
+  companions: {
+    collection: "companions", singular: "Companion", plural: "Companions", kind: "companion", href: "companions.html", loadTraits: true,
+    loadRules: true, loadDefinition: () => import("./creature-library.js").then(module => module.COMPANION_BROWSER_DEFINITION),
+  },
+  creatures: {
+    collection: "creatures", singular: "Creature", plural: "Creatures", kind: "creature", href: "creatures.html", loadTraits: true,
+    loadRules: true, loadDefinition: () => import("./creature-library.js").then(module => module.CREATURE_BROWSER_DEFINITION),
+  },
+  equipment: {
+    collection: "equipment", singular: "Item", plural: "Equipment", kind: "equipment", href: "equipment.html", loadTraits: true,
+    loadRules: true, loadDefinition: () => import("./equipment-library.js").then(module => module.EQUIPMENT_BROWSER_DEFINITION),
+  },
+  spells: {
+    collection: "spells", singular: "Spell", plural: "Spells", kind: "spell", href: "spells.html", loadTraits: true,
+    loadRules: true, loadDefinition: () => import("./spell-library.js").then(module => module.SPELL_BROWSER_DEFINITION),
+  },
+  ...Object.fromEntries(["afflictions", "hazards"].map(collection => [collection, {
+    collection, singular: collection === "hazards" ? "Hazard" : "Affliction", plural: collection === "hazards" ? "Hazards" : "Afflictions",
+    kind: collection.slice(0, -1), href: `${collection}.html`,
+    prefix: "catalog", detailPrefix: "catalog", attribute: "catalog", loadTraits: true,
+    filters: collection === "hazards" ? [...ENCOUNTER_FILTERS, { key: "complexity", label: "Complexity" }] : ENCOUNTER_FILTERS,
+    sortKeys: ["name", "category", "level", "source"], showLevel: true,
+    create: createEncounterCatalog, options: encounterOptions, matches: encounterMatchesFilters, values: encounterValues, sort: sortCatalog,
+    renderResults: (records, selectedId, _library, config) => renderCatalogResults(records, selectedId, config),
+    renderDetail: renderEncounterDetail,
+  }])),
   ancestries: {
     collection: "ancestries", singular: "Ancestry", plural: "Ancestries", kind: "ancestry", href: "ancestries.html",
     dependencies: { feats: "data/feats.json" },

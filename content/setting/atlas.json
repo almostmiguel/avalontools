@@ -1,42 +1,47 @@
 {
-  "title": "The Avalon Atlas",
-  "description": "People, places, and the stories that connect them. A living guide to the world at your table.",
+  "title": "Wiki de Avalon",
+  "description": "Enciclopédia do cenário de Avalon.",
+  "portals": [
+    { "id": "geografia", "name": "Geografia", "icon": "map" },
+    { "id": "personalidades", "name": "Personalidades", "icon": "users" },
+    { "id": "povos", "name": "Povos e culturas", "icon": "users" },
+    { "id": "organizacoes", "name": "Organizações", "icon": "shield" },
+    { "id": "criaturas", "name": "Criaturas", "icon": "paw-print" },
+    { "id": "cronologia", "name": "História e cronologia", "icon": "scroll-text" },
+    { "id": "divindades", "name": "Deuses e religiões", "icon": "star" },
+    { "id": "cosmologia", "name": "Cosmologia", "icon": "scan" },
+    { "id": "magia", "name": "Magia", "icon": "sparkles" },
+    { "id": "objetos", "name": "Objetos e artefactos", "icon": "backpack" },
+    { "id": "mapas", "name": "Mapas", "icon": "map" }
+  ],
   "categories": [
-    {
-      "id": "world",
-      "name": "The World",
-      "icon": "map",
-      "description": "An introduction to Avalon and the lands beyond the horizon."
-    },
-    {
-      "id": "places",
-      "name": "Places",
-      "icon": "map",
-      "description": "From familiar streets to the edges of the known world."
-    },
-    {
-      "id": "people",
-      "name": "People",
-      "icon": "users",
-      "description": "The faces behind the stories, and the names worth remembering."
-    },
-    {
-      "id": "factions",
-      "name": "Factions",
-      "icon": "shield",
-      "description": "Orders, alliances, and the causes that bring people together."
-    },
-    {
-      "id": "beliefs",
-      "name": "Faith & Magic",
-      "icon": "sparkles",
-      "description": "The beliefs, mysteries, and powers that shape everyday life."
-    },
-    {
-      "id": "history",
-      "name": "History",
-      "icon": "scroll-text",
-      "description": "Turning points, old stories, and echoes of what came before."
-    }
+    { "id": "mundos", "name": "Mundos e continentes", "portal": "geografia", "description": "Mundos, continentes e oceanos." },
+    { "id": "territorios", "name": "Nações e territórios", "portal": "geografia", "description": "Países, reinos e regiões." },
+    { "id": "povoacoes", "name": "Cidades e povoações", "portal": "geografia", "description": "Cidades, vilas e aldeias." },
+    { "id": "locais", "name": "Locais e construções", "portal": "geografia", "description": "Edifícios, ruínas e locais de interesse." },
+    { "id": "habitantes", "name": "Habitantes", "portal": "personalidades", "description": "Indivíduos do cenário." },
+    { "id": "governantes", "name": "Governantes", "portal": "personalidades", "description": "Monarcas e outros governantes." },
+    { "id": "figuras-historicas", "name": "Figuras históricas", "portal": "personalidades", "description": "Personalidades históricas." },
+    { "id": "especies", "name": "Povos e espécies", "portal": "povos", "description": "Povos e espécies do cenário." },
+    { "id": "culturas", "name": "Culturas e línguas", "portal": "povos", "description": "Culturas, línguas e sistemas de escrita." },
+    { "id": "tradicoes", "name": "Tradições e costumes", "portal": "povos", "description": "Costumes, festividades e tradições." },
+    { "id": "governos", "name": "Governos e instituições", "portal": "organizacoes", "description": "Administrações e instituições públicas." },
+    { "id": "guildas", "name": "Guildas e companhias", "portal": "organizacoes", "description": "Guildas, companhias e associações." },
+    { "id": "ordens", "name": "Ordens e sociedades", "portal": "organizacoes", "description": "Ordens, sociedades e grupos organizados." },
+    { "id": "animais", "name": "Animais", "portal": "criaturas", "description": "Fauna do cenário." },
+    { "id": "monstros", "name": "Monstros", "portal": "criaturas", "description": "Criaturas monstruosas e sobrenaturais." },
+    { "id": "plantas", "name": "Plantas", "portal": "criaturas", "description": "Flora do cenário." },
+    { "id": "eras", "name": "Eras e calendários", "portal": "cronologia", "description": "Períodos históricos e calendários." },
+    { "id": "acontecimentos", "name": "Acontecimentos e conflitos", "portal": "cronologia", "description": "Eventos, guerras e outros conflitos." },
+    { "id": "deuses", "name": "Deuses e panteões", "portal": "divindades", "description": "Divindades e panteões." },
+    { "id": "religioes", "name": "Religiões e cultos", "portal": "divindades", "description": "Religiões e práticas de culto." },
+    { "id": "planos", "name": "Planos de existência", "portal": "cosmologia", "description": "Planos e relações entre planos." },
+    { "id": "conceitos-cosmologicos", "name": "Conceitos cosmológicos", "portal": "cosmologia", "description": "Princípios e estruturas da cosmologia." },
+    { "id": "tradicoes-magicas", "name": "Tradições mágicas", "portal": "magia", "description": "Práticas e tradições de magia." },
+    { "id": "fenomenos", "name": "Fenómenos mágicos", "portal": "magia", "description": "Fenómenos e propriedades mágicas." },
+    { "id": "artefactos", "name": "Artefactos", "portal": "objetos", "description": "Artefactos do cenário." },
+    { "id": "equipamento", "name": "Armas e equipamento", "portal": "objetos", "description": "Armas, armaduras e equipamento." },
+    { "id": "materiais", "name": "Materiais e objetos", "portal": "objetos", "description": "Materiais e outros objetos." },
+    { "id": "cartografia", "name": "Cartografia", "portal": "mapas", "description": "Mapas de territórios, cidades e outros locais." }
   ]
 }

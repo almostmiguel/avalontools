@@ -4,6 +4,56 @@
       "id": "PC1",
       "name": "Player Core",
       "source": "PC1"
+    },
+    {
+      "id": "GMC",
+      "name": "GM Core",
+      "source": "GMC"
+    },
+    {
+      "id": "MC1",
+      "name": "Monster Core",
+      "source": "MC1"
+    },
+    {
+      "id": "MC2",
+      "name": "Monster Core 2",
+      "source": "MC2"
+    },
+    {
+      "id": "PC2",
+      "name": "Player Core 2",
+      "source": "PC2"
+    },
+    {
+      "id": "B3",
+      "name": "Bestiary 3",
+      "source": "B3"
+    },
+    {
+      "id": "GGR",
+      "name": "Guns & Gears (Remastered)",
+      "source": "GGR"
+    },
+    {
+      "id": "NC",
+      "name": "NPC Core",
+      "source": "NC"
+    },
+    {
+      "id": "B",
+      "name": "Battlecry!",
+      "source": "B"
+    },
+    {
+      "id": "B2",
+      "name": "Bestiary 2",
+      "source": "B2"
+    },
+    {
+      "id": "TXCG",
+      "name": "Tian Xia Character Guide",
+      "source": "TXCG"
     }
   ],
   "traits": [
@@ -30,6 +80,54 @@
       "category": "Energy · Monster",
       "entries": [
         "Effects with this trait deal acid damage. Creatures with this trait have a connection to magical acid."
+      ]
+    },
+    {
+      "name": "Aeon",
+      "source": "GMC",
+      "page": 326,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "These monitors are the self-styled defenders of reality. Traditional aeons have dualistic natures and forms, hold a dichotomy of interests, and communicate via a strange telepathic hodgepodge of sensory sending called envisioning. {@creature Axiomite|MC1|Axiomites} and their creations are aeons, but don’t share all the characteristics of traditional aeons."
+      ]
+    },
+    {
+      "name": "Aesir",
+      "source": "MC2",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Aesir are often-bellicose monitors, honing their skill in battle and preparing for a final confrontation at the end of the multiverse."
+      ]
+    },
+    {
+      "name": "Agathion",
+      "source": "MC2",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "This family of animal-featured celestials is native to the plane of Nirvana. Most agathions are {@trait Holy||holy}, have {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=59}, and have a weakness to {@trait Unholy||unholy}."
+      ]
+    },
+    {
+      "name": "Agile",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "The multiple attack penalty you take with this weapon on the second attack on your turn is –4 instead of –5, and –8 instead of –10 on the third and subsequent attacks in the turn."
       ]
     },
     {
@@ -161,6 +259,54 @@
       ]
     },
     {
+      "name": "Astral",
+      "source": "GMC",
+      "page": 327,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Astral creatures are natives of the Astral Plane. They can survive the basic environmental effects of the Astral Plane."
+      ]
+    },
+    {
+      "name": "Asura",
+      "source": "MC2",
+      "page": 364,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "asura These fiends are physical manifestations of divine accidents. Asuras typically have {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=59}, immunity to {@link curses|https://2e.aonprd.com/Traits.aspx?ID=566}, and a weakness to {@trait Holy||holy}."
+      ]
+    },
+    {
+      "name": "Athamaru",
+      "source": "MC1",
+      "page": 361,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Athamarus are fishlike aquatic humanoids."
+      ]
+    },
+    {
+      "name": "Attached",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "An attached weapon must be combined with another piece of gear to be used. The trait lists what type of item the weapon must be attached to. You must be wielding or wearing the item the weapon is attached to in order to attack with it. For example, shield spikes are attached to a shield, allowing you to attack with the spikes instead of a shield bash. An attached weapon is usually bolted onto or built into the item it’s attached to, and typically an item can have only one weapon attached to it. An attached weapon can be affixed to an item with 10 minutes of work and a successful DC 10 Crafting check; this includes the time needed to remove the weapon from a previous item, if necessary. Typically the weapon can't be used if the item it's attached to is broken. If an item is destroyed, its attached weapon can usually be salvaged."
+      ]
+    },
+    {
       "name": "Attack",
       "source": "PC1",
       "page": 452,
@@ -197,6 +343,30 @@
       ]
     },
     {
+      "name": "Automaton",
+      "source": "GGR",
+      "page": 230,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Automatons are living {@link constructs|https://2e.aonprd.com/Traits.aspx?ID=35} sustained by a magical core."
+      ]
+    },
+    {
+      "name": "Azarketi",
+      "source": "MC1",
+      "page": 361,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Azarketi are an offshoot of humans adapted to live in aquatic communities. They have gills, webbed digits, and small fins, and they can survive in or out of water."
+      ]
+    },
+    {
       "name": "Azata",
       "source": "PC1",
       "page": 453,
@@ -206,6 +376,30 @@
       "category": "Monster",
       "entries": [
         "This family of celestials is native to Elysium."
+      ]
+    },
+    {
+      "name": "Backstabber",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "When you hit an {@condition Off-guard||off-guard} creature, this weapon deals 1 precision damage in addition to its normal damage. The precision damage increases to 2 if the weapon is a {@i +3 weapon}."
+      ]
+    },
+    {
+      "name": "Backswing",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "You can use the momentum from a missed attack with this weapon to lead into your next attack. After missing with this weapon on your turn, you gain a +1 circumstance bonus to your next attack with this weapon before the end of your turn."
       ]
     },
     {
@@ -233,6 +427,18 @@
       ]
     },
     {
+      "name": "Boggard",
+      "source": "MC1",
+      "page": 361,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Boggards are frog-like humanoids. They typically have darkvision."
+      ]
+    },
+    {
       "name": "Bomb",
       "source": "PC1",
       "page": 453,
@@ -242,6 +448,42 @@
       "category": "Equipment",
       "entries": [
         "An alchemical bomb combines volatile alchemical components that explode when the bomb hits a creature or object. Most alchemical bombs deal damage, though some produce other effects."
+      ]
+    },
+    {
+      "name": "Bugbear",
+      "source": "MC1",
+      "page": 361,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A creature with this trait is a furry, stealthy goblinoid. Bugbears tend to have darkvision."
+      ]
+    },
+    {
+      "name": "Bulwark",
+      "source": "PC1",
+      "page": 271,
+      "category": "Armor",
+      "categories": [
+        "Armor"
+      ],
+      "entries": [
+        "The armor covers you so completely that it provides benefits against some damaging effects. On Reflex saves to avoid a damaging effect, such as a fireball, you add a +3 modifier instead of your Dexterity modifier"
+      ]
+    },
+    {
+      "name": "Caligni",
+      "source": "MC1",
+      "page": 361,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "These subterranean people have darkvision, and some have powers to create darkness."
       ]
     },
     {
@@ -269,6 +511,18 @@
       ]
     },
     {
+      "name": "Centaur",
+      "source": "MC1",
+      "page": 362,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Centaurs have humanoid upper bodies and equine lower bodies."
+      ]
+    },
+    {
       "name": "Changeling",
       "source": "PC1",
       "page": 453,
@@ -293,6 +547,30 @@
       ]
     },
     {
+      "name": "Clockwork",
+      "source": "MC2",
+      "page": 364,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Clockworks are intricate, complex constructs that can be programmed to perform specific functions. A clockwork creature must be wound regularly to function."
+      ]
+    },
+    {
+      "name": "Coatl",
+      "source": "MC1",
+      "page": 362,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A family of supernatural feathered serpents who serve as guardians and messengers in the Universe for various holy divinities."
+      ]
+    },
+    {
       "name": "Cold",
       "source": "PC1",
       "page": 454,
@@ -302,6 +580,18 @@
       "category": "Energy",
       "entries": [
         "Effects with this trait deal cold damage. Creatures with this trait have a connection to magical cold."
+      ]
+    },
+    {
+      "name": "Comfort",
+      "source": "PC1",
+      "page": 271,
+      "category": "Armor",
+      "categories": [
+        "Armor"
+      ],
+      "entries": [
+        "The armor is so comfortable that you can rest normally while wearing it."
       ]
     },
     {
@@ -317,6 +607,18 @@
       ]
     },
     {
+      "name": "Complex",
+      "source": "GMC",
+      "page": 104,
+      "category": "Hazard",
+      "categories": [
+        "Hazard"
+      ],
+      "entries": [
+        "A complex hazard rolls initiative and follows a routine on its turn. See {@hazard Spinning Blade Pillar|GMC} for an example."
+      ]
+    },
+    {
       "name": "Composition",
       "source": "PC1",
       "page": 99,
@@ -326,6 +628,18 @@
       "category": "Class-specific",
       "entries": [
         "To cast a composition cantrip or focus spell, you use a type of Performance. If the spell requires an auditory performance, you might recite a poem, sing a song, or perform a dramatic monologue. If the spell requires a visual performance, you might dance or pantomime. You can cast only one composition spell each turn, and you can have only one active at a time. If you cast a new composition spell, any ongoing effects from your previous composition spell end immediately."
+      ]
+    },
+    {
+      "name": "Concealable",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "This weapon is designed to be inconspicuous or easily concealed. You gain a +2 circumstance bonus to Stealth checks and DCs to hide or conceal a weapon with this trait."
       ]
     },
     {
@@ -377,6 +691,18 @@
       ]
     },
     {
+      "name": "Contact",
+      "source": "GMC",
+      "page": 248,
+      "categories": [
+        "Poison"
+      ],
+      "category": "Poison",
+      "entries": [
+        "A contact poison is activated by applying it to an item or directly onto a living creature’s skin. The first creature to touch the affected item must attempt a saving throw against the poison; if the poison is applied directly, the creature must attempt a saving throw immediately when the poison touches its skin. Contact poisons are infeasible to apply to a creature via a weapon attack due to the logistics of delivering them without poisoning yourself. Typically, the onset time of a contact poison is 1 minute."
+      ]
+    },
+    {
       "name": "Curse",
       "source": "PC1",
       "page": 454,
@@ -410,6 +736,30 @@
       "category": "Mechanics",
       "entries": [
         "Darkness effects extinguish non-magical light in the area and can counteract less powerful magical light. You must usually target light magic with your darkness magic directly to counteract it, but some darkness spells automatically attempt to counteract light."
+      ]
+    },
+    {
+      "name": "Darvakka",
+      "source": "MC2",
+      "page": 364,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Entropic undead creatures twisted by the Netherworld and the Void."
+      ]
+    },
+    {
+      "name": "Deadly",
+      "source": "PC1",
+      "page": 282,
+      "categories": [
+        "Weapon"
+      ],
+      "category": "Weapon",
+      "entries": [
+        "On a critical hit, the weapon adds a weapon damage die of the listed size. Roll this after doubling the weapon’s damage. This increases to two dice if the weapon has a {@i greater striking rune} and three dice if the weapon has a {@i major striking rune}. For instance, a rapier with a {@i greater striking rune} deals 2d8 extra piercing damage on a critical hit. An ability that changes the size of the weapon’s normal damage dice doesn’t change the size of its deadly die."
       ]
     },
     {
@@ -449,6 +799,18 @@
       ]
     },
     {
+      "name": "Dero",
+      "source": "MC1",
+      "page": 362,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "This family of humanoids are the descendants of fey creatures that fell into darkness and confusion after being abandoned in the Darklands. They are immune to confusion and vulnerable to sunlight."
+      ]
+    },
+    {
       "name": "Detection",
       "source": "PC1",
       "page": 455,
@@ -485,6 +847,18 @@
       ]
     },
     {
+      "name": "Disarm",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "You can use this weapon to Disarm with the Athletics skill even if you don’t have a free hand. This uses the weapon’s reach (if different from your own) and adds the weapon’s item bonus to attack rolls (if any) as an item bonus to the Athletics check. If you critically fail a check to Disarm using the weapon, you can drop the weapon to take the effects of a failure instead of a critical failure. On a critical success, you still need a free hand if you want to take the item."
+      ]
+    },
+    {
       "name": "Disease",
       "source": "PC1",
       "page": 455,
@@ -494,6 +868,18 @@
       "category": "Affliction",
       "entries": [
         "An effect with this trait applies one or more diseases. A disease is typically an affliction."
+      ]
+    },
+    {
+      "name": "Div",
+      "source": "B3",
+      "page": 308,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Divs are a family of fiends spawned from the spirits of evil genies within the desolation of Abaddon. Most divs are neutral evil. They typically have greater darkvision and weakness to cold iron and good damage."
       ]
     },
     {
@@ -531,6 +917,30 @@
       "category": "Creature type",
       "entries": [
         "Dragons are reptilian creatures, often winged or with the power of flight. Most can exhale magical energy and are immune to sleep and paralysis."
+      ]
+    },
+    {
+      "name": "Dragonblood",
+      "source": "PC2",
+      "page": 317,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A creature with this trait has the dragonblood versatile heritage. These creatures are born of draconic lineage and often have draconic appearances."
+      ]
+    },
+    {
+      "name": "Dream",
+      "source": "GMC",
+      "page": 328,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Creatures native to the Dimension of Dreams can possess a diverse array of abilities, although those associated with the nightmare realm of Leng are almost always unholy and immune to that realm’s freezing temperatures."
       ]
     },
     {
@@ -644,6 +1054,18 @@
       ]
     },
     {
+      "name": "Environmental",
+      "source": "GMC",
+      "page": 329,
+      "categories": [
+        "Hazard"
+      ],
+      "category": "Hazard",
+      "entries": [
+        "A hazard with this trait is something dangerous that’s part of the natural world, such as quicksand or harmful mold."
+      ]
+    },
+    {
       "name": "Ethereal",
       "source": "PC1",
       "page": 456,
@@ -680,6 +1102,18 @@
       ]
     },
     {
+      "name": "Fatal",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "The fatal trait includes a die size. On a critical hit, the weapon’s damage die increases to that die size instead of the normal die size, and the weapon adds one additional damage die of the listed size."
+      ]
+    },
+    {
       "name": "Fear",
       "source": "PC1",
       "page": 456,
@@ -689,6 +1123,18 @@
       "category": "Mechanics",
       "entries": [
         "Fear effects evoke the emotion of fear. Effects with this trait always have the mental and emotion traits as well."
+      ]
+    },
+    {
+      "name": "Fetchling",
+      "source": "MC2",
+      "page": 364,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A creature with this trait is a member of the fetchling ancestry. Fetchlings were once human, but generations of life in the Netherworld have transformed them."
       ]
     },
     {
@@ -728,6 +1174,18 @@
       ]
     },
     {
+      "name": "Finesse",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "You can use your Dexterity modifier instead of your Strength modifier on attack rolls using this melee weapon. You still calculate damage using Strength."
+      ]
+    },
+    {
       "name": "Fire",
       "source": "PC1",
       "page": 456,
@@ -740,6 +1198,18 @@
       "entries": [
         "Effects with the fire trait deal fire damage or either conjure or manipulate fire. Those that manipulate fire have no effect in an area without fire. Creatures with this trait consist primarily of fire or have a connection to magical fire.",
         "Planes with this trait are composed of flames that continually burn with no fuel source. Fire planes are extremely hostile to non-fire creatures. Unprotected wood, paper, cloth, and other flammable materials catch fire almost immediately, and creatures wearing unprotected flammable clothing catch fire, typically taking 1d6 persistent fire damage. Extraplanar creatures take moderate environmental fire damage at the end of each round (sometimes minor environmental damage in safer areas, or major or massive damage in even more fiery areas). Ice creatures are extremely uncomfortable on a fire plane, assuming they don't outright melt in the heat."
+      ]
+    },
+    {
+      "name": "Flexible",
+      "source": "PC1",
+      "page": 272,
+      "category": "Armor",
+      "categories": [
+        "Armor"
+      ],
+      "entries": [
+        "The armor is pliable and doesn’t hinder most actions. You don’t apply its check penalty to Acrobatics or Athletics checks."
       ]
     },
     {
@@ -779,6 +1249,18 @@
       ]
     },
     {
+      "name": "Forceful",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "This weapon becomes more dangerous as you build momentum. When you attack with it more than once on your turn, the second attack gains a circumstance bonus to damage equal to the number of weapon damage dice, and each later attack gains a circumstance bonus to damage equal to double the number of damage dice."
+      ]
+    },
+    {
       "name": "Fortune",
       "source": "PC1",
       "page": 401,
@@ -788,6 +1270,18 @@
       "category": "Mechanics",
       "entries": [
         "A fortune effect beneficially alters how you roll your dice. You can never have more than one fortune effect alter a single roll. If multiple fortune effects would apply, you have to pick which to use. If a fortune effect and a misfortune effect would apply to the same roll, the two cancel each other out, and you roll normally."
+      ]
+    },
+    {
+      "name": "Free-Hand",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "This weapon doesn’t take up your hand, usually because it is built into your armor. A free-hand weapon can’t be Disarmed. You can use the hand covered by your free-hand weapon to wield other items, perform manipulate actions, and so on. You can’t attack with a free-hand weapon if you’re wielding anything in that hand or otherwise using that hand. When you’re not wielding anything and not otherwise using the hand, you can use abilities that require you to have a hand free as well as those that require you to be wielding a weapon in that hand. Each of your hands can have only one free-hand weapon on it."
       ]
     },
     {
@@ -815,6 +1309,42 @@
       ]
     },
     {
+      "name": "Genie",
+      "source": "MC1",
+      "page": 362,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "The diverse families of genies hold positions of prominence on the elemental planes. They have powerful magical abilities."
+      ]
+    },
+    {
+      "name": "Ghost",
+      "source": "MC1",
+      "page": 362,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Lost souls that haunt the world as incorporeal undead are called ghosts."
+      ]
+    },
+    {
+      "name": "Ghoul",
+      "source": "MC1",
+      "page": 362,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Ghouls are vile undead creatures that feast on flesh."
+      ]
+    },
+    {
       "name": "Giant",
       "source": "PC1",
       "page": 456,
@@ -824,6 +1354,18 @@
       "category": "Creature type",
       "entries": [
         "Giants are massive humanoid creatures."
+      ]
+    },
+    {
+      "name": "Girtablilu",
+      "source": "MC2",
+      "page": 364,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Girtablilus have humanoid upper bodies and the lower bodies of massive scorpions."
       ]
     },
     {
@@ -851,6 +1393,42 @@
       ]
     },
     {
+      "name": "Graveknight",
+      "source": "MC1",
+      "page": 362,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "{@i Nethys Note: no description was provided for this trait.}"
+      ]
+    },
+    {
+      "name": "Gremlin",
+      "source": "MC1",
+      "page": 362,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Cruel and mischievous fey, gremlins have acclimated to life in the Universe."
+      ]
+    },
+    {
+      "name": "Grioth",
+      "source": "MC2",
+      "page": 364,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A grioth is a batlike alien that wields occult powers and can exist in the dark vacuum of space. They have {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=59} and echolocation."
+      ]
+    },
+    {
       "name": "Hag",
       "source": "PC1",
       "page": 457,
@@ -875,6 +1453,18 @@
       ]
     },
     {
+      "name": "Haunt",
+      "source": "GMC",
+      "page": 330,
+      "categories": [
+        "Hazard"
+      ],
+      "category": "Hazard",
+      "entries": [
+        "A hazard with this trait is a spiritual echo, often of someone with a tragic death. Putting a haunt to rest often involves resolving the haunt’s unfinished business. A haunt that hasn’t been properly put to rest always returns after a time."
+      ]
+    },
+    {
       "name": "Healing",
       "source": "PC1",
       "page": 457,
@@ -896,6 +1486,18 @@
       "category": "Class-specific",
       "entries": [
         "A hex is a spell caused by your patron's direct attention and intervention. Your patron does not take well to being disturbed repeatedly, so you can cast only one spell that has the hex trait each turn; attempts to use a second automatically fail and usually cause your familiar to hiss in displeasure as your patron rejects your call."
+      ]
+    },
+    {
+      "name": "Hobgoblin",
+      "source": "PC2",
+      "page": 316,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A creature with this trait is a tall, militaristic goblinoid. Hobgoblins tend to have darkvision. An ability with this trait can be used or selected only by hobgoblins. An item with this trait is created and used by hobgoblins."
       ]
     },
     {
@@ -973,6 +1575,116 @@
       ]
     },
     {
+      "name": "Incorporeal",
+      "source": "GMC",
+      "page": 330,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "An incorporeal creature or object has no physical form. It can pass through solid objects, including walls. When inside an object, an incorporeal creature can’t perceive, attack, or interact with anything outside the object, and if it starts its turn in an object, it’s {@condition Slowed||slowed} 1 until the end of its turn. A corporeal and an incorporeal creature can pass through one another, but they can’t end their movement in each other’s space.",
+        "An incorporeal creature can’t attempt Strength-based checks against physical creatures or objects—only against incorporeal ones—unless those objects have the {@link ghost touch|https://2e.aonprd.com/Equipment.aspx?ID=297} property rune. Likewise, a corporeal creature can’t attempt Strength-based checks against incorporeal creatures or objects.",
+        "Incorporeal creatures usually have immunity to effects or conditions that require a physical body, like disease, poison, and precision damage. They usually have resistance against all damage (except force damage and damage from Strikes with the {@i ghost touch} property rune), with double the resistance against non-magical damage."
+      ]
+    },
+    {
+      "name": "Ingested",
+      "source": "GMC",
+      "page": 248,
+      "categories": [
+        "Poison"
+      ],
+      "category": "Poison",
+      "entries": [
+        "An ingested poison is activated by applying it to food or drink to be consumed by a living creature, or by placing it directly into a living creature’s mouth. A creature attempts a saving throw against such a poison when it consumes the poison or the food or drink treated with the poison. The onset time of ingested poisons typically ranges anywhere from 1 minute to 1 day"
+      ]
+    },
+    {
+      "name": "Inhaled",
+      "source": "GMC",
+      "page": 248,
+      "categories": [
+        "Poison"
+      ],
+      "category": "Poison",
+      "entries": [
+        "An inhaled poison is activated by unleashing it from its container. Once unleashed, the poison creates a cloud filling a 10-foot cube lasting for 1 minute or until a strong wind dissipates the cloud. Every creature entering this cloud is exposed to the poison and must attempt a saving throw against it; a creature aware of the poison before entering the cloud can use a single action to hold its breath and gain a +2 circumstance bonus to the saving throw for 1 round."
+      ]
+    },
+    {
+      "name": "Injury",
+      "source": "GMC",
+      "page": 248,
+      "categories": [
+        "Poison"
+      ],
+      "category": "Poison",
+      "entries": [
+        "An injury poison is activated by applying it to a weapon or ammunition, and it affects the target of the first Strike made using the poisoned item. If that Strike is a success and deals piercing or slashing damage, the target must attempt a saving throw against the poison. On a failed Strike, the target is unaffected, but the poison remains on the weapon and you can try again. On a critical failure, or if the Strike fails to deal slashing or piercing damage for some other reason, the poison is spent but the target is unaffected. Only one injury poison can be applied to a weapon or ammunition at a time."
+      ]
+    },
+    {
+      "name": "Jotunborn",
+      "source": "B",
+      "page": 220,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A creature with this trait is a member of the jotunborn ancestry. Jotunborn are large people forged from the blood of an ancient group of giants called titans and usually have low-light vision. An ability with this trait can be used or selected only by jotunborn. A weapon with this trait is created and used by jotunborn."
+      ]
+    },
+    {
+      "name": "Jousting",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "The weapon is suited for mounted combat with a harness or similar means. When mounted, if you moved at least 10 feet on the action before your attack, add a circumstance bonus to damage for that attack equal to the number of damage dice for the weapon. In addition, while mounted, you can wield the weapon in one hand, changing the damage die to the listed value. As a part of your action to Mount a creature, you can switch your grip on a jousting weapon to one-handed. After that, changing your grip takes the same actions. If you dismount while wielding a jousting weapon onehanded, you can switch to using two hands as part of that action if you have a hand free at that point. If not, you'll still be holding the weapon in one hand, but not wielding it."
+      ]
+    },
+    {
+      "name": "Kami",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Kami are spirits of the Universe that bond with a specific object or place."
+      ]
+    },
+    {
+      "name": "Kholo",
+      "source": "PC2",
+      "page": 317,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A creature with this trait is a member of the kholo ancestry —humanoids that resemble hyenas. An ability with this trait can be used or selected only by kholos. An item with this trait is created and used by kholos."
+      ]
+    },
+    {
+      "name": "Kitsune",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Kitsune are foxlike humanoids with an alternate humanoid or fox form. Curious and creative, they have a reputation as tricksters."
+      ]
+    },
+    {
       "name": "Leshy",
       "source": "PC1",
       "page": 458,
@@ -1021,6 +1733,18 @@
       ]
     },
     {
+      "name": "Maftet",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Maftets have humanoid upper bodies, leonine lower bodies, and hawk-like wings."
+      ]
+    },
+    {
       "name": "Magical",
       "source": "PC1",
       "page": 458,
@@ -1066,6 +1790,18 @@
       "category": "Mechanics",
       "entries": [
         "A mental effect can alter the target's mind. It has no effect on an object or a mindless creature."
+      ]
+    },
+    {
+      "name": "Merfolk",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "These aquatic humanoids have an upper body similar to a human and a lower body similar to a fish."
       ]
     },
     {
@@ -1129,6 +1865,30 @@
       ]
     },
     {
+      "name": "Monk",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "Abilities with this trait are from the monk class. A weapon with this trait is primarily used by monks."
+      ]
+    },
+    {
+      "name": "Morlock",
+      "source": "B2",
+      "page": 309,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Morlocks are a family of pale, underground-dwelling humanoids who, generations ago, were regular humans."
+      ]
+    },
+    {
       "name": "Morph",
       "source": "PC1",
       "page": 301,
@@ -1166,6 +1926,78 @@
       ]
     },
     {
+      "name": "Mummy",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A mummy is an undead creature created from a preserved corpse."
+      ]
+    },
+    {
+      "name": "Munavri",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Amicable humanoids living in the Darklands, munavris have powerful telekinetic and psychic abilities."
+      ]
+    },
+    {
+      "name": "Munsahir",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Munsahirs are elemental humanoids who reside on the Plane of Fire."
+      ]
+    },
+    {
+      "name": "Mutant",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "The monster has mutated or evolved, granting it unusual benefits, drawbacks, or both."
+      ]
+    },
+    {
+      "name": "Naari",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Naaris are planar scions descended from efreet."
+      ]
+    },
+    {
+      "name": "Nagaji",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Nagaji are brawny humanoids with scaled skin and serpentine heads, many of whom serve or respect nagas."
+      ]
+    },
+    {
       "name": "Nephilim",
       "source": "PC1",
       "page": 459,
@@ -1178,6 +2010,18 @@
       ]
     },
     {
+      "name": "Noisy",
+      "source": "PC1",
+      "page": 272,
+      "category": "Armor",
+      "categories": [
+        "Armor"
+      ],
+      "entries": [
+        "This armor is loud and likely to alert others to your presence. The armor’s check penalty applies to Stealth checks even if you have the required Strength modifier."
+      ]
+    },
+    {
       "name": "Nonlethal",
       "source": "PC1",
       "page": 282,
@@ -1187,6 +2031,18 @@
       "category": "Weapon",
       "entries": [
         "Attacks with this weapon are nonlethal, and are used to knock creatures unconscious instead of kill them. You can use a nonlethal weapon to make a lethal attack with a –2 circumstance penalty."
+      ]
+    },
+    {
+      "name": "Nymph",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "This family of beautiful fey creatures has strong ties to natural locations."
       ]
     },
     {
@@ -1215,6 +2071,18 @@
       ]
     },
     {
+      "name": "Oni",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Oni are a family of brutal, shapechanging giants who were once kami."
+      ]
+    },
+    {
       "name": "Ooze",
       "source": "PC1",
       "page": 459,
@@ -1233,6 +2101,42 @@
       "category": "Ancestry",
       "entries": [
         "A creature with this trait is a member of the orc ancestry. These green-skinned people tend to have darkvision. An ability with this trait can be used or selected only by orcs. An item with this trait is created and used by orcs."
+      ]
+    },
+    {
+      "name": "Oread",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Oreads are planar scions descended from {@creature Jabali|MC1|jabalis}."
+      ]
+    },
+    {
+      "name": "Parry",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "This weapon can be used defensively to block attacks. While wielding this weapon, if your proficiency with it is trained or better, you can spend a single action to position your weapon defensively, gaining a +1 circumstance bonus to AC until the start of your next turn."
+      ]
+    },
+    {
+      "name": "Phantom",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A phantom is soul that has diverged from the River of Souls on the Ethereal Plane before being judged. They typically retain memories of their life before death but are not undead."
       ]
     },
     {
@@ -1336,6 +2240,78 @@
       ]
     },
     {
+      "name": "Propulsive",
+      "source": "PC1",
+      "page": 282,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "You add half your Strength modifier (if positive) to damage rolls with a propulsive ranged weapon. If you have a negative Strength modifier, you add your full Strength modifier instead."
+      ]
+    },
+    {
+      "name": "Protean",
+      "source": "GMC",
+      "page": 332,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A family of monitors spawned within the Maelstrom, these creatures are guardians of disorder. They typically have darkvision, an amorphous anatomy."
+      ]
+    },
+    {
+      "name": "Psychopomp",
+      "source": "GMC",
+      "page": 333,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A family of monitors spawned within the Boneyard to convey souls to the Outer Planes, most psychopomps are true neutral. They typically have darkvision, lifesense, and spirit touch, and they’re immune to death effects."
+      ]
+    },
+    {
+      "name": "Qlippoth",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A family of fiends hailing from the Outer Rifts, most qlippoth are unholy. Their appearance affects the minds of non-qlippoth that view them."
+      ]
+    },
+    {
+      "name": "Rakshasa",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Rakshasas are divine spirits who exemplify the profane. They can typically Change Shape and have a weakness to holy."
+      ]
+    },
+    {
+      "name": "Ranged Trip",
+      "source": "PC1",
+      "page": 283,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "The weapon can be used to Trip with the Athletics skill within the weapon’s first range increment. The skill check takes a –2 circumstance penalty. You can add the weapon’s item bonus to attack rolls as a bonus to the check. A ranged trip weapon doesn’t deal any damage when used to Trip. These weapons are usually thrown."
+      ]
+    },
+    {
       "name": "Ranger",
       "source": "PC1",
       "page": 460,
@@ -1360,6 +2336,18 @@
       ]
     },
     {
+      "name": "Reach",
+      "source": "PC1",
+      "page": 283,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "This weapon can be used to attack enemies up to 10 feet away instead of only adjacent enemies. For creatures with reach, the weapon increases their reach by 5 feet."
+      ]
+    },
+    {
       "name": "Revelation",
       "source": "PC1",
       "page": 460,
@@ -1381,6 +2369,30 @@
       "category": "Class",
       "entries": [
         "This indicates abilities from the rogue class."
+      ]
+    },
+    {
+      "name": "Sahkil",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Sahkils are fiends that delight in spreading fear and unease among mortal creatures. They typically have {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=59}, immunity to {@trait Fear||fear}, and weakness to {@trait Holy||holy}."
+      ]
+    },
+    {
+      "name": "Samsaran",
+      "source": "TXCG",
+      "page": 134,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Blue-skinned people native to Zi Ha, who reincarnate upon death and recall pieces of their past lives."
       ]
     },
     {
@@ -1420,6 +2432,42 @@
       ]
     },
     {
+      "name": "Sedacthy",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Ocean-dwelling humanoids who communicate with sea life and usually have darkvision and wavesense."
+      ]
+    },
+    {
+      "name": "Serpentfolk",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Serpentfolk are a family of serpentine humanoids."
+      ]
+    },
+    {
+      "name": "Shade",
+      "source": "GMC",
+      "page": 333,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Shades are mortal souls who have been judged and then transformed into creatures native to other planes. Petitioners can survive the basic environmental effects of their home plane."
+      ]
+    },
+    {
       "name": "Shadow",
       "source": "PC1",
       "page": 460,
@@ -1430,6 +2478,30 @@
       "entries": [
         "Magic with this trait involves shadows or the energy of the Netherworld.",
         "Planes with this trait are umbral with murky light. In the Netherworld, the radius of all light from light sources and the areas of light spells are halved."
+      ]
+    },
+    {
+      "name": "Shove",
+      "source": "PC1",
+      "page": 283,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "You can use this weapon to {@action Shove|} with the Athletics skill even if you don't have a free hand. This uses the weapon's reach (if different from your own) and adds the weapon's item bonus to attack rolls as an item bonus to the Athletics check. If you critically fail a check to Shove using the weapon, you can drop the weapon to take the effects of a failure instead of a critical failure."
+      ]
+    },
+    {
+      "name": "Skeleton",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "This undead is made by animating a dead creature's skeleton with void energy."
       ]
     },
     {
@@ -1469,6 +2541,30 @@
       ]
     },
     {
+      "name": "Soulbound",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "These constructs are mentally augmented by a fragment of a once-living creature's soul."
+      ]
+    },
+    {
+      "name": "Soulrider",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Soulriders are nigh-parasitic {@link aberrations|https://2e.aonprd.com/Traits.aspx?ID=523} that latch on to souls as they move through the Great Beyond. They sometimes take on the traits of planes."
+      ]
+    },
+    {
       "name": "Spellshape",
       "source": "PC1",
       "page": 302,
@@ -1493,6 +2589,18 @@
       ]
     },
     {
+      "name": "Sprite",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A family of diminutive winged fey with a strong connection to primal magic."
+      ]
+    },
+    {
       "name": "Stance",
       "source": "PC1",
       "page": 139,
@@ -1502,6 +2610,18 @@
       "category": "Class-specific",
       "entries": [
         "A stance is a general combat strategy that you enter by using an action with the stance trait, and you remain in for some time. A stance lasts until you get knocked out, until its requirements (if any) are violated, until the encounter ends, or until you use a stance action again, whichever comes first. After you take an action with the stance trait, you can't take another one for 1 round. You can enter or be in a stance only in encounter mode. You can Dismiss a stance."
+      ]
+    },
+    {
+      "name": "Strix",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Strix are avian humanoids with dark wings and large talons. They tend to live in isolated communities."
       ]
     },
     {
@@ -1527,6 +2647,18 @@
       "category": "Mechanics",
       "entries": [
         "A spell with the subtle trait can be cast without incantations and doesn't have obvious manifestations."
+      ]
+    },
+    {
+      "name": "Suli",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Sulis are planar scions descended from {@creature Jann||jann}."
       ]
     },
     {
@@ -1604,6 +2736,78 @@
       ]
     },
     {
+      "name": "Swarm",
+      "source": "GMC",
+      "page": 334,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A swarm is a mass or cloud of creatures that functions as one monster. Its size entry gives the size of the entire mass, though for most swarms, the individual creatures that make up that mass are Tiny. A swarm can occupy the same space as other creatures and must do so in order to use its damaging action. A swarm typically has weakness to effects that deal damage over an area (like area spells and {@link splash|https://2e.aonprd.com/Traits.aspx?ID=150} weapons). Swarms are immune to the grappled, {@condition Prone||prone}, and {@condition Restrained||restrained} conditions."
+      ]
+    },
+    {
+      "name": "Sweep",
+      "source": "PC1",
+      "page": 283,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "This weapon makes wide swinging attacks. When you attack with this weapon, you gain a +1 circumstance bonus to your attack roll if you already attempted to attack a different target this turn using this weapon."
+      ]
+    },
+    {
+      "name": "Sylph",
+      "source": "B2",
+      "page": 310,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Sylphs are planar scions descended from {@link djinn|https://2e.aonprd.com/Monsters.aspx?ID=212}."
+      ]
+    },
+    {
+      "name": "Tane",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "The Tane are powerful creatures created eons ago by the Eldest of the First World. All of the Tane treat whatever plane they happen to be on as their home plane."
+      ]
+    },
+    {
+      "name": "Tanggal",
+      "source": "MC2",
+      "page": 365,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "This family of cannibalistic aberrations consists of various humanoid-shaped creatures who can separate their body into two pieces while hunting."
+      ]
+    },
+    {
+      "name": "Tanuki",
+      "source": "TXCG",
+      "page": 134,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A name for both a raccoon-like animal native to Minkai and sapient tanuki who possess shapeshifting powers."
+      ]
+    },
+    {
       "name": "Teleportation",
       "source": "PC1",
       "page": 462,
@@ -1613,6 +2817,51 @@
       "category": "Mechanics",
       "entries": [
         "Teleportation effects instantaneously move something from one point in space to another. Teleportation does not usually trigger reactions based on movement."
+      ]
+    },
+    {
+      "name": "Thrown",
+      "source": "PC1",
+      "page": 283,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "You can throw this weapon as a ranged attack; it is a ranged weapon when thrown. You add your Strength modifier to damage as you would for a melee weapon. When this trait appears on a melee weapon, it also includes the range increment. Ranged weapons with this trait use the range increment in the weapon's Range entry.",
+        {
+          "type": "clarification",
+          "name": "Paizo Clarification",
+          "entries": [
+            "Whether you're wielding something can get complicated when you're using a thrown weapon with the returning rune or another ability that returns a thrown weapon to your hand. Typically, you're no longer counted as wielding a weapon when you throw it.",
+            "The GM might allow you to still count as wielding the item for some purposes, like staying in a stance that requires you to be wielding a weapon, but this is very much based on the GM's judgment.",
+            "When it comes to items built to share runes, the thrower's bandolier is expressly built to duplicate runes on thrown weapons. Doubling rings are meant for melee weapons and blazons of shared power are for a melee weapon and a one-handed firearm, crossbow, or the like. Again, your GM might make an exception based on the treasure available in your game."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Time",
+      "source": "GMC",
+      "page": 334,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Time creatures are natives of the Dimension of Time. They don’t age, and while some might be driven by supernatural hungers, they don’t need to eat or drink to survive. They can survive the basic environmental effects of the Dimension of Time."
+      ]
+    },
+    {
+      "name": "Titan",
+      "source": "MC2",
+      "page": 366,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Titans are enormous, primordial creatures of near-godlike power who predate the mortal races."
       ]
     },
     {
@@ -1626,6 +2875,97 @@
       "category": "Equipment · Hazard",
       "entries": [
         "A hazard constructed to hinder interlopers."
+      ]
+    },
+    {
+      "name": "Trip",
+      "source": "PC1",
+      "page": 283,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "You can use this weapon to {@action Trip|} with the Athletics skill even if you don't have a free hand. This uses the weapon's reach (if different from your own) and adds the weapon's item bonus to attack rolls as an item bonus to the Athletics check. If you critically fail a check to Trip using the weapon, you can drop the weapon to take the effects of a failure instead of a critical failure."
+      ]
+    },
+    {
+      "name": "Tripkee",
+      "source": "PC2",
+      "page": 319,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A creature with this trait is a member of the tripkee ancestry. Tripkees are a family of froglike humanoids. An ability with this trait can be used or selected only by tripkees. An item with this trait is created and used by tripkees."
+      ]
+    },
+    {
+      "name": "Troll",
+      "source": "MC1",
+      "page": 363,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Trolls are giant, brutish creatures and are well known for transforming into inanimate materials."
+      ]
+    },
+    {
+      "name": "Troop",
+      "source": "NC",
+      "page": 238,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A troop is an organized collection of component creatures, typically Small or Medium in size, working as a cohesive whole. Over the course of enough attacks and downed comrades, troops shrink in size. A troop typically has the {@link troop defenses|https://2e.aonprd.com/MonsterAbilities.aspx?ID=86} and {@link troop movement|https://2e.aonprd.com/MonsterAbilities.aspx?ID=85} abilities, and most troops have weaknesses to area damage and splash damage. Because they consist of multiple discrete creatures, they can't be summoned."
+      ]
+    },
+    {
+      "name": "Twin",
+      "source": "PC1",
+      "page": 283,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "These weapons are used as a pair. When you attack with a twin weapon, you add a circumstance bonus to the damage roll equal to the weapon’s number of damage dice if you have previously attacked with a different weapon of the same type this turn. The weapons must be of the same type, but they don’t need to have the same runes."
+      ]
+    },
+    {
+      "name": "Two-Hand",
+      "source": "PC1",
+      "page": 283,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "This weapon can be wielded with two hands to change its weapon damage die to the indicated value. This change applies to all the weapon’s damage dice.",
+        {
+          "type": "clarification",
+          "name": "Paizo Clarification",
+          "entries": [
+            "If you have an ability that increases the die size of your weapon and your weapon has the two-hand trait, the ability also increases the two-handed die size. For example, if you were a cleric of Nethys with the Deadly Simplicity feat, your staff (which has a d4 damage die and two-hand d8) would have a d6 damage die if you wielded it in one hand or d10 in two hands."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Unarmed",
+      "source": "PC1",
+      "page": 283,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "An unarmed attack uses your body rather than a manufactured weapon. An unarmed attack isn’t a weapon, though has a weapon group and might have weapon traits. An unarmed attack can’t be Disarmed. It also doesn’t take up a hand, though a fist or other grasping appendage generally works like a free-hand weapon."
       ]
     },
     {
@@ -1653,6 +2993,18 @@
       ]
     },
     {
+      "name": "Undine",
+      "source": "B2",
+      "page": 310,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Undines are planar scions descended from {@link marids|https://2e.aonprd.com/Monsters.aspx?ID=215}."
+      ]
+    },
+    {
       "name": "Unholy",
       "source": "PC1",
       "page": 462,
@@ -1674,6 +3026,90 @@
       "category": "Rarity",
       "entries": [
         "A rules element with this trait is one-of-a-kind. The DC of Recall Knowledge checks related to creatures with this trait is increased by 10."
+      ]
+    },
+    {
+      "name": "Urdefhan",
+      "source": "MC2",
+      "page": 366,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Urdefhans are humanoids who've made pacts with daemons, have transparent skin, and drink blood."
+      ]
+    },
+    {
+      "name": "Vampire",
+      "source": "MC1",
+      "page": 364,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Undead creatures who thirst for blood, vampires are notoriously versatile and hard to destroy."
+      ]
+    },
+    {
+      "name": "Vanara",
+      "source": "MC2",
+      "page": 366,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Vanaras are monkeylike humanoids who share a devotion to monastic training."
+      ]
+    },
+    {
+      "name": "Velstrac",
+      "source": "MC2",
+      "page": 366,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A family of fiends from the Netherworld that are associated with pain and agony. All velstracs possess some form of disturbing gaze."
+      ]
+    },
+    {
+      "name": "Versatile",
+      "source": "PC1",
+      "page": 283,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "A versatile weapon can be used to deal a different type of damage than its listed type. This trait indicates the alternate damage type. For instance, a piercing weapon with versatile S can deal piercing or slashing damage. You choose the damage type each time you attack."
+      ]
+    },
+    {
+      "name": "Virulent",
+      "source": "GMC",
+      "page": 334,
+      "categories": [
+        "Affliction"
+      ],
+      "category": "Affliction",
+      "entries": [
+        "Afflictions with the virulent trait are harder to remove. You must succeed at two consecutive saves to reduce a virulent affliction’s stage by 1. A critical success reduces a virulent affliction’s stage by only 1 instead of by 2."
+      ]
+    },
+    {
+      "name": "Vishkanya",
+      "source": "MC2",
+      "page": 366,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "These faintly ophidian humanoids have venomous blood and saliva."
       ]
     },
     {
@@ -1719,6 +3155,18 @@
       ]
     },
     {
+      "name": "Volley",
+      "source": "PC1",
+      "page": 283,
+      "category": "Weapon",
+      "categories": [
+        "Weapon"
+      ],
+      "entries": [
+        "This ranged weapon is less effective at close distances. Your attacks against targets that are at a distance within the range listed take a –2 penalty."
+      ]
+    },
+    {
       "name": "Wand",
       "source": "PC1",
       "page": 463,
@@ -1743,6 +3191,42 @@
       "entries": [
         "Effects with the water trait either manipulate or conjure water. Those that manipulate water have no effect in an area without water. Creatures with this trait consist primarily of water or have a connection to magical water.",
         "Planes with this trait are mostly liquid. Visitors who can't breathe water or reach an air pocket likely drown. The rules for aquatic combat aquatic combat usually apply, including the inability to cast fire spells or use actions with the fire trait. Creatures with a weakness to water take damage equal to double their weakness at the end of each round."
+      ]
+    },
+    {
+      "name": "Wayang",
+      "source": "TXCG",
+      "page": 134,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "Small people native to the Netherworld. Immigrated to Golarion after Earthfall."
+      ]
+    },
+    {
+      "name": "Werecreature",
+      "source": "GMC",
+      "page": 335,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "These shapechanging creatures either are naturally able to shift between animal, humanoid, and hybrid forms or are afflicted with a curse that forces them to shift involuntarily."
+      ]
+    },
+    {
+      "name": "Wight",
+      "source": "MC1",
+      "page": 364,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A wight is an undead creature that drains life and stands vigil over a burial site."
       ]
     },
     {
@@ -1781,6 +3265,54 @@
       "entries": [
         "Effects with the wood trait conjure or manipulate wood. Those that manipulate wood have no effect in an area without wood. Creatures with this trait consist primarily of wood or have a connection to magical wood.",
         "These planes consist of trees and other flora latticed in organic patterns. Wood planes are often perfectly constructed to match their desired purpose or environment but aren't usually outright hostile to visitors."
+      ]
+    },
+    {
+      "name": "Wraith",
+      "source": "MC1",
+      "page": 364,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A wraith is an incorporeal undead creature infused with void energy and driven by a hatred of all life."
+      ]
+    },
+    {
+      "name": "Wyrwood",
+      "source": "MC2",
+      "page": 366,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "A wyrwood is a small, sapient living construct crafted of wood and powered with an {@link aeon stone|https://2e.aonprd.com/Equipment.aspx?ID=3055} or a similar magical stone."
+      ]
+    },
+    {
+      "name": "Xulgath",
+      "source": "MC1",
+      "page": 364,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "These subterranean reptilian creatures tend to have darkvision and smell awful."
+      ]
+    },
+    {
+      "name": "Zombie",
+      "source": "MC1",
+      "page": 364,
+      "category": "Monster",
+      "categories": [
+        "Monster"
+      ],
+      "entries": [
+        "These undead are mindless rotting corpses that hunger for living flesh."
       ]
     }
   ]

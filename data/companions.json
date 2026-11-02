@@ -1,0 +1,1280 @@
+{
+  "_meta": {
+    "content": "All 16 Player Core companions and 41 familiar/master abilities, with support benefits, advanced maneuvers, and the PC1 companion rules including mature, nimble, savage and all six specializations. English content from Archives of Nethys; excludes other books and legacy options.",
+    "references": [
+      "https://2e.aonprd.com/Sources.aspx?ID=216",
+      "https://2e.aonprd.com/Rules.aspx?ID=2113"
+    ],
+    "license": "Pathfinder Player Core © 2023 Paizo Inc. Game-content licence and attribution notices: https://2e.aonprd.com/Licenses.aspx"
+  },
+  "sources": [
+    {
+      "id": "PC1",
+      "name": "Player Core",
+      "source": "PC1"
+    }
+  ],
+  "companions": [
+    {
+      "name": "Ape",
+      "source": "PC1",
+      "page": 206,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is an ape or other primate.",
+        "{@b Melee} {@as 1} fist, {@b Damage} 1d8 bludgeoning",
+        "{@b Str} +3, {@b Dex} +1, {@b Con} +2, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
+        "{@b Hit Points} 8",
+        "{@b Skill} {@skill Intimidation|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}",
+        "{@b Speed} 25 feet, climb 25 feet",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your ape threatens your foes with menacing growls. Until the start of your next turn, if you hit and deal damage to a creature in your ape's reach, the creature becomes {@condition Frightened||frightened 1}.",
+        "{@b Advanced Maneuver} Frightening Display",
+        {
+          "type": "h3",
+          "name": "Frightening Display {@as 1}",
+          "entries": []
+        },
+        {
+          "type": "hr"
+        },
+        "Your ape makes a loud and frightening display, throwing a foe off balance. The ape attempts to {@action Demoralize|} the target creature; this display gains the {@trait Visual||visual} trait and doesn't require language. While frightened by this ability, the target is {@condition Off-guard||off-guard} to your ape."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=66"
+    },
+    {
+      "name": "Arboreal Sapling",
+      "source": "PC1",
+      "page": 206,
+      "category": "Plant",
+      "size": "Small",
+      "traits": [
+        "uncommon",
+        "minion",
+        "plant"
+      ],
+      "entries": [
+        "Your companion is a walking tree, a cousin of the great arboreal wardens and regents. An arboreal sapling has the plant trait instead of the animal trait, but it otherwise functions normally as an animal companion. They are typically only selected by animal order druids who are also members of the leaf order.",
+        "{@b Access} You are a member of the leaf order.",
+        "{@b Melee} {@as 1} branch, {@b Damage} 1d8 bludgeoning",
+        "{@b Str} +3, {@b Dex} +1, {@b Con} +2, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
+        "{@b Hit Points} 8",
+        "{@b Skill} {@skill Stealth|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}",
+        "{@b Speed} 25 feet",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your arboreal sapling plants roots around your foe, impeding its movement. Until the start of your next turn, if you hit and deal damage to a creature in your arboreal sapling's reach, the first square the creature moves into after taking that damage is difficult terrain.",
+        "{@b Advanced Maneuver} Throw Rock",
+        {
+          "type": "h3",
+          "name": "Throw Rock {@as 1}",
+          "entries": []
+        },
+        {
+          "type": "hr"
+        },
+        "The arboreal sapling Interacts to pick up a rock within reach or retrieve a stowed rock, then throws it with a ranged rock Strike that deals 2d6 bludgeoning (3d6 for a specialized companion) damage with a range increment of 30 feet."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=67"
+    },
+    {
+      "name": "Badger",
+      "source": "PC1",
+      "page": 207,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a badger, wolverine, or other big mustelid.",
+        "{@b Melee} {@as 1} jaws, {@b Damage} 1d8 piercing",
+        "{@b Melee} {@as 1} claw ({@trait Agile||agile}), {@b Damage} 1d6 slashing",
+        "{@b Str} +2, {@b Dex} +2, {@b Con} +2, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
+        "{@b Hit Points} 8",
+        "{@b Skill} {@skill Survival|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Speed} 25 feet, burrow 10 feet, climb 10 feet",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your badger digs around your foe's position, interfering with its footing. Until the start of your next turn, if you hit and deal damage to a creature your badger threatens, the target can't use a Step action (unless it can Step through difficult terrain) until it moves from its current position.",
+        "{@b Advanced Maneuver} Badger Rage",
+        {
+          "type": "h3",
+          "name": "Badger Rage {@as 1}",
+          "entries": []
+        },
+        "{@trait Concentrate|} {@trait Emotion|} {@trait Mental|}",
+        "{@b Requirements} The badger isn’t {@condition Fatigued||fatigued} or raging.",
+        {
+          "type": "hr"
+        },
+        "The badger enters a state of pure rage that lasts for 1 minute, until there are no enemies it can perceive, or until it falls {@condition Unconscious||unconscious}, whichever comes first. It can't voluntarily stop raging. While raging, the badger is affected in the following ways.",
+        {
+          "type": "list",
+          "items": [
+            {
+              "entries": [
+                "It deals 4 additional damage with its bite attacks and 2 additional damage with its claw attacks."
+              ]
+            },
+            {
+              "entries": [
+                "It takes a –1 penalty to AC."
+              ]
+            },
+            {
+              "entries": [
+                "It can't use actions that have the {@trait Concentrate||concentrate} trait. The animal companion can {@action Seek|} even while raging."
+              ]
+            }
+          ]
+        },
+        "After it has stopped raging, it can't use Badger Rage again for 1 minute."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=68"
+    },
+    {
+      "name": "Bat",
+      "source": "PC1",
+      "page": 207,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a particularly large bat, such as a giant bat.",
+        "{@b Melee} {@as 1} jaws ({@trait Finesse||finesse}), {@b Damage} 1d6 piercing",
+        "{@b Melee} {@as 1} wing ({@trait Agile||agile}, {@trait Finesse||finesse}), {@b Damage} 1d4 slashing",
+        "{@b Str} +2, {@b Dex} +3, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
+        "{@b Hit Points} 6",
+        "{@b Skill} {@skill Stealth|}",
+        "{@b Senses} echolocation 20 feet (the bat can use hearing as a precise sense within this range), {@link low-light vision|https://2e.aonprd.com/Traits.aspx?ID=100}",
+        "{@b Speed} 15 feet, fly 30 feet",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your bat flaps around your foes' arms and faces, getting in the way of their attacks. Until the start of your next turn, creatures in your bat's reach that you damage with Strikes take a –1 circumstance penalty to their attack rolls.",
+        "{@b Advanced Maneuver} Wing Thrash",
+        {
+          "type": "h3",
+          "name": "Wing Thrash {@as 2}",
+          "entries": []
+        },
+        {
+          "type": "hr"
+        },
+        "The bat thrashes wildly with its wings, making wing Strikes against up to three adjacent foes. Each attack counts toward the bat's multiple attack penalty, but the penalty only increases after all the attacks have been made."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=69"
+    },
+    {
+      "name": "Bear",
+      "source": "PC1",
+      "page": 207,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a black, grizzly, polar, or other type of bear.",
+        "{@b Melee} {@as 1} jaws, {@b Damage} 1d8 piercing",
+        "{@b Melee} {@as 1} claw ({@trait Agile||agile}), {@b Damage} 1d6 slashing",
+        "{@b Str} +3, {@b Dex} +2, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
+        "{@b Hit Points} 8",
+        "{@b Skill} {@skill Intimidation|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Speed} 35 feet",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your bear mauls your enemies when you create an opening. Until the start of your next turn, each time you hit a creature in the bear's reach with a Strike, the creature takes 1d8 slashing damage from the bear. If your bear is nimble or savage, the slashing damage increases to 2d8.",
+        "{@b Advanced Maneuver} Bear Hug",
+        {
+          "type": "h3",
+          "name": "Bear Hug {@as 1}",
+          "entries": []
+        },
+        "{@b Requirements} The bear’s last action was a successful claw Strike.",
+        {
+          "type": "hr"
+        },
+        "The bear makes another claw Strike against the same target. If this Strike hits, the target is also {@condition Grabbed||grabbed}, as if the bear had successfully Grappled the target."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=70"
+    },
+    {
+      "name": "Bird",
+      "source": "PC1",
+      "page": 208,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a bird of prey, such as an eagle, hawk, or owl.",
+        "{@b Melee} {@as 1} jaws ({@trait Finesse||finesse}), {@b Damage} 1d6 piercing",
+        "{@b Melee} {@as 1} talon ({@trait Agile||agile}, {@trait Finesse||finesse}), {@b Damage} 1d4 slashing",
+        "{@b Str} +2, {@b Dex} +3, {@b Con} +1, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
+        "{@b Hit Points} 4",
+        "{@b Skill} {@skill Stealth|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}",
+        "{@b Speed} 10 feet, fly 60 feet",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} The bird pecks at your foes' eyes when you create an opening. Until the start of your next turn, your Strikes that damage a creature that your bird threatens also deal 1d4 {@condition Persistent Damage||persistent bleed damage}, and the target is {@condition Dazzled||dazzled} until it removes the bleed damage. If your bird is nimble or savage, the persistent bleed damage increases to 2d4.",
+        "{@b Advanced Maneuver} Flyby Attack",
+        {
+          "type": "h3",
+          "name": "Flyby Attack {@as 2}",
+          "entries": []
+        },
+        {
+          "type": "hr"
+        },
+        "The bird Flies and makes a talon Strike at any point along the way."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=71"
+    },
+    {
+      "name": "Boar",
+      "source": "PC1",
+      "page": 208,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a boar or pig.",
+        "{@b Melee} {@as 1} tusk, {@b Damage} 1d8 piercing",
+        "{@b Str} +3, {@b Dex} +1, {@b Con} +2, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
+        "{@b Hit Points} 8",
+        "{@b Skill} {@skill Survival|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Speed} 35 feet",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your boar gores your foes. Until the start of your next turn, your Strikes that damage a creature in your boar's reach also deal 1d6 {@condition Persistent Damage||persistent bleed damage}. If your boar is nimble or savage, the persistent bleed damage increases to 2d6.",
+        "{@b Advanced Maneuver} Boar Charge",
+        {
+          "type": "h3",
+          "name": "Boar Charge {@as 2}",
+          "entries": []
+        },
+        {
+          "type": "hr"
+        },
+        "The boar Strides twice in a straight line and then makes a tusk Strike. As long as it moved at least 20 feet, it gains a +2 circumstance bonus to its attack roll."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=72"
+    },
+    {
+      "name": "Cat",
+      "source": "PC1",
+      "page": 208,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a big cat, such as a leopard or tiger.",
+        "{@b Melee} {@as 1} jaws ({@trait Finesse||finesse}), {@b Damage} 1d6 piercing",
+        "{@b Melee} {@as 1} claw ({@trait Agile||agile}, {@trait Finesse||finesse}), {@b Damage} 1d4 slashing",
+        "{@b Str} +2, {@b Dex} +3, {@b Con} +1, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
+        "{@b Hit Points} 4",
+        "{@b Skill} {@skill Stealth|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Speed} 35 feet",
+        "{@b Special} Your cat deals 1d4 extra precision damage against {@condition Off-guard||off-guard} targets.",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your cat throws your enemies off-balance when you create an opening. Until the start of your next turn, your Strikes that deal damage to a creature within your cat's reach make the target {@condition Off-guard||off-guard} until the end of your next turn.",
+        "{@b Advanced Maneuver} Cat Pounce",
+        {
+          "type": "h3",
+          "name": "Cat Pounce {@as 1}",
+          "entries": []
+        },
+        "{@trait Flourish|}",
+        {
+          "type": "hr"
+        },
+        "The cat Strides and then Strikes. If it was {@condition Undetected||undetected} at the start of its Cat Pounce, it remains undetected until after the attack."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=73"
+    },
+    {
+      "name": "Crocodile",
+      "source": "PC1",
+      "page": 208,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a crocodile or a similar crocodilian reptile, such as an alligator or caiman.",
+        "{@b Melee} {@as 1} jaws, {@b Damage} 1d8 piercing",
+        "{@b Melee} {@as 1} tail ({@trait Finesse||finesse}), {@b Damage} 1d6 bludgeoning",
+        "{@b Str} +3, {@b Dex} +2, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
+        "{@b Hit Points} 6",
+        "{@b Skill} {@skill Stealth|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}",
+        "{@b Speed} 20 feet, swim 25 feet",
+        "{@b Special} The crocodile can hold its breath for about 2 hours.",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your crocodile clamps its jaws on your foe, refusing to let go. Until the start of your next turn, if your Strike damages a creature in your crocodile's reach, your crocodile can latch onto the creature. While thus attached, the crocodile can move along with the target whenever the target moves until the end of your next turn. Your crocodile can latch onto only one creature in this way, and it must release the creature to make a jaws Strike. If the target is smaller than the crocodile, it takes a –10-foot circumstance penalty to its Speeds and can't {@action Fly|} while the crocodile is latched on.",
+        "{@b Advanced Maneuver} Death Roll",
+        {
+          "type": "h3",
+          "name": "Death Roll {@as 1}",
+          "entries": []
+        },
+        "{@b Requirements} The crocodile has a creature grabbed.",
+        {
+          "type": "hr"
+        },
+        "The crocodile tucks its legs and rolls rapidly, twisting its victim. It makes a jaws Strike with a +2 circumstance bonus to the attack roll against the grabbed creature. If it hits, it also knocks the creature {@condition Prone||prone}. If it misses, it releases the creature."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=74"
+    },
+    {
+      "name": "Dromaeosaur",
+      "source": "PC1",
+      "page": 209,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a dromaeosaur (also called a raptor), such as a velociraptor or deinonychus.",
+        "{@b Melee} {@as 1} jaws ({@trait Finesse||finesse}), {@b Damage} 1d8 piercing",
+        "{@b Melee} {@as 1} talon ({@trait Agile||agile}, {@trait Finesse||finesse}), {@b Damage} 1d6 slashing",
+        "{@b Str} +2, {@b Dex} +3, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
+        "{@b Hit Points} 6",
+        "{@b Skill} {@skill Stealth|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Speed} 50 feet",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your raptor constantly darts into flanking position. Until the start of your next turn, it counts as being in its space or an empty space of your choice within 10 feet when determining whether you and your companion are flanking; you can choose a different space for each of your attacks.",
+        "{@b Advanced Maneuver} Darting Attack",
+        {
+          "type": "h3",
+          "name": "Darting Attack {@as 1}",
+          "entries": []
+        },
+        "{@trait Flourish|}",
+        {
+          "type": "hr"
+        },
+        "The raptor Steps up to 10 feet and then Strikes, or Strikes and then Steps up to 10 feet."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=75"
+    },
+    {
+      "name": "Horse",
+      "source": "PC1",
+      "page": 209,
+      "category": "Animal",
+      "size": "Medium or Large",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a horse, pony, or similar equine.",
+        "{@b Melee} {@as 1} hoof ({@trait Agile||agile}), {@b Damage} 1d6 bludgeoning",
+        "{@b Str} +3, {@b Dex} +2, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
+        "{@b Hit Points} 8",
+        "{@b Skill} {@skill Survival|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Speed} 40 feet",
+        "{@b Special} mount",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Until the start of your next turn, if you're mounted on your horse and moved 10 feet or more on the action before a melee Strike, add a circumstance bonus to damage for that Strike equal to twice the number of weapon damage dice. If your weapon already has the {@trait Jousting||jousting} weapon trait, increase the trait's damage bonus by 2 per die instead.",
+        "{@b Advanced Maneuver} Gallop",
+        {
+          "type": "h3",
+          "name": "Gallop {@as 2}",
+          "entries": []
+        },
+        "{@trait Move|}",
+        {
+          "type": "hr"
+        },
+        "The horse Strides twice at a +10-foot circumstance bonus to Speed."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=76"
+    },
+    {
+      "name": "Riding Drake",
+      "source": "PC1",
+      "page": 209,
+      "category": "Animal",
+      "size": "Large",
+      "traits": [
+        "uncommon",
+        "dragon",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a swift, flightless drake with limited intelligence, less vicious than most drakes but fiercely loyal to you. A riding drake has the {@trait Dragon||dragon} trait instead of the {@trait Animal||animal} trait, but it otherwise functions normally as an animal companion.",
+        "{@b Melee} {@as 1} jaws, {@b Damage} 1d8 piercing",
+        "{@b Melee} {@as 1} tail, {@b Damage} 1d6 bludgeoning",
+        "{@b Str} +2, {@b Dex} +1, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +2",
+        "{@b Hit Points} 8",
+        "{@b Skill} {@skill Intimidation|}",
+        "{@b Senses} {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=12}",
+        "{@b Speed} 45 feet",
+        "{@b Special} mount",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your drake snorts fire in your foes' faces. Until the start of your next turn, each time you Strike while riding the drake and hit a creature in the drake's reach, the creature takes 1d4 fire damage from the drake. If your drake is nimble or savage, the fire damage increases to 2d4.",
+        "{@b Advanced Maneuver} Fire Breath",
+        {
+          "type": "h3",
+          "name": "Fire Breath {@as 2}",
+          "entries": []
+        },
+        "{@b Frequency} once per hour",
+        {
+          "type": "hr"
+        },
+        "The riding drake breathes a 30-foot cone of fire, dealing 1d6 fire damage for every 2 levels the drake has to all creatures in the area (basic Reflex save). This uses a trained DC using the drake's Constitution modifier or an expert DC if the drake is specialized."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=77"
+    },
+    {
+      "name": "Scorpion",
+      "source": "PC1",
+      "page": 210,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is one of the various species of giant scorpion.",
+        "{@b Melee} {@as 1} stinger, {@b Damage} 1d6 piercing plus poison",
+        "{@b Melee} {@as 1} pincer ({@trait Agile||agile}), {@b Damage} 1d6 slashing",
+        "{@b Str} +3, {@b Dex} +3, {@b Con} +1, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
+        "{@b Hit Points} 6",
+        "{@b Skill} {@skill Stealth|}",
+        "{@b Senses} {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=12}",
+        "{@b Speed} 30 feet",
+        "{@b Special} The scorpion's stinger attack deals an additional 1d4 poison damage or 2d4 poison damage if the scorpion is a specialized companion.",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your scorpion drips poison from its stinger when you create an opening. Until the start of your next turn, your Strikes that damage a creature in your scorpion's reach also deal 1d6 {@condition Persistent Damage||persistent poison damage}. If your scorpion is nimble or savage, the persistent poison damage increases to 2d6.",
+        "{@b Advanced Maneuver} Grab and Sting",
+        {
+          "type": "h3",
+          "name": "Grab and Sting {@as 2}",
+          "entries": []
+        },
+        {
+          "type": "hr"
+        },
+        "The scorpion holds its foe in place with its pincers in order to sting it. It makes a pincer Strike. If the Strike hits, the target creature automatically becomes {@condition Grabbed||grabbed} by the scorpion, which then makes a stinger Strike against it. The grabbed condition lasts until the end of your next turn."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=78"
+    },
+    {
+      "name": "Shark",
+      "source": "PC1",
+      "page": 210,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "aquatic",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a shark of any kind, such as a hammerhead, great white, or jigsaw shark.",
+        "{@b Melee} {@as 1} jaws, {@b Damage} 1d8 piercing",
+        "{@b Str} +3, {@b Dex} +2, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
+        "{@b Hit Points} 6",
+        "{@b Skill} {@skill Stealth|}",
+        "{@b Senses} blood scent, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 60 feet)",
+        "{@b Speed} swim 40 feet",
+        "{@b Special} The shark has the {@trait Aquatic||aquatic} trait. Its blood scent enables it to smell blood in the water from up to 1 mile away.",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} When your shark senses blood, it tears into your enemies. Until the start of your next turn, each time you hit a creature in the shark's reach with a Strike and deal slashing or piercing damage, the creature takes 1d8 slashing damage from the shark. If your shark is nimble or savage, the slashing damage increases to 2d8.",
+        "{@b Advanced Maneuver} Shred",
+        {
+          "type": "h3",
+          "name": "Shred {@as 1}",
+          "entries": []
+        },
+        "{@b Requirements} The shark hit with a jaws Strike on its most recent action this turn.",
+        {
+          "type": "hr"
+        },
+        "The shark viciously rips into the wound. The target of the shark’s Strike takes 2d8 slashing damage (3d8 for a specialized companion)."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=79"
+    },
+    {
+      "name": "Snake",
+      "source": "PC1",
+      "page": 210,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a constrictor snake, such as a boa or python.",
+        "{@b Melee} {@as 1} jaws ({@trait Finesse||finesse}), {@b Damage} 1d8 piercing",
+        "{@b Str} +3, {@b Dex} +3, {@b Con} +1, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
+        "{@b Hit Points} 6",
+        "{@b Skill} {@skill Stealth|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Speed} 20 feet, climb 20 feet, swim 20 feet",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your snake holds your enemies with its coils, interfering with reactions. Until the start of your next turn, any creature your snake threatens can't use reactions triggered by your actions unless its level is higher than yours.",
+        "{@b Advanced Maneuver} Constrict",
+        {
+          "type": "h3",
+          "name": "Constrict {@as 1}",
+          "entries": []
+        },
+        "{@b Requirements} The snake has a smaller creature {@condition Grabbed||grabbed}.",
+        {
+          "type": "hr"
+        },
+        "The snake deals 12 bludgeoning damage to the grabbed creature; the creature must attempt a basic Fortitude save against your class DC. If the snake is a specialized animal companion, increase this damage to 20."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=80"
+    },
+    {
+      "name": "Wolf",
+      "source": "PC1",
+      "page": 210,
+      "category": "Animal",
+      "size": "Small",
+      "traits": [
+        "animal",
+        "minion"
+      ],
+      "entries": [
+        "Your companion is a wolf, dog, or other canine.",
+        "{@b Melee} {@as 1} jaws ({@trait Finesse||finesse}), {@b Damage} 1d8 piercing",
+        "{@b Str} +2, {@b Dex} +3, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
+        "{@b Hit Points} 6",
+        "{@b Skill} {@skill Survival|}",
+        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Speed} 40 feet",
+        {
+          "type": "hr"
+        },
+        "{@b Support Benefit} Your wolf tears tendons with each opening. Until the start of your next turn, your Strikes that damage creatures your wolf threatens give the target a –5-foot status penalty to its Speeds for 1 minute (–10 on a critical success).",
+        "{@b Advanced Maneuver} Takedown",
+        {
+          "type": "h3",
+          "name": "Takedown {@as 1}",
+          "entries": []
+        },
+        "{@b Requirements} The animal companion’s last action was a successful jaws Strike.",
+        {
+          "type": "hr"
+        },
+        "The wolf automatically knocks the target of its jaws Strike {@condition Prone||prone}."
+      ],
+      "reference": "https://2e.aonprd.com/Companions.aspx?ID=83"
+    }
+  ],
+  "familiarAbilities": [
+    {
+      "name": "Absorb Familiar",
+      "source": "PC1",
+      "page": 214,
+      "kind": "familiar",
+      "category": "Master",
+      "entries": [
+        "Your familiar can transform into a mark you carry on your flesh, typically seeming like a birthmark, tattoo, or gem that vaguely resembles its normal form. When transformed, the familiar can't act except to turn back into a familiar. It isn't affected by area effects and must be targeted separately to affect it, which requires knowledge that it's a creature. This means you and your allies can heal or assist the familiar while most enemies stay unaware of its true nature. Creatures must attempt a DC 20 Perception check to {@action Seek|} to realize a it is actually a familiar. Your familiar can still communicate its feelings empathically. Transforming the familiar between forms is a 1-minute activity that has the {@trait Concentrate||concentrate} trait."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=129"
+    },
+    {
+      "name": "Accompanist",
+      "source": "PC1",
+      "page": 212,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar helps you perform. Whenever you attempt a {@skill Performance|} check, if your familiar is nearby and can act, it accompanies you with chirps, claps, or its own miniature instrument. This grants you a +1 circumstance bonus, or +2 if you're a master in Performance."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=108"
+    },
+    {
+      "name": "Amphibious",
+      "source": "PC1",
+      "page": 259,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar gains the {@trait Amphibious||amphibious} trait, allowing it to breathe in both air and water, and has both a land Speed and a swim Speed, each equal to its highest land Speed or swim Speed."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=139"
+    },
+    {
+      "name": "Burrower",
+      "source": "PC1",
+      "page": 259,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar gains a burrow Speed of 5 feet, allowing it to dig Tiny holes."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=140"
+    },
+    {
+      "name": "Cantrip Connection",
+      "source": "PC1",
+      "page": 214,
+      "kind": "familiar",
+      "category": "Master",
+      "entries": [
+        "You can prepare an additional {@trait Cantrip||cantrip} or, if you have a repertoire, designate a cantrip to add to your repertoire every time you select this ability; you can retrain it but can't otherwise change it. You must be able to prepare cantrips or add them to your repertoire to select this."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=130"
+    },
+    {
+      "name": "Climber",
+      "source": "PC1",
+      "page": 259,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar gains a climb Speed of 25 feet."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=141"
+    },
+    {
+      "name": "Construct",
+      "source": "PC1",
+      "page": 212,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar has the {@trait Construct||construct} trait instead of the {@trait Animal||animal} trait. The familiar is immune to {@trait Death||death} effects, {@trait Disease||disease}, {@condition Doomed||doomed}, {@condition Drained||drained}, {@condition Fatigued||fatigued}, {@trait Healing||healing}, {@trait Nonlethal||nonlethal} attacks, {@condition Paralyzed||paralyzed}, {@trait Poison||poison}, {@condition Sickened||sickened}, {@trait Spirit||spirit}, {@condition Unconscious||unconscious}, {@trait Vitality||vitality}, and {@trait Void||void}. Your familiar must have the {@companion Tough||tough} pet ability to select this."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=109"
+    },
+    {
+      "name": "Damage Avoidance",
+      "source": "PC1",
+      "page": 212,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Choose one type of save. Your familiar takes no damage when it rolls a success on that type of save; this doesn't prevent effects other than damage."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=110"
+    },
+    {
+      "name": "Darkvision",
+      "source": "PC1",
+      "page": 259,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar gains darkvision."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=142"
+    },
+    {
+      "name": "Dragon",
+      "source": "PC1",
+      "page": 212,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar has the {@trait Dragon||dragon} trait instead of the {@trait Animal||animal} trait."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=111"
+    },
+    {
+      "name": "Echolocation",
+      "source": "PC1",
+      "page": 259,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar can use hearing as a precise sense within 20 feet."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=143"
+    },
+    {
+      "name": "Elemental",
+      "source": "PC1",
+      "page": 212,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar has the {@trait Elemental||elemental} trait instead of the {@trait Animal||animal} trait. Choose {@trait Air||air}, {@trait Earth||earth}, {@trait Fire||fire}, {@trait Metal||metal}, {@trait Water||water}, or {@trait Wood||wood}. Your familiar gains that trait. The familiar is immune to bleed, {@condition Paralyzed||paralyzed}, {@trait Poison||poison}, {@trait Sleep||sleep}, and the element matching its trait. Your familiar must have the resistance familiar ability to select this."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=112"
+    },
+    {
+      "name": "Familiar Focus",
+      "source": "PC1",
+      "page": 214,
+      "kind": "familiar",
+      "category": "Master",
+      "entries": [
+        "Once per day, your familiar can use 2 actions with the {@trait Concentrate||concentrate} trait to restore 1 Focus Point to your focus pool, up to your usual maximum. You must have a focus pool to select this."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=131"
+    },
+    {
+      "name": "Fast Movement",
+      "source": "PC1",
+      "page": 259,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Increase one of your familiar's Speeds from 25 feet to 40 feet."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=144"
+    },
+    {
+      "name": "Flier",
+      "source": "PC1",
+      "page": 259,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar gains a fly Speed of 25 feet."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=145"
+    },
+    {
+      "name": "Focused Rejuvenation",
+      "source": "PC1",
+      "page": 212,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "When you {@action Refocus|}, you generate magical energy that heals your familiar. Your familiar regains 1 Hit Point per level whenever you Refocus."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=113"
+    },
+    {
+      "name": "Fungus",
+      "source": "PC1",
+      "page": 212,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar has the {@trait Fungus||fungus} trait instead of the {@trait Animal||animal} trait."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=114"
+    },
+    {
+      "name": "Independent",
+      "source": "PC1",
+      "page": 212,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "In an encounter, if you don't Command your familiar, it still gains 1 action each round. Typically, you still decide how it spends that action, but, the GM might determine that your familiar chooses its own tactics rather than performing your preferred action. This doesn't work with valet or similar abilities that require a command, if you're capable of riding your familiar, or similar situations."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=115"
+    },
+    {
+      "name": "Innate Surge",
+      "source": "PC1",
+      "page": 214,
+      "kind": "familiar",
+      "category": "Master",
+      "entries": [
+        "Once per day, you can draw upon your familiar's innate magic to replenish your own. You can cast one innate spell gained from an ancestry feat that you have already cast today. You must still Cast the Spell and meet the spell's other requirements."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=132"
+    },
+    {
+      "name": "Kinspeech",
+      "source": "PC1",
+      "page": 212,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar can understand and speak with animals of the same species. To select this, your familiar must be an animal, it must have the {@companion Speech||speech} ability, and you must be at least 6th level."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=116"
+    },
+    {
+      "name": "Lifelink",
+      "source": "PC1",
+      "page": 214,
+      "kind": "familiar",
+      "category": "Master",
+      "entries": [
+        "If your familiar would be reduced to 0 HP by damage, as a reaction with the {@trait Concentrate||concentrate} trait, you can take all the damage, and your familiar takes none. However, special effects that would occur due to that damage (such as snake venom) still apply."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=133"
+    },
+    {
+      "name": "Major Resistance",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar increases the resistance it gains from its resistance familiar ability to a value equal to your level. To select this you must be at least 8th level."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=117"
+    },
+    {
+      "name": "Manual Dexterity",
+      "source": "PC1",
+      "page": 259,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar can use up to two of its limbs as if they were hands to perform {@trait Manipulate||manipulate} actions."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=146"
+    },
+    {
+      "name": "Master's Form",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar can change shape as a single action, transforming into a {@trait Humanoid||humanoid} of your ancestry with the same age, gender, and build of its true form, though it always maintains a clearly unnatural remnant of its nature, such as a cat's eyes or a serpent's tongue. This form is always the same each time it uses this ability. This otherwise uses the effects of {@spell Humanoid Form|PC1|humanoid form}, except the change is purely cosmetic. It only appears humanoid and gains no new capabilities. Your familiar must have the {@companion Manual Dexterity||manual dexterity} and {@companion Speech|PC1|speech} abilities to select this."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=118"
+    },
+    {
+      "name": "Partner in Crime",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar is your criminal associate. Despite being a minion, your familiar gains 1 reaction at the start of its turns, which it can use only to {@action Aid|} you on a {@skill Deception|} or {@skill Thievery|} skill check (it still has to prepare to help you as normal for the Aid reaction). It automatically succeeds at its check to Aid you with those skills or automatically critically succeeds if you're a master of the skill in question."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=119"
+    },
+    {
+      "name": "Plant",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar has the {@trait Plant||plant} trait instead of the {@trait Animal||animal} trait."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=120"
+    },
+    {
+      "name": "Plant Form",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your plant familiar can change shape as a single action, transforming into a Tiny plant of a type roughly similar to the familiar's nature. This otherwise uses the effects of {@spell One with Plants|PC1|one with plants}. You must have a familiar with the {@trait Plant||plant} trait to select this ability."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=121"
+    },
+    {
+      "name": "Recall Familiar",
+      "source": "PC1",
+      "page": 214,
+      "kind": "familiar",
+      "category": "Master",
+      "entries": [
+        "Once per day, you can use a 3-action activity, which has the {@trait Concentrate||concentrate} trait, to teleport your familiar to your space. Your familiar must be within 1 mile or the attempt to summon it fails. This is a {@trait Teleportation||teleportation} effect."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=134"
+    },
+    {
+      "name": "Resistance",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Choose two of the following: acid, cold, electricity, fire, poison, or sonic. Your familiar gains resistance equal to half your level (minimum resistance 1) against the chosen damage types."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=122"
+    },
+    {
+      "name": "Restorative Familiar",
+      "source": "PC1",
+      "page": 214,
+      "kind": "familiar",
+      "category": "Master",
+      "entries": [
+        "Once per day, your familiar can use 2 actions with the {@trait Concentrate||concentrate} trait to give up some of its energy and heal you. It must be in your space to do so. You restore a number of Hit Points equal to 1d8 times half your level (minimum 1d8)."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=135"
+    },
+    {
+      "name": "Scent",
+      "source": "PC1",
+      "page": 259,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar can use scent as an imprecise sense within 30 feet"
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=147"
+    },
+    {
+      "name": "Share Senses",
+      "source": "PC1",
+      "page": 214,
+      "kind": "familiar",
+      "category": "Master",
+      "entries": [
+        "Once every 10 minutes, you can use a single action with the {@trait Concentrate||concentrate} trait to project your senses into your familiar. When you do, you lose all sensory information from your own body, but can sense through your familiar's body for up to 1 minute. You can Dismiss this effect."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=136"
+    },
+    {
+      "name": "Skilled",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Choose a skill other than {@skill Acrobatics|} or {@skill Stealth|}. Your familiar's modifier for that skill is equal to your level plus your spellcasting attribute modifier, rather than just your level. You can select this ability repeatedly, choosing a different skill each time."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=123"
+    },
+    {
+      "name": "Speech",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar understands and speaks a language you know."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=124"
+    },
+    {
+      "name": "Spell Battery",
+      "source": "PC1",
+      "page": 214,
+      "kind": "familiar",
+      "category": "Master",
+      "entries": [
+        "You gain one additional spell slot at least 3 ranks lower than your highest-rank spell slot; you must be able to cast 4th-rank spells using spell slots to select this master ability."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=137"
+    },
+    {
+      "name": "Spell Delivery",
+      "source": "PC1",
+      "page": 214,
+      "kind": "familiar",
+      "category": "Master",
+      "entries": [
+        "If your familiar is in your space, you can cast a spell with a range of touch, transfer its power to your familiar, and command the familiar to deliver the spell. If you do, the familiar uses its 2 actions for the round to move to a target of your choice and touch that target. If it doesn't reach the target to touch it this turn, the spell has no effect."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=138"
+    },
+    {
+      "name": "Spellcasting",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Choose a spell in your repertoire or that you prepared today at least 5 ranks lower than your highest-rank spell slot. Your familiar can Cast that Spell once per day using your magical tradition, spell attack modifier, and spell DC. If the spell has a drawback that affects the caster, both you and your familiar are affected. You must be able to cast 6th-rank spells using spell slots to select this."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=125"
+    },
+    {
+      "name": "Toolbearer",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar can carry a toolkit of up to light Bulk. So long as your familiar is adjacent to you, you can draw and replace the tools as part of the action that uses them as if you were wearing them. Your familiar must have the {@companion Manual Dexterity||manual dexterity} ability to select this."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=126"
+    },
+    {
+      "name": "Touch Telepathy",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar can telepathically communicate with you via touch. If it also has the {@companion Speech||speech} ability, it can telepathically communicate via touch with any creature if they share a language."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=127"
+    },
+    {
+      "name": "Tough",
+      "source": "PC1",
+      "page": 259,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "Your familiar's max HP increase by 2 per level."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=148"
+    },
+    {
+      "name": "Valet",
+      "source": "PC1",
+      "page": 213,
+      "kind": "familiar",
+      "category": "Familiar",
+      "entries": [
+        "You can command your familiar to deliver you items more efficiently. Your familiar doesn't use its 2 actions immediately upon your command. Instead, up to twice before the end of your turn, you can have your familiar Interact to retrieve an item of light or negligible Bulk you are wearing and place it into one of your free hands. The familiar can't use this ability to retrieve stowed items. If the familiar has a different number of actions, it can retrieve one item for each action it has when commanded this way."
+      ],
+      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=128"
+    }
+  ],
+  "rules": {
+    "name": "Animal Companions",
+    "source": "PC1",
+    "page": 206,
+    "entries": [
+      "An animal companion is a loyal comrade who follows your orders. Your animal companion has the animal and minion traits, and it gains 2 actions during your turn if you use the Command an Animal action to command it; this replaces the usual effects of Command an Animal, and you don’t need to attempt a Nature check. If your companion dies, you can spend a week of downtime to replace it at no cost. You can have only one animal companion at a time.",
+      {
+        "type": "h3",
+        "name": "Young Animal Companions",
+        "entries": []
+      },
+      "The following are the base statistics for a young animal companion, the first animal companion most characters get. You adjust these statistics depending on the type of animal you choose. Animal companions calculate their modifiers and DCs just as you do with one difference: the only item bonuses they can benefit from are to Speed and AC (their maximum item bonus to AC is +3). As you gain levels, you might be able to make your companion stronger by advancing it.",
+      "An animal companion's starting statistics are as follows.",
+      "{@b Level:} Your animal companion's level is equal to yours.",
+      "{@b Proficiencies:} Your animal companion is trained in its unarmed attacks, unarmored defense, barding (a type of armor for animals), all saving throws, Perception, Acrobatics, and Athletics. Animal companions can't use abilities that require greater Intelligence, such as Coerce or Decipher Writing, even if trained in the appropriate skill, unless they have a specialization that allows it.",
+      "{@b Attribute Modifiers:} An animal companion begins with base attribute modifiers listed in its stat block.",
+      "{@b Hit Points:} Your animal companion has ancestry Hit Points from its type, plus a number of Hit Points equal to 6 plus its Constitution modifier for each level you have.",
+      {
+        "type": "h3",
+        "name": "Companion Types",
+        "entries": []
+      },
+      "The species of animal you choose is called your companion's type. Each companion type has its own statistics, as follows.",
+      "{@b Size} The companion's size",
+      "{@b Unarmed Attacks} One or more entries with the companion's unarmed attacks and their traits and damage",
+      "{@b Attribute Modifiers} Starting attribute modifiers",
+      "{@b Hit Points} The companion's ancestry Hit Points",
+      "{@b Skill} An additional trained skill your companion has",
+      "{@b Senses} Special senses your companion has",
+      "{@b Speed} Your companion's Speeds",
+      "{@b Special} If present, this lists any special ability your companion has, such as whether it often serves as a mount.",
+      "{@b Support Benefit} A special benefit you gain by Commanding the Animal to use the Support action (see below).",
+      "{@b Advanced Maneuver} A powerful new action your companion learns how to use if it becomes a nimble or savage animal companion.",
+      {
+        "type": "h3",
+        "name": "Support {@as 1}",
+        "entries": []
+      },
+      "{@b Requirements} The creature is an animal companion.",
+      {
+        "type": "hr"
+      },
+      "Your animal companion supports you. You gain the benefits listed in the companion type’s Support Benefit entry. If the animal uses the Support action, the only other actions it can use on this turn are basic move actions to get into position to take advantage of the Support benefits; if it has already used any other action this turn, it can’t Support you.",
+      {
+        "type": "h3",
+        "name": "Riding Animal Companions",
+        "entries": []
+      },
+      "You or an ally can ride your animal companion as long as it is at least one size larger than the rider. If it is carrying a rider, the animal companion can use only its land Speed, and it can’t move and Support you on the same turn. However, if your companion has the mount special ability, it’s especially suited for riding and ignores both of these restrictions.",
+      {
+        "type": "h3",
+        "name": "Companion Advancement",
+        "entries": []
+      },
+      "You can advance an animal companion, usually due to one of your class feat choices. Normally, you can advance a young animal companion to a mature animal companion, advance a mature companion to either a nimble or savage companion, and advance a nimble or savage companion into a specialized companion.",
+      {
+        "type": "h3",
+        "name": "Mature Animal Companions",
+        "entries": []
+      },
+      "When you advance a young animal companion to a mature animal companion:",
+      {
+        "type": "list",
+        "items": [
+          {
+            "entries": [
+              "If your companion is Medium or smaller, it grows by one size."
+            ]
+          },
+          {
+            "entries": [
+              "Increase its Strength, Dexterity, Constitution, and Wisdom modifiers by 1."
+            ]
+          },
+          {
+            "entries": [
+              "Increase its proficiency rank for Perception and all saving throws to expert. Increase its proficiency ranks in Intimidation, Stealth, and Survival to trained, and if it was already trained in one of those skills from its type, increase its proficiency rank in that skill to expert."
+            ]
+          },
+          {
+            "entries": [
+              "Increase its unarmed attack damage from one die to two dice (for instance 1d8 to 2d8)"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "h3",
+        "name": "Nimble Animal Companions",
+        "entries": []
+      },
+      "To advance a mature animal companion to a nimble animal companion:",
+      {
+        "type": "list",
+        "items": [
+          {
+            "entries": [
+              "Increase its Dexterity modifier by 2 and its Strength, Constitution, and Wisdom modifiers by 1."
+            ]
+          },
+          {
+            "entries": [
+              "Increase its proficiency ranks in Acrobatics to expert."
+            ]
+          },
+          {
+            "entries": [
+              "It deals 2 additional damage with its unarmed attacks. Its attacks become magical for the purpose of ignoring resistances."
+            ]
+          },
+          {
+            "entries": [
+              "It learns the advanced maneuver for its type."
+            ]
+          }
+        ]
+      },
+      {
+        "type": "h3",
+        "name": "Savage Animal Companions",
+        "entries": []
+      },
+      "To advance a mature animal companion to a savage animal companion:",
+      {
+        "type": "list",
+        "items": [
+          {
+            "entries": [
+              "If your companion is Medium or smaller, it grows by one size."
+            ]
+          },
+          {
+            "entries": [
+              "Increase its Strength modifier by 2 and its Dexterity, Constitution, and Wisdom modifiers by 1."
+            ]
+          },
+          {
+            "entries": [
+              "Increase its proficiency rank in Athletics to expert."
+            ]
+          },
+          {
+            "entries": [
+              "It deals 3 additional damage with its unarmed attacks. Its attacks become magical for the purpose of ignoring resistances."
+            ]
+          },
+          {
+            "entries": [
+              "It learns the advanced maneuver for its type."
+            ]
+          }
+        ]
+      },
+      {
+        "type": "h3",
+        "name": "Specialized Animal Companions",
+        "entries": []
+      },
+      "Specialized animal companions are more intelligent and engage in more complex behaviors. Most animal companions can have only one specialization. The first time an animal gains a specialization, it also gains the following.",
+      {
+        "type": "list",
+        "items": [
+          {
+            "entries": [
+              "Its proficiency rank for unarmed attacks increases to expert."
+            ]
+          },
+          {
+            "entries": [
+              "Its proficiency ranks for saving throws and Perception increase to master."
+            ]
+          },
+          {
+            "entries": [
+              "Increase its Dexterity modifier by 1 and its Intelligence modifier by 2."
+            ]
+          },
+          {
+            "entries": [
+              "Its unarmed attack damage increases from two dice to three dice, and it increases its additional damage with unarmed attacks from 2 to 4 or from 3 to 6."
+            ]
+          },
+          {
+            "entries": [
+              "The extra benefit of the specialization listed below."
+            ]
+          }
+        ]
+      },
+      "{@b Ambusher:} In your companion's natural environment, it can use a Sneak action even if it's currently observed. Its proficiency rank in Stealth increases to expert (or master if it was already an expert from its type), and its Dexterity modifier increases by 1. Its proficiency rank for unarmored defense increases to expert.",
+      "{@b Bully:} Your companion terrorizes foes with dominance displays and pushes them around the battlefield. Its proficiency ranks for Athletics and Intimidation increase to expert (or master if it was already expert from its type), its Strength modifier increases by 1, and its Charisma modifier increases by 3.",
+      "{@b Daredevil:} Your companion joins the fray with graceful leaps and dives. It gains the deny advantage ability, so it isn't off-guard to hidden, undetected, or flanking creatures unless such a creature's level is greater than yours. Its proficiency rank in Acrobatics increases to master, and its Dexterity modifier increases by 1. Its proficiency rank in unarmored defense increases to expert.",
+      "{@b Racer:} Your companion races. It gains a +10-foot status bonus to its Speed, swim Speed, or fly Speed (your choice). Its proficiency in Fortitude saves increases to legendary, and its Constitution modifier increases by 1.",
+      "{@b Tracker:} Your companion is an incredible tracker. It can move at full Speed while following tracks. Its proficiency rank in Survival increases to expert (or master if it was already an expert from its type), and its Wisdom modifier increases by 1.",
+      "{@b Wrecker:} Your companion smashes things. Its unarmed attacks ignore half an object's Hardness. Its Athletics proficiency increases to master, and its Strength modifier increases by 1."
+    ]
+  }
+}

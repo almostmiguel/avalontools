@@ -18,7 +18,7 @@ class Target {
   }
 }
 
-function environment({ saved, blocked = false, loading = false } = {}) {
+function environment({ saved, blocked = false, loading = false, lang = "en" } = {}) {
   const storage = new Map(saved === undefined ? [] : [["avalon-theme", saved]]);
   const window = new Target();
   window.localStorage = {
@@ -45,7 +45,7 @@ function environment({ saved, blocked = false, loading = false } = {}) {
   const player = makeMenu(), gameMaster = makeMenu();
   const status = { textContent: "" };
   const document = new Target();
-  document.documentElement = { dataset: {} };
+  document.documentElement = { dataset: {}, lang };
   document.readyState = loading ? "loading" : "complete";
   document.querySelectorAll = selector => selector === "[data-theme-choice]" ? buttons : [settings];
   document.querySelector = selector => ({ "#site-settings": settings, "#reference-menu": reference, "#player-menu": player.menu, "#game-master-menu": gameMaster.menu, "#theme-status": status })[selector] ?? null;
@@ -82,6 +82,11 @@ test("theme buttons save the choice, update accessible state, and restore on ano
   assert.equal(environment({ saved: page.storage.get("avalon-theme") }).theme(), "light");
   page.buttons[0].emit("click");
   assert.equal(page.storage.get("avalon-theme"), "dark");
+  const portuguese = environment({ lang: "pt-PT" });
+  portuguese.buttons[1].emit("click");
+  assert.equal(portuguese.status.textContent, "Light mode enabled.");
+  portuguese.buttons[0].emit("click");
+  assert.equal(portuguese.status.textContent, "Dark mode enabled.");
 });
 
 test("theme switching still works when browser storage is blocked", () => {
@@ -184,7 +189,7 @@ test("both palettes maintain readable primary, secondary, and content text contr
       const contrast = (Math.max(a, b) + .05) / (Math.min(a, b) + .05);
       assert.ok(contrast >= 4.5, `${theme} ${fg}/${bg}: ${contrast.toFixed(2)}`);
     }
-    const categories = ["rule", "ancestry", "background", "archetype", "class", "skill", "equipment", "feat", "affliction", "creature", "hazard", "action", "condition", "trait", "spell", "setting"];
+    const categories = ["rule", "ancestry", "background", "archetype", "class", "skill", "equipment", "feat", "affliction", "creature", "companion", "hazard", "action", "condition", "trait", "spell", "setting"];
     for (const category of categories) {
       const link = `${category}-link`;
       for (const surface of ["paper", "panel", "callout-bg", "table-heading"]) {

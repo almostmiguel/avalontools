@@ -44,7 +44,7 @@ test("ability blocks preserve names, levels, traits, labeled fields and formatte
   for (const label of ["Access", "Prerequisites", "Frequency", "Trigger", "Requirements", "Cost", "Special"]) {
     assert.ok(html.includes(`<dt>${label}</dt>`), label);
   }
-  assert.match(html, /<em>light<\/em>/);
+  assert.match(html, /<em><a\b[^>]*data-spell-name="light"/);
   assert.match(html, /<ul><li><p>First effect/);
   assert.equal(headings[0].name, "Example Ability");
 });
@@ -128,7 +128,7 @@ test("compact abilities preserve the full fields, glyphs, and anchor without add
     assert.match(html, /<dt>Frequency<\/dt>/);
     assert.match(html, /<dt>Trigger<\/dt>/);
     assert.match(html, /<dt>Special<\/dt>/);
-    assert.match(html, /Cast <em>light<\/em>/);
+    assert.match(html, /Cast <em><a\b[^>]*data-spell-name="light"/);
     assert.equal(headings[0].name, ability.name);
     assert.equal(headings[0].id, "section-1");
   }

@@ -2,7 +2,7 @@
 import { escapeHtml, renderContent } from "./content-renderer.js";
 import { renderRuleBody } from "./rule-library.js";
 import { createLazyResource, loadJson, renderReaderFooter } from "./reference-data.js";
-import { actionTimeHtml, createActionLibrary, createCatalog, renderActionBody } from "./reference-library.js";
+import { actionTimeHtml, createActionLibrary, createCatalog, createEncounterCatalog, renderActionBody } from "./reference-library.js";
 
 const previewHeading = (title, label, headingId = "rule-preview-title", suffix = "") => `<header class="rule-preview-heading"><h2 id="${headingId}">${escapeHtml(title)}${suffix}</h2><span>${label}</span></header>`;
 
@@ -56,7 +56,15 @@ export function previewPosition(anchor, panel, viewport) {
   return { left, top };
 }
 
-export function attachReferencePreviews({ document, window, registry, actions = null, conditions = null, skills = null, feats = null, classes = null, traits = null, backgrounds = null, archetypes = null, ancestries = null, parentPreview = null,
+export function attachReferencePreviews({ document, window, registry, actions = null, conditions = null, skills = null, feats = null, classes = null, traits = null, backgrounds = null, archetypes = null, ancestries = null, afflictions = null, hazards = null, spells = null, equipment = null, parentPreview = null,
+  creatures = null,
+  companions = null,
+  loadCompanions = () => Promise.all([loadJson("data/companions.json"), import("./creature-library.js")]).then(([data, module]) => module.createCompanionCatalog(data)),
+  loadCreatures = () => Promise.all([loadJson("data/creatures.json"), import("./creature-library.js")]).then(([data, module]) => module.createCreatureCatalog(data)),
+  loadEquipment = () => Promise.all([loadJson("data/equipment.json"), import("./equipment-library.js")]).then(([data, module]) => module.createEquipmentCatalog(data)),
+  loadSpells = () => Promise.all([loadJson("data/spells.json"), import("./spell-library.js")]).then(([data, module]) => module.createSpellCatalog(data)),
+  loadAfflictions = () => loadJson("data/afflictions.json").then(data => createEncounterCatalog(data, { collection: "afflictions", href: "afflictions.html", singular: "Affliction" })),
+  loadHazards = () => loadJson("data/hazards.json").then(data => createEncounterCatalog(data, { collection: "hazards", href: "hazards.html", singular: "Hazard" })),
   loadActions = () => loadJson("data/actions.json").then(createActionLibrary),
   loadConditions = () => loadJson("data/conditions.json").then(data => createCatalog(data, { collection: "conditions", href: "conditions.html" })),
   loadSkills = () => loadJson("data/skills.json").then(data => createCatalog(data, { collection: "skills", href: "skills.html" })),
@@ -81,6 +89,12 @@ export function attachReferencePreviews({ document, window, registry, actions = 
   let nestedPreview;
   const actionResource = createLazyResource(actions, loadActions);
   const catalogs = {
+    companion: { plural: "Companions", singular: "companion", resource: createLazyResource(companions, loadCompanions) },
+    creature: { plural: "Creatures", singular: "creature", resource: createLazyResource(creatures, loadCreatures) },
+    equipment: { plural: "Equipment", singular: "item", resource: createLazyResource(equipment, loadEquipment) },
+    spell: { plural: "Spells", singular: "spell", resource: createLazyResource(spells, loadSpells) },
+    affliction: { plural: "Afflictions", singular: "affliction", resource: createLazyResource(afflictions, loadAfflictions) },
+    hazard: { plural: "Hazards", singular: "hazard", resource: createLazyResource(hazards, loadHazards) },
     ancestry: { plural: "Ancestries", singular: "ancestry", resource: createLazyResource(ancestries, loadAncestries) },
     background: { plural: "Backgrounds", singular: "background", resource: createLazyResource(backgrounds, loadBackgrounds) },
     archetype: { plural: "Archetypes", singular: "archetype", resource: createLazyResource(archetypes, loadArchetypes) },

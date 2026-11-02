@@ -67,6 +67,41 @@ export function createCatalog(payload, { collection, href }) {
   });
 }
 
+// Levelled catalogs share the same search, filters and reader as other references.
+export function createEncounterCatalog(payload, config) {
+  const catalog = createCatalog(payload, config);
+  for (const record of catalog.records) {
+    const { level, traits = [] } = record.entry;
+    if (level != null && (!Number.isInteger(level) || level < -1)) throw new Error(`Entry “${record.name}” needs an integer level or null for a variable level.`);
+    if (!Array.isArray(traits) || traits.some(trait => typeof trait !== "string" || !trait.trim())) throw new Error(`Entry “${record.name}” needs text traits.`);
+    record.level = level ?? null;
+    record.traits = [...new Set(traits.map(trait => trait.trim().toLowerCase()))];
+    record.complexity = record.entry.complexity || "";
+  }
+  catalog.renderPreview = record => `<header class="rule-preview-heading"><h2 id="rule-preview-title">${escapeHtml(record.name)}</h2><span>${config.singular} ${record.level ?? "Varies"}</span></header><div class="rule-preview-body">${renderEncounterBody(record)}</div>${renderReaderFooter(record)}`;
+  return catalog;
+}
+
+export const ENCOUNTER_FILTERS = [...CATALOG_FILTERS, { key: "level", label: "Levels" }, { key: "trait", label: "Traits" }];
+export const encounterValues = (record, key) => key === "trait" ? record.traits : key === "level" ? [String(record.level ?? "Varies")] : key === "complexity" ? [record.complexity] : catalogValues(record, key);
+export const encounterOptions = catalog => Object.fromEntries([...ENCOUNTER_FILTERS, { key: "complexity" }].map(({ key }) => [key,
+  [...new Set(catalog.records.flatMap(record => encounterValues(record, key)))].filter(Boolean).sort(compare).map(value => ({ value, label: key === "trait" ? value.charAt(0).toUpperCase() + value.slice(1) : value })),
+]));
+export const encounterMatchesFilters = (record, filters, omit = "") => Object.entries(filters).every(([key, states]) => {
+  if (key === omit) return true;
+  const values = encounterValues(record, key);
+  return !values.some(value => states.get(value) === -1)
+    && (![...states.values()].includes(1) || values.some(value => states.get(value) === 1));
+});
+
+function renderEncounterBody(record) {
+  return `${renderTraitBadges(record.traits)}${renderContent({ entries: record.entry.entries }, { source: record.source, anchorPrefix: "encounter-section", headingOffset: -1 }).html}`;
+}
+
+export function renderEncounterDetail(record, _library, _rules, { singular }) {
+  return `${renderReaderHeading(record, { kind: `${singular} ${record.level ?? "Varies"}` })}<article class="rich-content rule-page-content">${renderEncounterBody(record)}</article>${renderReaderFooter(record)}`;
+}
+
 export function catalogOptions(catalog) {
   return {
     source: catalog.sources.map(value => ({ value, label: value })),
@@ -100,9 +135,9 @@ export function sortCatalog(records, key = "name", order = "asc") {
     || compare(a.name, b.name) || compare(a.id, b.id));
 }
 
-export function renderCatalogResults(records, selectedId, { plural, showSource = true, showCategory = true }) {
+export function renderCatalogResults(records, selectedId, { plural, showSource = true, showCategory = true, showLevel = false }) {
   if (!records.length) return `<div class="rules-empty"><h2>No matching ${plural.toLowerCase()}</h2><p>Try another name or clear your filters.</p><button type="button" data-clear-catalog>Clear search and filters</button></div>`;
-  return `<ul class="rules-results">${records.map(record => `<li><a class="catalog-result" href="${escapeHtml(record.href)}" data-select-catalog="${escapeHtml(record.id)}"${record.id === selectedId ? ' aria-current="true"' : ""}><strong class="rule-result-name">${escapeHtml(record.name)}</strong>${showCategory ? `<span class="catalog-result-category">${escapeHtml(record.category)}</span>` : ""}${showSource ? `<span class="catalog-result-source source-color" data-source-tone="${sourceTone(record.sourceId)}" title="${escapeHtml(record.sourceName)}${record.page ? `, page ${record.page}` : ""}">${escapeHtml(record.source)}</span>` : ""}</a></li>`).join("")}</ul>`;
+  return `<ul class="rules-results">${records.map(record => `<li><a class="catalog-result" href="${escapeHtml(record.href)}" data-select-catalog="${escapeHtml(record.id)}"${record.id === selectedId ? ' aria-current="true"' : ""}><strong class="rule-result-name">${escapeHtml(record.name)}</strong>${showCategory ? `<span class="catalog-result-category">${escapeHtml(record.category)}</span>` : ""}${showLevel ? `<span class="catalog-result-level">${escapeHtml(record.level ?? "Varies")}</span>` : ""}${showSource ? `<span class="catalog-result-source source-color" data-source-tone="${sourceTone(record.sourceId)}" title="${escapeHtml(record.sourceName)}${record.page ? `, page ${record.page}` : ""}">${escapeHtml(record.source)}</span>` : ""}</a></li>`).join("")}</ul>`;
 }
 
 export function renderCatalogDetail(record, { singular }) {

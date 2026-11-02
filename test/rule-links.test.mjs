@@ -2,12 +2,15 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { readFile } from "node:fs/promises";
 import { attachReferencePreviews, previewPosition, renderRulePreview, renderActionPreview, renderCatalogPreview } from "../js/reference-previews.js";
-import { createActionLibrary, createCatalog, renderActionBody } from "../js/reference-library.js";
+import { createActionLibrary, createCatalog, createEncounterCatalog, renderActionBody } from "../js/reference-library.js";
 import { createRuleLibrary, renderRuleBody } from "../js/rule-library.js";
 import { renderReferenceCitation } from "../js/reference-data.js";
 import { createFeatCatalog } from "../js/feat-library.js";
 import { createClassOverviewCatalog } from "../js/class-reader.js";
 import { createAncestryCatalog } from "../js/ancestry-reader.js";
+import { createSpellCatalog } from "../js/spell-library.js";
+import { createEquipmentCatalog } from "../js/equipment-library.js";
+import { createCreatureCatalog, createCompanionCatalog } from "../js/creature-library.js";
 
 const { registry } = createRuleLibrary({
   sources: [{ id: "PC1", name: "Player Core" }],
@@ -94,7 +97,7 @@ test("reader and hover previews preserve rich blocks, nested references, safety 
     assert.match(html, /hanging-entry/);
     assert.match(html, /<details\b/);
     assert.match(html, /href="rules.html\?id=Avalon%3Aexample"/);
-    assert.match(html, /<em>light<\/em>/);
+    assert.match(html, /<em><a\b[^>]*data-spell-name="light"/);
     assert.match(html, /&lt;script&gt;/);
     assert.doesNotMatch(html, /<script>|javascript:|rule-link-unresolved/);
     const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(match => match[1]);
@@ -173,6 +176,12 @@ function environment(options = {}) {
       if (selectors.includes("[data-class-name]") && this.dataset.className) return this;
       if (selectors.includes("[data-trait-name]") && this.dataset.traitName) return this;
       if (selectors.includes("[data-ancestry-name]") && this.dataset.ancestryName) return this;
+      if (selectors.includes("[data-affliction-name]") && this.dataset.afflictionName) return this;
+      if (selectors.includes("[data-hazard-name]") && this.dataset.hazardName) return this;
+      if (selectors.includes("[data-spell-name]") && this.dataset.spellName) return this;
+      if (selectors.includes("[data-equipment-name]") && this.dataset.equipmentName) return this;
+      if (selectors.includes("[data-creature-name]") && this.dataset.creatureName) return this;
+      if (selectors.includes("[data-companion-name]") && this.dataset.companionName) return this;
       return this.parent?.closest(selector) || null;
     }
     getBoundingClientRect() { return this.rect; }
@@ -455,6 +464,118 @@ test("failed class previews keep links usable, retry and cannot reopen after dis
   await env.controller.show(link);
   assert.match(env.controller.panel.innerHTML, /10 \+ Constitution per level/);
   assert.equal(attempts, 2);
+  env.controller.destroy();
+});
+
+test("affliction and hazard previews load once on focus and share the reader's full stat block and source footer", async () => {
+  for (const [collection, kind, name] of [["hazards", "hazard", "Hidden Pit"], ["afflictions", "affliction", "Arsenic"]]) {
+    const config = { collection, href: `${collection}.html`, singular: kind.charAt(0).toUpperCase() + kind.slice(1) };
+    const library = createEncounterCatalog(JSON.parse(await readFile(new URL(`../data/${collection}.json`, import.meta.url), "utf8")), config);
+    const key = `load${collection.charAt(0).toUpperCase() + collection.slice(1)}`;
+    let loads = 0;
+    const env = environment({ [key]: async () => { loads++; return library; } });
+    const link = new env.Element(); link.dataset = { [`${kind}Name`]: name, [`${kind}Source`]: "GMC" };
+    env.document.body.append(link);
+    env.document.emit("focusin", { target: link });
+    await new Promise(resolve => setImmediate(resolve));
+    assert.equal(env.controller.panel.hidden, false);
+    const html = env.controller.panel.innerHTML;
+    assert.match(html, /<footer class="reader-footer">[\s\S]*GM Core/);
+    assert.match(html, /data-trait-name=/);
+    assert.match(html, collection === "hazards" ? /DC 18/ : /Stage 3/);
+    env.controller.hide(); await env.controller.show(link);
+    assert.equal(loads, 1);
+    env.controller.destroy();
+  }
+});
+
+test("spell hovers load on demand, reuse data, keep action glyphs and close on Escape", async () => {
+  const spells = createSpellCatalog(JSON.parse(await readFile(new URL("../data/spells.json", import.meta.url), "utf8")));
+  let loads = 0;
+  const env = environment({ loadSpells: async () => { loads++; return spells; } });
+  assert.equal(loads, 0);
+  const link = new env.Element(); link.dataset = { spellName: "Heal", spellSource: "PC1" };
+  link.setAttribute("href", "spells.html?spell=Heal&source=PC1"); env.document.body.append(link);
+  env.document.emit("pointerover", { target: link, pointerType: "mouse" }); env.flush();
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(env.controller.panel.hidden, false);
+  assert.match(env.controller.panel.innerHTML, /<h2 id="rule-preview-title">Heal .*data-symbol="1".*to.*data-symbol="3"/);
+  assert.match(env.controller.panel.innerHTML, /Heightened \(\+1\)/);
+  assert.match(env.controller.panel.innerHTML, /<footer class="reader-footer">[\s\S]*p\. 335/);
+  env.controller.hide(); link.focus();
+  assert.equal(env.controller.panel.hidden, false);
+  assert.equal(loads, 1);
+  env.document.emit("keydown", { key: "Escape" });
+  assert.equal(env.controller.panel.hidden, true);
+  assert.equal(link.attributes.get("href"), "spells.html?spell=Heal&source=PC1");
+  env.controller.destroy();
+});
+
+test("equipment previews load once on hover, preserve price and shield statistics, and support keyboard focus", async () => {
+  const equipment = createEquipmentCatalog(JSON.parse(await readFile(new URL("../data/equipment.json", import.meta.url), "utf8")));
+  let loads = 0;
+  const env = environment({ loadEquipment: async () => { loads++; return equipment; } });
+  const link = new env.Element(); link.dataset = { equipmentName: "Buckler", equipmentSource: "PC1" };
+  const href = "equipment.html?equipment=Buckler&source=PC1"; link.setAttribute("href", href); env.document.body.append(link);
+  env.document.emit("pointerover", { target: link, pointerType: "mouse" }); env.flush();
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(env.controller.panel.hidden, false);
+  assert.match(env.controller.panel.innerHTML, /HP \(BT\)/);
+  assert.match(env.controller.panel.innerHTML, /6 \(3\)/);
+  assert.match(env.controller.panel.innerHTML, /1 gp/);
+  assert.match(env.controller.panel.innerHTML, /<footer class="reader-footer">[\s\S]*p\. 274/);
+  env.controller.hide(); link.focus();
+  assert.equal(env.controller.panel.hidden, false);
+  assert.equal(loads, 1);
+  env.document.emit("keydown", { key: "Escape" });
+  assert.equal(env.controller.panel.hidden, true);
+  assert.equal(link.attributes.get("href"), href);
+  env.controller.destroy();
+});
+
+test("creature previews load once, keep core stat blocks and family rules, and support keyboard focus", async () => {
+  const creatures = createCreatureCatalog(JSON.parse(await readFile(new URL("../data/creatures.json", import.meta.url), "utf8")));
+  let loads = 0;
+  const env = environment({ loadCreatures: async () => { loads++; return creatures; } });
+  const link = new env.Element(); link.dataset = { creatureName: "Vampire Count", creatureSource: "MC1" };
+  const href = "creatures.html?creature=Vampire+Count&source=MC1"; link.setAttribute("href", href); env.document.body.append(link);
+  env.document.emit("pointerover", { target: link, pointerType: "mouse" }); env.flush();
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(env.controller.panel.hidden, false);
+  assert.match(env.controller.panel.innerHTML, /Creature 6/);
+  assert.match(env.controller.panel.innerHTML, /coffin restoration/);
+  assert.match(env.controller.panel.innerHTML, /Vampire rules and lore/);
+  assert.match(env.controller.panel.innerHTML, /<footer class="reader-footer">[\s\S]*p\. 336/);
+  env.controller.hide(); link.focus();
+  assert.equal(env.controller.panel.hidden, false);
+  assert.equal(loads, 1);
+  env.document.emit("keydown", { key: "Escape" });
+  assert.equal(env.controller.panel.hidden, true);
+  assert.equal(link.attributes.get("href"), href);
+  env.controller.destroy();
+});
+
+test("companion previews load once on hover and keyboard focus, with maneuvers and shared rules", async () => {
+  const companions = createCompanionCatalog(JSON.parse(await readFile(new URL("../data/companions.json", import.meta.url), "utf8")));
+  let loads = 0;
+  const env = environment({ loadCompanions: async () => { loads++; return companions; } });
+  const link = new env.Element(); link.dataset = { companionName: "Bear", companionSource: "PC1" }; env.document.body.append(link);
+  env.document.emit("pointerover", { target: link, pointerType: "mouse" }); env.flush();
+  await new Promise(resolve => setImmediate(resolve));
+  assert.equal(env.controller.panel.hidden, false);
+  assert.match(env.controller.panel.innerHTML, /Bear Hug/);
+  assert.match(env.controller.panel.innerHTML, /Companion rules and advancement/);
+  env.controller.hide(); link.focus();
+  assert.equal(loads, 1);
+  assert.equal(env.controller.panel.hidden, false);
+  env.document.emit("keydown", { key: "Escape" });
+  assert.equal(env.controller.panel.hidden, true);
+  const ability = new env.Element(); ability.dataset = { companionName: "Toolbearer", companionSource: "PC1" }; env.document.body.append(ability);
+  ability.focus();
+  assert.equal(loads, 1);
+  assert.match(env.controller.panel.innerHTML, /Familiar Ability/);
+  assert.match(env.controller.panel.innerHTML, /data-companion-name="Manual Dexterity"/);
+  assert.doesNotMatch(env.controller.panel.innerHTML, /Companion rules and advancement|creature-size/);
   env.controller.destroy();
 });
 

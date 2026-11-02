@@ -1,0 +1,1199 @@
+{
+  "sources": [
+    {
+      "id": "PC1",
+      "name": "Player Core",
+      "source": "PC1"
+    },
+    {
+      "id": "GMC",
+      "name": "GM Core",
+      "source": "GMC"
+    }
+  ],
+  "afflictions": [
+    {
+      "name": "Arsenic",
+      "source": "GMC",
+      "page": 248,
+      "category": "Poison",
+      "level": 1,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "ingested",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 3 gp",
+        "{@b Usage} held in 1 hand; {@b Bulk} L",
+        "{@b Activate} {@as 1} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "This toxin is a compound of arsenic and other substances. You can't reduce your sickened condition while affected.",
+        "Saving Throw DC 18 Fortitude; {@b Onset} 10 minutes; {@b Maximum Duration} 5 minutes",
+        "{@b Stage 1} 1d4 poison damage and {@condition sickened} 1 (1 minute)",
+        "{@b Stage 2} 1d6 poison damage and sickened 2 (1 minute)",
+        "{@b Stage 3} 1d8 poison damage and sickened 3 (1 minute)"
+      ]
+    },
+    {
+      "name": "Black Adder Venom",
+      "source": "GMC",
+      "page": 248,
+      "category": "Poison",
+      "level": 2,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "injury",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 6 gp",
+        "{@b Usage} held in 2 hands; {@b Bulk} L",
+        "{@b Activate} {@as 2} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Adder venom is a simple but effective way to enhance a weapon.",
+        "{@b Saving Throw} DC 18 Fortitude; {@b Maximum Duration} 3 rounds",
+        "{@b Stage 1} 1d4 poison damage (1 round)",
+        "{@b Stage 2} 1d6 poison damage (1 round)",
+        "{@b Stage 3} 1d8 poison damage (1 round)"
+      ]
+    },
+    {
+      "name": "Black Lotus Extract",
+      "source": "GMC",
+      "page": 248,
+      "category": "Poison",
+      "level": 19,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "contact",
+        "poison",
+        "virulent"
+      ],
+      "entries": [
+        "{@b Price} 6,500 gp",
+        "{@b Usage} held in 1 hand; {@b Bulk} L",
+        "{@b Activate} {@as 1} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Black lotus extract causes severe internal bleeding.",
+        "{@b Saving Throw} DC 42 Fortitude; {@b Onset} 1 minute; {@b Maximum Duration} 6 rounds",
+        "{@b Stage 1} 13d6 poison damage and {@condition drained} 1 (1 round)",
+        "{@b Stage 2} 15d6 poison damage and drained 1 (1 round)",
+        "{@b Stage 3} 17d6 poison damage and drained 2 (1 round)"
+      ]
+    },
+    {
+      "name": "Blightburn Resin",
+      "source": "GMC",
+      "page": 248,
+      "category": "Poison",
+      "level": 11,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "contact",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 225 gp",
+        "{@b Usage} held in 2 hands; {@b Bulk} L",
+        "{@b Activate} {@as 1} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "This tacky, hardened sap is harvested from trees infected by fungal blights and exposed to open flames.",
+        "{@b Saving Throw} DC 30 Fortitude; {@b Onset} 1 minute; {@b Maximum Duration} 6 rounds",
+        "{@b Stage 1} 6d6 poison damage (1 round)",
+        "{@b Stage 2} 7d6 poison damage (1 round)",
+        "{@b Stage 3} 9d6 poison damage (1 round)"
+      ]
+    },
+    {
+      "name": "Blinding Sickness",
+      "source": "GMC",
+      "page": 89,
+      "category": "Disease",
+      "level": 7,
+      "traits": [
+        "disease"
+      ],
+      "entries": [
+        "Endemic to jungles of the Mwangi Expanse, blinding sickness is transmitted by dirty water or the bites of certain creatures.",
+        "{@b Saving Throw} DC 23 Fortitude",
+        "{@b Stage 1} carrier with no effects (1 day)",
+        "{@b Stage 2} {@condition enfeebled} 1 (1 day)",
+        "{@b Stage 3} enfeebled 2 (1 day)",
+        "{@b Stage 4} enfeebled 2 and permanently {@condition blinded} (1 day)",
+        "{@b Stage 5} enfeebled 4 (1 day)",
+        "{@b Stage 6} {@condition unconscious} (1 day)",
+        "{@b Stage 7} death"
+      ]
+    },
+    {
+      "name": "Bog Rot",
+      "source": "GMC",
+      "page": 88,
+      "category": "Disease",
+      "level": 0,
+      "traits": [
+        "disease"
+      ],
+      "entries": [
+        "Sometimes called bog foot, bog rot is caused by having waterlogged feet for an extended period of time. In addition to the usual cures for an affliction, bog rot can be cured through amputation of the affected appendages.",
+        "{@b Saving Throw} DC 13 Fortitude; {@b Onset} 1 day",
+        "{@b Stage 1} {@condition clumsy} 1 (1 day)",
+        "{@b Stage 2} clumsy 1 and a –5-foot status penalty to Speed (1 day)",
+        "{@b Stage 3} 3 clumsy 2 and a –10-foot status penalty to Speed (1 day)"
+      ]
+    },
+    {
+      "name": "Bonechill",
+      "source": "GMC",
+      "page": 88,
+      "category": "Disease",
+      "level": 5,
+      "traits": [
+        "disease",
+        "primal"
+      ],
+      "entries": [
+        "If you are {@condition wounded} and exposed to {@condition persistent} cold, you might contract bonechill.",
+        "{@b Saving Throw} DC 20 Fortitude; {@b Onset} 1 day",
+        "{@b Stage 1} {@condition clumsy} 1 (1 day)",
+        "{@b Stage 2} clumsy 2 and can’t heal cold damage until this disease is cured (1 day)",
+        "{@b Stage 3} clumsy 3 and all cold temperature effects are one step more severe for the victim (1 day)",
+        "{@b Stage 4} {@condition paralyzed} and all cold temperature effects are one step more severe for the victim (1 day)"
+      ]
+    },
+    {
+      "name": "Brain Worms",
+      "source": "GMC",
+      "page": 89,
+      "category": "Disease",
+      "level": 11,
+      "traits": [
+        "disease",
+        "virulent"
+      ],
+      "entries": [
+        "Scholars suspect these brain parasites have an otherworldly or extraplanar origin. Though transmitted by the bites of infected targets, the disease remains relatively rare—most hosts are killed by the effects before they can pass it on. While infected, whenever you attack due to confusion, you bite your target (if you don’t have a jaws or fangs attack, you deal piercing damage as an unarmed attack with damage equal to your lowest unarmed attack).",
+        "{@b Saving Throw} DC 28 Fortitude; {@b Onset} 1 day",
+        "{@b Stage 1} {@condition stupefied} 2 (1 day)",
+        "{@b Stage 2} stupefied 2, and whenever you take damage, you must succeed at a Will save against the disease’s DC or become {@condition confused} for 1 round (1 day)",
+        "{@b Stage 3} stupefied 3, and whenever you take damage, you must succeed at a Will save against the disease’s DC or become confused for 1 minute (1 day)",
+        "{@b Stage 4} stupefied 4 and confused, damage does not end the confused condition (1 day)",
+        "{@b Stage 5} {@condition unconscious} (1 day)",
+        "{@b Stage 6} death"
+      ]
+    },
+    {
+      "name": "Brimstone Fumes",
+      "source": "GMC",
+      "page": 248,
+      "category": "Poison",
+      "level": 16,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "inhaled",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 1,500 gp",
+        "{@b Usage} held in 1 hand; {@b Bulk} L",
+        "{@b Activate} {@as 1} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Fumes from the forges of Hell drain health and strength alike.",
+        "{@b Saving Throw} DC 36 Fortitude; {@b Onset} 1 round; {@b Maximum Duration} 6 rounds",
+        "{@b Stage 1} 7d8 poison damage and {@condition enfeebled} 1 (1 round)",
+        "{@b Stage 2} 8d8 poison damage and enfeebled 2 (1 round)",
+        "{@b Stage 3} 10d8 poison damage and enfeebled 3 (1 round)"
+      ]
+    },
+    {
+      "name": "Bubonic Plague",
+      "source": "GMC",
+      "page": 88,
+      "category": "Disease",
+      "level": 3,
+      "traits": [
+        "disease"
+      ],
+      "entries": [
+        "This widespread illness can sweep through entire communities, leaving few unaffected. The first indication of the disease is a telltale swelling of glands. In some cases, the disease can move into your lungs (pneumonic plague) or blood (septicemic plague), which is even more fatal. If you have bubonic plague, you can’t remove the {@condition fatigued} condition while affected.",
+        "{@b Saving Throw} DC 17 Fortitude; {@b Onset} 1 day",
+        "{@b Stage 1} {@condition fatigued} (1 day)",
+        "{@b Stage 2} {@condition enfeebled} 2 and fatigued (1 day)",
+        "{@b Stage 3} enfeebled 3, fatigued, and take 1d6 {@condition persistent bleed damage} every 1d20 minutes (1 day)"
+      ]
+    },
+    {
+      "name": "Choking Death",
+      "source": "GMC",
+      "page": 88,
+      "category": "Disease",
+      "level": 6,
+      "traits": [
+        "disease"
+      ],
+      "entries": [
+        "This disease is capable of wiping out nations or even entire continents. A few pockets of the disease still remain in Iobaria, keeping that region’s population sparse.",
+        "{@b Saving Throw} DC 22 Fortitude; {@b Onset} 1 day",
+        "{@b Stage 1} hoarse voice but no other symptoms (1 day)",
+        "{@b Stage 2} {@condition drained} 1 (1 day)",
+        "{@b Stage 3} drained 2 and can’t speak (1 day)",
+        "{@b Stage 4} death"
+      ]
+    },
+    {
+      "name": "Cowards's Roots",
+      "source": "GMC",
+      "page": 86,
+      "category": "Curse",
+      "level": 5,
+      "traits": [
+        "curse",
+        "emotion",
+        "fear",
+        "magical",
+        "mental"
+      ],
+      "entries": [
+        "You find all courage stolen from your heart. When faced with something frightening, you flee in terror or stand frozen in place.",
+        "{@b Saving Throw} DC 20 Will; {@b Effect} At the start of your turn, if you are frightened, you become your choice of {@condition immobilized} or {@condition fleeing} until the end of that turn."
+      ]
+    },
+    {
+      "name": "Crimson Ooze",
+      "source": "GMC",
+      "page": 89,
+      "category": "Disease",
+      "level": 15,
+      "traits": [
+        "disease",
+        "virulent"
+      ],
+      "entries": [
+        "This devastating fungus infects your hand and can be cured by amputating the limb before you reach stage 4.",
+        "{@b Saving Throw} DC 34 Fortitude",
+        "{@b Stage 1} {@condition clumsy} 1 (1 day)",
+        "{@b Stage 2} clumsy 2, and using the infected hand deals 3d6 persistent bleed damage (1 day)",
+        "{@b Stage 3} clumsy 2, {@condition stupefied} 2, and the infected hand is unusable (1 day)",
+        "{@b Stage 4} clumsy 3, stupefied 3, and infected hand is permanently unusable (1 day)",
+        "{@b Stage 5} {@condition confused}, and damage does not end the confused condition (1 day)",
+        "{@b Stage 6} death"
+      ]
+    },
+    {
+      "name": "Curse of Death",
+      "source": "PC1",
+      "page": 384,
+      "category": "Curse",
+      "level": null,
+      "traits": [
+        "curse",
+        "death",
+        "void"
+      ],
+      "entries": [
+        "This affliction is caused by {@i Curse of Death}. Use the caster's spell DC for its Fortitude saving throw.",
+        "Your patron wraps a hand around your target's heart. The target must attempt a Fortitude saving throw. Regardless of the result, the target is temporarily immune to all curses of death for 1 day.",
+        "This curse ends immediately when the spell ends",
+        {
+          "type": "list",
+          "style": "list-no-bullets",
+          "items": [
+            {
+              "type": "item",
+              "name": "Critical Success",
+              "entries": [
+                "The target is unaffected."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Success",
+              "entries": [
+                "The target is afflicted with the curse of death at stage 1, and the stage of the curse can't increase beyond stage 1."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Failure",
+              "entries": [
+                "The target is afflicted with the curse of death at stage 1."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical Failure",
+              "entries": [
+                "The target is afflicted with the curse of death at stage 2."
+              ]
+            }
+          ]
+        },
+        "{@b Stage 1} {@damage 4d6} void damage and {@condition fatigued|PC1} (1 round)",
+        "{@b Stage 2} {@damage 8d6} void damage and {@condition fatigued|PC1} (1 round)",
+        "{@b Stage 3} {@damage 12d6} void damage and {@condition fatigued|PC1} (1 round)",
+        "{@b Stage 4} death",
+        {
+          "type": "item",
+          "name": "Heightened (+1)",
+          "entry": [
+            "Increase the void damage taken on a success and during the first three stages of the curse by {@dice 1d6}."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Curse of Nightmares",
+      "source": "GMC",
+      "page": 86,
+      "category": "Curse",
+      "level": 2,
+      "traits": [
+        "curse",
+        "magical",
+        "mental"
+      ],
+      "entries": [
+        "This curse plagues you with terrible nightmares whenever you sleep, preventing you from resting properly.",
+        "{@b Saving Throw} DC 16 Will; {@b Effect} You must rest for 12 hours instead of 8 to avoid becoming {@condition fatigued} and can't gain any benefits from resting or long-term rest. You can still make your daily preparations."
+      ]
+    },
+    {
+      "name": "Curse of Slumber",
+      "source": "GMC",
+      "page": 87,
+      "category": "Curse",
+      "level": 11,
+      "traits": [
+        "curse",
+        "incapacitation",
+        "magical",
+        "sleep"
+      ],
+      "entries": [
+        "This legendary curse sends you into a sleep indistinguishable from death.",
+        "{@b Saving Throw} DC 28 Fortitude; {@b Effect} You fall asleep for 1 round (or permanently on a critical failure) and seem to be dead; a creature must succeed at a DC 30 Medicine check to realize you are alive. Noise doesn't awaken you, but taking damage gives you a new saving throw against the curse."
+      ]
+    },
+    {
+      "name": "Curse of the Ravenous",
+      "source": "GMC",
+      "page": 86,
+      "category": "Curse",
+      "level": 5,
+      "traits": [
+        "curse",
+        "magical"
+      ],
+      "entries": [
+        "This hideous curse kills through constant hunger. You become gaunt and repeatedly gnash your teeth as your body begins to consume itself.",
+        "{@b Saving Throw} DC 20 Fortitude; {@b Effect} No matter how much you eat, you aren't satiated. After 1 day, you begin starving. Each week, you receive a new saving throw against the curse."
+      ]
+    },
+    {
+      "name": "Deathcap Powder",
+      "source": "GMC",
+      "page": 249,
+      "category": "Poison",
+      "level": 13,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "ingested",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 450 gp",
+        "{@b Usage} held in 1 hand; {@b Bulk} L",
+        "{@b Activate} {@as 1} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "The toxic deathcap mushroom can be dried, ground, and treated to form a flavorless powder with accelerated effects.",
+        "{@b Saving Throw} DC 33 Fortitude; {@b Onset} 10 minutes; {@b Maximum Duration} 6 minutes",
+        "{@b Stage 1} 7d8 poison damage (1 minute)",
+        "{@b Stage 2} 9d6 poison damage and {@condition sickened} 2 (1 minute)",
+        "{@b Stage 3} 8d10 poison damage and sickened 3 (1 minute)"
+      ]
+    },
+    {
+      "name": "Fearflower Nectar",
+      "source": "GMC",
+      "page": 249,
+      "category": "Poison",
+      "level": 4,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "injury",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 16 gp",
+        "{@b Usage} held in 2 hands; {@b Bulk} L",
+        "{@b Activate} {@as 2} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "The nectar of a night-blooming desert flower attacks a victim's central nervous system and causes feelings of panic.",
+        "{@b Saving Throw} DC 21 Fortitude; {@b Maximum Duration} 6 rounds",
+        "{@b Stage 1} 1d6 poison damage and {@condition frightened} 1 (1 round)",
+        "{@b Stage 2} 1d6 poison damage and frightened 2 (1 round)",
+        "{@b Stage 3} 1d6 poison damage and frightened 3 (1 round)"
+      ]
+    },
+    {
+      "name": "Giant Centipede Venom",
+      "source": "GMC",
+      "page": 249,
+      "category": "Poison",
+      "level": 1,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "injury",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 4 gp",
+        "{@b Usage} held in 2 hands; {@b Bulk} L",
+        "{@b Activate} {@as 2} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Giant centipede venom causes severe muscle stiffness.",
+        "{@b Saving Throw} DC 17 Fortitude; {@b Maximum Duration} 6 rounds",
+        "{@b Stage 1} 1d4 poison damage (1 round)",
+        "{@b Stage 2} 1d4 poison damage and {@condition fatigued} (1 round)",
+        "{@b Stage 3} 1d4 poison damage, clumsy 1, and fatigued (1 round)"
+      ]
+    },
+    {
+      "name": "Giant Scorpion Venom",
+      "source": "GMC",
+      "page": 249,
+      "category": "Poison",
+      "level": 6,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "injury",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 40 gp",
+        "{@b Usage} held in 2 hands; {@b Bulk} L",
+        "{@b Activate} {@as 2} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Scorpion venom is excruciating and its effects are somewhat debilitating.",
+        "{@b Saving Throw} DC 22 Fortitude; {@b Maximum Duration} 6 rounds",
+        "{@b Stage 1} 2d6 poison damage and {@condition enfeebled} 1 (1 round)",
+        "{@b Stage 2} 2d8 poison damage and enfeebled 1 (1 round)",
+        "{@b Stage 3} 2d10 poison damage and enfeebled 2 (1 round)"
+      ]
+    },
+    {
+      "name": "Goblin Pox",
+      "source": "PC1",
+      "page": 333,
+      "category": "Disease",
+      "level": 1,
+      "traits": [
+        "disease"
+      ],
+      "entries": [
+        "This affliction is caused by {@i Goblin Pox}. Use the caster's spell DC for its Fortitude saving throw.",
+        "Your touch afflicts the target with goblin pox, an irritating allergenic rash. The target must attempt a Fortitude save.",
+        "Goblins and goblin dogs are immune.",
+        {
+          "type": "list",
+          "style": "list-no-bullets",
+          "items": [
+            {
+              "type": "item",
+              "name": "Critical Success",
+              "entries": [
+                "The target is unaffected."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Success",
+              "entries": [
+                "The target is {@condition sickened 1|PC1}."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Failure",
+              "entries": [
+                "The target is afflicted with goblin pox at stage 1."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical Failure",
+              "entries": [
+                "The target is afflicted with goblin pox at stage 2."
+              ]
+            }
+          ]
+        },
+        "{@b Stage 1} {@condition sickened 1|PC1} (1 round)",
+        "{@b Stage 2} {@condition sickened 1|PC1} and {@condition slowed 1|PC1} (1 round)",
+        "{@b Stage 3} {@condition sickened 1|PC1} and the creature can't reduce its {@condition sickened|PC1} value below 1 (1 day)"
+      ]
+    },
+    {
+      "name": "Grave Curse",
+      "source": "GMC",
+      "page": 87,
+      "category": "Curse",
+      "level": null,
+      "traits": [
+        "curse",
+        "magical"
+      ],
+      "entries": [
+        "A grave curse punishes you for stealing from a tomb or other resting place.",
+        "{@b Saving Throw} Will save, with a high spell DC for a monster of its level; {@b Effect} You are hounded by undead creatures of the same level as the curse. Every night, you must attempt a DC 15 flat check. On a failure, an incorporeal undead manifests to hassle and harry you throughout the night, retreating before it can take much damage and often preventing you from gaining a full night's rest. Whenever you enter a graveyard or other area where bodies are buried, you must succeed at the same flat check or a body animates as a corporeal undead (typically a skeleton or zombie) to attack you.",
+        "These undead are temporary and exist only to harry you; if you take control of the undead, move on, or otherwise avoid their attacks, incorporeal undead discorporate and corporeal undead collapse into ordinary corpses. The curse can be removed by returning the stolen items to their resting place."
+      ]
+    },
+    {
+      "name": "Graveroot",
+      "source": "GMC",
+      "page": 249,
+      "category": "Poison",
+      "level": 3,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "injury",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 10 gp",
+        "{@b Usage} held in 2 hands; {@b Bulk} L",
+        "{@b Activate} {@as 2} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "The opaque white sap from the graveroot shrub clouds the mind.",
+        "{@b Saving Throw} DC 19 Fortitude; {@b Maximum Duration} 4 rounds",
+        "{@b Stage 1} 1d8 poison damage (1 round)",
+        "{@b Stage 2} 1d10 poison damage and {@condition stupefied} 1 (1 round)",
+        "{@b Stage 3} 2d6 poison damage and stupefied 2 (1 round)"
+      ]
+    },
+    {
+      "name": "Hemlock",
+      "source": "GMC",
+      "page": 249,
+      "category": "Poison",
+      "level": 17,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "ingested",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 2,250 gp",
+        "{@b Usage} held in 1 hand; {@b Bulk} L",
+        "{@b Activate} {@as 2} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Concentrated hemlock is a particularly deadly toxin that halts muscle action—including that of the victim's heart.",
+        "{@b Saving Throw} DC 38 Fortitude; {@b Onset} 30 minutes; {@b Maximum Duration} 60 minutes",
+        "{@b Stage 1} 16d6 poison damage and {@condition enfeebled} 2 (10 minutes)",
+        "{@b Stage 2} 17d6 poison damage and enfeebled 3 (10 minutes)",
+        "{@b Stage 3} 16d6 poison damage and enfeebled 4 (10 minutes)"
+      ]
+    },
+    {
+      "name": "Lethargy Poison",
+      "source": "GMC",
+      "page": 250,
+      "category": "Poison",
+      "level": 2,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "incapacitation",
+        "injury",
+        "poison",
+        "sleep"
+      ],
+      "entries": [
+        "{@b Price} 7 gp",
+        "{@b Usage} held in 2 hands; {@b Bulk} L",
+        "{@b Activate} {@as 1} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Lethargy poison is commonly used in hit-and-run tactics by attackers who want their victims alive; the ambusher retreats until the poison sets in and the victim falls unconscious. Further exposure to lethargy poison does not require the target to attempt additional saving throws; only failing an saving throw against an ongoing exposure can progress its stage.",
+        "{@b Saving Throw} DC 18 Fortitude; {@b Maximum Duration} 4 hours",
+        "{@b Stage 1} {@condition slowed} 1 (1 round)",
+        "{@b Stage 2} slowed 1 (1 minute)",
+        "{@b Stage 3} unconscious with no Perception check to wake up (1 round)",
+        "{@b Stage 4} unconscious with no Perception check to wake up (1d4 hours)"
+      ]
+    },
+    {
+      "name": "Malaria",
+      "source": "GMC",
+      "page": 88,
+      "category": "Disease",
+      "level": 2,
+      "traits": [
+        "disease"
+      ],
+      "entries": [
+        "A pernicious disease spread by bloodsucking insects, malaria sometimes enters long periods of dormancy. If you succumb to malaria, you may continue to be periodically affected by the disease, even if you’re cured. You can’t reduce your {@condition sickened} condition while affected with malaria.",
+        "{@b Saving Throw} DC 16 Fortitude; {@b Onset} 10 days",
+        "{@b Stage 1} {@condition sickened} 1 (1 day)",
+        "{@b Stage 2} sickened 2 (1 day)",
+        "{@b Stage 3} sickened 2, and disease recurs every 1d4 months even if cured (1 day)",
+        "{@b Stage 4} {@condition unconscious} (1 day)",
+        "{@b Stage 5} death"
+      ]
+    },
+    {
+      "name": "Mindfog Mist",
+      "source": "GMC",
+      "page": 250,
+      "category": "Poison",
+      "level": 15,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "inhaled",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 1,000 gp",
+        "{@b Usage} held in 1 hand; {@b Bulk} L",
+        "{@b Activate} {@as 1} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Mindfog mist can be used to undermine spellcasters, as its effect on a victim's mental faculties is swift and powerful.",
+        "{@b Saving Throw} DC 35 Fortitude; {@b Onset} 1 round; {@b Maximum Duration} 6 rounds",
+        "{@b Stage 1} {@condition stupefied} 2 (1 round)",
+        "{@b Stage 2} {@condition confused} and stupefied 3 (1 round)",
+        "{@b Stage 3} confused and stupefied 4 (1 round)"
+      ]
+    },
+    {
+      "name": "Nightmare Fever",
+      "source": "GMC",
+      "page": 89,
+      "category": "Disease",
+      "level": 8,
+      "traits": [
+        "disease",
+        "occult"
+      ],
+      "entries": [
+        "Thought to be caused by a divine curse, nightmare fever inflicts you with terrible nightmares, and you awaken with the wounds you received in your dreams. Some versions cause you to dream of being wounded by bludgeoning or piercing weapons, in which case you take that type of damage instead. Damage and the {@condition fatigued} condition caused by the disease can’t be healed until the disease is removed.",
+        "{@b Saving Throw} DC 25 Will",
+        "{@b Stage 1} 2d6 slashing damage and {@condition fatigued} (1 day)",
+        "{@b Stage 2} 4d6 slashing damage and fatigued (1 day)",
+        "{@b Stage 3} 4d6 slashing damage, fatigued, and whenever you take slashing damage, you must succeed at a Will save against the disease’s DC or become {@condition frightened} 2 (1 day)",
+        "{@b Stage 4} 6d6 slashing damage, fatigued, and whenever you take slashing damage, you must succeed at a Will save against the disease’s DC or become {@condition paralyzed} for 1 round (1 day)",
+        "{@b Stage 5} 6d6 slashing damage and {@condition unconscious}"
+      ]
+    },
+    {
+      "name": "Oath of the Flesh",
+      "source": "GMC",
+      "page": 87,
+      "category": "Curse",
+      "level": 7,
+      "traits": [
+        "curse",
+        "magical"
+      ],
+      "entries": [
+        "When you swear an oath, you must obey that oath or suffer terrible consequences.",
+        "{@b Saving Throw} DC 23 Fortitude; {@b Effect} Each time you make a promise to someone, an ornate symbol representing that promise is magically carved into your flesh. Breaking any of these promises causes the symbol tattoo to grow into a gaping wound, dealing 3d6 slashing damage to you; damage from the curse can't be healed as long as the curse is still in effect."
+      ]
+    },
+    {
+      "name": "Reviled of Nature",
+      "source": "GMC",
+      "page": 87,
+      "category": "Curse",
+      "level": 18,
+      "traits": [
+        "curse",
+        "emotion",
+        "magical",
+        "mental"
+      ],
+      "entries": [
+        "This curse makes the hunter into the hunted, drawing the ire of animals wherever you go.",
+        "{@b Saving Throw} DC 38 Will; {@b Effect} Creatures of the natural world abhor you. Whenever an animal becomes aware of you, it must attempt a Will save against the curse. On a failure, it attacks you and fights to the death."
+      ]
+    },
+    {
+      "name": "Reviling Earth",
+      "source": "GMC",
+      "page": 87,
+      "category": "Curse",
+      "level": 12,
+      "traits": [
+        "curse",
+        "death",
+        "magical"
+      ],
+      "entries": [
+        "A reviling earth curse usually appears across a specific geographical region, such as a ruined town, a necromancer's domain, or a similar area.",
+        "{@b Saving Throw} DC 30 Fortitude; {@b Effect} When you enter the area, you become {@condition doomed} 1, or doomed 2 on a critical failure."
+      ]
+    },
+    {
+      "name": "Scarlet Fever",
+      "source": "GMC",
+      "page": 88,
+      "category": "Disease",
+      "level": 1,
+      "traits": [
+        "disease"
+      ],
+      "entries": [
+        "The relatively simple sore throat caused by this disease leads many victims to initially dismiss it as a mild illness, but scarlet fever can be deadly if left untreated. You can’t reduce your {@condition sickened} condition while affected with scarlet fever.",
+        "{@b Saving Throw} DC 13 Fortitude; {@b Onset} 2 days",
+        "{@b Stage 1} {@condition sickened} 1 (1 day)",
+        "{@b Stage 2} sickened 2 (1 day)",
+        "{@b Stage 3} sickened 3 and can’t speak (1 day)",
+        "{@b Stage 4} death"
+      ]
+    },
+    {
+      "name": "Scarlet Leprosy",
+      "source": "GMC",
+      "page": 88,
+      "category": "Disease",
+      "level": 4,
+      "traits": [
+        "disease",
+        "virulent"
+      ],
+      "entries": [
+        "Scarlet leprosy is widely feared for its devastating effects, crushing bones and organs while making recovery nearly impossible. Damage taken from scarlet leprosy can’t be healed until the disease is cured.",
+        "{@b Saving Throw} DC 19 Fortitude; {@b Onset} 1 day",
+        "{@b Stage 1} 2d6 bludgeoning damage (1 day)",
+        "{@b Stage 2} 2d6 bludgeoning damage, and whenever you gain the wounded condition, increase the condition value by 1 (1 day)",
+        "{@b Stage 3} 4d6 bludgeoning damage and can’t heal any Hit Point damage (1 day)"
+      ]
+    },
+    {
+      "name": "Sellswords's Folly",
+      "source": "GMC",
+      "page": 87,
+      "category": "Curse",
+      "level": 9,
+      "traits": [
+        "curse",
+        "emotion",
+        "magical",
+        "mental"
+      ],
+      "entries": [
+        "Even the most experienced combat veteran becomes as reckless as a rookie when suffering from sellsword's folly.",
+        "{@b Saving Throw} DC 26 Will; {@b Effect} The chaos of combat overwhelms you. Each time you roll initiative for a combat encounter, you must attempt a new saving throw against the curse; on a failure, you become {@condition confused} for 1 round. This is an {@trait incapacitation} effect."
+      ]
+    },
+    {
+      "name": "Sewer Haze",
+      "source": "GMC",
+      "page": 89,
+      "category": "Disease",
+      "level": 7,
+      "traits": [
+        "disease",
+        "virulent"
+      ],
+      "entries": [
+        "Many healers and alchemists suspect that sewer haze has a supernatural origin, but the study is so unpleasant that research has made little progress.",
+        "{@b Saving Throw} DC 23 Fortitude; {@b Onset} 3 days",
+        "{@b Stage 1} {@condition stupefied} 2 (1 day)",
+        "{@b Stage 2} {@condition drained} 2 and stupefied 2 (1 day)",
+        "{@b Stage 3} drained 3 and stupefied 3 (1 day)"
+      ]
+    },
+    {
+      "name": "Slayer's Haunt",
+      "source": "GMC",
+      "page": 86,
+      "category": "Curse",
+      "level": 4,
+      "traits": [
+        "curse",
+        "illusion",
+        "magical",
+        "visual"
+      ],
+      "entries": [
+        "You are haunted by all those you have killed.",
+        "{@b Saving Throw} DC 19 Will; {@b Effect} You see all creatures around you as those you have slain, still bearing their wounds. You can't identify, Recall Knowledge about, or otherwise interact with these creatures in any way that involves seeing their true form without first succeeding at a Will save against the curse's DC to see through the illusion. On a critical failure for such a Will save, you become {@condition frightened} 1."
+      ]
+    },
+    {
+      "name": "Slumber Wine",
+      "source": "GMC",
+      "page": 250,
+      "category": "Poison",
+      "level": 12,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "ingested",
+        "poison",
+        "sleep"
+      ],
+      "entries": [
+        "{@b Price} 325 gp",
+        "{@b Usage} held in 1 hand; {@b Bulk} L",
+        "{@b Activate} {@as 1} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Slumber wine sees its greatest use in games of intrigue, where an absence can be more devastating than injury. Characters unconscious from slumber wine can't wake up by any means while the poison lasts, don't need to eat or drink while unconscious in this way, and appear to be recently dead unless an examiner succeeds at a DC 40 Medicine check.",
+        "{@b Saving Throw} DC 32 Fortitude; {@b Onset} 1 hour; {@b Maximum Duration} 7 days",
+        "{@b Stage 1} {@condition unconscious} (1 day)",
+        "{@b Stage 2} unconscious (2 days)",
+        "{@b Stage 3} unconscious (3 days)"
+      ]
+    },
+    {
+      "name": "Spider Root",
+      "source": "GMC",
+      "page": 250,
+      "category": "Poison",
+      "level": 9,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "contact",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 110 gp",
+        "{@b Usage} held in 2 hands; {@b Bulk} L",
+        "{@b Activate} {@as 1} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "A paste made by mashing the fine, threadlike roots of a certain creeper vine, spider root renders a victim clumsy and maladroit. {@b Saving Throw} DC 28 Fortitude; {@b Onset} 1 minute; {@b Maximum Duration} 6 minutes",
+        "{@b Stage 1} 3d6 poison damage and {@condition clumsy} 1 (1 minute)",
+        "{@b Stage 2} 4d6 poison damage and clumsy 2 (1 minute)",
+        "{@b Stage 3} 6d6 poison damage and clumsy 3 (1 minute)"
+      ]
+    },
+    {
+      "name": "Spider Venom",
+      "source": "GMC",
+      "page": 250,
+      "category": "Poison",
+      "level": 5,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "injury",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 25 gp",
+        "{@b Usage} held in 2 hands; {@b Bulk} L",
+        "{@b Activate} {@as 2} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "This venom erodes its target's defenses, aiding the spider in securing prey.",
+        "{@b Saving Throw} DC 22 Fortitude; {@b Maximum Duration} 6 rounds",
+        "{@b Stage 1} 1d10 poison damage and {@condition sickened} 1 (1 round)",
+        "{@b Stage 2} 1d12 poison damage, {@condition clumsy} 1, and {@condition sickened} 2 (1 round)",
+        "{@b Stage 3} 2d6 poison damage, clumsy 2, and sickened 3 (1 round)"
+      ]
+    },
+    {
+      "name": "Spider Venom",
+      "source": "PC1",
+      "page": 358,
+      "category": "Poison",
+      "level": 1,
+      "traits": [
+        "poison"
+      ],
+      "entries": [
+        "This affliction is caused by {@i Spider Sting}. Use the caster's spell DC for its Fortitude saving throw.",
+        "You magically duplicate a spider's venomous sting. You deal {@damage 1d4} piercing damage to the touched creature and afflict it with spider venom. The target must attempt a Fortitude save.",
+        {
+          "type": "list",
+          "style": "list-no-bullets",
+          "items": [
+            {
+              "type": "item",
+              "name": "Critical Success",
+              "entries": [
+                "The target is unaffected."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Success",
+              "entries": [
+                "The target takes {@damage 1d4} poison damage."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Failure",
+              "entries": [
+                "The target is afflicted with spider venom at stage 1."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical Failure",
+              "entries": [
+                "The target is afflicted with spider venom at stage 2."
+              ]
+            }
+          ]
+        },
+        "{@b Maximum Duration} 4 rounds",
+        "{@b Stage 1} {@damage 1d4} poison damage and {@condition enfeebled 1|PC1} (1 round)",
+        "{@b Stage 2} {@damage 1d4} poison damage and {@condition enfeebled 2|PC1} (1 round)"
+      ]
+    },
+    {
+      "name": "Spirit Anchor",
+      "source": "GMC",
+      "page": 87,
+      "category": "Curse",
+      "level": 13,
+      "traits": [
+        "curse",
+        "magical"
+      ],
+      "entries": [
+        "This curse prevents your soul from moving on after death.",
+        "{@b Saving Throw} DC 31 Fortitude; {@b Effect} If you die while affected, your spirit is anchored to the plane you currently inhabit, and you become a ghost or other incorporeal undead."
+      ]
+    },
+    {
+      "name": "Sword of Anathema",
+      "source": "GMC",
+      "page": 87,
+      "category": "Curse",
+      "level": 20,
+      "traits": [
+        "curse",
+        "divine"
+      ],
+      "entries": [
+        "With divine intervention, followers of a deity can bestow this curse upon an enemy of the faith.",
+        "{@b Saving Throw} DC 40 Will; {@b Effect} You are marked by the deity invoked as an enemy of the church. You gain weakness 10 to damage dealt by worshippers of that deity."
+      ]
+    },
+    {
+      "name": "Tears of Death",
+      "source": "GMC",
+      "page": 250,
+      "category": "Poison",
+      "level": 20,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "contact",
+        "poison",
+        "virulent"
+      ],
+      "entries": [
+        "{@b Price} 12,000 gp",
+        "{@b Usage} held in 2 hands; {@b Bulk} L",
+        "{@b Activate} {@as 1} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Tears of death are among the most powerful of alchemical poisons, distilled from extracts of five other deadly poisons in just the right ratios.",
+        "{@b Saving Throw} DC 44 Fortitude; {@b Onset} 1 minute; {@b Maximum Duration} 10 minutes",
+        "{@b Stage 1} 20d6 poison damage and {@condition paralyzed} (1 round)",
+        "{@b Stage 2} 22d6 poison damage and paralyzed (1 minute)",
+        "{@b Stage 3} 24d6 poison damage and paralyzed (1 minute)"
+      ]
+    },
+    {
+      "name": "Tetanus",
+      "source": "GMC",
+      "page": 88,
+      "category": "Disease",
+      "level": 1,
+      "traits": [
+        "disease"
+      ],
+      "entries": [
+        "An infection introduced through open wounds, tetanus can produce stiffness, muscle spasms strong enough to break bones, and ultimately death.",
+        "{@b Saving Throw} DC 14 Fortitude; {@b Onset} 10 days",
+        "{@b Stage 1} {@condition clumsy} 1 (1 week)",
+        "{@b Stage 2} clumsy 2 and can’t speak (1 day)",
+        "{@b Stage 3} {@condition paralyzed} with spasms (1 day)",
+        "{@b Stage 4} death"
+      ]
+    },
+    {
+      "name": "Theft of Thought",
+      "source": "GMC",
+      "page": 86,
+      "category": "Curse",
+      "level": 3,
+      "traits": [
+        "curse",
+        "magical",
+        "mental"
+      ],
+      "entries": [
+        "This curse protects a single book and activates against any creature who {@action Steal||Steals} it.",
+        "{@b Saving Throw} DC 18 Will; {@b Effect} You begin to lose details from your memories, as well as a portion of your procedural memory. After being cursed, the first time you attempt a check using a skill in which you are trained or better, your proficiency rank in the skill used decreases by one rank for as long as you are cursed."
+      ]
+    },
+    {
+      "name": "Thief's Retribution",
+      "source": "GMC",
+      "page": 87,
+      "category": "Curse",
+      "level": 19,
+      "traits": [
+        "curse",
+        "magical"
+      ],
+      "entries": [
+        "This punishment causes you to lose something dear to you whenever you rob or steal. If you have nothing to lose, the curse exacts its punishment upon your body instead.",
+        "{@b Saving Throw} DC 39 Fortitude; {@b Effect} Each time you steal something, you lose something more valuable—this item is whisked away and can't be found again. Typically this item is one of greater monetary value, but it might be one of greater value in another sense, such as one of greater emotional value, or something you need to complete a task. If you aren't carrying anything of greater value at the time of the theft, you lose one of your limbs instead, taking 10d6 slashing damage and losing use of that limb. The damage can't be healed, nor the limb restored, until the stolen item is returned, even through use of spells like regenerate."
+      ]
+    },
+    {
+      "name": "Tuberculosis",
+      "source": "GMC",
+      "page": 88,
+      "category": "Disease",
+      "level": 1,
+      "traits": [
+        "disease"
+      ],
+      "entries": [
+        "An extended respiratory disease, tuberculosis can pose particular challenges to spellcasters and some performers due to the intense coughing fits it produces.",
+        "{@b Saving Throw} DC 15 Fortitude; {@b Onset} 1 week",
+        "{@b Stage 1} carrier with no effects (1 week)",
+        "{@b Stage 2} coughing requires you to succeed at a DC 5 flat check to {@action Cast a Spell} that has the {@trait concentrate} trait or Activate an Item that has the concentrate trait (1 week)",
+        "{@b Stage 3} {@condition fatigued}, can’t recover from the fatigued condition, and coughing requires a successful DC 15 flat check to Cast a Spell that has the concentrate trait or Activate an Item that has the concentrate trait (1 week)",
+        "{@b Stage 4} unconscious (1 week)",
+        "{@b Stage 5} death"
+      ]
+    },
+    {
+      "name": "Unending Thirst",
+      "source": "GMC",
+      "page": 87,
+      "category": "Curse",
+      "level": 15,
+      "traits": [
+        "curse",
+        "magical"
+      ],
+      "entries": [
+        "This curse kills through dehydration in the same vein as the curse of the ravenous, but with deadly speed",
+        "{@b Saving Throw} DC 32 Fortitude; {@b Effect} You gain no benefit from drinking water or other liquids and begin suffering from thirst. Each day, you receive a new saving throw against the curse."
+      ]
+    },
+    {
+      "name": "Wizard's Ward",
+      "source": "GMC",
+      "page": 86,
+      "category": "Curse",
+      "level": 6,
+      "traits": [
+        "curse",
+        "magical"
+      ],
+      "entries": [
+        "A wizard's ward is placed upon a single book, usually a spellbook. If you damage the book, you must attempt a save against the curse's effect.",
+        "{@b Saving Throw} DC 22 Will; {@b Effect} You take 5d6 damage of the same damage type as the damage you dealt to the book, and the damage can't be healed as long as the curse lasts. Repairing the book, including replacing any missing text, ends this curse."
+      ]
+    },
+    {
+      "name": "Wolfsbane",
+      "source": "GMC",
+      "page": 250,
+      "category": "Poison",
+      "level": 10,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "ingested",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 155 gp",
+        "{@b Usage} held in 1 hand; {@b Bulk} L",
+        "{@b Activate} {@as 1} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Wolfsbane appears in folklore for its link to werecreatures. If you are afflicted with the curse of a werecreature and survive stage 3 of wolfsbane, you're immediately cured of the curse.",
+        "{@b Saving Throw} DC 30 Fortitude; {@b Onset} 10 minutes; {@b Maximum Duration} 6 minutes",
+        "{@b Stage 1} 3d10 poison damage (1 minute)",
+        "{@b Stage 2} 4d10 poison damage (1 minute)",
+        "{@b Stage 3} 5d10 poison damage (1 minute)"
+      ]
+    },
+    {
+      "name": "Wyvern Poison",
+      "source": "GMC",
+      "page": 250,
+      "category": "Poison",
+      "level": 8,
+      "traits": [
+        "alchemical",
+        "consumable",
+        "injury",
+        "poison"
+      ],
+      "entries": [
+        "{@b Price} 80 gp",
+        "{@b Usage} held in 2 hands; {@b Bulk} L",
+        "{@b Activate} {@as 2} ({@trait manipulate})",
+        {
+          "type": "hr"
+        },
+        "Properly harvested and preserved, the poison from a wyvern's sting is effective and direct.",
+        "{@b Saving Throw} DC 26 Fortitude; {@b Maximum Duration} 6 rounds",
+        "{@b Stage 1} 3d6 poison damage (1 round)",
+        "{@b Stage 2} 3d8 poison damage (1 round)",
+        "{@b Stage 3} 3d10 poison damage (1 round)"
+      ]
+    }
+  ]
+}

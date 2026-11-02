@@ -39,7 +39,7 @@ function renderTag(body, options) {
   const match = /^(\S+)\s+([\s\S]*)$/.exec(body);
   if (!match) return escapeHtml(body);
   const [, rawTag, value] = match;
-  const tag = rawTag.toLowerCase();
+  const tag = rawTag.toLowerCase() === "item" ? "equipment" : rawTag.toLowerCase();
   const parts = splitArguments(value);
   if (["code", "kbd"].includes(tag)) return `<${tag}>${escapeHtml(value)}</${tag}>`;
   const formatting = { b: "strong", bold: "strong", i: "em", italic: "em", s: "s", u: "u", sup: "sup", sub: "sub" };
@@ -56,6 +56,12 @@ function renderTag(body, options) {
     background: { noun: "Background", href: "backgrounds.html", parameter: "background", resolver: "resolveBackground" },
     archetype: { noun: "Archetype", href: "archetypes.html", parameter: "archetype", resolver: "resolveArchetype" },
     ancestry: { noun: "Ancestry", href: "ancestries.html", parameter: "ancestry", resolver: "resolveAncestry" },
+    affliction: { noun: "Affliction", href: "afflictions.html", parameter: "affliction", resolver: "resolveAffliction" },
+    hazard: { noun: "Hazard", href: "hazards.html", parameter: "hazard", resolver: "resolveHazard" },
+    spell: { noun: "Spell", href: "spells.html", parameter: "spell", resolver: "resolveSpell" },
+    equipment: { noun: "Item", href: "equipment.html", parameter: "equipment", resolver: "resolveEquipment" },
+    creature: { noun: "Creature", href: "creatures.html", parameter: "creature", resolver: "resolveCreature" },
+    companion: { noun: "Companion", href: "companions.html", parameter: "companion", resolver: "resolveCompanion" },
   };
   if (Object.hasOwn(references, tag)) {
     const reference = references[tag];
@@ -72,10 +78,11 @@ function renderTag(body, options) {
     const fallback = `${reference.href}?${new URLSearchParams(source ? { [reference.parameter]: name, source } : { [reference.parameter]: name })}`;
     const confirmedAction = tag === "action" && resolution?.status === "found" ? ' data-action-resolved="true"' : "";
     const firstWord = /^(\s*\S+)([\s\S]*)$/u.exec(labelText);
-    const linkedLabel = firstWord ? `<span class="reference-link-start">${escapeHtml(firstWord[1])}</span>${escapeHtml(firstWord[2])}` : label;
-    return `<a class="${tag}-link" href="${escapeHtml(resolution?.target?.href || fallback)}" ${attributes}${confirmedAction}>${linkedLabel}</a>`;
+    const linkedLabel = tag === "spell" && /\{@/.test(parts[2] || parts[0]) ? renderInline(parts[2] || parts[0], options)
+      : firstWord ? `<span class="reference-link-start">${escapeHtml(firstWord[1])}</span>${escapeHtml(firstWord[2])}` : label;
+    const link = `<a class="${tag}-link" href="${escapeHtml(resolution?.target?.href || fallback)}" ${attributes}${confirmedAction}>${linkedLabel}</a>`;
+    return tag === "spell" ? `<em>${link}</em>` : link;
   }
-  if (tag === "spell") return `<em>${renderInline(parts[2] || parts[0], options)}</em>`;
   const text = renderInline(parts[0], options);
   if (tag === "link") {
     const href = safeHref(parts[1]);
@@ -129,12 +136,14 @@ export function inlineText(value) {
 export function renderTraitBadges(traits, options = {}) {
   const names = Array.isArray(traits) ? traits.filter(trait => typeof trait === "string" && trait.trim()) : [];
   if (!names.length) return "";
-  return `<div class="ability-traits" role="list" aria-label="Traits">${names.map(trait => {
-    const tag = /^\s*\{@trait\s/i.test(trait) ? trait : `{@trait ${trait}}`;
-    const name = inlineText(splitArguments(tag.trim().slice(2, -1).replace(/^trait\s+/i, ""))[0]).trim().toLowerCase();
-    const tone = ["uncommon", "rare", "unique", "secret"].includes(name) ? ` data-trait-badge="${name}"` : "";
-    return `<span class="ability-trait" role="listitem"${tone}>${renderInline(tag, options)}</span>`;
-  }).join("")}</div>`;
+  return `<div class="ability-traits" role="list" aria-label="Traits">${names.map(trait => renderTraitBadge(trait, options)).join("")}</div>`;
+}
+
+export function renderTraitBadge(trait, options = {}) {
+  const tag = /^\s*\{@trait\s/i.test(trait) ? trait : `{@trait ${trait}}`;
+  const name = inlineText(splitArguments(tag.trim().slice(2, -1).replace(/^trait\s+/i, ""))[0]).trim().toLowerCase();
+  const tone = ["uncommon", "rare", "unique", "secret"].includes(name) ? ` data-trait-badge="${name}"` : "";
+  return `<span class="ability-trait" role="listitem"${tone}>${renderInline(tag, options)}</span>`;
 }
 
 export function renderContent(content, options = {}) {

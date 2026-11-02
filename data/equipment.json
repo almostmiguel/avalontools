@@ -1,0 +1,5238 @@
+{
+  "sources": [
+    {
+      "id": "PC1",
+      "name": "Player Core",
+      "source": "PC1"
+    }
+  ],
+  "equipment": [
+    {
+      "name": "Adventurer's Pack",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp, 5 sp",
+      "bulk": "1",
+      "entries": [
+        "This item is the starter kit for an adventurer, containing the essential items for exploration and survival. The Bulk value is for the entire pack together, but see the descriptions of individual items as necessary.",
+        "The pack contains the following items: a {@equipment Backpack|PC1|backpack}, a {@equipment Bedroll|PC1|bedroll}, 10 pieces of {@equipment Chalk|PC1|chalk}, {@equipment Flint and Steel|PC1|flint and steel}, 50 feet of {@equipment Rope|PC1|rope}, 2 weeks' {@equipment Rations|PC1|rations}, {@equipment Soap|PC1|soap}, 5 torches, and a {@equipment Waterskin|PC1|waterskin}."
+      ]
+    },
+    {
+      "name": "Alchemical Bomb",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [],
+      "price": "— (Varies)",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Bomb",
+      "stats": {
+        "Damage": "Varies",
+        "Range": "20 ft.",
+        "Type": "Ranged"
+      },
+      "entries": [
+        "These bombs come in a variety of types and levels of power, but no matter the variety, you throw the bomb at the target and it explodes, unleashing its alchemical blast.",
+        "Click here for a list of alchemical bombs."
+      ]
+    },
+    {
+      "name": "Alchemist's Lab",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "5 gp",
+      "bulk": "6",
+      "hands": "2",
+      "entries": [
+        "You need an alchemist's lab to {@action Craft|} alchemical items during downtime."
+      ]
+    },
+    {
+      "name": "Alchemist's Lab (Expanded)",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "55 gp",
+      "bulk": "6",
+      "hands": "2",
+      "entries": [
+        "You need an alchemist's lab to {@action Craft|} alchemical items during downtime.",
+        "An expanded alchemist's lab gives a +1 item bonus to {@skill Crafting|} checks to create alchemical items."
+      ]
+    },
+    {
+      "name": "Alchemist's Toolkit",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "3 gp",
+      "bulk": "1",
+      "hands": "1 or 2",
+      "entries": [
+        "This mobile collection of vials and chemicals can be used for simple alchemical tasks. If you wear your alchemist's toolkit, you can draw and replace them as part of the action that uses them.",
+        "You can use a toolkit with 1 hand if you’re wearing it or 2 if you’re holding it. See here for details."
+      ]
+    },
+    {
+      "name": "Arbalest",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "backstabber"
+      ],
+      "price": "8 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Crossbow",
+      "stats": {
+        "Damage": "1d10 P",
+        "Range": "110 ft.",
+        "Reload": "1",
+        "Type": "Ranged",
+        "Ammunition": "{@equipment Bolts|PC1}"
+      },
+      "entries": [
+        "This large and well-made crossbow requires some training to use effectively, but it's assembled with a cutting-edge firing mechanism that maximizes its speed, power, and accuracy"
+      ]
+    },
+    {
+      "name": "Arrows",
+      "source": "PC1",
+      "page": 280,
+      "category": "Ammunition",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp (price for 10)",
+      "bulk": "L",
+      "subcategory": "Ammunition",
+      "group": "Bow",
+      "stats": {
+        "Type": "Ranged"
+      },
+      "entries": [
+        "These projectiles are the ammunition for bows. The shaft of an arrow is made of wood. It is stabilized in flight by fletching at one end and bears a metal head on the other."
+      ]
+    },
+    {
+      "name": "Artisan's Toolkit",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "4 gp",
+      "bulk": "2",
+      "hands": "1 or 2",
+      "entries": [
+        "You need this toolkit to create items from raw materials with the {@action Craft|} skill. Different sets are needed for different work, as determined by the GM; for example, a blacksmith's toolkit differs from a woodworker's toolkit. If you wear your artisan's toolkit, you can draw and replace it as part of the action that uses it.",
+        "You can use a toolkit with 1 hand if you’re wearing it or 2 if you’re holding it. See here for details."
+      ]
+    },
+    {
+      "name": "Artisan's Toolkit (Sterling)",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "50 gp",
+      "bulk": "2",
+      "hands": "1 or 2",
+      "entries": [
+        "You need this toolkit to create items from raw materials with the {@action Craft|} skill. Different sets are needed for different work, as determined by the GM; for example, a blacksmith's toolkit differs from a woodworker's toolkit. If you wear your artisan's toolkit, you can draw and replace it as part of the action that uses it.",
+        "You can use a toolkit with 1 hand if you’re wearing it or 2 if you’re holding it. See here for details.",
+        "A sterling artisan's toolkit gives you a +1 item bonus to the check."
+      ]
+    },
+    {
+      "name": "Backpack",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp",
+      "bulk": "—",
+      "entries": [
+        "A backpack holds up to 4 Bulk of items, and the first 2 Bulk of these items don't count against your Bulk limits. If you're carrying or stowing the pack rather than wearing it on your back, its Bulk is light instead of negligible."
+      ]
+    },
+    {
+      "name": "Barding",
+      "source": "PC1",
+      "page": 295,
+      "category": "Barding",
+      "level": 0,
+      "traits": [],
+      "bulk": "L",
+      "entries": [
+        "You can purchase special armor for animals, called barding (shown on Table 6–18). All animals have a trained proficiency rank in light barding, and combat-trained animals are trained in heavy barding. Barding uses the same rules as armor except for the following. The Price and Bulk of barding depend on the animal’s size. Unlike for a suit of armor, barding’s Strength entry is listed as a modifier, not a score. Barding can’t be etched with magic runes, though special magical barding might be available.",
+        {
+          "type": "h3",
+          "name": "Barding",
+          "entries": []
+        },
+        {
+          "type": "table",
+          "colLabels": [
+            "{@b Barding}",
+            "{@b Size}",
+            "{@b Price}",
+            "{@b AC Bonus}",
+            "{@b Dex Cap}",
+            "{@b Check Penalty}",
+            "{@b Speed Penalty}",
+            "{@b Bulk}",
+            "{@b Strength}"
+          ],
+          "rows": [
+            [
+              {
+                "entry": "Light",
+                "rowSpan": 2
+              },
+              "Small or Medium",
+              "10 gp",
+              "+1",
+              "+5",
+              "-1",
+              "-5 ft.",
+              "2",
+              "+3"
+            ],
+            [
+              "Large",
+              "20 gp",
+              "+1",
+              "+5",
+              "-1",
+              "-5 ft.",
+              "4",
+              "+3"
+            ],
+            [
+              {
+                "entry": "Heavy",
+                "rowSpan": 2
+              },
+              "Small or Medium (Level 2)",
+              "25 gp",
+              "+3",
+              "+3",
+              "-3",
+              "-10 ft.",
+              "4",
+              "+5"
+            ],
+            [
+              "Large (Level 3)",
+              "50 gp",
+              "+3",
+              "+3",
+              "-3",
+              "-10 ft.",
+              "8",
+              "+5"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Barding (Heavy; Large)|PC1}",
+            "{@equipment Barding (Heavy; Small or Medium)|PC1}",
+            "{@equipment Barding (Light; Large)|PC1}",
+            "{@equipment Barding (Light; Small or Medium)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Barding (Heavy; Large)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Barding",
+      "level": 3,
+      "traits": [],
+      "price": "50 gp",
+      "bulk": "8",
+      "entries": [
+        "You can purchase special armor for animals, called barding (shown on Table 6–18). All animals have a trained proficiency rank in light barding, and combat-trained animals are trained in heavy barding. Barding uses the same rules as armor except for the following. The Price and Bulk of barding depend on the animal’s size. Unlike for a suit of armor, barding’s Strength entry is listed as a modifier, not a score. Barding can’t be etched with magic runes, though special magical barding might be available.",
+        {
+          "type": "h3",
+          "name": "Barding",
+          "entries": []
+        },
+        {
+          "type": "table",
+          "colLabels": [
+            "{@b Barding}",
+            "{@b Size}",
+            "{@b Price}",
+            "{@b AC Bonus}",
+            "{@b Dex Cap}",
+            "{@b Check Penalty}",
+            "{@b Speed Penalty}",
+            "{@b Bulk}",
+            "{@b Strength}"
+          ],
+          "rows": [
+            [
+              {
+                "entry": "Light",
+                "rowSpan": 2
+              },
+              "Small or Medium",
+              "10 gp",
+              "+1",
+              "+5",
+              "-1",
+              "-5 ft.",
+              "2",
+              "+3"
+            ],
+            [
+              "Large",
+              "20 gp",
+              "+1",
+              "+5",
+              "-1",
+              "-5 ft.",
+              "4",
+              "+3"
+            ],
+            [
+              {
+                "entry": "Heavy",
+                "rowSpan": 2
+              },
+              "Small or Medium (Level 2)",
+              "25 gp",
+              "+3",
+              "+3",
+              "-3",
+              "-10 ft.",
+              "4",
+              "+5"
+            ],
+            [
+              "Large (Level 3)",
+              "50 gp",
+              "+3",
+              "+3",
+              "-3",
+              "-10 ft.",
+              "8",
+              "+5"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Barding (Heavy; Small or Medium)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Barding",
+      "level": 2,
+      "traits": [],
+      "price": "25 gp",
+      "bulk": "4",
+      "entries": [
+        "You can purchase special armor for animals, called barding (shown on Table 6–18). All animals have a trained proficiency rank in light barding, and combat-trained animals are trained in heavy barding. Barding uses the same rules as armor except for the following. The Price and Bulk of barding depend on the animal’s size. Unlike for a suit of armor, barding’s Strength entry is listed as a modifier, not a score. Barding can’t be etched with magic runes, though special magical barding might be available.",
+        {
+          "type": "h3",
+          "name": "Barding",
+          "entries": []
+        },
+        {
+          "type": "table",
+          "colLabels": [
+            "{@b Barding}",
+            "{@b Size}",
+            "{@b Price}",
+            "{@b AC Bonus}",
+            "{@b Dex Cap}",
+            "{@b Check Penalty}",
+            "{@b Speed Penalty}",
+            "{@b Bulk}",
+            "{@b Strength}"
+          ],
+          "rows": [
+            [
+              {
+                "entry": "Light",
+                "rowSpan": 2
+              },
+              "Small or Medium",
+              "10 gp",
+              "+1",
+              "+5",
+              "-1",
+              "-5 ft.",
+              "2",
+              "+3"
+            ],
+            [
+              "Large",
+              "20 gp",
+              "+1",
+              "+5",
+              "-1",
+              "-5 ft.",
+              "4",
+              "+3"
+            ],
+            [
+              {
+                "entry": "Heavy",
+                "rowSpan": 2
+              },
+              "Small or Medium (Level 2)",
+              "25 gp",
+              "+3",
+              "+3",
+              "-3",
+              "-10 ft.",
+              "4",
+              "+5"
+            ],
+            [
+              "Large (Level 3)",
+              "50 gp",
+              "+3",
+              "+3",
+              "-3",
+              "-10 ft.",
+              "8",
+              "+5"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Barding (Light; Large)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Barding",
+      "level": 0,
+      "traits": [],
+      "price": "20 gp",
+      "bulk": "4",
+      "entries": [
+        "You can purchase special armor for animals, called barding (shown on Table 6–18). All animals have a trained proficiency rank in light barding, and combat-trained animals are trained in heavy barding. Barding uses the same rules as armor except for the following. The Price and Bulk of barding depend on the animal’s size. Unlike for a suit of armor, barding’s Strength entry is listed as a modifier, not a score. Barding can’t be etched with magic runes, though special magical barding might be available.",
+        {
+          "type": "h3",
+          "name": "Barding",
+          "entries": []
+        },
+        {
+          "type": "table",
+          "colLabels": [
+            "{@b Barding}",
+            "{@b Size}",
+            "{@b Price}",
+            "{@b AC Bonus}",
+            "{@b Dex Cap}",
+            "{@b Check Penalty}",
+            "{@b Speed Penalty}",
+            "{@b Bulk}",
+            "{@b Strength}"
+          ],
+          "rows": [
+            [
+              {
+                "entry": "Light",
+                "rowSpan": 2
+              },
+              "Small or Medium",
+              "10 gp",
+              "+1",
+              "+5",
+              "-1",
+              "-5 ft.",
+              "2",
+              "+3"
+            ],
+            [
+              "Large",
+              "20 gp",
+              "+1",
+              "+5",
+              "-1",
+              "-5 ft.",
+              "4",
+              "+3"
+            ],
+            [
+              {
+                "entry": "Heavy",
+                "rowSpan": 2
+              },
+              "Small or Medium (Level 2)",
+              "25 gp",
+              "+3",
+              "+3",
+              "-3",
+              "-10 ft.",
+              "4",
+              "+5"
+            ],
+            [
+              "Large (Level 3)",
+              "50 gp",
+              "+3",
+              "+3",
+              "-3",
+              "-10 ft.",
+              "8",
+              "+5"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Barding (Light; Small or Medium)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Barding",
+      "level": 0,
+      "traits": [],
+      "price": "10 gp",
+      "bulk": "2",
+      "entries": [
+        "You can purchase special armor for animals, called barding (shown on Table 6–18). All animals have a trained proficiency rank in light barding, and combat-trained animals are trained in heavy barding. Barding uses the same rules as armor except for the following. The Price and Bulk of barding depend on the animal’s size. Unlike for a suit of armor, barding’s Strength entry is listed as a modifier, not a score. Barding can’t be etched with magic runes, though special magical barding might be available.",
+        {
+          "type": "h3",
+          "name": "Barding",
+          "entries": []
+        },
+        {
+          "type": "table",
+          "colLabels": [
+            "{@b Barding}",
+            "{@b Size}",
+            "{@b Price}",
+            "{@b AC Bonus}",
+            "{@b Dex Cap}",
+            "{@b Check Penalty}",
+            "{@b Speed Penalty}",
+            "{@b Bulk}",
+            "{@b Strength}"
+          ],
+          "rows": [
+            [
+              {
+                "entry": "Light",
+                "rowSpan": 2
+              },
+              "Small or Medium",
+              "10 gp",
+              "+1",
+              "+5",
+              "-1",
+              "-5 ft.",
+              "2",
+              "+3"
+            ],
+            [
+              "Large",
+              "20 gp",
+              "+1",
+              "+5",
+              "-1",
+              "-5 ft.",
+              "4",
+              "+3"
+            ],
+            [
+              {
+                "entry": "Heavy",
+                "rowSpan": 2
+              },
+              "Small or Medium (Level 2)",
+              "25 gp",
+              "+3",
+              "+3",
+              "-3",
+              "-10 ft.",
+              "4",
+              "+5"
+            ],
+            [
+              "Large (Level 3)",
+              "50 gp",
+              "+3",
+              "+3",
+              "-3",
+              "-10 ft.",
+              "8",
+              "+5"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Basic Crafter's Book",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "This book contains formulas for {@skill Crafting|} the 0-level common items in this chapter."
+      ]
+    },
+    {
+      "name": "Bastard Sword",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "two-hand"
+      ],
+      "traitLabels": {
+        "two-hand": "Two-Hand 1d12"
+      },
+      "price": "4 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d8 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This broad-bladed sword, sometimes called the hand-and-a-half sword, has a longer grip so it can be held in one hand or used with two hands to provide extra slashing power."
+      ]
+    },
+    {
+      "name": "Battle Axe",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "sweep"
+      ],
+      "price": "1 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Axe",
+      "stats": {
+        "Damage": "1d8 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "These axes are designed explicitly as weapons, rather than tools. They typically weigh less, with a shaft reinforced with metal bands or bolts, and have a sharper blade, making them ideal for chopping limbs rather than wood."
+      ]
+    },
+    {
+      "name": "Bedroll",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 cp",
+      "bulk": "L",
+      "entries": []
+    },
+    {
+      "name": "Beverages",
+      "source": "PC1",
+      "page": 294,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Beverages (Bottle of Fine Wine)|PC1}",
+            "{@equipment Beverages (Bottle of Wine)|PC1}",
+            "{@equipment Beverages (Keg of Ale)|PC1}",
+            "{@equipment Beverages (Mug of Ale)|PC1}",
+            "{@equipment Beverages (Pot of Coffee or Tea)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Beverages (Bottle of Fine Wine)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": []
+    },
+    {
+      "name": "Beverages (Bottle of Wine)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": []
+    },
+    {
+      "name": "Beverages (Keg of Ale)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 sp",
+      "bulk": "2",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Beverages (Mug of Ale)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": []
+    },
+    {
+      "name": "Beverages (Pot of Coffee or Tea)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 cp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": []
+    },
+    {
+      "name": "Blowgun",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "nonlethal"
+      ],
+      "price": "1 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Dart",
+      "stats": {
+        "Damage": "1 P",
+        "Range": "20 ft.",
+        "Reload": "1",
+        "Type": "Ranged",
+        "Ammunition": "{@equipment Blowgun Darts|PC1}"
+      },
+      "entries": [
+        "This long, narrow tube is used for shooting blowgun darts, using only the power of a forcefully exhaled breath."
+      ]
+    },
+    {
+      "name": "Blowgun Darts",
+      "source": "PC1",
+      "page": 280,
+      "category": "Ammunition",
+      "level": 0,
+      "traits": [],
+      "price": "5 cp (price for 10)",
+      "bulk": "L",
+      "subcategory": "Ammunition",
+      "group": "Dart",
+      "stats": {
+        "Type": "Ranged"
+      },
+      "entries": [
+        "These thin, light darts are typically made of hardwood and stabilized with fletching of down or fur. They are often hollow so they can be used to deliver poison."
+      ]
+    },
+    {
+      "name": "Bo Staff",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "monk",
+        "parry",
+        "reach",
+        "trip"
+      ],
+      "price": "2 sp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Club",
+      "stats": {
+        "Damage": "1d8 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This strong but slender staff is tapered at the ends and well balanced. It's designed to be an offensive and defensive weapon."
+      ]
+    },
+    {
+      "name": "Bola",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "nonlethal",
+        "ranged trip",
+        "thrown"
+      ],
+      "price": "5 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Sling",
+      "stats": {
+        "Damage": "1d6 B",
+        "Range": "20 ft.",
+        "Type": "Ranged"
+      },
+      "entries": [
+        "This throwing weapon consists of weights tied to the end of long cords, which can be used to bludgeon foes or entangle their legs."
+      ]
+    },
+    {
+      "name": "Bolts",
+      "source": "PC1",
+      "page": 280,
+      "category": "Ammunition",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp (price for 10)",
+      "bulk": "L",
+      "subcategory": "Ammunition",
+      "group": "Crossbow",
+      "stats": {
+        "Type": "Ranged"
+      },
+      "entries": [
+        "Shorter than traditional arrows but similar in construction, bolts are the ammunition used by crossbows."
+      ]
+    },
+    {
+      "name": "Brass Ear",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "—",
+      "hands": "1",
+      "entries": [
+        "A brass ear is a short, flared tube with one end narrow enough to comfortably fit against the ear canal. When using it to listen through a door, window, thin wall, or similar barrier, if the barrier would normally increase the DC of your Perception check to hear sounds on the other side, the DC increases by only half as much as normal. It's not suitable for improving your hearing in general, a role better served by a hearing aids."
+      ]
+    },
+    {
+      "name": "Breastplate",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 0,
+      "traits": [],
+      "price": "8 gp",
+      "bulk": "2",
+      "subcategory": "Medium",
+      "group": "Plate",
+      "stats": {
+        "AC Bonus": "+4",
+        "Dex Cap": "+1",
+        "Check Penalty": "-2",
+        "Speed Penalty": "-5 ft.",
+        "Strength": "+3"
+      },
+      "entries": [
+        "Though referred to as a breastplate, this type of armor consists of several pieces of plate or half-plate armor (see below) that protect the torso, chest, neck, and sometimes the hips and lower legs. It strategically grants some of the protection of plate while allowing greater flexibility and speed."
+      ]
+    },
+    {
+      "name": "Buckler",
+      "source": "PC1",
+      "page": 274,
+      "category": "Shield",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "L",
+      "stats": {
+        "AC Bonus": "+1",
+        "Speed Penalty": "—",
+        "Hardness": "3",
+        "HP (BT)": "6 (3)"
+      },
+      "entries": [
+        "This very small shield is a favorite of duelists and quick, lightly armored warriors. It's typically made of steel and strapped to your forearm. You can {@action Raise a Shield|} with your buckler as long as you have that hand free or are holding a light object that's not a weapon in that hand."
+      ]
+    },
+    {
+      "name": "Caltrops",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "3 sp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "These four-pronged metal spikes can damage a creature's feet. You can scatter caltrops in an empty square adjacent to you with an Interact action. The first creature that moves into that square must succeed at a DC 14 {@skill Acrobatics|} check or take 1d4 piercing damage and 1 {@condition Persistent Damage||persistent bleed damage}. A creature taking persistent bleed damage from caltrops takes a –5-foot penalty to its Speed. Spending an Interact action to pluck the caltrops free reduces the DC to stop the bleeding. Once a creature takes damage from caltrops, enough are ruined that other creatures moving into the square are safe. Deployed caltrops can be salvaged and reused if no creatures took damage from them. Otherwise, enough are ruined that they can't be salvaged."
+      ]
+    },
+    {
+      "name": "Candle",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp",
+      "bulk": "—",
+      "hands": "1",
+      "entries": [
+        "A lit candle sheds dim light in a 10-foot radius for 8 hours."
+      ]
+    },
+    {
+      "name": "Cane",
+      "source": "PC1",
+      "page": 293,
+      "category": "Assistive Item",
+      "level": 0,
+      "traits": [],
+      "price": "5 sp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "A cane is a straight length of wood with a curved handle, shaped like the tip of a hook. Its simple design helps with balance and only slightly assists with taking weight off the affected opposite leg. The cane is typically 2 to 3 feet long but can be lengthened or shortened as needed."
+      ]
+    },
+    {
+      "name": "Chain",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "4 gp (10 ft.)",
+      "bulk": "1",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Chain Mail",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 0,
+      "traits": [
+        "flexible",
+        "noisy"
+      ],
+      "price": "6 gp",
+      "bulk": "2",
+      "subcategory": "Medium",
+      "group": "Chain",
+      "stats": {
+        "AC Bonus": "+4",
+        "Dex Cap": "+1",
+        "Check Penalty": "-2",
+        "Speed Penalty": "-5 ft.",
+        "Strength": "+3"
+      },
+      "entries": [
+        "A suit of chain mail consists of several pieces of armor composed of small metal rings linked together in a protective mesh. It typically includes a chain shirt, leggings, a pair of arms, and a coif, collectively protecting most of the body."
+      ]
+    },
+    {
+      "name": "Chain Shirt",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 0,
+      "traits": [
+        "flexible",
+        "noisy"
+      ],
+      "price": "5 gp",
+      "bulk": "1",
+      "subcategory": "Light",
+      "group": "Chain",
+      "stats": {
+        "AC Bonus": "+2",
+        "Dex Cap": "+3",
+        "Check Penalty": "-1",
+        "Speed Penalty": "—",
+        "Strength": "+1"
+      },
+      "entries": [
+        "Sometimes called a hauberk, this is a long shirt constructed of the same metal rings as chainmail. However, it is much lighter than chainmail and protects only the torso, upper arms, and upper legs of its wearer."
+      ]
+    },
+    {
+      "name": "Chalk",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp (10 pieces)",
+      "bulk": "—",
+      "hands": "1",
+      "entries": []
+    },
+    {
+      "name": "Chest",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "6 sp",
+      "bulk": "2",
+      "hands": "2",
+      "entries": [
+        "A wooden chest can hold up to 8 Bulk of items."
+      ]
+    },
+    {
+      "name": "Clan Dagger",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "agile",
+        "dwarf",
+        "parry",
+        "versatile"
+      ],
+      "traitLabels": {
+        "versatile": "Versatile B"
+      },
+      "price": "2 gp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Knife",
+      "stats": {
+        "Damage": "1d4 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This broad dagger is carried by dwarves as a weapon, tool, and designation of clan. Losing or having to surrender a clan dagger is considered a mark of embarrassment to most dwarves."
+      ]
+    },
+    {
+      "name": "Climbing Kit",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "5 sp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": [
+        "This satchel includes 50 feet of {@equipment Rope|PC1|rope}, pulleys, a dozen pitons, a hammer, a {@equipment Grappling Hook|PC1|grappling hook}, and one set of crampons. Climbing kits allow you to attach yourself to the wall you're Climbing, moving half as quickly as usual (minimum 5 feet) but letting you attempt a DC 5 flat check whenever you critically fail to prevent a fall. A single kit has only enough materials for one climber; each climber needs their own kit. If you wear your climbing kit, you can access it as part of a Climb action."
+      ]
+    },
+    {
+      "name": "Climbing Kit (Extreme)",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "40 gp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": [
+        "This satchel includes 50 feet of {@equipment Rope|PC1|rope}, pulleys, a dozen pitons, a hammer, a {@equipment Grappling Hook|PC1|grappling hook}, and one set of crampons. Climbing kits allow you to attach yourself to the wall you're Climbing, moving half as quickly as usual (minimum 5 feet) but letting you attempt a DC 5 flat check whenever you critically fail to prevent a fall. A single kit has only enough materials for one climber; each climber needs their own kit. If you wear your climbing kit, you can access it as part of a Climb action.",
+        "You gain a +1 item bonus to {@skill Athletics|} checks to Climb while using an extreme climbing kit."
+      ]
+    },
+    {
+      "name": "Clothing",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        "Ordinary clothing is functional with basic tailoring, such as peasant garb, monk's robes, or work clothes.",
+        "More expensive finery or clothes for specific climes cost more.",
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Clothing (Cold-Weather)|PC1}",
+            "{@equipment Clothing (Explorer's)|PC1}",
+            "{@equipment Clothing (Fine)|PC1}",
+            "{@equipment Clothing (High-Fashion Fine)|PC1}",
+            "{@equipment Clothing (Ordinary)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Clothing (Cold-Weather)",
+      "source": "PC1",
+      "page": 291,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "4 sp",
+      "bulk": "L",
+      "entries": [
+        "Ordinary clothing is functional with basic tailoring, such as peasant garb, monk's robes, or work clothes.",
+        "More expensive finery or clothes for specific climes cost more."
+      ]
+    },
+    {
+      "name": "Clothing (Explorer's)",
+      "source": "PC1",
+      "page": 291,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp",
+      "bulk": "L",
+      "entries": [
+        "Ordinary clothing is functional with basic tailoring, such as peasant garb, monk's robes, or work clothes.",
+        "More expensive finery or clothes for specific climes cost more.",
+        "Explorer’s clothing is sturdy enough that it can be reinforced to protect you, even though it isn’t a suit of armor. It comes in many forms, though the most common sorts look like clerical vestments, monk’s garments, or wizard’s robes, as members of all three classes are likely to avoid wearing armor. For more information on explorer’s clothing, see its entry in the armor category."
+      ]
+    },
+    {
+      "name": "Clothing (Fine)",
+      "source": "PC1",
+      "page": 291,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 gp",
+      "bulk": "L",
+      "entries": [
+        "Ordinary clothing is functional with basic tailoring, such as peasant garb, monk's robes, or work clothes.",
+        "More expensive finery or clothes for specific climes cost more."
+      ]
+    },
+    {
+      "name": "Clothing (High-Fashion Fine)",
+      "source": "PC1",
+      "page": 291,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "55 gp",
+      "bulk": "L",
+      "entries": [
+        "Ordinary clothing is functional with basic tailoring, such as peasant garb, monk's robes, or work clothes.",
+        "More expensive finery or clothes for specific climes cost more."
+      ]
+    },
+    {
+      "name": "Clothing (Ordinary)",
+      "source": "PC1",
+      "page": 287,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp",
+      "bulk": "—",
+      "entries": [
+        "Ordinary clothing is functional with basic tailoring, such as peasant garb, monk's robes, or work clothes.",
+        "More expensive finery or clothes for specific climes cost more."
+      ]
+    },
+    {
+      "name": "Club",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "thrown"
+      ],
+      "traitLabels": {
+        "thrown": "Thrown 10 ft."
+      },
+      "price": "0",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Club",
+      "stats": {
+        "Damage": "1d6 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This is a piece of stout wood shaped or repurposed to bludgeon an enemy. Clubs can be intricately carved pieces of martial art or as simple as a tree branch or piece of wood."
+      ]
+    },
+    {
+      "name": "Compass",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "—",
+      "hands": "1",
+      "entries": [
+        "A compass helps you {@action Sense Direction|} or navigate, provided you're in a location with uniform magnetic fields. Without a compass, you take a –2 item penalty to these checks (similar to using a shoddy item)."
+      ]
+    },
+    {
+      "name": "Compass (Lensatic)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "20 gp",
+      "bulk": "—",
+      "hands": "1",
+      "entries": [
+        "A compass helps you {@action Sense Direction|} or navigate, provided you're in a location with uniform magnetic fields. Without a compass, you take a –2 item penalty to these checks (similar to using a shoddy item).",
+        "A lensatic compass gives you a +1 item bonus to these checks."
+      ]
+    },
+    {
+      "name": "Composite Longbow",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 1,
+      "traits": [
+        "deadly",
+        "propulsive",
+        "volley"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d10",
+        "volley": "Volley 30 ft."
+      },
+      "price": "20 gp",
+      "bulk": "2",
+      "hands": "1+",
+      "subcategory": "Martial",
+      "group": "Bow",
+      "stats": {
+        "Damage": "1d8 P",
+        "Range": "100 ft.",
+        "Reload": "0",
+        "Type": "Ranged",
+        "Ammunition": "{@equipment Arrows|PC1}"
+      },
+      "entries": [
+        "This projectile weapon is made from horn, wood, and sinew laminated together to increase the power of its pull and the force of its projectile. Like all longbows, its great size also increases the bow's range and power. You must use two hands to fire it, and it cannot be used while mounted. Any time an ability is specifically restricted to a longbow, such as Erastil's favored weapon, it also applies to composite longbows unless otherwise stated."
+      ]
+    },
+    {
+      "name": "Composite Shortbow",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 1,
+      "traits": [
+        "deadly",
+        "propulsive"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d10"
+      },
+      "price": "14 gp",
+      "bulk": "1",
+      "hands": "1+",
+      "subcategory": "Martial",
+      "group": "Bow",
+      "stats": {
+        "Damage": "1d6 P",
+        "Range": "60 ft.",
+        "Reload": "0",
+        "Type": "Ranged",
+        "Ammunition": "{@equipment Arrows|PC1}"
+      },
+      "entries": [
+        "This shortbow is made from horn, wood, and sinew laminated together to increase the power of its pull and the force of its projectile. Its compact size and power make it a favorite of mounted archers. Any time an ability is specifically restricted to a shortbow, it also applies to composite shortbows unless otherwise stated."
+      ]
+    },
+    {
+      "name": "Concealed Sheath",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "25 gp",
+      "bulk": "—",
+      "entries": [
+        "This leather sheath is large enough to hold an item of up to light Bulk and is typically used for daggers, wands, thieves' toolkits, and similar objects. You can affix it to the inside of a boot, under a bracer or sleeve, or in other inconspicuous locations to gain a +1 item bonus to {@skill Stealth|} checks and DCs to hide or conceal the item within."
+      ]
+    },
+    {
+      "name": "Cookware",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "2",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Corrective Lenses",
+      "source": "PC1",
+      "page": 293,
+      "category": "Assistive Item",
+      "level": 0,
+      "traits": [],
+      "price": "5 sp",
+      "bulk": "—",
+      "entries": [
+        "A set of corrective lenses might take the form of eyeglasses or specialized goggles worn over the eyes. You can don or remove your corrective lenses as an Interact action."
+      ]
+    },
+    {
+      "name": "Crossbow",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [],
+      "price": "3 gp",
+      "bulk": "1",
+      "hands": "2",
+      "subcategory": "Simple",
+      "group": "Crossbow",
+      "stats": {
+        "Damage": "1d8 P",
+        "Range": "120 ft.",
+        "Reload": "1",
+        "Type": "Ranged",
+        "Ammunition": "{@equipment Bolts|PC1}"
+      },
+      "entries": [
+        "This ranged weapon has a bow-like assembly mounted on a handled frame called a tiller. The tiller has a mechanism to lock the bowstring in place, attached to a trigger mechanism that releases the tension and launches a bolt."
+      ]
+    },
+    {
+      "name": "Crowbar",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "5 sp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "When Forcing Open an object that doesn't have an easy grip, a crowbar makes it easier to gain the necessary leverage. Without a crowbar, prying something open takes a –2 item penalty to the {@skill Athletics|} check to Force Open."
+      ]
+    },
+    {
+      "name": "Crowbar (Levered)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "20 gp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "When Forcing Open an object that doesn't have an easy grip, a crowbar makes it easier to gain the necessary leverage. Without a crowbar, prying something open takes a –2 item penalty to the {@skill Athletics|} check to Force Open.",
+        "A levered crowbar grants you a +1 item bonus to Athletics checks to Force Open anything that can be pried open."
+      ]
+    },
+    {
+      "name": "Crutch",
+      "source": "PC1",
+      "page": 293,
+      "category": "Assistive Item",
+      "level": 0,
+      "traits": [],
+      "price": "5 sp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "Crutches come as singles or as a pair depending on how much support you need while walking. A crutch fits under your armpit, and you use your hand and the swing of your arm to move with them."
+      ]
+    },
+    {
+      "name": "Dagger",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "finesse",
+        "thrown",
+        "versatile"
+      ],
+      "traitLabels": {
+        "thrown": "Thrown 10 ft.",
+        "versatile": "Versatile S"
+      },
+      "price": "2 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Knife",
+      "stats": {
+        "Damage": "1d4 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This small, bladed weapon is held in one hand and used to stab a creature in close combat. It can also be thrown."
+      ]
+    },
+    {
+      "name": "Dart",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "thrown"
+      ],
+      "price": "1 cp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Dart",
+      "stats": {
+        "Damage": "1d4 P",
+        "Range": "20 ft.",
+        "Type": "Ranged"
+      },
+      "entries": [
+        "This thrown weapon is larger than an arrow but shorter than a javelin. It typically has a short shaft of wood ending in a metal tip and is sometimes stabilized by feathers or fur."
+      ]
+    },
+    {
+      "name": "Detective's Kit",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "25 gp",
+      "bulk": "1",
+      "hands": "1 or 2",
+      "entries": [
+        "This leather satchel contains empty vials, a pair of tweezers, a supply of small linen cloths, a set of brass calipers and a knotted string for measuring distances, several pieces of chalk, a pen, and a blank notebook for keeping notes. Every component of a detective's kit is of exceeding quality, and thus a detective's kit adds a +1 item bonus to checks to investigate a crime scene, a clue, or similar details. Like other tool kits, a detective's kit uses one hand if wearing the kit and two hands otherwise."
+      ]
+    },
+    {
+      "name": "Disguise Kit",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 gp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "This small wooden box contains cosmetics, false facial hair, spirit gum, and a few simple wigs. You usually need a disguise kit to set up a disguise in order to {@action Impersonate|} someone using the {@skill Deception|} skill. If you've crafted a large number of disguises, you can replenish your cosmetics supply with replacement cosmetics suitable for the type of your disguise kit. You can draw and replace a worn disguise kit as part of the action that uses it."
+      ]
+    },
+    {
+      "name": "Disguise Kit (Elite Cosmetics)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "5 sp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "This small wooden box contains cosmetics, false facial hair, spirit gum, and a few simple wigs. You usually need a disguise kit to set up a disguise in order to {@action Impersonate|} someone using the {@skill Deception|} skill. If you've crafted a large number of disguises, you can replenish your cosmetics supply with replacement cosmetics suitable for the type of your disguise kit. You can draw and replace a worn disguise kit as part of the action that uses it."
+      ]
+    },
+    {
+      "name": "Disguise Kit (Elite)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "40 gp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "This small wooden box contains cosmetics, false facial hair, spirit gum, and a few simple wigs. You usually need a disguise kit to set up a disguise in order to {@action Impersonate|} someone using the {@skill Deception|} skill. If you've crafted a large number of disguises, you can replenish your cosmetics supply with replacement cosmetics suitable for the type of your disguise kit. You can draw and replace a worn disguise kit as part of the action that uses it.",
+        "An elite disguise kit adds a +1 item bonus to relevant checks."
+      ]
+    },
+    {
+      "name": "Disguise Kit (Replacement Cosmetics)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "This small wooden box contains cosmetics, false facial hair, spirit gum, and a few simple wigs. You usually need a disguise kit to set up a disguise in order to {@action Impersonate|} someone using the {@skill Deception|} skill. If you've crafted a large number of disguises, you can replenish your cosmetics supply with replacement cosmetics suitable for the type of your disguise kit. You can draw and replace a worn disguise kit as part of the action that uses it."
+      ]
+    },
+    {
+      "name": "Dogslicer",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "agile",
+        "backstabber",
+        "finesse",
+        "goblin"
+      ],
+      "price": "1 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d6 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This short, curved, and crude makeshift blade often has holes drilled into it to reduce its weight. It's a favored weapon of goblins."
+      ]
+    },
+    {
+      "name": "Dueling Cape",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "5 sp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "You can pull a dueling cape you're wearing from your shoulder and wrap it around your arm with an Interact action. While wielding the dueling cape this way, the cape uses that arm and hand, and you can't hold anything else in that hand. While you do so, you can spend an action to hold it in a protective position, giving you a +1 circumstance bonus to AC and to {@skill Deception|} checks to {@action Feint|} until the start of your next turn."
+      ]
+    },
+    {
+      "name": "Dwarven Waraxe",
+      "source": "PC1",
+      "page": 279,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "dwarf",
+        "sweep",
+        "two-hand"
+      ],
+      "traitLabels": {
+        "two-hand": "Two-Hand 1d12"
+      },
+      "price": "3 gp",
+      "bulk": "2",
+      "hands": "1",
+      "subcategory": "Advanced",
+      "group": "Axe",
+      "stats": {
+        "Damage": "1d8 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This favored weapon of the dwarves has a large, ornate head mounted on a thick handle. This powerful axe can be wielded with one hand or two."
+      ]
+    },
+    {
+      "name": "Elven Curve Blade",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "elf",
+        "finesse",
+        "forceful"
+      ],
+      "price": "4 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d8 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "Essentially a longer version of the scimitar, this traditional elven weapon has a thinner blade than its cousin."
+      ]
+    },
+    {
+      "name": "Explorer's Clothing",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 0,
+      "traits": [
+        "comfort"
+      ],
+      "price": "1 sp",
+      "bulk": "L",
+      "subcategory": "Unarmored",
+      "group": "Cloth",
+      "stats": {
+        "AC Bonus": "+0",
+        "Dex Cap": "+5",
+        "Check Penalty": "—",
+        "Speed Penalty": "—",
+        "Strength": "—"
+      },
+      "entries": [
+        "Adventurers who don't wear armor travel in durable clothing. Though it's not armor and uses your unarmored defense proficiency, it still has a Dex Cap and can grant an item bonus to AC if etched with {@i armor potency} runes."
+      ]
+    },
+    {
+      "name": "Falchion",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "forceful",
+        "sweep"
+      ],
+      "price": "3 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d10 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This weapon is a heavier, two-handed version of the curved-bladed scimitar. It is weighted toward the blade's end, making it a powerful slashing weapon."
+      ]
+    },
+    {
+      "name": "Filcher's Fork",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "agile",
+        "backstabber",
+        "deadly",
+        "finesse",
+        "halfling",
+        "thrown"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d6",
+        "thrown": "Thrown 20 ft."
+      },
+      "price": "1 gp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Spear",
+      "stats": {
+        "Damage": "1d4 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This halfling weapon looks like a long, two-pronged fork and is used as both a weapon and a cooking implement."
+      ]
+    },
+    {
+      "name": "Fishing Tackle",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "8 sp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": [
+        "This kit include a collapsible fishing pole, fishhooks, line, lures, and a fishing net."
+      ]
+    },
+    {
+      "name": "Fishing Tackle (Professional)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "20 gp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": [
+        "This kit include a collapsible fishing pole, fishhooks, line, lures, and a fishing net.",
+        "Professional fishing tackle grants a +1 item bonus to checks to fish."
+      ]
+    },
+    {
+      "name": "Fist",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "finesse",
+        "nonlethal",
+        "unarmed"
+      ],
+      "price": "—",
+      "bulk": "—",
+      "hands": "1",
+      "subcategory": "Unarmed",
+      "group": "Brawling",
+      "stats": {
+        "Damage": "1d4 B",
+        "Type": "Melee"
+      },
+      "entries": []
+    },
+    {
+      "name": "Flail",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "disarm",
+        "sweep",
+        "trip"
+      ],
+      "price": "8 sp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Flail",
+      "stats": {
+        "Damage": "1d6 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This weapon consists of a wooden handle attached to a spiked ball or cylinder by a chain, rope, or strap of leather."
+      ]
+    },
+    {
+      "name": "Flint and Steel",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "5 cp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "Flint and steel are useful in creating a fire if you have the time to catch a spark, though using them is typically too time-consuming to be practical during an encounter. Even in ideal conditions, using flint and steel to light a flame requires using at least 3 actions, and often significantly longer."
+      ]
+    },
+    {
+      "name": "Formula Book (Blank)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "A formula book holds the formulas necessary to make items other than the common equipment from this chapter; characters of the alchemist class typically get one for free. Each formula book can hold the formulas for up to 100 different items. Formulas can also appear on parchment sheets, tablets, and almost any other medium; there's no need for you to copy them into a specific book as long as you can keep them on hand to reference them."
+      ]
+    },
+    {
+      "name": "Full Plate",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 2,
+      "traits": [
+        "bulwark"
+      ],
+      "price": "30 gp",
+      "bulk": "4",
+      "subcategory": "Heavy",
+      "group": "Plate",
+      "stats": {
+        "AC Bonus": "+6",
+        "Dex Cap": "+0",
+        "Check Penalty": "-3",
+        "Speed Penalty": "-10 ft.",
+        "Strength": "+4"
+      },
+      "entries": [
+        "Plate mail consists of interlocking plates that encase nearly the entire body in a carapace of steel. It is costly and heavy, and the wearer often requires help to don it correctly, but it provides some of the best defense armor can supply. A suit of this armor comes with an undercoat of {@equipment Padded Armor|PC1|padded armor} and a pair of gauntlets."
+      ]
+    },
+    {
+      "name": "Gauntlet",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "free-hand"
+      ],
+      "price": "2 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Brawling",
+      "stats": {
+        "Damage": "1d4 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "A pair of these metal gloves comes with {@equipment Full Plate|PC1|full plate}, {@equipment Half Plate|PC1|half plate}, and splint armor; they can also be purchased separately and worn with other types of armor. They not only protect your hands but also transform your hands into lethal weapons."
+      ]
+    },
+    {
+      "name": "Glaive",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "deadly",
+        "forceful",
+        "reach"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d8"
+      },
+      "price": "1 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Polearm",
+      "stats": {
+        "Damage": "1d8 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This polearm consists of a long, single-edged blade on the end of a 7-foot pole. It is extremely effective at delivering lethal cuts at a distance."
+      ]
+    },
+    {
+      "name": "Gnome Flickmace",
+      "source": "PC1",
+      "page": 279,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "gnome",
+        "reach",
+        "sweep"
+      ],
+      "price": "3 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Advanced",
+      "group": "Flail",
+      "stats": {
+        "Damage": "1d6 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "More a flail than a mace, this weapon has a short handle attached to a length of chain with a ball at the end. The ball is propelled to its reach with the flick of the wrist, the momentum of which brings the ball back to the wielder after the strike."
+      ]
+    },
+    {
+      "name": "Gnome Hooked Hammer",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "gnome",
+        "trip",
+        "two-hand",
+        "versatile"
+      ],
+      "traitLabels": {
+        "two-hand": "Two-Hand 1d10",
+        "versatile": "Versatile P"
+      },
+      "price": "2 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Hammer",
+      "stats": {
+        "Damage": "1d6 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This gnome tool and weapon features a hammer at one end and a curved pick on the other. It's such a strange and awkward weapon that others think the gnomes are slightly erratic for using it."
+      ]
+    },
+    {
+      "name": "Grappling Hook",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "You can throw a grappling hook with a rope tied to it to make a climb easier. To anchor a grappling hook, make a ranged attack roll using your simple weapon proficiency against a DC depending on the target, typically at least DC 20. This attack has the {@trait Secret||secret} trait. On a success, your hook has a firm hold, but on a critical failure, the hook seems like it will hold but actually falls when you're partway up."
+      ]
+    },
+    {
+      "name": "Greataxe",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "sweep"
+      ],
+      "price": "2 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Axe",
+      "stats": {
+        "Damage": "1d12 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This large battle axe is too heavy to wield with only one hand. Many greataxes incorporate two blades, and they are often “bearded,” having a hook at the bottom to increase the strength of their chopping power."
+      ]
+    },
+    {
+      "name": "Greatclub",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "backswing",
+        "shove"
+      ],
+      "price": "1 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Club",
+      "stats": {
+        "Damage": "1d10 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "While many greatclubs are intricately carved, others are little more than a sturdy tree branch. These massive clubs are too heavy to wield with only one hand."
+      ]
+    },
+    {
+      "name": "Greatpick",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "fatal"
+      ],
+      "traitLabels": {
+        "fatal": "Fatal 1d12"
+      },
+      "price": "1 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Pick",
+      "stats": {
+        "Damage": "1d10 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This pick has a longer handle and broader head than a regular pick. It is too heavy to wield in one hand."
+      ]
+    },
+    {
+      "name": "Greatsword",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "versatile"
+      ],
+      "traitLabels": {
+        "versatile": "Versatile P"
+      },
+      "price": "2 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d12 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This immense two-handed sword is nearly as tall as its wielder. Its lower blade is often somewhat dulled to allow it to be gripped for extra leverage in close-quarter fights."
+      ]
+    },
+    {
+      "name": "Guisarme",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "reach",
+        "trip"
+      ],
+      "price": "2 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Polearm",
+      "stats": {
+        "Damage": "1d10 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This polearm bears a long, often one-sided, curved blade with a hook protruding from the blunt side of the blade, which can allow its wielder to trip opponents at a distance. Its shaft is usually 8 feet long."
+      ]
+    },
+    {
+      "name": "Halberd",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "reach",
+        "versatile"
+      ],
+      "traitLabels": {
+        "versatile": "Versatile S"
+      },
+      "price": "2 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Polearm",
+      "stats": {
+        "Damage": "1d10 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This polearm has a relatively short, 5-foot shaft. The business end is a long spike with an axe blade attached."
+      ]
+    },
+    {
+      "name": "Half Plate",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 1,
+      "traits": [],
+      "price": "18 gp",
+      "bulk": "3",
+      "subcategory": "Heavy",
+      "group": "Plate",
+      "stats": {
+        "AC Bonus": "+5",
+        "Dex Cap": "+1",
+        "Check Penalty": "-3",
+        "Speed Penalty": "-10 ft.",
+        "Strength": "+3"
+      },
+      "entries": [
+        "Half plate consists of most of the upper body plates used in {@equipment Full Plate|PC1|full plate}, with lighter or sparser steel plate protection for the arms and legs. This provides some of the protection of full plate with greater flexibility and speed. A suit of this armor comes with an undercoat of {@equipment Padded Armor|PC1|padded armor} and a pair of gauntlets."
+      ]
+    },
+    {
+      "name": "Halfling Sling Staff",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "halfling",
+        "propulsive"
+      ],
+      "price": "5 gp",
+      "bulk": "1",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Sling",
+      "stats": {
+        "Damage": "1d10 B",
+        "Range": "80 ft.",
+        "Reload": "1",
+        "Type": "Ranged",
+        "Ammunition": "{@equipment Sling Bullets|PC1}"
+      },
+      "entries": [
+        "This staff ends in a Y-shaped split that cradles a sling. The length of the staff provides excellent leverage when used two-handed to fling rocks or bullets from the sling."
+      ]
+    },
+    {
+      "name": "Hammer",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": []
+    },
+    {
+      "name": "Hand Crossbow",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [],
+      "price": "3 gp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Crossbow",
+      "stats": {
+        "Damage": "1d6 P",
+        "Range": "60 ft.",
+        "Reload": "1",
+        "Type": "Ranged",
+        "Ammunition": "{@equipment Bolts|PC1}"
+      },
+      "entries": [
+        "Sometimes referred to as an alley bow by rogues or ruffians, this small crossbow fires small bolts that are sometimes used to deliver poison to the target. It's small enough to be shot one-handed, but it still requires two hands to load."
+      ]
+    },
+    {
+      "name": "Hatchet",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "sweep",
+        "thrown"
+      ],
+      "traitLabels": {
+        "thrown": "Thrown 10 ft."
+      },
+      "price": "4 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Axe",
+      "stats": {
+        "Damage": "1d6 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This small axe can be used in close combat or thrown."
+      ]
+    },
+    {
+      "name": "Healer's Toolkit",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "5 gp",
+      "bulk": "1",
+      "hands": "1 or 2",
+      "entries": [
+        "This kit of bandages, herbs, and suturing tools is necessary for {@skill Medicine|} checks to {@action Administer First Aid|}, {@action Treat Disease|}, {@action Treat Poison|}, or {@action Treat Wounds|}. If you wear your healer's toolkit, you can draw and replace them as part of the action that uses them.",
+        "You can use a toolkit with 1 hand if you’re wearing it or 2 if you’re holding it. See here for details."
+      ]
+    },
+    {
+      "name": "Healer's Toolkit (Expanded)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "50 gp",
+      "bulk": "1",
+      "hands": "1 or 2",
+      "entries": [
+        "This kit of bandages, herbs, and suturing tools is necessary for {@skill Medicine|} checks to {@action Administer First Aid|}, {@action Treat Disease|}, {@action Treat Poison|}, or {@action Treat Wounds|}. If you wear your healer's toolkit, you can draw and replace them as part of the action that uses them.",
+        "You can use a toolkit with 1 hand if you’re wearing it or 2 if you’re holding it. See here for details.",
+        "Expanded healer's toolkits provide a +1 item bonus to such checks."
+      ]
+    },
+    {
+      "name": "Hearing Aid",
+      "source": "PC1",
+      "page": 293,
+      "category": "Assistive Item",
+      "level": 0,
+      "traits": [],
+      "price": "5 sp",
+      "bulk": "—",
+      "entries": [
+        "A hearing aid is worn in the ear and is made from carved wood, shaped metal, or even small clockwork pieces. The shape of the device aids those who are hard of hearing, and you can wear one or two depending on your hearing loss. You can attach or remove your hearing aids as an Interact action."
+      ]
+    },
+    {
+      "name": "Hearing Aid (Magical)",
+      "source": "PC1",
+      "page": 293,
+      "category": "Assistive Item",
+      "level": 0,
+      "traits": [],
+      "price": "5 gp",
+      "bulk": "—",
+      "entries": [
+        "A hearing aid is worn in the ear and is made from carved wood, shaped metal, or even small clockwork pieces. The shape of the device aids those who are hard of hearing, and you can wear one or two depending on your hearing loss. You can attach or remove your hearing aids as an Interact action.",
+        "A magical hearing aid has the {@trait Magical||magical} trait. With its curved shape, it hooks over the top and sits behind your ear, with a receiver that fits into the ear opening. The external part of the device detects sound waves and, using magic, transfers them down the receiver and into your ear. You can wear one or two depending on your hearing loss, and you can turn your hearing aids on or off using an Interact action."
+      ]
+    },
+    {
+      "name": "Heavy Crossbow",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [],
+      "price": "4 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Simple",
+      "group": "Crossbow",
+      "stats": {
+        "Damage": "1d10 P",
+        "Range": "120 ft.",
+        "Reload": "2",
+        "Type": "Ranged",
+        "Ammunition": "{@equipment Bolts|PC1}"
+      },
+      "entries": [
+        "This large crossbow is harder to load and more substantial than a regular crossbow, but it packs a greater punch."
+      ]
+    },
+    {
+      "name": "Hide Armor",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 0,
+      "traits": [],
+      "price": "2 gp",
+      "bulk": "2",
+      "subcategory": "Medium",
+      "group": "Leather",
+      "stats": {
+        "AC Bonus": "+3",
+        "Dex Cap": "+2",
+        "Check Penalty": "-2",
+        "Speed Penalty": "-5 ft.",
+        "Strength": "+2"
+      },
+      "entries": [
+        "A mix of furs, sturdy hide, and sometimes molded boiled leather, this armor provides protection due to its layers of leather, though its bulkiness slows the wearer down and decreases mobility."
+      ]
+    },
+    {
+      "name": "Horsechopper",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "goblin",
+        "reach",
+        "trip",
+        "versatile"
+      ],
+      "traitLabels": {
+        "versatile": "Versatile P"
+      },
+      "price": "9 sp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Polearm",
+      "stats": {
+        "Damage": "1d8 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "Created by goblins to battle horses, this weapon is essentially a long shaft ending in a blade with a large hook."
+      ]
+    },
+    {
+      "name": "Hourglass",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "3 gp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": []
+    },
+    {
+      "name": "Javelin",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "thrown"
+      ],
+      "price": "1 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Dart",
+      "stats": {
+        "Damage": "1d6 P",
+        "Range": "30 ft.",
+        "Type": "Ranged"
+      },
+      "entries": [
+        "This thin spear is well balanced for throwing but is not designed for melee use."
+      ]
+    },
+    {
+      "name": "Kama",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "agile",
+        "monk",
+        "trip"
+      ],
+      "price": "1 gp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Knife",
+      "stats": {
+        "Damage": "1d6 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "Similar to a sickle and used in some regions to reap grain, a kama has a short, slightly curved blade and a wooden handle."
+      ]
+    },
+    {
+      "name": "Katana",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "deadly",
+        "two-hand",
+        "versatile"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d8",
+        "two-hand": "Two-Hand 1d10",
+        "versatile": "Versatile P"
+      },
+      "price": "2 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d6 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "A katana is a curved, single-edged sword known for its wickedly sharped blade."
+      ]
+    },
+    {
+      "name": "Katar",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "agile",
+        "deadly",
+        "monk"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d6"
+      },
+      "price": "3 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Knife",
+      "stats": {
+        "Damage": "1d4 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "Also known as punching daggers, katars are characterized by their H-shaped hand grip that allows the blade to jut out from the knuckles."
+      ]
+    },
+    {
+      "name": "Khakkhara",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "monk",
+        "shove",
+        "two-hand",
+        "versatile"
+      ],
+      "traitLabels": {
+        "two-hand": "Two-Hand d10",
+        "versatile": "Versatile P"
+      },
+      "price": "2 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Club",
+      "stats": {
+        "Damage": "1d6 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This staff is topped by a pointed metal circle from which hang several smaller rings that jingle and clang noisily as the staff is moved, allowing you to announce your presence and scare off wild animals as you walk."
+      ]
+    },
+    {
+      "name": "Kukri",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "agile",
+        "finesse",
+        "trip"
+      ],
+      "price": "6 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Knife",
+      "stats": {
+        "Damage": "1d6 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "The blade of this foot-long knife curves inward and lacks a cross guard at the hilt."
+      ]
+    },
+    {
+      "name": "Ladder (10 ft.)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "3 cp",
+      "bulk": "3",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Lance",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "deadly",
+        "jousting",
+        "reach"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d8",
+        "jousting": "Jousting 1d6"
+      },
+      "price": "1 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Spear",
+      "stats": {
+        "Damage": "1d8 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This spear-like weapon is used by a mounted creature to deal a great deal of damage."
+      ]
+    },
+    {
+      "name": "Lantern",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        "A lantern sheds bright light and requires 1 pint of oil to function for 6 hours.",
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Lantern (Bull's-Eye)|PC1}",
+            "{@equipment Lantern (Hooded)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lantern (Bull's-Eye)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "1",
+      "hands": "1",
+      "entries": [
+        "A lantern sheds bright light and requires 1 pint of oil to function for 6 hours.",
+        "A bull's-eye lantern emits its light in a 60-foot cone (and dim light in the next 60 feet)."
+      ]
+    },
+    {
+      "name": "Lantern (Hooded)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "7 sp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "A lantern sheds bright light and requires 1 pint of oil to function for 6 hours.",
+        "A hooded lantern sheds light in a 30-foot radius (and dim light in the next 30 feet) and is equipped with shutters, which you can close to block the light. Closing or opening the shutters takes an Interact action."
+      ]
+    },
+    {
+      "name": "Leather Armor",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 0,
+      "traits": [],
+      "price": "2 gp",
+      "bulk": "1",
+      "subcategory": "Light",
+      "group": "Leather",
+      "stats": {
+        "AC Bonus": "+1",
+        "Dex Cap": "+4",
+        "Check Penalty": "-1",
+        "Speed Penalty": "—",
+        "Strength": "+0"
+      },
+      "entries": [
+        "A mix of flexible and molded boiled leather, a suit of this type of armor provides some protection with maximum flexibility."
+      ]
+    },
+    {
+      "name": "Light Hammer",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "thrown"
+      ],
+      "traitLabels": {
+        "thrown": "Thrown 20 ft."
+      },
+      "price": "3 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Hammer",
+      "stats": {
+        "Damage": "1d6 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This smaller version of the warhammer has a wooden or metal shaft ending in a metal head. Unlike its heavier cousin, it is light enough to throw."
+      ]
+    },
+    {
+      "name": "Light Mace",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "finesse",
+        "shove"
+      ],
+      "price": "4 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Club",
+      "stats": {
+        "Damage": "1d4 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "A light mace has a short wooden or metal shaft ending with a dense metal head. Used much like a club, it delivers heavy bludgeoning blows, but with extra power derived from the head's metal ridges or spikes."
+      ]
+    },
+    {
+      "name": "Light Pick",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "fatal"
+      ],
+      "traitLabels": {
+        "fatal": "Fatal 1d8"
+      },
+      "price": "4 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Pick",
+      "stats": {
+        "Damage": "1d4 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "A light pick is a modified mining implement with a wooden shaft ending in a pick head crafted more to pierce armor and flesh than chip rocks."
+      ]
+    },
+    {
+      "name": "Lock",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        "Picking a poor lock requires two successful DC 15 {@skill Thievery|} checks, a simple lock requires three successful DC 20 Thievery checks, an average lock requires four successes at DC 25, a good lock requires five successes at DC 30, and a superior lock six successes at DC 40.",
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Lock (Average)|PC1}",
+            "{@equipment Lock (Good)|PC1}",
+            "{@equipment Lock (Poor)|PC1}",
+            "{@equipment Lock (Simple)|PC1}",
+            "{@equipment Lock (Superior)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lock (Average)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "15 gp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "Picking a poor lock requires two successful DC 15 {@skill Thievery|} checks, a simple lock requires three successful DC 20 Thievery checks, an average lock requires four successes at DC 25, a good lock requires five successes at DC 30, and a superior lock six successes at DC 40."
+      ]
+    },
+    {
+      "name": "Lock (Good)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 9,
+      "traits": [],
+      "price": "200 gp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "Picking a poor lock requires two successful DC 15 {@skill Thievery|} checks, a simple lock requires three successful DC 20 Thievery checks, an average lock requires four successes at DC 25, a good lock requires five successes at DC 30, and a superior lock six successes at DC 40."
+      ]
+    },
+    {
+      "name": "Lock (Poor)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 sp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "Picking a poor lock requires two successful DC 15 {@skill Thievery|} checks, a simple lock requires three successful DC 20 Thievery checks, an average lock requires four successes at DC 25, a good lock requires five successes at DC 30, and a superior lock six successes at DC 40."
+      ]
+    },
+    {
+      "name": "Lock (Simple)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 1,
+      "traits": [],
+      "price": "2 gp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "Picking a poor lock requires two successful DC 15 {@skill Thievery|} checks, a simple lock requires three successful DC 20 Thievery checks, an average lock requires four successes at DC 25, a good lock requires five successes at DC 30, and a superior lock six successes at DC 40."
+      ]
+    },
+    {
+      "name": "Lock (Superior)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 17,
+      "traits": [],
+      "price": "4,500 gp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "Picking a poor lock requires two successful DC 15 {@skill Thievery|} checks, a simple lock requires three successful DC 20 Thievery checks, an average lock requires four successes at DC 25, a good lock requires five successes at DC 30, and a superior lock six successes at DC 40."
+      ]
+    },
+    {
+      "name": "Lodging",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Lodging (Bed, for 1)|PC1}",
+            "{@equipment Lodging (Extravagant Suite, for 6)|PC1}",
+            "{@equipment Lodging (Floor Space)|PC1}",
+            "{@equipment Lodging (Private Room, for 2)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lodging (Bed, for 1)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp (per day)",
+      "bulk": "—",
+      "entries": []
+    },
+    {
+      "name": "Lodging (Extravagant Suite, for 6)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "10 gp (per day)",
+      "bulk": "—",
+      "entries": []
+    },
+    {
+      "name": "Lodging (Floor Space)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "3 cp (per day)",
+      "bulk": "—",
+      "entries": []
+    },
+    {
+      "name": "Lodging (Private Room, for 2)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "8 sp (per day)",
+      "bulk": "—",
+      "entries": []
+    },
+    {
+      "name": "Longbow",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "deadly",
+        "volley"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d10",
+        "volley": "Volley 30 ft."
+      },
+      "price": "6 gp",
+      "bulk": "2",
+      "hands": "1+",
+      "subcategory": "Martial",
+      "group": "Bow",
+      "stats": {
+        "Damage": "1d8 P",
+        "Range": "100 ft.",
+        "Reload": "0",
+        "Type": "Ranged",
+        "Ammunition": "{@equipment Arrows|PC1}"
+      },
+      "entries": [
+        "This 5-foot-tall bow, usually made of a single piece of elm, hickory, or yew, has a powerful draw and is excellent at propelling arrows with great force and at an extreme distance. You must use two hands to fire a longbow, and it can't be used while mounted."
+      ]
+    },
+    {
+      "name": "Longspear",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "reach"
+      ],
+      "price": "5 sp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Simple",
+      "group": "Spear",
+      "stats": {
+        "Damage": "1d8 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This very long spear, sometimes called a pike, is purely for thrusting rather than throwing. Used by many soldiers and city watch for crowd control and defense against charging enemies, it must be wielded with two hands."
+      ]
+    },
+    {
+      "name": "Longsword",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "versatile"
+      ],
+      "traitLabels": {
+        "versatile": "Versatile P"
+      },
+      "price": "1 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d8 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "Longswords can be one-edged or two-edged swords. Their blades are heavy and they're between 3 and 4 feet in length."
+      ]
+    },
+    {
+      "name": "Mace",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "shove"
+      ],
+      "price": "1 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Club",
+      "stats": {
+        "Damage": "1d6 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "With a stout haft and a heavy metal head, a mace is sturdy and allows its wielder to deliver powerful blows and dent armor."
+      ]
+    },
+    {
+      "name": "Magnifying Glass",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "40 gp",
+      "bulk": "—",
+      "hands": "1",
+      "entries": [
+        "This quality handheld lens gives you a +1 item bonus to Perception checks to notice minute details of documents, fabric, and the like."
+      ]
+    },
+    {
+      "name": "Main-gauche",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "disarm",
+        "finesse",
+        "parry",
+        "versatile"
+      ],
+      "traitLabels": {
+        "versatile": "Versatile S"
+      },
+      "price": "5 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Knife",
+      "stats": {
+        "Damage": "1d4 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This parrying dagger features a robust guard to protect the wielder's hand."
+      ]
+    },
+    {
+      "name": "Manacles",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        "You can manacle someone who is willing or otherwise at your mercy as an exploration activity taking 10–30 seconds depending on the creature's size and how many manacles you apply. A two-legged creature with its legs bound takes a –15-foot circumstance penalty to its Speeds, and a two-handed creature with its wrists bound has to succeed at a DC 5 flat check any time it uses a manipulate action or else that action fails. This DC may be higher depending on how tightly the manacles constrain the hands. A creature bound to a stationary object is {@condition Immobilized||immobilized}. For creatures with more or fewer limbs, the GM determines what effect manacles have, if any. Freeing a creature from poor manacles requires two successful DC 17 Thievery checks, simple manacles requires three successes at DC 22, average manacles require four successes at DC 27, good manacles require five successes at DC 32, and superior manacles require six successes at DC 42.",
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Manacles (Average)|PC1}",
+            "{@equipment Manacles (Good)|PC1}",
+            "{@equipment Manacles (Poor)|PC1}",
+            "{@equipment Manacles (Simple)|PC1}",
+            "{@equipment Manacles (Superior)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Manacles (Average)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "20 gp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "You can manacle someone who is willing or otherwise at your mercy as an exploration activity taking 10–30 seconds depending on the creature's size and how many manacles you apply. A two-legged creature with its legs bound takes a –15-foot circumstance penalty to its Speeds, and a two-handed creature with its wrists bound has to succeed at a DC 5 flat check any time it uses a manipulate action or else that action fails. This DC may be higher depending on how tightly the manacles constrain the hands. A creature bound to a stationary object is {@condition Immobilized||immobilized}. For creatures with more or fewer limbs, the GM determines what effect manacles have, if any. Freeing a creature from poor manacles requires two successful DC 17 Thievery checks, simple manacles requires three successes at DC 22, average manacles require four successes at DC 27, good manacles require five successes at DC 32, and superior manacles require six successes at DC 42."
+      ]
+    },
+    {
+      "name": "Manacles (Good)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 9,
+      "traits": [],
+      "price": "250 gp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "You can manacle someone who is willing or otherwise at your mercy as an exploration activity taking 10–30 seconds depending on the creature's size and how many manacles you apply. A two-legged creature with its legs bound takes a –15-foot circumstance penalty to its Speeds, and a two-handed creature with its wrists bound has to succeed at a DC 5 flat check any time it uses a manipulate action or else that action fails. This DC may be higher depending on how tightly the manacles constrain the hands. A creature bound to a stationary object is {@condition Immobilized||immobilized}. For creatures with more or fewer limbs, the GM determines what effect manacles have, if any. Freeing a creature from poor manacles requires two successful DC 17 Thievery checks, simple manacles requires three successes at DC 22, average manacles require four successes at DC 27, good manacles require five successes at DC 32, and superior manacles require six successes at DC 42."
+      ]
+    },
+    {
+      "name": "Manacles (Poor)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "3 sp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "You can manacle someone who is willing or otherwise at your mercy as an exploration activity taking 10–30 seconds depending on the creature's size and how many manacles you apply. A two-legged creature with its legs bound takes a –15-foot circumstance penalty to its Speeds, and a two-handed creature with its wrists bound has to succeed at a DC 5 flat check any time it uses a manipulate action or else that action fails. This DC may be higher depending on how tightly the manacles constrain the hands. A creature bound to a stationary object is {@condition Immobilized||immobilized}. For creatures with more or fewer limbs, the GM determines what effect manacles have, if any. Freeing a creature from poor manacles requires two successful DC 17 Thievery checks, simple manacles requires three successes at DC 22, average manacles require four successes at DC 27, good manacles require five successes at DC 32, and superior manacles require six successes at DC 42."
+      ]
+    },
+    {
+      "name": "Manacles (Simple)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 1,
+      "traits": [],
+      "price": "3 gp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "You can manacle someone who is willing or otherwise at your mercy as an exploration activity taking 10–30 seconds depending on the creature's size and how many manacles you apply. A two-legged creature with its legs bound takes a –15-foot circumstance penalty to its Speeds, and a two-handed creature with its wrists bound has to succeed at a DC 5 flat check any time it uses a manipulate action or else that action fails. This DC may be higher depending on how tightly the manacles constrain the hands. A creature bound to a stationary object is {@condition Immobilized||immobilized}. For creatures with more or fewer limbs, the GM determines what effect manacles have, if any. Freeing a creature from poor manacles requires two successful DC 17 Thievery checks, simple manacles requires three successes at DC 22, average manacles require four successes at DC 27, good manacles require five successes at DC 32, and superior manacles require six successes at DC 42."
+      ]
+    },
+    {
+      "name": "Manacles (Superior)",
+      "source": "PC1",
+      "page": 288,
+      "category": "Adventuring Gear",
+      "level": 17,
+      "traits": [],
+      "price": "5,000 gp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "You can manacle someone who is willing or otherwise at your mercy as an exploration activity taking 10–30 seconds depending on the creature's size and how many manacles you apply. A two-legged creature with its legs bound takes a –15-foot circumstance penalty to its Speeds, and a two-handed creature with its wrists bound has to succeed at a DC 5 flat check any time it uses a manipulate action or else that action fails. This DC may be higher depending on how tightly the manacles constrain the hands. A creature bound to a stationary object is {@condition Immobilized||immobilized}. For creatures with more or fewer limbs, the GM determines what effect manacles have, if any. Freeing a creature from poor manacles requires two successful DC 17 Thievery checks, simple manacles requires three successes at DC 22, average manacles require four successes at DC 27, good manacles require five successes at DC 32, and superior manacles require six successes at DC 42."
+      ]
+    },
+    {
+      "name": "Maul",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "shove"
+      ],
+      "price": "3 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Hammer",
+      "stats": {
+        "Damage": "1d12 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "Mauls are massive warhammers that must be swung with two hands."
+      ]
+    },
+    {
+      "name": "Meal (Fine Dining)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Meal (Poor)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Meal (Square)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "3 cp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Meals",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Meal (Fine Dining)|PC1}",
+            "{@equipment Meal (Poor)|PC1}",
+            "{@equipment Meal (Square)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Merchant's Scale",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 sp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Mirror",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "—",
+      "hands": "1",
+      "entries": []
+    },
+    {
+      "name": "Morningstar",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "versatile"
+      ],
+      "traitLabels": {
+        "versatile": "Versatile P"
+      },
+      "price": "1 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Club",
+      "stats": {
+        "Damage": "1d6 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This weapon has a short shaft ending in a metal ball studded with spikes."
+      ]
+    },
+    {
+      "name": "Mug",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp",
+      "bulk": "—",
+      "hands": "1",
+      "entries": []
+    },
+    {
+      "name": "Musical Instrument",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        "Handheld instruments include bagpipes, a small set of chimes, small drums, fiddles and viols, flutes and recorders, small harps, lutes, trumpets, and similarly sized instruments. The GM might rule that an especially large handheld instrument (like a tuba) has greater Bulk. Heavy instruments such as large drums, a full set of chimes, and keyboard instruments are less portable and generally need to be stationary while being played.",
+        "A virtuoso instrument is more finely made and gives a +1 item bonus to {@skill Performance|} checks using that instrument.",
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Musical Instrument (Handheld)|PC1}",
+            "{@equipment Musical Instrument (Heavy)|PC1}",
+            "{@equipment Musical Instrument (Virtuoso Handheld)|PC1}",
+            "{@equipment Musical Instrument (Virtuoso Heavy)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Musical Instrument (Handheld)",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "8 sp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": [
+        "Handheld instruments include bagpipes, a small set of chimes, small drums, fiddles and viols, flutes and recorders, small harps, lutes, trumpets, and similarly sized instruments. The GM might rule that an especially large handheld instrument (like a tuba) has greater Bulk. Heavy instruments such as large drums, a full set of chimes, and keyboard instruments are less portable and generally need to be stationary while being played.",
+        "A virtuoso instrument is more finely made and gives a +1 item bonus to {@skill Performance|} checks using that instrument."
+      ]
+    },
+    {
+      "name": "Musical Instrument (Heavy)",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 gp",
+      "bulk": "16",
+      "hands": "2",
+      "entries": [
+        "Handheld instruments include bagpipes, a small set of chimes, small drums, fiddles and viols, flutes and recorders, small harps, lutes, trumpets, and similarly sized instruments. The GM might rule that an especially large handheld instrument (like a tuba) has greater Bulk. Heavy instruments such as large drums, a full set of chimes, and keyboard instruments are less portable and generally need to be stationary while being played.",
+        "A virtuoso instrument is more finely made and gives a +1 item bonus to {@skill Performance|} checks using that instrument."
+      ]
+    },
+    {
+      "name": "Musical Instrument (Virtuoso Handheld)",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "50 gp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": [
+        "Handheld instruments include bagpipes, a small set of chimes, small drums, fiddles and viols, flutes and recorders, small harps, lutes, trumpets, and similarly sized instruments. The GM might rule that an especially large handheld instrument (like a tuba) has greater Bulk. Heavy instruments such as large drums, a full set of chimes, and keyboard instruments are less portable and generally need to be stationary while being played.",
+        "A virtuoso instrument is more finely made and gives a +1 item bonus to {@skill Performance|} checks using that instrument."
+      ]
+    },
+    {
+      "name": "Musical Instrument (Virtuoso Heavy)",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "100 gp",
+      "bulk": "16",
+      "hands": "2",
+      "entries": [
+        "Handheld instruments include bagpipes, a small set of chimes, small drums, fiddles and viols, flutes and recorders, small harps, lutes, trumpets, and similarly sized instruments. The GM might rule that an especially large handheld instrument (like a tuba) has greater Bulk. Heavy instruments such as large drums, a full set of chimes, and keyboard instruments are less portable and generally need to be stationary while being played.",
+        "A virtuoso instrument is more finely made and gives a +1 item bonus to {@skill Performance|} checks using that instrument."
+      ]
+    },
+    {
+      "name": "Net",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": [
+        "You can use a net either on its own or attached to a rope. When attached to a rope, you can use the net to {@action Grapple|} a Medium or smaller creature up to 10 feet away (instead of only adjacent creatures). You can continue to Grapple to keep your hold on the target so long as the target remains within 10 feet and you continue to hold the net. The grabbed creature gains a +2 circumstance bonus to {@action Escape|} unless you are adjacent to them, and it can attempt a DC 16 {@skill Athletics|} check to {@action Force Open|} the net entirely. Once the target is no longer {@condition Grabbed||grabbed}, the net is unwieldy until refolded with an Interact action with the {@trait Concentrate||concentrate} trait that requires two hands; if used without being refolded, Grapple checks made with the net take a –2 penalty.",
+        "When the net is unattached, you can attempt a ranged attack roll using your simple weapon proficiency against a Medium or smaller creature within 20 feet. On a hit, the target is {@condition Off-guard||off-guard} and takes a –10-foot circumstance penalty to its Speeds until it Escapes, and on a critical hit, it's also immobilized until it Escapes. The Escape DC is 16. A creature adjacent to the target can Interact to remove the net."
+      ]
+    },
+    {
+      "name": "Nunchaku",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "backswing",
+        "disarm",
+        "finesse",
+        "monk"
+      ],
+      "price": "2 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Club",
+      "stats": {
+        "Damage": "1d6 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "The nunchaku is constructed of two wooden or metal bars connected by a short length of rope or chain."
+      ]
+    },
+    {
+      "name": "Oil",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp",
+      "bulk": "—",
+      "hands": "2",
+      "entries": [
+        "You can use oil to fuel lanterns, but you can also set a pint of oil aflame and throw it. You must first spend an Interact action preparing the oil, then throw it with another action as a ranged attack. If you hit, it splatters on the creature or in a single 5-foot square you target. You must succeed at a DC 10 flat check for the oil to ignite successfully when it hits. If the oil ignites, the target takes 1d6 fire damage."
+      ]
+    },
+    {
+      "name": "Orc Knuckle Dagger",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "agile",
+        "disarm",
+        "orc"
+      ],
+      "price": "7 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Knife",
+      "stats": {
+        "Damage": "1d6 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This stout, metal blade of orc design has a horizontal basket hilt with blades jutting from each end, or sometimes one blade like that of a katar."
+      ]
+    },
+    {
+      "name": "Orc Necksplitter",
+      "source": "PC1",
+      "page": 279,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "forceful",
+        "orc",
+        "sweep"
+      ],
+      "price": "2 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Advanced",
+      "group": "Axe",
+      "stats": {
+        "Damage": "1d8 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This single-bladed bearded axe has a jagged blade that's perfect for separating bone from tendon and cartilage."
+      ]
+    },
+    {
+      "name": "Padded Armor",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 0,
+      "traits": [
+        "comfort"
+      ],
+      "price": "2 sp",
+      "bulk": "L",
+      "subcategory": "Light",
+      "group": "Cloth",
+      "stats": {
+        "AC Bonus": "+1",
+        "Dex Cap": "+3",
+        "Check Penalty": "—",
+        "Speed Penalty": "—",
+        "Strength": "+0"
+      },
+      "entries": [
+        "This armor is simply a layer of heavy, quilted cloth, but it is sometimes used because it's so inexpensive. Padded armor is easier to damage and destroy than other types of armor. Heavy armor comes with a padded armor undercoat included in its Price, though it loses the {@trait Comfort||comfort} trait when worn under heavy armor. You can wear just that padded armor undercoat to sleep in, if your heavy armor is destroyed, or when otherwise not wearing the full heavy armor. This allows you to keep magic armor invested and benefit from the power of any runes on the associated heavy armor, but no one else can wear your heavy armor without the padded undercoat."
+      ]
+    },
+    {
+      "name": "Parrying Scabbard",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "5 sp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "You can draw this reinforced sheath during the same Interact action you use to draw the weapon it holds, wielding the weapon in one hand and the scabbard in your other. A parrying scabbard can be used for your defense much like a weapon with the {@trait Parry||parry} trait: you can spend an action to position it defensively, gaining a +1 circumstance bonus to AC until the start of your next turn. Parrying scabbards are available for any sword that can be wielded in one hand."
+      ]
+    },
+    {
+      "name": "Periscope",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 2,
+      "traits": [],
+      "price": "25 gp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "This is a 2-foot-long tube with two angled mirrors, one at each end. When the mirrors are aligned correctly, you can look around obstacles while remaining behind cover. This doesn't provide a sufficient line of effect to target creatures around corners."
+      ]
+    },
+    {
+      "name": "Pick",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "fatal"
+      ],
+      "traitLabels": {
+        "fatal": "Fatal 1d10"
+      },
+      "price": "7 sp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Pick",
+      "stats": {
+        "Damage": "1d6 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "A pick designed solely for combat has a sturdy wooden shaft and a heavy, pointed head to deliver devastating blows."
+      ]
+    },
+    {
+      "name": "Piton",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp",
+      "bulk": "—",
+      "hands": "1",
+      "entries": [
+        "These small spikes can be used as anchors to make climbing easier. To affix a piton, you must hold it in one hand and use a hammer to drive it in with your other hand. You can attach a rope to the hammered piton so that you don't fall all the way to the ground on a critical failure while Climbing."
+      ]
+    },
+    {
+      "name": "Primal Symbol",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "0",
+      "bulk": "—",
+      "hands": "1",
+      "entries": [
+        "Primal spellcasters, especially druids, often wear adornments of natural materials to symbolize their connection to nature, such as rings of woven plants, tokens made from animal parts, or other symbols related to a druidic order or nature philosophy."
+      ]
+    },
+    {
+      "name": "Prosthesis",
+      "source": "PC1",
+      "page": 293,
+      "category": "Assistive Item",
+      "level": 0,
+      "traits": [],
+      "price": "5 sp",
+      "bulk": "—",
+      "entries": [
+        "A prosthesis replaces a missing or damaged body part. Typical prostheses include artificial feet, eyes, hands, and limbs, though a basic prosthesis can be designed as a replacement for any body part. Advancements in the prosthetic field mean that even the most basic of prostheses can provide the full range of functionality for a missing body part.",
+        "A prosthesis has a number of belts or cuffs that keep it attached to your body. You can attach or remove a prosthesis as an Interact action."
+      ]
+    },
+    {
+      "name": "Ranseur",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "disarm",
+        "reach"
+      ],
+      "price": "2 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Polearm",
+      "stats": {
+        "Damage": "1d10 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This polearm is a long trident with a central prong that's longer than the other two."
+      ]
+    },
+    {
+      "name": "Rapier",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "deadly",
+        "disarm",
+        "finesse"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d8"
+      },
+      "price": "2 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d6 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "The rapier is a long and thin piercing blade with a basket hilt. It is prized among many as a dueling weapon."
+      ]
+    },
+    {
+      "name": "Rations",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "4 sp (1 week)",
+      "bulk": "L",
+      "hands": "1",
+      "entries": []
+    },
+    {
+      "name": "Religious Symbol",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        "This piece of wood or silver is emblazoned with an image representing a deity. Some divine spellcasters, such as clerics, can use a religious symbol to use certain abilities. A religious symbol can be worn on the body on a chain or pin, or can be held.",
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Religious Symbol (Silver)|PC1}",
+            "{@equipment Religious Symbol (Wooden)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Religious Symbol (Silver)",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 gp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "This piece of wood or silver is emblazoned with an image representing a deity. Some divine spellcasters, such as clerics, can use a religious symbol to use certain abilities. A religious symbol can be worn on the body on a chain or pin, or can be held."
+      ]
+    },
+    {
+      "name": "Religious Symbol (Wooden)",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "This piece of wood or silver is emblazoned with an image representing a deity. Some divine spellcasters, such as clerics, can use a religious symbol to use certain abilities. A religious symbol can be worn on the body on a chain or pin, or can be held."
+      ]
+    },
+    {
+      "name": "Religious Text",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "This manuscript contains scripture of a particular religion. Some divine spellcasters, such as clerics, can use a religious text to use certain abilities. A religious text must be held in one hand to use it."
+      ]
+    },
+    {
+      "name": "Repair Toolkit",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 gp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": [
+        "A repair toolkit allows you to perform simple repairs while traveling. It contains a portable anvil, tongs, woodworking tools, a whetstone, and oils for conditioning leather and wood. You can use a repair toolkit to {@action Repair|} items using the {@skill Crafting|} skill. You can draw and replace a worn repair toolkit as part of the action that uses it."
+      ]
+    },
+    {
+      "name": "Repair Toolkit (Superb)",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "25 gp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": [
+        "A repair toolkit allows you to perform simple repairs while traveling. It contains a portable anvil, tongs, woodworking tools, a whetstone, and oils for conditioning leather and wood. You can use a repair toolkit to {@action Repair|} items using the {@skill Crafting|} skill. You can draw and replace a worn repair toolkit as part of the action that uses it.",
+        "A superb repair kit gives you a +1 item bonus to the check."
+      ]
+    },
+    {
+      "name": "Rope",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "5 sp (50 ft.)",
+      "bulk": "L",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Sack",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "A sack can hold up to 8 Bulk worth of items. A sack containing 2 Bulk or less can be worn on the body, usually tucked into a belt. You can carry a sack with one hand, but must use two hands to transfer items in and out."
+      ]
+    },
+    {
+      "name": "Saddlebags",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 sp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "Saddlebags come in a pair. Each can hold up to 3 Bulk of items, and the first 1 Bulk of items in each doesn't count against your mount's Bulk limit. The Bulk value given is for saddlebags worn by a mount. If you are carrying or stowing saddlebags, they count as 1 Bulk instead of light Bulk."
+      ]
+    },
+    {
+      "name": "Sai",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "agile",
+        "disarm",
+        "finesse",
+        "monk",
+        "versatile"
+      ],
+      "traitLabels": {
+        "versatile": "Versatile B"
+      },
+      "price": "6 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Knife",
+      "stats": {
+        "Damage": "1d4 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This piercing dagger is a metal spike flanked by a pair of prongs that can be used to trap an enemy's weapon."
+      ]
+    },
+    {
+      "name": "Sap",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "nonlethal"
+      ],
+      "price": "1 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Club",
+      "stats": {
+        "Damage": "1d6 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "A sap has a soft wrapping around a dense core, typically a leather sheath around a lead rod. Its head is wider than its grip to disperse the force of a blow, as the weapon's purpose is to knock out its victim rather than to draw blood."
+      ]
+    },
+    {
+      "name": "Sawtooth Saber",
+      "source": "PC1",
+      "page": 279,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "agile",
+        "finesse",
+        "twin"
+      ],
+      "price": "5 gp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Advanced",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d6 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "The signature weapon of the Red Mantis assassins, this curved blade is serrated like a saw, hence the name."
+      ]
+    },
+    {
+      "name": "Scale Mail",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 0,
+      "traits": [],
+      "price": "4 gp",
+      "bulk": "2",
+      "subcategory": "Medium",
+      "group": "Composite",
+      "stats": {
+        "AC Bonus": "+3",
+        "Dex Cap": "+2",
+        "Check Penalty": "-2",
+        "Speed Penalty": "-5 ft.",
+        "Strength": "+2"
+      },
+      "entries": [
+        "Scale mail consists of many metal scales sewn onto a reinforced leather backing, often in the form of a long shirt that protects the torso, arms, and legs."
+      ]
+    },
+    {
+      "name": "Scholarly Journal",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [
+        "uncommon"
+      ],
+      "price": "6 gp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "Scholarly journals are uncommon. Each scholarly journal is a folio on a very specific topic, such as vampires or the history of a single town or neighborhood of a city. If you spend 1 minute referencing an academic journal before attempting a skill check to {@action Recall Knowledge|} about the subject, you gain a +1 item bonus to the check. A compendium of journals costs five times as much as a single journal and requires both hands to use; each compendium contains several journals and grants its bonus on a broader topic, such as all {@trait Undead||undead} or a whole city. The GM determines what scholarly journals are available in any location."
+      ]
+    },
+    {
+      "name": "Scholarly Journal (Compendium)",
+      "source": "PC1",
+      "page": 290,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [
+        "uncommon"
+      ],
+      "price": "30 gp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "Scholarly journals are uncommon. Each scholarly journal is a folio on a very specific topic, such as vampires or the history of a single town or neighborhood of a city. If you spend 1 minute referencing an academic journal before attempting a skill check to {@action Recall Knowledge|} about the subject, you gain a +1 item bonus to the check. A compendium of journals costs five times as much as a single journal and requires both hands to use; each compendium contains several journals and grants its bonus on a broader topic, such as all {@trait Undead||undead} or a whole city. The GM determines what scholarly journals are available in any location."
+      ]
+    },
+    {
+      "name": "Scimitar",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "forceful",
+        "sweep"
+      ],
+      "price": "1 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d6 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This one-handed curved blade is sharp on one side."
+      ]
+    },
+    {
+      "name": "Scythe",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "deadly",
+        "trip"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d10"
+      },
+      "price": "2 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Polearm",
+      "stats": {
+        "Damage": "1d10 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "Derived from a farming tool used to mow down long grains and cereals, this weapon has a long wooden shaft with protruding handles, capped with a curved blade set at a right angle."
+      ]
+    },
+    {
+      "name": "Shield Bash",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [],
+      "price": "—",
+      "bulk": "—",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Shield",
+      "stats": {
+        "Damage": "1d4 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "A shield bash is not actually a weapon, but a maneuver in which you thrust or swing your shield to hit your foe with an impromptu attack."
+      ]
+    },
+    {
+      "name": "Shield Boss",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "attached"
+      ],
+      "traitLabels": {
+        "attached": "Attached to Shield"
+      },
+      "price": "5 sp",
+      "bulk": "—",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Shield",
+      "stats": {
+        "Damage": "1d6 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "Typically a round, convex, or conical piece of thick metal attached to the center of a shield, a shield boss increases the bludgeoning damage of a shield bash."
+      ]
+    },
+    {
+      "name": "Shield Spikes",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "attached"
+      ],
+      "traitLabels": {
+        "attached": "Attached to Shield"
+      },
+      "price": "5 sp",
+      "bulk": "—",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Shield",
+      "stats": {
+        "Damage": "1d6 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "These metal spikes are strategically placed on the defensive side of the shield to deal piercing damage with a shield bash."
+      ]
+    },
+    {
+      "name": "Shortbow",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "deadly"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d10"
+      },
+      "price": "3 gp",
+      "bulk": "1",
+      "hands": "1+",
+      "subcategory": "Martial",
+      "group": "Bow",
+      "stats": {
+        "Damage": "1d6 P",
+        "Range": "60 ft.",
+        "Reload": "0",
+        "Type": "Ranged",
+        "Ammunition": "{@equipment Arrows|PC1}"
+      },
+      "entries": [
+        "This smaller bow is made of a single piece of wood and favored by skirmishers and cavalry."
+      ]
+    },
+    {
+      "name": "Shortsword",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "finesse",
+        "versatile"
+      ],
+      "traitLabels": {
+        "versatile": "Versatile S"
+      },
+      "price": "9 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d6 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "These blades come in a variety of shapes and styles, but they are typically 2 feet long."
+      ]
+    },
+    {
+      "name": "Shuriken",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "agile",
+        "monk",
+        "thrown"
+      ],
+      "price": "1 cp",
+      "bulk": "—",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Dart",
+      "stats": {
+        "Damage": "1d4 P",
+        "Range": "20 ft.",
+        "Reload": "0",
+        "Type": "Ranged"
+      },
+      "entries": [
+        "This “throwing star” is a small piece of flat metal with sharp edges, designed to be flung with a flick of the wrist."
+      ]
+    },
+    {
+      "name": "Sickle",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "finesse",
+        "trip"
+      ],
+      "price": "2 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Knife",
+      "stats": {
+        "Damage": "1d4 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "Originally a farming tool used for reaping grain, this one-handed weapon has a short wooden handle ending in a curved blade, sometimes sharpened on both sides."
+      ]
+    },
+    {
+      "name": "Signal Whistle",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "8 cp",
+      "bulk": "—",
+      "hands": "1",
+      "entries": [
+        "When sounded, a signal whistle can be heard clearly up to half a mile away across open terrain."
+      ]
+    },
+    {
+      "name": "Sling",
+      "source": "PC1",
+      "page": 280,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "propulsive"
+      ],
+      "price": "0",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Sling",
+      "stats": {
+        "Damage": "1d6 B",
+        "Range": "50 ft.",
+        "Reload": "1",
+        "Type": "Ranged",
+        "Ammunition": "{@equipment Sling Bullets|PC1}"
+      },
+      "entries": [
+        "Little more than a leather cup attached to a pair of straps, a sling can be used to fling smooth stones or sling bullets at a range."
+      ]
+    },
+    {
+      "name": "Sling Bullets",
+      "source": "PC1",
+      "page": 280,
+      "category": "Ammunition",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp (price for 10)",
+      "bulk": "L",
+      "subcategory": "Ammunition",
+      "group": "Sling",
+      "stats": {
+        "Type": "Ranged"
+      },
+      "entries": [
+        "These are small metal balls, typically either iron or lead, designed to be used as ammunition in slings."
+      ]
+    },
+    {
+      "name": "Soap",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 cp",
+      "bulk": "—",
+      "hands": "1",
+      "entries": []
+    },
+    {
+      "name": "Spear",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "monk",
+        "thrown"
+      ],
+      "traitLabels": {
+        "thrown": "Thrown 20 ft."
+      },
+      "price": "1 sp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Spear",
+      "stats": {
+        "Damage": "1d6 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "A long metal shaft ending with a metal spike, a spear can be used one-handed as a melee weapon and can be thrown."
+      ]
+    },
+    {
+      "name": "Spellbook (Blank)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "A spellbook holds the written knowledge necessary to learn and prepare various spells, a necessity for wizards (who typically get one for free) and a useful luxury for other spellcasters looking to learn additional spells. Each spellbook can hold up to 100 spells. The Price listed is for a blank spellbook."
+      ]
+    },
+    {
+      "name": "Spellcasting",
+      "source": "PC1",
+      "page": 295,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        "Spellcasting services, listed on Table 6–15, are uncommon. Having a spell cast for you requires finding a spellcaster who knows and is willing to cast it. It’s hard to find someone who can cast higher-rank spells, and uncommon spells typically cost at least 100% more, if you can find someone who knows them at all. Spells that take a long time to cast (over 1 minute) usually cost 25% more. You must pay any cost listed in the spell in addition to the Price on the table.",
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Spellcasting (1st rank)|PC1}",
+            "{@equipment Spellcasting (2nd rank)|PC1}",
+            "{@equipment Spellcasting (3rd rank)|PC1}",
+            "{@equipment Spellcasting (4th rank)|PC1}",
+            "{@equipment Spellcasting (5th rank)|PC1}",
+            "{@equipment Spellcasting (6th rank)|PC1}",
+            "{@equipment Spellcasting (7th rank)|PC1}",
+            "{@equipment Spellcasting (8th rank)|PC1}",
+            "{@equipment Spellcasting (9th rank)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spellcasting (1st rank)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "3 gp (plus any cost required to cast the specific spell)",
+      "bulk": "—",
+      "entries": [
+        "Spellcasting services, listed on Table 6–15, are uncommon. Having a spell cast for you requires finding a spellcaster who knows and is willing to cast it. It’s hard to find someone who can cast higher-rank spells, and uncommon spells typically cost at least 100% more, if you can find someone who knows them at all. Spells that take a long time to cast (over 1 minute) usually cost 25% more. You must pay any cost listed in the spell in addition to the Price on the table."
+      ]
+    },
+    {
+      "name": "Spellcasting (2nd rank)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "7 gp (plus any cost required to cast the specific spell)",
+      "bulk": "—",
+      "entries": [
+        "Spellcasting services, listed on Table 6–15, are uncommon. Having a spell cast for you requires finding a spellcaster who knows and is willing to cast it. It’s hard to find someone who can cast higher-rank spells, and uncommon spells typically cost at least 100% more, if you can find someone who knows them at all. Spells that take a long time to cast (over 1 minute) usually cost 25% more. You must pay any cost listed in the spell in addition to the Price on the table."
+      ]
+    },
+    {
+      "name": "Spellcasting (3rd rank)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "18 gp (plus any cost required to cast the specific spell)",
+      "bulk": "—",
+      "entries": [
+        "Spellcasting services, listed on Table 6–15, are uncommon. Having a spell cast for you requires finding a spellcaster who knows and is willing to cast it. It’s hard to find someone who can cast higher-rank spells, and uncommon spells typically cost at least 100% more, if you can find someone who knows them at all. Spells that take a long time to cast (over 1 minute) usually cost 25% more. You must pay any cost listed in the spell in addition to the Price on the table."
+      ]
+    },
+    {
+      "name": "Spellcasting (4th rank)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "40 gp (plus any cost required to cast the specific spell)",
+      "bulk": "—",
+      "entries": [
+        "Spellcasting services, listed on Table 6–15, are uncommon. Having a spell cast for you requires finding a spellcaster who knows and is willing to cast it. It’s hard to find someone who can cast higher-rank spells, and uncommon spells typically cost at least 100% more, if you can find someone who knows them at all. Spells that take a long time to cast (over 1 minute) usually cost 25% more. You must pay any cost listed in the spell in addition to the Price on the table."
+      ]
+    },
+    {
+      "name": "Spellcasting (5th rank)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "80 gp (plus any cost required to cast the specific spell)",
+      "bulk": "—",
+      "entries": [
+        "Spellcasting services, listed on Table 6–15, are uncommon. Having a spell cast for you requires finding a spellcaster who knows and is willing to cast it. It’s hard to find someone who can cast higher-rank spells, and uncommon spells typically cost at least 100% more, if you can find someone who knows them at all. Spells that take a long time to cast (over 1 minute) usually cost 25% more. You must pay any cost listed in the spell in addition to the Price on the table."
+      ]
+    },
+    {
+      "name": "Spellcasting (6th rank)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "160 gp (plus any cost required to cast the specific spell)",
+      "bulk": "—",
+      "entries": [
+        "Spellcasting services, listed on Table 6–15, are uncommon. Having a spell cast for you requires finding a spellcaster who knows and is willing to cast it. It’s hard to find someone who can cast higher-rank spells, and uncommon spells typically cost at least 100% more, if you can find someone who knows them at all. Spells that take a long time to cast (over 1 minute) usually cost 25% more. You must pay any cost listed in the spell in addition to the Price on the table."
+      ]
+    },
+    {
+      "name": "Spellcasting (7th rank)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "360 gp (plus any cost required to cast the specific spell)",
+      "bulk": "—",
+      "entries": [
+        "Spellcasting services, listed on Table 6–15, are uncommon. Having a spell cast for you requires finding a spellcaster who knows and is willing to cast it. It’s hard to find someone who can cast higher-rank spells, and uncommon spells typically cost at least 100% more, if you can find someone who knows them at all. Spells that take a long time to cast (over 1 minute) usually cost 25% more. You must pay any cost listed in the spell in addition to the Price on the table."
+      ]
+    },
+    {
+      "name": "Spellcasting (8th rank)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "720 gp (plus any cost required to cast the specific spell)",
+      "bulk": "—",
+      "entries": [
+        "Spellcasting services, listed on Table 6–15, are uncommon. Having a spell cast for you requires finding a spellcaster who knows and is willing to cast it. It’s hard to find someone who can cast higher-rank spells, and uncommon spells typically cost at least 100% more, if you can find someone who knows them at all. Spells that take a long time to cast (over 1 minute) usually cost 25% more. You must pay any cost listed in the spell in addition to the Price on the table."
+      ]
+    },
+    {
+      "name": "Spellcasting (9th rank)",
+      "source": "PC1",
+      "page": 295,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "1,800 gp (plus any cost required to cast the specific spell)",
+      "bulk": "—",
+      "entries": [
+        "Spellcasting services, listed on Table 6–15, are uncommon. Having a spell cast for you requires finding a spellcaster who knows and is willing to cast it. It’s hard to find someone who can cast higher-rank spells, and uncommon spells typically cost at least 100% more, if you can find someone who knows them at all. Spells that take a long time to cast (over 1 minute) usually cost 25% more. You must pay any cost listed in the spell in addition to the Price on the table."
+      ]
+    },
+    {
+      "name": "Spiked Chain",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "disarm",
+        "finesse",
+        "trip"
+      ],
+      "price": "3 gp",
+      "bulk": "1",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Flail",
+      "stats": {
+        "Damage": "1d8 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This 4-foot-long length of chain is covered with barbs and has spikes on one or both ends. Some feature metal hoops used as handgrips."
+      ]
+    },
+    {
+      "name": "Spiked Gauntlet",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "free-hand"
+      ],
+      "price": "3 sp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Brawling",
+      "stats": {
+        "Damage": "1d4 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "Providing the same defensive function as a standard {@equipment Gauntlet|PC1|gauntlet}, this version has a group of spikes protruding from the knuckles to deliver piercing damage with a punch."
+      ]
+    },
+    {
+      "name": "Splint Mail",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 1,
+      "traits": [],
+      "price": "13 gp",
+      "bulk": "3",
+      "subcategory": "Heavy",
+      "group": "Composite",
+      "stats": {
+        "AC Bonus": "+5",
+        "Dex Cap": "+1",
+        "Check Penalty": "-3",
+        "Speed Penalty": "-10 ft.",
+        "Strength": "+3"
+      },
+      "entries": [
+        "This type of armor is chain mail reinforced with flexible, interlocking metal plates, typically located on the wearer's torso, upper arms, and legs. A suit of this armor comes with an undercoat of {@equipment Padded Armor|PC1|padded armor} (see above) and a pair of gauntlets."
+      ]
+    },
+    {
+      "name": "Spyglass",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "20 gp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "A typical spyglass lets you see eight times farther than normal."
+      ]
+    },
+    {
+      "name": "Spyglass (Fine)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 4,
+      "traits": [],
+      "price": "80 gp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "A typical spyglass lets you see eight times farther than normal.",
+        "A fine spyglass adds a +1 item bonus to Perception checks to notice details at a distance."
+      ]
+    },
+    {
+      "name": "Stabling",
+      "source": "PC1",
+      "page": 294,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "2 cp (per day)",
+      "bulk": "—",
+      "entries": []
+    },
+    {
+      "name": "Staff",
+      "source": "PC1",
+      "page": 277,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "monk",
+        "two-hand"
+      ],
+      "traitLabels": {
+        "two-hand": "Two-Hand 1d8"
+      },
+      "price": "0",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Simple",
+      "group": "Club",
+      "stats": {
+        "Damage": "1d4 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This long piece of wood can aid in walking and deliver a mighty blow."
+      ]
+    },
+    {
+      "name": "Starknife",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "deadly",
+        "finesse",
+        "thrown",
+        "versatile"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d6",
+        "thrown": "Thrown 20 ft.",
+        "versatile": "Versatile S"
+      },
+      "price": "2 gp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Knife",
+      "stats": {
+        "Damage": "1d4 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "From a central metal ring, four tapering metal blades extend like points on a compass rose. When gripping a starknife from the center, the wielder can use it as a melee weapon. It can also be thrown short distances."
+      ]
+    },
+    {
+      "name": "Steel Shield",
+      "source": "PC1",
+      "page": 274,
+      "category": "Shield",
+      "level": 0,
+      "traits": [],
+      "price": "2 gp",
+      "bulk": "1",
+      "stats": {
+        "AC Bonus": "+2",
+        "Speed Penalty": "—",
+        "Hardness": "5",
+        "HP (BT)": "20 (10)"
+      },
+      "entries": [
+        "Like wooden shields, steel shields come in a variety of shapes and sizes. Though more expensive than wooden shields, they are much more durable."
+      ]
+    },
+    {
+      "name": "Studded Leather Armor",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 0,
+      "traits": [],
+      "price": "3 gp",
+      "bulk": "1",
+      "subcategory": "Light",
+      "group": "Leather",
+      "stats": {
+        "AC Bonus": "+2",
+        "Dex Cap": "+3",
+        "Check Penalty": "-1",
+        "Speed Penalty": "—",
+        "Strength": "+1"
+      },
+      "entries": [
+        "This leather armor is reinforced with metal studs and sometimes small metal plates, providing most of the flexibility of leather armor with more robust protection."
+      ]
+    },
+    {
+      "name": "Survey Map",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [
+        "uncommon"
+      ],
+      "price": "10 gp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "Maps are uncommon. Most maps you can find are simple and functional. A survey map details a single location in excellent detail. One of these maps gives you a +1 item bonus to {@skill Survival|} checks and any skill checks to {@action Recall Knowledge|}, provided the checks are related to the location detailed on the map. Maps sometimes come in atlases, containing a number of maps of the same quality, often on similar topics. An atlas costs five times as much as a single map and requires both hands to use. The GM determines what maps are available in any location."
+      ]
+    },
+    {
+      "name": "Survey Map (Atlas)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [
+        "uncommon"
+      ],
+      "price": "50 gp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "Maps are uncommon. Most maps you can find are simple and functional. A survey map details a single location in excellent detail. One of these maps gives you a +1 item bonus to {@skill Survival|} checks and any skill checks to {@action Recall Knowledge|}, provided the checks are related to the location detailed on the map. Maps sometimes come in atlases, containing a number of maps of the same quality, often on similar topics. An atlas costs five times as much as a single map and requires both hands to use. The GM determines what maps are available in any location."
+      ]
+    },
+    {
+      "name": "Sword Cane",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "agile",
+        "concealable",
+        "finesse"
+      ],
+      "price": "5 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d6 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This slender, rapier-like sword is concealed within a wooden or metal cane that serves as a sheath, making it an inconspicuous weapon easy to slip past inspections or into high-society events. A sword cane is typically 4 feet long when sheathed, and its hilt is usually capped with a wooden or metal decoration."
+      ]
+    },
+    {
+      "name": "Tack",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "4 gp",
+      "bulk": "1",
+      "entries": [
+        "Tack includes all the gear required to outfit a riding animal, including a saddle, bit and bridle, and stirrups if necessary. Especially large or oddly shaped animals might require specialty saddles. These can be more expensive or hard to find, as determined by the GM. The Bulk value given is for tack worn by a creature. If carried, the Bulk increases to 2."
+      ]
+    },
+    {
+      "name": "Temple Sword",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "monk",
+        "trip"
+      ],
+      "price": "2 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d8 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This heavy blade is favored by guardians of religious sites. It has a distinctive, crescent-shaped blade that seems to be a mix of a sickle and sword. It often has holes drilled into the blade or the pommel so that bells or other holy trinkets can be affixed to the weapon as an aid for prayer or mediation."
+      ]
+    },
+    {
+      "name": "Ten-Foot Pole",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": [
+        "When wielding this long pole, you can use Seek to search a square up to 10 feet away. The pole is not sturdy enough to use as a weapon."
+      ]
+    },
+    {
+      "name": "Tent",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Tent (Four-Person)|PC1}",
+            "{@equipment Tent (Pavilion)|PC1}",
+            "{@equipment Tent (Pup)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tent (Four-Person)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "5 gp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Tent (Pavilion)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 2,
+      "traits": [],
+      "price": "40 gp",
+      "bulk": "12",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Tent (Pup)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "8 sp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": []
+    },
+    {
+      "name": "Thieves' Toolkit",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "3 gp",
+      "bulk": "L",
+      "hands": "1 or 2",
+      "entries": [
+        "You need a thieves' toolkit to Pick Locks or Disable Devices (of some types) using the {@skill Thievery|} skill. If your thieves' toolkit is {@condition Broken||broken}, you can repair it by replacing the lock picks with replacement picks appropriate to your toolkit; this doesn't require using the {@action Repair|} action. If you wear your thieves' toolkit, you can draw and replace it as part of the action that uses it.",
+        "You can use a toolkit with 1 hand if you’re wearing it or 2 if you’re holding it. See here for details."
+      ]
+    },
+    {
+      "name": "Thieves' Toolkit (Infiltrator Picks)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "3 gp",
+      "bulk": "L",
+      "hands": "1 or 2",
+      "entries": [
+        "You need a thieves' toolkit to Pick Locks or Disable Devices (of some types) using the {@skill Thievery|} skill. If your thieves' toolkit is {@condition Broken||broken}, you can repair it by replacing the lock picks with replacement picks appropriate to your toolkit; this doesn't require using the {@action Repair|} action. If you wear your thieves' toolkit, you can draw and replace it as part of the action that uses it.",
+        "You can use a toolkit with 1 hand if you’re wearing it or 2 if you’re holding it. See here for details."
+      ]
+    },
+    {
+      "name": "Thieves' Toolkit (Infiltrator)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 3,
+      "traits": [],
+      "price": "50 gp",
+      "bulk": "L",
+      "hands": "1 or 2",
+      "entries": [
+        "You need a thieves' toolkit to Pick Locks or Disable Devices (of some types) using the {@skill Thievery|} skill. If your thieves' toolkit is {@condition Broken||broken}, you can repair it by replacing the lock picks with replacement picks appropriate to your toolkit; this doesn't require using the {@action Repair|} action. If you wear your thieves' toolkit, you can draw and replace it as part of the action that uses it.",
+        "You can use a toolkit with 1 hand if you’re wearing it or 2 if you’re holding it. See here for details.",
+        "An infiltrator thieves' toolkit adds a +1 item bonus to checks to Pick Locks and Disable Devices."
+      ]
+    },
+    {
+      "name": "Thieves' Toolkit (Replacement Picks)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "3 sp",
+      "bulk": "L",
+      "hands": "1 or 2",
+      "entries": [
+        "You need a thieves' toolkit to Pick Locks or Disable Devices (of some types) using the {@skill Thievery|} skill. If your thieves' toolkit is {@condition Broken||broken}, you can repair it by replacing the lock picks with replacement picks appropriate to your toolkit; this doesn't require using the {@action Repair|} action. If you wear your thieves' toolkit, you can draw and replace it as part of the action that uses it.",
+        "You can use a toolkit with 1 hand if you’re wearing it or 2 if you’re holding it. See here for details."
+      ]
+    },
+    {
+      "name": "Toll",
+      "source": "PC1",
+      "page": 294,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp",
+      "bulk": "—",
+      "entries": []
+    },
+    {
+      "name": "Tool",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        "This entry is a catchall for basic hand tools that don't have a specific adventuring purpose. A hoe, shovel, or sledgehammer is a long tool, and a hand drill, ice hook, or trowel is a short tool. A tool can usually be used as an improvised weapon, dealing 1d4 damage for a short tool or 1d6 for a long tool. The GM determines the damage type that's appropriate or adjusts the damage if needed.",
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Tool (Long)|PC1}",
+            "{@equipment Tool (Short)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tool (Long)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "1",
+      "hands": "2",
+      "entries": [
+        "This entry is a catchall for basic hand tools that don't have a specific adventuring purpose. A hoe, shovel, or sledgehammer is a long tool, and a hand drill, ice hook, or trowel is a short tool. A tool can usually be used as an improvised weapon, dealing 1d4 damage for a short tool or 1d6 for a long tool. The GM determines the damage type that's appropriate or adjusts the damage if needed."
+      ]
+    },
+    {
+      "name": "Tool (Short)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "4 sp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "This entry is a catchall for basic hand tools that don't have a specific adventuring purpose. A hoe, shovel, or sledgehammer is a long tool, and a hand drill, ice hook, or trowel is a short tool. A tool can usually be used as an improvised weapon, dealing 1d4 damage for a short tool or 1d6 for a long tool. The GM determines the damage type that's appropriate or adjusts the damage if needed."
+      ]
+    },
+    {
+      "name": "Torch",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 cp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "A torch sheds bright light in a 20-foot radius (and dim light to the next 20 feet) for 1 hour. It can be used as an improvised weapon that deals 1d4 bludgeoning damage plus 1 fire damage."
+      ]
+    },
+    {
+      "name": "Tower Shield",
+      "source": "PC1",
+      "page": 274,
+      "category": "Shield",
+      "level": 0,
+      "traits": [],
+      "price": "10 gp",
+      "bulk": "4",
+      "stats": {
+        "AC Bonus": "+2/+4{@sup 2}",
+        "Speed Penalty": "-5 ft.",
+        "Hardness": "5",
+        "HP (BT)": "20 (10)"
+      },
+      "entries": [
+        "These massive shields can be used to provide cover to nearly the entire body. Due to their size, they are typically made of wood reinforced with metal.",
+        "{@sup 2} Getting the higher bonus for a tower shield requires using the {@action Take Cover|} action while the shield is raised."
+      ]
+    },
+    {
+      "name": "Transportation",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "bulk": "—",
+      "entries": [
+        "The cost to hire transportation includes standard travel with no amenities. Most transit services provide basic sleeping arrangements, and some provide meals at the rates listed on Table 6–14. Arranging transportation into dangerous lands can be more expensive or impossible.",
+        {
+          "type": "list",
+          "items": [
+            "{@equipment Transportation (Caravan)|PC1}",
+            "{@equipment Transportation (Carriage)|PC1}",
+            "{@equipment Transportation (Ferry or Riverboat)|PC1}",
+            "{@equipment Transportation (Sailing Ship)|PC1}"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Transportation (Caravan)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "3 cp (per 5 miles)",
+      "bulk": "—",
+      "entries": [
+        "The cost to hire transportation includes standard travel with no amenities. Most transit services provide basic sleeping arrangements, and some provide meals at the rates listed on Table 6–14. Arranging transportation into dangerous lands can be more expensive or impossible."
+      ]
+    },
+    {
+      "name": "Transportation (Carriage)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "2 sp (per 5 miles)",
+      "bulk": "—",
+      "entries": [
+        "The cost to hire transportation includes standard travel with no amenities. Most transit services provide basic sleeping arrangements, and some provide meals at the rates listed on Table 6–14. Arranging transportation into dangerous lands can be more expensive or impossible."
+      ]
+    },
+    {
+      "name": "Transportation (Ferry or Riverboat)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "4 cp (per 5 miles)",
+      "bulk": "—",
+      "entries": [
+        "The cost to hire transportation includes standard travel with no amenities. Most transit services provide basic sleeping arrangements, and some provide meals at the rates listed on Table 6–14. Arranging transportation into dangerous lands can be more expensive or impossible."
+      ]
+    },
+    {
+      "name": "Transportation (Sailing Ship)",
+      "source": "PC1",
+      "page": 294,
+      "category": "Service",
+      "level": 0,
+      "traits": [],
+      "price": "6 cp (per 5 miles)",
+      "bulk": "—",
+      "entries": [
+        "The cost to hire transportation includes standard travel with no amenities. Most transit services provide basic sleeping arrangements, and some provide meals at the rates listed on Table 6–14. Arranging transportation into dangerous lands can be more expensive or impossible."
+      ]
+    },
+    {
+      "name": "Trident",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "thrown"
+      ],
+      "traitLabels": {
+        "thrown": "Thrown 20 ft."
+      },
+      "price": "1 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Spear",
+      "stats": {
+        "Damage": "1d8 P",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This three-pronged, spear-like weapon typically has a 4-foot shaft. Like a spear, it can be wielded with one hand or thrown."
+      ]
+    },
+    {
+      "name": "Unarmored",
+      "source": "PC1",
+      "page": 273,
+      "category": "Armor",
+      "level": 0,
+      "traits": [],
+      "price": "—",
+      "bulk": "—",
+      "subcategory": "Unarmored",
+      "stats": {
+        "AC Bonus": "+0",
+        "Dex Cap": "—",
+        "Check Penalty": "—",
+        "Speed Penalty": "—",
+        "Strength": "—"
+      },
+      "entries": []
+    },
+    {
+      "name": "Wakizashi",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "uncommon",
+        "agile",
+        "deadly",
+        "finesse",
+        "versatile"
+      ],
+      "traitLabels": {
+        "deadly": "Deadly d8",
+        "versatile": "Versatile P"
+      },
+      "price": "1 gp",
+      "bulk": "L",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Sword",
+      "stats": {
+        "Damage": "1d4 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This short-bladed, single-edged sword is typically carried as part of a pair alongside a {@equipment Katana|PC1|katana}."
+      ]
+    },
+    {
+      "name": "War Flail",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "disarm",
+        "sweep",
+        "trip"
+      ],
+      "price": "2 gp",
+      "bulk": "2",
+      "hands": "2",
+      "subcategory": "Martial",
+      "group": "Flail",
+      "stats": {
+        "Damage": "1d10 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This large flail has a long shaft connected to a shorter piece of stout wood or metal that's sometimes inlaid with spikes."
+      ]
+    },
+    {
+      "name": "Warhammer",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "shove"
+      ],
+      "price": "1 gp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Hammer",
+      "stats": {
+        "Damage": "1d8 B",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This weapon has a wooden shaft ending in a large, heavy metal head. The head of the hammer might be single-sided or double-sided, but it's always capable of delivering powerful bludgeoning blows."
+      ]
+    },
+    {
+      "name": "Waterskin",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "5 cp",
+      "bulk": "L",
+      "hands": "1",
+      "entries": [
+        "When it's full, a waterskin contains roughly 1 day's worth of water for a Small or Medium creature."
+      ]
+    },
+    {
+      "name": "Wheel Chair (Chair Storage)",
+      "source": "PC1",
+      "page": 293,
+      "category": "Assistive Item",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "—",
+      "entries": [
+        "A common wheelchair is ideal for everyday use but isn't designed for strenuous activity. These wheelchairs are most common among non-adventurers. Wheelchairs come in a variety of sizes to suit every person regardless of height or body type.",
+        "Chair storage can be purchased and applied to any wheelchair. This reduces the amount of Bulk the items weigh when stored within the chair, much like a backpack. The first 2 Bulk of items stowed in your chair don't count against your Bulk limit. If you use both chair storage and a backpack at the same time, only 2 Bulk total isn't counted against your limit, much like if you used multiple backpacks or similar items at the same time.",
+        {
+          "type": "box",
+          "entries": [
+            {
+              "type": "h3",
+              "name": "Wheelchair Rules",
+              "entries": []
+            },
+            "Each wheelchair operates in the following ways.",
+            "{@b Adjustable Seat Belts}: These belts strap around your waist, knees, and shins to keep you in the chair if it's thrown, knocked, or handled roughly. You can open and release your belts with an Interact action.",
+            "{@b Bulk Limit}: A wheelchair is strong enough to support you and any amount of Bulk you could typically hold or carry. Your total carried Bulk includes all the items you are wearing, carrying, and stowing on your wheelchair. You take the usual effects when there's too much Bulk on you and your wheelchair: if you're carrying an amount of Bulk equal to 5 + your Strength modifier, you're {@condition Encumbered||encumbered}, and you and your wheelchair can't hold or carry more than 10 + your Strength modifier. The wheelchair's own Bulk doesn't count against your Bulk limit while riding in the wheelchair; it's listed in case you need to carry the wheelchair separately.",
+            "{@b Frame}: A wheelchair is typically made from common materials like wood, but they can also be made from steel, other metals, or even rarer materials like dawnsilver. The wheelchairs presented here are made from durable wood.",
+            "{@b Magic}: The wheelchair is considered an extension of yourself. Spells or abilities that change your bodily form also apply to the chair, and it transforms with you so long as you're using it. You can choose what appearance this has.",
+            "{@b Movement}: While using a wheelchair, you Stride at your normal Speed (listed in your ancestry, with any additional bonuses, penalties, and adjustments applied). You propel a wheelchair by using the hand rims. You can propel the wheelchair even while holding something in your hands, but not if you're restrained or otherwise unable to move your hands freely. You're still affected by difficult terrain and other terrain features. Any effect that would immobilize you, give a penalty to your Speeds, or similar by entangling or hindering your legs applies to the chair as well. You can use all of your actions while in a wheelchair.",
+            "{@b Quick-Righting}: If the chair is tipped or you're knocked {@condition Prone||prone} while in the chair, you can right yourself using the {@action Stand|} action, though in this case you are righting the wheelchair instead. An ally can use an Interact action to help right you, allowing you to Stand as a free action triggered by their Interact action."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wheelchair",
+      "source": "PC1",
+      "page": 293,
+      "category": "Assistive Item",
+      "level": 0,
+      "traits": [],
+      "price": "5 sp",
+      "bulk": "2",
+      "usage": "see text",
+      "entries": [
+        "A common wheelchair is ideal for everyday use but isn't designed for strenuous activity. These wheelchairs are most common among non-adventurers. Wheelchairs come in a variety of sizes to suit every person regardless of height or body type.",
+        {
+          "type": "box",
+          "entries": [
+            {
+              "type": "h3",
+              "name": "Wheelchair Rules",
+              "entries": []
+            },
+            "Each wheelchair operates in the following ways.",
+            "{@b Adjustable Seat Belts}: These belts strap around your waist, knees, and shins to keep you in the chair if it's thrown, knocked, or handled roughly. You can open and release your belts with an Interact action.",
+            "{@b Bulk Limit}: A wheelchair is strong enough to support you and any amount of Bulk you could typically hold or carry. Your total carried Bulk includes all the items you are wearing, carrying, and stowing on your wheelchair. You take the usual effects when there's too much Bulk on you and your wheelchair: if you're carrying an amount of Bulk equal to 5 + your Strength modifier, you're {@condition Encumbered||encumbered}, and you and your wheelchair can't hold or carry more than 10 + your Strength modifier. The wheelchair's own Bulk doesn't count against your Bulk limit while riding in the wheelchair; it's listed in case you need to carry the wheelchair separately.",
+            "{@b Frame}: A wheelchair is typically made from common materials like wood, but they can also be made from steel, other metals, or even rarer materials like dawnsilver. The wheelchairs presented here are made from durable wood.",
+            "{@b Magic}: The wheelchair is considered an extension of yourself. Spells or abilities that change your bodily form also apply to the chair, and it transforms with you so long as you're using it. You can choose what appearance this has.",
+            "{@b Movement}: While using a wheelchair, you Stride at your normal Speed (listed in your ancestry, with any additional bonuses, penalties, and adjustments applied). You propel a wheelchair by using the hand rims. You can propel the wheelchair even while holding something in your hands, but not if you're restrained or otherwise unable to move your hands freely. You're still affected by difficult terrain and other terrain features. Any effect that would immobilize you, give a penalty to your Speeds, or similar by entangling or hindering your legs applies to the chair as well. You can use all of your actions while in a wheelchair.",
+            "{@b Quick-Righting}: If the chair is tipped or you're knocked {@condition Prone||prone} while in the chair, you can right yourself using the {@action Stand|} action, though in this case you are righting the wheelchair instead. An ally can use an Interact action to help right you, allowing you to Stand as a free action triggered by their Interact action."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Wheelchair (Traveler's Chair)",
+      "source": "PC1",
+      "page": 293,
+      "category": "Assistive Item",
+      "level": 0,
+      "traits": [],
+      "price": "5 gp",
+      "bulk": "3",
+      "usage": "see text",
+      "entries": [
+        "A common wheelchair is ideal for everyday use but isn't designed for strenuous activity. These wheelchairs are most common among non-adventurers. Wheelchairs come in a variety of sizes to suit every person regardless of height or body type.",
+        "A traveler's chair is tailored for frequent adventures and travels. The design is sleek and fashionable to provide excellent comfort and support. A traveler's chair has small mechanisms, either made from interlocking wood pieces, clockwork, or other devices, that allow the chair to traverse up or down stairs without any additional difficulty (moving up stairs is still difficult terrain, just like for other characters), and move through other common adventuring terrain without any additional difficulty, such as ladders and uneven ground.",
+        {
+          "type": "box",
+          "entries": [
+            {
+              "type": "h3",
+              "name": "Wheelchair Rules",
+              "entries": []
+            },
+            "Each wheelchair operates in the following ways.",
+            "{@b Adjustable Seat Belts}: These belts strap around your waist, knees, and shins to keep you in the chair if it's thrown, knocked, or handled roughly. You can open and release your belts with an Interact action.",
+            "{@b Bulk Limit}: A wheelchair is strong enough to support you and any amount of Bulk you could typically hold or carry. Your total carried Bulk includes all the items you are wearing, carrying, and stowing on your wheelchair. You take the usual effects when there's too much Bulk on you and your wheelchair: if you're carrying an amount of Bulk equal to 5 + your Strength modifier, you're {@condition Encumbered||encumbered}, and you and your wheelchair can't hold or carry more than 10 + your Strength modifier. The wheelchair's own Bulk doesn't count against your Bulk limit while riding in the wheelchair; it's listed in case you need to carry the wheelchair separately.",
+            "{@b Frame}: A wheelchair is typically made from common materials like wood, but they can also be made from steel, other metals, or even rarer materials like dawnsilver. The wheelchairs presented here are made from durable wood.",
+            "{@b Magic}: The wheelchair is considered an extension of yourself. Spells or abilities that change your bodily form also apply to the chair, and it transforms with you so long as you're using it. You can choose what appearance this has.",
+            "{@b Movement}: While using a wheelchair, you Stride at your normal Speed (listed in your ancestry, with any additional bonuses, penalties, and adjustments applied). You propel a wheelchair by using the hand rims. You can propel the wheelchair even while holding something in your hands, but not if you're restrained or otherwise unable to move your hands freely. You're still affected by difficult terrain and other terrain features. Any effect that would immobilize you, give a penalty to your Speeds, or similar by entangling or hindering your legs applies to the chair as well. You can use all of your actions while in a wheelchair.",
+            "{@b Quick-Righting}: If the chair is tipped or you're knocked {@condition Prone||prone} while in the chair, you can right yourself using the {@action Stand|} action, though in this case you are righting the wheelchair instead. An ally can use an Interact action to help right you, allowing you to Stand as a free action triggered by their Interact action."
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Whip",
+      "source": "PC1",
+      "page": 278,
+      "category": "Weapon",
+      "level": 0,
+      "traits": [
+        "disarm",
+        "finesse",
+        "nonlethal",
+        "reach",
+        "trip"
+      ],
+      "price": "1 sp",
+      "bulk": "1",
+      "hands": "1",
+      "subcategory": "Martial",
+      "group": "Flail",
+      "stats": {
+        "Damage": "1d4 S",
+        "Type": "Melee"
+      },
+      "entries": [
+        "This long strand of thick leather, often braided, delivers a painful but nonlethal slash at a distance, usually accompanied by a distinctive cracking sound."
+      ]
+    },
+    {
+      "name": "Wooden Shield",
+      "source": "PC1",
+      "page": 274,
+      "category": "Shield",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "1",
+      "stats": {
+        "AC Bonus": "+2",
+        "Speed Penalty": "—",
+        "Hardness": "3",
+        "HP (BT)": "12 (6)"
+      },
+      "entries": [
+        "Though they come in a variety of shapes and sizes, the protection offered by wooden shields comes from the stoutness of their materials. While wooden shields are less expensive than steel shields, they break more easily."
+      ]
+    },
+    {
+      "name": "Writing Set",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 gp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "Using a writing set, you can draft correspondence and scribe scrolls. A set includes stationery, including a variety of paper and parchment, as well as ink, a quill or ink pen, sealing wax, and a simple seal. If you've written a large amount, you can refill your kit with extra ink and paper."
+      ]
+    },
+    {
+      "name": "Writing Set (Extra Ink and Paper)",
+      "source": "PC1",
+      "page": 292,
+      "category": "Adventuring Gear",
+      "level": 0,
+      "traits": [],
+      "price": "1 sp",
+      "bulk": "L",
+      "hands": "2",
+      "entries": [
+        "Using a writing set, you can draft correspondence and scribe scrolls. A set includes stationery, including a variety of paper and parchment, as well as ink, a quill or ink pen, sealing wax, and a simple seal. If you've written a large amount, you can refill your kit with extra ink and paper."
+      ]
+    }
+  ]
+}

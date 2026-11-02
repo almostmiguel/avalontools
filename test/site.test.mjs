@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import { request } from "node:http";
 import { fileURLToPath } from "node:url";
 import { test } from "node:test";
@@ -10,7 +10,7 @@ const read = path => readFile(new URL(path, root), "utf8");
 
 test("inline formatting is nested, escaped, and has no dead entity links", () => {
   assert.equal(renderInline("A {@b bold {@i word}}."), "A <strong>bold <em>word</em></strong>.");
-  assert.equal(renderInline("{@spell fireball|PC1|Fireball}"), "<em>Fireball</em>");
+  assert.match(renderInline("{@spell fireball|PC1|Fireball}"), /^<em><a\b[^>]*data-spell-name="fireball"/);
   assert.match(renderInline("{@trait fire|PC1}"), /href="traits.html\?trait=fire&amp;source=PC1"/);
   assert.equal(renderInline("{@dice 1d20|a check}"), "a check");
   assert.equal(renderInline("{@dc 15}"), "DC 15");
@@ -62,13 +62,19 @@ test("nested inline formatting resolves each rule link once", () => {
   assert.match(html, /<\/a><\/em><\/strong>$/);
 });
 
-test("spell tags automatically italicize names and custom labels without changing other tags", () => {
-  assert.equal(renderInline("{@spell light}"), "<em>light</em>");
-  assert.equal(renderInline("{@spell light|PC1}"), "<em>light</em>");
-  assert.equal(renderInline("{@spell light|PC1|a golden light}"), "<em>a golden light</em>");
-  assert.equal(renderInline("{@b {@spell light|PC1}}"), "<strong><em>light</em></strong>");
-  assert.equal(renderInline("{@spell light|PC1|{@b Light}}"), "<em><strong>Light</strong></em>");
-  assert.equal(renderInline("{@spell <script>unsafe</script>}"), "<em>&lt;script&gt;unsafe&lt;/script&gt;</em>");
+test("spell tags link to the spell catalog while preserving italics, custom labels, formatting and safety", () => {
+  for (const [tag, label] of [["{@spell light}", "light"], ["{@spell light|PC1}", "light"], ["{@spell light|PC1|a golden light}", "a golden light"]]) {
+    const html = renderInline(tag);
+    assert.match(html, /^<em><a\b[^>]*data-spell-name="light"/);
+    assert.equal(html.replace(/<[^>]*>/g, ""), label);
+    assert.equal(inlineText(tag), label);
+  }
+  assert.match(renderInline("{@spell light|PC1}"), /href="spells.html\?spell=light&amp;source=PC1"/);
+  assert.match(renderInline("{@b {@spell light|PC1}}"), /^<strong><em><a\b/);
+  assert.match(renderInline("{@spell light|PC1|{@b Light}}"), /<strong>Light<\/strong><\/a><\/em>$/);
+  const unsafe = renderInline("{@spell <script>unsafe</script>}");
+  assert.doesNotMatch(unsafe, /<script>/);
+  assert.match(unsafe, /&lt;script&gt;unsafe&lt;\/script&gt;/);
   assert.equal(renderInline("{@code {@spell light}}"), "<code>{@spell light}</code>");
   assert.match(renderInline("{@trait fire|PC1}"), /href="traits.html\?trait=fire&amp;source=PC1"/);
   const { html } = renderContent({ entries: [
@@ -205,7 +211,7 @@ test("dialogue table styling gives speakers semantic row headers without changin
   const dialogue = renderContent({ entries: [{ ...table, style: "table-dialogue" }] }).html;
   assert.match(dialogue, /<table class="dialogue-table"><caption>Example conversation<\/caption><colgroup><col class="dialogue-speaker-column"><col><\/colgroup>/);
   assert.match(dialogue, /<th scope="col">Speaker<\/th>/);
-  assert.match(dialogue, /<th scope="row"><strong>Merisiel \(Shay\):<\/strong><\/th><td>I cast <em>light<\/em>/);
+  assert.match(dialogue, /<th scope="row"><strong>Merisiel \(Shay\):<\/strong><\/th><td>I cast <em><a\b[^>]*data-spell-name="light"/);
   assert.match(dialogue, /<th scope="row"><strong>Valeros \(Luis\):<\/strong><\/th>/);
   const normal = renderContent({ entries: [table] }).html;
   assert.match(normal, /<table><caption>/);
@@ -273,9 +279,10 @@ test("decorative rule boxes support titles and nested entries", () => {
 
 
 test("public pages expose working navigation and load existing relative assets", async () => {
-  for (const path of ["index.html", "rules.html", "rule.html", "actions.html", "conditions.html", "skills.html", "classes.html", "feats.html", "traits.html", "backgrounds.html", "archetypes.html", "ancestries.html", "setting.html"]) {
+  for (const path of ["index.html", "rules.html", "rule.html", "actions.html", "conditions.html", "skills.html", "classes.html", "feats.html", "traits.html", "backgrounds.html", "archetypes.html", "ancestries.html", "afflictions.html", "hazards.html", "spells.html", "equipment.html", "creatures.html", "companions.html", "setting.html"]) {
     const html = await read(path);
-    assert.match(html, /<html\b[^>]*lang="en"/);
+    const portuguese = path === "setting.html";
+    assert.match(html, new RegExp(`<html\\b[^>]*lang="${portuguese ? "pt-PT" : "en"}"`));
     const navigation = html.match(/<nav\b[^>]*aria-label="Main navigation"[^>]*>([\s\S]*?)<\/nav>/)?.[1];
     assert.ok(navigation, path + ": main navigation exists");
     const groups = [...navigation.matchAll(/<details\b([^>]*)>([\s\S]*?)<\/details>/g)]
@@ -287,9 +294,9 @@ test("public pages expose working navigation and load existing relative assets",
     assert.equal(directRules[2].replace(/<[^>]*>/g, "").trim(), "Rules");
     assert.match(navigation, /href="setting.html"/);
     const expected = [
-      ["Player", ["Ancestries", "Archetypes", "Backgrounds", "Classes", "Feats"]],
+      ["Player", ["Ancestries", "Archetypes", "Backgrounds", "Classes", "Companions", "Feats"]],
       ["Game Master", ["Afflictions", "Creatures", "Hazards"]],
-      ["References", ["Actions", "Conditions", "Equipment", "Skills", "Traits"]],
+      ["References", ["Actions", "Conditions", "Equipment", "Skills", "Spells", "Traits"]],
     ];
     groups.forEach((group, index) => {
       const summary = group.body.match(/<summary\b[^>]*>([\s\S]*?)<\/summary>/)?.[1];
@@ -319,7 +326,8 @@ test("the local server serves current pages, data and fonts while blocking priva
   });
   t.after(() => new Promise(resolve => { server.close(resolve); server.closeAllConnections(); }));
   const base = `http://127.0.0.1:${server.address().port}`;
-  for (const path of ["/", "/setting.html", "/setting/articles.html", "/setting/category-places.html", "/setting/the-crossroads.html", "/setting.html?article=the-crossroads", "/css/wiki.css", "/js/wiki.js", "/rules.html", "/actions.html", "/conditions.html", "/skills.html", "/classes.html", "/feats.html", "/backgrounds.html", "/archetypes.html", "/ancestries.html", "/data/ancestries.json", "/js/ancestry-reader.js", "/data/backgrounds.json", "/data/archetypes.json", "/js/character-library.js", "/feats.html?trait=wizard", "/data/feats.json", "/js/feat-library.js", ...["bard", "cleric", "druid", "fighter", "ranger", "rogue", "witch", "wizard"].map(name => `/img/classes/${name}.webp`), "/classes.html?id=PC1%3Awizard&tab=options", "/css/classes.css", "/js/class-reader.js", "/data/classes.json", "/actions.html?id=PC1:stride", "/rules.html?id=PC1:rolling-checks", "/css/site.css", "/css/home.css", "/css/rules.css", "/css/actions.css", "/css/catalog.css",
+  const articles = (await readdir(new URL("setting/", root))).filter(name => !/^(?:articles\.|category-|portal-)/.test(name));
+  for (const path of ["/", "/setting.html", "/setting/articles.html", "/setting/category-povoacoes.html", "/setting/portal-geografia.html", ...articles.map(name => `/setting/${name}`), "/setting.html?view=all", "/css/wiki.css", "/js/wiki.js", "/rules.html", "/actions.html", "/conditions.html", "/skills.html", "/classes.html", "/feats.html", "/backgrounds.html", "/archetypes.html", "/ancestries.html", "/afflictions.html", "/hazards.html", "/data/afflictions.json", "/data/hazards.json", "/spells.html", "/data/spells.json", "/js/spell-library.js", "/companions.html", "/data/companions.json", "/creatures.html", "/data/creatures.json", "/js/creature-library.js", "/img/icons/paw-print.svg", "/equipment.html", "/data/equipment.json", "/js/equipment-library.js", "/img/icons/backpack.svg", "/data/ancestries.json", "/js/ancestry-reader.js", "/data/backgrounds.json", "/data/archetypes.json", "/js/character-library.js", "/feats.html?trait=wizard", "/data/feats.json", "/js/feat-library.js", ...["bard", "cleric", "druid", "fighter", "ranger", "rogue", "witch", "wizard"].map(name => `/img/classes/${name}.webp`), "/classes.html?id=PC1%3Awizard&tab=options", "/css/classes.css", "/js/class-reader.js", "/data/classes.json", "/actions.html?id=PC1:stride", "/rules.html?id=PC1:rolling-checks", "/css/site.css", "/css/home.css", "/css/rules.css", "/css/actions.css", "/css/catalog.css",
     "/js/site-shell.js", "/js/content-renderer.js", "/js/rule-browser.js", "/js/rule-library.js", "/js/reference-previews.js", "/js/reference-data.js", "/js/reference-browser.js", "/js/reference-library.js", "/data/rules.json", "/data/actions.json", "/data/actions.schema.json", "/data/conditions.json", "/data/skills.json"]) {
     const response = await fetch(`${base}${path}`);
     assert.equal(response.status, 200, path);

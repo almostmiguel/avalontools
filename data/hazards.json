@@ -1,0 +1,907 @@
+{
+  "sources": [
+    {
+      "id": "GMC",
+      "name": "GM Core",
+      "source": "GMC"
+    }
+  ],
+  "hazards": [
+    {
+      "name": "Armageddon Orb",
+      "source": "GMC",
+      "page": 100,
+      "category": "Trap",
+      "level": 23,
+      "traits": [
+        "rare",
+        "magical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 10 or detect magic",
+        "{@b Description} A roiling red orb, forged from a drop of the god Rovagug’s blood, rains fire from the sky when a specified condition is met.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 48 {@skill Thievery} (legendary) to imbue a thieves’ toolkit with aspects representing Asmodeus and Sarenrae and use them to drain away the orb’s power over 10 minutes; the character attempting this check takes 5 fire damage each round until the orb is depleted",
+        "{@b Burn It All} {@as r} ({@trait death}, {@trait divine}, {@trait fire}) {@b Trigger} A special condition set by the trap’s creator occurs, typically the event of their death; {@b Effect} Fire rains from the sky in a 100-mile radius, dealing 10d6 fire damage to creatures and objects in the area. Each creature or object can attempt a DC 46 basic Reflex save. Any creature reduced to 0 Hit Points by this damage dies instantly. This is not enough damage to completely burn away a forest or level an entire mountain or city, but it typically kills most creatures in the area."
+      ]
+    },
+    {
+      "name": "Bloodthirsty Urge",
+      "source": "GMC",
+      "page": 100,
+      "category": "Haunt",
+      "level": 10,
+      "traits": [
+        "haunt"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 31 (trained)",
+        "{@b Description} An object haunted by the echoes of a vicious mind attempts to kill someone who comes near.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 29 {@skill Religion} (master) to exorcise the spirit or DC 31 {@skill Diplomacy} (expert) to talk it down",
+        "{@b Quietus} {@as r} ({@trait death}, {@trait emotion}, {@trait fear}, {@trait illusion}, {@trait mental}, {@trait occult}) {@b Trigger} A creature moves within 10 feet of the haunted object; {@b Effect} The haunt takes control of the triggering creature, forcing it to attack itself. The creature must attempt a DC 29 Will save.",
+        "{@b Critical Success} The target is unaffected.",
+        "{@b Success} The target makes a {@action Strike} against itself and automatically hits; the target also becomes {@condition frightened} 1.",
+        "{@b Failure} The target makes a Strike against itself and automatically scores a critical hit; the target also becomes frightened 2.",
+        "{@b Critical Failure} The target attempts a Fortitude save. If the target succeeds, it is subject to the effects of a failure instead. If the target fails, it is reduced to 0 HP and dies."
+      ]
+    },
+    {
+      "name": "Bottomless Pit",
+      "source": "GMC",
+      "page": 101,
+      "category": "Trap",
+      "level": 9,
+      "traits": [
+        "magical",
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 30 (or 0 if the trapdoor is disabled or broken) or detect magic",
+        "{@b Description} An iron trapdoor covers an infinitely deep 10-footsquare pit.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 28 {@skill Thievery} (trained) to remove the trapdoor",
+        "{@b AC} 28; {@b Fort} +12, {@b Ref} +12",
+        "{@b Trapdoor Hardness} 9, {@b Trapdoor HP} 36 (BT 18); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Infinite Pitfall} {@as r} {@b Trigger} A creature walks onto the trapdoor; {@b Effect} The triggering creature falls in and continues to fall, potentially forever. That creature can try to {@action Grab an Edge} to avoid falling. The DC to {@action Climb} the walls or Grab an Edge is 26.",
+        "The pit contains many handholds, so the falling creature can try to Grab an Edge again every 6 seconds. If the creature succeeds, it can start to Climb out from that point (though it might be a very long climb, depending on how far the creature fell). Since the creature falls endlessly, it can rest and even prepare spells while falling, though items dropped while falling are usually lost forever.",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The trap still causes creatures to fall forever if they fall in, but the trapdoor must be reset manually for the trap to become hidden again."
+      ]
+    },
+    {
+      "name": "Confounding Betrayal",
+      "source": "GMC",
+      "page": 105,
+      "category": "Haunt",
+      "level": 8,
+      "traits": [
+        "complex",
+        "haunt"
+      ],
+      "complexity": "Complex",
+      "entries": [
+        "{@b Stealth} +21 (expert)",
+        "{@b Description} Allies appear to shed their disguises and reveal themselves to be malevolent monsters.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 28 {@skill Deception} (expert) twice to confound the haunt with your own deceptions, or DC 28 {@skill Occultism} (trained) twice to create a ward against the haunt’s mental influence",
+        "{@b Unmask} {@as r} ({@trait illusion}, {@trait occult}) {@b Trigger} Two or more creatures enter the haunt’s area; {@b Effect} Each creature sees the forms of nearby creatures shift and change, appearing to transform into fiendish or aberrant beings with a thirst for blood. Each creature in the area must attempt a DC 30 Will save. The haunt then rolls initiative.",
+        "{@b Critical Success} The creature sees through the illusions entirely and is temporarily immune to the haunt’s routine for 1 minute.",
+        "{@b Success} The creature is unaffected by the strange images.",
+        "{@b Failure} The creature believes the illusions to be true; if they become {@condition confused} by the haunt’s routine, they can’t attempt flat checks to end the confused condition when they take damage.",
+        "{@b Critical Failure} As failure, but the creature is left with a lingering suspicion of others and can’t benefit from Aid reactions for 24 hours.",
+        {
+          "type": "hr"
+        },
+        "{@b Routine} (1 action; {@trait illusion}, {@trait incapacitation}, {@trait occult}) The haunt continues to confound victims’ senses and inspire them to commit violence against each other. Each creature in the haunt’s area must attempt a DC 26 Will save.",
+        "{@b Critical Success} The creature is unaffected and temporarily immune for 1 minute.",
+        "{@b Success} The creature is unaffected.",
+        "{@b Failure} The creature is {@condition confused} for 1 round.",
+        "{@b Critical Failure} The creature is confused for 1 minute.",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The haunt deactivates 1 minute after all creatures leave the area but resets immediately thereafter"
+      ]
+    },
+    {
+      "name": "Dance of Death",
+      "source": "GMC",
+      "page": 106,
+      "category": "Haunt",
+      "level": 16,
+      "traits": [
+        "complex",
+        "haunt"
+      ],
+      "complexity": "Complex",
+      "entries": [
+        "{@b Stealth} +32 (master)",
+        "{@b Description} An eerie orchestra compels all who hear it to dance until they collapse from exhaustion.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 42 {@skill Intimidation} (expert) three times to frighten dancers and spectral musicians alike away from participating in the deadly performance, DC 40 {@skill Performance} (master) twice to produce a tune discordant enough to disrupt the compulsion, or DC 42 {@skill Religion} (master) three times to banish the spirits with prayers",
+        "{@b Prelude} {@as r} ({@trait auditory}, {@trait incapacitation}, {@trait mental}, {@trait occult}) {@b Trigger} A creature approaches within 30 feet of the orchestra; {@b Effect} The orchestra compels all creatures that can hear it to begin dancing. Each creature must attempt a DC 41 Will save, with the following effects. The haunt then rolls initiative.",
+        "{@b Critical Success} The creature is unaffected.",
+        "{@b Success} The creature is {@condition off-guard} and cannot use reactions. Additionally, it must spend 1 of its actions each round dancing. Dancing is a {@trait move} action that allows the creature to {@action Stride} up to half its Speed.",
+        "{@b Failure} As success, except the creature must spend 2 of its actions each round dancing.",
+        "{@b Critical Failure} As failure, except the creature must spend 3 of its actions each round dancing.",
+        {
+          "type": "hr"
+        },
+        "{@b Routine} (1 action; {@trait auditory}, {@trait incapacitation}, {@trait mental}, {@trait occult}) The orchestra performs a raucous tune, compelling all creatures that can hear it to spend actions dancing. Each round, creature must attempt a DC 37 Will save; the results of this save modify the number of actions that the creature must spend dancing each round. If this would cause the creature to spend more actions dancing than it can use on its turn, the creature takes 10d6 damage (or double that on a critical failure) from moving faster than its body can manage.",
+        "{@b Critical Success} The creature decreases the number of actions it must spend dancing by 1.",
+        "{@b Success} No effect.",
+        "{@b Failure} The creature increases the actions it must spend dancing by 1.",
+        "{@b Critical Failure} The creature increases the actions it must spend dancing by 2.",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The eerie orchestra spends an hour retuning its phantasmal instruments, after which it is ready to begin its routine again."
+      ]
+    },
+    {
+      "name": "Drowning Pit",
+      "source": "GMC",
+      "page": 106,
+      "category": "Trap",
+      "level": 3,
+      "traits": [
+        "complex",
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Complex",
+      "entries": [
+        "{@b Stealth} +10 (trained); DC 22 (expert) to notice the water spouts once the pit opens",
+        "{@b Description} A trapdoor covers a 10-foot-square pit that’s 30 feet deep and has 5 feet of water at the bottom. Four water spouts in the walls connect to hidden water tanks. Each water spout extends out of a different wall, 6 inches from the top of the pit.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 18 {@skill Thievery} (trained) to seal each water spout, DC 22 Thievery (trained) to open the trapdoor, or DC 22 {@skill Athletics} to {@action Force Open} the trapdoor",
+        "{@b AC} 19; {@b Fort} +8, {@b Ref} +5",
+        "{@b Trapdoor Hardness} 15, {@b Trapdoor HP} 60 (BT 30); {@b Spout Hardness} 8; {@b Spout} HP 32 (BT 16); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Pitfall} {@as r} {@b Trigger} A creature walks onto the trapdoor; {@b Effect} The triggering creature falls in and takes damage from the fall, reduced by 5 feet for falling into the water (typically 12 bludgeoning damage). A creature can {@action Grab an Edge} to avoid falling. The trapdoor then slams shut, and the hazard rolls initiative.",
+        {
+          "type": "hr"
+        },
+        "{@b Routine} (4 actions) The trap loses 1 action each turn for each disabled water spout. On each of the trap’s actions, a spout pours water, increasing the depth of the water by 5 feet. Once the pit is full of water, the pit stops using actions, but creatures in the pit begin drowning.",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The trap can be reset if the door is manually reengaged and the water tanks are refilled; it can be reset without draining the pit, but doing so renders the pit less effective."
+      ]
+    },
+    {
+      "name": "Electric Latch Rune",
+      "source": "GMC",
+      "page": 101,
+      "category": "Trap",
+      "level": 3,
+      "traits": [
+        "electricity",
+        "magical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 20 (trained)",
+        "{@b Description} An invisible rune imprinted on a door latch releases a powerful electric discharge.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 20 {@skill Thievery} (expert) to scratch out the rune without allowing electricity to flow, or dispel magic (2nd rank; counteract DC 18) to counteract the rune",
+        "{@b Electrocution} {@as r} ({@trait arcane}, {@trait electricity}) {@b Trigger} A creature grasps the door latch directly or with a tool; {@b Effect} The trap deals 3d12 electricity damage to the triggering creature (DC 22 basic Reflex save)."
+      ]
+    },
+    {
+      "name": "Eternal Flame",
+      "source": "GMC",
+      "page": 106,
+      "category": "Haunt",
+      "level": 7,
+      "traits": [
+        "complex",
+        "haunt"
+      ],
+      "complexity": "Complex",
+      "entries": [
+        "{@b Stealth} +18 (expert)",
+        "{@b Description} A raging spectral inferno arises out of thin air, strengthening all undead creatures within its area. This haunt most often arises from the charred remains of a group of three people who burned to death, whether in a terrible accident or a deliberate execution, and their unavenged souls burn with rage.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 27 {@skill Diplomacy} (expert) to temporarily calm the rage of one of the three spirits, or DC 30 {@skill Religion} (trained) to exorcise one of the spirits; three total successes are required to disable the haunt",
+        "{@b Searing Agony} {@as r} ({@trait mental}) {@b Trigger} A living creature approaches within 10 feet of the remains of a victim of the original fire; {@b Effect} Memories of the pain suffered by the fire’s past victims assault the triggering creature’s mind. The creature must attempt a DC 25 Will save, and the haunt then rolls initiative.",
+        "{@b Critical Success} The creature is unaffected.",
+        "{@b Success} The creature is {@condition sickened} 1.",
+        "{@b Failure} The creature is sickened 2.",
+        "{@b Critical Failure} The creature is sickened 3, and it is {@condition off-guard} for as long as it remains within the haunt’s area and for 3 rounds thereafter.",
+        {
+          "type": "hr"
+        },
+        "{@b Routine} (1 action) Phantom flames rage across the haunted area, dealing 4d6 fire damage to each living creature within the area (DC 23 basic Will save). {@trait Undead} creatures in the area are infused with flames for the following round. They gain the {@trait fire} trait and immunity to fire, and all their attacks deal an additional 1d6 fire damage. Objects in the area are unaffected.",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The flames cease 1 minute after all living creatures leave the area, but after 1 hour, the anger and pain simmer up and the haunt is ready to trigger again."
+      ]
+    },
+    {
+      "name": "Fireball Rune",
+      "source": "GMC",
+      "page": 101,
+      "category": "Trap",
+      "level": 5,
+      "traits": [
+        "fire",
+        "magical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 24 (expert)",
+        "{@b Description} An invisible rune creates an invisible, spherical magical sensor with a 20-foot radius.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 22 {@skill Thievery} (expert) to erase the rune without triggering the sensor, or dispel magic (3rd rank; counteract DC 20) to counteract the rune",
+        "{@b Fireball} {@as r} ({@trait arcane}, {@trait fire}) {@b Trigger} A living creature enters the sensor area; {@b Effect} The rune detonates a fireball centered on the triggering creature’s square. This is a 3rd-rank fireball spell that deals 6d6 fire damage (DC 22 basic Reflex save)."
+      ]
+    },
+    {
+      "name": "Flensing Blades",
+      "source": "GMC",
+      "page": 107,
+      "category": "Haunt",
+      "level": 12,
+      "traits": [
+        "complex",
+        "haunt"
+      ],
+      "complexity": "Complex",
+      "entries": [
+        "{@b Stealth} +25 (expert)",
+        "{@b Description} A whirling tornado of spectrally propelled glass and steel slices whatever it touches to ribbons.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 35 {@skill Thievery} (master) to precisely adjust the blades so that they destroy each other, or DC 38 {@skill Religion} (expert) to weaken the haunt; four successes are required to disable it",
+        "{@b AC} 33; {@b Fort} +27, {@b Ref} +25, {@b Will} +22",
+        "{@b Hardness} 20, {@b HP} 100 (BT 50); {@b Immunities} critical hits, object immunities, precision damage, {@b Weaknesses} {@trait vitality} 15",
+        "{@b Whirling Blades} {@as r} {@b Trigger} Three or more creatures enter the area of the haunt; {@b Effect} Sharp fragments lift up from the ground and begin to spin in rapid circles taking up one 5-foot square. The haunt rolls initiative.",
+        {
+          "type": "hr"
+        },
+        "{@b Routine} (3 actions) The tornado of blades uses 3 actions to move, traveling up to 30 feet with each action and dealing 2d10+10 slashing damage. Each creature in its path must attempt a DC 33 Reflex save. Each successful check to {@action Disable a Device||disable} this hazard reduces the haunt’s movement by 30 feet, and the fourth success disables it completely.",
+        "{@b Critical Success} The creature is unaffected.",
+        "{@b Success} The creature is unaffected.",
+        "{@b Failure} The creature takes full damage plus 1d10 {@condition persistent bleed damage}.",
+        "{@b Critical Failure} The creature takes double damage and 1d10 persistent bleed damage. It also becomes {@condition wounded} 1 (or increases its wounded value by 1, if it is already wounded).",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The haunt draws jagged shards back into its area over the course of an hour, after which it can trigger again."
+      ]
+    },
+    {
+      "name": "Ghostly Choir",
+      "source": "GMC",
+      "page": 102,
+      "category": "Haunt",
+      "level": 6,
+      "traits": [
+        "haunt"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 20 (expert)",
+        "{@b Description} A choir of lost souls rises out of the floor, singing an eerie chant that terrifies its listeners and buffets their bodies with walls of sound.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 28 {@skill Performance} (trained) to disrupt the song’s resonance with another tune or DC 28 {@skill Religion} (trained) to ritually silence the spirits",
+        "{@b Profane Chant} {@as r} ({@trait auditory}, {@trait emotion}, {@trait fear}, {@trait mental}, {@trait occult}) {@b Trigger} A creature {@trait Move||moves} within 10 feet of the section of floor from which the choir can arise; {@b Effect} The choir rises, and its song deals 4d8+18 mental damage to living creatures within 30 feet of the souls' spectral forms. Affected creatures must each attempt a DC 24 Will save.",
+        "{@b Critical Success} The creature is unaffected.",
+        "{@b Success} The creature takes half damage and becomes {@condition frightened} 1.",
+        "{@b Failure} The creature takes full damage and becomes frightened 2.",
+        "{@b Critical Failure} The creature takes double damage. It also becomes frightened 3 and {@condition fleeing} for 1 round."
+      ]
+    },
+    {
+      "name": "Hallucination Powder Trap",
+      "source": "GMC",
+      "page": 102,
+      "category": "Trap",
+      "level": 6,
+      "traits": [
+        "magical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 24 (expert)",
+        "{@b Description} A tube of hallucinogenic powder armed with a miniature explosive is connected to a doorknob or similar latch.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 26 {@skill Thievery} (expert) to disable the hammer that strikes the percussion cap",
+        "{@b AC} 24; {@b Fort} 0, {@b Ref} 0",
+        "{@b Hardness} 0, {@b HP} 1; {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Powder Burst} {@as r} ({@trait mental}, {@trait poison}) {@b Trigger} The latch is opened or the tube is broken; {@b Effect} The tube explodes, spraying hallucinogenic powder in a 30-foot cone. Any creature in the cone must succeed at a DC 24 Will save or be {@condition confused} for 1 round and take a –2 status penalty to Perception checks and saves against mental effects for 1d4 hours. On a critical failure, the penalty is instead –4."
+      ]
+    },
+    {
+      "name": "Hammer Of Forbiddance",
+      "source": "GMC",
+      "page": 102,
+      "category": "Trap",
+      "level": 11,
+      "traits": [
+        "magical",
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 30 (expert)",
+        "{@b Description} An enormous hammer at an edifice’s entrance swings down in an attempt to damage a creature entering an area, push it back, and prevent it from going any further.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 28 {@skill Thievery} (expert) once on the hammer itself and once on its joint to prevent the hammer from swinging",
+        "{@b AC} 32; {@b Fort} +24, {@b Ref} +15",
+        "{@b Hammer Hardness} 22, {@b Hamer HP} 88 (BT 44); {@b Joint Hardness} 16; {@b Joint HP} 64 (BT 32); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Forbid Entry} {@as r} ({@trait divine}) {@b Trigger} A creature attempts to enter through the entrance; {@b Effect} The hammer swings down, making a {@action Strike} against the triggering creature.",
+        "{@b Melee} hammer +28, {@b Damage} 6d8+20 bludgeoning plus the target is knocked back 10 feet and must succeed at a DC 30 Will save or be unable to enter the edifice through any entrance for 24 hours (on a critical hit, the target automatically fails the Will save); no multiple attack penalty",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The trap resets over the course of the round, and is ready to swing again 1 round later."
+      ]
+    },
+    {
+      "name": "Hampering Web",
+      "source": "GMC",
+      "page": 102,
+      "category": "Environmental",
+      "level": 1,
+      "traits": [
+        "environmental"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 18 (expert)",
+        "{@b Description} Semitransparent sheets of webbing span the entryway, ready to capture small insects or hamper larger creatures that pass through.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 17 {@skill Survival} (trained) to dislodge it",
+        "{@b AC} 19; {@b Fort} +10, {@b Ref} +11",
+        "{@b HP} 26 (BT 13); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Ensnare} {@as r} {@b Trigger} A creature that isn’t a spider walks into the web; {@b Effect} The web wraps around the triggering creature’s body, clinging to their limbs. The triggering creature must succeed at a DC 20 Reflex save or take a –10-foot circumstance penalty to all their Speeds until they {@action Escape} the web (DC 20). On a critical failure, the webbing also clings to the creature’s face, making them {@condition sickened} 1, and they can’t attempt to reduce this condition until they Escape the web."
+      ]
+    },
+    {
+      "name": "Hidden Pit",
+      "source": "GMC",
+      "page": 102,
+      "category": "Trap",
+      "level": 0,
+      "traits": [
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 18 (or 0 if the trapdoor is disabled or {@condition broken})",
+        "{@b Description} A wooden trapdoor covers a pit that’s 10 feet square and 20 feet deep.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 12 {@skill Thievery} to remove the trapdoor",
+        "{@b AC} 10; {@b Fort} +1, {@b Ref} +1",
+        "{@b Trapdoor Hardness} 3, {@b Trapdoor HP} 12 (BT 6); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Pitfall} {@as r} {@b Trigger} A creature walks onto the trapdoor; {@b Effect} The triggering creature falls in and takes falling damage (typically 10 bludgeoning damage). That creature can use the {@action Grab an Edge} reaction to avoid falling.",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} Creatures can still fall into the trap, but the trapdoor must be reset manually for the trap to become hidden again."
+      ]
+    },
+    {
+      "name": "Pharaoh's Ward",
+      "source": "GMC",
+      "page": 103,
+      "category": "Trap",
+      "level": 7,
+      "traits": [
+        "magical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 25 (expert)",
+        "{@b Description} A curse is imbued on an entryway’s threshold.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 27 {@skill Thievery} (master) to painstakingly remove the lintel without triggering the magic, or dispel magic (4th rank; counteract DC 25) to counteract the rune",
+        "{@b Curse the Intruders} {@as r} ({@trait curse}, {@trait divine}) {@b Trigger} The seal on the tomb is broken from the outside; {@b Effect} Each living creature within 60 feet must succeed at a DC 23 Will save or be subjected to the pharaoh’s curse. A cursed creature takes a –2 status penalty to Fortitude saves, and any natural or magical {@trait healing} it receives is halved. The curse remains until removed by cleanse affliction or similar magic.",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The trap resets when the door is shut."
+      ]
+    },
+    {
+      "name": "Planar Rift",
+      "source": "GMC",
+      "page": 103,
+      "category": "Trap",
+      "level": 13,
+      "traits": [
+        "magical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 35 (trained)",
+        "{@b Description} A rift attempts to draw creatures into another plane (the GM chooses the specific plane).",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 33 {@skill Thievery} (master) to assemble a rift seal using objects strongly grounded to your plane, or dispel magic (7th rank; counteract DC 31) to counteract the rift",
+        "{@b Into the Great Beyond} {@as r} ({@trait occult}, {@trait teleportation}) {@b Trigger} A creature moves within 10 feet of the rift; {@b Effect} The triggering creature and all creatures within 30 feet of the rift are drawn into another plane. Each creature can attempt a DC 33 Reflex save to avoid this fate."
+      ]
+    },
+    {
+      "name": "Poisoned Dart Gallery",
+      "source": "GMC",
+      "page": 107,
+      "category": "Trap",
+      "level": 8,
+      "traits": [
+        "complex",
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Complex",
+      "entries": [
+        "{@b Stealth} +16 (expert) or DC 31 (master) to notice the control panel",
+        "{@b Description} Countless holes to launch poison darts from line a long hallway with a hidden control panel on the far end.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 21 {@skill Thievery} (expert) on the control panel deactivates the trap",
+        "{@b AC} 27; {@b Fort} +13, {@b Ref} +17",
+        "{@b Hardness} 14, {@b HP} 56 (BT 28); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Dart Volley} {@as r} {@b Trigger} A creature enters the hallway or ends its turn in the hallway; {@b Effect} The trap makes a poisoned dart {@action Strike} against the triggering creature, then rolls initiative.",
+        {
+          "type": "hr"
+        },
+        "{@b Routine} (1 action) The trap launches one dart against every creature in the gallery as 1 action. Because it launches darts continuously, the trap can also use the Continuous Barrage free action (see below) to launch darts at each creature during that creature’s turn.",
+        "{@b Ranged} poisoned dart +21, {@b Damage} 3d4 piercing plus flesset poison; no multiple attack penalty",
+        "{@b Continuous Barrage} {@as f} {@b Trigger} A creature within the active gallery finishes an action; {@b Effect} The trap makes a poisoned dart Strike against the triggering creature.",
+        "{@b Flesset Poison} (poison) {@b Saving Throw} DC 22 Fortitude; {@b Maximum Duration} 6 rounds",
+        "{@b Stage 1} 1d6 poison damage and {@condition clumsy 1} (1 round)",
+        "{@b Stage 2} 2d6 poison damage and clumsy 2 (1 round)",
+        "{@b Stage 3} 3d6 poison damage and clumsy 3 (1 round)",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The trap deactivates and resets after 1 minute."
+      ]
+    },
+    {
+      "name": "Poisoned Lock",
+      "source": "GMC",
+      "page": 103,
+      "category": "Trap",
+      "level": 1,
+      "traits": [
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 17 (trained)",
+        "{@b Description} A spring-loaded, poisoned spine is hidden near the keyhole of a lock. Disabling or breaking the trap does not disable or break the lock.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 17 {@skill Thievery} (trained) on the spring mechanism",
+        "{@b AC} 15; {@b Fort} +8, {@b Ref} +4",
+        "{@b Hardness} 6, {@b HP} 24 (BT 12); {@b Immunities} Critical hits, object immunities, precision damage",
+        "{@b Spring} {@as r} {@b Trigger} A creature tries to unlock or {@action Pick a Lock||Pick the Lock}; {@b Effect} A spine extends to {@action Strike} the triggering creature.",
+        "{@b Melee} spine +13, {@b Damage} 1 piercing plus cladis poison",
+        "{@b Cladis Poison} ({@trait poison}) {@b Saving Throw} DC 19 Fortitude; {@b Maximum Duration} 4 hours",
+        "{@b Stage 1} 1d6 poison damage and {@condition drained} 1 (1 hour)",
+        "{@b Stage 2} 2d6 poison damage and drained 2 (1 hour)",
+        "{@b Stage 3} 3d6 poison damage and drained 2 (1 hour)"
+      ]
+    },
+    {
+      "name": "Poisonous Mold",
+      "source": "GMC",
+      "page": 103,
+      "category": "Environmental",
+      "level": 2,
+      "traits": [
+        "environmental",
+        "fungus"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 21 (trained)",
+        "{@b Description} This grotesque fungus releases poisonous spores when a creature comes near.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 18 {@skill Survival} (trained) to safely remove the mold",
+        "{@b AC} 18; {@b Fort} +11, {@b Ref} +5",
+        "{@b HP} 30 (BT 15); {@b Immunities} critical hits, object immunities, precision damage, {@b Weaknesses} {@trait fire} 10",
+        "{@b Feed on Decay} The mold expands when fed by blood or decay. If at any point a creature takes bleed damage while adjacent to the mold or a dying or dead body is adjacent to the mold, the mold grows to expand into every square adjacent to its current space. This can happen only once per day.",
+        "{@b Spore Burst} {@as r} ({@trait poison}) {@b Frequency} once per day; {@b Trigger} A creature touches the mold, hits it, or damages it; {@b Effect} The mold explodes in a burst of spores and mold clusters, dealing 2d6+6 poison damage to creatures within 10 feet of it, with a DC 18 basic Fortitude save.",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} Unless entirely eradicated (typically with {@trait acid} or fire), the mold regrows over the course of 2 weeks."
+      ]
+    },
+    {
+      "name": "Polymorph Trap",
+      "source": "GMC",
+      "page": 103,
+      "category": "Trap",
+      "level": 12,
+      "traits": [
+        "magical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 34 (trained)",
+        "{@b Description} A Druidic glyph attempts to transform a trespasser into an animal.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 32 {@skill Thievery} (master) to drain the glyph’s power harmlessly, or dispel magic (6th rank; counteract DC 30) to counteract the glyph",
+        "{@b Cursed Metamorphosis} {@as r} ({@trait primal}) {@b Trigger} A creature moves within 30 feet of the glyph without speaking the passphrase in Druidic; {@b Effect} The creature is targeted by cursed metamorphosis (DC 32 Will save)."
+      ]
+    },
+    {
+      "name": "Quicksand",
+      "source": "GMC",
+      "page": 107,
+      "category": "Environmental",
+      "level": 3,
+      "traits": [
+        "complex",
+        "environmental"
+      ],
+      "complexity": "Complex",
+      "entries": [
+        "{@b Stealth} +12 (trained) (or –10 and no minimum proficiency if the surface is disturbed)",
+        "{@b Description} A 15-foot-wide patch of water and sand attempts to submerge creatures that step onto it.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 18 {@skill Survival} (trained) to disturb the surface",
+        "{@b Submerge} {@as f} {@b Trigger} A Huge or smaller creature walks onto the quicksand; {@b Effect} The triggering creature sinks into the quicksand up to its waist. The quicksand rolls initiative if it hasn’t already.",
+        {
+          "type": "hr"
+        },
+        "{@b Routine} (1 action) On its initiative, the quicksand pulls down each creature within it. A creature that was submerged up to its waist becomes submerged up to its neck, and a creature that was submerged up to its neck is pulled under and has to hold its breath to avoid suffocation.",
+        "A creature in the quicksand can attempt a DC 20 {@skill Athletics} check to {@action Swim} to either raise itself by one step if it’s submerged to its neck or worse, or to move 5 feet if it’s submerged only up to its waist. On a critical failure, the creature is pulled down one step. A creature that Swims out of the quicksand escapes the hazard and is prone in a space adjacent to the quicksand patch. Other creatures can {@action Aid} the creature, typically by using a rope or similar aid, or attempt to pull the creature out with their own DC 20 Athletics check, with the same results as if the creature attempted the check.",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The hazard still submerges anyone who walks in, but the surface doesn’t become {@condition hidden} again until it settles over the course of 24 hours."
+      ]
+    },
+    {
+      "name": "Scythe Blades",
+      "source": "GMC",
+      "page": 103,
+      "category": "Trap",
+      "level": 4,
+      "traits": [
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 23 (trained)",
+        "{@b Description} Two blades, each hidden in a 15-foot-long ceiling groove, are both connected to a trip wire.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 21 {@skill Thievery} (trained) to disable each blade",
+        "{@b AC} 21; {@b Fort} +12, {@b Ref} +8",
+        "{@b Hardness} 11, {@b HP} 44 (BT 22); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Falling Scythes} {@as r} {@b Trigger} The trip wire is pulled or severed; {@b Effect} Both blades swing down, each one {@action Strike||Striking} all creatures under the ceiling grooves.",
+        "{@b Melee} scythe +17 ({@trait deadly||deadly d12}), {@b Damage} 2d12+4 slashing; no multiple attack penalty",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The trap resets after 15 minutes."
+      ]
+    },
+    {
+      "name": "Slamming Door",
+      "source": "GMC",
+      "page": 104,
+      "category": "Trap",
+      "level": 1,
+      "traits": [
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 17 (trained)",
+        "{@b Description} Pressure-sensitive panels in the floor connect to a stone slab hidden in a hallway’s ceiling.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 15 {@skill Thievery} (trained) on the floor panels before the slab falls",
+        "{@b AC} 16; {@b Fort} +10, {@b Ref} +2",
+        "{@b Hardness} 5, {@b HP} 20 (BT 10); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Slam Shut} {@as r} {@b Trigger} Pressure is placed on any floor tile; {@b Effect} The door falls, closing off the hallway. The stone slab deals 3d8 bludgeoning damage to anyone beneath or adjacent to the slab when it drops and pushes them out of its space in a random direction. A creature that succeeds at a DC 17 Reflex save takes no damage and rolls out of the way in a random direction. On a critical success, they can choose the direction.",
+        "Lifting the fallen slab requires a successful DC 25 {@skill Athletics} check. Hitting the floor panels triggers the trap. The slab uses the same AC and saves as the trap, but it has Hardness 12, HP 48 (BT 24)."
+      ]
+    },
+    {
+      "name": "Snowfall",
+      "source": "GMC",
+      "page": 104,
+      "category": "Environmental",
+      "level": 0,
+      "traits": [
+        "environmental"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 16 (trained)",
+        "{@b Description} Loose snow and ice have built up on a high surface, such as a tree branch or a rooftop. Its grip on the surface is tenuous, and it is likely to fall if the surface moves.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 19 {@skill Survival} (trained) to safely dislodge the snow, or deal any amount of {@trait fire} damage to destroy the hazard without triggering it",
+        "{@b AC} 18; {@b Fort} +11, {@b Ref} +3",
+        "{@b HP} 8; {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Snowfall} {@as r} {@b Trigger} A creature moves beneath where the snowfall is resting; {@b Effect} Ice and snow fall on the triggering creature, dealing 2d6+3 bludgeoning damage (DC 18 basic Reflex save) and soaking their clothing. Until they change into fresh clothing or spend at least an hour in an area of normal or higher temperature, they treat cold environments as one step colder (for example, mild cold as severe cold)."
+      ]
+    },
+    {
+      "name": "Spear Launcher",
+      "source": "GMC",
+      "page": 104,
+      "category": "Trap",
+      "level": 2,
+      "traits": [
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 20 (trained)",
+        "{@b Description} A wall socket loaded with a spear connects to a floor tile in one 5-foot square.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 18 {@skill Thievery} (trained) on the floor tile or wall socket",
+        "{@b AC} 18; {@b Fort} +11, {@b Ref} +3",
+        "{@b Hardness} 8, {@b HP} 32 (BT 16); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Spear} {@as r} {@b Trigger} Pressure is applied to the floor tile; {@b Effect} The trap shoots a spear, making a {@action Strike} against the creature or object on the floor tile.",
+        "{@b Ranged} spear +14, {@b Damage} 2d6+6 piercing"
+      ]
+    },
+    {
+      "name": "Spectral Reflection",
+      "source": "GMC",
+      "page": 104,
+      "category": "Haunt",
+      "level": 5,
+      "traits": [
+        "haunt"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 26 (expert)",
+        "{@b Description} The reflection in the mirror subtly twists and distorts, its expression taking on an unnerving sneer of malice.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 23 {@skill Religion} (trained) to exorcise the spirit, or DC 23 {@skill Thievery} (trained) to quickly cover the mirror",
+        "{@b AC} 19; {@b Fort} +15, {@b Ref} +10",
+        "{@b Hardness} 13, {@b HP} 50 (BT 25); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Spectral Impale} {@as r} {@b Trigger} A living creature approaches within 15 feet of the mirror, and the mirror is lit with dim or brighter light; {@b Effect} Shadowy barbs impale the body of the reflected creature as the haunt makes a shadow barbs {@action Strike}.",
+        "{@b Melee} shadow barbs +19, {@b Damage} 4d8+9 {@trait void} plus sap vitality",
+        "{@b Sap Vitality} A creature hit by the reflection’s shadow barbs must attempt a DC 22 Fortitude save as the haunt tries to draw a portion of its vital essence into the mirror. The target is {@condition drained 1} on a failed saving throw, or drained 2 on a critical failure.",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The haunt re-forms after 1 minute, manifesting in any mirror within its infused area (see Special Below).",
+        "{@b Special} Spectral reflections often infuse entire buildings, manifesting in any sufficiently large mirror. The example Hit Points and Hardness given represent a typical mirror reinforced by the haunt; at your discretion, the haunt might appear in reflective surfaces that are harder to destroy. Defeating a manifestation through damage destroys the surface, preventing the haunt from using it again. If this haunt appears in an area with many mirrors, consider giving PCs double or even triple the XP for a typical simple hazard."
+      ]
+    },
+    {
+      "name": "Spinning Blade Pillar",
+      "source": "GMC",
+      "page": 107,
+      "category": "Trap",
+      "level": 4,
+      "traits": [
+        "complex",
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Complex",
+      "entries": [
+        "{@b Stealth} +11 (trained) or DC 26 (expert) to notice the control panel",
+        "{@b Description} A metal pole with three razor-sharp spinning blades is hidden in the floor, connected to trigger plates in up to eight floor tiles and a hidden control panel within 30 feet.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 21 {@skill Thievery} (trained) twice on the pillar, or DC 19 Thievery (expert) once on the control panel deactivates the whole trap. Breaking the control panel prevents anyone from disabling the trap using the control panel and prevents the trap from deactivating automatically (see Reset below).",
+        "{@b AC} 21; {@b Fort} +10, {@b Ref} +12",
+        "{@b Pillar Hardness} 12, {@b Pillar HP} 48 (BT 24); {@b Panel Hardness} 5; {@b Panel HP} 20 (BT 10); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Rising Pillar} {@as r} {@b Trigger} A creature steps on one of the trapped floor tiles; {@b Effect} The trap pops up in a grid intersection and makes a spinning blade {@action Strike} against one adjacent creature (if any), then rolls initiative.",
+        {
+          "type": "hr"
+        },
+        "{@b Routine} (3 actions) The trap uses its first action to make a spinning blade Strike against each adjacent creature, its second action to move straight in a random direction (roll 1d4 to determine the direction), and its third to make a spinning blade Strike against each adjacent creature. This trap doesn’t take a multiple attack penalty.",
+        "{@b Speed} 10 feet",
+        "{@b Melee} {@as 1} spinning blade +12, {@b Damage} 2d10+5 slashing",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The trap deactivates and resets after 1 minute."
+      ]
+    },
+    {
+      "name": "Summoning Rune",
+      "source": "GMC",
+      "page": 108,
+      "category": "Trap",
+      "level": 1,
+      "traits": [
+        "complex",
+        "magical",
+        "trap"
+      ],
+      "complexity": "Complex",
+      "entries": [
+        "{@b Stealth} +7 (trained)",
+        "{@b Description} A cloud of invisible magical sensors in a 10-foot radius surrounds an invisible wall or floor rune the size of the creature to be summoned.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 15 {@skill Acrobatics} to approach without triggering the trap followed by DC 17 {@skill Thievery} (trained) to erase the rune, or dispel magic (1st rank; counteract DC 15) to counteract the rune",
+        "{@b Summon Monster} {@as r} ({@trait arcane}) {@b Trigger} A creature enters the cloud of magical sensors; {@b Effect} This trap summons a specific 1st-level creature, determined when the trap is created. The creature rolls initiative and remains for 2d6 rounds, after which the spell ends and the creature disappears. The creature also disappears if someone disables the trap before the duration expires. The summoned creature can use 3 actions each round and can use reactions, unlike most summoned creatures.",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The trap resets each day at dawn."
+      ]
+    },
+    {
+      "name": "Titanic Flytrap",
+      "source": "GMC",
+      "page": 105,
+      "category": "Environmental",
+      "level": 4,
+      "traits": [
+        "environmental"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 25 (trained)",
+        "{@b Description} On the surface, a titanic flytrap appears to be a patch of the more common flytrap plant, but beneath murky waters it hides a far larger set of jaws, reaching 10 feet across, reinforced with woody branches and lined with paralytic hairs.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 22 {@skill Survival} (trained) to mislead the flytrap’s sense of weight and pressure",
+        "{@b AC} 21; {@b Fort} +15, {@b Ref} +8",
+        "{@b HP} 56 (BT 28); {@b Immunities} {@trait mental}, {@b Resistances} {@trait acid||acid 20}, {@trait fire||fire 10}",
+        "{@b Snap Shut} {@as r} {@b Trigger} A Small or Medium creature moves into a square that is within reach of the flytrap’s hidden jaws; {@b Effect} The flytrap’s jaws snap shut, making a jaws {@action Strike} against the triggering creature.",
+        "{@b Melee} {@as 1} jaws +17, {@b Effect} devour",
+        "{@b Devour} The target is trapped by the flytrap’s jaws, gaining the {@condition grabbed} condition until it {@action Escape||Escapes} (DC 21). Additionally, it is exposed to the titanic flytrap toxin from the hundreds of tiny hairs that line the inside of its leaves. If the flytrap’s jaws Strike was a critical success, the target takes a –2 circumstance penalty to its saving throws against this poison. At the end of each of the target’s turns that it remains grabbed, the target takes 3d6 {@trait acid} damage.",
+        "{@b Titanic Flytrap Toxin} ({@trait contact}, {@trait poison}) {@b Saving Throw} DC 21 Fortitude; {@b Maximum Duration} 4 rounds",
+        "{@b Stage 1} 2d6 poison damage and {@condition stunned} 1 (1 round)",
+        "{@b Stage 2} 3d6 poison damage and stunned 2 (1 round)",
+        "{@b Stage 3} 4d6 poison damage and {@condition paralyzed} (1 round)",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} 1 hour (or longer, after a large meal)"
+      ]
+    },
+    {
+      "name": "Vorpal Executioner",
+      "source": "GMC",
+      "page": 105,
+      "category": "Trap",
+      "level": 19,
+      "traits": [
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Simple",
+      "entries": [
+        "{@b Stealth} DC 43 (expert)",
+        "{@b Description} A wickedly sharp saw blade descends and travels along grooves in a complex path throughout the room, attempting to decapitate everyone within.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 41 {@skill Thievery} (expert) at four different junctions to jam all the saw blade’s possible paths, preventing it from traveling through the room",
+        "{@b AC} 43; {@b Fort} +32, {@b Ref} +32",
+        "{@b Hardness} 30, {@b HP} 120 (BT 60) per junction; {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Total Decapitation} {@as r} {@b Trigger} A creature attempts to exit the room; {@b Effect} The saw blade travels along its path, making one {@action Strike} against each creature in the room, twisting and varying its height for a maximum chance of beheading its targets.",
+        "{@b Melee} saw blade +40 ({@trait deadly||deadly d12}, {@trait death}), {@b Damage} 6d12+25 slashing plus decapitation; no multiple attack penalty",
+        "{@b Decapitation} On a critical hit, a target must succeed at a DC 39 Fortitude save or be decapitated, dying instantly unless it can survive without a head",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The trap resets over the course of the round and can be triggered again 1 round later."
+      ]
+    },
+    {
+      "name": "Wheel of Misery",
+      "source": "GMC",
+      "page": 108,
+      "category": "Trap",
+      "level": 6,
+      "traits": [
+        "complex",
+        "magical",
+        "mechanical",
+        "trap"
+      ],
+      "complexity": "Complex",
+      "entries": [
+        "{@b Stealth} +16 (expert) to detect the magical sensor; noticing the wheel has a DC of 0",
+        "{@b Description} An ornate wheel set into a wall—divided into six segments with colored runes on each—is controlled by a magical sensor that detects any creature within 100 feet in front of it.",
+        {
+          "type": "hr"
+        },
+        "{@b Disable} DC 26 {@skill Thievery} (expert) on the wheel to stop it from spinning, DC 22 Thievery (master) to erase each rune, or dispel magic (4th rank; counteract DC 22) to counteract each rune",
+        "{@b AC} 24; {@b Fort} +15, {@b Ref} +13",
+        "{@b Hardness} 14, {@b HP} 56 (BT 28); {@b Immunities} critical hits, object immunities, precision damage",
+        "{@b Wheel Spin} {@as r} {@b Trigger} A creature enters the sensor’s detection area; {@b Effect} The wheel begins to spin and rolls initiative.",
+        {
+          "type": "hr"
+        },
+        "{@b Routine} (2 actions) On its initiative, the trap uses its first action to spin, then stops. Roll 1d6 to determine which segment is topmost when the wheel stops spinning. The wheel uses its second action to replicate the spell listed for that segment (3rd rank, DC 24, spell attack modifier +14). This spell’s target is centered on or otherwise includes the nearest creature in the area. This increases the spell’s range to 100 feet if necessary. Any spell cast by this trap is arcane.",
+        "{@b 1} sleep",
+        "{@b 2} paralyze",
+        "{@b 3} lightning bolt (100-foot line)",
+        "{@b 4} blindness",
+        "{@b 5} caustic blast",
+        "{@b 6} enfeeble",
+        {
+          "type": "hr"
+        },
+        "{@b Reset} The trap deactivates and resets if 1 minute passes without any creature moving within range of its sensor."
+      ]
+    }
+  ]
+}

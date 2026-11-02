@@ -210,7 +210,7 @@
             "Elves are a tall, long-lived people with a strong tradition of art and magic."
           ]
         },
-        "As an ancient people, elves have seen great change and have the perspective that can come only from watching the arc of history. After leaving Golarion in ancient times, they returned to a changed land, and they still struggle to reclaim their ancestral homes. Elves value kindness, intellect, and beauty, with many elves striving to improve their manners, appearance, and culture. Their studies delve into a level of detail that most shorter-lived peoples find excessive or inefficient. Elves are often rather private people, steeped in the secrets of their groves and kinship groups. They're slow to build friendships outside their kinsfolk, as elves who spend their lives among shorter-lived peoples often become morose after watching generations of companions age and die. These elves are known as Forlorn among their fellow elves.",
+        "As an ancient people, elves have seen great change and have the perspective that can come only from watching the arc of history. After leaving Avalon in ancient times, they returned to a changed land, and they still struggle to reclaim their ancestral homes. Elves value kindness, intellect, and beauty, with many elves striving to improve their manners, appearance, and culture. Their studies delve into a level of detail that most shorter-lived peoples find excessive or inefficient. Elves are often rather private people, steeped in the secrets of their groves and kinship groups. They're slow to build friendships outside their kinsfolk, as elves who spend their lives among shorter-lived peoples often become morose after watching generations of companions age and die. These elves are known as Forlorn among their fellow elves.",
         "If you want a character who is magical, mystical, and mysterious, you should play an elf.",
         {
           "type": "h3",
@@ -383,7 +383,7 @@
             "Gnomes are short and hardy folk, with an unquenchable curiosity and eccentric habits."
           ]
         },
-        "Long ago, early gnome ancestors emigrated from the First World, realm of the {@trait fey}. While it's unclear why the first gnomes wandered to Golarion, this lineage manifests in modern gnomes as bizarre reasoning, eccentricity, obsessive tendencies, and what some see as naivete.",
+        "Long ago, early gnome ancestors emigrated from the First World, realm of the {@trait fey}. While it's unclear why the first gnomes wandered to Avalon, this lineage manifests in modern gnomes as bizarre reasoning, eccentricity, obsessive tendencies, and what some see as naivete.",
         "Always hungry for new experiences, gnomes constantly wander both mentally and physically, attempting to stave off a terrible ailment that threatens all of their people. This affliction, known as the Bleaching, strikes gnomes who fail to dream, innovate, and take in new experiences. The Bleaching slowly drains the color— literally—from gnomes, and it plunges those affected into states of deep depression that eventually claim their lives. Very few gnomes survive this scourge, becoming deeply morose and wise survivors known as bleachlings.",
         "If you want a character with boundless enthusiasm and an alien, fey outlook on morality and life, you should play a gnome.",
         {
@@ -424,7 +424,7 @@
           "type": "h3",
           "name": "Society",
           "entries": [
-            "While most gnomes adopt some of the cultural practices of the region in which they live, they tend to pick and choose, adjusting their communities to fit their own fey logic. This often leads to majority gnome communities eventually consisting almost entirely of gnomes, as other people, bewildered by gnomish political decisions, choose to move elsewhere. Gnomes have little culture that they would consider entirely their own. Exceptionally few gnome kingdoms or nations exist on the surface of Golarion, and most gnomes wouldn't know what to do with such a state if they had one.",
+            "While most gnomes adopt some of the cultural practices of the region in which they live, they tend to pick and choose, adjusting their communities to fit their own fey logic. This often leads to majority gnome communities eventually consisting almost entirely of gnomes, as other people, bewildered by gnomish political decisions, choose to move elsewhere. Gnomes have little culture that they would consider entirely their own. Exceptionally few gnome kingdoms or nations exist on the surface of Avalon, and most gnomes wouldn't know what to do with such a state if they had one.",
             "By necessity, few gnomes marry for life, instead allowing relationships to run their course before amicably moving on, the better to stave off the Bleaching with new experiences. Though gnome families tend to be small, many gnome communities raise children communally, with fluid family boundaries. Gnome names can get quite complex and polysyllabic. Gnomes rarely concern themselves with how easy their names are to pronounce, and they often go by shorter nicknames. Among gnomes, the shorter the name, the more feminine it's considered to be."
           ]
         },
@@ -875,7 +875,7 @@
             "Humans are diverse and adaptable people with wide potential and deep ambitions."
           ]
         },
-        "As unpredictable and varied as any of Golarion's peoples, humans have exceptional drive and the capacity to endure and expand. Though many civilizations thrived before humanity rose to prominence, humans have built some of the greatest and the most terrible societies throughout the course of history, and today they are the most populous people in the realms around the Inner Sea.",
+        "As unpredictable and varied as any of Avalon's peoples, humans have exceptional drive and the capacity to endure and expand. Though many civilizations thrived before humanity rose to prominence, humans have built some of the greatest and the most terrible societies throughout the course of history, and today they are the most populous people in the realms around the Inner Sea.",
         "Humans' ambition, versatility, and exceptional potential have led to their status as the world's predominant ancestry. Their empires and nations are vast, sprawling things, and their citizens carve names for themselves with the strength of their sword arms and the power of their spells. Humanity is diverse and tumultuous, running the gamut from nomadic to imperial, sinister to saintly. Many of them venture forth to explore, to map the expanse of the multiverse, to search for long-lost treasure, or to lead mighty armies to conquer their neighbors—for no better reason than because they can.",
         "If you want a character who can be just about anything, you should play a human.",
         {
@@ -927,14 +927,14 @@
           "type": "h3",
           "name": "Names",
           "entries": [
-            "Unlike many ancestral cultures, which generally cleave to specific traditions and shared histories, humanity's diversity has resulted in a near-infinite set of names. The humans of northern tribes have different names than those dwelling in southern nation-states. Humans throughout much of the world speak Common (though some continents on Golarion have their own regional common languages), yet their names are as varied as their beliefs and appearances."
+            "Unlike many ancestral cultures, which generally cleave to specific traditions and shared histories, humanity's diversity has resulted in a near-infinite set of names. The humans of northern tribes have different names than those dwelling in southern nation-states. Humans throughout much of the world speak Common (though some continents on Avalon have their own regional common languages), yet their names are as varied as their beliefs and appearances."
           ]
         },
         {
           "type": "h3",
           "name": "Ethnicities",
           "entries": [
-            "A variety of human ethnic groups populates the continents within Golarion's Inner Sea region and in the lands beyond it. Human characters can be of any ethnicity, regardless of what lands they call home. Some examples of Golarion's ethnicities are presented below. Characters of human ethnicities in the Inner Sea region speak Common (also known as Taldane), and some ethnicities grant access to an uncommon regional language.",
+            "A variety of human ethnic groups populates the continents within Avalon's Inner Sea region and in the lands beyond it. Human characters can be of any ethnicity, regardless of what lands they call home. Some examples of Avalon's ethnicities are presented below. Characters of human ethnicities in the Inner Sea region speak Common (also known as Taldane), and some ethnicities grant access to an uncommon regional language.",
             {
               "type": "list",
               "items": [
@@ -1379,7 +1379,7 @@
             "Elves' children with people of other ancestries, and the children of their children, are called “aiuvarin”, an elven word that refers to a poem about leaves that fall too quickly to the ground."
           ]
         },
-        "Elves' children with people of other ancestries, and the children of their children, are called “aiuvarin”, an elven word that refers to a poem about leaves that fall too quickly to the ground. The most familiar aiuvarins in Golarion are born to an elf and a human, or to two aiuvarins. Those born of these unions are commonly referred to as “half-elves.” The life of an aiuvarin can be difficult, often marked by a struggle to fit in. Aiuvarins don't have their own homeland on Golarion, nor are populations of aiuvarins particularly tied to one another since they often have very disparate traditions from their parents' ancestries. Instead, they often attempt to find acceptance in their parents' cultures or settlements.",
+        "Elves' children with people of other ancestries, and the children of their children, are called “aiuvarin”, an elven word that refers to a poem about leaves that fall too quickly to the ground. The most familiar aiuvarins in Avalon are born to an elf and a human, or to two aiuvarins. Those born of these unions are commonly referred to as “half-elves.” The life of an aiuvarin can be difficult, often marked by a struggle to fit in. Aiuvarins don't have their own homeland on Avalon, nor are populations of aiuvarins particularly tied to one another since they often have very disparate traditions from their parents' ancestries. Instead, they often attempt to find acceptance in their parents' cultures or settlements.",
         "Aiuvarins often have pointed ears and can be lanky, along with manifesting traits from their non-elven ancestors. They lack the almost-alien eyes of their elf parents, and their work to find a place for themselves in communities where they're often out of sync with the dominant culture leads many to become artists or entertainers. Despite this innate socialization, many aiuvarins have difficulty forming lasting bonds with either of their parents' people due to the distance they feel from both communities as a whole.",
         "Aiuvarins gain some, but not all, of their elven parent's longevity, and those with a human parent often live for around 150 years. This causes some of them to fear friendship and romance with humans, knowing that they'll likely outlive their companions.",
         {

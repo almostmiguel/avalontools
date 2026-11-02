@@ -10,6 +10,13 @@
 .catalog-result:hover strong, .catalog-result[aria-current="true"] strong { color: var(--accent); }
 .catalog-result-category { min-width: 0; text-align: center; color: var(--muted); font: .69rem/1.4 var(--font-ui); overflow-wrap: anywhere; }
 .catalog-result-source { text-align: center; font: .68rem/1.4 var(--font-ui); }
+.catalog-result-level { text-align: center; color: var(--muted); font: .69rem/1.4 var(--font-ui); }
+[data-catalog="afflictions"] :is(.catalog-list-columns, .catalog-result),
+[data-catalog="hazards"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) 80px 42px 46px; }
+@media (max-width: 1100px) {
+  [data-catalog="afflictions"] :is(.catalog-list-columns, .catalog-result),
+  [data-catalog="hazards"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) 65px 36px 40px; gap: .3rem; }
+}
 .feat-result-qualifier { display: block; margin-top: .15rem; color: var(--muted); font: .65rem/1.4 var(--font-ui); }
 .feat-result-source { min-width: 0; text-align: center; font: .66rem/1.4 var(--font-ui); white-space: nowrap; }
 .feat-result { grid-template-columns: minmax(0, 1fr) minmax(85px, .7fr) minmax(90px, .7fr) 46px; }
@@ -98,3 +105,13 @@
 .character-search input { width: 100%; }
 #ancestry-feat-count { color: var(--content-muted); font-size: .7rem; }
 @media (max-width: 550px) { .reader-tabs button { font-size: .7rem; padding: .5rem; } }
+
+[data-catalog="spells"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) 65px 36px 46px; }
+[data-catalog="equipment"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) 72px 30px 62px 40px; gap: .35rem; }
+.equipment-result-price { text-align: right; color: var(--content-muted); font: .68rem/1.4 var(--font-ui); overflow-wrap: anywhere; }
+.equipment-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: .8rem 1.2rem; margin: 1rem 0 1.3rem; padding: 1rem 0; border-block: 1px solid var(--content-line); }
+.equipment-fields > div { min-width: 0; }
+[data-catalog="creatures"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) 70px 35px 40px; gap: .35rem; }
+.equipment-fields dt { color: var(--content-muted); font: .72rem/1.4 var(--font-ui); }
+.equipment-fields dd { margin: .2rem 0 0; color: var(--content-heading); font: 600 .9rem/1.5 var(--font-ui); }
+@media (max-width: 550px) { [data-catalog="equipment"] :is(.catalog-list-columns, .catalog-result) { grid-template-columns: minmax(0, 1fr) 56px 26px 51px 33px; gap: .25rem; } }

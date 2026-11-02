@@ -32,7 +32,7 @@ Add a file such as `content/setting/articles/the-crossroads.md`:
 ```markdown
 ---
 title: The Crossroads
-category: places
+category: povoacoes
 summary: A roadside settlement where three roads meet.
 draft: true
 sample: false
@@ -72,8 +72,10 @@ lore is written. Remove `draft: true` when an article is ready.
 - Standard Markdown links like `[the settlement](the-crossroads.md)` also work.
 - Existing `{@wiki The Crossroads}` references remain supported.
 - Links in prose and infobox facts generate backlinks automatically. Code
-  examples are excluded. Missing wiki targets fail the build with an article
-  name so they can be corrected before publishing.
+  examples are excluded. Wiki targets that have not been written yet are marked
+  in red with an "Artigo por escrever" tooltip; they do not stop the build.
+  Explicit Markdown file links like `[name](missing.md)` still fail if the file
+  is missing, so file path mistakes are caught.
 - `facts` is optional; its values support inline Markdown, wiki links, and game
   references. This small front matter section produces the infobox.
 - Local image paths are relative to the site root, e.g.
@@ -85,10 +87,20 @@ the generated pages. Previous article heading anchors are retained as aliases.
 
 ## Collections and implementation
 
-`content/setting/atlas.json` holds the atlas title and small category directory.
-Article prose is kept entirely in the `.md` files. Categories, article listings,
+`content/setting/atlas.json` defines subject portals and their subcategories.
+Every category has a `portal` ID; every article selects a category. For example,
+`geografia` → `povoacoes` → `the-crossroads.md`. Articles retain their existing
+URLs when reassigned to another category. Portals have their own pages at
+`setting/portal-geografia.html`; category pages use `setting/category-povoacoes.html`.
+The original six flat categories have been replaced.
+In article front matter use the category ID, not the portal ID: a deity article
+uses `category: deuses`, inside the `divindades` portal. Build errors list the
+available categories if a portal ID is used by mistake. Content is validated
+before clearing the previous build, so these errors preserve the last working site.
+
+Article prose is kept entirely in the `.md` files. Portals, categories, article listings,
 infoboxes, contents, and backlinks are rendered during the build. Browser
-JavaScript only enhances name search, mobile navigation, old links, and previews.
+JavaScript only enhances name search, old links, and previews.
 
 `content/atlas.11ty.js` is the Eleventy page template.
 `scripts/wiki-build.mjs` loads the Markdown and renders the shared page shell;
@@ -101,9 +113,26 @@ database or application server, and does not provide a browser editor.
 
 ## Design references
 
-The layout takes inspiration from
-[MediaWiki's Vector skin](https://www.mediawiki.org/wiki/Skin:Vector) and
-[Just the Docs](https://github.com/just-the-docs/just-the-docs).
-Their source was reviewed; their CSS and JavaScript were not copied.
+The selected reference is the detailed lore index on
+[Forgotten Realms Wiki](https://forgottenrealms.fandom.com/wiki/Main_Page):
+individuals, peoples, organizations, creatures, geography, history, deities,
+cosmology, magic, objects, and maps are separate subjects. Avalon uses those
+subjects as portals with more specific subcategories. It does not copy lore,
+featured articles, quotations, or artwork from another setting.
+
+Other researched references:
+
+- [Eberron Wiki](https://eberron.fandom.com/wiki/Eberron_Wiki): separates
+  races, people, organizations, geography, history, religions, and cosmology.
+- [PathfinderWiki](https://pathfinderwiki.com/wiki/Pathfinder_Wiki): provides
+  dedicated subject portals with deeper indexes for geography and inhabitants.
+- [Tolkien Gateway](https://tolkiengateway.net/wiki/Main_Page): combines grouped
+  subject links with an alphabetical article index.
+
+The homepage presents the subject hierarchy; portal pages list their subtopics
+and articles. The A–Z index links to actual article anchors. Article counts are
+derived from authored Markdown; empty subjects are marked as empty. The shared
+site header and Settings remain in English; wiki controls use Portuguese (Portugal).
+The CSS and JavaScript implementation is original.
 Eleventy, gray-matter, and markdown-it are build dependencies; no Markdown
 parser or wiki article data is downloaded by visitors.

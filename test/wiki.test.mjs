@@ -22,9 +22,8 @@ test("Markdown articles resolve forward links, derive backlinks from text and fa
   assert.equal(model.resolve("Unknown").status, "missing");
 });
 
-test("the build catches missing wiki links, duplicate titles, colliding URLs, invalid categories and body H1s", () => {
+test("the build catches missing file links, duplicate titles, colliding URLs, invalid categories and body H1s", () => {
   for (const documents of [
-    [document("one", "One", "[[Missing]]")],
     [document("one", "One", "[Missing](missing.md)")],
     [document("one", "Same", "Text"), document("two", "SAME", "Text")],
     [document("one", "One", "Text"), document("one", "Two", "Text")],
@@ -34,6 +33,21 @@ test("the build catches missing wiki links, duplicate titles, colliding URLs, in
     [document("one", "One", "# A second title")],
     [{ ...document("one", "One", "Text"), data: { title: "One", category: "missing" } }],
   ]) assert.throws(() => createWiki(metadata, documents));
+  assert.throws(() => createWiki({ portals: [{ id: "faith", name: "Faith" }], categories: [{ id: "gods", name: "Gods", portal: "faith" }] },
+    [{ ...document("one", "One", "Text"), data: { title: "One", category: "faith" } }]), /one\.md:.*faith.*portal.*gods/);
+});
+
+test("unwritten wiki links remain marked without blocking publication and resolve once their page exists", () => {
+  const article = document("one", "One", "See [[Future|the future page]] and {@wiki Future}. `[[Code example]]`", [{ label: "Related", value: "[[Future]]" }]);
+  const pending = createWiki(metadata, [article]);
+  assert.match(pending.byId.get("one").html, /wiki-link rule-link-unresolved/);
+  assert.match(pending.byId.get("one").html, /Artigo por escrever: Future/);
+  assert.deepEqual(pending.missingReferences, [{ article: "one", name: "Future" }]);
+  assert.equal(pending.byId.get("one").outgoing.size, 0);
+  const completed = createWiki(metadata, [article, document("future", "Future", "Written.")]);
+  assert.deepEqual(completed.missingReferences, []);
+  assert.match(completed.byId.get("one").html, /href="setting\/future.html"/);
+  assert.equal(completed.backlinks.get("future").size, 1);
 });
 
 test("Markdown headings get unique anchors and native game links keep their data for hover previews", () => {
@@ -55,12 +69,18 @@ test("Markdown headings get unique anchors and native game links keep their data
 test("the atlas emits complete readable pages, categories and backlinks without client-side rendering", async () => {
   for (const page of wiki.pages) {
     const html = await read(page.output);
+    assert.match(html, /<html lang="pt-PT"/);
+    assert.match(html, /Pesquisar títulos de artigos/);
+    assert.match(html, /<header class="site-header" lang="en">/);
+    assert.match(html, /Main navigation/);
+    assert.match(html, /aria-label="Settings"/);
+    assert.doesNotMatch(html, />Draft<|Search the atlas|Atlas home|What links here|At a glance/);
     assert.match(html, /id="wiki-content"[^>]*>\s*<(?:article|header)/);
     assert.match(html, /<nav id="wiki-navigation"[^>]*><a href="setting.html"/);
     assert.doesNotMatch(html, /Opening the atlas|data\/wiki.json|undefined|\[object Object\]/);
     if (page.type === "article") {
-      assert.match(html, /At a glance/);
-      assert.match(html, /What links here/);
+      if (wiki.byId.get(page.article).facts.length) assert.match(html, /Em resumo/);
+      assert.match(html, /Ligações para este artigo/);
       for (const heading of wiki.byId.get(page.article).headings) {
         assert.ok(html.includes(`href="${page.output}#${heading.id}"`));
         assert.ok(html.includes(`id="${heading.id}" data-heading-level="${heading.level}"`));
@@ -88,11 +108,36 @@ test("built wiki links and assets resolve under both domain roots and GitHub Pag
 });
 
 test("name search and collection browsing agree with the static atlas", () => {
-  assert.deepEqual(searchWiki(wiki, "THE CROSS").map(article => article.id), ["the-crossroads"]);
-  assert.equal(searchWiki(wiki, "crossroads", "people").length, 0);
-  assert.equal(searchWiki(wiki, "caravan").length, 0);
-  assert.match(renderWikiIndex(wiki, "places"), /<h1 id="wiki-results-title">Places<\/h1>/);
+  const fixture = createWiki({ categories: [...metadata.categories, { id: "other", name: "Other" }] }, [document("crossroads", "The Crossroads", "Caravan"), document("keeper", "Keeper Mara", "Text")]);
+  assert.deepEqual(searchWiki(fixture, "THE CROSS").map(article => article.id), ["crossroads"]);
+  assert.equal(searchWiki(fixture, "crossroads", "other").length, 0);
+  assert.equal(searchWiki(fixture, "caravan").length, 0);
+  assert.match(renderWikiIndex(wiki, "povoacoes"), /<h1 id="wiki-results-title"[^>]*>Cidades e povoações<\/h1>/);
   assert.match(renderWikiHome(createWiki({ categories: [] }, [])), /setting\/articles.html/);
+});
+
+test("the lore taxonomy replaces the former categories and builds navigable subject hierarchies", async () => {
+  for (const id of ["world", "places", "people", "factions", "beliefs", "history"]) {
+    assert.equal(wiki.categories.has(id), false);
+    await assert.rejects(stat(new URL(`setting/category-${id}.html`, output)), { code: "ENOENT" });
+  }
+  const home = await read("setting.html");
+  assert.ok(wiki.portals.size > 0);
+  for (const portal of wiki.portals.values()) {
+    assert.ok(home.includes(`href="setting/portal-${portal.id}.html"`));
+    const page = await read(`setting/portal-${portal.id}.html`);
+    const children = [...wiki.categories.values()].filter(category => category.portal === portal.id);
+    assert.ok(children.length);
+    for (const category of children) assert.ok(page.includes(`href="setting/category-${category.id}.html"`));
+  }
+  for (const article of wiki.articles) assert.ok(wiki.portals.has(wiki.categories.get(article.category).portal));
+  for (const letter of new Set(wiki.articles.map(article => article.name.normalize("NFD").replace(/\p{M}/gu, "")[0].toLowerCase()))) {
+    const anchor = /^[a-z]$/.test(letter) ? letter : "outros";
+    assert.ok((await read("setting/articles.html")).includes(`id="letra-${anchor}"`));
+    assert.ok(home.includes(`setting/articles.html#letra-${anchor}`));
+  }
+  const bad = { portals: [{ id: "one", name: "One" }], categories: [{ id: "topic", name: "Topic", portal: "missing" }] };
+  assert.throws(() => createWiki(bad, []), /Unknown portal/);
 });
 
 test("old query-string wiki URLs migrate to static pages while preserving search and fragments", () => {
@@ -102,7 +147,7 @@ test("old query-string wiki URLs migrate to static pages while preserving search
     const result = legacyWikiUrl(new URL(`${base}setting.html?article=${encodeURIComponent(name)}#the-lantern`), base, routes);
     assert.equal(result.href, `${base}setting/the-crossroads.html#the-lantern`);
   }
-  assert.equal(legacyWikiUrl(new URL(`${base}setting.html?category=places`), base).href, `${base}setting/category-places.html`);
+  assert.equal(legacyWikiUrl(new URL(`${base}setting.html?category=places`), base).href, `${base}setting/category-povoacoes.html`);
   assert.equal(legacyWikiUrl(new URL(`${base}setting.html?view=all&q=The+Cross`), base).searchParams.get("q"), "The Cross");
   assert.equal(legacyWikiUrl(new URL(`${base}setting/articles.html?q=Mara`), base), null);
   assert.equal(legacyWikiUrl(new URL(`${base}setting.html?category=../../private`), base), null);
@@ -113,11 +158,12 @@ function environment(query = "", searchable = true) {
     handlers = new Map(); attrs = new Map(); value = ""; focused = false;
     addEventListener(type, handler) { if (!this.handlers.has(type)) this.handlers.set(type, new Set()); this.handlers.get(type).add(handler); }
     removeEventListener(type, handler) { this.handlers.get(type)?.delete(handler); }
-    emit(type) { const event = { preventDefault() { this.defaultPrevented = true; } }; for (const handler of this.handlers.get(type) || []) handler(event); return event; }
+    emit(type, values = {}) { const event = { target: this, preventDefault() { this.defaultPrevented = true; }, ...values }; for (const handler of this.handlers.get(type) || []) handler(event); return event; }
+    contains(target) { return target === this; }
     focus() { this.focused = true; }
   }
   const nodes = new Map(), document = new Target(), window = new Target(), viewport = new Target();
-  const cards = wiki.articles.map(article => ({ dataset: { wikiName: article.name } }));
+  const cards = ["The Crossroads", "Keeper Mara", "Another article"].map(name => ({ dataset: { wikiName: name } }));
   document.querySelector = id => {
     if (id === '[data-wiki-searchable="true"]') return searchable ? document.querySelector("#wiki-results") : null;
     if (!nodes.has(id)) nodes.set(id, new Target()); return nodes.get(id);
@@ -134,24 +180,24 @@ function environment(query = "", searchable = true) {
 test("client enhancement filters existing cards, restores URL searches and keeps multiword input and focus", () => {
   const ui = environment("?q=Cross");
   assert.equal(ui.cards.filter(card => !card.hidden).length, 1);
-  assert.equal(ui.node("#wiki-menu").open, false);
   const search = ui.node("#wiki-search"); search.focus(); search.value = "The "; search.emit("input");
   assert.equal(search.value, "The ");
   search.value = "The Cross"; search.emit("input");
   assert.equal(ui.window.location.searchParams.get("q"), "The Cross");
-  assert.equal(ui.node("#wiki-result-count").textContent, "1 article");
+  assert.equal(ui.node("#wiki-result-count").textContent, "1 artigo");
+  assert.equal(ui.node("#wiki-results-title").textContent, "Resultados para «The Cross»");
   assert.equal(search.focused, true);
   search.value = "<script>"; search.emit("input");
   assert.equal(ui.node("#wiki-no-results").hidden, false);
+  assert.equal(ui.node("#wiki-result-count").textContent, "0 artigos");
   assert.equal(ui.node("#wiki-results").hidden, true);
   ui.window.location = new URL("http://localhost/setting/articles.html?q=Mara"); ui.window.emit("popstate");
   assert.equal(search.value, "Mara");
   search.value = ""; ui.node("#wiki-search-form").emit("submit");
-  assert.equal(ui.cards.filter(card => !card.hidden).length, wiki.articles.length);
+  assert.equal(ui.cards.filter(card => !card.hidden).length, ui.cards.length);
   assert.equal(ui.node("#wiki-content").focused, true);
-  ui.viewport.matches = false; ui.viewport.emit("change"); assert.equal(ui.node("#wiki-menu").open, true);
   ui.reader.destroy();
-  assert.ok([...ui.viewport.handlers.values(), ...ui.window.handlers.values()].every(set => set.size === 0));
+  assert.ok([...ui.document.handlers.values(), ...ui.window.handlers.values()].every(set => set.size === 0));
   assert.equal(ui.previews.destroyed, true);
   const article = environment("", false);
   assert.equal(article.previews.validated, 1); article.reader.destroy();

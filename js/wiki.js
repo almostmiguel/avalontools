@@ -8,7 +8,11 @@ export function legacyWikiUrl(location, base, routes = {}) {
   if (!url.pathname.endsWith("/setting.html")) return null;
   let path;
   if (url.searchParams.has("article")) path = routes[fold(url.searchParams.get("article"))];
-  else if (/^[a-z0-9-]+$/.test(url.searchParams.get("category") || "")) path = `setting/category-${url.searchParams.get("category")}.html`;
+  else if (/^[a-z0-9-]+$/.test(url.searchParams.get("category") || "")) {
+    const former = { world: "mundos", places: "povoacoes", people: "habitantes", factions: "guildas", beliefs: "tradicoes", history: "acontecimentos" };
+    const category = url.searchParams.get("category");
+    path = `setting/category-${Object.hasOwn(former, category) ? former[category] : category}.html`;
+  }
   else if (url.searchParams.has("view") || url.searchParams.has("q")) path = "setting/articles.html";
   if (!path) return null;
   const target = new URL(path, base);
@@ -28,19 +32,19 @@ export function filterWikiCards(cards, query) {
 }
 
 export function mountWiki({ document, window, previews = attachReferencePreviews({ document, window }) }) {
-  const content = document.querySelector("#wiki-content"), menu = document.querySelector("#wiki-menu");
-  const mobile = window.matchMedia?.("(max-width: 720px)");
-  const layoutChanged = () => { menu.open = !mobile?.matches; };
-  layoutChanged(); mobile?.addEventListener("change", layoutChanged);
+  const content = document.querySelector("#wiki-content");
   const search = document.querySelector("#wiki-search"), form = document.querySelector("#wiki-search-form");
   const results = document.querySelector('[data-wiki-searchable="true"]');
   const cards = results ? [...results.querySelectorAll("[data-wiki-name]")] : [];
   const filter = () => {
     const count = filterWikiCards(cards, search.value);
-    document.querySelector("#wiki-result-count").textContent = `${count} ${count === 1 ? "article" : "articles"}`;
-    document.querySelector("#wiki-results-title").textContent = search.value.trim() ? `Results for “${search.value.trim()}”` : "All articles";
+    document.querySelector("#wiki-result-count").textContent = `${count} ${count === 1 ? "artigo" : "artigos"}`;
+    const title = document.querySelector("#wiki-results-title");
+    title.textContent = search.value.trim() ? `Resultados para «${search.value.trim()}»` : title.dataset?.wikiTitle || "Todos os artigos";
     document.querySelector("#wiki-no-results").hidden = count !== 0;
     results.hidden = count === 0;
+    const alphabet = document.querySelector("[data-wiki-alphabet]");
+    if (alphabet) alphabet.hidden = Boolean(search.value.trim());
   };
   const changed = () => {
     const url = new URL(window.location.href);
@@ -55,7 +59,6 @@ export function mountWiki({ document, window, previews = attachReferencePreviews
   }
   void previews.validateActions(content);
   return { destroy() {
-    mobile?.removeEventListener("change", layoutChanged);
     search.removeEventListener("input", changed); form.removeEventListener("submit", submitted); window.removeEventListener("popstate", popped); previews.destroy();
   } };
 }
