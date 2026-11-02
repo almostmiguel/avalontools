@@ -1,4 +1,4 @@
-import { escapeHtml, renderContent, renderTraitBadge } from "./content-renderer.js";
+import { escapeHtml, renderContent, renderInline, renderTraitBadge } from "./content-renderer.js";
 import { createReferenceCatalog, encounterValues, encounterMatchesFilters, sortCatalog, renderCatalogResults } from "./reference-library.js";
 import { renderReaderHeading, renderReaderFooter } from "./reference-data.js";
 
@@ -7,13 +7,17 @@ export const CREATURE_FILTERS = [{ key: "source", label: "Sources" }, { key: "ca
 
 export function createCreatureCatalog(payload) {
   const families = new Map((payload.families || []).map(family => [family.id, family]));
-  const catalog = createReferenceCatalog(payload, {
+  const catalog = createReferenceCatalog({ ...payload, creatures: [...payload.creatures, ...(payload.abilities || [])] }, {
     collection: "creatures", href: "creatures.html",
     validate(entry) {
+      if (entry.kind === "ability") {
+        if (!Array.isArray(entry.entries) || !entry.entries.length) throw new Error(`Invalid creature ability: ${entry.name}`);
+        return;
+      }
       if (!Number.isInteger(entry.level) || entry.level < -1 || !Array.isArray(entry.entries) || !entry.entries.length || !Array.isArray(entry.traits)
         || entry.traits.some(trait => typeof trait !== "string") || typeof entry.size !== "string" || typeof entry.rarity !== "string") throw new Error(`Invalid creature: ${entry.name}`);
     },
-    decorate: entry => ({ level: entry.level, traits: entry.traits, size: entry.size, rarity: entry.rarity, family: entry.family || "", familyRules: families.get(entry.familyId) }),
+    decorate: entry => ({ kind: entry.kind || "creature", abilityType: entry.kind === "ability" ? entry.category : "", level: entry.level ?? null, traits: entry.traits || [], size: entry.size || "", rarity: entry.rarity || "", family: entry.family || "", familyRules: families.get(entry.familyId) }),
   });
   catalog.renderPreview = record => renderCreaturePreview(record, catalog);
   return catalog;
@@ -24,7 +28,8 @@ export const creatureOptions = catalog => Object.fromEntries(CREATURE_FILTERS.ma
 ]));
 
 export function renderCreatureBody(record, library, rules, { anchorPrefix = "creature-section" } = {}) {
-  const options = { source: record.source, resolveCreature: library?.registry.resolve, resolveRule: rules?.registry.resolve, anchorPrefix };
+  const options = { source: record.source, resolveCreature: library?.registry.resolve, resolveCreatureAbility: library?.registry.resolve, resolveRule: rules?.registry.resolve, anchorPrefix };
+  if (record.kind === "ability") return renderContent({ entries: record.entry.entries }, options).html;
   const description = record.entry.description?.length ? `<div class="creature-description">${renderContent({ entries: record.entry.description }, { ...options, anchorPrefix: `${anchorPrefix}-description` }).html}</div>` : "";
   const family = record.familyRules;
   const familyBody = family ? renderContent({ entries: family.entries }, { ...options, source: family.source, anchorPrefix: `${anchorPrefix}-family` }).html : "";
@@ -38,17 +43,24 @@ function renderCreatureTraits(record) {
 }
 
 export function renderCreatureDetail(record, library, rules) {
-  return `${renderReaderHeading(record, { kind: `Creature ${record.level}` })}<article class="rich-content rule-page-content">${renderCreatureBody(record, library, rules)}</article>${renderReaderFooter(record)}`;
+  return `${renderReaderHeading(record, { kind: record.kind === "ability" ? "Creature Ability" : `Creature ${record.level}`, titleHtml: creatureTitle(record) })}<article class="rich-content rule-page-content">${renderCreatureBody(record, library, rules)}</article>${renderReaderFooter(record)}`;
 }
 export function renderCreaturePreview(record, library) {
-  return `<header class="rule-preview-heading"><h2 id="rule-preview-title">${escapeHtml(record.name)}</h2><span>Creature ${record.level}</span></header><div class="rule-preview-body">${renderCreatureBody(record, library, null, { anchorPrefix: "creature-preview-section" })}</div>${renderReaderFooter(record)}`;
+  return `<header class="rule-preview-heading"><h2 id="rule-preview-title">${creatureTitle(record)}</h2><span>${record.kind === "ability" ? "Creature Ability" : `Creature ${record.level}`}</span></header><div class="rule-preview-body">${renderCreatureBody(record, library, null, { anchorPrefix: "creature-preview-section" })}</div>${renderReaderFooter(record)}`;
 }
+const creatureTitle = record => escapeHtml(record.name) + (record.entry.actions ? ` ${renderInline(`{@as ${record.entry.actions}}`)}` : "");
 
 export const CREATURE_BROWSER_DEFINITION = {
-  prefix: "catalog", detailPrefix: "catalog", attribute: "catalog", filters: CREATURE_FILTERS,
+  prefix: "catalog", detailPrefix: "catalog", attribute: "catalog", filters: [...CREATURE_FILTERS, { key: "abilityType", label: "Ability types" }],
+  referenceKinds: ["creature", "creatureability"],
+  lists: [
+    { id: "creatures", label: "Creatures", singular: "Creature", filterKeys: CREATURE_FILTERS.map(filter => filter.key), matches: record => record.kind === "creature" },
+    { id: "abilities", label: "Creature Abilities", singular: "Creature Ability", filterKeys: ["source", "abilityType"], sortKeys: ["name", "category", "source"], matches: record => record.kind === "ability" },
+  ],
   sortKeys: ["name", "category", "level", "source"], create: createCreatureCatalog,
-  options: creatureOptions, values: encounterValues, matches: encounterMatchesFilters, sort: sortCatalog,
-  renderResults: (records, selectedId) => renderCatalogResults(records, selectedId, { plural: "Creatures", showLevel: true, showCategory: true }),
+  options: library => ({ ...creatureOptions(library), category: [...new Set(library.records.filter(record => record.kind === "creature").map(record => record.category))].sort(compare).map(value => ({ value, label: value })), abilityType: [...new Set(library.records.filter(record => record.kind === "ability").map(record => record.category))].sort(compare).map(value => ({ value, label: value })) }),
+  values: encounterValues, matches: encounterMatchesFilters, sort: sortCatalog,
+  renderResults: (records, selectedId, _library, config) => renderCatalogResults(records, selectedId, { plural: config?.plural || "Creatures", showLevel: config?.singular !== "Creature Ability", showCategory: true }),
   renderDetail: renderCreatureDetail,
 };
 

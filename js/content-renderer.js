@@ -61,6 +61,7 @@ function renderTag(body, options) {
     spell: { noun: "Spell", href: "spells.html", parameter: "spell", resolver: "resolveSpell" },
     equipment: { noun: "Item", href: "equipment.html", parameter: "equipment", resolver: "resolveEquipment" },
     creature: { noun: "Creature", href: "creatures.html", parameter: "creature", resolver: "resolveCreature" },
+    creatureability: { noun: "Creature ability", href: "creatures.html", parameter: "creature", resolver: "resolveCreatureAbility" },
     companion: { noun: "Companion", href: "companions.html", parameter: "companion", resolver: "resolveCompanion" },
   };
   if (Object.hasOwn(references, tag)) {

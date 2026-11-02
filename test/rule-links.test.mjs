@@ -181,6 +181,7 @@ function environment(options = {}) {
       if (selectors.includes("[data-spell-name]") && this.dataset.spellName) return this;
       if (selectors.includes("[data-equipment-name]") && this.dataset.equipmentName) return this;
       if (selectors.includes("[data-creature-name]") && this.dataset.creatureName) return this;
+      if (selectors.includes("[data-creatureability-name]") && this.dataset.creatureabilityName) return this;
       if (selectors.includes("[data-companion-name]") && this.dataset.companionName) return this;
       return this.parent?.closest(selector) || null;
     }
@@ -552,6 +553,15 @@ test("creature previews load once, keep core stat blocks and family rules, and s
   env.document.emit("keydown", { key: "Escape" });
   assert.equal(env.controller.panel.hidden, true);
   assert.equal(link.attributes.get("href"), href);
+  const ability = new env.Element(); ability.dataset = { creatureabilityName: "Grab", creatureabilitySource: "RoE" }; env.document.body.append(ability);
+  ability.focus();
+  assert.equal(loads, 1);
+  assert.equal(env.controller.panel.hidden, false);
+  assert.match(env.controller.panel.innerHTML, /Creature Ability/);
+  assert.match(env.controller.panel.innerHTML, /data-symbol="1"/);
+  assert.match(env.controller.panel.innerHTML, /Requirements/);
+  assert.match(env.controller.panel.innerHTML, /Rage of Elements/);
+  assert.doesNotMatch(env.controller.panel.innerHTML, /Creature null/);
   env.controller.destroy();
 });
 

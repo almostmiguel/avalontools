@@ -112,6 +112,7 @@ export function mountReferenceBrowser(library, { document, window, config, rules
   let filters = emptyFilters(), selectedId = null, renderedId, sort = "name", order = "asc", excludeMode = false;
   let listId = lists[0]?.id || "";
   const currentList = () => lists.find(list => list.id === listId);
+  const availableSortKeys = () => currentList()?.sortKeys || config.sortKeys || ["name", ...filterGroups.map(({ key }) => key)];
   const filterAvailable = key => !currentList()?.filterKeys || currentList().filterKeys.includes(key);
   const followSelectedList = record => {
     const list = record && lists.find(list => list.matches(record));
@@ -158,7 +159,7 @@ export function mountReferenceBrowser(library, { document, window, config, rules
     const params = new URLSearchParams(window.location.search);
     listId = lists.find(list => list.id === params.get("list"))?.id || lists[0]?.id || "";
     search.value = params.get("q") || "";
-    sort = (config.sortKeys || ["name", ...filterGroups.map(({ key }) => key)]).includes(params.get("sort")) ? params.get("sort") : "name";
+    sort = availableSortKeys().includes(params.get("sort")) ? params.get("sort") : "name";
     order = params.get("order") === "desc" ? "desc" : "asc";
     filters = emptyFilters();
     for (const { key } of filterGroups) for (const [parameter, state] of [[key, 1], [`not-${key}`, -1]]) for (const raw of params.getAll(parameter)) {
@@ -178,6 +179,8 @@ export function mountReferenceBrowser(library, { document, window, config, rules
   };
   const render = ({ save = true } = {}) => {
     const list = currentList();
+    if (!availableSortKeys().includes(sort)) { sort = "name"; order = "asc"; }
+    if (lists.length) { results.dataset.list = listId; control("sort").dataset.list = listId; }
     const singular = (list?.singular || config.singular).toLowerCase(), plural = (list?.label || config.plural).toLowerCase();
     const article = /^[aeiou]/i.test(singular) ? "an" : "a";
     const listRecords = list ? library.records.filter(list.matches) : library.records;
@@ -186,7 +189,8 @@ export function mountReferenceBrowser(library, { document, window, config, rules
     if (selectedId && !selectionError && !matches.some(record => record.id === selectedId)) selectedId = matches[0]?.id || null;
     results.innerHTML = config.renderResults(matches, selectedId, library, list ? { ...config, singular: list.singular, plural: list.label } : config);
     control("count").textContent = `${matches.length} ${matches.length === 1 ? singular : plural}`;
-    control("summary").textContent = `${listRecords.length} ${plural} · ${library.sources.length} ${library.sources.length === 1 ? "source" : "sources"}`;
+    const sourceCount = list ? new Set(listRecords.map(record => record.source)).size : library.sources.length;
+    control("summary").textContent = `${listRecords.length} ${plural} · ${sourceCount} ${sourceCount === 1 ? "source" : "sources"}`;
     for (const button of listControl?.querySelectorAll(`[data-${attribute}-list]`) || []) button.setAttribute("aria-pressed", String(data(button, "List") === listId));
     for (const { key } of filterGroups) {
       const group = groups?.querySelector?.(`[data-${attribute}-filter-group="${key}"]`);
@@ -218,6 +222,7 @@ export function mountReferenceBrowser(library, { document, window, config, rules
     control("include")?.setAttribute("aria-pressed", String(!excludeMode));
     control("exclude")?.setAttribute("aria-pressed", String(excludeMode));
     for (const button of control("sort").querySelectorAll(`[data-${attribute}-sort]`)) {
+      button.hidden = !availableSortKeys().includes(data(button, "Sort"));
       const current = data(button, "Sort") === sort;
       button.setAttribute("aria-pressed", String(current));
       if (current) button.setAttribute("data-direction", order); else button.removeAttribute("data-direction");
@@ -304,8 +309,9 @@ export function mountReferenceBrowser(library, { document, window, config, rules
       if (switchList(data(listButton, "List"))) event.preventDefault();
       return;
     }
-    const ref = closest(event, `${config.kind}-name`); if (!ref || !plainClick(event)) return;
-    const found = library.registry.resolve(ref.dataset[`${config.kind}Name`], ref.dataset[`${config.kind}Source`]);
+    const kind = (config.referenceKinds || [config.kind]).find(kind => closest(event, `${kind}-name`));
+    const ref = kind && closest(event, `${kind}-name`); if (!ref || !plainClick(event)) return;
+    const found = library.registry.resolve(ref.dataset[`${kind}Name`], ref.dataset[`${kind}Source`]);
     if (found.status === "found" && select(found.target.id, true)) event.preventDefault();
   });
   on(document, "keydown", event => { if (event.key === "Escape" && menu?.open) { menu.open = false; control("filter-summary").focus(); } });

@@ -352,7 +352,7 @@ test("Creatures restores core source and level filters, sorts, opens creature li
   const browser = await startReferenceBrowser({ ...ui, config });
   assert.ok(browser);
   assert.match(ui.get("#catalog-results").innerHTML, /Adamant Sentinel/);
-  assert.equal(ui.previewCalls[0].creatures.records.length, 806);
+  assert.equal(ui.previewCalls[0].creatures.records.length, 848);
   assert.equal(requests.filter(path => path === "data/creatures.json").length, 1);
   ui.get("#catalog-sort").emit("click", { target: ui.target({ catalogSort: "level" }) });
   assert.equal(ui.window.location.searchParams.get("sort"), "level");
@@ -372,6 +372,39 @@ test("Creatures restores core source and level filters, sorts, opens creature li
   assert.equal(ui.get("#catalog-count").textContent, "1 creature");
   ui.get("#catalog-search").value = "self-repair"; ui.get("#catalog-search").emit("input");
   assert.equal(ui.get("#catalog-count").textContent, "0 creatures");
+  browser.destroy();
+});
+
+test("Creature Abilities opens local links in its own tab and Back restores the creature and level sort", async t => {
+  const original = globalThis.fetch;
+  t.after(() => { globalThis.fetch = original; });
+  const payloads = Object.fromEntries(await Promise.all(["creatures", "traits"].map(async name => [`data/${name}.json`, JSON.parse(await readFile(new URL(`../data/${name}.json`, import.meta.url), "utf8"))])));
+  globalThis.fetch = async path => ({ ok: true, json: async () => payloads[path] || { rules: [] } });
+  const config = { ...REFERENCE_TYPES.creatures, ...CREATURE_BROWSER_DEFINITION };
+  const ui = environment("?creature=Aapoph+Serpentfolk&source=MC1&sort=level", config);
+  const browser = await startReferenceBrowser({ ...ui, config });
+  assert.ok(browser);
+  assert.equal(browser.selectedList, "creatures");
+  assert.match(ui.get("#catalog-summary").textContent, /806 creatures.*2 sources/);
+  assert.match(ui.get("#catalog-detail").innerHTML, /data-creatureability-name="Knockdown"/);
+  const click = { target: ui.target({ creatureabilityName: "Grab", creatureabilitySource: "RoE" }), preventDefault() { this.defaultPrevented = true; } };
+  ui.handlers.get("document:click")(click);
+  assert.equal(click.defaultPrevented, true);
+  assert.equal(browser.selectedList, "abilities");
+  assert.equal(browser.selectedId, "RoE:ability-grab");
+  assert.equal(ui.get("#catalog-count").textContent, "42 creature abilities");
+  assert.equal(ui.window.location.searchParams.get("sort"), null);
+  assert.doesNotMatch(ui.get("#catalog-results").innerHTML, /catalog-result-level/);
+  assert.match(ui.get("#catalog-detail").innerHTML, /Requirements/);
+  assert.match(ui.get("#catalog-detail").innerHTML, /Rage of Elements/);
+  ui.window.history.back();
+  assert.equal(browser.selectedList, "creatures");
+  assert.equal(browser.selectedId, "MC1:aapoph-serpentfolk");
+  assert.equal(ui.window.location.searchParams.get("sort"), "level");
+  browser.switchList("abilities");
+  ui.get("#catalog-filter-groups").emit("click", { target: ui.target({ catalogFilter: "abilityType", filterValue: "Reaction" }), preventDefault() {} });
+  assert.equal(ui.get("#catalog-count").textContent, "4 creature abilities");
+  assert.match(ui.get("#catalog-results").innerHTML, /Reactive Strike/);
   browser.destroy();
 });
 

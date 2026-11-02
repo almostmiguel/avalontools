@@ -5,11 +5,55 @@ import { parseDocument, DomUtils } from "htmlparser2";
 import { renderInline } from "../js/content-renderer.js";
 import { createCatalog, searchCatalog, sortCatalog, encounterMatchesFilters } from "../js/reference-library.js";
 import { createCreatureCatalog, createCompanionCatalog, creatureOptions, CREATURE_FILTERS, renderCreatureDetail, renderCreaturePreview, CREATURE_BROWSER_DEFINITION, COMPANION_BROWSER_DEFINITION } from "../js/creature-library.js";
-import { parseCreaturePage } from "../scripts/import-core-creatures.mjs";
+import { parseCreaturePage, parseCreatureAbilityIndex } from "../scripts/import-core-creatures.mjs";
 import { parseCompanionPage, parseFamiliarAbilityPage } from "../scripts/import-pc1-companions.mjs";
 
 const payload = JSON.parse(await readFile(new URL("../data/creatures.json", import.meta.url), "utf8"));
 const library = createCreatureCatalog(payload);
+const creatures = library.records.filter(record => record.kind === "creature");
+
+test("shared core creature abilities are complete and all former external ability links resolve locally", () => {
+  const abilities = library.records.filter(record => record.kind === "ability");
+  assert.equal(abilities.length, 42);
+  assert.equal(new Set(library.records.map(record => record.id)).size, 848);
+  for (const record of abilities) {
+    assert.ok(Number.isInteger(record.page) && record.page > 0);
+    assert.ok(library.sources.includes(record.source));
+    const html = renderCreatureDetail(record, library);
+    assert.match(html, /Creature Ability/);
+    assert.match(html, /<footer class="reader-footer">/);
+    assert.doesNotMatch(html, /undefined|\[object Object\]|<script|Creature null|creature-size|creature-family|\{@/);
+    assert.match(library.renderPreview(record), /Creature Ability/);
+  }
+  const raw = JSON.stringify(payload);
+  assert.doesNotMatch(raw, /\{@link [^{}]*MonsterAbilities\.aspx/);
+  const links = [...raw.matchAll(/\{@creatureability ([^|{}]+)\|([^|{}]*)(?:\|[^{}]*)?\}/g)];
+  assert.ok(links.length > 2000);
+  for (const [, name, source] of links) {
+    const found = library.registry.resolve(name, source);
+    assert.equal(found.status, "found", `${name}|${source}`);
+    assert.equal(found.target.kind, "ability");
+  }
+  const grab = library.registry.resolve("Grab").target;
+  assert.equal(grab.id, "RoE:ability-grab");
+  assert.equal(grab.page, 232);
+  assert.match(renderCreatureDetail(grab, library), /data-symbol="1"/);
+  assert.match(renderCreatureDetail(library.registry.resolve("Engulf").target, library), /data-symbol="2"/);
+  assert.match(renderCreatureDetail(library.registry.resolve("Darkvision").target, library), /magical darkness/);
+  assert.equal(library.registry.resolve("Improved Grab, Improved Knockdown, or Improved Push").status, "found");
+  assert.match(renderInline("{@creatureability Grab|RoE|grab}", { resolveCreatureAbility: library.registry.resolve }), /href="creatures.html\?id=RoE%3Aability-grab"/);
+});
+
+test("creature ability import preserves costs, requirements and effects with their actual source", () => {
+  const html = '<h1 class="title">Creature Abilities</h1><span><h2 class="title"><a href="MonsterAbilities.aspx?ID=1">Test Ability</a><span class="action">[reaction]</span></h2><b>Source</b><a>Monster Core pg. 358</a><br><b>Trigger</b> A creature attacks.<br><b>Effect</b> Its attack fails.<h2 class="title"><a href="MonsterAbilities.aspx?ID=2">Other Ability</a></h2><b>Source</b><a>Other Book pg. 10</a><br>Other text.</span>';
+  const abilities = parseCreatureAbilityIndex(html, {});
+  assert.equal(abilities.length, 1);
+  assert.equal(abilities[0].name, "Test Ability");
+  assert.equal(abilities[0].source, "MC1");
+  assert.equal(abilities[0].actions, "r");
+  assert.equal(abilities[0].category, "Reaction");
+  assert.deepEqual(abilities[0].entries, ["{@b Trigger} A creature attacks.", "{@b Effect} Its attack fails."]);
+});
 
 test("PC1 companions include all 16 types, full support and advanced maneuvers, and complete advancement rules", async () => {
   const payload = JSON.parse(await readFile(new URL("../data/companions.json", import.meta.url), "utf8"));
@@ -77,7 +121,7 @@ test("familiar ability imports verify the book and ability type and retain requi
 });
 
 test("creature badges order optional rarity before size and other traits in readers and previews", () => {
-  for (const record of library.records) for (const html of [renderCreatureDetail(record, library), renderCreaturePreview(record, library)]) {
+  for (const record of creatures) for (const html of [renderCreatureDetail(record, library), renderCreaturePreview(record, library)]) {
     const doc = parseDocument(html);
     const list = DomUtils.findOne(node => node.attribs?.["aria-label"] === "Traits", doc.children);
     const badges = list.children.filter(node => node.attribs?.role === "listitem");
@@ -99,12 +143,12 @@ test("companion imports preserve action costs, requirements and support text whi
 });
 
 test("both complete Monster Core catalogs have usable stat blocks, resolvable traits and source citations", async () => {
-  assert.equal(library.records.length, 806);
-  assert.equal(new Set(library.records.map(record => record.name)).size, 806);
-  assert.equal(library.records.filter(record => record.source === "MC1").length, 411);
-  assert.equal(library.records.filter(record => record.source === "MC2").length, 395);
+  assert.equal(creatures.length, 806);
+  assert.equal(new Set(creatures.map(record => record.name)).size, 806);
+  assert.equal(creatures.filter(record => record.source === "MC1").length, 411);
+  assert.equal(creatures.filter(record => record.source === "MC2").length, 395);
   const traits = createCatalog(JSON.parse(await readFile(new URL("../data/traits.json", import.meta.url), "utf8")), { collection: "traits", href: "traits.html" });
-  for (const record of library.records) {
+  for (const record of creatures) {
     assert.ok(Number.isInteger(record.page) && record.page > 0);
     assert.ok(record.size);
     for (const trait of record.traits) assert.equal(traits.registry.resolve(trait).status, "found", `${record.name}: ${trait}`);
@@ -136,10 +180,10 @@ test("both complete Monster Core catalogs have usable stat blocks, resolvable tr
 });
 
 test("creature filters combine source, type, level, size, rarity, family and traits; sorting includes level minus one", () => {
-  const options = creatureOptions(library);
+  const options = creatureOptions({ records: creatures });
   assert.deepEqual(options.source.map(option => option.value), ["MC1", "MC2"]);
-  assert.equal(sortCatalog(library.records, "level")[0].level, -1);
-  assert.equal(sortCatalog(library.records, "level", "desc")[0].level, 25);
+  assert.equal(sortCatalog(creatures, "level")[0].level, -1);
+  assert.equal(sortCatalog(creatures, "level", "desc")[0].level, 25);
   const filters = Object.fromEntries(CREATURE_FILTERS.map(({ key }) => [key, new Map()]));
   filters.source.set("MC2", 1); filters.category.set("Construct", 1); filters.level.set("18", 1);
   filters.rarity.set("Rare", 1); filters.size.set("Huge", 1); filters.trait.set("mindless", 1);

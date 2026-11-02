@@ -88,9 +88,11 @@ export function attachReferencePreviews({ document, window, registry, actions = 
   let restoringFocus = false;
   let nestedPreview;
   const actionResource = createLazyResource(actions, loadActions);
+  const creatureResource = createLazyResource(creatures, loadCreatures);
   const catalogs = {
     companion: { plural: "Companions", singular: "companion", resource: createLazyResource(companions, loadCompanions) },
-    creature: { plural: "Creatures", singular: "creature", resource: createLazyResource(creatures, loadCreatures) },
+    creature: { plural: "Creatures", singular: "creature", resource: creatureResource },
+    creatureability: { plural: "Creature Abilities", singular: "creature ability", resource: creatureResource },
     equipment: { plural: "Equipment", singular: "item", resource: createLazyResource(equipment, loadEquipment) },
     spell: { plural: "Spells", singular: "spell", resource: createLazyResource(spells, loadSpells) },
     affliction: { plural: "Afflictions", singular: "affliction", resource: createLazyResource(afflictions, loadAfflictions) },

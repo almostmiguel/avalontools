@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 import { parseDocument, DomUtils } from "htmlparser2";
-import { htmlText as text, foldHtmlReference as fold, htmlContentBlocks } from "./html-content.mjs";
+import { htmlText as text, foldHtmlReference as fold, htmlContentBlocks, renderHtmlInline } from "./html-content.mjs";
 
 const origin = "https://2e.aonprd.com/";
 const cache = new URL("../.cache/creatures/", import.meta.url);
@@ -22,6 +22,82 @@ async function cachedPage(path, file, refresh) {
     } catch (error) { lastError = error; }
   }
   throw lastError;
+}
+
+const abilitySources = { "Monster Core": "MC1", "Monster Core 2": "MC2", "Rage of Elements": "RoE", "NPC Core": "NC", "Bestiary": "B", "Bestiary 3": "B3" };
+const improvedAbilities = ["Improved Grab", "Improved Knockdown", "Improved Push"];
+
+export function parseCreatureAbilityIndex(html, references) {
+  const document = parseDocument(html);
+  const headings = DomUtils.findAll(node => node.name === "h2" && node.attribs?.class === "title", document.children);
+  return headings.flatMap(heading => {
+    const link = DomUtils.findOne(node => node.name === "a" && /^MonsterAbilities\.aspx\?ID=/.test(node.attribs.href || ""), heading.children);
+    if (!link) return [];
+    const siblings = heading.parent.children;
+    const start = siblings.indexOf(heading) + 1;
+    let stop = start;
+    while (stop < siblings.length && !(siblings[stop].name === "h2" && siblings[stop].attribs?.class === "title")) stop++;
+    const nodes = siblings.slice(start, stop);
+    const source = nodes.findIndex(node => ["b", "strong"].includes(node.name) && text(node) === "Source");
+    const end = nodes.findIndex((node, index) => index > source && node.name === "br");
+    const citation = /^(.*?) pg\. (\d+)/.exec(nodes.slice(source + 1, end).map(text).join(" ").trim());
+    const name = text(link);
+    // Nethys publishes common core definitions once. Include the remastered
+    // glossary and the older Sneak Attack entry still linked by core creatures.
+    if (!citation || !["Monster Core", "Monster Core 2", "Rage of Elements", "NPC Core"].includes(citation[1]) && name !== "Sneak Attack") return [];
+    const action = DomUtils.findOne(node => /(?:^|\s)action(?:\s|$)/.test(node.attribs?.class || ""), heading.children);
+    const actions = action && ({ "[one-action]": "1", "[two-actions]": "2", "[three-actions]": "3", "[reaction]": "r", "[free-action]": "f" })[text(action)];
+    return [{ id: `ability-${fold(name).replaceAll(" ", "-")}`, name, kind: "ability", source: abilitySources[citation[1]], page: Number(citation[2]),
+      category: actions === "r" ? "Reaction" : actions === "f" ? "Free action" : actions ? "Action" : "Passive", ...(actions ? { actions } : {}),
+      entries: htmlContentBlocks(nodes.slice(end + 1), references), reference: origin + link.attribs.href }];
+  });
+}
+
+export async function importCreatureAbilities({ refresh = false } = {}) {
+  const payloadFile = new URL("../data/creatures.json", import.meta.url);
+  const payload = JSON.parse(await readFile(payloadFile, "utf8"));
+  const html = await cachedPage("MonsterAbilities.aspx", "abilities/index.html", refresh);
+  const references = { externalFallback: true };
+  for (const [kind, collection] of [["action", "actions"], ["condition", "conditions"], ["skill", "skills"], ["trait", "traits"], ["spell", "spells"], ["equipment", "equipment"]]) {
+    const data = JSON.parse(await readFile(new URL(`../data/${collection}.json`, import.meta.url), "utf8"));
+    const names = data[collection].map(record => record.name).sort((a, b) => b.length - a.length);
+    references[kind] = { names, byName: new Map(names.map(name => [fold(name), name])), byPath: new Map() };
+  }
+  const definitions = parseCreatureAbilityIndex(html, references);
+  if (definitions.length !== 42) throw new Error(`Expected 42 core glossary/shared abilities, found ${definitions.length}; review the Nethys glossary.`);
+  const abilityNames = entry => [entry.name, ...(entry.name.startsWith("Improved Grab,") ? improvedAbilities : [])];
+  const byName = new Map(definitions.flatMap(entry => abilityNames(entry).map(name => [fold(name), entry.name])));
+  const byPath = new Map(definitions.map(entry => [entry.reference.slice(origin.length), entry.name]));
+  // Old IDs still occur in the source stat blocks; use their displayed name
+  // to resolve the current definition, including the three Improved variants.
+  for (const match of JSON.stringify(payload).matchAll(/\{@link ([^|{}]+)\|https:\/\/2e\.aonprd\.com\/(MonsterAbilities\.aspx\?ID=\d+)\}/g)) {
+    const name = byPath.get(match[2]) || byName.get(fold(match[1])) || definitions.find(entry => fold(match[1]).startsWith(fold(entry.name) + " "))?.name;
+    if (!name) throw new Error(`Missing local creature ability: ${match[1]} (${match[2]})`);
+    byPath.set(match[2], name);
+  }
+  references.creatureability = { names: definitions.flatMap(abilityNames).sort((a, b) => b.length - a.length), byName, byPath,
+    sourceByName: new Map(definitions.map(entry => [entry.name, entry.source])),
+    sourceByPath: new Map([...byPath].map(([path, name]) => [path, definitions.find(entry => entry.name === name).source])) };
+  const abilities = parseCreatureAbilityIndex(html, references);
+  const replace = value => {
+    if (typeof value === "string") return value.replace(/\{@link ([^|{}]+)\|https:\/\/2e\.aonprd\.com\/(MonsterAbilities\.aspx\?ID=\d+)\}/g, (_tag, label, path) => {
+      const name = byPath.get(path), entry = abilities.find(entry => entry.name === name);
+      if (!entry) throw new Error(`Missing creature ability: ${path}`);
+      return `{@creatureability ${name}|${entry.source}${name !== label ? `|${label}` : ""}}`;
+    }).replace(/\{@action ([^|{}]+)\|(?:\|([^{}]*))?\}/g, (tag, target, label) => {
+      const canonical = byName.get(fold(target)), entry = abilities.find(entry => entry.name === canonical);
+      return entry ? `{@creatureability ${entry.name}|${entry.source}${label || target !== entry.name ? `|${label || target}` : ""}}` : tag;
+    });
+    if (Array.isArray(value)) return value.map(replace);
+    if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([key, child]) => [key, replace(child)]));
+    return value;
+  };
+  const updated = replace(payload);
+  updated.abilities = abilities.map(({ reference, ...entry }) => entry);
+  for (const entry of abilities) if (!updated.sources.some(source => source.id === entry.source)) updated.sources.push({ id: entry.source, name: Object.keys(abilitySources).find(name => abilitySources[name] === entry.source), source: entry.source });
+  if (updated._meta) updated._meta.abilities = "42 shared creature ability definitions: the Monster Core glossary plus current shared definitions used by Monster Core and Monster Core 2 creatures. Nethys cites Grab/Knockdown/Push/Reactive Strike to Rage of Elements, troop rules to NPC Core, and Sneak Attack to Bestiary; their original citations are preserved.";
+  await writeFile(payloadFile, JSON.stringify(updated, null, 2) + "\n");
+  console.log(`creature abilities: ${abilities.length}; external ability references replaced with local tags`);
 }
 
 export function parseCreaturePage(html, selection, references) {
@@ -171,6 +247,10 @@ export async function importCoreCreatures({ refresh = false } = {}) {
     sources: books.map(({ id, name }) => ({ id, name, source: id })), creatures: records, families: [...families.values()].sort((a, b) => a.id.localeCompare(b.id)),
   }, null, 2) + "\n");
   console.log(`creatures: ${records.length}; added ${added} core traits`);
+  await importCreatureAbilities({ refresh });
 }
 
-if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await importCoreCreatures({ refresh: process.argv.includes("--refresh") });
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  if (process.argv.includes("--abilities-only")) await importCreatureAbilities({ refresh: process.argv.includes("--refresh") });
+  else await importCoreCreatures({ refresh: process.argv.includes("--refresh") });
+}
