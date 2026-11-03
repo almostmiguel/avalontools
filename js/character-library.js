@@ -12,7 +12,7 @@ const common = {
 function createCharacterCatalog(payload, config) {
   const catalog = createCatalog(payload, config);
   for (const record of catalog.records) {
-    if (record.source !== "PC1") throw new Error(`Only PC1 character options are supported: ${record.name}`);
+    if (!["PC1", "PC2"].includes(record.source)) throw new Error(`Unsupported character option source: ${record.name}`);
     record.skills = (record.entry.skills || []).map(title);
   }
   if (config.dependencies?.feats) {
@@ -21,13 +21,13 @@ function createCharacterCatalog(payload, config) {
       const feat = catalog.featLibrary.get(id);
       if (!feat) throw new Error(`Missing archetype feat: ${id}`);
       return feat;
-    }).sort((a, b) => a.level - b.level || a.name.localeCompare(b.name))]));
+    }).sort((a, b) => (record.entry.featLevels?.[a.id] || a.level) - (record.entry.featLevels?.[b.id] || b.level) || a.name.localeCompare(b.name))]));
   }
   return catalog;
 }
 
-export function renderCharacterFeatCards(feats, library, rules) {
-  return feats.map(feat => `<details class="character-feat"><summary><strong>${renderFeatTitle(feat, { showQualifier: false })}</strong><span>Feat ${feat.level}</span>${renderIcon("chevron-down")}</summary><div class="rich-content">${renderFeatBody(feat, library, rules, { showHeading: false })}</div></details>`).join("");
+export function renderCharacterFeatCards(feats, library, rules, levels = {}) {
+  return feats.map(feat => `<details class="character-feat"><summary><strong>${renderFeatTitle(feat, { showQualifier: false })}</strong><span>Feat ${levels[feat.id] || feat.level}</span>${renderIcon("chevron-down")}</summary><div class="rich-content">${renderFeatBody(feat, library, rules, { showHeading: false })}</div></details>`).join("");
 }
 
 function renderCharacterDetail(record, library, rules, config) {
@@ -45,7 +45,7 @@ function renderCharacterDetail(record, library, rules, config) {
     body = renderContent({ entries: record.entry.entries }, options).html;
   }
   const feats = library.featsByArchetype?.get(record.id);
-  const featList = feats ? `<section class="character-feats"><h2>Archetype Feats</h2>${renderCharacterFeatCards(feats, library.featLibrary, rules)}</section>` : "";
+  const featList = feats ? `<section class="character-feats"><h2>Archetype Feats</h2>${renderCharacterFeatCards(feats, library.featLibrary, rules, record.entry.featLevels)}</section>` : "";
   return `${renderReaderHeading(record, { kind: config.singular })}${overview}<article class="rich-content rule-page-content">${body}</article>${featList}${renderReaderFooter(record)}`;
 }
 

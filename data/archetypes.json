@@ -4,6 +4,11 @@
       "id": "PC1",
       "name": "Player Core",
       "source": "PC1"
+    },
+    {
+      "id": "PC2",
+      "name": "Player Core 2",
+      "source": "PC2"
     }
   ],
   "archetypes": [
@@ -353,6 +358,1324 @@
         "PC1:wizard-dedication-feat-223"
       ],
       "image": "img/archetypes/wizard.webp"
+    },
+    {
+      "name": "Acrobat",
+      "source": "PC2",
+      "page": 183,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You have trained your body to perform incredible, seemingly superhuman feats of grace and agility. You move in ways that leave your opponents fumbling for a response, turning every fight into a nimble piece of performance art."
+          ]
+        },
+        "Often underestimated, such mastery over the body is useful both on a stage and a battlefield. In fact, acrobatics is an often-practiced art among thieves, assassins, and explorers."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6240",
+        "PC2:aon-6241",
+        "PC2:aon-6242",
+        "PC2:aon-6243",
+        "PC2:aon-6245",
+        "PC2:aon-6244"
+      ],
+      "image": "img/archetypes/acrobat.webp"
+    },
+    {
+      "name": "Alchemist",
+      "source": "PC2",
+      "page": 175,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You enjoy tinkering with alchemical formulas and substances in your spare time, and your studies have progressed beyond mere experimentation. You might throw bombs, drink mutagens, or carry an assortment of helpful elixirs and alchemical tools."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Multiclass Alchemist Characters",
+          "entries": [
+            "The free alchemical items from the alchemist archetype are extremely useful to characters of any class. The following are just some of the possible combinations.",
+            {
+              "type": "list",
+              "items": [
+                "Barbarian alchemists can mix mutagens with their rage to ferocious effect.",
+                "Champion alchemists can focus on alchemical items that boost defenses and heal others, allowing their champion's reaction and {@i lay on hands} to go further.",
+                "Fighter alchemists can use their alchemy to gain additional options in situations where their usual tactics don't work.",
+                "Ranger alchemists often focus on alchemy and snares, getting extra use out of their Crafting skill and supplying bombs for the bomb snare.",
+                "Rogue alchemists can combine a rogue's poison feats with free daily poisons, and bombs present an interesting way to sneak attack with various types of energy damage.",
+                "Spellcaster alchemists often use their alchemical items to take pressure off their repertoire or prepared spells. For instance, a wizard alchemist who can brew up darkvision elixirs to grant vision in darkness can prepare another spell instead of {@i darkvision}."
+              ]
+            }
+          ]
+        }
+      ],
+      "category": "Multiclass",
+      "feats": [
+        "PC2:aon-6185",
+        "PC2:aon-6187",
+        "PC2:aon-6189",
+        "PC2:aon-6184",
+        "PC2:aon-6186",
+        "PC2:aon-6188"
+      ],
+      "image": "img/archetypes/alchemist.webp"
+    },
+    {
+      "name": "Archaeologist",
+      "source": "PC2",
+      "page": 184,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Adventurers raid tombs for material gain, but true archaeologists treasure the knowledge attained from such sites."
+          ]
+        },
+        "You might accomplish your goals with scholarly learning, by training to overcome the tricks and traps set by ancient peoples and rivals, through magical training, or even with a bit of inexplicable luck. Many archaeologists practice a combination of all these approaches. Regardless of method, all archaeologists possess a deep desire to learn more about sapient history and prehistory. Adventuring through tombs, dodging traps, and studying magic are all means to better understand ancient sites, analyze artifacts, and decipher the meaning of any remains that can be found from previous inhabitants. You decide how you will uncover the secrets of the past and what to do with the answers you find."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6246",
+        "PC2:aon-6250",
+        "PC2:aon-6251",
+        "PC2:aon-6247",
+        "PC2:aon-6249",
+        "PC2:aon-6248",
+        "PC2:aon-4919",
+        "PC1:delay-trap-feat-173"
+      ],
+      "featLevels": {
+        "PC1:delay-trap-feat-173": 10
+      },
+      "image": "img/archetypes/archaeologist.webp"
+    },
+    {
+      "name": "Archer",
+      "source": "PC2",
+      "page": 185,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Bows of all types are powerful weapons."
+          ]
+        },
+        "Generals and hunters alike recognize the power in dealing death from a distance, and from behind safe cover. Those dedicated to the bow—from mysterious cloaked strangers to heartless snipers—are often viewed with a mixture of respect and fear. Like any weapons adept, the archer's skill is forged through experience and constant practice. A true archer becomes one with their bow and is able to make incredible shots with their weapon that most would consider impossible, or at the very least magical."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6252",
+        "PC2:aon-6255",
+        "PC2:aon-6254",
+        "PC2:aon-6253",
+        "PC2:aon-6256",
+        "PC1:assisting-shot-feat-141",
+        "PC1:crossbow-ace-feat-157",
+        "PC1:point-blank-stance-feat-140",
+        "PC1:double-shot-feat-143",
+        "PC1:parting-shot-feat-143",
+        "PC1:running-reload-feat-159",
+        "PC1:triple-shot-feat-145",
+        "PC1:mobile-shot-stance-feat-146",
+        "PC1:multishot-stance-feat-150"
+      ],
+      "featLevels": {
+        "PC1:assisting-shot-feat-141": 4,
+        "PC1:crossbow-ace-feat-157": 4,
+        "PC1:point-blank-stance-feat-140": 4,
+        "PC1:double-shot-feat-143": 6,
+        "PC1:parting-shot-feat-143": 6,
+        "PC1:running-reload-feat-159": 6,
+        "PC1:triple-shot-feat-145": 8,
+        "PC1:mobile-shot-stance-feat-146": 10,
+        "PC1:multishot-stance-feat-150": 18
+      },
+      "image": "img/archetypes/archer.webp"
+    },
+    {
+      "name": "Assassin",
+      "source": "PC2",
+      "page": 186,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Targeted killing through stealth and subterfuge is the expertise of an assassin. While assassins are skilled in ending lives and many are evil, some live by a moral code, preying on the wicked, the cruel, or those who revel in unchecked aggression or power."
+          ]
+        }
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6260",
+        "PC2:aon-6257",
+        "PC2:aon-6261",
+        "PC2:aon-6258",
+        "PC2:aon-6259",
+        "PC1:poison-resistance-feat-129",
+        "PC1:poison-weapon-feat-171",
+        "PC1:improved-poison-weapon-feat-173"
+      ],
+      "featLevels": {
+        "PC1:poison-resistance-feat-129": 4,
+        "PC1:poison-weapon-feat-171": 6,
+        "PC1:improved-poison-weapon-feat-173": 10
+      },
+      "image": "img/archetypes/assassin.webp"
+    },
+    {
+      "name": "Barbarian",
+      "source": "PC2",
+      "page": 176,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "There's a rage deep inside you that sometimes breaks loose, granting you some of the might of a barbarian in addition to your other abilities."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Multiclass Barbarian Characters",
+          "entries": [
+            "The barbarian archetype is a great choice for characters who emphasize Strength and melee attacks more than usual for their class, as long as they can handle Rage's spellcasting restriction. It's especially good for characters looking to add more damage.",
+            {
+              "type": "list",
+              "items": [
+                "Alchemist barbarians can enhance themselves with potent mutagens before releasing their fury.",
+                "Champion barbarians might enter a zealous rage when their deity is offended and diplomacy is no longer an option.",
+                "Druid barbarians transform into mighty beasts and monsters before entering a rage.",
+                "Monk barbarians can use the enhanced emotional state of rage to flow with their stance.",
+                "Rogue barbarians are ruffians who thrive in a scrap and are happy to let their anger take control.",
+                "Spellcaster barbarians might wait until they're out of better options, using rage as a last resort."
+              ]
+            }
+          ]
+        }
+      ],
+      "category": "Multiclass",
+      "feats": [
+        "PC2:aon-6193",
+        "PC2:aon-6190",
+        "PC2:aon-6191",
+        "PC2:aon-6192",
+        "PC2:aon-6194",
+        "PC2:aon-6195"
+      ],
+      "image": "img/archetypes/barbarian.webp"
+    },
+    {
+      "name": "Bastion",
+      "source": "PC2",
+      "page": 187,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Some say that a good offense is the best defense, but you find such boasting smacks of overconfidence."
+          ]
+        },
+        "In your experience, the best defense is a good, solid shield between you and your enemies. You've focused your training on how best to use a shield to protect yourself and those around you. Darting around in search of cover isn't necessary when you carry your cover with you. With a shield in your hand, you are akin to a mobile fortress. You repel assaults and stand strong against the tide of enemies, secure in the knowledge that you have your most trusted companion at your side: your shield. This long-lasting fighting style has existed for ages due to its practicality and propensity for survival among its practitioners. While some prefer the nimbleness of a free hand or the power of a larger weapon, a bastion knows that surviving a little bit longer is worth more than a quicker or stronger attack."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6262",
+        "PC2:aon-6265",
+        "PC2:aon-6263",
+        "PC2:aon-6264",
+        "PC2:aon-4816",
+        "PC2:aon-6266",
+        "PC2:aon-4807",
+        "PC1:shielded-stride-feat-143",
+        "PC1:reflexive-shield-feat-145",
+        "PC1:mirror-shield-feat-148",
+        "PC1:improved-reflexive-shield-feat-150"
+      ],
+      "featLevels": {
+        "PC1:shielded-stride-feat-143": 6,
+        "PC1:reflexive-shield-feat-145": 8,
+        "PC1:mirror-shield-feat-148": 12,
+        "PC1:improved-reflexive-shield-feat-150": 18
+      },
+      "image": "img/archetypes/bastion.webp"
+    },
+    {
+      "name": "Beastmaster",
+      "source": "PC2",
+      "page": 188,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "The bond that forms between a beastmaster and their companions is an empathic link. They're a pack, a family. Those who dedicate themselves to exploring their relationship with their animals can truly unlock their pets' true potential. This undertaking isn't a trivial one, requiring harsh trials and tremendous understanding for these bonds to develop."
+          ]
+        },
+        "Perhaps the greatest contribution beastmasters make to their companions is as a teacher and mentor. Although instinct takes animals far, it also binds them into strict patterns. The companions of a skilled beastmaster can break free of those patterns, using their natural tools with nuance that matches a well-trained humanoid warrior."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6268",
+        "PC2:aon-6273",
+        "PC2:aon-6267",
+        "PC2:aon-6274",
+        "PC2:aon-6270",
+        "PC2:aon-6272",
+        "PC2:aon-6276",
+        "PC2:aon-6269",
+        "PC2:aon-6275",
+        "PC2:aon-6271",
+        "PC1:animal-empathy-ranger-158",
+        "PC1:initiate-warden-feat-157",
+        "PC1:advanced-warden-feat-159",
+        "PC1:companion-s-cry-feat-159",
+        "PC1:side-by-side-druid-133"
+      ],
+      "featLevels": {
+        "PC1:animal-empathy-ranger-158": 4,
+        "PC1:initiate-warden-feat-157": 4,
+        "PC1:advanced-warden-feat-159": 6,
+        "PC1:companion-s-cry-feat-159": 6,
+        "PC1:side-by-side-druid-133": 14
+      },
+      "image": "img/archetypes/beastmaster.webp"
+    },
+    {
+      "name": "Blessed One",
+      "source": "PC2",
+      "page": 190,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Through luck or deed, heritage or heroics, you carry the blessing of a deity."
+          ]
+        },
+        "This blessing manifests as the ability to heal wounds and remove harmful conditions, and exists independent of any worship. You might offer gratitude daily to the deity whose power you wield, or you might carry these blessings reluctantly, seeking to avoid responsibility or even openly acting to defy the deity's influence on you. You might wear the robes of the deity's order, or you might give little thought and even less reverence to the source of your powers. However you feel about these potent gifts, there can be no doubt that you wield a special power. Benevolent deities are most likely to empower a blessed one. However, any deity can grant such a blessing, as long as they're capable of granting a healing divine font to their clerics. This means such deities as Lamashtu might grant the blessed one's powers for their own purposes. Despite this possibility, it's quite uncommon for deities of cruelty, death, and destruction to grant the power of rejuvenation. When this does occur, the deity usually has a malicious intent behind the gift. Ultimately, you decide how you will use this gift. Will you aid the deity who granted you this power, or will you work in defiance of them?"
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-5912",
+        "PC2:aon-6280",
+        "PC2:aon-6277",
+        "PC2:aon-6278",
+        "PC2:aon-6279",
+        "PC2:aon-5904",
+        "PC2:aon-5897",
+        "PC2:aon-5927",
+        "PC2:aon-5929"
+      ],
+      "image": "img/archetypes/blessed-one.webp"
+    },
+    {
+      "name": "Bounty Hunter",
+      "source": "PC2",
+      "page": 191,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Whether for coin, glory, or justice, you know how to track, defeat, and capture dangerous individuals."
+          ]
+        },
+        "You're accustomed to perusing wanted posters, following up on leads, and pursuing your quarry to hell and back. Once you locate your prey's trail, you're unshakable. Additionally, you have the skills and experience to subdue even the most troublesome mark and bring them in to secure your reward."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6281",
+        "PC2:aon-6284",
+        "PC2:aon-6285",
+        "PC2:aon-6282",
+        "PC2:aon-6283",
+        "PC1:monster-hunter-feat-157",
+        "PC1:double-prey-feat-162"
+      ],
+      "featLevels": {
+        "PC1:monster-hunter-feat-157": 4,
+        "PC1:double-prey-feat-162": 14
+      },
+      "image": "img/archetypes/bounty-hunter.webp"
+    },
+    {
+      "name": "Cavalier",
+      "source": "PC2",
+      "page": 192,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You are a skilled and dedicated warrior on the battlefield who specializes in fighting astride a powerful animal companion that serves as your mount."
+          ]
+        },
+        "You and your mount are an unparalleled team, moving with shared intent to become a powerful force in combat. You might wield a banner in the name of an order of which you’re a member, a liege to whom you’ve sworn your service, or an ideal you uphold. Or you might fight solely to further enrich your own prestige, reputation, and coffers. Traditionally, cavaliers are envisioned riding atop majestic or fearsome horses, but in reality, all kinds of animals can serve this honorable role, from riding dogs to dinosaurs. What’s important is not the type of mount but the connection between the cavalier and their companion. This bond is their true strength."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6286",
+        "PC2:aon-6287",
+        "PC2:aon-6288",
+        "PC2:aon-6291",
+        "PC2:aon-6289",
+        "PC2:aon-6293",
+        "PC2:aon-6297",
+        "PC2:aon-6292",
+        "PC2:aon-6290",
+        "PC2:aon-6296",
+        "PC2:aon-6294",
+        "PC2:aon-6295"
+      ],
+      "image": "img/archetypes/cavalier.webp"
+    },
+    {
+      "name": "Celebrity",
+      "source": "PC2",
+      "page": 194,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You're a special personality... and you know it."
+          ]
+        },
+        "You're not merely comfortable in the spotlight, you crave it. While the traditional celebrity is a musician or another type of performer, you could be known for any occupation. You know how to use your position to command the attention of others or steal it away from those around you. While you're in a room all eyes are on you, and you love it. Your life is a show, and you are here to steal the love and admiration of everyone watching."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6298",
+        "PC2:aon-6301",
+        "PC2:aon-6300",
+        "PC2:aon-6299"
+      ],
+      "image": "img/archetypes/celebrity.webp"
+    },
+    {
+      "name": "Champion",
+      "source": "PC2",
+      "page": 177,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You’ve sworn a solemn oath to your deity, who has granted you champion powers to aid you in your cause."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Multiclass Champion Characters",
+          "entries": [
+            "The champion archetype greatly improves defenses, particularly armor. It's a great way for a character to gain armor proficiency or a powerful defensive reaction. You might choose a deity closely themed to your class, such as Nethys for a wizard."
+          ]
+        }
+      ],
+      "category": "Multiclass",
+      "feats": [
+        "PC2:aon-6200",
+        "PC2:aon-6197",
+        "PC2:aon-6196",
+        "PC2:aon-6198",
+        "PC2:aon-6201",
+        "PC2:aon-6202",
+        "PC2:aon-6199"
+      ],
+      "image": "img/archetypes/champion.webp"
+    },
+    {
+      "name": "Dandy",
+      "source": "PC2",
+      "page": 195,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You are a genteel master of style, culture, and decorum, aware of even the subtlest rules of etiquette."
+          ]
+        }
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6302",
+        "PC2:aon-6303",
+        "PC2:aon-6305",
+        "PC2:aon-6304",
+        "PC2:aon-6306"
+      ],
+      "image": "img/archetypes/dandy.webp"
+    },
+    {
+      "name": "Dual-Weapon Warrior",
+      "source": "PC2",
+      "page": 196,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You're able to effortlessly fight with multiple weapons simultaneously, weaving your weapons together into a storm of quick attacks."
+          ]
+        },
+        "To you, continual offense is the best form of defense, and you leave little room for your foes to avoid your whirlwind of weapons. Your unconventional fighting style still manages to weave in a unique kind of defense, blocking blade with blade, all without sacrificing power. Speed is your friend, and stagnation can mean ruin. Your attacks come fast and from unexpected angles. Become one with the blur of weapons and find victory."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6312",
+        "PC2:aon-6308",
+        "PC2:aon-6311",
+        "PC2:aon-6309",
+        "PC2:aon-6307",
+        "PC2:aon-6310",
+        "PC1:improved-twin-riposte-fighter-150",
+        "PC1:two-weapon-flurry-feat-150",
+        "PC1:twinned-defense-feat-150"
+      ],
+      "featLevels": {
+        "PC1:improved-twin-riposte-fighter-150": 16,
+        "PC1:two-weapon-flurry-feat-150": 16,
+        "PC1:twinned-defense-feat-150": 18
+      },
+      "image": "img/archetypes/dual-weapon-warrior.webp"
+    },
+    {
+      "name": "Duelist",
+      "source": "PC2",
+      "page": 197,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "All across the world, students in fencing academies practice with their weapons to master one-on-one combat."
+          ]
+        },
+        "The libraries of these schools contain troves of information, detailing hundreds of combat techniques, battle stances, and honorable rules of engagement. Those who gain admission to such training classes might duel in formalized settings and that's certainly the more genteel route to take. However, others assert that there's no better training ground for duels than the chaotic life of an adventurer. In such situations, a flexible, single-handed fighting style is invaluable. You never know when you'll need an extra hand to shove a foe, haul open a door, or grab valuable loot. You can accomplish such deeds with style and grace. Regardless of your method, fighters such as you are feared across the land."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6313",
+        "PC2:aon-6314",
+        "PC2:aon-6315",
+        "PC2:aon-6316",
+        "PC1:dueling-parry-feat-141",
+        "PC1:disarming-stance-feat-145",
+        "PC1:dueling-riposte-feat-146",
+        "PC1:disarming-twist-feat-147",
+        "PC1:dueling-dance-feat-149",
+        "PC1:improved-dueling-riposte-feat-149",
+        "PC1:guiding-riposte-feat-150"
+      ],
+      "featLevels": {
+        "PC1:dueling-parry-feat-141": 4,
+        "PC1:disarming-stance-feat-145": 8,
+        "PC1:dueling-riposte-feat-146": 10,
+        "PC1:disarming-twist-feat-147": 12,
+        "PC1:dueling-dance-feat-149": 14,
+        "PC1:improved-dueling-riposte-feat-149": 14,
+        "PC1:guiding-riposte-feat-150": 16
+      },
+      "image": "img/archetypes/duelist.webp"
+    },
+    {
+      "name": "Eldritch Archer",
+      "source": "PC2",
+      "page": 198,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "While many archers see their craft as an art form as much as a means of battle, a small number of archers seek to perfect their skills through magic, and you are among their number."
+          ]
+        },
+        "Bolstering your athletic and martial abilities with mystical talents, you achieve rare heights with the bow or crossbow-transforming arrows or bolts into eldritch ammunition, sending projectiles zig-zagging unerringly to their targets, and manifesting arrows that can deliver spells or even instant death. The imbuing of raw magic into the point of an arrow is no easy feat. Eldritch archers are respected and feared for their prowess and make valuable members for any party of adventurers.",
+        "While having some spellcasting ability increases your flexibility and power as an eldritch archer, you might learn the secrets of these arts without being independently skilled in spellcasting, instead learning the magic of the bow for its own sake. In fact, many eldritch archers begin as archers first and spellcasters second. That is not to say that the occasional spellcaster has not picked up archery. In fact, many wizards, wise in the art of war, have studied the bow, particularly to master this art. Ultimately, what matters is a perfect combination of martial skill and magical ability; the order you go about obtaining them matters little."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6318",
+        "PC2:aon-6317",
+        "PC2:aon-6322",
+        "PC2:aon-6319",
+        "PC2:aon-6323",
+        "PC2:aon-6326",
+        "PC2:aon-6324",
+        "PC2:aon-6325",
+        "PC2:aon-6320",
+        "PC2:aon-6327",
+        "PC2:aon-6321",
+        "PC1:running-reload-feat-159"
+      ],
+      "featLevels": {
+        "PC1:running-reload-feat-159": 8
+      },
+      "image": "img/archetypes/eldritch-archer.webp"
+    },
+    {
+      "name": "Familiar Master",
+      "source": "PC2",
+      "page": 200,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "From the wise owl perched on the wizard's shoulder to the crafty gremlin that serves the witch for their own reasons, the ghastly homunculus in the alchemist's lab to the clever monkey that picks the lock of the thief's cell, familiars have always served."
+          ]
+        },
+        "Yours serves better than most. This is often due to an unusually strong connection or rigorous intentional training. Regardless of the method, the extraordinary qualities of your familiar are undeniable.",
+        "You and your familiar are a team in and of yourselves. In a tough situation, you know you have each other's back, and you are nigh inseparable. Some familiar masters, however, choose to keep familiars for only a short period. They will keep their ally for a time, then release them and forge a new bond. They form strong connections quickly and attract new familiars everywhere they go. This behavior is less common but is often done out of a high level of respect for the independence of both the adventurer and the familiar, or a strong connection to the ebb and flow of life and the cycle of change that touches all things. You are among these masters and can decide which practice best suits you."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-4717",
+        "PC2:aon-6330",
+        "PC2:aon-6329",
+        "PC2:aon-6328",
+        "PC2:aon-6331",
+        "PC2:aon-8005",
+        "PC2:aon-6332"
+      ],
+      "image": "img/archetypes/familiar-master.webp"
+    },
+    {
+      "name": "Gladiator",
+      "source": "PC2",
+      "page": 201,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "The roar of the crowd and thrill of competitive combat drive you to become the best—and the fame isn't bad either. You always do your best work under the fervent gaze of spectators, and by work, you of course mean violence."
+          ]
+        }
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6338",
+        "PC2:aon-6334",
+        "PC2:aon-6333",
+        "PC2:aon-6337",
+        "PC2:aon-6335",
+        "PC2:aon-6336"
+      ],
+      "image": "img/archetypes/gladiator.webp"
+    },
+    {
+      "name": "Herbalist",
+      "source": "PC2",
+      "page": 202,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "The plants around you can provide more remedies than the finest hospital or temple, and you are skilled in their use. Nature always provides to those who know how to look, and you have always had a talent for seeing these gifts before you. You can put it to good use, healing those around you with nothing more than what the world provides."
+          ]
+        }
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6342",
+        "PC2:aon-6343",
+        "PC2:aon-6340",
+        "PC2:aon-6339",
+        "PC2:aon-6341"
+      ],
+      "image": "img/archetypes/herbalist.webp"
+    },
+    {
+      "name": "Investigator",
+      "source": "PC2",
+      "page": 178,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You've developed a keen eye for investigating mysteries."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Multiclass Investigator Characters",
+          "entries": [
+            "The investigator archetype is a good choice for a character who wants deeper investigations or to plan out their turns in advance; it's a particularly good match for Intelligence-based characters like alchemists, witches, and wizards.",
+            {
+              "type": "list",
+              "items": [
+                "Alchemist investigators double down on science and alchemy to better search for clues.",
+                "Champion investigators can Devise a Stratagem to decide the optimal time to switch from defense to offense.",
+                "Fighter investigators are constantly searching for optimal stratagems in the heat of battle.",
+                "Ranger investigators can hunt down their prey in the deepest jungle and the busiest street corner.",
+                "Spellcaster investigators can use magic and practical skills in pursuit of their lead."
+              ]
+            }
+          ]
+        }
+      ],
+      "category": "Multiclass",
+      "feats": [
+        "PC2:aon-6206",
+        "PC2:aon-6204",
+        "PC2:aon-6203",
+        "PC2:aon-6205",
+        "PC2:aon-6207",
+        "PC2:aon-6209",
+        "PC2:aon-6208"
+      ],
+      "image": "img/archetypes/investigator.webp"
+    },
+    {
+      "name": "Linguist",
+      "source": "PC2",
+      "page": 203,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Whether you study to further your own ambitions or simply out of fascination with the intricacies of language, your way with words is unparalleled."
+          ]
+        }
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6348",
+        "PC2:aon-6350",
+        "PC2:aon-6344",
+        "PC2:aon-6345",
+        "PC2:aon-6346",
+        "PC2:aon-6349",
+        "PC2:aon-6347"
+      ],
+      "image": "img/archetypes/linguist.webp"
+    },
+    {
+      "name": "Marshal",
+      "source": "PC2",
+      "page": 204,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Marshals are leaders, first and foremost."
+          ]
+        },
+        "Marshals can come from any class or background, though they all share a willingness to sacrifice their own glory for the greater good of the team. Some marshals lead from the front, sword and shield raised, while others may call instructions and encouragements from the rear while providing allied spellcasters with skilled support. Regardless of their preferred method of combat, marshals' ability to bring the best out in every ally is a valuable addition to any group. Though not every marshal is seen by their allies as a source of encouragement. Such marshals strike fear both in enemies and allies alike to inspire competence in battle and ensure that cowardice will not be tolerated. Such tactics are often seen as more practical than cruel, and the results speak for themselves. Quick action and the necessity to fight drive these leaders and their allies forward into the fray of battle. Regardless of what kind of marshal you wish to become, you will lead your allies to glory and victory.",
+        "While many see marshals as traditionally warriors of martial prowess, anyone could make for a potent marshal. Not every such leader charges into the thick of battle. While doing so may inspire bravery in desperate times, many leaders lead from the safety of the back lines. Spellcaster marshals often lead in this manner. In their mind, the practicality of their own survival outweighs the powerful yet fleeting courage a charge inspires. After all, more battles await in the future, and their skills may very well be needed again."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6358",
+        "PC2:aon-6356",
+        "PC2:aon-6361",
+        "PC2:aon-6352",
+        "PC2:aon-6353",
+        "PC2:aon-6351",
+        "PC2:aon-6357",
+        "PC2:aon-5832",
+        "PC2:aon-6354",
+        "PC2:aon-6355",
+        "PC2:aon-6362",
+        "PC2:aon-6363",
+        "PC2:aon-6359",
+        "PC2:aon-6360"
+      ],
+      "image": "img/archetypes/marshal.webp"
+    },
+    {
+      "name": "Martial Artist",
+      "source": "PC2",
+      "page": 206,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You have trained in the martial arts, making your unarmed strikes lethal."
+          ]
+        },
+        "You seek neither mysticism nor enlightenment, and you don't view this training as some greater path to wisdom. Yours is the way of the fist striking flesh, the hand turning aside the blade, and the devastating kick taking your enemy down. Your training is focused and practical, and since you have turned every part of your body into a weapon, you never find yourself without one. While you might have learned your techniques in a dojo or school focused on training the body, you might just as easily have learned them in street brawls and bar fights, combining instincts with intense athleticism for a deadly combination.",
+        "Regardless of your origins, your path is one of iron, transforming your body into a deadly weapon. The techniques available are many, but the results are all the same. Whether you attack with your fist, fang, or foot, your prowess is undeniable. Many martial artists seek to master a stance to put form to their flurry of attacks. Such techniques allow one to channel their strength. However, some prefer freedom in form and reject stances altogether. You may find your own style or master one of the forms used by legendary martial artists."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-5997",
+        "PC2:aon-6000",
+        "PC2:aon-5976",
+        "PC2:aon-6001",
+        "PC2:aon-5977",
+        "PC2:aon-6365",
+        "PC2:aon-6366",
+        "PC2:aon-6364",
+        "PC2:aon-6033",
+        "PC2:aon-5980",
+        "PC2:aon-6002",
+        "PC2:aon-6367",
+        "PC2:aon-6005",
+        "PC2:aon-5982",
+        "PC2:aon-6006",
+        "PC2:aon-5983",
+        "PC2:aon-6009",
+        "PC2:aon-5984"
+      ],
+      "image": "img/archetypes/martial-artist.webp"
+    },
+    {
+      "name": "Mauler",
+      "source": "PC2",
+      "page": 207,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You shove your way through legions of foes, knock enemies on all sides to the ground, and deal massive blows to anyone or anything that comes near. You know that when it comes to taking down an enemy, it never hurts to have a bigger weapon."
+          ]
+        }
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6372",
+        "PC2:aon-6369",
+        "PC2:aon-6371",
+        "PC2:aon-6368",
+        "PC2:aon-6370",
+        "PC2:aon-5861",
+        "PC1:slam-down-feat-143",
+        "PC1:vicious-swing-feat-141",
+        "PC1:crashing-slam-feat-147",
+        "PC1:brutal-finish-feat-148"
+      ],
+      "featLevels": {
+        "PC1:slam-down-feat-143": 4,
+        "PC1:vicious-swing-feat-141": 4,
+        "PC1:crashing-slam-feat-147": 12,
+        "PC1:brutal-finish-feat-148": 14
+      },
+      "image": "img/archetypes/mauler.webp"
+    },
+    {
+      "name": "Medic",
+      "source": "PC2",
+      "page": 208,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You've studied countless techniques for providing medical aid, making you a peerless doctor and healer."
+          ]
+        },
+        "While many healers happily practice the art of medicine in the safety and serenity of stationary buildings, few are in more dire need of medicinal aid than adventurers. Such an occupation comes with frequent injuries that need constant attention. Few parties would ever turn down help from a practicing medic. In fact, the need for medicine is so great that many medics started as adventurers and took up medicine as a necessity. While patching up injuries is the most common practice of medics, they are also invaluable for their ability to help fight diseases and ailments inflicted by all kinds of creatures and traps. The adaptability and utility of the medic are undeniable. Whether you studied medicine for most of your life or picked it up on the road, you are who people turn to for aid."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6374",
+        "PC2:aon-6376",
+        "PC2:aon-6373",
+        "PC2:aon-6377",
+        "PC2:aon-6375"
+      ],
+      "image": "img/archetypes/medic.webp"
+    },
+    {
+      "name": "Monk",
+      "source": "PC2",
+      "page": 179,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Monastic training has taught you martial arts and allowed you to hone your mind, body, and spirit."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Multiclass Monk Characters",
+          "entries": [
+            "The monk archetype is a strong choice for any character who fights unarmored or with unarmed attacks. Multiclassed monks are typically more centered, philosophical, and disciplined than other members of their class.",
+            {
+              "type": "list",
+              "items": [
+                "Barbarian monks with the animal instinct can combine the barbarian's excellent unarmed damage with the monk's diverse unarmed special abilities.",
+                "Champion monks are perfect for champions of Irori or other deities who favor unarmed attacks.",
+                "Fighter monks can supplement free-hand fighting and add mobility to the fighter's toolkit.",
+                "Rogue monks are incredibly effective because stances grant some of the best agile finesse attacks and flurry gives more sneak attacks.",
+                "Spellcaster monks can augment their combat abilities with {@spell Haste|PC1|haste}, {@spell Runic Body|PC1|runic body}, or similar spells to mix magic and martial arts."
+              ]
+            }
+          ]
+        }
+      ],
+      "category": "Multiclass",
+      "feats": [
+        "PC2:aon-6213",
+        "PC2:aon-6211",
+        "PC2:aon-6210",
+        "PC2:aon-6214",
+        "PC2:aon-6212",
+        "PC2:aon-6215",
+        "PC2:aon-6216"
+      ],
+      "image": "img/archetypes/monk.webp"
+    },
+    {
+      "name": "Oracle",
+      "source": "PC2",
+      "page": 180,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "A mysterious force granted you divine magic and a curse."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Multiclass Oracle Characters",
+          "entries": [
+            "The oracle archetype is a great choice for characters who want to use powerful cursebound abilities that come at a cost. It's especially good for characters looking to add some high-risk, high-reward options.",
+            {
+              "type": "list",
+              "items": [
+                " Martial oracles can use powerful cursebound abilities to access unique magical effects.",
+                " Spellcaster oracles can further flex their diverse pool of options at the cost of a curse."
+              ]
+            }
+          ]
+        }
+      ],
+      "category": "Multiclass",
+      "feats": [
+        "PC2:aon-6221",
+        "PC2:aon-6218",
+        "PC2:aon-6219",
+        "PC2:aon-6223",
+        "PC2:aon-6220",
+        "PC2:aon-6224",
+        "PC2:aon-6222",
+        "PC2:aon-6217"
+      ],
+      "image": "img/archetypes/oracle.webp"
+    },
+    {
+      "name": "Pirate",
+      "source": "PC2",
+      "page": 209,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You live a life of freedom, taking by force and intimidation all that you could possibly desire."
+          ]
+        },
+        "You may be a privateer, raiding and plundering on behalf of a particular nation or another authority, or you may answer to no one but your own capricious whims. Either way, you rely on intimidation, wits, and combat prowess to take what you want from those you deem less deserving.",
+        "Pirates have much in common with swashbucklers, and many pirates have the swashbuckler class or archetype. Much like a swashbuckler's daring deeds, classic pirate maneuvers are often showy feats intended to impress, intimidate, and gain panache. For example, if you have the panache class feature, Boarding Assault gains the bravado trait."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6136",
+        "PC2:aon-6379",
+        "PC2:aon-6378",
+        "PC2:aon-6380",
+        "PC2:aon-6381",
+        "PC2:aon-4922"
+      ],
+      "image": "img/archetypes/pirate.webp"
+    },
+    {
+      "name": "Poisoner",
+      "source": "PC2",
+      "page": 210,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You are a student of such dark wonders, making you a dangerous foe indeed."
+          ]
+        },
+        "People are so delightfully fragile when exposed to the insidious power of nature. The bite of a certain serpent makes the blood congeal to jelly. A particular stone, suitably powdered, induces powerful hallucinations and delirium. The sap of a rare tree inflicts such agony that death seems preferable. The deadly medicines of nature have been molded to create concoctions capable of both killing and debilitating. Neither option is pleasant for the unfortunate recipient. You are a student of such dark wonders, making you a dangerous foe indeed."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6386",
+        "PC2:aon-6384",
+        "PC2:aon-5762",
+        "PC2:aon-6387",
+        "PC2:aon-5785",
+        "PC2:aon-6385",
+        "PC2:aon-6382",
+        "PC2:aon-6383",
+        "PC2:aon-5781",
+        "PC2:aon-5776",
+        "PC1:poison-resistance-feat-129",
+        "PC1:poison-weapon-feat-171",
+        "PC1:improved-poison-weapon-feat-173"
+      ],
+      "featLevels": {
+        "PC1:poison-resistance-feat-129": 4,
+        "PC1:poison-weapon-feat-171": 6,
+        "PC1:improved-poison-weapon-feat-173": 10
+      },
+      "image": "img/archetypes/poisoner.webp"
+    },
+    {
+      "name": "Ritualist",
+      "source": "PC2",
+      "page": 211,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You have learned how to perform rituals and can decide how to best use their powerful benefits."
+          ]
+        },
+        "While some learn the art of ritual casting through rigorous study, other gifted individuals may find that a combination of natural talent and luck grants them surprising skill at performing rituals, whether they want that power or not. Undertaking rituals always carries an element of risk, but the potential rewards are undeniable and difficult to resist. You have learned how to perform rituals and can decide how to best use their powerful benefits."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6392",
+        "PC2:aon-6391",
+        "PC2:aon-6393",
+        "PC2:aon-6389",
+        "PC2:aon-6390",
+        "PC2:aon-6388"
+      ],
+      "image": "img/archetypes/ritualist.webp"
+    },
+    {
+      "name": "Scout",
+      "source": "PC2",
+      "page": 212,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You're an expert in espionage and reconnaissance, able to skulk silently through the wilderness to gather intelligence, sneak through enemy lines and report back to your comrades, or suddenly and decisively take down your foes."
+          ]
+        },
+        "Your skills ease the difficulty of travel for you and your companions and keep you all alert to approaching danger. It's not just enemies that you scout out; you also survey the land. You're able to discover the easiest routes as safely as possible and remain watchful while moving with speed and subtlety. The responsibility of the party's safe passage depends on you performing your scouting duties with constant and consistent effort. You take pride in your vigilance, and your allies trust your guidance to ensure the safety of everyone traveling."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6397",
+        "PC2:aon-6394",
+        "PC2:aon-6395",
+        "PC2:aon-6399",
+        "PC2:aon-6398",
+        "PC2:aon-6396",
+        "PC1:camouflage-feat-161"
+      ],
+      "featLevels": {
+        "PC1:camouflage-feat-161": 12
+      },
+      "image": "img/archetypes/scout.webp"
+    },
+    {
+      "name": "Scroll Trickster",
+      "source": "PC2",
+      "page": 213,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "The language of magic is yours to use and manipulate, however unstable and archaic such writing tends to be."
+          ]
+        },
+        "Magic has been written down in myriad forms for a very long time. From the classic rolled parchment to strings tied with a hundred intricate knots, from baked clay tablets covered with incisions to bound collections of bamboo slips, magic is everywhere. You just need to know how to read it. You have studied the art of reading magical scrolls of various kinds. The language of magic is yours to use and manipulate, however unstable and archaic such writing tends to be."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6401",
+        "PC2:aon-6403",
+        "PC2:aon-6404",
+        "PC2:aon-6400",
+        "PC2:aon-6402"
+      ],
+      "image": "img/archetypes/scroll-trickster.webp"
+    },
+    {
+      "name": "Scrounger",
+      "source": "PC2",
+      "page": 214,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You have spent countless hours disassembling and rebuilding complex items to learn how they work, giving you the skill to create just about anything from the most unlikely materials."
+          ]
+        },
+        "While your improvised items don't last long, they tend to be just what you need in a pinch, and your enemies find that while they might be able to disarm you, the real challenge is keeping you that way. Locked rooms, diabolical traps, and desperate situations are each their own sort of puzzle to you, and the mundane objects around you are the pieces you use to improvise your own solutions. Few are more resourceful. Given time and a handful of gears, bits, and widgets, you can create the perfect tool for just about any situation. Your ingenuity is extremely valuable while adventuring. Adventurers never truly know what's in store for them and often find themselves ill-prepared for the task at hand. Bringing along a scrounger such as you is like bringing any tool that could possibly be needed, provided your constant attempts to break down and reassemble everything aren't a bother. You never know what you may need in the future."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6408",
+        "PC2:aon-6407",
+        "PC2:aon-6406",
+        "PC2:aon-6405"
+      ],
+      "image": "img/archetypes/scrounger.webp"
+    },
+    {
+      "name": "Sentinel",
+      "source": "PC2",
+      "page": 215,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Armor offers solid, reassuring protection in combat, and as someone who faces danger on a regular basis, you have made it your business to get the most out of your defenses."
+          ]
+        },
+        "You stand solid on any battlefield, encased in the sturdiest armor you can find. When danger threatens, your solid defenses will safely get you, and hopefully your companions, home again. As a sentinel, you might be part of an order of knights or bodyguards who trained you how best to take advantage of heavy armor. On the other hand, you might just be an adventurer who took one too many grievous injuries and decided enough was enough, so you trained yourself to wear the heaviest plate you could get your hands on. Some witches or sorcerers have chosen to follow the path of the sentinel to increase their survivability. While this is less common, it's not less effective. Few will argue against stronger, heavier armor leading to a longer life, and as every turtle knows, it's always nice to have a nice hard shell to fall back on when threatened. No one has a tougher shell than a sentinel. Even in the midst of great battles, you know that your armor is your greatest ally. It won't abandon you, break, or falter as things get tough. You can rely on your armor to see you through whatever tough fights lie ahead, and the odds always seem better when you're protected."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6411",
+        "PC2:aon-6412",
+        "PC2:aon-6413",
+        "PC2:aon-6409",
+        "PC2:aon-6410"
+      ],
+      "image": "img/archetypes/sentinel.webp"
+    },
+    {
+      "name": "Snarecrafter",
+      "source": "PC2",
+      "page": 216,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You're able to take ordinary materials and use them to create deadly snares—special traps that you can rig up quickly when the situation demands."
+          ]
+        },
+        "While traps might grant you less brute force to apply in a fair fight than weapons would, you rarely allow your fights to be fair. Instead, when combat takes place at a location of your choosing, you have a major advantage thanks to your well-placed snares. Once your foes realize that you may have trapped any location on a battlefield, their fear of accidentally setting one off can help you corral them toward the waiting blades of your allies, or even make them too paranoid to move at all, locking them in place. Fearless enemies face their own disadvantage: they run a greater risk of setting off the many traps youve deployed. Even if they somehow avoid them, some cunning snare crafters have the skills to set a trap right under their foes' feet. Others have found they can trigger dangerous snares from a safe distance due to years of practice. Truly, snare crafters make for a dangerous foe and handy ally."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6417",
+        "PC2:aon-6418",
+        "PC2:aon-6419",
+        "PC2:aon-6416",
+        "PC2:aon-6414",
+        "PC2:aon-6415"
+      ],
+      "image": "img/archetypes/snarecrafter.webp"
+    },
+    {
+      "name": "Sorcerer",
+      "source": "PC2",
+      "page": 181,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You coax the magic power in your blood to manifest, accessing magic others don't expect you to have."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Multiclass Sorcerer Characters",
+          "entries": [
+            "The sorcerer archetype is a method for anyone to pick up commonly useful spells, such as {@i {@spell Invisibility|PC1|invisibility}} and {@i {@spell Haste|PC1|haste}}. You might choose to become a sorcerer with a bloodline that matches other aspects of your character, such as the dragon bloodline if you have the dragonblood versatile heritage or the undead bloodline if you're a dhampir."
+          ]
+        }
+      ],
+      "category": "Multiclass",
+      "feats": [
+        "PC2:aon-6229",
+        "PC2:aon-6227",
+        "PC2:aon-6228",
+        "PC2:aon-6226",
+        "PC2:aon-6230",
+        "PC2:aon-6231",
+        "PC2:aon-6232",
+        "PC2:aon-6225"
+      ],
+      "image": "img/archetypes/sorcerer.webp"
+    },
+    {
+      "name": "Swashbuckler",
+      "source": "PC2",
+      "page": 182,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You fight with flair and style, adding swashbuckling tricks to your combat repertoire."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Multiclass Swashbuckler Characters",
+          "entries": [
+            "The swashbuckler archetype is a great fit for martial characters who want to be a bit flashier or for Charismabased spellcasters who want to add a bit of dramatic flair to their routine. Multiclass swashbucklers work especially well for characters who already want to incorporate skill-based action and seek out daring deeds to do in the heat of battle.",
+            {
+              "type": "list",
+              "items": [
+                "Barbarian swashbucklers love to show off their strength and brutality with devastating finishers.",
+                "Champion swashbucklers can show off the powers of their deity to inspire awe in potential converts and fear in enemies of the faith.",
+                "Investigator swashbucklers might love to solve big cases with an audience to show off their prowess.",
+                "Monk swashbucklers can take full advantage of their perfectly trained bodies to perform impressive feats.",
+                "Rogue swashbucklers might hide in the shadows before emerging to put on a flashy show.",
+                "Spellcaster swashbucklers might want to show off their mastery of both martial and magical arts."
+              ]
+            }
+          ]
+        }
+      ],
+      "category": "Multiclass",
+      "feats": [
+        "PC2:aon-6236",
+        "PC2:aon-6234",
+        "PC2:aon-6239",
+        "PC2:aon-6235",
+        "PC2:aon-6233",
+        "PC2:aon-6237",
+        "PC2:aon-6238"
+      ],
+      "image": "img/archetypes/swashbuckler.webp"
+    },
+    {
+      "name": "Talisman Dabbler",
+      "source": "PC2",
+      "page": 217,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You know how to make and use the perfect talisman for any job. The utility of talismans seems endless."
+          ]
+        },
+        "The classic idea of magic is that of a hoary wizard, poring over a crumbling book of spells as years pass. But magic is so much more than that—it's thought, will, and action, and with the right talismans, you can make even the cut of a sword a deeply magical act. This all hinges on the small magical talismans you affix to your gear. You know how to make and use the perfect talisman for any job. The utility of talismans seems endless. They can help swords to swing harder, shields to block better, grant a burst of speed in a desperate situation, and even save one from a lethal fall. This all excites you, but no more than exploring just how far you can push your talent. What are the true limits of these baubles? You've heard rumors and tales of great dabblers like yourself mastering the art of creating and affixing fantastical magical memorabilia. Some say that these great sages have found a way to affix multiple talismans to a single object, circumventing the most fundamental limitation of the art. Whether you were formally trained or picked up the skill as a hobby, your talent is undeniable, and the usefulness of talismans is apparent. Take advantage of every ounce of magic you can manipulate and master these mystical trinkets."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6422",
+        "PC2:aon-6421",
+        "PC2:aon-6420",
+        "PC2:aon-6423"
+      ],
+      "image": "img/archetypes/talisman-dabbler.webp"
+    },
+    {
+      "name": "Vigilante",
+      "source": "PC2",
+      "page": 218,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "As a vigilante, you have two faces: a public persona, and a secret identity that lets you hide your extralegal actions from polite society."
+          ]
+        },
+        "Your secret identity lets you adventure and carry out clandestine missions while keeping the civilians you care about safe. Whatever your purpose—fighting crime, inciting rebellion, sowing chaos—your vigilante identity makes you both hard to pin down and a mysterious, intriguing subject of gossip. While many adventurers prefer to bask in the glory or infamy of their actions, you keep that part of your life a secret. There are various reasons why you might do this. Perhaps you have something or someone in your life that you want to protect from the dangers and threats that your other life. Perhaps you are a public figure, and your alternate life could draw undue attention from your community. It could also be that you don’t like attention and wish to retain the ability to step away from it all and relax in peace. Regardless of your reasons, you have a secret identity and will go to great lengths to keep it secret.",
+        "Vigilantes can have many goals and agendas. Some see them as glory seekers, but more often than not, they are working towards some lofty goal. Perhaps they are trying to inspire a people to fight back against their oppressors. They could be hunting down a crime lord they have a personal vendetta against. Maybe they seek to rebalance the wealth of a nation, stealing from the rich to give to those in need. You are one such vigilante, living a hidden life so you can fight in secrecy. What will you do to keep your secret and continue down your path?"
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6433",
+        "PC2:aon-6425",
+        "PC2:aon-6432",
+        "PC2:aon-6426",
+        "PC2:aon-6430",
+        "PC2:aon-6427",
+        "PC2:aon-6428",
+        "PC2:aon-6429",
+        "PC2:aon-6434",
+        "PC2:aon-6431",
+        "PC2:aon-6424"
+      ],
+      "image": "img/archetypes/vigilante.webp"
+    },
+    {
+      "name": "Viking",
+      "source": "PC2",
+      "page": 220,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "To go “a-viking” is to raid by sea, and thus vikings have spread far and wide."
+          ]
+        },
+        "Some have even settled in the very communities they once raided. Vikings traditionally travel in longboats; a score of these warriors might live aboard their ship for days at a time, sailing the seas (or, as they call it, the “whale-road”) to ambush coastal communities. Once they arrive at a settlement, they charge ashore, plundering and slaying anyone foolish enough to get in their way. The ferocity of viking raids is legendary."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6436",
+        "PC2:aon-6439",
+        "PC2:aon-4816",
+        "PC2:aon-6438",
+        "PC2:aon-6435",
+        "PC2:aon-6437",
+        "PC1:reactive-shield-feat-140",
+        "PC1:shielded-stride-feat-143"
+      ],
+      "featLevels": {
+        "PC1:reactive-shield-feat-140": 4,
+        "PC1:shielded-stride-feat-143": 6
+      },
+      "image": "img/archetypes/viking.webp"
+    },
+    {
+      "name": "Weapon Improviser",
+      "source": "PC2",
+      "page": 221,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "As far as you're concerned, the best weapon to wield is the one that your opponents never see coming."
+          ]
+        },
+        "By knowing how to fight effectively with whatever is at hand, you ensure that you're never caught unarmed, and you often get the drop on opponents who mistakenly think they've caught you unprepared. Whether you're smashing someone over the head with a barstool, tossing a mug of ale in their face to blind them, or stabbing your foes with a broken bottle, you can find weapons anywhere and employ them creatively whenever a brawl breaks out. Because you fight with disposable weapons, you don't need handle them with care as other warriors do, and you can break them when needed to win a fight without feeling any regrets later.",
+        "{@b Improvised Weapon Ideas}: Use these for inspiration. {@b Cavern}: broken stalagmite, large mushroom, old bones; {@b Docks}: barrel, crate, hook; {@b Forest}: branch, needles, or thorns; {@b Market}: box, fruit, scale, sign; {@b Courtroom or Study}: gavel, goblet, quill, lectern; {@b Tavern}: bottle, mug, serving tray, stool",
+        "{@b GM Advice}: For a GM setting damage, typically a one-handed improvised weapon's damage is 1d4, 1d6, or 1d8; one that needs two hands is 1d8, 1d10, or occasionally 1d12, and an extremely ineffective one might deal 1 damage. Improvised weapons typically have zero, one, or two traits, and often have the nonlethal trait. Agile improvised weapons usually have a smaller die size. It's extremely rare for an improvised weapon to deal more than one die of damage, but powerful magical objects might. Improvised weapons should be fun and don't last long, so feel free to experiment!"
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6443",
+        "PC2:aon-6441",
+        "PC2:aon-6444",
+        "PC2:aon-6445",
+        "PC2:aon-6442",
+        "PC2:aon-6440"
+      ],
+      "image": "img/archetypes/weapon-improviser.webp"
+    },
+    {
+      "name": "Wrestler",
+      "source": "PC2",
+      "page": 222,
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Wrestlers are athletes who pit their strength and skill against powerful foes. Specializing in a variety of grabs, holds, and strikes, wrestlers are dangerous opponents whose techniques can leave a foe broken and defeated without taking their life. Though it appears brutal, wrestling is considered a respectable and innocuous art."
+          ]
+        },
+        "The wrestling tradition is common all over Golarion. Gladiators and other warriors who fight for entertainment use wrestling techniques in combat. The discipline's focus on grappling is also useful in non-gladiatorial matches, as many foes are unable to contend with an opponent's hold. Grappling is particularly effective against spellcasters, who have a difficult time completing the gestures for their spells while grabbed. However, with the right technique, a seasoned wrestler can hold down just about any foe standing in their way. Such wrestlers are feared by their foes and respected by their allies.",
+        "Wrestlers have storied traditions in the Hold of Belkzen, where orcs employ specialized grappling techniques to subdue the large animals they ride as mounts. Orcs prefer wrestling these creatures partially to minimize harm to them, but also because they believe that the process of subduing them in this manner creates a stronger bond between mount and rider.",
+        "Outside of the Inner Sea, wrestlers are common in Iblydos and Arcadia. Iblydan wrestlers focus on powerful grappling techniques to make sure theyfre never left without a means to fight on the battlefield, even if their weapons are destroyed. Arcadian wrestlers engage in matches designed to retell stories of ancient gods and their past battles. These matches prominently feature impressive acrobatic feats as well as highly technical grappling maneuvers."
+      ],
+      "category": "Archetype",
+      "feats": [
+        "PC2:aon-6454",
+        "PC2:aon-6450",
+        "PC2:aon-5985",
+        "PC2:aon-6447",
+        "PC2:aon-6448",
+        "PC2:aon-6031",
+        "PC2:aon-6049",
+        "PC2:aon-6456",
+        "PC2:aon-6451",
+        "PC2:aon-6455",
+        "PC2:aon-6452",
+        "PC2:aon-6453",
+        "PC2:aon-6449",
+        "PC2:aon-6008",
+        "PC2:aon-6446",
+        "PC1:combat-grab-feat-141",
+        "PC1:snagging-strike-feat-141"
+      ],
+      "featLevels": {
+        "PC1:combat-grab-feat-141": 4,
+        "PC1:snagging-strike-feat-141": 4
+      },
+      "image": "img/archetypes/wrestler.webp"
     }
   ]
 }

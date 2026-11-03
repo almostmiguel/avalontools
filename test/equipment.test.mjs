@@ -1,3 +1,4 @@
+import { pc1Payload } from "./core-fixtures.mjs";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
@@ -8,7 +9,7 @@ import { createEquipmentCatalog, priceInCopper, sortEquipment, equipmentMatchesF
 import { parseEquipmentPage } from "../scripts/import-pc1-equipment.mjs";
 import { htmlContentBlocks } from "../scripts/html-content.mjs";
 
-const payload = JSON.parse(await readFile(new URL("../data/equipment.json", import.meta.url), "utf8"));
+const payload = pc1Payload(JSON.parse(await readFile(new URL("../data/equipment.json", import.meta.url), "utf8")));
 const library = createEquipmentCatalog(payload);
 
 test("PC1 equipment includes all indexed gear variants, weapons, ammunition, armor and shields with safe complete readers", async () => {

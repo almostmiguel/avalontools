@@ -5,7 +5,7 @@ import { createFeatCatalog } from "./feat-library.js";
 import { renderCharacterFeatCards } from "./character-library.js";
 
 const title = value => value.charAt(0).toUpperCase() + value.slice(1);
-const hasLineages = record => ["Changeling", "Nephilim"].includes(record.name);
+const hasLineages = record => ["Changeling", "Nephilim", "Dhampir", "Dragonblood", "Duskwalker"].includes(record.name);
 const tabs = record => ({ overview: "Overview", ...(!record.entry.versatile ? { heritages: "Heritages" } : {}), ...(hasLineages(record) ? { lineages: "Lineages" } : {}), feats: "Ancestry Feats" });
 const filters = [{ key: "size", label: "Sizes" }, { key: "boost", label: "Attribute Boosts" }, { key: "rarity", label: "Rarity" }];
 const values = (record, key) => key === "size" ? record.entry.size || [] : key === "boost" ? (record.entry.boosts || []).map(value => /two free/i.test(value) ? "Two free boosts" : value) : key === "rarity" ? [title(record.entry.rarity)] : catalogValues(record, key);
@@ -13,7 +13,7 @@ const values = (record, key) => key === "size" ? record.entry.size || [] : key =
 export function createAncestryCatalog(payload, config = {}) {
   const catalog = createCatalog(payload, { collection: "ancestries", href: "ancestries.html" });
   for (const record of catalog.records) {
-    if (record.source !== "PC1" || !Array.isArray(record.entry.heritages) || !Array.isArray(record.entry.features)) throw new Error(`Invalid PC1 ancestry: ${record.name}`);
+    if (!["PC1", "PC2"].includes(record.source) || !Array.isArray(record.entry.heritages) || !Array.isArray(record.entry.features)) throw new Error(`Invalid Player Core ancestry: ${record.name}`);
     if (!record.entry.versatile && (!Number.isInteger(record.entry.hp) || !record.entry.size?.length || !record.entry.speed)) throw new Error(`Missing ancestry statistics: ${record.name}`);
     // Nethys includes the heritage rules again after the cultural overview.
     // Keep those rules in features so every view renders them exactly once.

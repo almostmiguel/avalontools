@@ -1,3 +1,4 @@
+import { pc1Payload } from "./core-fixtures.mjs";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
 import { test } from "node:test";
@@ -8,7 +9,7 @@ import { renderCatalogPreview } from "../js/reference-previews.js";
 import { ANCESTRY_BROWSER_DEFINITION, createAncestryCatalog, mountAncestryReader, renderAncestryDetail } from "../js/ancestry-reader.js";
 import { renderContent } from "../js/content-renderer.js";
 
-const read = async name => JSON.parse(await readFile(new URL(`../data/${name}.json`, import.meta.url), "utf8"));
+const read = async name => pc1Payload(JSON.parse(await readFile(new URL(`../data/${name}.json`, import.meta.url), "utf8")));
 const [backgrounds, archetypes, feats] = await Promise.all([read("backgrounds"), read("archetypes"), read("feats")]);
 const backgroundConfig = { ...REFERENCE_TYPES.backgrounds, ...BACKGROUND_BROWSER_DEFINITION };
 const archetypeConfig = { ...REFERENCE_TYPES.archetypes, ...ARCHETYPE_BROWSER_DEFINITION, dependencies: { feats } };

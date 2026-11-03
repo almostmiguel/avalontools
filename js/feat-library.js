@@ -3,8 +3,8 @@ import { createReferenceCatalog, sortCatalog } from "./reference-library.js";
 import { renderReaderHeading, renderReaderFooter, sourceTone } from "./reference-data.js";
 
 const compare = new Intl.Collator("en", { sensitivity: "base", numeric: true }).compare;
-const classes = new Set(["bard", "cleric", "druid", "fighter", "ranger", "rogue", "witch", "wizard"]);
-const ancestries = new Set(["aiuvarin", "changeling", "dromaar", "dwarf", "elf", "gnome", "goblin", "halfling", "human", "leshy", "nephilim", "orc"]);
+const classes = new Set(["alchemist", "barbarian", "champion", "investigator", "monk", "oracle", "sorcerer", "swashbuckler", "bard", "cleric", "druid", "fighter", "ranger", "rogue", "witch", "wizard"]);
+const ancestries = new Set(["catfolk", "dhampir", "dragonblood", "duskwalker", "hobgoblin", "kholo", "kobold", "lizardfolk", "ratfolk", "tengu", "tripkee", "aiuvarin", "changeling", "dromaar", "dwarf", "elf", "gnome", "goblin", "halfling", "human", "leshy", "nephilim", "orc"]);
 const typeTraits = new Set(["general", "skill", "archetype", ...classes]);
 const slug = value => String(value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const title = value => value.charAt(0).toUpperCase() + value.slice(1);
@@ -13,7 +13,7 @@ export const FEAT_FILTERS = [{ key: "level", label: "Levels" }, { key: "category
 export function createFeatCatalog(payload, { dependencies = {} } = {}) {
   if (!Array.isArray(payload?.feats)) throw new Error("Feat data needs a feats array.");
   const feats = payload.feats.map(entry => {
-    if (entry.source !== "PC1" || !Number.isInteger(entry.level) || entry.level < 1 || entry.level > 20 || !Array.isArray(entry.entries) || !Array.isArray(entry.traits) || entry.traits.some(trait => typeof trait !== "string")) throw new Error(`Invalid PC1 feat: ${entry.name}`);
+    if (!["PC1", "PC2"].includes(entry.source) || !Number.isInteger(entry.level) || entry.level < 1 || entry.level > 20 || !Array.isArray(entry.entries) || !Array.isArray(entry.traits) || entry.traits.some(trait => typeof trait !== "string")) throw new Error(`Invalid Player Core feat: ${entry.name}`);
     const traits = new Set(entry.traits);
     const owners = entry.traits.filter(trait => classes.has(trait)).map(title);
     const ancestryOwners = entry.traits.filter(trait => ancestries.has(trait)).map(title);
@@ -23,7 +23,7 @@ export function createFeatCatalog(payload, { dependencies = {} } = {}) {
     ];
     if (!categories.length) categories.push("General");
     return { ...entry, category: categories.join(" · "), categories, filterTraits: entry.traits.filter(trait => !typeTraits.has(trait.toLowerCase())), ancestryOwner: ancestryOwners.join(" / "),
-      id: entry.id?.replace(/^PC1:/, "") || `${slug(entry.name)}-${slug(entry.add_hash || "feat")}-${entry.page}`,
+      id: entry.id?.replace(/^PC[12]:/, "") || `${slug(entry.name)}-${slug(entry.add_hash || "feat")}-${entry.page}`,
       aliases: [...new Set([...(entry.aliases || []), ...[entry.add_hash, ...owners].filter(Boolean).map(owner => `${entry.name} (${owner})`)])],
     };
   });
@@ -69,7 +69,7 @@ export function renderFeatResults(records, selectedId) {
 
 // Both the standalone browser and class tabs render the very same record.
 export function renderFeatBody(record, library, rules, { showHeading = true, ...options } = {}) {
-  return renderContent({ entries: [{ ...record.entry, type: "ability", kind: "Feat", actions: featActions(record), heading: showHeading }] }, {
+  return renderContent({ entries: [{ ...record.entry, type: "ability", kind: "Feat", actions: featActions(record), actionOptions: record.entry.activity?.options, heading: showHeading }] }, {
     source: record.source, anchorPrefix: `feat-${slug(record.id)}`, resolveRule: rules?.registry.resolve,
     resolveFeat: (name, source) => resolveRelatedFeat(library, record.traits, name, source), ...options,
   }).html;
@@ -81,8 +81,8 @@ function featActions(record) {
 }
 
 export function renderFeatTitle(record, { showQualifier = true } = {}) {
-  const actions = featActions(record);
-  return `${escapeHtml(record.name)}${showQualifier && record.qualifier ? ` <small class="feat-heading-qualifier">(${escapeHtml(record.qualifier)})</small>` : ""}${actions ? ` ${renderInline(`{@as ${actions}}`)}` : ""}`;
+  const actions = record.entry.activity?.options || [featActions(record)].filter(Boolean);
+  return `${escapeHtml(record.name)}${showQualifier && record.qualifier ? ` <small class="feat-heading-qualifier">(${escapeHtml(record.qualifier)})</small>` : ""}${actions.length ? ` ${actions.map(action => renderInline(`{@as ${action}}`)).join(" or ")}` : ""}`;
 }
 
 export function renderFeatPreview(record, library) {

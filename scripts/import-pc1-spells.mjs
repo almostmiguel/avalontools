@@ -22,7 +22,7 @@ async function cachedPage(path, filename, refresh) {
 }
 
 
-export function parseSpellPage(html, expectedName, references) {
+export function parseSpellPage(html, expectedName, references, { source = "PC1", sourceName = "Player Core" } = {}) {
   const start = html.search(/<h1\b[^>]*class="title"/);
   if (start < 0) throw new Error(`Missing title: ${expectedName}`);
   const end = html.indexOf('<div class="clear">', start);
@@ -45,13 +45,13 @@ export function parseSpellPage(html, expectedName, references) {
     else if (field) fields.get(field).push(node);
   }
   const value = key => inline(fields.get(key) || [], references).replace(/;\s*$/, "").trim();
-  const citation = /Player Core pg\. (\d+)/.exec((fields.get("Source") || []).map(text).join(" "));
+  const citation = new RegExp(`${sourceName} pg\\. (\\d+)`).exec((fields.get("Source") || []).map(text).join(" "));
   if (!citation) throw new Error(`Not a Player Core spell: ${expectedName}`);
   const traits = metadata.filter(node => /^trait/.test(node.attribs?.class || "")).map(node => text(node).toLowerCase());
   const actions = DomUtils.findAll(node => (node.attribs?.class || "").split(/\s+/).includes("action"), heading.children || []);
   const cast = value("Cast") || actions.map(node => inline([node], references)).join(" to ");
   if (!cast) throw new Error(`Missing casting time: ${expectedName}`);
-  const spell = { name: expectedName, source: "PC1", page: Number(citation[1]), level: Number(classification[2]), spellType: classification[1].toLowerCase(), traits,
+  const spell = { name: expectedName, source, page: Number(citation[1]), level: Number(classification[2]), spellType: classification[1].toLowerCase(), traits,
     traditions: (value("Traditions").match(/arcane|divine|occult|primal/g) || []), cast };
   for (const key of ["Cost", "Trigger", "Requirements", "Range", "Area", "Targets", "Defense", "Duration"]) if (value(key)) spell[key.toLowerCase()] = value(key);
   const domains = value("Domain") || value("Domains");
@@ -60,7 +60,7 @@ export function parseSpellPage(html, expectedName, references) {
   let active = body, excludedSection = false;
   for (const node of nodes.slice(boundary + 1)) {
     if (node.name === "h3" && node.attribs.class === "framing") {
-      excludedSection = text(node) !== "Player Core";
+      excludedSection = text(node) !== sourceName;
       if (!excludedSection) active = body;
       continue;
     }

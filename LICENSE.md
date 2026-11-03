@@ -19,3 +19,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## Game content
+
+The MIT license above applies to the website's code. Pathfinder game content retains its original license and attribution: Pathfinder Player Core © 2023 Paizo Inc.; Pathfinder Player Core 2 © 2024 Paizo Inc.; Pathfinder GM Core © 2023 Paizo Inc.; Pathfinder Monster Core © 2024 Paizo Inc. Remastered game content is used under the [ORC License](https://paizo.com/orclicense). Legacy game content retains its applicable Open Game License notices.

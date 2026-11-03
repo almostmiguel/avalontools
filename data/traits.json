@@ -21,11 +21,6 @@
       "source": "MC2"
     },
     {
-      "id": "PC2",
-      "name": "Player Core 2",
-      "source": "PC2"
-    },
-    {
       "id": "B3",
       "name": "Bestiary 3",
       "source": "B3"
@@ -54,6 +49,11 @@
       "id": "TXCG",
       "name": "Tian Xia Character Guide",
       "source": "TXCG"
+    },
+    {
+      "id": "PC2",
+      "name": "Player Core 2",
+      "source": "PC2"
     }
   ],
   "traits": [
@@ -115,7 +115,7 @@
         "Monster"
       ],
       "entries": [
-        "This family of animal-featured celestials is native to the plane of Nirvana. Most agathions are {@trait Holy||holy}, have {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=59}, and have a weakness to {@trait Unholy||unholy}."
+        "This family of animal-featured celestials is native to the plane of Nirvana. Most agathions are {@trait Holy||holy}, have {@creatureability Darkvision|MC1|darkvision}, and have a weakness to {@trait Unholy||unholy}."
       ]
     },
     {
@@ -279,7 +279,7 @@
         "Monster"
       ],
       "entries": [
-        "asura These fiends are physical manifestations of divine accidents. Asuras typically have {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=59}, immunity to {@link curses|https://2e.aonprd.com/Traits.aspx?ID=566}, and a weakness to {@trait Holy||holy}."
+        "asura These fiends are physical manifestations of divine accidents. Asuras typically have {@creatureability Darkvision|MC1|darkvision}, immunity to {@trait Curse|PC1|curses}, and a weakness to {@trait Holy||holy}."
       ]
     },
     {
@@ -351,7 +351,7 @@
         "Monster"
       ],
       "entries": [
-        "Automatons are living {@link constructs|https://2e.aonprd.com/Traits.aspx?ID=35} sustained by a magical core."
+        "Automatons are living {@trait Construct|PC1|constructs} sustained by a magical core."
       ]
     },
     {
@@ -920,18 +920,6 @@
       ]
     },
     {
-      "name": "Dragonblood",
-      "source": "PC2",
-      "page": 317,
-      "category": "Monster",
-      "categories": [
-        "Monster"
-      ],
-      "entries": [
-        "A creature with this trait has the dragonblood versatile heritage. These creatures are born of draconic lineage and often have draconic appearances."
-      ]
-    },
-    {
       "name": "Dream",
       "source": "GMC",
       "page": 328,
@@ -1425,7 +1413,7 @@
         "Monster"
       ],
       "entries": [
-        "A grioth is a batlike alien that wields occult powers and can exist in the dark vacuum of space. They have {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=59} and echolocation."
+        "A grioth is a batlike alien that wields occult powers and can exist in the dark vacuum of space. They have {@creatureability Darkvision|MC1|darkvision} and echolocation."
       ]
     },
     {
@@ -1486,18 +1474,6 @@
       "category": "Class-specific",
       "entries": [
         "A hex is a spell caused by your patron's direct attention and intervention. Your patron does not take well to being disturbed repeatedly, so you can cast only one spell that has the hex trait each turn; attempts to use a second automatically fail and usually cause your familiar to hiss in displeasure as your patron rejects your call."
-      ]
-    },
-    {
-      "name": "Hobgoblin",
-      "source": "PC2",
-      "page": 316,
-      "category": "Monster",
-      "categories": [
-        "Monster"
-      ],
-      "entries": [
-        "A creature with this trait is a tall, militaristic goblinoid. Hobgoblins tend to have darkvision. An ability with this trait can be used or selected only by hobgoblins. An item with this trait is created and used by hobgoblins."
       ]
     },
     {
@@ -1584,7 +1560,7 @@
       ],
       "entries": [
         "An incorporeal creature or object has no physical form. It can pass through solid objects, including walls. When inside an object, an incorporeal creature can’t perceive, attack, or interact with anything outside the object, and if it starts its turn in an object, it’s {@condition Slowed||slowed} 1 until the end of its turn. A corporeal and an incorporeal creature can pass through one another, but they can’t end their movement in each other’s space.",
-        "An incorporeal creature can’t attempt Strength-based checks against physical creatures or objects—only against incorporeal ones—unless those objects have the {@link ghost touch|https://2e.aonprd.com/Equipment.aspx?ID=297} property rune. Likewise, a corporeal creature can’t attempt Strength-based checks against incorporeal creatures or objects.",
+        "An incorporeal creature can’t attempt Strength-based checks against physical creatures or objects—only against incorporeal ones—unless those objects have the ghost touch property rune. Likewise, a corporeal creature can’t attempt Strength-based checks against incorporeal creatures or objects.",
         "Incorporeal creatures usually have immunity to effects or conditions that require a physical body, like disease, poison, and precision damage. They usually have resistance against all damage (except force damage and damage from Strikes with the {@i ghost touch} property rune), with double the resistance against non-magical damage."
       ]
     },
@@ -1658,18 +1634,6 @@
       ],
       "entries": [
         "Kami are spirits of the Universe that bond with a specific object or place."
-      ]
-    },
-    {
-      "name": "Kholo",
-      "source": "PC2",
-      "page": 317,
-      "category": "Monster",
-      "categories": [
-        "Monster"
-      ],
-      "entries": [
-        "A creature with this trait is a member of the kholo ancestry —humanoids that resemble hyenas. An ability with this trait can be used or selected only by kholos. An item with this trait is created and used by kholos."
       ]
     },
     {
@@ -2380,7 +2344,7 @@
         "Monster"
       ],
       "entries": [
-        "Sahkils are fiends that delight in spreading fear and unease among mortal creatures. They typically have {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=59}, immunity to {@trait Fear||fear}, and weakness to {@trait Holy||holy}."
+        "Sahkils are fiends that delight in spreading fear and unease among mortal creatures. They typically have {@creatureability Darkvision|MC1|darkvision}, immunity to {@trait Fear||fear}, and weakness to {@trait Holy||holy}."
       ]
     },
     {
@@ -2561,7 +2525,7 @@
         "Monster"
       ],
       "entries": [
-        "Soulriders are nigh-parasitic {@link aberrations|https://2e.aonprd.com/Traits.aspx?ID=523} that latch on to souls as they move through the Great Beyond. They sometimes take on the traits of planes."
+        "Soulriders are nigh-parasitic {@trait Aberration|PC1|aberrations} that latch on to souls as they move through the Great Beyond. They sometimes take on the traits of planes."
       ]
     },
     {
@@ -2744,7 +2708,7 @@
         "Monster"
       ],
       "entries": [
-        "A swarm is a mass or cloud of creatures that functions as one monster. Its size entry gives the size of the entire mass, though for most swarms, the individual creatures that make up that mass are Tiny. A swarm can occupy the same space as other creatures and must do so in order to use its damaging action. A swarm typically has weakness to effects that deal damage over an area (like area spells and {@link splash|https://2e.aonprd.com/Traits.aspx?ID=150} weapons). Swarms are immune to the grappled, {@condition Prone||prone}, and {@condition Restrained||restrained} conditions."
+        "A swarm is a mass or cloud of creatures that functions as one monster. Its size entry gives the size of the entire mass, though for most swarms, the individual creatures that make up that mass are Tiny. A swarm can occupy the same space as other creatures and must do so in order to use its damaging action. A swarm typically has weakness to effects that deal damage over an area (like area spells and splash weapons). Swarms are immune to the grappled, {@condition Prone||prone}, and {@condition Restrained||restrained} conditions."
       ]
     },
     {
@@ -2768,7 +2732,7 @@
         "Monster"
       ],
       "entries": [
-        "Sylphs are planar scions descended from {@link djinn|https://2e.aonprd.com/Monsters.aspx?ID=212}."
+        "Sylphs are planar scions descended from djinn."
       ]
     },
     {
@@ -2890,18 +2854,6 @@
       ]
     },
     {
-      "name": "Tripkee",
-      "source": "PC2",
-      "page": 319,
-      "category": "Monster",
-      "categories": [
-        "Monster"
-      ],
-      "entries": [
-        "A creature with this trait is a member of the tripkee ancestry. Tripkees are a family of froglike humanoids. An ability with this trait can be used or selected only by tripkees. An item with this trait is created and used by tripkees."
-      ]
-    },
-    {
       "name": "Troll",
       "source": "MC1",
       "page": 363,
@@ -2922,7 +2874,7 @@
         "Monster"
       ],
       "entries": [
-        "A troop is an organized collection of component creatures, typically Small or Medium in size, working as a cohesive whole. Over the course of enough attacks and downed comrades, troops shrink in size. A troop typically has the {@link troop defenses|https://2e.aonprd.com/MonsterAbilities.aspx?ID=86} and {@link troop movement|https://2e.aonprd.com/MonsterAbilities.aspx?ID=85} abilities, and most troops have weaknesses to area damage and splash damage. Because they consist of multiple discrete creatures, they can't be summoned."
+        "A troop is an organized collection of component creatures, typically Small or Medium in size, working as a cohesive whole. Over the course of enough attacks and downed comrades, troops shrink in size. A troop typically has the {@creatureability Troop Defenses|NC|troop defenses} and {@creatureability Troop Movement|NC|troop movement} abilities, and most troops have weaknesses to area damage and splash damage. Because they consist of multiple discrete creatures, they can't be summoned."
       ]
     },
     {
@@ -3001,7 +2953,7 @@
         "Monster"
       ],
       "entries": [
-        "Undines are planar scions descended from {@link marids|https://2e.aonprd.com/Monsters.aspx?ID=215}."
+        "Undines are planar scions descended from marids."
       ]
     },
     {
@@ -3288,7 +3240,7 @@
         "Monster"
       ],
       "entries": [
-        "A wyrwood is a small, sapient living construct crafted of wood and powered with an {@link aeon stone|https://2e.aonprd.com/Equipment.aspx?ID=3055} or a similar magical stone."
+        "A wyrwood is a small, sapient living construct crafted of wood and powered with an aeon stone or a similar magical stone."
       ]
     },
     {
@@ -3314,6 +3266,403 @@
       "entries": [
         "These undead are mindless rotting corpses that hunger for living flesh."
       ]
+    },
+    {
+      "name": "Additive",
+      "source": "PC2",
+      "page": 61,
+      "entries": [
+        "Feats with the additive trait allow you to add special substances to alchemical consumables you create when you use {@action Quick Alchemy|PC2} to create a consumable (you can't use additives with quick vials). You can add only one additive to a single alchemical item, you can add an additive only once per round, and most additive abilities specify a subset of alchemical consumables you can add them to."
+      ],
+      "categories": [
+        "Class-Specific"
+      ],
+      "category": "Class-Specific"
+    },
+    {
+      "name": "Alchemist",
+      "source": "PC2",
+      "page": 315,
+      "entries": [
+        "This indicates abilities from the {@class Alchemist|PC2|alchemist} class."
+      ],
+      "categories": [
+        "Class"
+      ],
+      "category": "Class"
+    },
+    {
+      "name": "Barbarian",
+      "source": "PC2",
+      "page": 315,
+      "entries": [
+        "This indicates abilities from the {@class Barbarian|PC2|barbarian} class."
+      ],
+      "categories": [
+        "Class"
+      ],
+      "category": "Class"
+    },
+    {
+      "name": "Bravado",
+      "source": "PC2",
+      "page": 163,
+      "entries": [
+        "Actions with this trait can grant panache, depending on the result of the check involved. If you succeed at the check on a bravado action, you gain panache, and if you fail (but not critically fail) the check, you gain panache but only until the end of your next turn. These effects can be applied even if the action had no other effect due to a failure or a creature's {@rule Immunity|PC1|immunity}."
+      ],
+      "categories": [
+        "Class-Specific"
+      ],
+      "category": "Class-Specific"
+    },
+    {
+      "name": "Catfolk",
+      "source": "PC2",
+      "page": 315,
+      "entries": [
+        "A creature with this trait is a member of the {@ancestry Catfolk|PC2|catfolk} ancestry. Catfolk are humanoids with feline features. An ability with this trait can be used or selected only by catfolk. An item with this trait is created and used by catfolk."
+      ],
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster"
+    },
+    {
+      "name": "Champion",
+      "source": "PC2",
+      "page": 315,
+      "entries": [
+        "This indicates abilities from the {@class Champion|PC2|champion} class."
+      ],
+      "categories": [
+        "Class"
+      ],
+      "category": "Class"
+    },
+    {
+      "name": "Coagulant",
+      "source": "PC2",
+      "page": 61,
+      "entries": [
+        "Healing alchemical items with the coagulant trait lose effectiveness when many are applied in a short period of time. If a creature heals Hit Points from an item with the coagulant trait, that creature is temporarily immune to healing Hit Points from subsequent items with the coagulant trait for 10 minutes (but not immune to any other effects of those items)."
+      ],
+      "categories": [
+        "Class-Specific"
+      ],
+      "category": "Class-Specific"
+    },
+    {
+      "name": "Cursebound",
+      "source": "PC2",
+      "page": 133,
+      "entries": [
+        "Abilities with this trait tighten your {@class Oracle|PC2|oracular} curse's grasp on your soul in exchange for divine insights, giving you the cursebound condition. When you use a cursebound ability, you become cursebound 1, or if you were already cursebound, you increase the value of your cursebound condition by 1. As cursebound abilities are directly linked to your oracular curse, you can't use a cursebound ability if you don't have an oracular curse or if you are already at your maximum cursebound value. You can't mitigate or bypass the drawbacks of any cursebound ability with spells or other effects, and the effects of any cursebound ability end when you {@action Refocus|PC1} and remove the cursebound condition. A cursebound ability that allows a defense uses your spell attack modifier or spell DC unless noted otherwise."
+      ],
+      "categories": [
+        "Class-Specific"
+      ],
+      "category": "Class-Specific"
+    },
+    {
+      "name": "Dhampir",
+      "source": "PC2",
+      "page": 316,
+      "entries": [
+        "A creature with this trait has the {@ancestry Dhampir|PC2|dhampir} versatile heritage. These humanoids are the offspring of vampires and members of other ancestries."
+      ],
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster"
+    },
+    {
+      "name": "Dragonblood",
+      "source": "PC2",
+      "page": 317,
+      "entries": [
+        "A creature with this trait has the {@ancestry Dragonblood|PC2|dragonblood} versatile heritage. These creatures are born of draconic lineage and often have draconic appearances."
+      ],
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry"
+    },
+    {
+      "name": "Duskwalker",
+      "source": "PC2",
+      "page": 316,
+      "entries": [
+        "A creature with this trait has the {@ancestry Duskwalker|PC2|duskwalker} versatile heritage. Duskwalkers are planar scions infused with the supernatural energy of psychopomps."
+      ],
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster"
+    },
+    {
+      "name": "Finisher",
+      "source": "PC2",
+      "page": 163,
+      "entries": [
+        "Finishers are spectacular finishing moves that use your panache. Finishers can be used only with weapons that deal additional damage with precise strike ({@trait Agile|PC1|agile} or {@trait Finesse|PC1|finesse} melee weapons or {@trait Unarmed|PC1|unarmed} attacks, for most {@class Swashbuckler|PC2|swashbucklers}). You can use a finisher only if you have panache, and you lose your panache immediately after performing a finisher. Once you use a finisher, you can't use actions that have the attack trait for the rest of your turn. Some finisher actions also grant an effect on a failure. Effects added on a failure don't apply on a critical failure. If your finisher action succeeds, you can still choose to apply the failure effect instead. For example, you might do this when an attack deals no damage due to {@rule Resistance|PC1|resistance}."
+      ],
+      "categories": [
+        "Class-Specific"
+      ],
+      "category": "Class-Specific"
+    },
+    {
+      "name": "Hampering",
+      "source": "PC2",
+      "page": 274,
+      "entries": [
+        "A weapon with the hampering trait includes a disruptive limb or flange. After you hit with the weapon, you can use an {@action Interact|PC1} action to give the target a –10-foot circumstance penalty to all Speeds. The penalty ends after the target takes a {@trait Move|PC1|move} action, at the start of your next turn, if you attack with the weapon, or if you move out of reach of the target, whichever comes first."
+      ],
+      "categories": [
+        "Weapon"
+      ],
+      "category": "Weapon"
+    },
+    {
+      "name": "Hobgoblin",
+      "source": "PC2",
+      "page": 316,
+      "entries": [
+        "A creature with this trait is a tall, militaristic goblinoid. {@ancestry Hobgoblin|PC2|Hobgoblins} tend to have {@creatureability Darkvision|MC1|darkvision}. An ability with this trait can be used or selected only by hobgoblins. An item with this trait is created and used by hobgoblins."
+      ],
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster"
+    },
+    {
+      "name": "Infused",
+      "source": "PC2",
+      "page": 61,
+      "entries": [
+        "An alchemical item with the infused trait has a limited time before it becomes inert. Any non-permanent effects from your infused alchemical items, with the exception of afflictions such as slow-acting poisons, end when you make your daily preparations again."
+      ],
+      "categories": [
+        "Class-Specific"
+      ],
+      "category": "Class-Specific"
+    },
+    {
+      "name": "Investigator",
+      "source": "PC2",
+      "page": 317,
+      "entries": [
+        "This trait indicates abilities from the {@class Investigator|PC2|investigator} class."
+      ],
+      "categories": [
+        "Class"
+      ],
+      "category": "Class"
+    },
+    {
+      "name": "Kholo",
+      "source": "PC2",
+      "page": 317,
+      "entries": [
+        "A creature with this trait is a member of the {@ancestry Kholo|PC2|kholo} ancestry —humanoids that resemble hyenas. An ability with this trait can be used or selected only by kholos. An item with this trait is created and used by kholos."
+      ],
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster"
+    },
+    {
+      "name": "Kobold",
+      "source": "PC2",
+      "page": 317,
+      "entries": [
+        "A creature with this trait is a member of the {@ancestry Kobold|PC2|kobold} ancestry, reptilian humanoids who are usually Small and typically have {@creatureability Darkvision|MC1|darkvision}. An ability with this trait can be used or selected only by kobolds."
+      ],
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster"
+    },
+    {
+      "name": "Lizardfolk",
+      "source": "PC2",
+      "page": 317,
+      "entries": [
+        "A creature with this trait is a member of the {@ancestry Lizardfolk|PC2|lizardfolk} ancestry, a family of reptilian humanoids. An ability with this trait can be used or selected only by lizardfolk."
+      ],
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster"
+    },
+    {
+      "name": "Modular",
+      "source": "PC2",
+      "page": 274,
+      "entries": [
+        "The weapon has multiple configurations that you can switch between using an {@action Interact|PC1} action. Typically, switching between configurations of a modular weapon allows it to deal different types of damage (listed in the trait, such as “modular B, P, or S”), though it's possible for a modular weapon's description to list more complicated configurations."
+      ],
+      "categories": [
+        "Weapon"
+      ],
+      "category": "Weapon"
+    },
+    {
+      "name": "Mutagen",
+      "source": "PC2",
+      "page": 289,
+      "entries": [
+        "Mutagens are a special type of {@trait Elixir|PC1|elixir} that temporarily transmogrify the subject's body and mind. Typically, only {@class Alchemist|PC2|alchemists} have the expertise to craft mutagens.",
+        "A mutagen always conveys one or more beneficial effects (listed in the Benefit entry) and one or more detrimental effects (shown in the Drawback entry). Mutagens are {@trait Polymorph|PC1|polymorph} effects, and a subsequent polymorph effect attempts to counteract an existing effect; the counteract check for a mutagen uses the item's level and a modifier equal to that level's DC – 10."
+      ],
+      "categories": [
+        "Equipment"
+      ],
+      "category": "Equipment"
+    },
+    {
+      "name": "Oracle",
+      "source": "PC2",
+      "page": 317,
+      "entries": [
+        "This trait indicates abilities from the {@class Oracle|PC2|oracle} class."
+      ],
+      "categories": [
+        "Class"
+      ],
+      "category": "Class"
+    },
+    {
+      "name": "Rage",
+      "source": "PC2",
+      "page": 75,
+      "entries": [
+        "You must be {@action Rage|PC2|raging} to use abilities with the rage trait, and they end automatically when you stop raging."
+      ],
+      "categories": [
+        "Class-Specific"
+      ],
+      "category": "Class-Specific"
+    },
+    {
+      "name": "Ratfolk",
+      "source": "PC2",
+      "page": 317,
+      "entries": [
+        "A creature with this trait is a member of the {@ancestry Ratfolk|PC2|ratfolk} ancestry. Ratfolk are humanoids who resemble rats. An ability with this trait can be used or selected only by ratfolk."
+      ],
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster"
+    },
+    {
+      "name": "Razing",
+      "source": "PC2",
+      "page": 274,
+      "entries": [
+        "Razing weapons are particularly good at damaging objects, structures, and vehicles. Whenever you deal damage to an object (including shields and animated objects), structure, or vehicle with a razing weapon, the object takes an amount of additional damage equal to double the number of weapon damage dice."
+      ],
+      "categories": [
+        "Weapon"
+      ],
+      "category": "Weapon"
+    },
+    {
+      "name": "Snare",
+      "source": "PC2",
+      "page": 297,
+      "entries": [
+        "Traps typically made by {@class Ranger|PC1|rangers}, snares follow special rules that allow them to be constructed quickly and used on the battlefield."
+      ],
+      "categories": [
+        "Equipment"
+      ],
+      "category": "Equipment"
+    },
+    {
+      "name": "Sorcerer",
+      "source": "PC2",
+      "page": 318,
+      "entries": [
+        "This indicates abilities from the {@class Sorcerer|PC2|sorcerer} class."
+      ],
+      "categories": [
+        "Class"
+      ],
+      "category": "Class"
+    },
+    {
+      "name": "Swashbuckler",
+      "source": "PC2",
+      "page": 318,
+      "entries": [
+        "This trait indicates abilities from the {@class Swashbuckler|PC2|swashbuckler} class."
+      ],
+      "categories": [
+        "Class"
+      ],
+      "category": "Class"
+    },
+    {
+      "name": "Tengu",
+      "source": "PC2",
+      "page": 318,
+      "entries": [
+        "A creature with this trait is a member of the {@ancestry Tengu|PC2|tengu} ancestry. Tengu are humanoids who resemble crows. An ability with this trait can be used or selected only by tengu. An item with this trait is created and used by tengu."
+      ],
+      "categories": [
+        "Monster"
+      ],
+      "category": "Monster"
+    },
+    {
+      "name": "Tethered",
+      "source": "PC2",
+      "page": 274,
+      "entries": [
+        "This weapon is attached to a length of rope or chain that allows you to retrieve it after it has left your hand. If you have a free hand (including if you've just thrown a two-handed tethered weapon and have a hand holding nothing but the weapon's tether), you can use an {@action Interact|PC1} action to pull the weapon back into your grasp after you have thrown it as a ranged attack or after it has been disarmed (unless it's being held by another creature)."
+      ],
+      "categories": [
+        "Weapon"
+      ],
+      "category": "Weapon"
+    },
+    {
+      "name": "Tripkee",
+      "source": "PC2",
+      "page": 319,
+      "entries": [
+        "A creature with this trait is a member of the {@ancestry Tripkee|PC2|tripkee} ancestry. Tripkees are a family of froglike humanoids. An ability with this trait can be used or selected only by tripkees. An item with this trait is created and used by tripkees."
+      ],
+      "categories": [
+        "Ancestry"
+      ],
+      "category": "Ancestry"
+    },
+    {
+      "name": "Venomous",
+      "source": "PC2",
+      "page": 119,
+      "entries": [
+        "These weapons inject poison into every hit. When you hit a creature with this weapon, it deals an additional 1 {@condition Persistent Damage|PC1|persistent poison damage}. This increases to 2 persistent poison damage if the weapon has a greater striking rune."
+      ],
+      "categories": [
+        "Weapon"
+      ],
+      "category": "Weapon"
+    },
+    {
+      "name": "Vigilante",
+      "source": "PC2",
+      "page": 218,
+      "entries": [
+        "Your class feats and {@archetype Vigilante|PC2|vigilante} feats are associated with your vigilante identity, and using them while in your social identity may risk exposing you as a vigilante. If your identity is exposed to the public, you lose the benefits of {@feat Vigilante Dedication|PC2} to disguising yourself, but you can spend 1 week of {@rule Downtime|PC1|downtime} to create a new social identity."
+      ],
+      "categories": [
+        "Class-Specific"
+      ],
+      "category": "Class-Specific"
     }
   ]
 }

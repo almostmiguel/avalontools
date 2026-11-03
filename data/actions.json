@@ -4,6 +4,11 @@
       "id": "PC1",
       "name": "Player Core",
       "source": "PC1"
+    },
+    {
+      "id": "PC2",
+      "name": "Player Core 2",
+      "source": "PC2"
     }
   ],
   "actions": [
@@ -3332,6 +3337,550 @@
               "style": "hanging",
               "name": "Failure",
               "entry": "Your movement ends, and you trigger reactions as if you had moved out of the square you started in."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Rage",
+      "source": "PC2",
+      "page": 72,
+      "category": "class",
+      "time": {
+        "unit": "action",
+        "value": 1
+      },
+      "traits": [
+        "barbarian",
+        "concentrate",
+        "emotion",
+        "mental"
+      ],
+      "entries": [
+        "You tap into your inner fury and begin raging. You gain a number of {@rule Temporary Hit Points|PC1|temporary Hit Points} equal to your level plus your Constitution modifier. While you are raging:",
+        {
+          "type": "list",
+          "items": [
+            "You deal 2 additional damage on melee Strikes. This additional damage is halved if your weapon or {@trait Unarmed|PC1|unarmed} attack is {@trait Agile|PC1|agile}.",
+            "You can't use actions with the {@trait Concentrate|PC1|concentrate} trait unless they also have the rage trait. You can {@action Seek|PC1} while raging."
+          ]
+        },
+        "Rage lasts for 1 minute, until you fall {@condition Unconscious|PC1|unconscious}, or until the encounter ends, whichever comes first. You can't voluntarily stop raging. When you stop raging, you lose any remaining temporary Hit Points from Rage, and can't gain temporary Hit Points from using the Rage action again for 1 minute."
+      ],
+      "requirements": "You aren't {@condition Fatigued|PC1|fatigued} or raging."
+    },
+    {
+      "name": "Upstage",
+      "source": "PC2",
+      "page": 194,
+      "category": "class",
+      "time": {
+        "unit": "reaction",
+        "value": 1
+      },
+      "traits": [],
+      "entries": [
+        "After your foe has tried their best, you show everyone how it’s really done. Attempt a check using the same skill that triggered this reaction. The DC is typically the same as the check the enemy attempted, though the GM can adjust this as usual.",
+        {
+          "type": "list",
+          "style": "list-no-bullets",
+          "items": [
+            {
+              "type": "item",
+              "name": "Critical Success",
+              "entries": [
+                "You gain a +1 status bonus to attack rolls, Perception checks, saving throws, and skill checks until the end of your next turn."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Success",
+              "entries": [
+                "As critical success, except you gain the benefits only if the triggering creature failed their skill check."
+              ]
+            }
+          ]
+        }
+      ],
+      "trigger": "An enemy attempts a skill check and doesn’t get a critical success"
+    },
+    {
+      "name": "Selfish Shield",
+      "source": "PC2",
+      "page": 91,
+      "category": "class",
+      "time": {
+        "unit": "reaction",
+        "value": 1
+      },
+      "traits": [
+        "champion",
+        "divine"
+      ],
+      "entries": [
+        "Your self-interest keeps you safe. You gain resistance against the triggering damage equal to 2 + half your level, regardless of damage type.",
+        "In addition, your Strikes against the triggering creature deal 1 extra spirit damage until the end of your next turn. This extra damage increases to 2 at 9th level and 3 at 16th level.",
+        {
+          "type": "h3",
+          "name": "Relentless Reaction Level 9",
+          "entries": [
+            "If your Charisma modifier is +3 or greater, your resistance against the triggering damage equals your Charisma modifier + half your level."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Exalted Reaction Level 11",
+          "entries": [
+            "Each enemy in your champion’s aura takes a –1 status penalty to attack rolls against you until the start of your next turn."
+          ]
+        }
+      ],
+      "trigger": "An enemy in your champion’s aura damages you"
+    },
+    {
+      "name": "Flash of Grandeur",
+      "source": "PC2",
+      "page": 91,
+      "category": "class",
+      "time": {
+        "unit": "reaction",
+        "value": 1
+      },
+      "traits": [
+        "champion",
+        "divine"
+      ],
+      "entries": [
+        "Imperious divine light flashes out from you to surround your foe. The ally gains resistance to all damage against the triggering damage equal to 2 + your level. Until the end of your next turn, the attacker is affected by {@spell Revealing Light|PC1|revealing light}.",
+        {
+          "type": "h3",
+          "name": "Relentless Reaction Level 9",
+          "entries": [
+            "The enemy also takes {@condition Persistent Damage|PC1|persistent spirit damage} equal to your Charisma modifier, and it can't recover from this persistent damage while affected by the revealing light from your Flash of Grandeur."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Exalted Reaction Level 11",
+          "entries": [
+            "In addition to the enemy affected by Flash of Grandeur, each other enemy in your champion's aura is affected by the {@i revealing light} spell for 1 round."
+          ]
+        }
+      ],
+      "trigger": "An enemy damages your ally, and both are in your champion’s aura"
+    },
+    {
+      "name": "Destructive Vengeance",
+      "source": "PC2",
+      "page": 92,
+      "category": "class",
+      "time": {
+        "unit": "reaction",
+        "value": 1
+      },
+      "traits": [
+        "champion",
+        "divine"
+      ],
+      "entries": [
+        "Bloodshed begets bloodshed as you drag your enemy toward oblivion. You increase the amount of damage you take by 1d6, and you deal 1d6 spirit damage to the triggering enemy. The damage you take and deal when you use this reaction increases to 2d6 at 5th level, 3d6 at 9th level, 4d6 at 12th level, 5d6 at 16th level, and 6d6 at 19th level.",
+        "In addition, until the end of your next turn, your Strikes against the triggering creature deal 2 extra spirit damage. This extra damage increases to 4 at 9th level and 6 at 16th level.",
+        {
+          "type": "h3",
+          "name": "Relentless Reaction Level 9",
+          "entries": [
+            "An enemy damaged by the initial reaction's damage also takes {@condition Persistent Damage|PC1|persistent spirit damage} equal to your Charisma modifier. (This applies only to the damage the reaction itself deals, not the damage you deal with subsequent Strikes.)"
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Exalted Reaction Level 11",
+          "entries": [
+            "Each enemy in your champion’s aura other than the triggering creature takes half the damage you deal to the triggering enemy."
+          ]
+        }
+      ],
+      "trigger": "An enemy in your champion’s aura damages you"
+    },
+    {
+      "name": "Retributive Strike",
+      "source": "PC2",
+      "page": 92,
+      "category": "class",
+      "time": {
+        "unit": "reaction",
+        "value": 1
+      },
+      "traits": [
+        "champion",
+        "divine"
+      ],
+      "entries": [
+        "You protect your ally and strike your enemy. The ally gains resistance to all damage against the triggering damage equal to 2 + your level. If the enemy is within reach, make a melee Strike against it.",
+        {
+          "type": "h3",
+          "name": "Relentless Reaction Level 9",
+          "entries": [
+            "If your Strike hits, the target takes {@condition Persistent Damage|PC1|persistent spirit damage} equal to your Charisma modifier."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Exalted Reaction Level 11",
+          "entries": [
+            "Each ally in your champion’s aura with the target in their melee reach can spend a reaction to Strike the target with a –5 penalty."
+          ]
+        }
+      ],
+      "trigger": "An enemy damages your ally, and both are in your champion’s aura"
+    },
+    {
+      "name": "Liberating Step",
+      "source": "PC2",
+      "page": 92,
+      "category": "class",
+      "time": {
+        "unit": "reaction",
+        "value": 1
+      },
+      "traits": [
+        "champion",
+        "divine"
+      ],
+      "entries": [
+        "You free an ally from restraint. If the trigger was an ally taking damage, the ally gains resistance to all damage against the triggering damage equal to 2 + your level. The ally can attempt to break free of effects grabbing, restraining, immobilizing, or paralyzing them. They either attempt a new save against one such effect that allows a save, or attempt to Escape from one effect as a free action. Whether or not it needed to escape, the ally can then Step as a free action if it's able to move.",
+        {
+          "type": "h3",
+          "name": "Relentless Reaction Level 9",
+          "entries": [
+            "You punish those who ensnare your allies. If the triggering enemy was using any effects to make your ally grabbed, restrained, immobilized, or paralyzed when you used Liberating Step, that enemy takes {@condition Persistent Damage|PC1|persistent spirit damage} equal to your Charisma modifier."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Exalted Reaction Level 11",
+          "entries": [
+            "In addition to the ally affected by Liberating Step, you and all other allies in your champion’s aura can Step as a free action. You and your allies gain the benefit even if the ally who benefited from Liberating Step can’t move."
+          ]
+        }
+      ],
+      "trigger": "An enemy damages, grabs, or restrains your ally, and both are in your champion’s aura"
+    },
+    {
+      "name": "Iron Command",
+      "source": "PC2",
+      "page": 93,
+      "category": "class",
+      "time": {
+        "unit": "reaction",
+        "value": 1
+      },
+      "traits": [
+        "champion",
+        "divine",
+        "emotion",
+        "mental"
+      ],
+      "entries": [
+        "You put an impertinent foe who dared harm you in their proper place. You command your enemy to kneel before you in obedience. If they dare to refuse, they must pay the price in pain and anguish. The enemy must choose one of the following options.",
+        {
+          "type": "list",
+          "items": [
+            "{@b Kneel} The enemy drops {@condition Prone|PC1|prone} as a free action.",
+            "{@b Refuse} You deal 1d6 mental damage to the enemy."
+          ]
+        },
+        "This damage increases to 2d6 at 5th level, 3d6 at 9th level, 4d6 at 12th level, 5d6 at 16th level, and 6d6 at 19th level. Regardless of which option the enemy chose, your Strikes against it deal 1 extra spirit damage until the end of your next turn. This extra damage increases to 2 at 9th level and 3 at 16th level.",
+        {
+          "type": "h3",
+          "name": "Relentless Reaction Level 9",
+          "entries": [
+            "If the enemy refuses, it takes {@condition Persistent Damage|PC1|persistent spirit damage} equal to your Charisma modifier."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Exalted Reaction Level 11",
+          "entries": [
+            "Each enemy in your champion's aura other than the triggering creature must also either drop {@condition Prone|PC1|prone} or take mental damage (each enemy chooses). These creatures take only minimum damage (typically 3 damage at 11th level, 4 at 12th, 5 at 16th, and 6 at 19th), and the effects they take can't be adjusted by anything that changes your Iron Command. For instance, the Iron Repercussions feat couldn't turn the damage into persistent mental damage for creatures other than the triggering creature."
+          ]
+        }
+      ],
+      "trigger": "An enemy in your champion’s aura damages you"
+    },
+    {
+      "name": "Glimpse of Redemption",
+      "source": "PC2",
+      "page": 93,
+      "category": "class",
+      "time": {
+        "unit": "reaction",
+        "value": 1
+      },
+      "traits": [
+        "champion",
+        "divine"
+      ],
+      "entries": [
+        "Your enemy hesitates under the weight of sin as visions of redemption play in their mind's eye. The enemy must choose to repent or refuse, with the following effects. If the enemy is {@trait Mindless|PC1|mindless} or otherwise unable to repent, use the refuse result.",
+        {
+          "type": "list",
+          "items": [
+            "{@b Repent} The ally is unharmed by the triggering damage.",
+            "{@b Refuse} The ally gains {@rule Resistance|PC1|resistance} to all damage against the triggering damage equal to 2 + your level. After the damaging effect is applied, the enemy becomes {@condition Enfeebled|PC1|enfeebled} 2 until the end of its next turn."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Relentless Reaction Level 9",
+          "entries": [
+            "If the enemy refuses, it takes {@condition Persistent Damage|PC1|persistent spirit damage} equal to your Charisma modifier."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Exalted Reaction Level 11",
+          "entries": [
+            "If the enemy refuses, you can choose to grant the resistance to yourself and all allies in your champion’s aura, including the triggering ally. If you do, the resistance is reduced by 2 for all."
+          ]
+        }
+      ],
+      "trigger": "An enemy damages your ally, and both are in your champion’s aura"
+    },
+    {
+      "name": "Quick Alchemy",
+      "source": "PC2",
+      "page": 59,
+      "category": "class",
+      "time": {
+        "unit": "action",
+        "value": 1
+      },
+      "traits": [
+        "alchemist",
+        "manipulate"
+      ],
+      "entries": [
+        "You can either use up a versatile vial to make another alchemical consumable at a moment's notice or create an especially short-lived versatile vial. Any effect created by an item made with Quick Alchemy that would have a duration longer than 10 minutes lasts for 10 minutes instead.",
+        {
+          "type": "list",
+          "items": [
+            "{@b Create Consumable} You expend one of your versatile vials to create a single alchemical consumable item of your level or lower that's in your formula book. You don't have to spend the normal monetary cost in alchemical raw materials or need to attempt a Crafting check. This item has the {@trait Infused|PC2|infused} trait, but it remains potent only until the start of your next turn. (As normal, you need only one formula for an item to create any level of that item.)",
+            "{@b Quick Vial} You create a versatile vial that can be used only as a bomb or for the versatile vial option from your research field (it can't be used to create a consumable, for example). This item has the infused trait, but it remains potent only until the end of your current turn."
+          ]
+        },
+        {
+          "type": "clarification",
+          "name": "Paizo Clarification",
+          "entries": [
+            "Quick Alchemy creates an item that remains potent only until the start of your next turn (or end of your current turn for a versatile vial), and says that an effect created by such an item that would have a duration longer than 10 minutes lasts for 10 minutes instead. The part saying the item “remains potent” means the item can be Activated only in that time frame. The effect is any ongoing effect after the item's activated.",
+            "For example, if you used Quick Alchemy to create a greater {@equipment Silvertongue Mutagen|PC2|silvertongue mutagen}, you would need to drink it by the start of your next turn or it would go inert. If you did drink it in that time, you would gain its effects, but only for 10 minutes instead of for its normal 1-hour duration.",
+            "Similarly, if you created {@equipment Lethargy Poison|PC2|lethargy poison}, you would need to Activate it by applying it before the start of your next turn, then the weapon would remained poisoned for up to 10 minutes. If someone waited 9 minutes, then hit with a Strike with the poisoned weapon, the affliction could last beyond the 10-minute limit due to the exception for {@class Alchemist|PC2|slow-acting afflictions} in the Key Terms sidebar"
+          ]
+        }
+      ],
+      "requirements": "You're either holding or wearing an {@equipment Alchemist's Toolkit|PC1|alchemist's toolkit} and you have a free hand"
+    },
+    {
+      "name": "Quick-Tempered",
+      "source": "PC2",
+      "page": 72,
+      "category": "class",
+      "time": {
+        "unit": "free",
+        "value": 1
+      },
+      "traits": [
+        "barbarian"
+      ],
+      "entries": [
+        "So long as you are able to move freely, your fury is instinctive and instantaneous. You {@action Rage|PC2}."
+      ],
+      "trigger": "You roll initiative.",
+      "requirements": "You are not {@condition Encumbered|PC1|encumbered} or wearing heavy armor."
+    },
+    {
+      "name": "Clue In",
+      "source": "PC2",
+      "page": 102,
+      "category": "class",
+      "time": {
+        "unit": "reaction",
+        "value": 1
+      },
+      "traits": [
+        "concentrate",
+        "investigator"
+      ],
+      "entries": [
+        "You share information with the triggering creature. They gain a circumstance bonus to their check equal to your investigation bonus from Pursue a Lead. The GM can add any relevant traits to this reaction depending on the situation, such as {@trait Auditory|PC1|auditory} and {@trait Linguistic|PC1|linguistic} if you're conveying information verbally."
+      ],
+      "trigger": "Another creature attempts a check that could help get you closer to answering the question at the heart of one of your active investigations.",
+      "frequency": "once per 10 minutes"
+    },
+    {
+      "name": "Devise a Stratagem",
+      "source": "PC2",
+      "page": 103,
+      "category": "class",
+      "time": {
+        "unit": "varies",
+        "options": [
+          "free",
+          "action-1"
+        ],
+        "label": "Free action or 1 action"
+      },
+      "traits": [
+        "concentrate",
+        "investigator"
+      ],
+      "entries": [
+        "You assess a foe's weaknesses in combat and use them to formulate a plan of attack. Choose a creature you can see. You can Devise a Stratagem as a free action if you're aware that creature could help answer the question at the heart of one of your active investigations. Roll a d20, then decide on an attack stratagem or skill stratagem.",
+        "{@b Attack Stratagem} If you Strike the chosen creature before the start of your next turn, your Strike gains the fortune trait and you must use the result of the d20 roll for your Strike's attack roll instead of rolling. You make this substitution only for the first Strike you make against the creature this round, not any subsequent ones. When you make this substitution, you can add your Intelligence modifier to your attack roll instead of your Strength or Dexterity modifier. If you Strike with a melee weapon, melee unarmed attack, or thrown weapon, it must have the {@trait Agile|PC1|agile} or {@trait Finesse|PC1|finesse} trait to benefit from the substitution.",
+        "{@b Skill Stratagem} You can't attempt to Strike the target until the start of your next turn. You gain a +1 circumstance bonus to your next Intelligence-, Wisdom-, or Charisma-based skill check or Perception check involving the target before the start of your next turn. If you would gain your Pursue a Lead investigation bonus to such a check, that bonus increases by 1 instead of you gaining the +1 bonus listed."
+      ],
+      "frequency": "once per round"
+    },
+    {
+      "name": "Flurry of Blows",
+      "source": "PC2",
+      "page": 116,
+      "category": "class",
+      "time": {
+        "unit": "action",
+        "value": 1
+      },
+      "traits": [
+        "flourish",
+        "monk"
+      ],
+      "entries": [
+        "Make two unarmed Strikes. If both hit the same creature, combine their damage for the purpose of resistances and weaknesses. Apply your multiple attack penalty to the Strikes normally. As a flourish ability, you can use Flurry of Blows only once per turn."
+      ]
+    },
+    {
+      "name": "Confident Finisher",
+      "source": "PC2",
+      "page": 161,
+      "category": "class",
+      "time": {
+        "unit": "action",
+        "value": 1
+      },
+      "traits": [
+        "finisher",
+        "swashbuckler"
+      ],
+      "entries": [
+        "You make an incredibly graceful attack, piercing your foe’s defenses. Make a Strike with the following failure effect.",
+        "{@b Failure} You deal half your precise strike damage to the target. This damage type is that of the weapon or unarmed attack you used for the Strike."
+      ]
+    },
+    {
+      "name": "Opportune Riposte",
+      "source": "PC2",
+      "page": 161,
+      "category": "class",
+      "time": {
+        "unit": "reaction",
+        "value": 1
+      },
+      "traits": [
+        "bravado",
+        "swashbuckler"
+      ],
+      "entries": [
+        "You take advantage of an opening from your enemy's fumbled attack. You either make a melee Strike against the triggering enemy or attempt to {@action Disarm|PC1} it of the weapon it used for the Strike."
+      ],
+      "trigger": "An enemy within your reach critically fails on a Strike against you."
+    },
+    {
+      "name": "Quick Tincture",
+      "source": "PC2",
+      "page": 103,
+      "category": "class",
+      "time": {
+        "unit": "action",
+        "value": 1
+      },
+      "traits": [
+        "investigator",
+        "manipulate"
+      ],
+      "entries": [
+        "You quickly brew up a short-lived tincture. You create a single alchemical elixir or tool of your level or lower that's in your formula book without having to spend the normal monetary cost in alchemical raw materials or needing to attempt a Crafting check. This item has the {@trait Infused|PC2|infused} trait, but it remains potent only until the end of the current turn."
+      ],
+      "requirements": "You know the formula for the alchemical item you’re creating, you are holding or wearing an alchemist’s toolkit, and you have a free hand.",
+      "cost": "1 versatile vial"
+    },
+    {
+      "name": "Expeditious Inspection",
+      "source": "PC2",
+      "page": 104,
+      "category": "class",
+      "time": {
+        "unit": "free",
+        "value": 1
+      },
+      "traits": [
+        "investigator"
+      ],
+      "entries": [
+        "You observe and assess your surroundings with great speed. You {@action Recall Knowledge|PC1}, {@action Seek|PC1}, or {@action Sense Motive|PC1}."
+      ],
+      "frequency": "once per 10 minutes"
+    },
+    {
+      "name": "Pointed Question",
+      "source": "PC2",
+      "page": 104,
+      "category": "class",
+      "time": {
+        "unit": "action",
+        "value": 1
+      },
+      "traits": [
+        "auditory",
+        "concentrate",
+        "investigator",
+        "linguistic",
+        "mental"
+      ],
+      "entries": [
+        "You ask a question that charms or needles someone in just the right way. Ask a question of a non-allied creature that you can see. Attempt a Diplomacy check against the creature’s Will DC. The creature is then temporarily immune for 1 hour.",
+        {
+          "type": "list",
+          "style": "list-no-bullets",
+          "items": [
+            {
+              "type": "item",
+              "name": "Critical Success",
+              "entries": [
+                "The target must directly answer your question. It doesn't have to answer truthfully, but you gain a +4 circumstance bonus to your Perception DC if the creature attempts to {@action Lie|PC1} to you. Whether it answers truthfully or not, you glean something from its body language, and it is {@condition Off-guard|PC1|off-guard} to the Strike you make using Devise a Stratagem against it before the end of your turn."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Success",
+              "entries": [
+                "As critical success, but the circumstance bonus to your Perception DC is +2."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Failure",
+              "entries": [
+                "The target can refuse to answer you as normal."
+              ]
+            },
+            {
+              "type": "item",
+              "name": "Critical Failure",
+              "entries": [
+                "The target can refuse to answer you as normal, and its attitude toward you decreases by one step due to your aggravating attention."
+              ]
             }
           ]
         }

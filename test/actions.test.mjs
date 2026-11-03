@@ -287,7 +287,7 @@ test("Spells loads its shared catalog, restores combined filters and opens name 
   assert.equal(browser.selectedId, null);
   assert.match(ui.get("#catalog-results").innerHTML, /Fireball/);
   assert.match(ui.get("#catalog-results").innerHTML, /catalog-result-source[^>]*>PC1<\/span><\/a>/);
-  assert.equal(ui.previewCalls[0].spells.records.length, 472);
+  assert.equal(ui.previewCalls[0].spells.records.length, 630);
   assert.equal(requests.filter(path => path === "data/spells.json").length, 1);
   const ref = ui.target({ spellName: "Fireball", spellSource: "PC1" });
   const click = { target: ref, preventDefault() { this.defaultPrevented = true; } };
@@ -302,7 +302,7 @@ test("Spells loads its shared catalog, restores combined filters and opens name 
   const groups = ui.get("#catalog-filter-groups");
   const cantrip = groups.children.find(button => button.dataset.catalogFilter === "category" && button.dataset.filterValue === "Cantrip");
   groups.emit("click", { target: cantrip });
-  assert.equal(ui.get("#catalog-count").textContent, "41 spells");
+  assert.equal(ui.get("#catalog-count").textContent, "48 spells");
   browser.select("PC1:heal");
   assert.match(ui.get("#catalog-detail").innerHTML, /data-symbol="1".*to.*data-symbol="3"/);
   browser.destroy();
@@ -321,7 +321,7 @@ test("Equipment restores type, price and trait filters, sorts prices, opens item
   assert.equal(browser.selectedId, null);
   assert.equal(ui.get("#catalog-count").textContent, "2 equipment");
   assert.match(ui.get("#catalog-results").innerHTML, /Bastard Sword/);
-  assert.equal(ui.previewCalls[0].equipment.records.length, 262);
+  assert.equal(ui.previewCalls[0].equipment.records.length, 643);
   assert.equal(requests.filter(path => path === "data/equipment.json").length, 1);
   ui.get("#catalog-sort").emit("click", { target: ui.target({ catalogSort: "price" }) });
   assert.equal(ui.window.location.searchParams.get("sort"), "price");
@@ -337,7 +337,7 @@ test("Equipment restores type, price and trait filters, sorts prices, opens item
   assert.equal(browser.selectedId, null);
   assert.equal(ui.window.location.searchParams.get("trait"), "two-hand");
   ui.get("#catalog-filter-reset").emit("click");
-  assert.equal(ui.get("#catalog-count").textContent, "262 equipment");
+  assert.equal(ui.get("#catalog-count").textContent, "643 equipment");
   browser.destroy();
 });
 
@@ -419,7 +419,7 @@ test("Companions restores trait filters, opens links in place and searches names
   assert.ok(browser);
   assert.equal(ui.get("#catalog-count").textContent, "1 companion");
   assert.match(ui.get("#catalog-results").innerHTML, /Arboreal Sapling/);
-  assert.equal(ui.previewCalls[0].companions.records.length, 57);
+  assert.equal(ui.previewCalls[0].companions.records.length, 82);
   ui.get("#catalog-filter-reset").emit("click");
   assert.equal(ui.get("#catalog-count").textContent, "16 companions");
   const ref = ui.target({ companionName: "Wolf", companionSource: "PC1" });
@@ -448,7 +448,7 @@ test("Familiar Abilities restores its tab from deep links, filters ability types
   assert.ok(browser);
   assert.equal(browser.selectedList, "familiar-abilities");
   assert.equal(browser.selectedId, "PC1:toolbearer");
-  assert.equal(ui.get("#catalog-count").textContent, "41 familiar abilities");
+  assert.equal(ui.get("#catalog-count").textContent, "59 familiar abilities");
   assert.match(ui.get("#catalog-detail").innerHTML, /data-companion-name="Manual Dexterity"/);
   const click = { target: ui.target({ companionName: "Manual Dexterity", companionSource: "PC1" }), preventDefault() { this.defaultPrevented = true; } };
   ui.handlers.get("document:click")(click);
@@ -463,7 +463,7 @@ test("Familiar Abilities restores its tab from deep links, filters ability types
   ui.window.history.back();
   assert.equal(browser.selectedList, "familiar-abilities");
   ui.get("#catalog-filter-groups").emit("click", { target: ui.target({ catalogFilter: "abilityType", filterValue: "Master" }), preventDefault() {} });
-  assert.equal(ui.get("#catalog-count").textContent, "10 familiar abilities");
+  assert.equal(ui.get("#catalog-count").textContent, "12 familiar abilities");
   assert.equal(ui.window.location.searchParams.get("abilityType"), "Master");
   assert.match(ui.get("#catalog-results").innerHTML, /Spell Delivery/);
   assert.doesNotMatch(ui.get("#catalog-results").innerHTML, /Toolbearer/);
@@ -702,11 +702,11 @@ test("Feats loads archetype membership and restores, excludes and clears archety
   assert.equal(bard.getAttribute("data-state"), "include");
   groups.emit("contextmenu", { target: bard });
   assert.equal(ui.window.location.searchParams.get("not-archetype"), "Bard");
-  assert.equal(ui.get("#catalog-count").textContent, "876 feats");
+  assert.equal(ui.get("#catalog-count").textContent, "1878 feats");
   ui.handlers.get("popstate")();
   assert.equal(bard.getAttribute("data-state"), "exclude");
   ui.get("#catalog-filter-reset").emit("click");
-  assert.equal(ui.get("#catalog-count").textContent, "885 feats");
+  assert.equal(ui.get("#catalog-count").textContent, "1887 feats");
   assert.equal(ui.window.location.searchParams.has("not-archetype"), false);
   browser.destroy();
 });
@@ -721,9 +721,9 @@ test("Classes loads the shared feat JSON once and reports a missing dependency",
   const ui = environment("", config);
   const browser = await startReferenceBrowser({ ...ui, config });
   assert.ok(browser);
-  assert.equal(ui.get("#catalog-count").textContent, "8 classes");
+  assert.equal(ui.get("#catalog-count").textContent, "16 classes");
   assert.equal(requests.filter(path => path === "data/feats.json").length, 1);
-  assert.equal(ui.previewCalls[0].feats.records.length, 885, "previews reuse the loaded collection");
+  assert.equal(ui.previewCalls[0].feats.records.length, 1887, "previews reuse the loaded collection");
   browser.destroy();
   globalThis.fetch = async path => ({ ok: path !== "data/feats.json", status: 404, json: async () => path === "data/classes.json" ? classData : { rules: [] } });
   const failed = environment("", config);
@@ -851,10 +851,10 @@ test("Backgrounds and Archetypes load their PC1 catalogs and restore named selec
   const other = environment("?archetype=Wizard&source=PC1", archetypes);
   const reader = await startReferenceBrowser({ ...other, config: archetypes });
   assert.equal(reader.selectedId, "PC1:wizard");
-  assert.equal(other.get("#catalog-count").textContent, "8 archetypes");
+  assert.equal(other.get("#catalog-count").textContent, "51 archetypes");
   assert.match(other.get("#catalog-detail").innerHTML, /Wizard Dedication/);
   assert.match(other.get("#catalog-detail").innerHTML, /Master Wizard Spellcasting/);
-  assert.equal(other.previewCalls[0].feats.records.length, 885);
+  assert.equal(other.previewCalls[0].feats.records.length, 1887);
   assert.equal(requests.filter(path => path === "data/feats.json").length, 1);
   reader.destroy();
 });
@@ -874,14 +874,14 @@ test("Ancestries loads English PC1 data, switches lists and restores the selecte
   const ui = environment("?ancestry=Dwarf&source=PC1", config);
   const browser = await startReferenceBrowser({ ...ui, config });
   assert.equal(browser.selectedId, "PC1:dwarf");
-  assert.equal(ui.get("#catalog-count").textContent, "8 ancestries");
+  assert.equal(ui.get("#catalog-count").textContent, "16 ancestries");
   assert.match(ui.get("#catalog-detail").innerHTML, /data-ancestry-tab="heritages"/);
   browser.select("PC1:nephilim");
   assert.doesNotMatch(ui.get("#catalog-detail").innerHTML, /data-ancestry-tab="heritages"/);
   assert.equal(requests.filter(path => path === "data/feats.json").length, 1);
-  assert.equal(ui.previewCalls[0].ancestries.records.length, 12);
+  assert.equal(ui.previewCalls[0].ancestries.records.length, 23);
   assert.equal(browser.selectedList, "versatile-heritages");
-  assert.equal(ui.get("#catalog-count").textContent, "4 versatile heritages");
+  assert.equal(ui.get("#catalog-count").textContent, "7 versatile heritages");
   browser.switchList("ancestries");
   assert.equal(browser.selectedId, null);
   browser.select("PC1:dwarf");
@@ -899,7 +899,7 @@ test("Ancestries loads English PC1 data, switches lists and restores the selecte
   assert.equal(browser.selectedList, "ancestries");
   assert.equal(browser.selectedId, "PC1:dwarf");
   assert.equal(ui.window.location.searchParams.get("tab"), "heritages");
-  assert.equal(ui.get("#catalog-count").textContent, "8 ancestries");
+  assert.equal(ui.get("#catalog-count").textContent, "16 ancestries");
   browser.destroy();
 });
 

@@ -70,8 +70,8 @@ export function createCompanionCatalog(payload) {
   const catalog = createReferenceCatalog({ ...payload, companions: [...payload.companions, ...(payload.familiarAbilities || [])] }, {
     collection: "companions", href: "companions.html",
     validate(entry) {
-      if (entry.kind === "familiar") {
-        if (!Array.isArray(entry.entries) || !entry.entries.length || !["Familiar", "Master"].includes(entry.category)) throw new Error(`Invalid familiar ability: ${entry.name}`);
+      if (["familiar", "specific-familiar"].includes(entry.kind)) {
+        if (!Array.isArray(entry.entries) || !entry.entries.length || !(entry.kind === "specific-familiar" ? entry.category === "Specific Familiar" : ["Familiar", "Master"].includes(entry.category))) throw new Error(`Invalid familiar: ${entry.name}`);
       } else if (!Array.isArray(entry.entries) || !entry.entries.length || !Array.isArray(entry.traits) || entry.traits.some(trait => typeof trait !== "string")
         || typeof entry.size !== "string" || !entry.size.trim()) throw new Error(`Invalid companion: ${entry.name}`);
     },
@@ -82,11 +82,11 @@ export function createCompanionCatalog(payload) {
   return catalog;
 }
 
-const companionKind = record => record.kind === "familiar" ? `${record.category} Ability` : "Companion";
+const companionKind = record => record.kind === "familiar" ? `${record.category} Ability` : record.kind === "specific-familiar" ? "Specific Familiar" : "Companion";
 
 function renderCompanionBody(record, library, rules, anchorPrefix = "companion-section") {
   const options = { source: record.source, resolveCompanion: library?.registry.resolve, resolveRule: rules?.registry.resolve, anchorPrefix, headingOffset: -1 };
-  if (record.kind === "familiar") return renderContent({ entries: record.entry.entries }, options).html;
+  if (["familiar", "specific-familiar"].includes(record.kind)) return renderContent({ entries: record.entry.entries }, options).html;
   const shared = library?.companionRules;
   const advancement = shared ? `<details class="creature-family"><summary>Companion rules and advancement</summary>${renderContent({ entries: shared.entries }, { ...options, anchorPrefix: `${anchorPrefix}-rules` }).html}</details>` : "";
   return `${renderCreatureTraits(record)}<div class="creature-statblock">${renderContent({ entries: record.entry.entries }, options).html}</div>${advancement}`;
@@ -97,6 +97,7 @@ export const COMPANION_BROWSER_DEFINITION = {
   lists: [
     { id: "companions", label: "Companions", singular: "Companion", filterKeys: ["category", "size", "trait"], matches: record => record.kind === "companion" },
     { id: "familiar-abilities", label: "Familiar Abilities", singular: "Familiar Ability", filterKeys: ["abilityType"], matches: record => record.kind === "familiar" },
+    { id: "specific-familiars", label: "Specific Familiars", singular: "Specific Familiar", filterKeys: ["trait"], matches: record => record.kind === "specific-familiar" },
   ],
   filters: [{ key: "category", label: "Types" }, { key: "size", label: "Sizes" }, { key: "trait", label: "Traits" }, { key: "abilityType", label: "Ability types" }],
   sortKeys: ["name", "category", "source"], create: createCompanionCatalog,

@@ -1,7 +1,7 @@
 import { escapeHtml, renderContent, renderIcon, renderInline, safeHref } from "./content-renderer.js";
 import { createFeatCatalog, renderFeatBody, renderFeatTitle, resolveRelatedFeat } from "./feat-library.js";
 import { createReferenceCatalog, searchCatalog } from "./reference-library.js";
-import { renderReferenceCitation, renderReaderHeading, renderReaderFooter, sourceTone } from "./reference-data.js";
+import { renderReaderHeading, renderReaderFooter, sourceTone } from "./reference-data.js";
 
 const compare = new Intl.Collator("en", { sensitivity: "base", numeric: true }).compare;
 const slug = value => String(value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -15,11 +15,11 @@ const optionId = option => `${slug(option.type)}:${slug(option.shortName)}`;
 // Overview references need only class data, without loading the feat collection.
 export function createClassOverviewCatalog(payload) {
   if (!Array.isArray(payload?.classes)) throw new Error("Class data needs a classes array.");
-  const catalog = createReferenceCatalog({ ...payload, classes: payload.classes.filter(record => record.source === "PC1") }, {
+  const catalog = createReferenceCatalog(payload, {
     collection: "classes", href: "classes.html",
     validate(entry) {
       if (!Number.isInteger(entry.hp) || !entry.keyAbility || !Array.isArray(entry.features) || !Array.isArray(entry.subclasses)) throw new Error(`Incomplete class: ${entry.name}`);
-      if (entry.features.some(feature => feature.source !== "PC1") || entry.subclasses.some(option => option.source !== "PC1" || option.features.some(feature => feature.source !== "PC1"))) throw new Error("Classes must contain only PC1 content.");
+      if (!["PC1", "PC2"].includes(entry.source) || entry.features.some(feature => feature.source !== entry.source) || entry.subclasses.some(option => option.source !== entry.source || option.features.some(feature => feature.source !== entry.source))) throw new Error("Class features and options must match their Player Core source.");
       for (const feature of [...entry.features, ...entry.subclasses.flatMap(option => option.features)]) {
         if (!Number.isInteger(feature.level) || feature.level < 1 || feature.level > 20 || !Array.isArray(feature.entries)) throw new Error(`Invalid class feature: ${feature.name}`);
       }
@@ -35,7 +35,7 @@ export function createClassCatalog(payload, { dependencies = {}, featLibrary = c
   catalog.featLibrary = featLibrary;
   const names = new Set(catalog.records.map(record => record.name.toLowerCase()));
   catalog.feats = featLibrary.records.filter(feat => feat.traits.some(trait => names.has(trait)));
-  catalog.featsByClass = new Map(catalog.records.map(record => [record.id, catalog.feats.filter(feat => feat.traits.includes(record.name.toLowerCase())).sort((a, b) => a.level - b.level || compare(a.name, b.name))]));
+  catalog.featsByClass = new Map(catalog.records.map(record => [record.id, catalog.feats.filter(feat => feat.source === record.source && feat.traits.includes(record.name.toLowerCase())).sort((a, b) => a.level - b.level || compare(a.name, b.name))]));
   return catalog;
 }
 
@@ -63,7 +63,6 @@ export function renderClassResults(records, selectedId) {
   return `<ul class="rules-results">${records.map(record => `<li><a class="class-result" href="${escapeHtml(record.href)}" data-select-catalog="${escapeHtml(record.id)}"${record.id === selectedId ? ' aria-current="true"' : ""}><span><strong class="rule-result-name">${escapeHtml(record.name)}</strong></span><span class="class-result-attribute" title="${escapeHtml(record.keyAbility)}">${[...record.keyAttributes].map(value => attributes[value] || escapeHtml(value)).join(" / ")}</span><span class="class-result-hp">${record.hp}</span><span class="class-result-publication source-color" data-source-tone="${record.sourceTone}">${escapeHtml(record.source)}</span></a></li>`).join("")}</ul>`;
 }
 
-const citation = entry => renderReferenceCitation({ ...entry, page: Number.isInteger(entry.page) ? entry.page : null, sourceId: "PC1", sourceName: "Player Core" });
 export function renderClassPreview(record) {
   const image = safeHref(record.entry.image);
   return `<header class="rule-preview-heading"><h2 id="rule-preview-title">${escapeHtml(record.name)}</h2><span>Class</span></header><div class="rule-preview-body"><div class="class-preview-overview${image ? " class-preview-overview--illustrated" : ""}"><div><p class="class-preview-summary">${escapeHtml(record.entry.summary)}</p><dl class="class-preview-stats"><div><dt>Key attribute</dt><dd>${escapeHtml(record.keyAbility)}</dd></div><div><dt>Hit Points</dt><dd>${escapeHtml(record.hp)} + Constitution per level</dd></div></dl></div>${image ? `<img class="class-preview-image" src="${escapeHtml(image)}" alt="${escapeHtml(record.name)} class illustration" width="120" height="180" loading="lazy" decoding="async">` : ""}</div></div>${renderReaderFooter(record)}`;
@@ -74,7 +73,7 @@ const plainClick = event => !event.defaultPrevented && !event.ctrlKey && !event.
 function contentOptions(record, library, rules, anchorPrefix) {
   return {
     // Match authored h2–h6 blocks to their HTML levels alongside the native h3 feature titles.
-    source: "PC1", anchorPrefix, headingOffset: -1, resolveRule: rules?.registry.resolve,
+    source: record.source, anchorPrefix, headingOffset: -1, resolveRule: rules?.registry.resolve,
     resolveFeat(name, source) {
       const result = resolveRelatedFeat(library.featLibrary, [record.name.toLowerCase()], name, source);
       return result.target && library.featsByClass.get(record.id).includes(result.target)

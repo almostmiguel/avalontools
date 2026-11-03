@@ -48,7 +48,7 @@ function fieldsAndBody(nodes, references) {
   return { fields: Object.fromEntries([...fields].map(([key, nodes]) => [key, renderHtmlInline(nodes, references).replace(/[;,]\s*$/, "").trim()])), body, traits, sidebars };
 }
 
-export function parseEquipmentPage(html, selections, references, gearCategories = new Map()) {
+export function parseEquipmentPage(html, selections, references, gearCategories = new Map(), { source = "PC1", sourceName = "Player Core" } = {}) {
   const start = html.search(/<h1\b[^>]*class="title"/);
   if (start < 0) throw new Error(`Missing equipment title: ${selections[0]?.path}`);
   const end = html.indexOf('<div class="clear">', start);
@@ -68,7 +68,7 @@ export function parseEquipmentPage(html, selections, references, gearCategories 
     if (variants.length && !variant && normalizeName(selection.name) !== normalizeName(family.name)) throw new Error(`Missing variant: ${selection.name} (${selection.path}). Available: ${variants.map(node => headingInfo(node).name).join(", ")}`);
     const section = variant ? fieldsAndBody(nodes.slice(nodes.indexOf(variant) + 1), references) : common;
     const fields = { ...common.fields, ...section.fields };
-    const citation = /Player Core pg\. (\d+)/.exec(fields.Source || "");
+    const citation = new RegExp(`${sourceName} pg\\. (\\d+)`).exec(fields.Source || "");
     if (!citation) throw new Error(`Not a PC1 item: ${selection.name}`);
     const labels = [...new Set([...common.traits, ...(variant ? section.traits : [])])];
     const traits = [], traitLabels = {};
@@ -80,7 +80,7 @@ export function parseEquipmentPage(html, selections, references, gearCategories 
     }
     const category = kind === "Weapons" ? fields.Category === "Ammunition" ? "Ammunition" : "Weapon" : kind === "Armor" ? "Armor" : kind === "Shields" ? "Shield"
       : family.name === "Barding" ? "Barding" : ["Spellcasting", "Lodging", "Meals", "Transportation"].includes(family.name) ? "Service" : gearCategories.get(normalizeName(family.name)) || "Adventuring Gear";
-    const entry = { name: selection.name, source: "PC1", page: Number(citation[1]), category, level: variant ? headingInfo(variant).level : family.level, traits,
+    const entry = { name: selection.name, source, page: Number(citation[1]), category, level: variant ? headingInfo(variant).level : family.level, traits,
       ...(Object.keys(traitLabels).length ? { traitLabels } : {}) };
     for (const field of ["Price", "Bulk", "Hands", "Usage"]) if (fields[field]) entry[field.toLowerCase()] = fields[field];
     if (fields.Category) entry.subcategory = fields.Category;
@@ -90,7 +90,7 @@ export function parseEquipmentPage(html, selections, references, gearCategories 
     if (Object.keys(stats).length) entry.stats = stats;
     entry.entries = [...htmlContentBlocks(common.body, references), ...(variant ? htmlContentBlocks(section.body, references) : [])]
       .filter(block => typeof block !== "string" || !block.includes("Nethys Note:"));
-    if (variants.length && !variant) entry.entries.push({ type: "list", items: selections.filter(item => item.name !== selection.name).map(item => `{@equipment ${item.name}|PC1}`) });
+    if (variants.length && !variant) entry.entries.push({ type: "list", items: selections.filter(item => item.name !== selection.name).map(item => `{@equipment ${item.name}|${source}}`) });
     for (const sidebar of common.sidebars) entry.entries.push({ type: "box", entries: htmlContentBlocks(sidebar.children || [], references) });
     return entry;
   });

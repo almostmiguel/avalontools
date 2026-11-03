@@ -1,0 +1,42 @@
+{
+  "index": {
+    "Ancestries": 11,
+    "Ancestry Heritages": 57,
+    "Archetypes": 43,
+    "Backgrounds": 24,
+    "Bloodlines": 10,
+    "Champion Causes": 7,
+    "Classes": 8,
+    "Class Kits": 8,
+    "Class Sample Builds": 15,
+    "Equipment": 365,
+    "Familiar Abilities": 18,
+    "Familiars (Specific)": 7,
+    "Feats": 1002,
+    "Instincts": 6,
+    "Languages": 2,
+    "Methodologies": 4,
+    "Mysteries": 8,
+    "Research Fields": 4,
+    "Rituals": 13,
+    "Rules": 1,
+    "Spells": 158,
+    "Swashbuckler Styles": 6,
+    "Traits": 33,
+    "Weapons": 16
+  },
+  "imported": {
+    "actions": 19,
+    "ancestries": 11,
+    "archetypes": 43,
+    "backgrounds": 24,
+    "classes": 8,
+    "companions": 7,
+    "equipment": 381,
+    "feats": 1002,
+    "rules": 1,
+    "spells": 158,
+    "traits": 33,
+    "familiarAbilities": 18
+  }
+}

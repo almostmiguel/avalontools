@@ -4,6 +4,11 @@
       "id": "PC1",
       "name": "Player Core",
       "source": "PC1"
+    },
+    {
+      "id": "PC2",
+      "name": "Player Core 2",
+      "source": "PC2"
     }
   ],
   "ancestries": [
@@ -1674,6 +1679,1769 @@
       "images": [
         "img/ancestries/heritages/nephilim.webp",
         "img/ancestries/heritages/nephilim-angelkin.png"
+      ]
+    },
+    {
+      "name": "Catfolk",
+      "source": "PC2",
+      "page": 9,
+      "category": "Ancestry",
+      "versatile": false,
+      "traits": [
+        "catfolk",
+        "humanoid"
+      ],
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Catfolk are highly social, feline humanoids prone to curiosity and wandering."
+          ]
+        },
+        "Curious and gregarious wanderers, catfolk combine the features of felines and humanoids in both appearance and temperament. They enjoy learning new things, collecting new tales and trinkets, and ensuring their loved ones are safe and happy. Catfolk view themselves as the chosen guardians of natural places in the world and are often recklessly brave, even in the face of overwhelming opposition. They believe that strong communities, breadth of experience, and continual self-improvement aid them in this fight.",
+        "As quick as their reflexes are, catfolk have quicker tempers, shifting from effusive glee to aggrieved fury in an instant. Like mundane felines, catfolk involuntarily purr when pleased and growl when surprised or angry. If you want a character who is curious, brave, friendly, and nimble in body and mind, you should play a catfolk.",
+        {
+          "type": "h3",
+          "name": "You might...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Demonstrate genuine interest by asking a lot of enthusiastic questions.",
+                "Avoid interpersonal conflict by giving someone a cold shoulder or by simply leaving the area."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Others probably...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Think you monopolize conversations with your incessant queries or opinions.",
+                "Ascribe more emotion than you feel to your involuntary purrs or growling."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Physical Description",
+          "entries": [
+            "Although all catfolk walk upright and have soft fur, a tail, large ears, and vertical pupils, they show at least as much variety as ordinary felines. Catfolk have nimble fingers with short claws that are usually retractable.",
+            "Catfolk mature quickly and are able to walk at only a few months old, but they start their careers at roughly the same age as humans do and live to be 60 or 70 years of age."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Society",
+          "entries": [
+            "Catfolk call themselves amurruns, although many consider this name to be private. They raise their children in large extended families, where they are given latitude to explore and get into trouble from a remarkably young age. Catfolk learn a trade in a loose apprenticeship, and the majority learn several trades over their lives.",
+            "Catfolk societies are often led by an appointed leader who speaks on behalf of the community and mediates disputes. They prefer to deal with grievances by making an elaborate showing of disinterest, or even leaving a community for a time so the problem can die away."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Beliefs",
+          "entries": [
+            "Most catfolk believe they were uplifted from great primeval cats to confront the evil abominations despoiling natural places and laboring to unmake reality. Many, however, enjoy the freedom to travel and like to set their own paths in life. Religious catfolk most often practice a nebulous form of animism, appeasing the spirits of the land and the creatures they hunt to preserve the natural order.",
+            "{@b Popular Edicts} travel the world, protect natural places, fastidiously maintain your appearance",
+            "{@b Popular Anathema} leave questions unanswered"
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Names",
+          "entries": [
+            "Catfolk are given short names in their youth. Adolescent catfolk are free to choose a different name when they first leave home.",
+            {
+              "type": "h3",
+              "name": "Sample Names",
+              "entries": [
+                "Alyara, Crinto, Drewan, Espes, Ferrus, Gerran, Halhat, Hoya, Ruun, Sevastin, Tespa, Yonsol, Zakkar, Zathra"
+              ]
+            }
+          ]
+        }
+      ],
+      "heritages": [
+        {
+          "name": "Clawed Catfolk",
+          "source": "PC2",
+          "page": 9,
+          "entries": [
+            "Your family has particularly long, sharp claws capable of delivering bleeding wounds with a wicked swipe. You gain a claw unarmed attack that deals 1d6 slashing damage. Your claws are in the brawling group and have the {@trait Agile|PC1|agile}, {@trait Finesse|PC1|finesse}, and {@trait Unarmed|PC1|unarmed} traits."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Hunting Catfolk",
+          "source": "PC2",
+          "page": 9,
+          "entries": [
+            "You come from a long line of skilled hunters and trackers and have a particularly keen sense of smell. You gain {@rule Imprecise Senses|PC1|imprecise} {@rule Scent|PC1|scent} with a range of 30 feet. This means you can use your sense of smell to determine a creature's location. The GM will usually double the range if you're downwind from the creature or halve the range if you're upwind.",
+            "In addition, you gain a +2 circumstance bonus to {@action Track|PC1} a creature or object if you've smelled it before."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Jungle Catfolk",
+          "source": "PC2",
+          "page": 9,
+          "entries": [
+            "You're descended from jungle stalkers and can move swiftly through scrub and underbrush. You ignore {@rule Difficult Terrain|PC1|difficult terrain} from undergrowth, and greater difficult terrain from undergrowth is only difficult terrain for you."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Liminal Catfolk",
+          "source": "PC2",
+          "page": 9,
+          "entries": [
+            "You've inherited a closeness to the far corners of the world, where the boundaries between dimensions grow thin. You can cast the {@spell Detect Magic|PC1|detect magic} cantrip as an occult innate spell at will. A cantrip is heightened to half your level rounded up. You also gain a +1 circumstance bonus to {@skill Occultism|PC1} checks to {@action Recall Knowledge|PC1} about creatures that originated on planes other than the Universe."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Nine Lives Catfolk",
+          "source": "PC2",
+          "page": 9,
+          "entries": [
+            "Your family has always seems to bounce back from disaster, not through physical hardiness or specialized skill, but from sheer luck. Other catfolk whisper that you have nine lives. While you're {@condition Dying|PC1|dying}, you don't add your dying value to the DC of your recovery checks (this means the DC is typically 10). In addition, you gain the {@feat Diehard|PC1} general feat."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Sharp-Eared Catfolk",
+          "source": "PC2",
+          "page": 9,
+          "entries": [
+            "You were born with big, expressive ears that move with your moods and perk up at any unexpected sound. You gain a +2 circumstance bonus to locate {@condition Undetected|PC1|undetected} creatures that you could hear within 30 feet with a {@action Seek|PC1} action. As long as you're aware of a creature via sound, once per round, your ears can help you {@action Point Out|PC1} the creature to all allies as a free action."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Winter Catfolk",
+          "source": "PC2",
+          "page": 9,
+          "entries": [
+            "You have a thick coat of fur that protects you from the cold. You gain cold resistance equal to half your level (minimum 1). You treat {@trait Cold|PC1|environmental cold effects} as if they were one step less extreme (incredible cold becomes extreme, extreme cold becomes severe, and so on).",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Winter Catfolk...",
+              "entries": [
+                "Winter Cat Senses"
+              ]
+            }
+          ],
+          "traits": []
+        }
+      ],
+      "features": [
+        {
+          "name": "Low-Light Vision",
+          "entries": [
+            "You can see in {@rule Dim Light|PC1|dim light} as though it were {@rule Bright Light|PC1|bright light}, so you ignore the {@condition Concealed|PC1|concealed} condition due to dim light."
+          ]
+        },
+        {
+          "name": "Land on Your Feet",
+          "entries": [
+            "When you fall, you take only half the normal damage and don't land {@condition Prone|PC1|prone}."
+          ]
+        }
+      ],
+      "heritageInfo": [],
+      "rarity": "uncommon",
+      "hp": 8,
+      "size": [
+        "Medium"
+      ],
+      "speed": "25 feet",
+      "boosts": [
+        "Dexterity",
+        "Charisma",
+        "Free"
+      ],
+      "flaws": [
+        "Wisdom"
+      ],
+      "languages": [
+        "Amurrun",
+        "Common",
+        "Additional languages equal to your Intelligence modifier (if it's positive). Choose from Draconic, Elven, Gnomish, Goblin, Halfling, Iruxi, Jotun, Fey, and any other languages to which you have access (such as the languages prevalent in your region)."
+      ],
+      "images": [
+        "img/ancestries/catfolk-m.webp",
+        "img/ancestries/catfolk-f.png"
+      ]
+    },
+    {
+      "name": "Dhampir",
+      "source": "PC2",
+      "page": 42,
+      "category": "Versatile heritage",
+      "versatile": true,
+      "traits": [
+        "dhampir"
+      ],
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You are the scion of a vampire, half living and half {@trait Undead|PC1|undead}, gifted with uncanny charm and grace, a bloodless pallor, and elongated incisors."
+          ]
+        }
+      ],
+      "heritages": [],
+      "features": [
+        {
+          "name": "Dhampir Heritage",
+          "entries": [
+            "You gain the {@trait Dhampir|PC2|dhampir} trait, in addition to the traits from your ancestry. You have the {@creatureability Void Healing|MC1|void healing} ability, which means you are harmed by vitality damage and healed by void effects as if you were undead. You also gain {@rule Low-Light Vision|PC1|low-light vision}, or you gain {@creatureability Darkvision|MC1|darkvision} if your ancestry already has low-light vision. You can select from dhampir feats and feats from your ancestry whenever you gain an ancestry feat."
+          ]
+        }
+      ],
+      "heritageInfo": [],
+      "rarity": "uncommon",
+      "images": [
+        "img/ancestries/heritages/dhampir.webp"
+      ]
+    },
+    {
+      "name": "Dragonblood",
+      "source": "PC2",
+      "page": 44,
+      "category": "Versatile heritage",
+      "versatile": true,
+      "traits": [
+        "dragonblood"
+      ],
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "You're descended in some way from a dragon."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Draconic Exemplars",
+          "entries": [
+            "Some abilities reference your draconic exemplar, which is a specific type of dragon from which you draw your draconic powers—typically the type of dragon whose blood runs in your veins. You can choose your exemplar when you create your character, but are only required to choose one when you select a feat or other option that requires you to have one (such as Breath of the Dragon). This means your draconic nature might be a mystery to you for some time.",
+            "The table below lists the dragons from Monster Core and their specifications. The dragon breath entry lists if the given breath uses a Fortitude {@sup (F)}, Reflex {@sup (R)}, or Will {@sup (W)} saving throw. If you choose a dragon from a different source, work with your GM to determine if you have access to it. Click here for the full list of Draconic Exemplars.",
+            {
+              "type": "table",
+              "colLabels": [
+                "Dragon",
+                "Tradition",
+                "Speeds",
+                "Dragon Breath"
+              ],
+              "rows": [
+                [
+                  "Adamantine",
+                  "Primal",
+                  "Burrow",
+                  "Cone of bludgeoning{@sup R}"
+                ],
+                [
+                  "Conspirator",
+                  "Occult",
+                  "Climb",
+                  "Cone of poison{@sup F}"
+                ],
+                [
+                  "Diabolic",
+                  "Divine",
+                  "-",
+                  "Cone of fire{@sup R}"
+                ],
+                [
+                  "Empyreal",
+                  "Divine",
+                  "-",
+                  "Cone of spirit{@sup R}"
+                ],
+                [
+                  "Fortune",
+                  "Arcane",
+                  "-",
+                  "Cone of force{@sup R}"
+                ],
+                [
+                  "Horned",
+                  "Primal",
+                  "Swim",
+                  "Cone of poison{@sup F}"
+                ],
+                [
+                  "Mirage",
+                  "Arcane",
+                  "Climb",
+                  "Cone of mental{@sup W}"
+                ],
+                [
+                  "Omen",
+                  "Occult",
+                  "-",
+                  "Cone of mental{@sup W}"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "heritages": [],
+      "features": [
+        {
+          "name": "Dragonblood Heritage",
+          "entries": [
+            "Your physical features might show this outwardly, with a pair of draconic horns, patches of scaly skin, or even a tail, or you might develop an internal reserve of draconic power. You gain the {@trait Dragonblood|PC2|dragonblood} trait, in addition to the traits from your ancestry. Add Draconic to your ancestry's list of additional languages (allowing you to choose it as a language if your Intelligence modifier is positive). When you roll a success on a saving throw against a {@trait Fear|PC1|fear} effect, you get a critical success instead. You can choose from dragonblood feats and feats from your ancestry whenever you gain an ancestry feat."
+          ]
+        }
+      ],
+      "heritageInfo": [],
+      "rarity": "uncommon",
+      "images": [
+        "img/ancestries/heritages/dragonblood-1.webp",
+        "img/ancestries/heritages/dragonblood-2.png"
+      ]
+    },
+    {
+      "name": "Duskwalker",
+      "source": "PC2",
+      "page": 48,
+      "category": "Versatile heritage",
+      "versatile": true,
+      "traits": [
+        "duskwalker"
+      ],
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Thanks to an ancient bargain, your soul has been reborn as a duskwalker, a planar scion with a connection to psychopomps and the Boneyard."
+          ]
+        }
+      ],
+      "heritages": [],
+      "features": [
+        {
+          "name": "Duskwalker Heritage",
+          "entries": [
+            "You gain the {@trait Duskwalker|PC2|duskwalker} trait. You also gain {@rule Low-Light Vision|PC1|low-light vision}, or you gain {@creatureability Darkvision|MC1|darkvision} if your ancestry already has low-light vision. Neither your body nor your spirit can ever become {@trait Undead|PC1|undead}. You can select from duskwalker feats and feats from your ancestry whenever you gain an ancestry feat."
+          ]
+        }
+      ],
+      "heritageInfo": [],
+      "rarity": "uncommon",
+      "images": [
+        "img/ancestries/heritages/duskwalker.webp"
+      ]
+    },
+    {
+      "name": "Hobgoblin",
+      "source": "PC2",
+      "page": 13,
+      "category": "Ancestry",
+      "versatile": false,
+      "traits": [
+        "hobgoblin",
+        "humanoid"
+      ],
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Hobgoblins are taller and stronger than their goblin kin, often arranging themselves into military structures."
+          ]
+        },
+        "Taller and stronger than their goblin kin, hobgoblins are equals in strength and size to humans, with broad shoulders and long, powerful arms. The Avistani cycle of unthinking conflict with hobgoblins has recently been upended by Oprak, the newly established hobgoblin nation in the mountains between Nidal and Nirmathas. Now under strict orders to not start conflicts with other nations, these hobgoblins have begun to cautiously investigate in the spirit of cooperation rather than conquest. Many people, especially those who suffered terrible cruelties caused by hobgoblins, fear that this is simply a pause in aggression while Oprak gains enough strength to crush its rivals. Others hope these bold soldiers might prove to be powerful allies.",
+        {
+          "type": "h3",
+          "name": "You Might...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Seek out the most effective and practical solutions to any problem.",
+                "Encourage a clear chain of command among any group you travel with, following orders even if you disagree with them."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Others Probably...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Consider you dangerous, due to your reputation and intimidating appearance.",
+                "Recognize your incredible endurance, dedication, and discipline."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Physical Description",
+          "entries": [
+            "Hobgoblins have bald, wide heads and beady eyes, as well as gray skin that becomes steely blue when tanned. They're remarkably hardy; hobgoblins recover from illnesses quickly and are able to exert themselves for long periods of time with little difficulty.",
+            "Hobgoblins mature quickly, and most can walk, talk, and hold a weapon by the time they are 1 year old. They reach adolescence by the age of 8 to 12 and adulthood around 14. Hobgoblins typically live up to 70 years of age."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Society",
+          "entries": [
+            "Hobgoblins structure their society after military hierarchies. Even civilian groups such as farming collectives or trading houses organize into regiments, companies, and divisions. Hobgoblin veterans hold a high place in their society, usually becoming leaders or advisors. Magic is rarely practiced and often derided, as most hobgoblins don't trust it over the strength of their own sword arms. Their arts tend to have a military bent; many hobgoblins consider stirring marches and weaponsmithing the only artistic endeavors worth pursuing."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Beliefs",
+          "entries": [
+            "Most hobgoblins prefer to live within established hierarchies. While many consider sentimentality weak, those with mild temperaments have recently found success in diplomacy and international outreach. Faith has little place in hobgoblin society, as many feel it is impractical, though religious hobgoblins can gain a begrudging modicum of acceptance due to their useful healing magic.",
+            "{@b Popular Edicts} disdain arcane magic, hide sentimentality and positive emotions, jump at chances to prove yourself",
+            "{@b Popular Anathema} disobey military orders"
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Names",
+          "entries": [
+            "Like {@ancestry Goblin|PC1|goblins}, hobgoblin names tend to be simple, though hobgoblin names usually sound more guttural and forceful. On rare occasions, hobgoblins will alter their names, keeping the core but adding aspects, usually in response to extreme trauma or a life-altering event. Hobgoblins have no surnames, considering them both pointless and presumptuous; an individual's merits and demerits are to be earned by their actions, not by an association with a particular lineage.",
+            {
+              "type": "h3",
+              "name": "Sample Names",
+              "entries": [
+                "Aze, Druknar, Ghargam, Hathkren, Imakra, Kralaeng, Mazkol, Olzu, Rezal, Sivkrag, Volmak, Zornum"
+              ]
+            }
+          ]
+        }
+      ],
+      "heritages": [
+        {
+          "name": "Elfbane Hobgoblin",
+          "source": "PC2",
+          "page": 13,
+          "entries": [
+            "Hobgoblins were engineered long ago from the unreliable and fecund {@ancestry Goblin|PC1|goblins} to be used as an army against the {@ancestry Elf|PC1|elves}. Although the elves ultimately freed the hobgoblins from their bondage, some hobgoblins retain ancestral resistance to magic, which they refer to as “elf magic.” You gain the Resist Elf Magic reaction.",
+            "{@b Resist Elf Magic} {@as r} {@b Trigger} You attempt a saving throw against a {@trait Magical|PC1|magical} effect but haven't rolled yet; {@b Effect} Your ancestral resistance to magic protects you. You gain a +1 circumstance bonus to the triggering saving throw. If the triggering effect is {@trait Arcane|PC1|arcane}, you gain a +2 circumstance bonus instead."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Runtboss Hobgoblin",
+          "source": "PC2",
+          "page": 13,
+          "entries": [
+            "You come from a long line of hobgoblins who commanded {@ancestry Goblin|PC1|goblins}. You are smaller than other hobgoblins, but goblins still listen to any commands you bellow. You gain the {@feat Group Coercion|PC1} skill feat. If you roll a success on an {@skill Intimidation|PC1} check to {@action Coerce|PC1} a goblin, you get a critical success instead; if you roll a critical failure, you get a failure instead."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Shortshanks Hobgoblin",
+          "source": "PC2",
+          "page": 13,
+          "entries": [
+            "You have a longer torso and broader shoulders than most hobgoblins, making your legs seem short by comparison. This gives you a strong, muscular core and lowers your center of gravity—features that assist you in riding and climbing—and you've trained at riding in a saddle from an extremely early age. You gain the Ride feat. Additionally, you are not {@condition Off-guard|PC1|off-guard} while you {@action Climb|PC1}."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Smokeworker Hobgoblin",
+          "source": "PC2",
+          "page": 13,
+          "entries": [
+            "Your family have been alchemists, engineers, and scientists for generations, laboring on projects that bring smoke and fire to the field of battle. You gain fire resistance equal to half your level (minimum 1). You automatically succeed at the DC 5 flat check to target a {@condition Concealed|PC1|concealed} creature if that creature is concealed only by smoke."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Warmarch Hobgoblin",
+          "source": "PC2",
+          "page": 13,
+          "entries": [
+            "You come from a line of wandering mercenaries constantly on the march and scavenging food on the trail. If you fail, but don't critically fail, to {@action Subsist|PC1} in the wilderness, you can still keep yourself fed with poor meals. When exploring, you can {@action Hustle|PC1} twice as long before you have to stop."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Warrenbred Hobgoblin",
+          "source": "PC2",
+          "page": 13,
+          "entries": [
+            "Your ancestors lived underground. Your ears are larger than those of other hobgoblins and sensitive to echoes. While you're underground, when you target an opponent that is {@condition Concealed|PC1|concealed} from you or {@condition Hidden|PC1|hidden} from you, reduce the DC of the flat check to 3 for a concealed target or 9 for a hidden one. In addition, if you roll a success on an {@skill Acrobatics|PC1} check to {@action Squeeze|PC1}, you get a critical success instead."
+          ],
+          "traits": []
+        }
+      ],
+      "features": [
+        {
+          "name": "Darkvision",
+          "entries": [
+            "You can see in {@rule Darkness|PC1|darkness} and {@rule Dim Light|PC1|dim light} just as well as you can see in {@rule Bright Light|PC1|bright light}, though your vision in darkness is in black and white."
+          ]
+        }
+      ],
+      "heritageInfo": [],
+      "rarity": "uncommon",
+      "hp": 8,
+      "size": [
+        "Medium"
+      ],
+      "speed": "25 feet",
+      "boosts": [
+        "Constitution",
+        "Intelligence",
+        "Free"
+      ],
+      "flaws": [
+        "Wisdom"
+      ],
+      "languages": [
+        "Common",
+        "Goblin",
+        "Additional languages equal to your Intelligence modifier (if it's positive). Choose from Draconic, Dwarven, Jotun, Halfling, Kholo, Orcish, and any other languages to which you have access (such as the languages prevalent in your region)."
+      ],
+      "images": [
+        "img/ancestries/hobgoblin-m.webp",
+        "img/ancestries/hobgoblin-f.png"
+      ]
+    },
+    {
+      "name": "Kholo",
+      "source": "PC2",
+      "page": 17,
+      "category": "Ancestry",
+      "versatile": false,
+      "traits": [
+        "humanoid",
+        "kholo"
+      ],
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Kholos are hyena-headed humanoids who embrace practicality and pragmatism."
+          ]
+        },
+        "Kholos have bad reputations as brutal raiders and demon-worshipers. Many believe that kholos are witches, cannibals, and worse. The truth is more complex. Kholos are eminently practical and pragmatic hunters and raiders. To them, honor is just another word for pointless risk. Any loss of a kholo affects not just the individual, but their packmates and kin as well. Wasting time on anything but victory, whether it's mercy or cruelty, is seen as little shy of immoral. Kholos are masters of ambushes, tactical feints, and psychological warfare. Equally misunderstood is the kholo practice of ancestor worship and endocannibalism. Kholos consume their dead as a sign of reverence, holding a grand feast and transforming the bones into art or weapons. Kholos extend this honor to respected foes, hoping to bring their enemy's cunning or strength into the clan.",
+        {
+          "type": "h3",
+          "name": "You Might...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Be physically demonstrative—hugging, punching, or licking your friends.",
+                "Keep a bone from a favorite relative to ask for advice."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Others Probably...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Are intimidated by your size, teeth, and eerie laugh.",
+                "Respect the brutal efficiency of your hunting style."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Physical Description",
+          "entries": [
+            "Kholos are hyena-like humanoids with short muzzles, sharp teeth, and large and expressive round ears. Their bodies are covered in shaggy fur, rougher on the back and softer and lighter on the stomach and throat, usually in an off-white, tan, or brown shade; spots and stripes are both common. Kholos typically stand between 6 and 7 feet tall. Women are usually about a head taller than men and correspondingly stronger. Kholos are considered adults at 15 and live about 60 years on average."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Society",
+          "entries": [
+            "Kholos generally live in semi-nomadic clans of 10 to 20 family groups, containing between 100 to 200 members. They are ruled by a council of female kholos who are typically selected from the elders of each family. Bonekeepers focus on tending to the wishes of kholo ancestors and gods— they take their name from the ancestral bones that festoon their clothing and homes. Storytellers serve as teachers and sages, and are expected to have an encyclopedic knowledge of clan history, regional lore, and anything else relevant to the clan."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Beliefs",
+          "entries": [
+            "Kholos have an unsentimental, matter-of-fact approach to life and prioritize results over methods. They are usually loyal and generous to their people and ruthless toward outsiders—whether this behavior is considered acceptable varies depending on who they view as “their people.”",
+            "Many kholos pay homage to Lamashtu, both as the originator of their people and a guide in a chaotic world. However, some kholos often give homage to Calistria and Shelyn. Nethys is the patron of bonekeepers.",
+            "{@b Popular Edicts} strengthen your allies and packmates, recount the tales of your ancestors, neutralize foes with tactics and cunning",
+            "{@b Popular Anathema} risk yourself or your packmates for no reason, let a dead kholo or loved one rot like carrion"
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Names",
+          "entries": [
+            "Newborn kholos are given a root name, typically that of a bone, plant, or animal (though never Hyena, as this is considered narcissistic). As a kholo reaches certain milestones in their life, they add descriptors to their name.",
+            {
+              "type": "h3",
+              "name": "Sample Names",
+              "entries": [
+                "Baobab, Jackal, Onyx Elephant in Shadows, Red Thorn, Unbent Iron Reed, White Acacia, Wistful Tooth, Woodpecker"
+              ]
+            }
+          ]
+        }
+      ],
+      "heritages": [
+        {
+          "name": "Ant Kholo",
+          "source": "PC2",
+          "page": 17,
+          "entries": [
+            "You're a sharp-featured, big-eared kholo about 3 feet tall. Many are skeptical that you are in fact a kholo. Your size is Small instead of Medium. You are trained in {@skill Deception|PC1} (or another skill if you were already trained in Deception). You gain a +1 circumstance bonus to Deception checks to {@action Lie|PC1} when specifically claiming innocence, to Deception DCs against {@action Sense Motive|PC1} checks to uncover such lies, and to initiative checks when you roll Deception for initiative."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Cave Kholo",
+          "source": "PC2",
+          "page": 17,
+          "entries": [
+            "Storytellers spin ancient tales claiming that kholo lived in caves and underground before most of your kind ventured into the light. You're a throwback to these ancients, with a broad chest and markings that resemble short black slashes instead of spots. Your eyes are developed to see perfectly in the dark, a valuable advantage to your clan. You gain {@creatureability Darkvision|MC1|darkvision}."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Dog Kholo",
+          "source": "PC2",
+          "page": 17,
+          "entries": [
+            "You're a nimble-bodied kholo with a prehistoric, almost dog-like build. Though you typically move like a quadruped, you can still stand and fight like a biped, allowing you to use all equipment normally. If you have both hands free, you can increase your Speed to 30 feet as you run on all fours.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Dog Kholo...",
+              "entries": [
+                "{@feat Rabid Sprint|PC2}"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Great Kholo",
+          "source": "PC2",
+          "page": 17,
+          "entries": [
+            "You're an imposing, powerful kholo, with tawny fur and brown spots on your hide. You gain 10 Hit Points from your ancestry instead of 8 and gain a +1 circumstance bonus to {@skill Athletics|PC1} checks to {@action Reposition|PC1}, {@action Shove|PC1}, or {@action Trip|PC1}."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Sweetbreath Kholo",
+          "source": "PC2",
+          "page": 17,
+          "entries": [
+            "You're a striped, pale-furred kholo with oddly pleasant breath, which you can use to entrance your prey. You are trained in {@skill Diplomacy|PC1} (or another skill if you were already trained in Diplomacy). You also gain a +1 circumstance bonus to checks to {@action Make an Impression|PC1} if the target can smell your breath.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Sweetbreath Kholo...",
+              "entries": [
+                "{@feat Breath Like Honey|PC2}, {@feat Breath Like Honey|PC2}"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Winter Kholo",
+          "source": "PC2",
+          "page": 17,
+          "entries": [
+            "You're a hardy kholo covered in thick, tufted fur that makes you able to survive in the harsh winters of the colder territories. You gain cold resistance equal to half your level (minimum 1). You treat {@trait Cold|PC1|environmental cold effects} as if they were one step less extreme (incredible cold becomes extreme, extreme cold becomes severe, and so on)."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Witch Kholo",
+          "source": "PC2",
+          "page": 17,
+          "entries": [
+            "You're a shaggy, dark-furred kholo capable of making some truly uncanny sounds. You can cast the {@spell Figment|PC1|figment} cantrip as an occult innate spell at will. A cantrip is heightened to a spell rank equal to half your level rounded up. In addition, you gain a +1 circumstance bonus to checks to {@action Create a Diversion|PC1} and {@action Impersonate|PC1} when using only your voice.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Witch Kholo...",
+              "entries": [
+                "{@feat Distant Cackle|PC2}, {@feat Distant Cackle|PC2}"
+              ]
+            }
+          ],
+          "traits": []
+        }
+      ],
+      "features": [
+        {
+          "name": "Low-Light Vision",
+          "entries": [
+            "You can see in {@rule Dim Light|PC1|dim light} as though it were {@rule Bright Light|PC1|bright light}, so you ignore the {@condition Concealed|PC1|concealed} condition due to dim light."
+          ]
+        },
+        {
+          "name": "Bite",
+          "entries": [
+            "Your sharp teeth and powerful jaws are fearsome weapons. You have a jaws {@trait Unarmed|PC1|unarmed} attack that deals 1d6 piercing damage. Your jaws are in the brawling group."
+          ]
+        }
+      ],
+      "heritageInfo": [],
+      "rarity": "uncommon",
+      "hp": 8,
+      "size": [
+        "Medium"
+      ],
+      "speed": "25 feet",
+      "boosts": [
+        "Strength",
+        "Intelligence",
+        "Free"
+      ],
+      "flaws": [
+        "Wisdom"
+      ],
+      "languages": [
+        "Common",
+        "Kholo",
+        "Additional languages equal to your Intelligence modifier (if it's positive). Choose from Draconic, Elven, Fey, Iruxi, Necril, Orcish, and any other languages to which you have access (such as the languages prevalent in your region)."
+      ],
+      "images": [
+        "img/ancestries/kholo-m.webp",
+        "img/ancestries/kholo-f.png"
+      ]
+    },
+    {
+      "name": "Kobold",
+      "source": "PC2",
+      "page": 21,
+      "category": "Ancestry",
+      "versatile": false,
+      "traits": [
+        "humanoid",
+        "kobold"
+      ],
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Kobolds are small and reptilian, with features marked by the power they choose to follow."
+          ]
+        },
+        "Every kobold instinctively understands the importance of power, and many are inclined to venerate those who have it, whether they be mighty dragons, cruel fiends, imperious fey, or even ancient artifacts. Kobolds seek out these alliances out of a sense of pragmatism— after all, who would dare bully a kobold who serves an ancient dragon?—but also because kobold eggs incubated near such loci of power take on physical traits (and sometimes abilities) similar to those of the warren's benefactor. On their own, kobolds are ingenious crafters and devoted allies, but outsiders who trespass into their territory find them to be inspired skirmishers and clever ambushers. However, these reptilian opportunists prove happy to cooperate with other humanoids when it's to their benefit, combining caution and cunning to make their fortunes in the wider world.",
+        "If you want a character with deadly cunning and who bears the mark of a powerful benefactor, you should play a kobold.",
+        {
+          "type": "h3",
+          "name": "You Might...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Analyze your surroundings, always looking for ambushes, advantageous terrain, and escape routes.",
+                "Naturally observe, adopt, and respect group dynamics, whether as leader, subordinate, or equal."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Others Probably...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Assume that you are cowardly and won't stick around in the face of danger.",
+                "Appreciate your ingenuity and resourcefulness, especially when it comes to building defenses."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Physical Description",
+          "entries": [
+            "Kobolds are short (about 3 feet tall), reptilian humanoids with slender bodies, long tails, and stout horns. Their features often reflect the nature of their warren's benefactor, such as vestigial draconic wings or glowing crystalline growths. These differences set warrens apart, though all kobolds are generally easily recognizable as such.",
+            "Kobolds mature quickly, reaching adulthood by about 12 years and living to about 60. Some rare kobolds live even longer after harnessing the power of a magical benefactor."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Society",
+          "entries": [
+            "Kobolds have an ingrained cautiousness that keeps them alive. They're secretive or subservient around powerful creatures to avoid becoming victims. This meekness fades once kobolds secure either a formidable benefactor (like a dragon) or a potent source of supernatural power (like an artifact or sorcerous leader). Kobold societies regularly adopt laws and cultural norms inspired by their benefactor's personality. However, kobolds are infamous for sensing a proverbial sinking ship, and once their source of power fails or seems doomed, their morale breaks swiftly."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Beliefs",
+          "entries": [
+            "All but the most iconoclastic kobolds have a natural respect for hierarchies and rules, relying on their ancestral social strategies for survival.",
+            "Organized religion feels natural for most kobolds. They're often drawn to deities related to their benefactors, such as Asmodeus if the benefactor is a devil, or dragon deities like Apsu and Dahak if the benefactor is a dragon. Kobolds also often find themselves drawn to cults, particularly those with powerful magical creatures as figureheads.",
+            "{@b Popular Edicts} find your place in any power structure, take pride in your allies' strength, win with your wits",
+            "{@b Popular Anathema} face a threat alone, throw caution to the wind"
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Names",
+          "entries": [
+            "A young kobold's given name is rarely more than a syllable or two. However, as they age, achieve status, and accomplish great deeds, they might add more syllables to their names. Kobolds rarely have surnames except in an effort to better fit into a community, in which case they typically adopt the surname of an inspiring figure in that group.",
+            {
+              "type": "h3",
+              "name": "Sample Names",
+              "entries": [
+                "Azrnak, Draahzin, Enga, Fazgyn, Fazij, Jekkajak, Kib, Kirrok, Mirkol, Tarka, Urkak, Varshez, Vroklan, Zekstikah, Zgaz"
+              ]
+            }
+          ]
+        }
+      ],
+      "heritages": [
+        {
+          "name": "Cavernstalker Kobold",
+          "source": "PC2",
+          "page": 21,
+          "entries": [
+            "You hatched in a warren with narrow tunnels that was also home to a being of primal earth energy, which has made you limber and flexible. When {@action Climb|PC1|Climbing} rock walls, stalactites, and other natural stone features, you move at half your Speed on a success and at full Speed on a critical success (and you move at full Speed on a success if you have {@feat Quick Climb|PC1}). This doesn't affect you if you're using a climb Speed. If you roll a success on an {@skill Acrobatics|PC1} check to {@action Squeeze|PC1}, you get a critical success instead."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Dragonscaled Kobold",
+          "source": "PC2",
+          "page": 21,
+          "entries": [
+            "Thanks to your warren's association with a dragon, your scales are sturdier than other kobolds'. You gain 10 Hit Points from your ancestry instead of 6. You gain a +1 circumstance bonus to saves against dragon breath, effects with the {@trait Sleep|PC1|sleep} trait, and effects that would make you {@condition Paralyzed|PC1|paralyzed}.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Dragonscaled Kobold...",
+              "entries": [
+                "Benefactor's Resistance, Benefactor's Strike, Dracomancer, {@feat Dragon's Presence|PC2}, Dragonscaled Lore, Hoarder's Craw, Kobold Breath"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Elementheart Kobold",
+          "source": "PC2",
+          "page": 21,
+          "entries": [
+            "When you hatched, you imprinted on a creature strongly associated with one of the Elemental Planes, such as an {@trait Elemental|PC1|elemental} or genie. Choose air, earth, fire, metal, water, or wood for your elemental benefactor. You gain resistance equal to half your level (minimum 1) to the damage type associated with your elemental benefactor: cold for air, electricity for earth, fire for fire, sonic for metal, acid for water, or poison for wood."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Spellhorn Kobold",
+          "source": "PC2",
+          "page": 21,
+          "entries": [
+            "Since hatching in the vicinity of a powerful source of magic, a trace of it flows through your veins. Choose one common {@trait Cantrip|PC1|cantrip} from the arcane spell list. You can Cast this Spell as an arcane innate spell at will. A cantrip is heightened to a spell rank equal to half your level rounded up. You are trained in the spell attack modifier and spell DC statistics, and your spellcasting ability is Charisma.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Spellhorn Kobold...",
+              "entries": [
+                "{@feat Evolved Spellhorn|PC2}"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Strongjaw Kobold",
+          "source": "PC2",
+          "page": 21,
+          "entries": [
+            "Your warren is noted for their powerful jaws and sharp teeth, either to help protect against natural predators or due to reverence of a mighty beast. You gain a jaws unarmed attack that deals 1d6 piercing damage. Your jaws are in the brawling group and have the {@trait Finesse|PC1|finesse} and {@trait Unarmed|PC1|unarmed} traits.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Strongjaw Kobold...",
+              "entries": [
+                "Dragonblood Paragon"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Tunnelflood Kobold",
+          "source": "PC2",
+          "page": 21,
+          "entries": [
+            "You grew up in a warren crisscrossed by underwater passages, whether natural or excavated, and were influenced by a powerful aquatic entity or being of primal water. You gain a swim Speed of 15 feet."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Venomtail Kobold",
+          "source": "PC2",
+          "page": 21,
+          "entries": [
+            "Thanks to the proximity of a venomous creature to your warren, you were born with a vestigial spur in your tail that secretes deadly venom. You gain the Tail Toxin action.",
+            "{@b Tail Toxin} {@as 1} ({@trait Manipulate|PC1|manipulate}) {@b Frequency} once per day; {@b Requirements} You are wielding a piercing or slashing weapon; {@b Effect} You apply your tail's venom to a piercing or slashing weapon. If your next Strike with that weapon before the end of your next turn hits and deals damage, you deal {@condition Persistent Damage|PC1|persistent poison damage} equal to your level to the target.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Venomtail Kobold...",
+              "entries": [
+                "Dragonblood Paragon"
+              ]
+            }
+          ],
+          "traits": []
+        }
+      ],
+      "features": [
+        {
+          "name": "Darkvision",
+          "entries": [
+            "You can see in {@rule Darkness|PC1|darkness} and {@rule Dim Light|PC1|dim light} just as well as you can see in {@rule Bright Light|PC1|bright light}, though your vision in darkness is in black and white."
+          ]
+        }
+      ],
+      "heritageInfo": [],
+      "rarity": "uncommon",
+      "hp": 6,
+      "size": [
+        "Small"
+      ],
+      "speed": "25 feet",
+      "boosts": [
+        "Dexterity",
+        "Charisma",
+        "Free"
+      ],
+      "flaws": [
+        "Constitution"
+      ],
+      "languages": [
+        "Common",
+        "Sakvroth",
+        "Additional languages equal to your Intelligence modifier (if it's positive). Choose from Aklo, Diabolic, Draconic, Dwarven, Empyrean, Fey, Gnomish, and Petran, and any other languages to which you have access (such as the languages prevalent in your region)."
+      ],
+      "images": [
+        "img/ancestries/kobold-m.webp",
+        "img/ancestries/kobold-f.png"
+      ]
+    },
+    {
+      "name": "Lizardfolk",
+      "source": "PC2",
+      "page": 25,
+      "category": "Ancestry",
+      "versatile": false,
+      "traits": [
+        "humanoid",
+        "lizardfolk"
+      ],
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Lizardfolk are scaled humanoids with a history that stretches into the distant past."
+          ]
+        },
+        "Lizardfolk are consummate survivors, heirs to empires considered ancient even by the elves.",
+        "Lizardfolk move through the societies of other humanoids with the steely reserve of born predators. They have a well-deserved reputation as outstanding rangers and unsentimental fighters. Though lizardfolk have adapted to many different environments, many of them still prefer to remain near bodies of water, using their ability to hold their breath to their advantage. As a result, they usually prefer equipment that is not easily damaged by moisture, eschewing leather and metal for gear made of stone, ivory, glass, and bone.",
+        {
+          "type": "h3",
+          "name": "You Might...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Hold your people's history in high regard and look to the past for solutions to present problems.",
+                "Strive to adapt perfectly to your environment while also keeping your culture and traditions intact."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Others Probably...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Assume you are beholden to tradition and have ancient knowledge.",
+                "See you as cold-blooded and callous due to your subdued physical reactions."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Physical Description",
+          "entries": [
+            "Lizardfolk vary depending on their environment, but share toothy snouts and long, powerful tails. Many sport dorsal spikes or flashy neck frills that hint at their clan lineage. Lizardfolk reach physical adulthood at age 15 and live up to 120 years. The average lizardfolk stands 6 to 7 feet tall, but grows throughout their lifetime, gaining strength and size with age."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Society",
+          "entries": [
+            "Known among themselves as iruxis, lizardfolk are raised communally from the moment they break from their shells. They have an oral tradition stretching back thousands of years, brought to life through epic poems, evocative carvings, and ancestral rites performed among fields of fossilized bone. Lizardfolk are passionate astrologers with one eye on the future. If they seem slow to act, it's because their long history has taught them the value of patience.",
+            "True iruxi settlements are often overlooked, as they are partially or mostly submerged in water. Lizardfolk bones often adorn the walls, as many lizardfolk believe these remains can be animated by ancestral spirits when the residents are in danger."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Beliefs",
+          "entries": [
+            "Most iruxis are unconcerned with heavy questions of morality and focus their efforts on a local level. Iruxi religion plays a large role in their culture, but in a heavily practical way, blending animism and ancestor worship with druidic rites. Of the gods, only Gozreh is commonly revered.",
+            "{@b Popular Edicts} keep memories of the past alive, wait for your prey, adapt your plans to fit the environment",
+            "{@b Popular Anathema} defy the will of the stars"
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Names",
+          "entries": [
+            "Lizardfolk names are typically chosen by the clan's astrologer in accordance to omens and which star signs are ascendant when an iruxi egg hatches.",
+            {
+              "type": "h3",
+              "name": "Sample Names",
+              "entries": [
+                "Arasheg, Barashk, Essaru, Enshuk, Gishkim, Hazi, Inishish, Kutak, Nasha, Shulkuru, Tizkar, Utakish, Zelkelek"
+              ]
+            }
+          ]
+        }
+      ],
+      "heritages": [
+        {
+          "name": "Cliffscale Lizardfolk",
+          "source": "PC2",
+          "page": 25,
+          "entries": [
+            "Your toes are adapted for gripping and climbing. You gain the {@feat Combat Climber|PC1} feat as a bonus feat, and as long as you aren't wearing footwear, you can use the sticky pads on your feet to climb, leaving your hands free. Additionally, if you roll a success on an {@skill Athletics|PC1} check to climb, you get a critical success instead.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Cliffscale Lizardfolk...",
+              "entries": [
+                "{@feat Gecko's Grip|PC2}"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Cloudleaper Lizardfolk",
+          "source": "PC2",
+          "page": 25,
+          "entries": [
+            "Your body is light with flaps of skin along your limbs that catch the air that passes beneath you. As long as you can act and have enough room, you can open the flaps to slow any fall just enough to avoid taking damage (whether you have the room to do so depends on the GM's discretion).",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Cloudleaper Lizardfolk...",
+              "entries": [
+                "Iruxi Glide"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Frilled Lizardfolk",
+          "source": "PC2",
+          "page": 25,
+          "entries": [
+            "You can flare your neck frill and flex your dorsal spines, {@action Demoralize|PC1|Demoralizing} your foes. When you do, Demoralize loses the {@trait Auditory|PC1|auditory} trait and gains the {@trait Visual|PC1|visual} trait, and you don't take a penalty when you attempt to Demoralize a creature that doesn't understand your language. You also gain the Threatening Approach action.",
+            "{@b Threatening Approach} {@as 2} {@b Effect} You Stride to be adjacent to a foe and Demoralize that foe. If you succeed, the foe is {@condition Frightened|PC1|frightened 2} instead of frightened 1."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Sandstrider Lizardfolk",
+          "source": "PC2",
+          "page": 25,
+          "entries": [
+            "Your thick scales help you retain water and combat the sun's glare. You gain fire resistance equal to half your level (minimum 1). Environmental heat effects are one step less extreme for you, and you can go 10 times as long as normal before you are affected by starvation or thirst. However, unless you wear protective gear or take shelter, environmental cold effects are one step more extreme for you."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Unseen Lizardfolk",
+          "source": "PC2",
+          "page": 25,
+          "entries": [
+            "You can change your skin color to blend in with your surroundings, making minor shifts with a single action and dramatic changes over the course of an hour. When you're in an area where your coloration is roughly similar to the environment (for instance, forest green in a forest), you can use the minor, single-action application of this ability to make localized changes that help you blend into your surroundings, gaining a +2 circumstance bonus to {@skill Stealth|PC1} checks until your surroundings change in coloration or pattern."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Wetlander Lizardfolk",
+          "source": "PC2",
+          "page": 25,
+          "entries": [
+            "Your family is descended from the most common lizardfolk heritage, and you are accustomed to aquatic environments. You gain a 15-foot swim Speed.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Wetlander Lizardfolk...",
+              "entries": [
+                "{@feat Swift Swimmer|PC2}"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Woodstalker Lizardfolk",
+          "source": "PC2",
+          "page": 25,
+          "entries": [
+            "You move easily through thick forest and jungle, using every branch or bush. You can always use the {@action Take Cover|PC1} action when in forest or jungle terrain to gain cover, even if you're not next to an obstacle you would normally be able to Take Cover behind. You gain the {@feat Terrain Stalker|PC1} feat, even if you're not trained in {@skill Stealth|PC1}, and you must choose underbrush as your chosen terrain."
+          ],
+          "traits": []
+        }
+      ],
+      "features": [
+        {
+          "name": "Aquatic Adaptation",
+          "entries": [
+            "Your reptilian biology allows you to hold your breath for a long time. You gain the {@feat Breath Control|PC1} general feat as a bonus feat."
+          ]
+        },
+        {
+          "name": "Claws",
+          "entries": [
+            "Your sharp claws offer an alternative to the fists other humanoids bring to a fight. You have a claw {@trait Unarmed|PC1|unarmed} attack that deals 1d4 slashing damage, is in the brawling group, and has the {@trait Agile|PC1|agile} and {@trait Finesse|PC1|finesse} traits."
+          ]
+        }
+      ],
+      "heritageInfo": [],
+      "rarity": "uncommon",
+      "hp": 8,
+      "size": [
+        "Medium"
+      ],
+      "speed": "25 feet",
+      "boosts": [
+        "Strength",
+        "Wisdom",
+        "Free"
+      ],
+      "flaws": [
+        "Intelligence"
+      ],
+      "languages": [
+        "Common",
+        "Iruxi",
+        "Additional languages equal to your Intelligence modifier (if it's positive). Choose from Amurrun, Boggard, Draconic, Elven, Fey, Jotun, Thalassic, and any other languages to which you have access (such as the languages prevalent in your region)."
+      ],
+      "images": [
+        "img/ancestries/lizardfolk-f.webp",
+        "img/ancestries/lizardfolk-m.png"
+      ]
+    },
+    {
+      "name": "Ratfolk",
+      "source": "PC2",
+      "page": 29,
+      "category": "Ancestry",
+      "versatile": false,
+      "traits": [
+        "humanoid",
+        "ratfolk"
+      ],
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Ratfolk are small, clever, and adaptable humanoids with ratlike features and a love of community."
+          ]
+        },
+        "Ysoki are beings that most surface-dwelling humanoids refer to as “ratfolk.” They are a communal people who prefer cramped conditions, with up to 100 individuals living in a given home. If they can't find homes in town, ratfolk may instead live in caves and cavern complexes, as these provide great storage for the many and varied goods they bring back from trading expeditions.",
+        "Ratfolk love to travel, and they can often be found on the road in merchant caravans. They're good with their hands and have a keen eye for spotting anything out of the ordinary, from threats to treasures. They're also inveterate hoarders; ysoki warrens are crammed full of unusual odds and ends gathered by previous generations and stowed away in preparation for some future emergency.",
+        "If you want a character who is smart, fast, well-traveled, and adaptable, try playing a ratfolk!",
+        {
+          "type": "h3",
+          "name": "You Might...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Have pride in your large extended family, and stay in contact with everyone in it.",
+                "Like to travel near and far in search of new experiences, likely collecting trinkets along the way."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Others Probably...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Are surprised by your careful grooming and other fastidious habits.",
+                "Think you’re crowding them and invading their personal space."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Physical Description",
+          "entries": [
+            "Ratfolk have whiskered snouts, large ears, and hairless tails, and typically have red eyes and short brown or black fur. A common ratfolk is 4 feet tall and weighs around 80 pounds. Ratfolk vary considerably, however; even a single family group can exhibit substantial variation in hair color, eye color, or size.",
+            "Instinct drives ratfolk to maintain cleanliness, though this is also reinforced through their strong social structures. Because their appearance is often considered disturbing by other humanoids—and people may even mistake them for wererats—ratfolk often conceal their physical features with layers of clothing when moving through spaces dominated by other ancestries."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Society",
+          "entries": [
+            "Ysoki culture values cooperation and community. Every ratfolk learns—through communal games, social occasions, and sports—to forge fast friendships and connections with ratfolk outside their family. With a long tradition of working as traders and tinkers, ratfolk travel frequently from one town to another. Their wagons are usually grouped into caravans of up to half a dozen vehicles. Ysoki wagons are pulled by exceptionally large giant rats, and many ratfolk can speak to such animals."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Beliefs",
+          "entries": [
+            "Ratfolk care more about their family than abstract concepts of good and evil. Their warrens might be chaotic dens filled with hoarded knickknacks, but they also obey strict social codes.",
+            "Though ratfolk revere their ancestors and tend to acknowledge whatever deity is prevalent in their local area, Lao Shu Po has a special role in ysoki culture. Grandmother Rat embodies many things that are otherwise antithetical to ratfolk—she urges followers to put their own interests above others. To most ratfolk, Grandmother Rat accomplishes all those things they need done, but which they would not wish to do.",
+            "{@b Popular Edicts} put your community's interests above your own, maintain a cleanly appearance, be honest in your dealings",
+            "{@b Popular Anathema} throw away something that might be useful"
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Names",
+          "entries": [
+            "Every ysoki family has perhaps two dozen names that have been passed down from generation to generation, sometimes with minor alterations or alternative nicknames. Ratfolk are often assigned nicknames and sobriquets by humanoids they interact with, but most find these names distasteful and endure them only when outside their communities.",
+            {
+              "type": "h3",
+              "name": "Sample Names",
+              "entries": [
+                "Barnan, Chikis, Chonan, Deto, Jass, Jix, Knagi, Kubi, Lolo, Ninnec, Nos, Rak, Renzi, Skigim, Tali, Zess"
+              ]
+            }
+          ]
+        }
+      ],
+      "heritages": [
+        {
+          "name": "Deep Rat",
+          "source": "PC2",
+          "page": 29,
+          "entries": [
+            "Your ancestors lived deeper underground than other ratfolk, granting you the ability to see in the dark. You gain {@creatureability Darkvision|MC1|darkvision}."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Desert Rat",
+          "source": "PC2",
+          "page": 29,
+          "entries": [
+            "You are native to arid plains and likely grew up traveling the roads. If you have both hands free, you can increase your Speed to 30 feet as you run on all fours. In addition, environmental heat effects are one step less extreme for you, and you can go 10 times longer than normal before you are affected by starvation or thirst. However, unless you wear protective gear or take shelter, environmental cold effects are one step more extreme for you."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Longsnout Rat",
+          "source": "PC2",
+          "page": 29,
+          "entries": [
+            "Your long snout gives you a keener sense of smell than most ratfolk. You gain {@rule Imprecise Senses|PC1|imprecise} {@rule Scent|PC1|scent} with a range of 30 feet. This means you can use your sense of smell to determine a creature's location. The GM will usually double the range if you're downwind from the creature or halve the range if you're upwind.",
+            "In addition, you gain a +2 circumstance bonus to Perception checks to {@action Seek|PC1} a creature or object within the range of your scent.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Longsnout Rat...",
+              "entries": [
+                "Plague Sniffer"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Sewer Rat",
+          "source": "PC2",
+          "page": 29,
+          "entries": [
+            "You come from a long line of ratfolk with a community based in the sewers beneath a large settlement. You are immune to the disease putrid plague. You gain a +1 circumstance bonus to saving throws against {@trait Disease|PC1|diseases} and {@trait Poison|PC1|poisons}. If you roll a success on a saving throw against a disease or poison, you get a critical success instead. If you have a different ability that would improve the save in this way (such as the battle hardened fighter class feature), if you roll a critical failure on the save you get a failure instead."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Shadow Rat",
+          "source": "PC2",
+          "page": 29,
+          "entries": [
+            "Your ancestors lived in dark spaces underground, granting you dark fur and a vaguely unnatural mien. You gain the trained proficiency rank in {@skill Intimidation|PC1} and can use Intimidation to {@action Coerce|PC1} {@trait Animal|PC1|animals}. When you {@action Demoralize|PC1} an animal, you don't take a penalty for not sharing a language with it. If you would automatically become trained in Intimidation (from your background or class, for example), you become trained in another skill of your choice.",
+            "Animals' attitudes toward you begin one degree worse than normal, usually starting at {@condition Unfriendly|PC1|unfriendly} instead of indifferent for domesticated animals, and {@condition Hostile|PC1|hostile} instead of unfriendly for wild animals."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Snow Rat",
+          "source": "PC2",
+          "page": 29,
+          "entries": [
+            "You have a thicker coat and bulkier frame to defend against the cold, granting you cold resistance equal to half your level (minimum 1). You treat {@trait Cold|PC1|environmental cold effects} as if they were one step less extreme (incredible cold becomes extreme, extreme cold becomes severe, and so on)."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Tunnel Rat",
+          "source": "PC2",
+          "page": 29,
+          "entries": [
+            "You can easily compress your body and squeeze through gaps. You gain the {@feat Quick Squeeze|PC1} feat as a bonus feat, even if you aren't trained in {@skill Acrobatics|PC1}. Tight spaces not tight enough to require the Squeeze action aren't {@rule Difficult Terrain|PC1|difficult terrain} for you."
+          ],
+          "traits": []
+        }
+      ],
+      "features": [
+        {
+          "name": "Low-Light Vision",
+          "entries": [
+            "You can see in {@rule Dim Light|PC1|dim light} as though it were {@rule Bright Light|PC1|bright light}, so you ignore the {@condition Concealed|PC1|concealed} condition due to dim light."
+          ]
+        },
+        {
+          "name": "Sharp Teeth",
+          "entries": [
+            "Your prominent incisors offer an alternative to the fists other humanoids bring to a fight. You have a jaws {@trait Unarmed|PC1|unarmed} attack that deals 1d4 piercing damage, is in the brawling group, and has the {@trait Agile|PC1|agile} and {@trait Finesse|PC1|finesse} traits."
+          ]
+        }
+      ],
+      "heritageInfo": [],
+      "rarity": "uncommon",
+      "hp": 6,
+      "size": [
+        "Small"
+      ],
+      "speed": "25 feet",
+      "boosts": [
+        "Dexterity",
+        "Intelligence",
+        "Free"
+      ],
+      "flaws": [
+        "Strength"
+      ],
+      "languages": [
+        "Common",
+        "Ysoki",
+        "Additional languages equal to your Intelligence modifier (if it's positive). Choose from Aklo, Draconic, Dwarven, Gnomish, Goblin, Halfling, Kholo, Orcish, Sakvroth, or any other languages to which you have access (such as the languages prevalent in your region)."
+      ],
+      "images": [
+        "img/ancestries/ratfolk-f.webp",
+        "img/ancestries/ratfolk-m.png"
+      ]
+    },
+    {
+      "name": "Tengu",
+      "source": "PC2",
+      "page": 33,
+      "category": "Ancestry",
+      "versatile": false,
+      "traits": [
+        "humanoid",
+        "tengu"
+      ],
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Tengus are gregarious and resourceful avian humanoids who collect knowledge and treasures alike."
+          ]
+        },
+        "Tengu are survivalists and conversationalists, equally at home living off the wilderness and finding a niche in dense cities. They accumulate knowledge, tools, and companions, adding them to their collection as they travel.",
+        "The tengu diaspora has spread across Golarion in search of a better life, bringing their skill with blade crafting to lands far from their home. In maritime regions, tengu notably work as fishers, blacksmiths, and “jinx eaters”— members of ships' crews who are believed, accurately or otherwise, to absorb misfortune. Having lived in a variety of conditions and locations, tengu tend to be nonjudgmental, though their willingness to associate with lawbreakers has often led some to regard them with suspicion.",
+        "If you want to play a character hailing from a rich history of artisanship and tradition, but who happily picks up new practices as needed, you should play a tengu.",
+        {
+          "type": "h3",
+          "name": "You Might...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Be gregarious and eager to find a flock of your own.",
+                "Voraciously absorb the practices of those around you, sometimes even forgetting where they came from."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Others Probably...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Get confused by your simultaneous respect for and disregard of tradition.",
+                "Have trouble reading your expressions or regard you with suspicion and superstition."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Physical Description",
+          "entries": [
+            "Tengu have many avian characteristics. Their faces are tipped with sharp beaks and their scaled forearms and lower legs end in talons. As closed footwear tends to fit poorly unless custom made, many tengu wear open sandals or simply go barefoot. Tengu are rarely more than 5 feet tall, and they are even lighter than their smaller frames would suggest, as they have hollow bones. A small number of tengu have vestigial wings."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Society",
+          "entries": [
+            "The greatest divide in tengu society is between tengu remaining in their ancestral home and those who have dispersed across the world. Tengu refer to these two groups as those “in the roost” and those “migrating,” respectively. Roosted tengu tend to be more traditionalist and conservative and are especially concerned with preserving their culture in the face of years of erosion from oppression. Migrating tengu, on the other hand, voraciously absorb the culture of the various nations and settlements that they now call home."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Beliefs",
+          "entries": [
+            "Tengu often follow the faith of the region in which they were raised, though the tengu ancestral deity is the storm god Hei Feng. Before their diaspora, tengu practiced a syncretic faith that blended a polytheistic worship of the deities responsible for creating the natural world. As tengu folklore posits that tengu long ago descended from the night sky on shooting stars to rest upon Golarion's highest peaks, animist rites were practiced on mountains and other great natural features.",
+            "{@b Popular Edicts} protect tengu traditions, adopt the lessons of other cultures, seek out natural wonders",
+            "{@b Popular Anathema} lose control of your emotions"
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Names",
+          "entries": [
+            "Roosted tengu tend toward more traditional names, while migrating tengu readily absorb and repurpose the culture of those around them.",
+            {
+              "type": "h3",
+              "name": "Sample Names",
+              "entries": [
+                "Arkkak, Chuko, Dolgra, Dorodara, Kakkariel, Kora, Marrak, Mossarah, Pularrka, Rarorel, Ruk, Tak-Tak, Tsukotarra"
+              ]
+            }
+          ]
+        }
+      ],
+      "heritages": [
+        {
+          "name": "Dogtooth Tengu",
+          "source": "PC2",
+          "page": 33,
+          "entries": [
+            "In addition to a beak, your mouth also features a number of vicious, pointed teeth. Some legends claim your powerful jaws can even bite through steel. While you aren't that strong yet, your fangs can still leave terrible wounds. Your beak unarmed attack gains the {@trait Deadly|PC1|deadly d8} trait.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Dogtooth Tengu...",
+              "entries": [
+                "Dogfang Bite"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Jinxed Tengu",
+          "source": "PC2",
+          "page": 33,
+          "entries": [
+            "Your lineage has been exposed to curse after curse, and now they slide off your feathers like rain. If you succeed at a saving throw against a {@trait Curse|PC1|curse} or {@trait Misfortune|PC1|misfortune} effect, you get a critical success instead. When you would gain the {@condition Doomed|PC1|doomed} condition, attempt a DC 17 flat check. On a success, reduce the value of the doomed condition you would gain by 1."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Mountainkeeper Tengu",
+          "source": "PC2",
+          "page": 33,
+          "entries": [
+            "You come from a line of tengu ascetics, leaving you with a link to the spirits of the world and the Great Beyond. You can cast the {@spell Vitality Lash|PC1|vitality lash} cantrip as a primal innate spell at will. A cantrip is heightened to a spell rank equal to half your level rounded up. Each time you cast a spell from a tengu heritage or ancestry feat, you can decide whether it's a divine or primal spell."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Skyborn Tengu",
+          "source": "PC2",
+          "page": 33,
+          "entries": [
+            "Your bones may be especially light, you may be a rare tengu with wings, or your connection to the spirits of wind and sky might be stronger than most, slowing your descent through the air. You take no damage from {@rule Falling|PC1|falling}, regardless of the distance you fall.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Skyborn Tengu...",
+              "entries": [
+                "{@feat Soaring Flight|PC2}, {@feat Soaring Flight|PC2}"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Stormtossed Tengu",
+          "source": "PC2",
+          "page": 33,
+          "entries": [
+            "Whether due to a blessing from Hei Feng or hatching from your egg during a squall, you are resistant to storms. You gain electricity resistance equal to half your level (minimum 1). You automatically succeed at the flat check to target a {@condition Concealed|PC1|concealed} creature if that creature is concealed only by rain or fog."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Taloned Tengu",
+          "source": "PC2",
+          "page": 33,
+          "entries": [
+            "Your talons are every bit as sharp and strong as your beak. You gain a talons unarmed attack that deals 1d4 slashing damage. Your talons are in the brawling group and have the {@trait Agile|PC1|agile}, {@trait Finesse|PC1|finesse}, {@trait Unarmed|PC1|unarmed}, and {@trait Versatile|PC1|versatile P} traits."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Wavediver Tengu",
+          "source": "PC2",
+          "page": 33,
+          "entries": [
+            "You're one of the rare tengu who can cut through water like a bird through air, and you often lurk in rivers or oceans where few expect you. You gain a swim Speed of 15 feet.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Wavediver Tengu...",
+              "entries": [
+                "Waxed Feathers"
+              ]
+            }
+          ],
+          "traits": []
+        }
+      ],
+      "features": [
+        {
+          "name": "Low-Light Vision",
+          "entries": [
+            "You can see in {@rule Dim Light|PC1|dim light} as though it were {@rule Bright Light|PC1|bright light}, so you ignore the {@condition Concealed|PC1|concealed} condition due to dim light."
+          ]
+        },
+        {
+          "name": "Sharp Beak",
+          "entries": [
+            "With your sharp beak, you are never without a weapon. You have a beak {@trait Unarmed|PC1|unarmed} attack that deals 1d6 piercing damage. Your beak is in the brawling weapon group and has the {@trait Finesse|PC1|finesse} and {@trait Unarmed|PC1|unarmed} traits."
+          ]
+        }
+      ],
+      "heritageInfo": [],
+      "rarity": "uncommon",
+      "hp": 6,
+      "size": [
+        "Medium"
+      ],
+      "speed": "25 feet",
+      "boosts": [
+        "Dexterity",
+        "Free"
+      ],
+      "flaws": [],
+      "languages": [
+        "Common",
+        "Tengu",
+        "Additional languages equal to your Intelligence modifier (if positive). Choose from Dwarven, Elven, Halfling, Gnomish, Goblin, Fey, and any other languages to which you have access (such as the languages prevalent in your region)."
+      ],
+      "images": [
+        "img/ancestries/tengu-m.webp",
+        "img/ancestries/tengu-f.png"
+      ]
+    },
+    {
+      "name": "Tripkee",
+      "source": "PC2",
+      "page": 37,
+      "category": "Ancestry",
+      "versatile": false,
+      "traits": [
+        "humanoid",
+        "tripkee"
+      ],
+      "entries": [
+        {
+          "type": "flavor",
+          "entries": [
+            "Tripkees are froglike humanoids whose spirit often exceeds their stature."
+          ]
+        },
+        "Tripkees are a shy and cautious people who generally seek to avoid being drawn into the affairs of others. Despite their cautious outlook and small stature, adventurous tripkees still take bold and noble action when the situation demands it.",
+        "Tripkees are reclusive treetop survivalists who harvest their homes' bounty, utilizing their canopy homes as natural fortifications against the threats posed by larger predators. Their reliance on cunning and simple tools has led to tripkees often being mischaracterized as rudimentary, though this does poor justice to their skill in the cultivation of hidden orchards and camouflaged causeways tucked away in treetop nations. Tripkees are most likely to emerge from their forest homes to trade, explore, and combat threats that would despoil the world.",
+        "If you want a character who is small in stature but large in spirit, and possesses qualities of a tree frog, you should play a tripkee.",
+        {
+          "type": "h3",
+          "name": "You Might...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Seek out clever ways to exploit your environment when overcoming challenges.",
+                "Make friends slowly, concerned by cautionary tales of exploitative strangers."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Others Probably...",
+          "entries": [
+            {
+              "type": "list",
+              "items": [
+                "Trust in your impartial, measured approach to understanding situations and solving problems.",
+                "Give you space, fearing that touching you would prove toxic."
+              ]
+            }
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Physical Description",
+          "entries": [
+            "Tripkees resemble humanoid tree frogs, with oversized eyes, wide mouths, and gangly physiques. Their slight frames and large toes can afford excellent grip while climbing, while their colorful skin provides reliable camouflage that varies by their home environment—green and brown for jungle-dwelling groups, blue and orange for riparian communities, and many other colors between. A tripkee grows quickly, reaching their adult size of approximately 2 feet in height about 3 years after hatching, though they're only considered adults around age 12. Tripkees rarely live beyond 60 years, though exceptional individuals occasionally live as long as a century."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Society",
+          "entries": [
+            "Tripkees lead a sophisticated hunter-gatherer lifestyle within which they reshape the landscape to suit their needs: building spillways to trap fish, seeding fruit-bearing trees, sowing cover-granting foliage for future hunts, and more techniques that often escape an agriculturist's eye. These strategies rely on community cooperation as well as dispersed populations, so tripkees commonly live in small villages, each part of a complex web of alliances and relationships. Reclusiveness has preserved tripkee lives and lifestyles for millennia, yet they increasingly find themselves threatened by ancient evils and new explorers alike."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Beliefs",
+          "entries": [
+            "Taught to wait, observe, and respect natural processes of life and death, many tripkees adopt patient attitudes. Those who take a more active role suppressing cruelty may join organizations that blend religion and philosophy, such as the tripkee fiend-keepers who absorb an unholy being into their soul to contain and eventually transform its villainy through their own virtuous acts. Nature deities like Gozreh or Erastil often earn tripkees' respect, yet communities usually prefer less prominent, more intimate divinities such as empyreal lords, psychopomp ushers, or the fey Eldest.",
+            "{@b Popular Edicts} improve your part of the world without causing harm to others, practice patience whenever possible",
+            "{@b Popular Anathema} create architecture that supplants the natural world, take rash action that brings risk to your community"
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Names",
+          "entries": [
+            "Tripkee names often include resonant vowels and chirped consonants that remain difficult for non-tripkees to vocalize properly. Tripkees that travel widely often adopt one or more names more easily replicated by their associates.",
+            {
+              "type": "h3",
+              "name": "Sample Names",
+              "entries": [
+                "Aalpo'ol, Bogwynne, Ctaprak, Eegru, Gpoun, Gruoksh, Hrrauti, Iopo, Iykiki, Kyrsiik, Mhruugu, Oplugo, Quaasol, Yolkuu, Ztaal"
+              ]
+            }
+          ]
+        }
+      ],
+      "heritages": [
+        {
+          "name": "Poisonhide Tripkee",
+          "source": "PC2",
+          "page": 37,
+          "entries": [
+            "You may be small, but the poison glands concealed across your body hide a deadly defense. You gain the Toxic Skin reaction.",
+            "{@b Toxic Skin} {@as r} ({@trait Poison|PC1|poison}) {@b Frequency} once per hour; {@b Trigger} A creature touches you, such as by {@action Grapple|PC1|Grappling} you, successfully hitting you with an {@trait Unarmed|PC1|unarmed} attack, or using a touch-range spell against you; {@b Effect} You exude a deadly toxin. The triggering creature takes 1d4 poison damage (basic Fortitude save using your class DC or spell DC, whichever is higher). At 3rd level and every 2 levels thereafter, the damage increases by 1d4."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Riverside Tripkee",
+          "source": "PC2",
+          "page": 37,
+          "entries": [
+            "Your ancestors live in and on the water. You gain a 15-foot swim Speed."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Snaptongue Tripkee",
+          "source": "PC2",
+          "page": 37,
+          "entries": [
+            "Your tongue is especially long, and you can launch it with extraordinary range and precision. You can use your tongue to deliver spells with a range of touch and perform extremely simple Interact actions, such as opening some types of unlocked doors. Your tongue can't perform actions that require fingers or significant manual dexterity, including any action that would require a check to accomplish, and you can't use it to hold items.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Snaptongue Tripkee...",
+              "entries": [
+                "{@feat Long Tongue|PC2}, {@feat Long Tongue|PC2}, {@feat Tongue Tether|PC2}, {@feat Tongue Tether|PC2}"
+              ]
+            }
+          ],
+          "traits": []
+        },
+        {
+          "name": "Stickytoe Tripkee",
+          "source": "PC2",
+          "page": 37,
+          "entries": [
+            "Your hands and feet exude a film that helps them adhere to surfaces. You gain a +2 circumstance bonus to your Fortitude and Reflex DC against attempts to {@action Disarm|PC1}, {@action Shove|PC1}, {@action Reposition|PC1}, or {@action Trip|PC1} you. When ascending trees, vines, and other foliage, if you roll a success on the {@skill Athletics|PC1} check to {@action Climb|PC1}, you get a critical success instead."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Thickskin Tripkee",
+          "source": "PC2",
+          "page": 37,
+          "entries": [
+            "Your thick leathery skin resembles that of a toad. You gain 8 Hit Points from your ancestry instead of 6. You gain a +1 circumstance bonus to saves against {@trait Disease|PC1|diseases} and {@trait Poison|PC1|poisons}."
+          ],
+          "traits": []
+        },
+        {
+          "name": "Windweb Tripkee",
+          "source": "PC2",
+          "page": 37,
+          "entries": [
+            "Tough webbing along your hands and toes can slow any fall. As long as you have one hand free, you take no falling damage, regardless of the distance you fall.",
+            {
+              "type": "h3",
+              "name": "Feats Requiring Windweb Tripkee...",
+              "entries": [
+                "Grippli Glide, {@feat Tripkee Glide|PC2}"
+              ]
+            }
+          ],
+          "traits": []
+        }
+      ],
+      "features": [
+        {
+          "name": "Low-Light Vision",
+          "entries": [
+            "You can see in {@rule Dim Light|PC1|dim light} as though it were {@rule Bright Light|PC1|bright light}, so you ignore the {@condition Concealed|PC1|concealed} condition due to dim light."
+          ]
+        },
+        {
+          "name": "Natural Climber",
+          "entries": [
+            "You gain a +2 circumstance bonus to {@skill Athletics|PC1} checks to {@action Climb|PC1}."
+          ]
+        }
+      ],
+      "heritageInfo": [],
+      "rarity": "uncommon",
+      "hp": 6,
+      "size": [
+        "Small"
+      ],
+      "speed": "25 feet",
+      "boosts": [
+        "Dexterity",
+        "Wisdom",
+        "Free"
+      ],
+      "flaws": [
+        "Strength"
+      ],
+      "languages": [
+        "Common",
+        "Tripkee",
+        "Additional languages equal to your Intelligence modifier (if it's positive). Choose from Boggard, Chthonian, Draconic, Elven, Fey, Iruxi, Thalassic, and any other languages to which you have access (such as the languages prevalent in your region)."
+      ],
+      "images": [
+        "img/ancestries/tripkee-m.webp",
+        "img/ancestries/tripkee-f.png"
       ]
     }
   ]

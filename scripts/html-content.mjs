@@ -24,7 +24,7 @@ export function renderHtmlInline(nodes, references) {
     if (node.name === "a") {
       const label = htmlText(node), href = node.attribs.href || "";
       const path = href.replace(/^\//, "");
-      const kind = { Familiars: "companion", Companions: "companion", Monsters: "creature", Spells: "spell", Actions: "action", Conditions: "condition", Skills: "skill", Traits: "trait", Equipment: "equipment", Weapons: "equipment", Armor: "equipment", Shields: "equipment", MonsterAbilities: references.creatureability ? "creatureability" : "action" }[/^(\w+)\.aspx\?ID=/i.exec(path)?.[1]];
+      const kind = { Feats: "feat", Classes: "class", Ancestries: "ancestry", Archetypes: "archetype", Backgrounds: "background", Rules: "rule", Familiars: "companion", Companions: "companion", Monsters: "creature", Spells: "spell", Actions: "action", Conditions: "condition", Skills: "skill", Traits: "trait", Equipment: "equipment", Weapons: "equipment", Armor: "equipment", Shields: "equipment", MonsterAbilities: references.creatureability ? "creatureability" : "action" }[/^(\w+)\.aspx\?ID=/i.exec(path)?.[1]];
       if (!label) return "";
       if (kind) {
         const lookup = references[kind];
@@ -33,7 +33,7 @@ export function renderHtmlInline(nodes, references) {
           || (["condition", "trait"].includes(kind) ? lookup?.names.find(name => foldHtmlReference(label).startsWith(foldHtmlReference(name) + " ")) : null);
         if (canonical) return `{@${kind} ${canonical}|${lookup.sourceByPath?.get(path) || lookup.sourceByName?.get(canonical) || (["spell", "equipment"].includes(kind) ? "PC1" : "")}${canonical !== label ? `|${label}` : ""}}`;
       }
-      if (references.externalFallback && /^(Spells|Equipment|Weapons|Armor|Shields|Traits|MonsterAbilities)\.aspx\?ID=/.test(path)) return `{@link ${label}|${origin + path}}`;
+      if (references.externalFallback && /^(Spells|Equipment|Weapons|Armor|Shields|Traits|MonsterAbilities|Feats|Classes|Ancestries|Archetypes|Backgrounds|Actions|Rules|Rituals)\.aspx\?ID=/.test(path)) return `{@link ${label}|${origin + path}}`;
       if (/^Monsters\.aspx\?ID=/.test(path)) return `{@link ${label}|${origin + path}}`;
       return children();
     }
@@ -73,7 +73,7 @@ export function htmlContentBlocks(nodes, references) {
       entries.push({ type: "table", colLabels, rows });
       continue;
     }
-    if (/^h[2-6]$/.test(node.name || "")) { flush(); entries.push({ type: "h3", name: htmlText(node), entries: [] }); continue; }
+    if (/^h[2-6]$/.test(node.name || "")) { flush(); entries.push({ type: "h3", name: renderHtmlInline(node.children || [], references).trim(), entries: [] }); continue; }
     paragraph += renderHtmlInline([node], references);
   }
   flush();

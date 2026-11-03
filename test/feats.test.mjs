@@ -1,3 +1,4 @@
+import { pc1Payload } from "./core-fixtures.mjs";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
@@ -6,7 +7,7 @@ import { searchCatalog, sortCatalog } from "../js/reference-library.js";
 import { renderInline } from "../js/content-renderer.js";
 import { renderCatalogPreview } from "../js/reference-previews.js";
 
-const data = JSON.parse(await readFile(new URL("../data/feats.json", import.meta.url), "utf8"));
+const data = pc1Payload(JSON.parse(await readFile(new URL("../data/feats.json", import.meta.url), "utf8")));
 const library = createFeatCatalog(data);
 
 test("shared feats cover every PC1 category with unique stable identities", () => {
@@ -59,7 +60,7 @@ test("familiar searches return only feat names and exclude descriptions, prerequ
 });
 
 test("archetype filters match the Archetypes page's full feat sets and combine with other filters", async () => {
-  const archetypes = JSON.parse(await readFile(new URL("../data/archetypes.json", import.meta.url), "utf8"));
+  const archetypes = pc1Payload(JSON.parse(await readFile(new URL("../data/archetypes.json", import.meta.url), "utf8")));
   const catalog = createFeatCatalog(data, { dependencies: { archetypes } });
   const filters = Object.fromEntries(FEAT_FILTERS.map(({ key }) => [key, new Map()]));
   assert.deepEqual(featOptions(catalog).archetype.map(option => option.value), archetypes.archetypes.map(entry => entry.name));

@@ -1,3 +1,4 @@
+import { pc1Payload } from "./core-fixtures.mjs";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
@@ -56,7 +57,7 @@ test("creature ability import preserves costs, requirements and effects with the
 });
 
 test("PC1 companions include all 16 types, full support and advanced maneuvers, and complete advancement rules", async () => {
-  const payload = JSON.parse(await readFile(new URL("../data/companions.json", import.meta.url), "utf8"));
+  const payload = pc1Payload(JSON.parse(await readFile(new URL("../data/companions.json", import.meta.url), "utf8")));
   const library = createCompanionCatalog(payload);
   const companions = library.records.filter(record => record.kind === "companion");
   assert.deepEqual(companions.map(record => record.name), ["Ape", "Arboreal Sapling", "Badger", "Bat", "Bear", "Bird", "Boar", "Cat", "Crocodile", "Dromaeosaur", "Horse", "Riding Drake", "Scorpion", "Shark", "Snake", "Wolf"]);
@@ -85,7 +86,7 @@ test("PC1 companions include all 16 types, full support and advanced maneuvers, 
 });
 
 test("all 41 PC1 familiar and master abilities preserve prerequisites, full text, source footers and links", async () => {
-  const payload = JSON.parse(await readFile(new URL("../data/companions.json", import.meta.url), "utf8"));
+  const payload = pc1Payload(JSON.parse(await readFile(new URL("../data/companions.json", import.meta.url), "utf8")));
   const library = createCompanionCatalog(payload);
   const abilities = library.records.filter(record => record.kind === "familiar");
   assert.equal(abilities.length, 41);

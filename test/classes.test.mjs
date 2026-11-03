@@ -1,3 +1,4 @@
+import { pc1Payload } from "./core-fixtures.mjs";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
@@ -6,8 +7,8 @@ import { renderInline } from "../js/content-renderer.js";
 import { createFeatCatalog, renderFeatBody } from "../js/feat-library.js";
 import { renderCatalogPreview } from "../js/reference-previews.js";
 
-const data = JSON.parse(await readFile(new URL("../data/classes.json", import.meta.url), "utf8"));
-const featData = JSON.parse(await readFile(new URL("../data/feats.json", import.meta.url), "utf8"));
+const data = pc1Payload(JSON.parse(await readFile(new URL("../data/classes.json", import.meta.url), "utf8")));
+const featData = pc1Payload(JSON.parse(await readFile(new URL("../data/feats.json", import.meta.url), "utf8")));
 const featLibrary = createFeatCatalog(featData);
 const catalog = createClassCatalog(data, { featLibrary });
 

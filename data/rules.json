@@ -9,6 +9,11 @@
       "id": "GMC",
       "name": "GM Core",
       "source": "GMC"
+    },
+    {
+      "id": "PC2",
+      "name": "Player Core 2",
+      "source": "PC2"
     }
   ],
   "rules": [
@@ -349,7 +354,7 @@
                   "page": 11,
                   "entries": [
                     "A trait is a keyword that conveys additional information about a rules element, such as which ancestry a feat belongs to or the rarity of an item. Often, a trait indicates how other rules interact with an ability, creature, item, or another rules element that has that trait.",
-                    "All the traits can be found {@link here|traits}."
+                    "All the traits can be found {@catalog traits|here}."
                   ]
                 },
                 {
@@ -1169,7 +1174,7 @@
               "name": "Animal Companions",
               "entries": [
                 "An animal companion is a loyal comrade who follows your orders. Your animal companion has the animal and minion traits, and it gains 2 actions during your turn if you use the Command an Animal action to command it; this replaces the usual effects of Command an Animal, and you don't need to attempt a Nature check. If your companion dies, you can spend a week of downtime to replace it at no cost. You can have only one animal companion at a time.",
-                "A list of available animal companions can be found {@link here|companions-and-familiars}.",
+                "A list of available animal companions can be found {@catalog companions|here}.",
                 {
                   "type": "h3",
                   "name": "Young Animal Companions",
@@ -1559,21 +1564,7 @@
           "name": "Quick Equipment Packages",
           "rule": false,
           "entries": [
-            "If you want to quickly decide how to spend your starting money on what your class needs, start with one of these batches of starting gear. An {@equipment adventurer's pack}, which is included in each kit, contains a backpack, a bedroll, 10 pieces of chalk, flint and steel, 50 feet of rope, 2 weeks’ rations, soap, 5 torches, and a waterskin. The Options section lists items that aren't in the base package but that many characters of the class might like to buy.",
-            {
-              "type": "list",
-              "columns": 2,
-              "items": [
-                "{@equipment Bard Kit}",
-                "{@equipment Cleric Kit}",
-                "{@equipment Druid Kit}",
-                "{@equipment Fighter Kit}",
-                "{@equipment Ranger Kit}",
-                "{@equipment Rogue Kit}",
-                "{@equipment Witch Kit}",
-                "{@equipment Wizard Kit}"
-              ]
-            }
+            "If you want to quickly decide how to spend your starting money on what your class needs, start with one of these batches of starting gear. An {@equipment adventurer's pack}, which is included in each kit, contains a backpack, a bedroll, 10 pieces of chalk, flint and steel, 50 feet of rope, 2 weeks’ rations, soap, 5 torches, and a waterskin. The Options section lists items that aren't in the base package but that many characters of the class might like to buy."
           ]
         },
         {
@@ -1909,7 +1900,7 @@
               "type": "h2",
               "name": "Armor Statistics",
               "entries": [
-                "On the {@link equipment} page, you can find the statistics for the various forms of protection without wearing armor. It also provides the statistics for suits of armor that can be purchased and worn, organized by category. Each item provides the following statistics.",
+                "On the {@catalog equipment} page, you can find the statistics for the various forms of protection without wearing armor. It also provides the statistics for suits of armor that can be purchased and worn, organized by category. Each item provides the following statistics.",
                 {
                   "type": "box",
                   "name": "Materials",
@@ -2055,7 +2046,7 @@
             {
               "type": "h3",
               "name": "Attacking with a Shield",
-              "entry": "A shield can be used as a martial weapon for attacks, using the statistics listed for a {@equipment shield bash} on the Martial Melee Weapons table. The shield bash is an option only for shields that weren't designed to be used as weapons. A shield can't have runes added to it. You can also buy and attach a {@equipment shield boss} or {@equipment shield spikes} to a shield to make it a more practical weapon. These can also be found on the {@link equipment} page. These work like other weapons and can even be etched with runes."
+              "entry": "A shield can be used as a martial weapon for attacks, using the statistics listed for a {@equipment shield bash} on the Martial Melee Weapons table. The shield bash is an option only for shields that weren't designed to be used as weapons. A shield can't have runes added to it. You can also buy and attach a {@equipment shield boss} or {@equipment shield spikes} to a shield to make it a more practical weapon. These can also be found on the {@catalog equipment} page. These work like other weapons and can even be etched with runes."
             }
           ]
         },
@@ -2135,7 +2126,7 @@
               "name": "Weapon Statistics",
               "page": 276,
               "entries": [
-                "On the {@link equipment} page you can find various melee and ranged weapons that you can purchase, as well as the statistics for striking with a fist (or another basic unarmed attack). The weapons present the following statistics. All weapons listed in this chapter have an item level of 0.",
+                "On the {@catalog equipment} page you can find various melee and ranged weapons that you can purchase, as well as the statistics for striking with a fist (or another basic unarmed attack). The weapons present the following statistics. All weapons listed in this chapter have an item level of 0.",
                 {
                   "type": "h3",
                   "name": "Damage",
@@ -2217,7 +2208,7 @@
               "type": "h2",
               "name": "Gear Statistics",
               "entries": [
-                "The {@link equipment} page lists Price and Bulk entries for a wide variety of gear. Any item with a number after it in parentheses indicates that the item's Price is for the indicated quantity, though the Bulk entry for such an item is the value for only one such item. All items in this chapter are level 0 unless the item name is followed by a higher item level in parentheses.",
+                "The {@catalog equipment} page lists Price and Bulk entries for a wide variety of gear. Any item with a number after it in parentheses indicates that the item's Price is for the indicated quantity, though the Bulk entry for such an item is the value for only one such item. All items in this chapter are level 0 unless the item name is followed by a higher item level in parentheses.",
                 {
                   "type": "h3",
                   "name": "Hands",
@@ -2242,7 +2233,7 @@
               "type": "h2",
               "name": "Alchemical Gear",
               "entries": [
-                "The Alchemical items listen on the {@link equipment} page are the most widely available alchemical items on the planet, which a 1st-level character could likely access. Each item's full entry appears in GM Core. Your GM might allow you to start with other alchemical items from there on a case-by-case basis.",
+                "The Alchemical items listen on the {@catalog equipment} page are the most widely available alchemical items on the planet, which a 1st-level character could likely access. Each item's full entry appears in GM Core. Your GM might allow you to start with other alchemical items from there on a case-by-case basis.",
                 {
                   "type": "h3",
                   "name": "Alchemical Bombs",
@@ -2392,7 +2383,7 @@
               "type": "h2",
               "name": "Services",
               "entries": [
-                "The services listed on the {@link equipment} page and Cuisine describe expenditures that can come up during travels and time spent in settlements.",
+                "The services listed on the {@catalog equipment} page and Cuisine describe expenditures that can come up during travels and time spent in settlements.",
                 {
                   "type": "h3",
                   "name": "Transportation",
@@ -5774,7 +5765,7 @@
           "entry": "While adventuring, characters (and sometimes their belongings) are affected by abilities and effects that apply conditions. For example, a spell or magic item might turn you {@condition invisible} or cause you to be gripped by {@condition Frightened||fear}. Conditions change your state of being in some way, and they represent everything from the attitude other creatures have toward you and how they interact with you to what happens when a creature drains your blood or life essence."
         },
         "Conditions are persistent. Whenever you're affected by a condition, its effects last until the condition's stated duration ends, the condition is removed, or terms dictated in the condition itself cause it to end.",
-        "See the {@link Conditions|conditions} page for a full list of conditions.",
+        "See the {@catalog conditions|Conditions} page for a full list of conditions.",
         {
           "type": "clarification",
           "entry": "It's possibly for a creature to simultaneously be under multiple conditions that influence its actions, such as {@condition confused}, {@condition fleeing}, and {@condition controlled}. The GM should make the determination of which conditions take precedence based on the specific situation. We recommend they strive for maximum entertainment!"
@@ -5891,6 +5882,41 @@
               "type": "flavor",
               "entry": "As the Game Master, it's up to you to set the difficulty classes (DCs) for checks that don't use a predefined DC. The following sections offer advice on how to set appropriate DCs and tweak them as needed to feel natural for your story. Picking a simple DC and using a level-based DC each work well in certain circumstances, and you can adjust both types of DC using the advice on adjusting difficulty."
             }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "h1",
+      "name": "Snares",
+      "source": "PC2",
+      "page": 297,
+      "entries": [
+        "Snares are simple traps that can be created quickly with the {@feat Snare Crafting|PC2} feat to injure or bedevil intruders. Unlike other items, found snares can't be collected or sold in their complete form. Snares have the {@trait Snare|PC2|snare} trait.",
+        {
+          "type": "h3",
+          "name": "Crafting Snares",
+          "entries": [
+            "A snare is built within a single 5-foot square. Only one snare can occupy a single 5-foot square at a time. Once constructed, it can't be moved without destroying (and often triggering) the snare. Snares usually last until they're triggered, though at the GM's discretion, certain snares might become inert after extended periods of time (such as months or years). Snares made for quick deployment, such as those from the Snarecrafter archetype, are less durable and become inert after 24 hours.",
+            "You must have the Snare Crafting feat as well as be wielding or wearing a snare toolkit to create snares. You can spend 1 minute to {@action Craft|PC1} a snare by expending an amount of money equal to the snare's listed Price. This expenditure represents the use of raw materials that are included in your snare toolkit. If you want to Craft a snare at a discount, you must spend downtime as described in the Craft activity. Some snares have additional requirements beyond those stated in the Craft activity; these snares list their requirements in a Craft Requirements entry. Despite having the consumable trait, you make only one snare when you spend the minute to Craft a snare."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "Detecting Snares",
+          "entry": "Creatures can detect snares they aren't already aware of as they would any trap or hazard, using the creator's Crafting DC as the snare's Stealth DC. If your proficiency rank is expert or better in Crafting, only creatures actively searching can find your snares"
+        },
+        {
+          "type": "h3",
+          "name": "Triggering Snares",
+          "entry": "Unless stated otherwise in a snare's description, when a Small or larger creature enters a snare's square, the snare's effect occurs, and then the snare is destroyed."
+        },
+        {
+          "type": "h3",
+          "name": "Disabling Snares",
+          "entries": [
+            "Once a creature discovers a snare, it can disable it much like it can other physical traps, using the {@action Disable a Device|PC1} action of the Thievery skill and using the Crafting DC of the snare's creator as the DC. You can automatically disarm a snare that you personally Crafted without triggering it by taking an Interact action while adjacent to the snare.",
+            "Snares can't be targeted by Strikes or other attacks unless otherwise noted. At the GM's discretion, a snare might be triggered or destroyed by a particularly large effect, such as a boulder rolling through the snare's square, or an area effect that specifically mentions unattended objects, such as {@spell Hydraulic Torrent|PC1|hydraulic torrent}."
           ]
         }
       ]

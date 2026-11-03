@@ -1,3 +1,4 @@
+import { pc1Payload } from "./core-fixtures.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { renderContent } from "../js/content-renderer.js";
@@ -17,7 +18,7 @@ const spell = {
 };
 
 test("the PC1 spell catalog contains every unique spell and renders full mechanics with correct citations", async () => {
-  const payload = JSON.parse(await readFile(new URL("../data/spells.json", import.meta.url), "utf8"));
+  const payload = pc1Payload(JSON.parse(await readFile(new URL("../data/spells.json", import.meta.url), "utf8")));
   const library = createSpellCatalog(payload);
   const traits = createCatalog(JSON.parse(await readFile(new URL("../data/traits.json", import.meta.url), "utf8")), { collection: "traits", href: "traits.html" });
   assert.equal(library.records.length, 472);

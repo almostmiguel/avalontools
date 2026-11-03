@@ -1,17 +1,14 @@
 {
-  "_meta": {
-    "content": "All 16 Player Core companions and 41 familiar/master abilities, with support benefits, advanced maneuvers, and the PC1 companion rules including mature, nimble, savage and all six specializations. English content from Archives of Nethys; excludes other books and legacy options.",
-    "references": [
-      "https://2e.aonprd.com/Sources.aspx?ID=216",
-      "https://2e.aonprd.com/Rules.aspx?ID=2113"
-    ],
-    "license": "Pathfinder Player Core © 2023 Paizo Inc. Game-content licence and attribution notices: https://2e.aonprd.com/Licenses.aspx"
-  },
   "sources": [
     {
       "id": "PC1",
       "name": "Player Core",
       "source": "PC1"
+    },
+    {
+      "id": "PC2",
+      "name": "Player Core 2",
+      "source": "PC2"
     }
   ],
   "companions": [
@@ -31,7 +28,7 @@
         "{@b Str} +3, {@b Dex} +1, {@b Con} +2, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
         "{@b Hit Points} 8",
         "{@b Skill} {@skill Intimidation|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}",
         "{@b Speed} 25 feet, climb 25 feet",
         {
           "type": "hr"
@@ -47,8 +44,7 @@
           "type": "hr"
         },
         "Your ape makes a loud and frightening display, throwing a foe off balance. The ape attempts to {@action Demoralize|} the target creature; this display gains the {@trait Visual||visual} trait and doesn't require language. While frightened by this ability, the target is {@condition Off-guard||off-guard} to your ape."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=66"
+      ]
     },
     {
       "name": "Arboreal Sapling",
@@ -68,7 +64,7 @@
         "{@b Str} +3, {@b Dex} +1, {@b Con} +2, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
         "{@b Hit Points} 8",
         "{@b Skill} {@skill Stealth|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}",
         "{@b Speed} 25 feet",
         {
           "type": "hr"
@@ -84,8 +80,7 @@
           "type": "hr"
         },
         "The arboreal sapling Interacts to pick up a rock within reach or retrieve a stowed rock, then throws it with a ranged rock Strike that deals 2d6 bludgeoning (3d6 for a specialized companion) damage with a range increment of 30 feet."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=67"
+      ]
     },
     {
       "name": "Badger",
@@ -104,7 +99,7 @@
         "{@b Str} +2, {@b Dex} +2, {@b Con} +2, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
         "{@b Hit Points} 8",
         "{@b Skill} {@skill Survival|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}, {@creatureability Scent|MC1|scent} (imprecise, 30 feet)",
         "{@b Speed} 25 feet, burrow 10 feet, climb 10 feet",
         {
           "type": "hr"
@@ -143,8 +138,7 @@
           ]
         },
         "After it has stopped raging, it can't use Badger Rage again for 1 minute."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=68"
+      ]
     },
     {
       "name": "Bat",
@@ -163,7 +157,7 @@
         "{@b Str} +2, {@b Dex} +3, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
         "{@b Hit Points} 6",
         "{@b Skill} {@skill Stealth|}",
-        "{@b Senses} echolocation 20 feet (the bat can use hearing as a precise sense within this range), {@link low-light vision|https://2e.aonprd.com/Traits.aspx?ID=100}",
+        "{@b Senses} echolocation 20 feet (the bat can use hearing as a precise sense within this range), {@rule Low-Light Vision|PC1|low-light vision}",
         "{@b Speed} 15 feet, fly 30 feet",
         {
           "type": "hr"
@@ -179,8 +173,7 @@
           "type": "hr"
         },
         "The bat thrashes wildly with its wings, making wing Strikes against up to three adjacent foes. Each attack counts toward the bat's multiple attack penalty, but the penalty only increases after all the attacks have been made."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=69"
+      ]
     },
     {
       "name": "Bear",
@@ -199,7 +192,7 @@
         "{@b Str} +3, {@b Dex} +2, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
         "{@b Hit Points} 8",
         "{@b Skill} {@skill Intimidation|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}, {@creatureability Scent|MC1|scent} (imprecise, 30 feet)",
         "{@b Speed} 35 feet",
         {
           "type": "hr"
@@ -216,8 +209,7 @@
           "type": "hr"
         },
         "The bear makes another claw Strike against the same target. If this Strike hits, the target is also {@condition Grabbed||grabbed}, as if the bear had successfully Grappled the target."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=70"
+      ]
     },
     {
       "name": "Bird",
@@ -236,7 +228,7 @@
         "{@b Str} +2, {@b Dex} +3, {@b Con} +1, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
         "{@b Hit Points} 4",
         "{@b Skill} {@skill Stealth|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}",
         "{@b Speed} 10 feet, fly 60 feet",
         {
           "type": "hr"
@@ -252,8 +244,7 @@
           "type": "hr"
         },
         "The bird Flies and makes a talon Strike at any point along the way."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=71"
+      ]
     },
     {
       "name": "Boar",
@@ -271,7 +262,7 @@
         "{@b Str} +3, {@b Dex} +1, {@b Con} +2, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
         "{@b Hit Points} 8",
         "{@b Skill} {@skill Survival|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}, {@creatureability Scent|MC1|scent} (imprecise, 30 feet)",
         "{@b Speed} 35 feet",
         {
           "type": "hr"
@@ -287,8 +278,7 @@
           "type": "hr"
         },
         "The boar Strides twice in a straight line and then makes a tusk Strike. As long as it moved at least 20 feet, it gains a +2 circumstance bonus to its attack roll."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=72"
+      ]
     },
     {
       "name": "Cat",
@@ -307,7 +297,7 @@
         "{@b Str} +2, {@b Dex} +3, {@b Con} +1, {@b Int} -4, {@b Wis} +2, {@b Cha} +0",
         "{@b Hit Points} 4",
         "{@b Skill} {@skill Stealth|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}, {@creatureability Scent|MC1|scent} (imprecise, 30 feet)",
         "{@b Speed} 35 feet",
         "{@b Special} Your cat deals 1d4 extra precision damage against {@condition Off-guard||off-guard} targets.",
         {
@@ -325,8 +315,7 @@
           "type": "hr"
         },
         "The cat Strides and then Strikes. If it was {@condition Undetected||undetected} at the start of its Cat Pounce, it remains undetected until after the attack."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=73"
+      ]
     },
     {
       "name": "Crocodile",
@@ -345,7 +334,7 @@
         "{@b Str} +3, {@b Dex} +2, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
         "{@b Hit Points} 6",
         "{@b Skill} {@skill Stealth|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}",
         "{@b Speed} 20 feet, swim 25 feet",
         "{@b Special} The crocodile can hold its breath for about 2 hours.",
         {
@@ -363,8 +352,7 @@
           "type": "hr"
         },
         "The crocodile tucks its legs and rolls rapidly, twisting its victim. It makes a jaws Strike with a +2 circumstance bonus to the attack roll against the grabbed creature. If it hits, it also knocks the creature {@condition Prone||prone}. If it misses, it releases the creature."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=74"
+      ]
     },
     {
       "name": "Dromaeosaur",
@@ -383,7 +371,7 @@
         "{@b Str} +2, {@b Dex} +3, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
         "{@b Hit Points} 6",
         "{@b Skill} {@skill Stealth|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}, {@creatureability Scent|MC1|scent} (imprecise, 30 feet)",
         "{@b Speed} 50 feet",
         {
           "type": "hr"
@@ -400,8 +388,7 @@
           "type": "hr"
         },
         "The raptor Steps up to 10 feet and then Strikes, or Strikes and then Steps up to 10 feet."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=75"
+      ]
     },
     {
       "name": "Horse",
@@ -419,7 +406,7 @@
         "{@b Str} +3, {@b Dex} +2, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
         "{@b Hit Points} 8",
         "{@b Skill} {@skill Survival|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}, {@creatureability Scent|MC1|scent} (imprecise, 30 feet)",
         "{@b Speed} 40 feet",
         "{@b Special} mount",
         {
@@ -437,8 +424,7 @@
           "type": "hr"
         },
         "The horse Strides twice at a +10-foot circumstance bonus to Speed."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=76"
+      ]
     },
     {
       "name": "Riding Drake",
@@ -458,7 +444,7 @@
         "{@b Str} +2, {@b Dex} +1, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +2",
         "{@b Hit Points} 8",
         "{@b Skill} {@skill Intimidation|}",
-        "{@b Senses} {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=12}",
+        "{@b Senses} {@creatureability Darkvision|MC1|darkvision}",
         "{@b Speed} 45 feet",
         "{@b Special} mount",
         {
@@ -476,8 +462,7 @@
           "type": "hr"
         },
         "The riding drake breathes a 30-foot cone of fire, dealing 1d6 fire damage for every 2 levels the drake has to all creatures in the area (basic Reflex save). This uses a trained DC using the drake's Constitution modifier or an expert DC if the drake is specialized."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=77"
+      ]
     },
     {
       "name": "Scorpion",
@@ -496,7 +481,7 @@
         "{@b Str} +3, {@b Dex} +3, {@b Con} +1, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
         "{@b Hit Points} 6",
         "{@b Skill} {@skill Stealth|}",
-        "{@b Senses} {@link darkvision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=12}",
+        "{@b Senses} {@creatureability Darkvision|MC1|darkvision}",
         "{@b Speed} 30 feet",
         "{@b Special} The scorpion's stinger attack deals an additional 1d4 poison damage or 2d4 poison damage if the scorpion is a specialized companion.",
         {
@@ -513,8 +498,7 @@
           "type": "hr"
         },
         "The scorpion holds its foe in place with its pincers in order to sting it. It makes a pincer Strike. If the Strike hits, the target creature automatically becomes {@condition Grabbed||grabbed} by the scorpion, which then makes a stinger Strike against it. The grabbed condition lasts until the end of your next turn."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=78"
+      ]
     },
     {
       "name": "Shark",
@@ -533,7 +517,7 @@
         "{@b Str} +3, {@b Dex} +2, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
         "{@b Hit Points} 6",
         "{@b Skill} {@skill Stealth|}",
-        "{@b Senses} blood scent, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 60 feet)",
+        "{@b Senses} blood scent, {@creatureability Scent|MC1|scent} (imprecise, 60 feet)",
         "{@b Speed} swim 40 feet",
         "{@b Special} The shark has the {@trait Aquatic||aquatic} trait. Its blood scent enables it to smell blood in the water from up to 1 mile away.",
         {
@@ -551,8 +535,7 @@
           "type": "hr"
         },
         "The shark viciously rips into the wound. The target of the shark’s Strike takes 2d8 slashing damage (3d8 for a specialized companion)."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=79"
+      ]
     },
     {
       "name": "Snake",
@@ -570,7 +553,7 @@
         "{@b Str} +3, {@b Dex} +3, {@b Con} +1, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
         "{@b Hit Points} 6",
         "{@b Skill} {@skill Stealth|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}, {@creatureability Scent|MC1|scent} (imprecise, 30 feet)",
         "{@b Speed} 20 feet, climb 20 feet, swim 20 feet",
         {
           "type": "hr"
@@ -587,8 +570,7 @@
           "type": "hr"
         },
         "The snake deals 12 bludgeoning damage to the grabbed creature; the creature must attempt a basic Fortitude save against your class DC. If the snake is a specialized animal companion, increase this damage to 20."
-      ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=80"
+      ]
     },
     {
       "name": "Wolf",
@@ -606,7 +588,7 @@
         "{@b Str} +2, {@b Dex} +3, {@b Con} +2, {@b Int} -4, {@b Wis} +1, {@b Cha} +0",
         "{@b Hit Points} 6",
         "{@b Skill} {@skill Survival|}",
-        "{@b Senses} {@link low-light vision|https://2e.aonprd.com/MonsterAbilities.aspx?ID=23}, {@link scent|https://2e.aonprd.com/MonsterAbilities.aspx?ID=33} (imprecise, 30 feet)",
+        "{@b Senses} {@creatureability Low-Light Vision|MC1|low-light vision}, {@creatureability Scent|MC1|scent} (imprecise, 30 feet)",
         "{@b Speed} 40 feet",
         {
           "type": "hr"
@@ -623,8 +605,204 @@
           "type": "hr"
         },
         "The wolf automatically knocks the target of its jaws Strike {@condition Prone||prone}."
+      ]
+    },
+    {
+      "name": "Aeon Wyrd",
+      "source": "PC2",
+      "page": 170,
+      "entries": [
+        "{@b Required Number of Abilities} 3",
+        "{@b Granted Abilities} construct, flier",
+        "An aeon wyrd is a floating swarm of gemstones surrounding a larger stone. It grants the power of its internal aeon stone to its master.",
+        {
+          "type": "h3",
+          "name": "{@companion Aeon Stone Reservoir|PC2}",
+          "entries": [
+            "Your aeon wyrd can house any aeon stone as a powerfully resonant nucleus that holds it together. You gain the aeon stone’s benefits without needing to invest it, and you gain the aeon stone’s resonant power. This doesn’t interfere with any wayfinder you invest."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "{@companion Can't Walk|PC2}",
+          "entries": [
+            "Your aeon wyrd has no land Speed."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "{@companion Crystalline|PC2}",
+          "entries": [
+            "Your aeon wyrd's crystalline structure makes it vulnerable to sonic attacks. It gains weakness to sonic equal to your level."
+          ]
+        }
       ],
-      "reference": "https://2e.aonprd.com/Companions.aspx?ID=83"
+      "kind": "specific-familiar",
+      "category": "Specific Familiar",
+      "traits": [
+        "construct"
+      ]
+    },
+    {
+      "name": "Fey Dragonet",
+      "source": "PC2",
+      "page": 170,
+      "entries": [
+        "{@b Required Number of Abilities} 5",
+        "{@b Granted Abilities} darkvision, flier, manual dexterity, speech, touch telepathy",
+        "These tiny, mischievous dragons make natural allies for benevolent or capricious characters.",
+        {
+          "type": "h3",
+          "name": "{@companion Euphoric Breath|PC2} {@as 2}",
+          "entries": [
+            "{@b Frequency} once per hour; {@b Effect} ({@trait Arcane|PC1|arcane}, {@trait Poison|PC1|poison}) The fey dragonet breathes euphoric gas in a 10-foot cone. Each creature in the area must attempt a Fortitude save against your class DC or spell DC, whichever is higher. A creature that fails its save is stupefied 2 and slowed 1 for 1d4 rounds; on a critical failure, the duration is 1 minute."
+          ]
+        }
+      ],
+      "kind": "specific-familiar",
+      "category": "Specific Familiar",
+      "traits": [
+        "dragon"
+      ]
+    },
+    {
+      "name": "Homunculus",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "{@b Required Number of Abilities} 6",
+        "{@b Granted Abilities} construct, darkvision, manual dexterity, {@companion Poison Reservoir|PC2|poison reservoir}",
+        "Homunculi are tiny servitor constructs created by a crafter to serve as a spy, scout, messenger, or assistant. A homunculus is crafted using a drop of its creator’s blood in addition to any other components used in crafting its body.",
+        {
+          "type": "h3",
+          "name": "{@companion Blood Link|PC2}",
+          "entries": [
+            "({@trait Mental|PC1|mental}) A homunculus is telepathically linked to its creator using their shared blood as a conduit, allowing it to share information back and forth at a range of 1,500 feet, including its master’s knowledge and everything the homunculus hears. If you become unconscious and dying, your homunculus senses the waning power in your blood, allowing it to automatically act on the next turn as if you Commanded it. If the homunculus is destroyed, the master takes 2d10 mental damage."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "{@companion Porter|PC2}",
+          "entries": [
+            "You can choose for your homunculus to have either {@companion Item Delivery|PC2|item delivery} or valet."
+          ]
+        }
+      ],
+      "kind": "specific-familiar",
+      "category": "Specific Familiar",
+      "traits": [
+        "construct"
+      ]
+    },
+    {
+      "name": "Imp",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "{@b Required Number of Abilities} 7",
+        "{@b Granted Abilities} darkvision, flier, manual dexterity, resistance (poison), skilled (deception), speech, touch telepathy",
+        "Imp familiars pretend to be subservient in order to trick their master into losing their soul or finding an early grave.",
+        {
+          "type": "h3",
+          "name": "{@companion Fiendish Temptation|PC2} {@as 1}",
+          "entries": [
+            "{@b Frequency} once per day; {@b Effect} ({@trait Concentrate|PC1|concentrate}, {@trait Divine|PC1|divine}, {@trait Fortune|PC1|fortune}, {@trait Unholy|PC1|unholy}) The imp offers a non-fiend within 15 feet a bargain, granting a boon of good luck if the creature accepts. The boon lasts for 1 hour once accepted. Once during the hour, the creature can roll an attack roll or saving throw twice and use the higher result. If the creature dies while the boon is in place, the imp decides where the creature’s soul travels. This typically makes the soul bound for eternity in the imp’s home plane, and the creature is unable to be raised or resurrected except by the wish ritual or similar magic."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "{@companion Imp Invisibility|PC2}",
+          "entries": [
+            "{@b Frequency} once per hour; {@b Effect} Once per hour, your imp familiar can cast invisibility on itself as a divine innate spell."
+          ]
+        }
+      ],
+      "kind": "specific-familiar",
+      "category": "Specific Familiar",
+      "traits": [
+        "fiend",
+        "unholy"
+      ]
+    },
+    {
+      "name": "Pipefox",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "{@b Required Number of Abilities} 5",
+        "{@b Granted Abilities} climber, darkvision, {@companion Second Opinion|PC2|second opinion}, skilled (one skill of your choice), speech",
+        "A pipefox is a tiny magical fox with a thin, limbless body that is about a foot long. Pipefoxes are secretive, shy, evasive, and love to acquire knowledge.",
+        {
+          "type": "h3",
+          "name": "{@companion Scholarly Linguist|PC2}",
+          "entries": [
+            "Thanks to its innate erudition, your pipefox speaks and understands all languages you know (instead of just one) as well as one common language you don’t know."
+          ]
+        }
+      ],
+      "kind": "specific-familiar",
+      "category": "Specific Familiar",
+      "traits": [
+        "beast"
+      ]
+    },
+    {
+      "name": "Poppet",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "{@b Required Number of Abilities} 1",
+        "{@b Granted Abilities} construct",
+        "Endlessly modifiable, poppet familiars made of wood and wicker are among the most basic construct familiars available to Pathfinder agents across the globe.",
+        {
+          "type": "h3",
+          "name": "{@companion Flammable|PC2}",
+          "entries": [
+            "Your poppet’s components make it particularly vulnerable to fire. It gains weakness to fire equal to your level. You can use one familiar ability to reinforce the poppet’s construction, removing this weakness for the day."
+          ]
+        }
+      ],
+      "kind": "specific-familiar",
+      "category": "Specific Familiar",
+      "traits": [
+        "construct"
+      ]
+    },
+    {
+      "name": "Spellslime",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "{@b Required Number of Abilities} 4, and you must be able to cast spells using spell slots",
+        "{@b Granted Abilities} climber, darkvision, tough",
+        "These friendly, colorful oozes congeal from the essences left over from casting spells. They are extremely loyal.",
+        {
+          "type": "h3",
+          "name": "{@companion Magic Scent|PC2}",
+          "entries": [
+            "Your spellslime familiar gains an imprecise sense with a range of 30 feet that enables it to smell magic of the same tradition as your own."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "{@companion Ooze Defense|PC2}",
+          "entries": [
+            "Your spellslime familiar is easy to hit, but it lacks weak points. It is immune to critical hits and precision damage, but its AC is only 10 + your level (instead of an AC equal to yours)."
+          ]
+        },
+        {
+          "type": "h3",
+          "name": "{@companion Slime Rejuvenation|PC2}",
+          "entries": [
+            "Your spellslime familiar gains the focused rejuvenation ability, but it recovers 2 Hit Points per level when you Refocus instead of 1."
+          ]
+        }
+      ],
+      "kind": "specific-familiar",
+      "category": "Specific Familiar",
+      "traits": [
+        "ooze"
+      ]
     }
   ],
   "familiarAbilities": [
@@ -636,8 +814,7 @@
       "category": "Master",
       "entries": [
         "Your familiar can transform into a mark you carry on your flesh, typically seeming like a birthmark, tattoo, or gem that vaguely resembles its normal form. When transformed, the familiar can't act except to turn back into a familiar. It isn't affected by area effects and must be targeted separately to affect it, which requires knowledge that it's a creature. This means you and your allies can heal or assist the familiar while most enemies stay unaware of its true nature. Creatures must attempt a DC 20 Perception check to {@action Seek|} to realize a it is actually a familiar. Your familiar can still communicate its feelings empathically. Transforming the familiar between forms is a 1-minute activity that has the {@trait Concentrate||concentrate} trait."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=129"
+      ]
     },
     {
       "name": "Accompanist",
@@ -647,8 +824,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar helps you perform. Whenever you attempt a {@skill Performance|} check, if your familiar is nearby and can act, it accompanies you with chirps, claps, or its own miniature instrument. This grants you a +1 circumstance bonus, or +2 if you're a master in Performance."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=108"
+      ]
     },
     {
       "name": "Amphibious",
@@ -658,8 +834,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar gains the {@trait Amphibious||amphibious} trait, allowing it to breathe in both air and water, and has both a land Speed and a swim Speed, each equal to its highest land Speed or swim Speed."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=139"
+      ]
     },
     {
       "name": "Burrower",
@@ -669,8 +844,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar gains a burrow Speed of 5 feet, allowing it to dig Tiny holes."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=140"
+      ]
     },
     {
       "name": "Cantrip Connection",
@@ -680,8 +854,7 @@
       "category": "Master",
       "entries": [
         "You can prepare an additional {@trait Cantrip||cantrip} or, if you have a repertoire, designate a cantrip to add to your repertoire every time you select this ability; you can retrain it but can't otherwise change it. You must be able to prepare cantrips or add them to your repertoire to select this."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=130"
+      ]
     },
     {
       "name": "Climber",
@@ -691,8 +864,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar gains a climb Speed of 25 feet."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=141"
+      ]
     },
     {
       "name": "Construct",
@@ -702,8 +874,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar has the {@trait Construct||construct} trait instead of the {@trait Animal||animal} trait. The familiar is immune to {@trait Death||death} effects, {@trait Disease||disease}, {@condition Doomed||doomed}, {@condition Drained||drained}, {@condition Fatigued||fatigued}, {@trait Healing||healing}, {@trait Nonlethal||nonlethal} attacks, {@condition Paralyzed||paralyzed}, {@trait Poison||poison}, {@condition Sickened||sickened}, {@trait Spirit||spirit}, {@condition Unconscious||unconscious}, {@trait Vitality||vitality}, and {@trait Void||void}. Your familiar must have the {@companion Tough||tough} pet ability to select this."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=109"
+      ]
     },
     {
       "name": "Damage Avoidance",
@@ -713,8 +884,7 @@
       "category": "Familiar",
       "entries": [
         "Choose one type of save. Your familiar takes no damage when it rolls a success on that type of save; this doesn't prevent effects other than damage."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=110"
+      ]
     },
     {
       "name": "Darkvision",
@@ -724,8 +894,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar gains darkvision."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=142"
+      ]
     },
     {
       "name": "Dragon",
@@ -735,8 +904,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar has the {@trait Dragon||dragon} trait instead of the {@trait Animal||animal} trait."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=111"
+      ]
     },
     {
       "name": "Echolocation",
@@ -746,8 +914,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar can use hearing as a precise sense within 20 feet."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=143"
+      ]
     },
     {
       "name": "Elemental",
@@ -757,8 +924,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar has the {@trait Elemental||elemental} trait instead of the {@trait Animal||animal} trait. Choose {@trait Air||air}, {@trait Earth||earth}, {@trait Fire||fire}, {@trait Metal||metal}, {@trait Water||water}, or {@trait Wood||wood}. Your familiar gains that trait. The familiar is immune to bleed, {@condition Paralyzed||paralyzed}, {@trait Poison||poison}, {@trait Sleep||sleep}, and the element matching its trait. Your familiar must have the resistance familiar ability to select this."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=112"
+      ]
     },
     {
       "name": "Familiar Focus",
@@ -768,8 +934,7 @@
       "category": "Master",
       "entries": [
         "Once per day, your familiar can use 2 actions with the {@trait Concentrate||concentrate} trait to restore 1 Focus Point to your focus pool, up to your usual maximum. You must have a focus pool to select this."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=131"
+      ]
     },
     {
       "name": "Fast Movement",
@@ -779,8 +944,7 @@
       "category": "Familiar",
       "entries": [
         "Increase one of your familiar's Speeds from 25 feet to 40 feet."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=144"
+      ]
     },
     {
       "name": "Flier",
@@ -790,8 +954,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar gains a fly Speed of 25 feet."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=145"
+      ]
     },
     {
       "name": "Focused Rejuvenation",
@@ -801,8 +964,7 @@
       "category": "Familiar",
       "entries": [
         "When you {@action Refocus|}, you generate magical energy that heals your familiar. Your familiar regains 1 Hit Point per level whenever you Refocus."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=113"
+      ]
     },
     {
       "name": "Fungus",
@@ -812,8 +974,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar has the {@trait Fungus||fungus} trait instead of the {@trait Animal||animal} trait."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=114"
+      ]
     },
     {
       "name": "Independent",
@@ -823,8 +984,7 @@
       "category": "Familiar",
       "entries": [
         "In an encounter, if you don't Command your familiar, it still gains 1 action each round. Typically, you still decide how it spends that action, but, the GM might determine that your familiar chooses its own tactics rather than performing your preferred action. This doesn't work with valet or similar abilities that require a command, if you're capable of riding your familiar, or similar situations."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=115"
+      ]
     },
     {
       "name": "Innate Surge",
@@ -834,8 +994,7 @@
       "category": "Master",
       "entries": [
         "Once per day, you can draw upon your familiar's innate magic to replenish your own. You can cast one innate spell gained from an ancestry feat that you have already cast today. You must still Cast the Spell and meet the spell's other requirements."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=132"
+      ]
     },
     {
       "name": "Kinspeech",
@@ -845,8 +1004,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar can understand and speak with animals of the same species. To select this, your familiar must be an animal, it must have the {@companion Speech||speech} ability, and you must be at least 6th level."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=116"
+      ]
     },
     {
       "name": "Lifelink",
@@ -856,8 +1014,7 @@
       "category": "Master",
       "entries": [
         "If your familiar would be reduced to 0 HP by damage, as a reaction with the {@trait Concentrate||concentrate} trait, you can take all the damage, and your familiar takes none. However, special effects that would occur due to that damage (such as snake venom) still apply."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=133"
+      ]
     },
     {
       "name": "Major Resistance",
@@ -867,8 +1024,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar increases the resistance it gains from its resistance familiar ability to a value equal to your level. To select this you must be at least 8th level."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=117"
+      ]
     },
     {
       "name": "Manual Dexterity",
@@ -878,8 +1034,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar can use up to two of its limbs as if they were hands to perform {@trait Manipulate||manipulate} actions."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=146"
+      ]
     },
     {
       "name": "Master's Form",
@@ -889,8 +1044,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar can change shape as a single action, transforming into a {@trait Humanoid||humanoid} of your ancestry with the same age, gender, and build of its true form, though it always maintains a clearly unnatural remnant of its nature, such as a cat's eyes or a serpent's tongue. This form is always the same each time it uses this ability. This otherwise uses the effects of {@spell Humanoid Form|PC1|humanoid form}, except the change is purely cosmetic. It only appears humanoid and gains no new capabilities. Your familiar must have the {@companion Manual Dexterity||manual dexterity} and {@companion Speech|PC1|speech} abilities to select this."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=118"
+      ]
     },
     {
       "name": "Partner in Crime",
@@ -900,8 +1054,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar is your criminal associate. Despite being a minion, your familiar gains 1 reaction at the start of its turns, which it can use only to {@action Aid|} you on a {@skill Deception|} or {@skill Thievery|} skill check (it still has to prepare to help you as normal for the Aid reaction). It automatically succeeds at its check to Aid you with those skills or automatically critically succeeds if you're a master of the skill in question."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=119"
+      ]
     },
     {
       "name": "Plant",
@@ -911,8 +1064,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar has the {@trait Plant||plant} trait instead of the {@trait Animal||animal} trait."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=120"
+      ]
     },
     {
       "name": "Plant Form",
@@ -922,8 +1074,7 @@
       "category": "Familiar",
       "entries": [
         "Your plant familiar can change shape as a single action, transforming into a Tiny plant of a type roughly similar to the familiar's nature. This otherwise uses the effects of {@spell One with Plants|PC1|one with plants}. You must have a familiar with the {@trait Plant||plant} trait to select this ability."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=121"
+      ]
     },
     {
       "name": "Recall Familiar",
@@ -933,8 +1084,7 @@
       "category": "Master",
       "entries": [
         "Once per day, you can use a 3-action activity, which has the {@trait Concentrate||concentrate} trait, to teleport your familiar to your space. Your familiar must be within 1 mile or the attempt to summon it fails. This is a {@trait Teleportation||teleportation} effect."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=134"
+      ]
     },
     {
       "name": "Resistance",
@@ -944,8 +1094,7 @@
       "category": "Familiar",
       "entries": [
         "Choose two of the following: acid, cold, electricity, fire, poison, or sonic. Your familiar gains resistance equal to half your level (minimum resistance 1) against the chosen damage types."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=122"
+      ]
     },
     {
       "name": "Restorative Familiar",
@@ -955,8 +1104,7 @@
       "category": "Master",
       "entries": [
         "Once per day, your familiar can use 2 actions with the {@trait Concentrate||concentrate} trait to give up some of its energy and heal you. It must be in your space to do so. You restore a number of Hit Points equal to 1d8 times half your level (minimum 1d8)."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=135"
+      ]
     },
     {
       "name": "Scent",
@@ -966,8 +1114,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar can use scent as an imprecise sense within 30 feet"
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=147"
+      ]
     },
     {
       "name": "Share Senses",
@@ -977,8 +1124,7 @@
       "category": "Master",
       "entries": [
         "Once every 10 minutes, you can use a single action with the {@trait Concentrate||concentrate} trait to project your senses into your familiar. When you do, you lose all sensory information from your own body, but can sense through your familiar's body for up to 1 minute. You can Dismiss this effect."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=136"
+      ]
     },
     {
       "name": "Skilled",
@@ -988,8 +1134,7 @@
       "category": "Familiar",
       "entries": [
         "Choose a skill other than {@skill Acrobatics|} or {@skill Stealth|}. Your familiar's modifier for that skill is equal to your level plus your spellcasting attribute modifier, rather than just your level. You can select this ability repeatedly, choosing a different skill each time."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=123"
+      ]
     },
     {
       "name": "Speech",
@@ -999,8 +1144,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar understands and speaks a language you know."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=124"
+      ]
     },
     {
       "name": "Spell Battery",
@@ -1010,8 +1154,7 @@
       "category": "Master",
       "entries": [
         "You gain one additional spell slot at least 3 ranks lower than your highest-rank spell slot; you must be able to cast 4th-rank spells using spell slots to select this master ability."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=137"
+      ]
     },
     {
       "name": "Spell Delivery",
@@ -1021,8 +1164,7 @@
       "category": "Master",
       "entries": [
         "If your familiar is in your space, you can cast a spell with a range of touch, transfer its power to your familiar, and command the familiar to deliver the spell. If you do, the familiar uses its 2 actions for the round to move to a target of your choice and touch that target. If it doesn't reach the target to touch it this turn, the spell has no effect."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=138"
+      ]
     },
     {
       "name": "Spellcasting",
@@ -1032,8 +1174,7 @@
       "category": "Familiar",
       "entries": [
         "Choose a spell in your repertoire or that you prepared today at least 5 ranks lower than your highest-rank spell slot. Your familiar can Cast that Spell once per day using your magical tradition, spell attack modifier, and spell DC. If the spell has a drawback that affects the caster, both you and your familiar are affected. You must be able to cast 6th-rank spells using spell slots to select this."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=125"
+      ]
     },
     {
       "name": "Toolbearer",
@@ -1043,8 +1184,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar can carry a toolkit of up to light Bulk. So long as your familiar is adjacent to you, you can draw and replace the tools as part of the action that uses them as if you were wearing them. Your familiar must have the {@companion Manual Dexterity||manual dexterity} ability to select this."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=126"
+      ]
     },
     {
       "name": "Touch Telepathy",
@@ -1054,8 +1194,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar can telepathically communicate with you via touch. If it also has the {@companion Speech||speech} ability, it can telepathically communicate via touch with any creature if they share a language."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=127"
+      ]
     },
     {
       "name": "Tough",
@@ -1065,8 +1204,7 @@
       "category": "Familiar",
       "entries": [
         "Your familiar's max HP increase by 2 per level."
-      ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=148"
+      ]
     },
     {
       "name": "Valet",
@@ -1076,8 +1214,187 @@
       "category": "Familiar",
       "entries": [
         "You can command your familiar to deliver you items more efficiently. Your familiar doesn't use its 2 actions immediately upon your command. Instead, up to twice before the end of your turn, you can have your familiar Interact to retrieve an item of light or negligible Bulk you are wearing and place it into one of your free hands. The familiar can't use this ability to retrieve stowed items. If the familiar has a different number of actions, it can retrieve one item for each action it has when commanded this way."
+      ]
+    },
+    {
+      "name": "Aeon Stone Reservoir",
+      "source": "PC2",
+      "page": 170,
+      "entries": [
+        "Your aeon wyrd can house any aeon stone as a powerfully resonant nucleus that holds it together. You gain the aeon stone’s benefits without needing to invest it, and you gain the aeon stone’s resonant power. This doesn’t interfere with any wayfinder you invest."
       ],
-      "reference": "https://2e.aonprd.com/Familiars.aspx?ID=128"
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Blood Link",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "({@trait Mental|PC1|mental}) A homunculus is telepathically linked to its creator using their shared blood as a conduit, allowing it to share information back and forth at a range of 1,500 feet, including its master’s knowledge and everything the homunculus hears. If you become unconscious and dying, your homunculus senses the waning power in your blood, allowing it to automatically act on the next turn as if you Commanded it. If the homunculus is destroyed, the master takes 2d10 mental damage."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Can't Walk",
+      "source": "PC2",
+      "page": 170,
+      "entries": [
+        "Your aeon wyrd has no land Speed."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Crystalline",
+      "source": "PC2",
+      "page": 170,
+      "entries": [
+        "Your aeon wyrd's crystalline structure makes it vulnerable to sonic attacks. It gains weakness to sonic equal to your level."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Euphoric Breath",
+      "source": "PC2",
+      "page": 170,
+      "entries": [
+        "{@b Frequency} once per hour; {@b Effect} ({@trait Arcane|PC1|arcane}, {@trait Poison|PC1|poison}) The fey dragonet breathes euphoric gas in a 10-foot cone. Each creature in the area must attempt a Fortitude save against your class DC or spell DC, whichever is higher. A creature that fails its save is stupefied 2 and slowed 1 for 1d4 rounds; on a critical failure, the duration is 1 minute."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Extra Alchemy",
+      "source": "PC2",
+      "page": 170,
+      "entries": [
+        "Your familiar helps you brew items at the start of the day. You can create one additional item with advanced alchemy during your daily preparations."
+      ],
+      "kind": "familiar",
+      "category": "Master"
+    },
+    {
+      "name": "Extra Vial",
+      "source": "PC2",
+      "page": 170,
+      "entries": [
+        "Your familiar accretes alchemical liquids in its body. Once per day, you can Interact when your familiar is adjacent to you to gain a versatile vial."
+      ],
+      "kind": "familiar",
+      "category": "Master"
+    },
+    {
+      "name": "Fiendish Temptation",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "{@b Frequency} once per day; {@b Effect} ({@trait Concentrate|PC1|concentrate}, {@trait Divine|PC1|divine}, {@trait Fortune|PC1|fortune}, {@trait Unholy|PC1|unholy}) The imp offers a non-fiend within 15 feet a bargain, granting a boon of good luck if the creature accepts. The boon lasts for 1 hour once accepted. Once during the hour, the creature can roll an attack roll or saving throw twice and use the higher result. If the creature dies while the boon is in place, the imp decides where the creature’s soul travels. This typically makes the soul bound for eternity in the imp’s home plane, and the creature is unable to be raised or resurrected except by the wish ritual or similar magic."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Flammable",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "Your poppet’s components make it particularly vulnerable to fire. It gains weakness to fire equal to your level. You can use one familiar ability to reinforce the poppet’s construction, removing this weakness for the day."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Imp Invisibility",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "{@b Frequency} once per hour; {@b Effect} Once per hour, your imp familiar can cast invisibility on itself as a divine innate spell."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Item Delivery",
+      "source": "PC2",
+      "page": 170,
+      "entries": [
+        "If your familiar is adjacent to you, you can Command it to deliver an item. Instead of its normal 2 actions, your familiar Interacts to take an item you’re holding of light Bulk or less, then takes one move action, then finally Interacts to pass off the item to another willing creature. It can instead administer the item to the creature if it can do so with 1 action and has an appropriate type of item (such as alchemical elixir). If your familiar doesn’t reach the target this turn, it holds the item until commanded otherwise. Your familiar must have the manual dexterity ability to select this."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Magic Scent",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "Your spellslime familiar gains an imprecise sense with a range of 30 feet that enables it to smell magic of the same tradition as your own."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Ooze Defense",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "Your spellslime familiar is easy to hit, but it lacks weak points. It is immune to critical hits and precision damage, but its AC is only 10 + your level (instead of an AC equal to yours)."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Poison Reservoir",
+      "source": "PC2",
+      "page": 170,
+      "entries": [
+        "Your familiar has a reservoir for poison, allowing it to apply an injury poison to an adjacent ally’s exposed weapon with a single Interact action. You must supply the poison and instill it into this reservoir using two consecutive Interact actions. You must have a homunculus familiar to select this ability."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Porter",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "You can choose for your homunculus to have either {@companion Item Delivery|PC2|item delivery} or valet."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Scholarly Linguist",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "Thanks to its innate erudition, your pipefox speaks and understands all languages you know (instead of just one) as well as one common language you don’t know."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Second Opinion",
+      "source": "PC2",
+      "page": 170,
+      "entries": [
+        "Your familiar is your academic confidant. Despite being a minion, your familiar gains 1 reaction at the start of its turns, which it can use only to Aid you on a Recall Knowledge skill check for a skill in which it has the skilled familiar ability (it still has to prepare to help you as normal for the Aid reaction). It automatically succeeds at its check to Aid you with those skills or automatically critically succeeds if you’re a master of the skill in question."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
+    },
+    {
+      "name": "Slime Rejuvenation",
+      "source": "PC2",
+      "page": 171,
+      "entries": [
+        "Your spellslime familiar gains the focused rejuvenation ability, but it recovers 2 Hit Points per level when you Refocus instead of 1."
+      ],
+      "kind": "familiar",
+      "category": "Familiar"
     }
   ],
   "rules": {

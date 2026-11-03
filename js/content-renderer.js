@@ -42,6 +42,13 @@ function renderTag(body, options) {
   const tag = rawTag.toLowerCase() === "item" ? "equipment" : rawTag.toLowerCase();
   const parts = splitArguments(value);
   if (["code", "kbd"].includes(tag)) return `<${tag}>${escapeHtml(value)}</${tag}>`;
+  if (tag === "catalog") {
+    const pages = { equipment: "equipment.html", traits: "traits.html", companions: "companions.html", conditions: "conditions.html" };
+    const key = parts[0].trim().toLowerCase();
+    const href = Object.hasOwn(pages, key) ? pages[key] : null;
+    const label = renderInline(parts[1] || parts[0], options);
+    return href ? `<a href="${href}">${label}</a>` : label;
+  }
   const formatting = { b: "strong", bold: "strong", i: "em", italic: "em", s: "s", u: "u", sup: "sup", sub: "sub" };
   if (Object.hasOwn(formatting, tag)) return `<${formatting[tag]}>${renderInline(value, options)}</${formatting[tag]}>`;
   const references = {
@@ -196,7 +203,8 @@ export function renderContent(content, options = {}) {
     if (type === "ability" || type === "spell") {
       const spell = type === "spell";
       const symbol = String(entry.actions ?? "").trim().toLowerCase();
-      const action = !spell && ["1", "2", "3", "r", "f"].includes(symbol) ? ` ${inline(`{@as ${symbol}}`)}` : "";
+      const actionOptions = Array.isArray(entry.actionOptions) ? entry.actionOptions.filter(value => ["1", "2", "3", "r", "f"].includes(value)) : [];
+      const action = spell ? "" : actionOptions.length > 1 ? ` ${actionOptions.map(value => inline(`{@as ${value}}`)).join(" or ")}` : ["1", "2", "3", "r", "f"].includes(symbol) ? ` ${inline(`{@as ${symbol}}`)}` : "";
       const spellTypes = { spell: "Spell", cantrip: "Cantrip", focus: "Focus" };
       const kind = spell ? (Object.hasOwn(spellTypes, entry.spellType) ? spellTypes[entry.spellType] : "Spell") : typeof entry.kind === "string" ? entry.kind.trim() : "";
       const rank = typeof entry.level === "string" ? entry.level.trim() : Number.isInteger(entry.level) && entry.level >= 0 ? String(entry.level) : "";
